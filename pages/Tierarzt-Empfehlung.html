@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../planet-brands.css?v=207">
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
-  <link rel="stylesheet" href="tierarzt-empfehlung.css?v=4">
+  <link rel="stylesheet" href="tierarzt-empfehlung.css?v=8">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body class="--mockup-bar-visible" id="top">
@@ -23,6 +23,14 @@
     <button class="mockup-btn --active" data-state="guest"        onclick="setState('guest',        this)">① Nicht angemeldet</button>
     <button class="mockup-btn"          data-state="no-release"   onclick="setState('no-release',   this)">② Angemeldet · keine Freigabe</button>
     <button class="mockup-btn"          data-state="with-release" onclick="setState('with-release', this)">③ Angemeldet · mit Freigabe</button>
+  </div>
+  <div class="mockup-bar__sep"></div>
+  <div class="mockup-bar__group">
+    <span class="mockup-bar__group-label">Stamm-Praxis:</span>
+    <select class="mockup-select" id="mockupAssignedVet" onchange="setAssignedVetFromMockup(this.value)" title="Verknüpfung Tierhalter ↔ Praxis">
+      <option value="">keine</option>
+      <!-- Optionen per JS befüllt -->
+    </select>
   </div>
   <div class="mockup-bar__sep"></div>
   <div class="mockup-bar__group" id="pageNav">
@@ -178,25 +186,46 @@
 </div>
 
 <!-- ════════════════════════════════════════
-     PRAXIS-FINDER (Karten-Platzhalter)
-     Vollflächiges Pop-up — markiert für die IT,
-     wo das bestehende Kartenmodul eingebunden wird.
+     PRAXIS-FINDER (Karten-Mockup)
+     Vollflächiges Pop-up — Platzhalter für das
+     Kartenmodul (Salesforce- + Google-Maps-Praxen).
+     Beispiel-Praxen sind hier wählbar zum Testen.
      ════════════════════════════════════════ -->
 <div class="vet-map-overlay" id="vetMapOverlay" onclick="if(event.target===this)closeVetMap()">
   <div class="vet-map-panel">
     <div class="cart-drawer__header">
-      <span class="cart-drawer__title">Teilnehmende Praxis in der Nähe finden</span>
+      <span class="cart-drawer__title">Praxis auswählen</span>
       <button type="button" class="btn --icon" onclick="closeVetMap()" aria-label="Schließen"><span class="material-icons">close</span></button>
     </div>
-    <div class="vet-map-placeholder placeholder-bg">
-      <div class="empty-state">
-        <span class="material-icons">map</span>
-        <div class="flow">
-          <p class="empty-state__title">Kartenmodul</p>
-          <p class="empty-state__sub">Hier wird die bestehende Praxis-Karte von inuvet.com eingebunden — sie zeigt alle teilnehmenden Praxen in der Nähe.</p>
-        </div>
+    <div class="vet-map-body">
+      <div class="vet-map-canvas placeholder-bg" aria-hidden="true">
+        <p class="vet-map-canvas__note">Kartenmodul · Mockup — später Salesforce- &amp; Google-Maps-Praxen</p>
+        <div class="vet-map-pins" id="vetMapPins"></div>
+      </div>
+      <div class="vet-map-sidebar">
+        <p class="vet-map-sidebar__legend">
+          <span class="vet-recommended-dot">●</span> Im Programm &nbsp;
+          <span class="vet-recommended-dot --empty">●</span> Noch nicht im Programm
+        </p>
+        <div class="vet-map-list" id="vetMapList"></div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PRAXIS-HILFE / NICHT-IM-PROGRAMM POPUP
+     ════════════════════════════════════════ -->
+<div class="shop-modal-overlay" id="vetGuideOverlay" onclick="if(event.target===this)closeVetGuide()">
+  <div class="shop-modal --guide">
+    <button type="button" class="btn --icon shop-modal__dismiss" onclick="closeVetGuide()" aria-label="Schließen">
+      <span class="material-icons">close</span>
+    </button>
+    <div class="flow">
+      <div class="shop-modal__title" id="vetGuideTitle"></div>
+      <div class="shop-modal__body flow" id="vetGuideBody"></div>
+    </div>
+    <div class="shop-modal__actions" id="vetGuideActions"></div>
   </div>
 </div>
 
@@ -362,7 +391,7 @@
 </div>
 
 <script src="../planet-brands.js?v=26"></script>
-<script src="tierarzt-empfehlung.js?v=37"></script>
+<script src="tierarzt-empfehlung.js?v=49"></script>
 <div class="toast-container" id="toastContainer"></div>
 </body>
 </html>

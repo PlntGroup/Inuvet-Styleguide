@@ -129,7 +129,7 @@ body.--page-home .section-type.--v3 .section-type__content {
 .vet-search { position: relative; }
 .vet-search__intro { color: var(--fg-muted); font-size: var(--text-base); }
 
-/* ─── Praxis-Finder: vollflächiges Overlay mit Karten-Platzhalter ─── */
+/* ─── Praxis-Finder: Karten-Mockup mit wählbaren Praxen ─── */
 .vet-map-overlay {
   position: fixed;
   inset: 0;
@@ -148,16 +148,206 @@ body.--page-home .section-type.--v3 .section-type__content {
   width: 100%;
   max-width: var(--container-max);
   height: 100%;
+  max-height: 40rem;
   background: var(--bg);
   display: flex;
   flex-direction: column;
 }
-.vet-map-placeholder {
+.vet-map-body {
   flex: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  min-height: 0;
+}
+@media (max-width: 720px) {
+  .vet-map-body { grid-template-columns: 1fr; grid-template-rows: 12rem 1fr; }
+}
+.vet-map-canvas {
+  position: relative;
+  min-height: 12rem;
+  overflow: hidden;
+}
+.vet-map-canvas__note {
+  position: absolute;
+  top: var(--half-module);
+  left: var(--half-module);
+  right: var(--half-module);
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  z-index: 1;
+}
+.vet-map-pins { position: absolute; inset: 0; }
+.vet-map-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+.vet-map-pin .material-icons {
+  font-size: 2rem;
+  color: var(--green);
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+}
+.vet-map-pin.--empty .material-icons { color: var(--color-error); }
+.vet-map-pin__label {
+  font-size: 0.65rem;
+  line-height: 1.2;
+  background: var(--bg);
+  padding: 0.15rem 0.35rem;
+  max-width: 7rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+.vet-map-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+  min-height: 0;
+}
+@media (max-width: 720px) {
+  .vet-map-sidebar { border-left: none; border-top: 1px solid var(--border); }
+}
+.vet-map-sidebar__legend {
+  margin: 0;
+  padding: var(--half-module);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  border-bottom: 1px solid var(--border);
+}
+.vet-map-list {
+  flex: 1;
+  overflow-y: auto;
+}
+.vet-map-list__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  padding: var(--half-module);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.vet-map-list__item:hover,
+.vet-map-list__item:focus-visible {
+  background: var(--green-light, #f0f7e8);
+  outline: none;
+}
+.vet-map-list__item strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.vet-map-list__meta {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+}
+
+/* Display-Feld (gewählte Praxis — Form-Field-Look, leeren möglich) */
+.form-field.vet-display input {
+  background: var(--field-bg, var(--green-light));
+  padding-left: calc(var(--base) * 1.75);
+  padding-right: calc(var(--base) * 2.5);
+  cursor: default;
+  color: var(--fg);
+}
+.form-field.vet-display input:not(:placeholder-shown),
+.form-field.vet-display input:focus {
+  background: var(--field-bg, var(--green-light));
+}
+.form-field.vet-display input:focus-visible {
+  outline: none;
+}
+.form-field.vet-display input:not(:placeholder-shown) ~ label,
+.form-field.vet-display input:focus ~ label {
+  background: var(--field-bg, var(--green-light));
+}
+.vet-display__dot {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  font-size: 0.65rem;
+  line-height: 1;
+  margin-top: 0.35rem; /* optisch mittig unter dem floated Label */
+}
+.vet-display__clear {
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--module);
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+  z-index: 1;
+}
+.vet-display__clear:hover,
+.vet-display__clear:focus-visible {
+  color: var(--fg);
+}
+.vet-display__clear .material-icons {
+  font-size: 1.15rem;
+}
+.form-field.vet-display.--error input {
+  border-color: var(--color-error);
+}
+.vet-request__hint { font-size: var(--text-sm); color: var(--fg-muted); }
+.vet-request__hint button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--green);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Anleitungs- / Nicht-im-Programm-Popup */
+.shop-modal-overlay#vetGuideOverlay:not(.--open) {
+  pointer-events: none;
+}
+.shop-modal.--guide {
+  width: min(28rem, 100%);
+  text-align: left;
+  align-items: stretch;
+  position: relative;
+}
+.shop-modal.--guide .shop-modal__dismiss {
+  position: absolute;
+  top: calc(var(--half-module) * 0.5);
+  right: calc(var(--half-module) * 0.5);
+}
+.shop-modal.--guide .shop-modal__body { max-width: none; color: var(--fg); }
+.shop-modal.--guide .shop-modal__actions { align-items: stretch; }
+.shop-modal.--guide .form-check {
+  margin: var(--half-module) 0 0;
+  text-align: left;
+}
+.vet-guide__placeholder {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  border-left: 2px solid var(--border);
+  padding-left: var(--half-module);
 }
 
 /* ─── Tierarzt-Dropdown ─── */

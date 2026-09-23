@@ -279,15 +279,62 @@ const VETS = [
   { id:6, name:'Tiermedizinisches Zentrum Nord',  doctor:'Dr. Klaus Hoffmann',           city:'Dortmund',   hasRecommended:false },
 ];
 let selectedVet    = null;
-let approvedByVet  = null; // Praxis, die zuletzt Produkte freigegeben hat
+let assignedVet    = null; // Stamm-Praxis: Verknüpfung Tierhalter ↔ Praxis (Mockup / Backend)
 let cartDrawerStep = 1;
 let requesterName  = ''; // Name des Tierhalters — Pflicht, für die Zuordnung in der Praxis
+let notifyWhenVetJoins = false; // Wunsch: E-Mail wenn Praxis am Programm teilnimmt
+let vetGuideMode   = null; // 'not-found' | 'not-in-program'
+let suppressAssignedVet = false; // true nach manuellem Leeren des Praxis-Felds
+
+/* Pin-Positionen für den Karten-Mockup (relativ, %) */
+const VET_MAP_PINS = {
+  1: { left: '22%', top: '38%' },
+  2: { left: '48%', top: '55%' },
+  3: { left: '62%', top: '28%' },
+  4: { left: '35%', top: '68%' },
+  5: { left: '72%', top: '48%' },
+  6: { left: '18%', top: '62%' },
+};
+
+function initAssignedVetMockupSelect() {
+  const sel = document.getElementById('mockupAssignedVet');
+  if (!sel || sel.options.length > 1) return;
+  VETS.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = String(v.id);
+    opt.textContent = `${v.hasRecommended ? '●' : '○'} ${v.name} (${v.city})`;
+    sel.appendChild(opt);
+  });
+}
+
+function syncAssignedVetMockupSelect() {
+  const sel = document.getElementById('mockupAssignedVet');
+  if (!sel) return;
+  sel.value = assignedVet ? String(assignedVet.id) : '';
+}
+
+/** Mockup-Leiste: Stamm-Praxis setzen / entfernen */
+function setAssignedVetFromMockup(rawId) {
+  const id = rawId === '' || rawId == null ? null : +rawId;
+  assignedVet = id ? (VETS.find(v => v.id === id) || null) : null;
+  suppressAssignedVet = false;
+  // Aktuelle Auswahl im Drawer an Stamm-Praxis anpassen (oder leeren)
+  selectedVet = assignedVet;
+  if (cartDrawerStep === 2) renderRequestStep();
+}
+
+function setAssignedVet(vet) {
+  assignedVet = vet || null;
+  suppressAssignedVet = false;
+  syncAssignedVetMockupSelect();
+}
 
 /* ════════════════════════════════════════════
    WARENKORB-DRAWER
    ════════════════════════════════════════════ */
 function openCart() {
   cartDrawerStep = 1;
+  suppressAssignedVet = false;
   renderCartDrawer();
   document.getElementById('cartOverlay').classList.add('--open');
   document.getElementById('cartDrawer').classList.add('--open');
@@ -442,7 +489,10 @@ function applyLoginResult(approvedIds) {
   });
 
   const newState = approvedIds.length > 0 ? 'with-release' : 'no-release';
-  if (approvedIds.length > 0) approvedByVet = VETS.find(v => v.hasRecommended) || VETS[0];
+  // Mit Freigabe: freigebende Praxis als Stamm-Praxis, falls noch keine gesetzt
+  if (approvedIds.length > 0 && !assignedVet) {
+    setAssignedVet(VETS.find(v => v.hasRecommended) || VETS[0]);
+  }
   setState(newState, document.querySelector(`[data-state="${newState}"]`), true);
 
   savedRequested.forEach(item => {
@@ -1094,62 +1144,28 @@ function setCartStep(step) {
   renderCartDrawer();
 }
 
-function vetItemHTML(v) {
-  return `<div class="vet-dropdown__item" onclick="selectVet(${v.id})">
-    <strong><span class="vet-recommended-dot">●</span> ${v.name}</strong><br>
-    <span class="vet-dropdown__meta">${v.doctor} · ${v.city}</span>
-  </div>`;
+function vetDisplayHTML(vet) {
+  if (!vet) return '';
+  const dotClass = vet.hasRecommended ? 'vet-recommended-dot' : 'vet-recommended-dot --empty';
+  return `
+      <div class="form-field vet-display" id="vetDisplayField">
+        <span class="vet-display__dot ${dotClass}" aria-hidden="true">●</span>
+        <input type="text" id="vetDisplayInput" readonly tabindex="-1" placeholder=" "
+          value="${vet.name} – ${vet.city}"
+          aria-label="Ausgewählte Praxis">
+        <label for="vetDisplayInput">Deine Praxis</label>
+        <button type="button" class="vet-display__clear" onclick="clearSelectedVet()" aria-label="Praxis entfernen">
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>`;
 }
 
-// Nur Praxen anzeigen/erlauben, die bereits am Empfehlungsprogramm teilnehmen
-function recommendedVets() {
-  return VETS.filter(v => v.hasRecommended);
-}
-
-function filterVets(query) {
-  const dropdown = document.getElementById('vetDropdown');
-  const q = (query || '').toLowerCase().trim();
-  const matches = q
-    ? recommendedVets().filter(v => v.name.toLowerCase().includes(q) || v.doctor.toLowerCase().includes(q) || v.city.toLowerCase().includes(q))
-    : recommendedVets();
-
-  if (!matches.length) { dropdown.style.display = 'none'; return; }
-  dropdown.innerHTML = matches.map(vetItemHTML).join('');
-  dropdown.style.display = '';
-}
-
-
-function showVetDropdown() {
-  // Bei Fokus alle teilnehmenden Praxen zeigen — unabhängig vom Input-Wert
-  const dropdown = document.getElementById('vetDropdown');
-  dropdown.innerHTML = recommendedVets().map(vetItemHTML).join('');
-  dropdown.style.display = '';
-}
-
-function onVetSearchInput(value) {
-  filterVets(value);
-  if (selectedVet) {
-    const display = `${selectedVet.name} – ${selectedVet.city}`;
-    const trimmed = (value || '').trim();
-    if (trimmed !== selectedVet.name && trimmed !== display) selectedVet = null;
-  }
+function clearSelectedVet() {
+  selectedVet = null;
+  notifyWhenVetJoins = false;
+  suppressAssignedVet = true;
   clearVetFieldError();
-}
-
-function parseVetSearchInput(raw) {
-  const val = (raw || '').trim();
-  const name = val.includes(' – ') ? val.split(' – ')[0].trim() : val;
-  return { val, name };
-}
-
-function findRecommendedVetByInput(raw) {
-  const { val, name } = parseVetSearchInput(raw);
-  const q = name.toLowerCase();
-  if (!q) return null;
-  return recommendedVets().find(v =>
-    v.name.toLowerCase() === q ||
-    `${v.name} – ${v.city}`.toLowerCase() === val.toLowerCase()
-  ) || null;
+  if (cartDrawerStep === 2) renderRequestStep();
 }
 
 function setFieldError(inputId, message) {
@@ -1172,8 +1188,24 @@ function clearFieldError(inputId) {
   field.querySelector('.form-field__error')?.remove();
 }
 
-function setVetFieldError(message) { setFieldError('vetSearchInput', message); }
-function clearVetFieldError()      { clearFieldError('vetSearchInput'); }
+function setVetFieldError(message) {
+  const field = document.getElementById('vetDisplayField');
+  if (!field) return;
+  field.classList.add('--error');
+  let err = field.querySelector('.form-field__error');
+  if (!err) {
+    err = document.createElement('p');
+    err.className = 'form-field__error';
+    field.appendChild(err);
+  }
+  err.textContent = message;
+}
+function clearVetFieldError() {
+  const field = document.getElementById('vetDisplayField');
+  if (!field) return;
+  field.classList.remove('--error');
+  field.querySelector('.form-field__error')?.remove();
+}
 
 function vetInviteMailtoHref() {
   const subject = 'Teilnahme am Inuvet-Empfehlungsprogramm';
@@ -1181,7 +1213,7 @@ function vetInviteMailtoHref() {
 
 ich würde gerne Inuvet-Produkte für mein Tier über das Tierarzt-Empfehlungsprogramm beziehen – leider ist Ihre Praxis dort noch nicht gelistet.
 
-Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. Inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik. Für jede Empfehlung erhalten Sie zudem eine Provision.
+Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. Inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik.
 
 Mehr Informationen: https://inuvet.com/pages/tierarzt-empfehlung-anleitung
 
@@ -1191,38 +1223,164 @@ Mit freundlichen Grüßen`;
   return 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
 
-function handleVetInputKeydown(e) {
-  if (e.key !== 'Enter') return;
-  e.preventDefault();
-  const match = findRecommendedVetByInput(e.target.value);
-  if (match) { selectVet(match.id); return; }
-  const { name } = parseVetSearchInput(e.target.value);
-  if (name) {
-    setVetFieldError('Praxis ist noch nicht im Empfehlungsprogramm.');
-    showToast('Praxis ist noch nicht im Empfehlungsprogramm.', 'error');
-  }
+function selectVetFromMap(id) {
+  selectedVet = VETS.find(v => v.id === id) || null;
+  notifyWhenVetJoins = false;
+  suppressAssignedVet = false;
+  clearVetFieldError();
+  closeVetMap();
+  if (cartDrawerStep === 2) renderRequestStep();
 }
 
-function selectVet(id) {
-  selectedVet = VETS.find(v => v.id === id);
-  const input = document.getElementById('vetSearchInput');
-  if (input) {
-    input.value = `${selectedVet.name} – ${selectedVet.city}`;
-    clearVetFieldError();
-  }
-  document.getElementById('vetDropdown').style.display = 'none';
+/* ── Praxis-Finder (Karten-Mockup) ── */
+function renderVetMap() {
+  const list = document.getElementById('vetMapList');
+  const pins = document.getElementById('vetMapPins');
+  if (!list || !pins) return;
+
+  list.innerHTML = VETS.map(v => {
+    const dotClass = v.hasRecommended ? 'vet-recommended-dot' : 'vet-recommended-dot --empty';
+    return `<button type="button" class="vet-map-list__item" onclick="selectVetFromMap(${v.id})">
+      <strong><span class="${dotClass}">●</span> ${v.name}</strong>
+      <span class="vet-map-list__meta">${v.doctor} · ${v.city}</span>
+    </button>`;
+  }).join('');
+
+  pins.innerHTML = VETS.map(v => {
+    const pos = VET_MAP_PINS[v.id] || { left: '50%', top: '50%' };
+    const empty = v.hasRecommended ? '' : ' --empty';
+    return `<button type="button" class="vet-map-pin${empty}" style="left:${pos.left};top:${pos.top}"
+      onclick="selectVetFromMap(${v.id})" title="${v.name}">
+      <span class="material-icons" aria-hidden="true">location_on</span>
+      <span class="vet-map-pin__label">${v.name}</span>
+    </button>`;
+  }).join('');
 }
 
-/* ── Praxis-Finder (Karten-Platzhalter) ── */
 function openVetMap() {
+  renderVetMap();
   document.getElementById('vetMapOverlay').classList.add('--open');
 }
 function closeVetMap() {
   document.getElementById('vetMapOverlay').classList.remove('--open');
 }
 
+/* ── Anleitungs- / Nicht-im-Programm-Popup ── */
+function vetGuidePlaceholderHTML() {
+  return `
+    <div class="vet-guide__placeholder flow">
+      <p><em>Anleitung folgt — Text wird noch formuliert.</em></p>
+      <p>Platzhalter: So findest du deine Praxis oder lädst sie zur Teilnahme ein.</p>
+      <p>Du kannst deine Praxis auch per E-Mail einladen:<br>
+        <a href="${vetInviteMailtoHref()}">E-Mail an die Praxis senden</a>
+      </p>
+    </div>`;
+}
+
+function openVetGuide(mode) {
+  vetGuideMode = mode;
+  const title = document.getElementById('vetGuideTitle');
+  const body  = document.getElementById('vetGuideBody');
+  const actions = document.getElementById('vetGuideActions');
+  if (!title || !body || !actions) return;
+
+  if (mode === 'not-in-program' && selectedVet) {
+    title.textContent = 'Deine Praxis ist noch nicht im Programm';
+    body.innerHTML = `
+      ${vetGuidePlaceholderHTML()}
+      <p>Gewählte Praxis: <strong>${selectedVet.name}</strong> · ${selectedVet.city}</p>
+      <label class="form-check">
+        <input type="checkbox" id="vetNotifyJoinCheckbox"${notifyWhenVetJoins ? ' checked' : ''}>
+        <span>Bitte benachrichtige mich per E-Mail, sobald meine Praxis am Empfehlungsprogramm teilnimmt.</span>
+      </label>`;
+    actions.innerHTML = `
+      <button type="button" class="btn --primary --full" onclick="confirmVetGuide()">OK</button>`;
+  } else {
+    title.textContent = 'Praxis nicht gefunden?';
+    body.innerHTML = vetGuidePlaceholderHTML();
+    actions.innerHTML = `
+      <button type="button" class="btn --primary --full" onclick="closeVetGuide()">OK</button>`;
+  }
+
+  document.getElementById('vetGuideOverlay').classList.add('--open');
+}
+
+function closeVetGuide() {
+  const el = document.getElementById('vetGuideOverlay');
+  if (el) el.classList.remove('--open');
+  vetGuideMode = null;
+}
+
+function confirmVetGuide() {
+  if (vetGuideMode !== 'not-in-program') {
+    closeVetGuide();
+    return;
+  }
+  const cb = document.getElementById('vetNotifyJoinCheckbox');
+  notifyWhenVetJoins = !!(cb && cb.checked);
+  closeVetGuide();
+  // Aktionen erst hier auslösen (SF-Task + Mail)
+  triggerNonProgramActions();
+}
+
+/** SF-Task „Tierarzt anrufen“ + A1 — bei Popup-OK, ohne Success-Screen */
+function triggerNonProgramActions() {
+  const vet = selectedVet;
+  const vetName = vet ? vet.name : 'der Tierarztpraxis';
+  const vetDoctor = vet ? vet.doctor : '';
+  const requestedDetailed = cartRequested.map(item =>
+    `<p>· <strong>${item.cartName}</strong>${item.variantLabel ? ' · ' + item.variantLabel : ''} · Menge: ${item.qty || 1}</p>`
+  ).join('') || '<p>· (keine Positionen)</p>';
+
+  const notifyNote = notifyWhenVetJoins
+    ? '<p><strong>Benachrichtigung gewünscht:</strong> Tierhalter*in per E-Mail informieren, sobald die Praxis am Programm teilnimmt.</p>'
+    : '<p>Keine automatische Teilnahme-Benachrichtigung gewünscht.</p>';
+
+  emailOverlayData = {
+    owner: {
+      tag: 'E-Mail', recipient: 'kunde@email.com',
+      subject: 'Wir kümmern uns um deine Praxis', internal: false,
+      body: `
+        <p>Du hast <strong>${vetName}</strong> ausgewählt — diese Praxis ist noch nicht im Empfehlungsprogramm.</p>
+        <p>${notifyWhenVetJoins
+          ? 'Sobald die Praxis am Programm teilnimmt, benachrichtigen wir dich per E-Mail (kunde@email.com).'
+          : 'Wir rufen die Praxis an und melden uns bei dir per E-Mail (kunde@email.com).'}</p>`
+    },
+    internal: {
+      tag: 'Task', assignee: 'Kundeninhaber / Innendienst',
+      subject: 'Tierarzt anrufen — Praxis noch nicht im Programm', internal: true,
+      body: `
+      <p><strong>Bitte den Tierarzt / die Praxis anrufen.</strong></p>
+      <p>Tierbesitzer*in${requesterName ? ` <strong>${requesterName}</strong>` : ''} (<strong>kunde@email.com</strong>) möchte bei <strong>${vetName}</strong>${vetDoctor ? ` (${vetDoctor})` : ''} eine Freigabe erhalten.</p>
+      <p><strong>Angefragte Produkte:</strong></p>
+      ${requestedDetailed}
+      ${notifyNote}
+      <p>Nimm die Praxis in das Empfehlungsprogramm auf und sorge dafür, dass die Freigabe für den/die Tierbesitzer*in ausgestellt wird.</p>
+      <p class="mockup-email-panel__note">⚠ An diese Praxis darf noch keine Programm-E-Mail gesendet werden – erst nach dem Anruf / der Aufnahme. Kein A2.</p>`
+    }
+  };
+
+  cartDrawerStep = 1;
+  document.getElementById('cartDrawer')?.classList.remove('--request-step');
+  renderCartDrawer();
+
+  setTimeout(() => openEmailsOverlay(['internal', 'owner']), 50);
+}
+
 function submitVetRequest() {
-  // Name ist Pflicht — ohne ihn kann die Praxis die Anfrage niemandem zuordnen
+  if (!selectedVet && assignedVet) selectedVet = assignedVet;
+
+  if (!selectedVet) {
+    showToast('Bitte wähle eine Praxis aus.', 'error');
+    return;
+  }
+
+  // Nicht teilnehmend → nur Info-Popup; Aktionen erst bei OK
+  if (!selectedVet.hasRecommended) {
+    openVetGuide('not-in-program');
+    return;
+  }
+
   const nameInput = document.getElementById('requesterNameInput');
   requesterName = (nameInput?.value ?? requesterName).trim();
   if (!requesterName) {
@@ -1233,51 +1391,30 @@ function submitVetRequest() {
   }
   clearFieldError('requesterNameInput');
 
-  const input = document.getElementById('vetSearchInput');
-  const raw   = input?.value ?? '';
-
-  if (selectedVet) {
-    const display = `${selectedVet.name} – ${selectedVet.city}`;
-    const trimmed = raw.trim();
-    if (trimmed === selectedVet.name || trimmed === display) {
-      clearVetFieldError();
-      setCartStep(3);
-      return;
-    }
-    selectedVet = null;
-  }
-
-  const match = findRecommendedVetByInput(raw);
-  if (match) {
-    selectVet(match.id);
-    setCartStep(3);
-    return;
-  }
-
-  const { name } = parseVetSearchInput(raw);
-  if (name) {
-    setVetFieldError('Praxis ist noch nicht im Empfehlungsprogramm.');
-    showToast('Praxis ist noch nicht im Empfehlungsprogramm.', 'error');
-    return;
-  }
-
-  setVetFieldError('Bitte wähle eine teilnehmende Praxis aus.');
-  showToast('Bitte wähle eine teilnehmende Praxis aus.', 'error');
+  notifyWhenVetJoins = false;
+  setCartStep(3);
 }
 
 /* ── Nachrichten-Overlay (E-Mail + Salesforce-Task) ──────────────── */
 let emailOverlayData = {};
 
 function openEmailsOverlay(keys) {
-  // Alle Nachrichten auf einmal im Panel zeigen
-  const count = keys.length;
-  document.getElementById('emailPanelCounter').textContent = `${count} Aktionen ausgelöst`;
+  const panel = document.getElementById('emailPanel');
+  const overlay = document.getElementById('emailOverlay');
+  const counter = document.getElementById('emailPanelCounter');
+  const body = document.getElementById('emailPanelBody');
+  if (!panel || !overlay || !counter || !body) return;
 
-  // Body: alle Nachrichten untereinander
-  document.getElementById('emailPanelBody').innerHTML = keys.map(key => {
+  const validKeys = keys.filter(key => emailOverlayData[key]);
+  const count = validKeys.length;
+  counter.textContent = `${count} Aktion${count === 1 ? '' : 'en'} ausgelöst`;
+
+  body.innerHTML = validKeys.map(key => {
     const d = emailOverlayData[key];
-    if (!d) return '';
-    const h = window.mockupNotifHeader(d);
+    const h = window.mockupNotifHeader ? window.mockupNotifHeader(d) : {
+      to: d.internal ? `Task · ${d.assignee || ''}` : `an: ${d.recipient || ''}`,
+      subject: d.internal ? `Aufgabe: ${d.subject || ''}` : `Betreff: ${d.subject || ''}`,
+    };
     return `
       <div class="mockup-email-inline${d.internal ? ' --internal' : ''}">
         <div class="mockup-email-inline__header">
@@ -1289,8 +1426,8 @@ function openEmailsOverlay(keys) {
       </div>`;
   }).join('');
 
-  document.getElementById('emailOverlay').classList.add('--open');
-  document.getElementById('emailPanel').classList.add('--open');
+  overlay.classList.add('--open');
+  panel.classList.add('--open');
 }
 
 function closeEmailOverlay() {
@@ -1306,9 +1443,13 @@ function closeEmailOverlay() {
 }
 
 function renderRequestStep() {
-  selectedVet = (state === 'with-release' && approvedByVet) ? approvedByVet : null;
+  // Stamm-Praxis vorausfüllen — nicht erneut, wenn Nutzer das Feld geleert hat
+  if (!selectedVet && assignedVet && !suppressAssignedVet) selectedVet = assignedVet;
+
   const drawer = document.getElementById('cartDrawer');
   drawer.classList.add('--request-step');
+  const hasVet = !!selectedVet;
+  const needsName = hasVet && selectedVet.hasRecommended;
   drawer.innerHTML = `
     <div class="cart-drawer__header">
       <button type="button" class="btn --icon" onclick="setCartStep(1)" aria-label="Zurück"><span class="material-icons">arrow_back</span></button>
@@ -1317,51 +1458,41 @@ function renderRequestStep() {
     </div>
     <div class="cart-drawer__items flow">
       <p class="vet-search__intro">An welche Praxis möchtest du deine Freigabe-Anfrage stellen?</p>
-      <!-- Primärer Weg: Karten-Finder für teilnehmende Praxen -->
       <button type="button" class="btn --primary --full --with-icon" onclick="openVetMap()">
-        <span class="material-icons">place</span>Praxis in der Nähe finden
+        <span class="material-icons">place</span>Praxis auswählen
       </button>
-      <div class="option-divider"><span>oder</span></div>
-      <!-- Vet search field — füllt sich bei Auswahl auf der Karte automatisch -->
-      <div class="vet-search">
-        <div class="form-field">
-          <input type="text" id="vetSearchInput" autocomplete="off"
-            placeholder=" "
-            value="${selectedVet ? selectedVet.name + ' – ' + selectedVet.city : ''}"
-            oninput="onVetSearchInput(this.value)" onfocus="showVetDropdown()" onkeydown="handleVetInputKeydown(event)">
-          <label for="vetSearchInput">Praxis auswählen</label>
-        </div>
-        <div id="vetDropdown" class="vet-dropdown" style="display:none;"></div>
-      </div>
-      <!-- Name des Tierhalters — Pflicht, damit die Praxis die Anfrage zuordnen kann -->
+      ${hasVet ? vetDisplayHTML(selectedVet) : ''}
+      ${needsName ? `
+      <!-- Name — nur bei teilnehmender Praxis (Zuordnung in A2 / Portal) -->
       <div class="form-field">
         <input type="text" id="requesterNameInput" autocomplete="name" placeholder=" "
           value="${requesterName}"
           oninput="requesterName = this.value; if (this.value.trim()) clearFieldError('requesterNameInput');">
         <label for="requesterNameInput">Dein Name – damit dich deine Praxis zuordnen kann</label>
       </div>
-      <!-- Notes -->
       <div class="form-field vet-request__notes">
         <textarea id="vetNotes" rows="2" placeholder=" "></textarea>
         <label for="vetNotes">Notizen an die Tierarztpraxis (optional)</label>
-      </div>
-      <p class="vet-request__hint">Du findest deine Praxis nicht? Dann <a href="${vetInviteMailtoHref()}">sende ihr hier eine E-Mail</a>.</p>
+      </div>` : ''}
+      ${hasVet ? '' : `<p class="vet-request__hint">Du findest deine Praxis nicht? <button type="button" onclick="openVetGuide('not-found')">Das kannst du jetzt tun</button>.</p>`}
     </div>
     <div class="cart-drawer__footer --submit">
       <button class="btn --ghost cart-drawer__checkout" onclick="submitVetRequest()">Weiter</button>
     </div>`;
 }
 
-function renderSuccessStep() {
+function renderSuccessStep(opts = {}) {
   const hasApproved = cartApproved.length > 0;
   const vetName     = selectedVet ? selectedVet.name : 'der Tierarztpraxis';
+  const vetDoctor   = selectedVet ? selectedVet.doctor : '';
+  const vetKnown    = !!(selectedVet && selectedVet.hasRecommended);
   const vetEmail    = `praxis@${vetName.toLowerCase().replace(/\s+/g,'-')}.de`;
 
   const requestedNames = cartRequested.map(item => item.cartName).join(', ');
   // Detaillierte Produktzeilen für die interne Übersicht — Variante + Menge
   const requestedDetailed = cartRequested.map(item =>
     `<p>· <strong>${item.cartName}</strong>${item.variantLabel ? ' · ' + item.variantLabel : ''} · Menge: ${item.qty || 1}</p>`
-  ).join('');
+  ).join('') || '<p>· (keine Positionen)</p>';
 
   // E-Mail-Adresse ist nach Login bekannt — Overlay kann sofort nach Submit ausgelöst werden
   emailOverlayData = {
@@ -1370,15 +1501,20 @@ function renderSuccessStep() {
       subject: 'Neue Anfrage', internal: false,
       body: `
         <p>Anfrage an <strong>${vetName}</strong> erfolgreich versendet.</p>
-        <p>Du erhältst eine Nachricht per E-Mail (kunde@email.com), sobald die Anfrage von deinem Tierarzt freigegeben wurde.</p>`
+        <p>${vetKnown
+          ? 'Du erhältst eine Nachricht per E-Mail (kunde@email.com), sobald die Anfrage von deinem Tierarzt freigegeben wurde.'
+          : notifyWhenVetJoins
+            ? 'Sobald die Praxis am Programm teilnimmt, benachrichtigen wir dich per E-Mail (kunde@email.com).'
+            : 'Deine Praxis ist noch nicht im Empfehlungsprogramm — wir rufen sie an und melden uns bei dir per E-Mail (kunde@email.com).'}</p>`
     }
   };
 
-  // Nur teilnehmende Praxen sind wählbar → E-Mail geht immer an die Praxis
-  emailOverlayData.vet = {
-    tag: 'E-Mail', recipient: vetEmail,
-    subject: `Neue Anfrage von ${requesterName || 'Max Mustermann'}`, internal: false,
-    body: `
+  if (vetKnown) {
+    // Teilnehmende Praxis → A2 an Praxis + A3 Salesforce-Task
+    emailOverlayData.vet = {
+      tag: 'E-Mail', recipient: vetEmail,
+      subject: `Neue Anfrage von ${requesterName || 'Max Mustermann'}`, internal: false,
+      body: `
       <p>Tierbesitzer*in <strong>${requesterName || 'Max Mustermann'}</strong> hat eine neue Freigabe-Anfrage gestellt.</p>
       <p>Angefragt: <strong>${requestedNames}</strong></p>
       <p>Diese kannst du hier einsehen und freigeben:<br>
@@ -1397,20 +1533,37 @@ function renderSuccessStep() {
       <a href="tel:+4915112345678" style="color:var(--green);">+49 151 123 456 78</a> · <a href="mailto:birka@inuvet.com" style="color:var(--green);">birka@inuvet.com</a></p>
 
       <p class="mockup-email-panel__note">@Birka (Marketing): Texte zu Prozess & persönlichem Kontakt final abstimmen (Tonalität, Name/Telefon/Mail der Ansprechpartner*in, ggf. Hinweis auf Provision/Patientenbindung).</p>`
-  };
+    };
 
-  // Salesforce-Task für den Kundeninhaber — kein interner E-Mail-Versand
-  emailOverlayData.internal = {
-    tag: 'Task', assignee: 'Kundeninhaber',
-    subject: 'Neue offene Anfrage', internal: true,
-    body: `
+    emailOverlayData.internal = {
+      tag: 'Task', assignee: 'Kundeninhaber',
+      subject: 'Neue offene Anfrage', internal: true,
+      body: `
       <p>Neue Freigabe-Anfrage — Salesforce-Task für den Kundeninhaber. Status: <strong>offen</strong> · gerade eingegangen.</p>
       <p><strong>Tierbesitzer*in:</strong> ${requesterName || 'Max Mustermann'} · kunde@email.com</p>
       <p><strong>Praxis:</strong> ${vetName}</p>
       <p><strong>Angefragte Produkte:</strong></p>
       ${requestedDetailed}
       <p class="mockup-email-panel__note">Kein Mail-Versand intern — Task wird dem Kundeninhaber des Praxis-Accounts in Salesforce zugewiesen. Mit der Bearbeitung durch die Praxis (B) wird der Task auf erledigt gesetzt.</p>`
-  };
+    };
+  } else {
+    // Nicht teilnehmend → kein A2; SF-Task „Tierarzt anrufen“ (+ optional Benachrichtigung)
+    const notifyNote = notifyWhenVetJoins
+      ? '<p><strong>Benachrichtigung gewünscht:</strong> Tierhalter*in per E-Mail informieren, sobald die Praxis am Programm teilnimmt.</p>'
+      : '<p>Keine automatische Teilnahme-Benachrichtigung gewünscht.</p>';
+    emailOverlayData.internal = {
+      tag: 'Task', assignee: 'Kundeninhaber / Innendienst',
+      subject: 'Tierarzt anrufen — Praxis noch nicht im Programm', internal: true,
+      body: `
+      <p><strong>Bitte den Tierarzt / die Praxis anrufen.</strong></p>
+      <p>Tierbesitzer*in${requesterName ? ` <strong>${requesterName}</strong>` : ''} (<strong>kunde@email.com</strong>) möchte bei <strong>${vetName}</strong>${vetDoctor ? ` (${vetDoctor})` : ''} eine Freigabe erhalten.</p>
+      <p><strong>Angefragte Produkte:</strong></p>
+      ${requestedDetailed}
+      ${notifyNote}
+      <p>Nimm die Praxis in das Empfehlungsprogramm auf und sorge dafür, dass die Freigabe für den/die Tierbesitzer*in ausgestellt wird.</p>
+      <p class="mockup-email-panel__note">⚠ An diese Praxis darf noch keine Programm-E-Mail gesendet werden – erst nach dem Anruf / der Aufnahme. Kein A2.</p>`
+    };
+  }
 
   const drawer = document.getElementById('cartDrawer');
   drawer.innerHTML = `
@@ -1424,7 +1577,11 @@ function renderSuccessStep() {
         <div class="flow">
           <h3 class="success-state__title">Anfrage an <strong>${vetName}</strong> erfolgreich versendet.</h3>
           <p class="success-state__body">
-            Du erhältst eine Nachricht per E-Mail, sobald die Anfrage von deiner Tierarztpraxis freigegeben wurde.
+            ${vetKnown
+              ? 'Du erhältst eine Nachricht per E-Mail, sobald die Anfrage von deiner Tierarztpraxis freigegeben wurde.'
+              : notifyWhenVetJoins
+                ? 'Sobald die Praxis am Programm teilnimmt, benachrichtigen wir dich.'
+                : 'Deine Praxis ist noch nicht im Empfehlungsprogramm — wir rufen sie an und melden uns bei dir.'}
           </p>
         </div>
       </div>
@@ -1436,8 +1593,10 @@ function renderSuccessStep() {
       </div>
     </div>`;
 
-  // Login war Pflicht vor diesem Schritt → E-Mail bekannt → Nachrichten sofort auslösen
-  setTimeout(() => openEmailsOverlay(['owner', 'vet', 'internal']), 500);
+  // Mockup: ausgelöste Nachrichten — bei Nicht-Teilnahme SF-Task zuerst
+  const keys = vetKnown ? ['owner', 'vet', 'internal'] : ['internal', 'owner'];
+  const delay = opts.forceOverlay ? 50 : 500;
+  setTimeout(() => openEmailsOverlay(keys), delay);
 }
 
 function renderCartDrawer() {
@@ -2568,6 +2727,7 @@ function initMarquees() {
 
 (document.fonts ? document.fonts.ready : Promise.resolve()).then(initMarquees);
 
+initAssignedVetMockupSelect();
 render();
 initSliders();
 

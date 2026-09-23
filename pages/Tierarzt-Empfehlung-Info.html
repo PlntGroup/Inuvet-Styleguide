@@ -100,7 +100,7 @@
             <h2 id="grundidee">Grundidee</h2>
             <p>Inuvet-Produkte sind tierärztlich entwickelt und werden idealerweise mit Freigabe eines Tierarztes eingesetzt. Das System ermöglicht es Tierhaltern, eine <strong>Freigabe-Anfrage</strong> zu stellen — der Tierarzt prüft, ob das Produkt für das Tier geeignet ist, und gibt es frei. Erst nach dieser Freigabe kann der Tierhalter das Produkt kaufen. Umgekehrt kann die Praxis eine Freigabe auch <strong>direkt ausstellen</strong> — etwa im Anschluss an einen Praxisbesuch, ohne dass vorher eine Anfrage gestellt wurde.</p>
             <div class="notice">
-              <p><strong>Nur teilnehmende Praxen:</strong> Freigabe-Anfragen können ausschließlich an Praxen gestellt werden, die bereits am Empfehlungsprogramm teilnehmen. Ist die eigene Praxis nicht dabei, führt ein <strong>Karten-Finder</strong> („Praxis in der Nähe finden") zu teilnehmenden Praxen in der Umgebung — oder der Tierhalter lädt seine Praxis per E-Mail zur Teilnahme ein (E-Mail D1 in Teil 3).</p>
+              <p><strong>Praxiswahl über Karte:</strong> Freigabe-Anfragen gehen an Praxen aus Salesforce/Google Maps — Auswahl ausschließlich über die Karte („Praxis auswählen"). Teilnehmende Praxen: grüner Punkt; noch nicht teilnehmende: roter Punkt. Das Textfeld dient nur der Anzeige der gewählten bzw. dem Kunden zugewiesenen Praxis (ausgeblendet, wenn leer). Bei nicht teilnehmenden Praxen erscheint vor dem Absenden ein Popup inkl. optionaler E-Mail-Benachrichtigung bei Programmbeitritt; parallel entsteht ein Salesforce-Task „Tierarzt anrufen“ (kein A2 an die Praxis).</p>
             </div>
             <div class="notice">
               <p><strong>Terminologie:</strong> Im <strong>Vet-Portal</strong> heißt die Handlung durchgehend <strong>„Freigabe"</strong> (Freigabe ausstellen, Freigabe-Anfrage, freigegeben). In der <strong>Tierhalter-Kommunikation</strong> (Shop, E-Mails) ist „Tierarzt-Empfehlung" der Programmname — dort spricht das System von der „Empfehlung" des Tierarztes. Die finalen E-Mail-Texte sind mit dem Marketing abzustimmen.</p>
@@ -148,16 +148,17 @@
             </ul>
 
             <h4>3 — Praxis auswählen und Anfrage absenden (nur bei fehlender Freigabe)</h4>
-            <p>Im Warenkorb-Drawer (Schritt „Deine Anfragen", gelber Hintergrund) wählt der Nutzer die Zielpraxis. Zwei Wege stehen parallel zur Verfügung:</p>
+            <p>Im Warenkorb-Drawer (Schritt „Deine Anfragen", gelber Hintergrund) wählt der Nutzer die Zielpraxis:</p>
             <ul>
-              <li><strong>Primary:</strong> Karten-Finder — „Praxis in der Nähe finden" (bestehendes Kartenmodul von inuvet.com)</li>
-              <li><strong>Alternativ:</strong> Praxis aus der Dropdown-Liste wählen — Feld beschriftet als <strong>„Praxis auswählen"</strong> (keine freie Texteingabe)</li>
+              <li><strong>Primary:</strong> Button <strong>„Praxis auswählen"</strong> öffnet die Karte (Mockup; produktiv: Salesforce- + Google-Maps-Praxen). Auswahl per Pin oder Listen-Eintrag — grüner Punkt = im Programm, roter Punkt = noch nicht.</li>
+              <li><strong>Anzeige-Feld:</strong> Readonly-Feld „Deine Praxis" zeigt die gewählte bzw. dem Kunden bereits zugewiesene Praxis. Ist nichts gewählt und keine Zuweisung vorhanden, bleibt das Feld ausgeblendet. Keine freie Texteingabe / kein Dropdown-Search.</li>
+              <li><strong>Praxis nicht gefunden?</strong> Nur sichtbar, wenn kein Anzeige-Feld da ist: <em>„Du findest deine Praxis nicht? Das kannst du jetzt tun"</em> → Popup mit Anleitung (Text TBD; Platzhalter enthält weiterhin D1-<code>mailto:</code>).</li>
             </ul>
-            <p><strong>Name des Tierhalters (Pflichtfeld):</strong> Unter der Praxis-Auswahl steht das Pflichtfeld <em>„Dein Name – damit dich deine Praxis zuordnen kann"</em>. Ohne Namen kann die Anfrage nicht abgesendet werden (Validierung: Feld rot markiert, Fehlermeldung <em>„Bitte gib deinen Namen an."</em> + Toast). Der Name wird mit der Anfrage gespeichert und erscheint in der E-Mail an die Praxis, im Salesforce-Task für den Kundeninhaber sowie im Vet-Portal in der Spalte „Name" der offenen Anfragen — er ist neben der E-Mail-Adresse das zweite Zuordnungsmerkmal.</p>
-            <p><strong>Validierung Praxis:</strong> Es kann nur eine Praxis aus der Liste teilnehmender Praxen gewählt werden. Gibt der Nutzer einen Namen ein, der nicht in der Liste enthalten ist, erscheint: <em>„Praxis ist noch nicht im Empfehlungsprogramm."</em> (Feld rot markiert + Toast). Ist das Feld leer: <em>„Bitte wähle eine teilnehmende Praxis aus."</em></p>
-            <p><strong>Praxis nicht gefunden?</strong> Unter dem optionalen Notizfeld erscheint der Hinweis: <em>„Du findest deine Praxis nicht? Dann sende ihr hier eine E-Mail."</em> Der Link öffnet ein <code>mailto:</code> mit vorausgefülltem Einladungstext (E-Mail D1 in Teil 3).</p>
-            <p><strong>UI-Details:</strong> Notizfeld kompakt (2 Zeilen). „Weiter" als Ghost-Button mit Pfeil in einer sticky Submit-Leiste am unteren Drawer-Rand. <strong>Vorauswahl:</strong> Hat der Nutzer bereits aktive Freigaben, wird die zuletzt freigebende Praxis vorausgewählt; sonst startet das Feld leer.</p>
-            <p>Nach dem Absenden werden <strong>sofort</strong> drei Backend-Nachrichten ausgelöst (die E-Mail-Adresse ist durch den Login bekannt): Bestätigung an den Tierhalter (A1), Anfrage-Mail an die Praxis (A2) und ein Salesforce-Task für den Kundeninhaber der Praxis (A3) — Texte in Teil 3. Da nur teilnehmende Praxen wählbar sind, gibt es immer einen klaren Empfänger.</p>
+            <p><strong>Name des Tierhalters (Pflichtfeld bei teilnehmender Praxis):</strong> Nur sichtbar, wenn eine Praxis mit grünem Punkt gewählt ist — <em>„Dein Name – damit dich deine Praxis zuordnen kann"</em>. Ohne Namen kann die Anfrage dann nicht abgesendet werden. Bei Praxis mit rotem Punkt entfallen Name und Notizen (kein A2 an die Praxis; Zuordnung über Login-E-Mail).</p>
+            <p><strong>Validierung Praxis:</strong> Ohne Auswahl: Toast <em>„Bitte wähle eine Praxis aus."</em> Auswahl nur über die Karte.</p>
+            <p><strong>Weiter bei rotem Punkt:</strong> Öffnet das Info-Popup (Checkbox zur Teilnahme-Benachrichtigung + nur <strong>OK</strong>). <strong>OK</strong> löst A1 + SF-Task „Tierarzt anrufen“ aus (Mockup „Aktionen ausgelöst“) — <em>kein</em> „Anfrage versendet“-Abschluss.</p>
+            <p><strong>UI-Details:</strong> Notizfeld kompakt (2 Zeilen). „Weiter" als Ghost-Button in sticky Submit-Leiste. <strong>Vorauswahl / Stamm-Praxis:</strong> Ist dem Kunden eine Praxis verknüpft (Salesforce), erscheint sie im Anzeige-Feld „Deine Praxis". Im Mockup steuerbar über die Leiste <em>Stamm-Praxis</em> (● = im Programm, ○ = noch nicht). Per × leeren oder über die Karte wechseln. Sonst startet der Schritt ohne Feld.</p>
+            <p>Nach dem Absenden werden <strong>sofort</strong> Backend-Nachrichten ausgelöst: immer Bestätigung an den Tierhalter (A1). <strong>Teilnehmende Praxis:</strong> A2 + A3. <strong>Nicht teilnehmende Praxis:</strong> kein A2 — Salesforce-Task „Tierarzt anrufen — Praxis noch nicht im Programm“ (inkl. Flag, ob Benachrichtigung bei Programmbeitritt gewünscht). Texte in Teil 3.</p>
 
             <h4>4 — Warten auf Freigabe</h4>
             <p>Der Tierhalter erhält die Bestätigungs-E-Mail (A1). Sobald die Praxis die Anfrage im Vet-Portal bearbeitet, wird er per E-Mail über das Ergebnis informiert (B1). Beim nächsten Login ist der Zustand automatisch <strong>„mit Freigabe"</strong> — ein Willkommen-Popup zeigt die freigegebenen Produkte inklusive der vom Tierarzt bestimmten Menge.</p>
@@ -274,7 +275,7 @@
             <!-- ══════════════ TEIL 3 ══════════════ -->
             <h2 id="teil-3">Teil 3 — System-Nachrichten im Überblick (für die IT)</h2>
 
-            <p>Pflichtkatalog für die Umsetzung: <strong>4 System-E-Mails</strong> (A1, A2, B1, C1) + <strong>1 Salesforce-Task</strong> für den Kundeninhaber (<strong>A3</strong>, neue offene Anfrage) + <strong>1 manuelle <code>mailto:</code>-Vorlage</strong> (D1). Sobald die Praxis entscheidet (frei, ablehnen oder Direkt-Freigabe), entsteht <strong>kein</strong> weiterer Task — kein Handlungsbedarf. A3 wechselt auf <code>erledigt</code>. Interne Nachrichten werden <strong>nicht</strong> per E-Mail versendet (kein Postfach wie <code>team@inuvet.com</code>), sondern in Salesforce als Task dem Account Owner der zugehörigen Praxis zugewiesen. Alle sechs müssen im Go-Live abgedeckt sein. Texte entsprechen dem Stand der Mockups — Absender-Daten und finale Formulierungen sind mit Marketing abzustimmen. Variablen stehen in <code>[eckigen Klammern]</code>.</p>
+            <p>Pflichtkatalog für die Umsetzung: <strong>4 System-E-Mails</strong> (A1, A2, B1, C1) + <strong>1 Salesforce-Task</strong> für den Kundeninhaber (<strong>A3</strong>, neue offene Anfrage bzw. dringend bei Nicht-Teilnehmern) + <strong>1 manuelle <code>mailto:</code>-Vorlage</strong> (D1). A2 entfällt, wenn die gewählte Praxis noch nicht am Programm teilnimmt. Sobald die Praxis entscheidet (frei, ablehnen oder Direkt-Freigabe), entsteht <strong>kein</strong> weiterer Task — kein Handlungsbedarf. A3 wechselt auf <code>erledigt</code>. Interne Nachrichten werden <strong>nicht</strong> per E-Mail versendet (kein Postfach wie <code>team@inuvet.com</code>), sondern in Salesforce als Task dem Account Owner der zugehörigen Praxis zugewiesen. Alle sechs müssen im Go-Live abgedeckt sein. Texte entsprechen dem Stand der Mockups — Absender-Daten und finale Formulierungen sind mit Marketing abzustimmen. Variablen stehen in <code>[eckigen Klammern]</code>.</p>
             <div class="notice">
               <p><strong>Kanal intern:</strong> Nur <strong>A3</strong> ist ein Salesforce-Task, zugewiesen an den <strong>Kundeninhaber</strong> (Account Owner) des Praxis-Accounts — solange die Anfrage offen ist. Im Mockup-Overlay: oranges Tag „Task“, Kopfzeile <em>Task · Kundeninhaber</em>, Betreff als <em>Aufgabe: …</em>.</p>
             </div>
@@ -296,7 +297,7 @@
                 <tr>
                   <td><strong>A2</strong></td>
                   <td>E-Mail</td>
-                  <td>Zeitgleich mit A1</td>
+                  <td>Zeitgleich mit A1 — <strong>nur</strong> wenn Praxis am Programm teilnimmt</td>
                   <td>Praxis (hinterlegte Adresse)</td>
                   <td>Neue Anfrage von [Name]</td>
                   <td>wie A1 · Link → Offene Anfragen</td>
@@ -304,9 +305,9 @@
                 <tr>
                   <td><strong>A3</strong></td>
                   <td>Salesforce-Task</td>
-                  <td>Zeitgleich mit A1/A2</td>
-                  <td>Kundeninhaber (Account Owner der Praxis)</td>
-                  <td>Neue offene Anfrage</td>
+                  <td>Zeitgleich mit A1 (bei Teilnehmern mit A2; bei Nicht-Teilnehmern ohne A2)</td>
+                  <td>Kundeninhaber (Account Owner) · bei Nicht-Teilnehmern: Kundeninhaber / Innendienst</td>
+                  <td>Teilnehmer: Neue offene Anfrage · Nicht-Teilnehmer: Tierarzt anrufen — Praxis noch nicht im Programm</td>
                   <td>wie A1 · Tag „Task“</td>
                 </tr>
                 <tr>
@@ -341,7 +342,8 @@
 
             <h4>Empfohlenes Abnahme-Skript</h4>
             <ol>
-              <li>Als Tierhalter Anfrage absenden → prüfen: <strong>A1</strong> (E-Mail Tierhalter), <strong>A2</strong> (E-Mail Praxis, Link zu Offene Anfragen), <strong>A3</strong> (Salesforce-Task für Kundeninhaber, Status <code>offen</code>).</li>
+              <li>Als Tierhalter Anfrage an <strong>teilnehmende</strong> Praxis absenden → prüfen: <strong>A1</strong> (E-Mail Tierhalter), <strong>A2</strong> (E-Mail Praxis, Link zu Offene Anfragen), <strong>A3</strong> (Salesforce-Task für Kundeninhaber, Status <code>offen</code>).</li>
+              <li>Als Tierhalter Anfrage an <strong>nicht teilnehmende</strong> Praxis absenden → Popup mit optionaler Teilnahme-Benachrichtigung → prüfen: <strong>A1</strong> + <strong>A3</strong> (Task „Tierarzt anrufen…“, Flag Benachrichtigung) · <strong>kein A2</strong>.</li>
               <li>Optional: „Praxis nicht gefunden?“ → <code>mailto:</code> öffnet mit Betreff/Body von <strong>D1</strong>.</li>
               <li>Als Praxis in Offene Anfragen eine Position freigeben (mit Notiz) → <strong>B1</strong> (E-Mail); A3 → <code>erledigt</code>; Eintrag in Freigegeben. <strong>Kein</strong> Task.</li>
               <li>Als Praxis eine Position ablehnen → erneut <strong>B1</strong> (nur Nicht-freigegeben-Block); Eintrag in Nicht freigegeben. Keine nachträgliche Freigabe auf dieser Seite.</li>
@@ -355,7 +357,8 @@
                 <tr><th>Ereignis</th><th>Ausgelöste Nachrichten</th></tr>
               </thead>
               <tbody>
-                <tr><td>Tierhalter sendet Anfrage ab</td><td><strong>A1 + A2 + A3</strong> (immer zusammen)</td></tr>
+                <tr><td>Tierhalter sendet Anfrage an teilnehmende Praxis</td><td><strong>A1 + A2 + A3</strong></td></tr>
+                <tr><td>Tierhalter sendet Anfrage an nicht teilnehmende Praxis</td><td><strong>A1 + A3</strong> (kein A2 · Task „Tierarzt anrufen“ · optional Benachrichtigung bei Programmbeitritt)</td></tr>
                 <tr><td>Praxis entscheidet in Offene Anfragen</td><td><strong>B1</strong> · A3 → <code>erledigt</code> · <strong>kein</strong> neuer Task · Eintrag in Freigegeben bzw. Nicht freigegeben</td></tr>
                 <tr><td>Praxis stellt Direkt-Freigabe aus</td><td><strong>C1</strong> (E-Mail an den Tierhalter · Consent Pflicht · <strong>kein</strong> Salesforce-Task)</td></tr>
                 <tr><td>Tierhalter lädt Praxis ein</td><td><strong>D1</strong> nur als <code>mailto:</code>-Vorlage</td></tr>
@@ -372,7 +375,7 @@
               <p>Du erhältst eine Nachricht per E-Mail ([E-Mail des Tierhalters]), sobald die Anfrage von deinem Tierarzt freigegeben wurde.</p>
               </div>
             </div>
-            <p><strong>Versand:</strong> Sofort nach dem Absenden der Anfrage im Warenkorb-Drawer (Login liegt zu diesem Zeitpunkt bereits vor). <strong>Empfänger:</strong> E-Mail-Adresse des eingeloggten Tierhalters. <strong>Variablen:</strong> Praxisname, E-Mail-Adresse.</p>
+            <p><strong>Versand:</strong> Sofort nach dem Absenden der Anfrage im Warenkorb-Drawer (Login liegt zu diesem Zeitpunkt bereits vor). <strong>Empfänger:</strong> E-Mail-Adresse des eingeloggten Tierhalters. Bei nicht teilnehmender Praxis weicht der Body ab: Hinweis, dass Inuvet die Praxis kontaktiert. <strong>Variablen:</strong> Praxisname, E-Mail-Adresse, Teilnahme-Status.</p>
 
             <h4>A2 · An die Tierarztpraxis — neue Anfrage</h4>
             <div class="notice">
@@ -392,7 +395,7 @@
               <p><strong>[Name Ansprechpartner*in]</strong> · Tierärztlicher Außendienst<br>[Telefon] · [E-Mail]</p>
               </div>
             </div>
-            <p><strong>Versand:</strong> Sofort nach dem Absenden der Anfrage, an die hinterlegte Adresse der gewählten Praxis. Die drei Erklär-Abschnitte sind bewusst Teil jeder Anfrage-Mail — viele Praxen vergessen im Alltag, dass sie teilnehmen. <strong>Variablen:</strong> Name des Tierhalters, Produktliste, Direktlink zur Übersicht <code>…/Inuvet-Freigabe-Offene-Anfragen.html</code>, Ansprechpartner*in des Außendienstes (aus CRM).</p>
+            <p><strong>Versand:</strong> Sofort nach dem Absenden der Anfrage — <strong>nur wenn die gewählte Praxis am Empfehlungsprogramm teilnimmt</strong>. An nicht teilnehmende Praxen darf keine A2 gesendet werden. Die drei Erklär-Abschnitte sind bewusst Teil jeder Anfrage-Mail — viele Praxen vergessen im Alltag, dass sie teilnehmen. <strong>Variablen:</strong> Name des Tierhalters, Produktliste, Direktlink zur Übersicht <code>…/Inuvet-Freigabe-Offene-Anfragen.html</code>, Ansprechpartner*in des Außendienstes (aus CRM).</p>
 
             <h4>A3 · Salesforce-Task an den Kundeninhaber — neue Anfrage</h4>
             <div class="notice">
@@ -404,7 +407,19 @@
               <p><strong>Angefragte Produkte:</strong> [je Position: Produkt · Variante · Menge]</p>
               </div>
             </div>
-            <p><strong>Auslösung:</strong> Zeitgleich mit A1/A2 — aber bewusst <strong>kein Mail-Versand</strong>, sondern ein Salesforce-Task, zugewiesen an den Kundeninhaber (Account Owner) des Praxis-Accounts (Status <code>offen</code>, Timestamp speist die Wartezeit). Der Kundeninhaber erkennt daran, welche Anfragen zu lange offen bleiben, und kann bei der Praxis nachhaken. Mit der Bearbeitung durch die Praxis (B) wechselt der Task auf <code>erledigt</code>.</p>
+            <p><strong>Variante bei nicht teilnehmender Praxis:</strong></p>
+            <div class="notice">
+              <div class="flow">
+<p class="notice__title">Aufgabe: Tierarzt anrufen — Praxis noch nicht im Programm — Task · Kundeninhaber / Innendienst</p>
+              <p><strong>Bitte den Tierarzt / die Praxis anrufen.</strong></p>
+              <p>Tierbesitzer*in <strong>[Name]</strong> möchte bei <strong>[Praxisname]</strong> ([Arzt]) eine Freigabe erhalten.</p>
+              <p><strong>Angefragte Produkte:</strong> [je Position]</p>
+              <p><strong>Benachrichtigung gewünscht:</strong> ja/nein — bei ja: Tierhalter*in per E-Mail informieren, sobald die Praxis am Programm teilnimmt.</p>
+              <p>Nimm die Praxis in das Empfehlungsprogramm auf und sorge dafür, dass die Freigabe ausgestellt wird.</p>
+              <p>⚠ An diese Praxis darf noch keine Programm-E-Mail gesendet werden – erst nach dem Anruf / der Aufnahme.</p>
+              </div>
+            </div>
+            <p><strong>Auslösung:</strong> Zeitgleich mit A1 — aber bewusst <strong>kein Mail-Versand</strong>, sondern ein Salesforce-Task. Bei teilnehmenden Praxen: zugewiesen an den Kundeninhaber (Account Owner) des Praxis-Accounts (Status <code>offen</code>, Timestamp speist die Wartezeit); mit Bearbeitung durch die Praxis (B) wechselt der Task auf <code>erledigt</code>. Bei nicht teilnehmenden Praxen: Task „Tierarzt anrufen“ an Kundeninhaber/Innendienst — <strong>kein A2</strong>. Vor dem Absenden erscheint ein Anleitungs-Popup mit optionaler Checkbox zur Teilnahme-Benachrichtigung.</p>
 
             <h3>B — Nach Bearbeitung einer Anfrage im Vet-Portal</h3>
 
@@ -440,12 +455,13 @@
             <h3>D — Manuell ausgelöste E-Mail</h3>
 
             <h4>D1 · Einladung an eine nicht teilnehmende Praxis (<code>mailto:</code>)</h4>
+            <p>Wird im Anleitungs-Popup angeboten („Praxis nicht gefunden?“ bzw. nach Auswahl einer Praxis mit rotem Punkt). Kein Server-Versand — öffnet den Mail-Client des Nutzers. Finaler Anleitungstext im Popup TBD.</p>
             <div class="notice">
               <div class="flow">
 <p class="notice__title">Betreff: Teilnahme am Inuvet-Empfehlungsprogramm</p>
               <p>Sehr geehrte Damen und Herren,</p>
               <p>ich würde gerne Inuvet-Produkte für mein Tier über das Tierarzt-Empfehlungsprogramm beziehen – leider ist Ihre Praxis dort noch nicht gelistet.</p>
-              <p>Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. Inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik. Für jede Empfehlung erhalten Sie zudem eine Provision.</p>
+              <p>Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. Inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik.</p>
               <p>Mehr Informationen: https://inuvet.com/pages/tierarzt-empfehlung-anleitung</p>
               <p>Ich würde mich freuen, wenn Sie am Programm teilnehmen – so könnte ich die Produkte künftig direkt über Ihre Empfehlung beziehen.</p>
               <p>Mit freundlichen Grüßen</p>
@@ -487,7 +503,9 @@ approvedVariantByProduct  // Map&lt;id, { formIndex, variantIndex, maxQty }&gt;
   id,                // eindeutige Anfrage-ID (A2-Mail → Offene Anfragen)
   customerName,      // Pflichtfeld aus dem Anfrage-Schritt
   customerEmail,     // Schlüssel (eingeloggt)
-  vetPracticeId,     // gewählte teilnehmende Praxis
+  vetPracticeId,     // gewählte Praxis (über Karte)
+  vetInProgram,      // bool — steuert A2 ja/nein und A3-Variante
+  notifyWhenVetJoins,// bool — nur relevant wenn !vetInProgram
   receivedAt,        // Timestamp (speist Wartezeit am Salesforce-Task A3)
   positions: [{ productId, variantLabel, qty }],
   status             // offen | erledigt
@@ -497,13 +515,13 @@ approvedVariantByProduct  // Map&lt;id, { formIndex, variantIndex, maxQty }&gt;
             <ol>
               <li><strong>Freigabe-Datensatz:</strong> Pro Nutzer-E-Mail eine Liste freigegebener Produkt-IDs mit Variante und <code>maxQty</code> speichern. Timestamp der Freigabe und verknüpfte Tierarztpraxis mitführen.</li>
               <li><strong>Login-Response:</strong> Auth-Antwort enthält <code>approvedProductIds[]</code>. Das Frontend setzt damit <code>approvedProductIds</code> und führt die Warenkorb-Redistribution durch.</li>
-              <li><strong>Anfrage-Flow:</strong> Login ist Pflicht vor der Praxis-Auswahl. Anfrage-Submission speichert den Anfrage-Datensatz (siehe oben, inkl. Pflichtfeld Name) und löst sofort <strong>A1 + A2 + A3</strong> aus (A1/A2 E-Mail, A3 Salesforce-Task für den Kundeninhaber). Validierung: nur teilnehmende Praxen; Name nicht leer. A2-Link zeigt auf Offene Anfragen.</li>
+              <li><strong>Anfrage-Flow:</strong> Login ist Pflicht vor der Praxis-Auswahl. Auswahl nur über die Karte; Anzeige-Feld readonly. Anfrage-Submission speichert den Anfrage-Datensatz (inkl. Name, <code>vetInProgram</code>, <code>notifyWhenVetJoins</code>). <strong>Teilnehmend:</strong> A1 + A2 + A3. <strong>Nicht teilnehmend:</strong> Anleitungs-Popup → A1 + A3 „Tierarzt anrufen“ (kein A2). Name nicht leer.</li>
               <li><strong>Bearbeitungs-Event (Offene Anfragen):</strong> Freigeben / Nicht freigeben (Zeile oder Bulk) → Status-Update → <strong>B1</strong> (E-Mail) → Task A3 auf <code>erledigt</code> → bei Freigabe Eintrag in Historie „Freigegeben“ (inkl. Provision und E-Mail); bei Ablehnung Eintrag in Historie „Nicht freigegeben“ (Datum + Notizen). Kein neuer Task.</li>
               <li><strong>Direkt-Freigabe-Event:</strong> Schritt 1 Consent + E-Mail Pflicht → Schritt 2 Produkte → „Produkte freigeben“ → Freigabe-Datensatz anlegen (E-Mail ggf. ohne bestehendes Konto) → <strong>C1</strong> (E-Mail, kein Task) → Historie-Eintrag.</li>
               <li><strong>Nachrichten-Abnahme:</strong> IT-Checkliste in <a href="#email-checkliste">Teil 3</a> Zeile für Zeile abhaken (A1–A3, B1, C1, D1).</li>
               <li><strong>Zähler-Badge:</strong> Offene Anfragen: Anzahl in der Portal-Nav als grünes Badge (<code>[data-nav-open-count]</code> an Trigger, Dropdown, Subnav und Mobile-Menü; bei 0 ausgeblendet). Kein Badge an „Nicht freigegeben“.</li>
               <li><strong>Announcement Bar:</strong> Gast-Item über Conditional Rendering — niemals für eingeloggte Nutzer sichtbar.</li>
-              <li><strong>D1 mailto:</strong> Link im Anfrage-Drawer öffnet Mail-Client mit vorbefülltem Betreff/Body — kein Server-Versand.</li>
+              <li><strong>D1 mailto:</strong> Im Anleitungs-Popup („Praxis nicht gefunden?“ / Nicht-im-Programm) — öffnet Mail-Client mit vorbefülltem Betreff/Body, kein Server-Versand. Finaler Anleitungstext TBD.</li>
             </ol>
 
           </div>

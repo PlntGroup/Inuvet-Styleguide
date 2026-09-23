@@ -278,7 +278,7 @@ body.--mockup-ui-hidden .mockup-fab-panel {
 
 /* ─── Vet Dropdown: Empfehlung-Dot ─── */
 .vet-recommended-dot        { color: var(--green); font-size: 0.6rem; line-height: 1; }
-.vet-recommended-dot.--empty { color: var(--border); }
+.vet-recommended-dot.--empty { color: var(--color-error); }
 .vet-legend {
   font-size: var(--text-xs);
   color: var(--fg-muted);
