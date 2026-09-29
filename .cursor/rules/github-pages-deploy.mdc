@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Deployment — immer main
 
-Live-URL: https://planet-group.github.io/Inuvet-Styleguide/
+Live-URL: https://plntgroup.github.io/Inuvet-Styleguide/
 
 GitHub Pages-Quelle: Branch **`main`**, Pfad `/`. Feature-Branches (`feat/*`, `session/*`) sind **nicht** live.
 
@@ -25,5 +25,5 @@ GitHub Pages-Quelle: Branch **`main`**, Pfad `/`. Feature-Branches (`feat/*`, `s
 
 ```bash
 git log origin/main..HEAD --oneline   # Commits, die noch nicht live sind
-gh api repos/Planet-Group/Inuvet-Styleguide/pages --jq '.source.branch'   # muss "main" sein
+gh api repos/PlntGroup/Inuvet-Styleguide/pages --jq '.source.branch'   # muss "main" sein
 ```
