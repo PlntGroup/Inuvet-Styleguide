@@ -984,6 +984,7 @@
   }
 
   /* ─── Hamburger ─── */
+  .nav-search--mobile { display: none; }
   .nav-hamburger {
     display: flex;
     align-items: center;
@@ -1028,10 +1029,19 @@
   @media (max-width: 767px) {
     .nav-left > a,
     .nav-left .nav-item { display: none; } /* Direkte Links + Dropdowns weg, nur Hamburger */
-    /* .nav-right: Suche + Warenkorb + Account; Land im .mobile-menu.
+    .nav-left { gap: 0; }
+    .nav-search--mobile { display: flex; }
+    .btn.--icon.nav-search--desktop { display: none; }
+    /* Glyphen an den Satzspiegel (--margin), trotz 2.25rem-Trefferfeld */
+    .site-nav {
+      padding-left: calc(var(--margin) - 0.625rem);
+      padding-right: calc(var(--margin) - 0.5rem);
+    }
+    /* .nav-right: Warenkorb + Account; Suche sitzt rechts neben dem Hamburger.
        Trefferfelder 36px, Glyphen unverändert. Gap 0 — Abstand kommt aus dem Padding.
        Badge sitzt am Icon, nicht an der Feld-Ecke. */
     .nav-right { gap: 0; }
+    .nav-left > .btn.--icon,
     .nav-right > .btn.--icon,
     .nav-right > .nav-account,
     .nav-hamburger {
@@ -1912,10 +1922,14 @@
 
   /* ─── Tile Variante C: Sonderkachel (Content-Box mit Hintergrund) ─── */
   .tile.--featured {
+    position: relative;
     background: var(--green-light);
     padding: var(--half-module);
     justify-content: space-between;
     min-height: 100%;
+  }
+  .tile.--featured > .floating-meta {
+    z-index: 2;
   }
   .tile.--featured .tile__headline {
     font-size: var(--text-m);
@@ -2259,9 +2273,11 @@
     position: absolute;
     top: calc(var(--base) * 0.75);
     left: calc(var(--base) * 0.75);
+    right: calc(var(--base) * 0.75);
     z-index: var(--z-default);
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     gap: 0.25rem;
   }
 
@@ -2634,6 +2650,16 @@
   .pagination__page.--current { font-weight: 700; border-color: var(--border-active); }
   .pagination__page.--current:hover { border-color: var(--border-active); }
   .pagination__dots { color: var(--fg-muted); padding: 0 0.5rem; }
+  .collection-main.--infinite .pagination { display: none; }
+  .collection-infinite {
+    min-height: 1px;
+  }
+  .collection-infinite__status {
+    margin: var(--module) 0 0;
+    text-align: center;
+    color: var(--fg-muted);
+    font-size: var(--text-sm);
+  }
 
   /* ─── Breadcrumb ─── */
   .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; font-size: var(--text-xs); color: var(--fg-muted); margin-bottom: var(--module); }
@@ -4054,10 +4080,17 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     padding-top: 0.5rem;
   }
   
-  /* ─── Avatar (Platzhalter oder Foto) ─── */
-  /* .testimonial__avatar — nutzt .placeholder-bg + .icon-box oder enthält <img> */
+  /* ─── Avatar (Foto oder Initial) ─── */
   .testimonial__avatar { border: 1px solid var(--border-light); flex-shrink: 0; border-radius: 50%; overflow: hidden; }
   .testimonial__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .testimonial__avatar.--initial {
+    background: color-mix(in srgb, var(--fg-muted) 55%, white);
+    border-color: transparent;
+    color: var(--bg);
+    font-size: var(--text-base);
+    font-weight: 700;
+    line-height: 1;
+  }
   
   /* ─── Name + Rolle ─── */
   .testimonial__name {
@@ -4075,7 +4108,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .testimonial-section.--on-green {
     padding: var(--module);
   }
-  .testimonial-section.--on-green .testimonial__avatar {
+  .testimonial-section.--on-green .testimonial__avatar:not(.--initial) {
     background: var(--color-overlay-light);
   }
   
@@ -4140,7 +4173,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .testimonial-slider.--on-green {
     padding: var(--module);
   }
-  .testimonial-slider.--on-green .testimonial__avatar {
+  .testimonial-slider.--on-green .testimonial__avatar:not(.--initial) {
     background: var(--color-overlay-light);
   }
   
@@ -4200,6 +4233,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     .pdp--sticky-gallery .pdp__gallery {
       grid-template-columns: calc(var(--base) * 6) minmax(0, 1fr);
     }
+  }
+  .pdp--sticky-gallery .pdp__gallery.--single {
+    grid-template-columns: minmax(0, 1fr);
   }
   .pdp--sticky-gallery .pdp__thumbs {
     flex-direction: column;
@@ -5019,6 +5055,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     position: absolute;
     top: 0;
     left: 0;
+    right: auto;
     z-index: 2;
   }
   .product-thumb-wrap .badge.--free { white-space: nowrap; }
@@ -5208,12 +5245,18 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     }
   }
   @media (max-width: 767px) {
+    :root {
+      --announcement-height: var(--module);
+    }
     .container { padding: var(--module); }
     .col-grid[data-cols="2"], .col-grid[data-cols="3"], .col-grid[data-cols="4"] { grid-template-columns: 1fr; }
     /* --cols-4 global: bleibt 2-spaltig (Benefit-/Icon-Raster).
        Collection-Produkte: nie 2-spaltig mobil — zu eng → 1 Spalte. */
     .tile-grid.--cols-2, .tile-grid.--cols-3 { grid-template-columns: minmax(0, 1fr); }
     .collection-main .tile-grid.--cols-4 { grid-template-columns: minmax(0, 1fr); }
+    .collection-main .tile-grid {
+      row-gap: calc(var(--gutter) + var(--module));
+    }
     /* Content-Kacheln: Mobil 2-spaltig (auch --cols-3), außer .--mobile-stack */
     .shopify-section--content-tiles .tile-grid.--cols-3,
     .shopify-section--content-tiles .tile-grid.--cols-4 {

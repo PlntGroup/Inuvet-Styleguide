@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link id="font-planimol" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" disabled>
-  <link rel="stylesheet" href="planet-brands.css?v=208">
+  <link rel="stylesheet" href="planet-brands.css?v=209">
   <link rel="stylesheet" href="brand-planimol.css?v=2">
   <link rel="stylesheet" href="sg.css?v=51">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -1443,7 +1443,7 @@
 
       <h3 class="sg-h3 --top"><code>.badge</code></h3>
       <table class="spec-table">
-        <tr><th><code>.badge</code> + <code>data-cat</code></th><td>Kategorie-Label · Hintergrund aus <code>--cat-*-light</code> · Schrift <code>--fg</code> · immer einzeilig (<code>white-space: nowrap</code>)</td></tr>
+        <tr><th><code>.badge</code> + <code>data-cat</code></th><td>Kategorie-Label · Hintergrund aus <code>--cat-*-light</code> · Schrift <code>--fg</code> · Label selbst einzeilig (<code>white-space: nowrap</code>) · <code>.floating-meta</code> bricht um</td></tr>
         <tr><th><code>.badge.--dark</code></th><td>Schwarz · weiße Schrift — „Neu"</td></tr>
         <tr><th><code>.badge.--sale</code></th><td>Grün · weiße Schrift — Sale</td></tr>
         <tr><th><code>.badge.--free</code></th><td>Tone-on-Tone Grün — Gratis-Hinweis (<code>--green-light</code> / <code>--green</code>)</td></tr>
@@ -2326,7 +2326,7 @@
 
       <table class="spec-table">
         <tr><th><code>.tile__image</code></th><td>1. <code>img</code>: beschreibendes <code>alt</code> · 2. <code>video</code> (Standard): Rollover, <code>aria-hidden="true"</code> · <code>muted loop playsinline</code> · Shopify → <a href="#shopify-pdp">E.2</a></td></tr>
-        <tr><th>Badges</th><td><code>.floating-meta</code> · Reihenfolge: Kategorie (<code>.badge[data-cat]</code>), Status (<code>.--dark</code> / <code>.--sale</code>), bei Produktfamilien „Produktfamilie" (Pflicht)</td></tr>
+        <tr><th>Badges</th><td><code>.floating-meta</code> · Reihenfolge: Kategorie (<code>.badge[data-cat]</code>), Status (<code>.--dark</code> / <code>.--sale</code>), bei Produktfamilien „Produktfamilie" (Pflicht) · Zeile umbrechen, wenn die Labels nicht mehr ins Bild passen</td></tr>
         <tr><th>Warenkorb</th><td><code>.tile__cart</code>: Text-Button gleitet bei Hover ins Bild (Desktop) · Frosted Glass · Mobile: Icon-Button <code>.btn.--icon.--sm.tile__cart-icon</code> (permanent, unten rechts, Glass) · Text-Button auf Mobile ausgeblendet · beide <code>aria-label="In den Warenkorb"</code></td></tr>
         <tr><th><code>.tile__headline-row</code></th><td>Flex · <code>.tile__headline</code> + optional <code>.rating</code> (Stern + Zahl) · mit Description in <code>.flow</code> (A.7)</td></tr>
         <tr><th><code>.tile__description</code></th><td>Optional · <code>--fg-muted</code></td></tr>
@@ -4529,7 +4529,7 @@
       <tr><th>Quote-Zeichen</th><td>Typografisches <code>„</code> in <code>--text-l</code> (1.5–2.25rem), bold. Dekorativ.</td></tr>
       <tr><th>Zitat-Text</th><td><code>--text-base</code> · LH 1.5</td></tr>
       <tr><th>Sterne</th><td>Material Icons <code>star</code> / <code>star_border</code>. Gefüllt: <code>--fg</code>. Leer: <code>--border-light</code>. Größe: <code>1rem</code>.</td></tr>
-      <tr><th>Avatar</th><td><code>1 Modul × 1 Modul</code> (3rem). Kreuz-Platzhalter wie im System.</td></tr>
+      <tr><th>Avatar</th><td><code>1 Modul × 1 Modul</code> (3rem). Foto oder Fallback <code>.--initial</code>: grauer Kreis, weißer Anfangsbuchstabe des Vornamens.</td></tr>
       <tr><th>Name</th><td><code>--text-base</code>, bold.</td></tr>
       <tr><th>Rolle</th><td><code>--text-xs</code>, <code>--fg-muted</code>.</td></tr>
       <tr><th>Mobile</th><td>3 sichtbar. Button „Mehr anzeigen" (Secondary) lädt jeweils 3 weitere. Verschwindet, wenn alle gezeigt.</td></tr>
@@ -4552,7 +4552,7 @@
                     <span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span>
                   </div>
                   <div class="testimonial__author">
-                    <div class="testimonial__avatar icon-box placeholder-bg"></div>
+                    <div class="testimonial__avatar icon-box --initial" aria-hidden="true">M</div>
                     <div><p class="testimonial__name">Maria Schneider</p><div class="testimonial__role">Creative Director, Studio Klare Linie</div></div>
                   </div>
                 </div>
@@ -5207,7 +5207,7 @@
       <table class="spec-table">
         <tr><th>Pfadnavigation</th><td>Opt-in: Section-Setting Checkbox <code>show_breadcrumb</code> (Default aus) · Markup <code>.breadcrumb.pdp__breadcrumb</code> über dem Kaufblock · Start · Kategorie · Produkt · Abstand unten <code>--half-module</code> · Demo: aus (<code>?breadcrumb=1</code> an) · Atom → <a href="#C6">C.6</a></td></tr>
         <tr><th><code>.pdp</code></th><td>2-Spalten-Grid · <code>margin-bottom: var(--module-2xl)</code> · Mobile: 1 Spalte</td></tr>
-        <tr><th><code>.pdp__gallery</code></th><td><strong>Thumbs (Default, alle Viewports):</strong> Hauptbild + Thumbnails · 1. Medium: Packshot · 2. Medium: Produktvideo · Badge via <code>.floating-meta</code> auf Hauptbild · <strong>Mosaic (nur Desktop ≥1100px):</strong> <code>.pdp__mosaic</code> — Hero <code>.pdp__mosaic-hero</code> + Grid <code>.pdp__mosaic-grid</code> (2 Spalten, Gap <code>var(--base)</code>) · Zellen <code>.pdp__mosaic-cell</code></td></tr>
+        <tr><th><code>.pdp__gallery</code></th><td><strong>Thumbs (Default, alle Viewports):</strong> Hauptbild + Thumbnails · bei nur einem Medium keine Thumbs, <code>.--single</code> nutzt die volle Galeriebreite · 1. Medium: Packshot · 2. Medium: Produktvideo · Badge via <code>.floating-meta</code> auf Hauptbild · <strong>Mosaic (nur Desktop ≥1100px):</strong> <code>.pdp__mosaic</code> — Hero <code>.pdp__mosaic-hero</code> + Grid <code>.pdp__mosaic-grid</code> (2 Spalten, Gap <code>var(--base)</code>) · Zellen <code>.pdp__mosaic-cell</code></td></tr>
         <tr><th>Galerie-Modus</th><td>Section-Setting <code>gallery: thumbs | mosaic</code> (Shopify) · <strong>Mosaic nur Desktop ≥1100px</strong> — Mobile immer Thumbs · Mockup: Mockup-Bar „Galerie: Thumbs | Mosaic" auf <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html</a> (Desktop) · URL <code>?gallery=mosaic</code> · Persistenz <code>sessionStorage</code> · Default: <code>thumbs</code> · JS: <code>getEffectivePdpGalleryMode()</code>, <code>applyPdpGalleryMode()</code> in <code>planet-brands.js</code> · Mockup-Toggle: <code>initPdpGalleryToggle()</code></td></tr>
         <tr><th>Badges (Galerie)</th><td>Kategorie (<code>.badge[data-cat]</code>) · bei Produktfamilien zusätzlich immer <code>.badge</code> „Produktfamilie" (wie Kachel → <a href="#C1">C.1</a>)</td></tr>
         <tr><th><code>.pdp__thumb.--active</code></th><td>Border <code>var(--border-active)</code></td></tr>
