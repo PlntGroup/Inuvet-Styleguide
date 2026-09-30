@@ -102,10 +102,36 @@
       </div>
     </div>
 
+    <h2 class="section-label" data-i18n="secLogic">System-Logik</h2>
+    <div class="flow">
+      <p data-i18n="logicLead">Drei Schichten, die wir nicht mischen: System (wie etwas gebaut ist), Haut (was die Marke abweichend macht), Kühlschrank (Inhalte im jeweiligen Shop). Ein Guide für alle Marken dieser Familie — nicht ein Styleguide pro Marke.</p>
+    </div>
+    <div class="col-grid --early-2 --spaced" data-cols="2">
+      <div class="flow">
+        <h3 data-i18n="logicSystemTitle">System</h3>
+        <p data-i18n="logicSystemBody">planet-brands.css und planet-brands.js: Tokens, Buttons, Raster. Inuvet ist der Default in :root. Was alle Shops teilen, gehört hierher — nie in eine Marken-Datei.</p>
+      </div>
+      <div class="flow">
+        <h3 data-i18n="logicSkinTitle">Haut</h3>
+        <p data-i18n="logicSkinBody">Eine Datei pro Marke: brand-campus.css, brand-planimol.css. Nur Abweichungen (Tokens, Campus-Weiche, Ausnahmen). Im Theme nach dem System laden. Im Guide: Schalter Campus / Planimol.</p>
+      </div>
+      <div class="flow">
+        <h3 data-i18n="logicFridgeTitle">Kühlschrank</h3>
+        <p data-i18n="logicFridgeBody">Texte, Logos, Lotties und Benefits liegen im Shopify-Store, nicht im CSS. Logos im Guide unter assets/brands/{handle}/. Jede Marke hat ihren eigenen Store.</p>
+      </div>
+      <div class="flow">
+        <h3 data-i18n="logicThemesTitle">Themes</h3>
+        <p data-i18n="logicThemesBody">Ein Theme-Repo pro Shop: inuvet-theme, inuvet-campus-theme, später Planimol. Kein Marken-Schalter im Theme. Git nur nach staging.</p>
+      </div>
+    </div>
+    <div class="flow">
+      <p data-i18n="logicClose">Kein zweiter Styleguide für Planimol oder EQX — das würde das System forken. Planet-Styleguide bleibt (Gruppen-Website, anderes System). temp.css und temp.js sind leer und nur zum Testen, bevor etwas ins System wandert.</p>
+    </div>
+
   </div>
 </main>
 
 <script src="planet-brands.js?v=2"></script>
-<script src="index.js?v=7"></script>
+<script src="index.js?v=8"></script>
 </body>
 </html>

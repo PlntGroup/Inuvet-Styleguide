@@ -35,7 +35,18 @@
       secStandalone: 'Stand Alone Pages',
       cardFormTitle: 'Formular für Nebenwirkungen',
       cardFormBody: 'Stand-alone-Meldeformular für unerwünschte Wirkungen aus der Tierarztpraxis: Floating Labels, Validierung und Danke-Zustand auf Weiß/Grün — Vorlage für vergleichbare Form-Pages außerhalb des Shop-Chrome.',
-      ctaForm: 'Zum Formular'
+      ctaForm: 'Zum Formular',
+      secLogic: 'System-Logik',
+      logicLead: 'Drei Schichten, die wir nicht mischen: System (wie etwas gebaut ist), Haut (was die Marke abweichend macht), Kühlschrank (Inhalte im jeweiligen Shop). Ein Guide für alle Marken dieser Familie — nicht ein Styleguide pro Marke.',
+      logicSystemTitle: 'System',
+      logicSystemBody: 'planet-brands.css und planet-brands.js: Tokens, Buttons, Raster. Inuvet ist der Default in :root. Was alle Shops teilen, gehört hierher — nie in eine Marken-Datei.',
+      logicSkinTitle: 'Haut',
+      logicSkinBody: 'Eine Datei pro Marke: brand-campus.css, brand-planimol.css. Nur Abweichungen (Tokens, Campus-Weiche, Ausnahmen). Im Theme nach dem System laden. Im Guide: Schalter Campus / Planimol.',
+      logicFridgeTitle: 'Kühlschrank',
+      logicFridgeBody: 'Texte, Logos, Lotties und Benefits liegen im Shopify-Store, nicht im CSS. Logos im Guide unter assets/brands/{handle}/. Jede Marke hat ihren eigenen Store.',
+      logicThemesTitle: 'Themes',
+      logicThemesBody: 'Ein Theme-Repo pro Shop: inuvet-theme, inuvet-campus-theme, später Planimol. Kein Marken-Schalter im Theme. Git nur nach staging.',
+      logicClose: 'Kein zweiter Styleguide für Planimol oder EQX — das würde das System forken. Planet-Styleguide bleibt (Gruppen-Website, anderes System). temp.css und temp.js sind leer und nur zum Testen, bevor etwas ins System wandert.'
     },
     en: {
       docTitle: 'Mockups – inuvet',
@@ -69,7 +80,18 @@
       secStandalone: 'Stand-alone pages',
       cardFormTitle: 'Adverse reaction form',
       cardFormBody: 'Stand-alone form for reporting adverse effects from the veterinary practice: floating labels, validation and thank-you state on white/green — template for similar form pages outside shop chrome.',
-      ctaForm: 'Open form'
+      ctaForm: 'Open form',
+      secLogic: 'How it is structured',
+      logicLead: 'Three layers we do not mix: system (how things are built), skin (what the brand changes), fridge (content in each shop). One guide for every brand in this family — not a styleguide per brand.',
+      logicSystemTitle: 'System',
+      logicSystemBody: 'planet-brands.css and planet-brands.js: tokens, buttons, grid. Inuvet is the default in :root. Anything every shop shares belongs here — never in a brand file.',
+      logicSkinTitle: 'Skin',
+      logicSkinBody: 'One file per brand: brand-campus.css, brand-planimol.css. Deltas only (tokens, Campus weiche, exceptions). Load it after the system in the theme. In the guide: Campus / Planimol switch.',
+      logicFridgeTitle: 'Fridge',
+      logicFridgeBody: 'Copy, logos, Lotties and benefits live in the Shopify store, not in CSS. Guide logos sit in assets/brands/{handle}/. Each brand has its own store.',
+      logicThemesTitle: 'Themes',
+      logicThemesBody: 'One theme repo per shop: inuvet-theme, inuvet-campus-theme, Planimol later. No brand switch in the theme. Git only to staging.',
+      logicClose: 'No second styleguide for Planimol or EQX — that would fork the system. Planet-Styleguide stays (group website, a different system). temp.css and temp.js stay empty and are only for testing before something moves into the system.'
     }
   };
 
