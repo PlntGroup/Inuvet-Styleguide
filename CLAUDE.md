@@ -6,8 +6,8 @@
 
 1. Sprache: **Deutsch** (Doku, Commits, Kommentare, Antworten)
 2. Globale System-Dateien: `planet-brands.css` / `planet-brands.js` — in alle Pages einbinden. Seitenspezifische Logik → `pages/xyz.js`. Kein Inline-Script. → Details unter „JS-Schichtung".
-2b. **Drei Schichten:** System (`planet-brands.*`) · Haut (`brand-{handle}.css`) · Kühlschrank (Store-Inhalte). Inuvet bleibt `:root` in `planet-brands.css`. Neue Marke = eine Token-Datei `brand-{handle}.css` + eigener Store — niemals Tokens in `planet-brands.css`. `brand-inuvet.css` nur, wenn Inuvet wie andere umgeschaltet werden muss. Shopify `assets/` ist flach, gleicher Basename wie hier.
-2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf weiter `?brand=planimol` + `brand-planimol.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `CLAUDE.md`.
+2b. **Drei Schichten:** System (`planet-brands.*`) · Haut (`brand-{handle}.css`) · Kühlschrank (Store-Inhalte). Inuvet bleibt `:root` in `planet-brands.css`. Planimol = Token-Haut `brand-planimol.css` (`html[data-brand="planimol"]`). Campus = `brand-campus.css` (Campus-only Komponenten + künftige Tokens; im Theme immer geladen, im Guide via Schalter). Neue Marke = `brand-{handle}.css` + eigener Store — niemals Tokens in `planet-brands.css`. `brand-inuvet.css` nur, wenn Inuvet wie andere umgeschaltet werden muss. Shopify `assets/` ist flach, gleicher Basename wie hier.
+2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf `?brand=planimol` / `?brand=campus` + passende `brand-*.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `CLAUDE.md`.
 2d. **Guide-Ordner** (echte Ordner nur hier; Theme `assets/` bleibt flach): `assets/brands/{handle}/{handle}-logo.svg` · `assets/graphics/icons/` (shared, Dateiname = Theme-Asset) · `assets/lotties/` flach (Kühlschrank, gleicher Dateiname im Theme). Neue Marke = neuer Ordner `brands/{handle}/`. `brand-*.css` bleibt im Root.
 2e. **Shopify-Themes Git:** nur Branch **`staging`** pushen. Nie `main`/`master`. Gilt für **jedes** Shopify-Theme, auch künftige Marken — nicht nur Inuvet und Campus.
 3. **Nach Rate-Limit-Abbruch:** Vorherigen Chat wiederherstellen mit `mcp__ccd_session_mgmt__list_sessions` → neuesten Session-Titel „New session" oder ähnlich suchen → `mcp__ccd_session_mgmt__search_session_transcripts` mit Stichworten aus dem letzten Task. Alternativ: `git log --oneline -5` zeigt was zuletzt committet wurde.
@@ -35,7 +35,7 @@ Unterordner `reports/` und `vetalita/`: kebab-case Dateien ok · Vetalita-Brand 
 1. **Bestehende Klassen zuerst** — vor jeder neuen Klasse: `grep` in `planet-brands.css`. Existiert die Funktion schon? → Wiederverwenden.
 2. **Neue Styles immer zuerst in temp.css** — Erst wenn ein Element abgeschlossen ist, entscheiden wir gemeinsam: → `planet-brands.css` (global) oder → Page-CSS (seitenspezifisch). Nie direkt in `planet-brands.css` oder eine Page-CSS schreiben ohne vorherigen Test in `temp.css`. **Ausnahme:** Reine Styleguide-UI (`.sg-*`) wird direkt in `sg.css` geschrieben — kein Umweg über `temp.css`, da nicht produktionsrelevant. **Gilt auch im Guide:** Der Styleguide repräsentiert die `planet-brands.css`-Styles — also zuerst bestehende `planet-brands.css`-Klassen wiederverwenden; neues `sg.css` nur im Notfall für echtes Doku-Chrome, das es im Produkt-CSS nicht gibt.
 3. **Keine Magic Numbers** — alles via `var(--…)`.
-4. **`border-radius: 0`** — Ausnahmen nur: `.badge.--pill` und Avatar (`50%`).
+4. **`border-radius: 0`** — Ausnahmen nur: `.badge.--pill` und Avatar (`50%`). Campus-Weiche: Radius in `brand-campus.css`, nicht im System.
 5. **Kein `!important`**. Niemals.
 6. **Kein `text-align: center`** für Inhalte — nur funktional (Button-Text, Qty-Input, Empty/Success-State).
 7. **BEM-Modifier mit Doppel-Bindestrich**: `.btn.--primary`, `.--active`, `.--open`.
@@ -97,7 +97,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 | Schicht | Datei | Rolle |
 |---|---|---|
 | **System** | `planet-brands.css` / `planet-brands.js` | Tokens (`:root` = Inuvet) + Komponenten + globale JS. Gleicher Basename im Theme. |
-| **Haut** | `brand-{handle}.css` | Nur Tokens. Muster: `brand-planimol.css` (liegt bereits im Repo). |
+| **Haut** | `brand-{handle}.css` | Planimol: nur Tokens (`brand-planimol.css`). Campus: Komponenten + künftige Tokens (`brand-campus.css`). |
 | **Kühlschrank** | Store-Content | Logos, Lotties, Benefits — Dateinamen nicht umbenennen, nicht ins System mischen. Guide: `assets/brands/{handle}/{handle}-logo.svg`, Lotties flach. |
 
 ### CSS-Schichten
@@ -106,6 +106,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 |---|---|---|
 | `planet-brands.css` | Design System — Tokens, Atome, Moleküle, Organismen | Styleguide-UI, Mockup-Chrome, Page-Spezifika |
 | `brand-planimol.css` | Marken-Haut: `html[data-brand="planimol"]` überschreibt Schrift, Grün, FG, Borders, Produktfarben. Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
+| `brand-campus.css` | Campus-Haut: Weiche, Webinar-Metas, PDP-/Collection-Deltas. Theme immer; Guide `#skin-campus` bei `data-brand="campus"`. | Inuvet-Shop-Styles, Guide-Chrome |
 | `sg.css` | Styleguide-eigene UI (`.sg-*` Präfix) | Echte Produkt-Komponenten |
 | `mockup-ui.css` | Dev-UI Chrome (Mockup-Bar, FAB, Mockup-Modal) | Page-Content, `planet-brands.css`-Klassen wie `.btn` oder `.form-field` |
 | `mockup-ui.js` | Mockup-Chrome-JS (Alt+M / ⌥M Toggle) | Produktions-/Theme-Code |

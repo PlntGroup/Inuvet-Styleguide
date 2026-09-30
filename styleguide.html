@@ -9,6 +9,7 @@
   <link id="font-planimol" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" disabled>
   <link rel="stylesheet" href="planet-brands.css?v=209">
   <link rel="stylesheet" href="brand-planimol.css?v=2">
+  <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=1" disabled>
   <link rel="stylesheet" href="sg.css?v=51">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
@@ -21,6 +22,10 @@
         document.documentElement.setAttribute('data-brand', 'planimol');
         var link = document.getElementById('font-planimol');
         if (link) link.disabled = false;
+      } else if (brand === 'campus') {
+        document.documentElement.setAttribute('data-brand', 'campus');
+        var campus = document.getElementById('skin-campus');
+        if (campus) campus.disabled = false;
       }
     })();
   </script>
@@ -33,6 +38,7 @@
     <nav>
       <div class="sg-brand" role="group" aria-label="Marke">
         <button type="button" class="sg-brand__btn" data-brand-set="inuvet" aria-pressed="true">Inuvet</button>
+        <button type="button" class="sg-brand__btn" data-brand-set="campus" aria-pressed="false">Campus</button>
         <button type="button" class="sg-brand__btn" data-brand-set="planimol" aria-pressed="false">Planimol</button>
       </div>
 
@@ -107,6 +113,7 @@
 
     <div class="sg-brand --main" role="group" aria-label="Marke">
       <button type="button" class="sg-brand__btn" data-brand-set="inuvet" aria-pressed="true">Inuvet</button>
+      <button type="button" class="sg-brand__btn" data-brand-set="campus" aria-pressed="false">Campus</button>
       <button type="button" class="sg-brand__btn" data-brand-set="planimol" aria-pressed="false">Planimol</button>
     </div>
 
@@ -188,7 +195,7 @@
     <section class="sg-section-v2 flow" id="A3">
       <h2 class="section-label">A.3 — Design Tokens</h2>
       <div class="col-grid" data-cols="2">
-        <p>Alle Werte sind CSS Custom Properties in <code>:root</code> (Inuvet-Default). Planimol überschreibt die Haut in <code>brand-planimol.css</code> via <code>html[data-brand="planimol"]</code> — Schalter in der Sidebar. Kein Hardcoding von Farben, Größen oder Abständen außerhalb dieser Tokens — immer <code>var(--…)</code>.</p>
+        <p>Alle Werte sind CSS Custom Properties in <code>:root</code> (Inuvet-Default). Planimol überschreibt Tokens in <code>brand-planimol.css</code> via <code>html[data-brand="planimol"]</code>. Campus lädt <code>brand-campus.css</code> (Komponenten + künftige Tokens) — Schalter in der Sidebar. Kein Hardcoding von Farben, Größen oder Abständen außerhalb dieser Tokens — immer <code>var(--…)</code>.</p>
         <p>Neue Werte müssen hier definiert und dokumentiert werden, bevor sie im System verwendet werden dürfen.</p>
       </div>
       <p>Diese Sektion ist die technische Referenz — die vollständige Liste aller Custom Properties. Die <em>visuelle</em> Darstellung der Tokens findet sich dort, wo sie eingesetzt werden: <a href="#A4">A.4 Typografie</a>, <a href="#A5">A.5 Farben</a>, <a href="#A7">A.7 Spacing</a>.</p>
@@ -1138,7 +1145,7 @@
       <table class="spec-table">
         <tr><th><code>.sg-layout</code></th><td>Sidebar + Main — auf dieser Seite mit <code>.container</code></td></tr>
         <tr><th><code>.sg-sidebar</code></th><td>Sticky Nav · Scrollspy (<code>sg.js</code>) markiert <code>a.--active</code></td></tr>
-        <tr><th><code>.sg-brand</code></th><td>Inuvet / Planimol · setzt <code>data-brand</code> · Persistenz <code>localStorage</code> + <code>?brand=planimol</code></td></tr>
+        <tr><th><code>.sg-brand</code></th><td>Inuvet / Campus / Planimol · setzt <code>data-brand</code> · Persistenz <code>localStorage</code> + <code>?brand=campus</code> / <code>?brand=planimol</code></td></tr>
         <tr><th><code>.sg-section-v2</code></th><td>Sektions-Wrapper · oft mit <code>.flow</code></td></tr>
         <tr><th><code>.section-label</code></th><td>Kapitel-<code>h2</code> (produktiv + Guide) — menschenlesbarer Titel · Spec → <a href="#A12">A.12</a></td></tr>
         <tr><th><code>.sg-h3</code></th><td>Untergruppe: primärer Selektor in <code>&lt;code&gt;</code> (Klasse, Token, Attribut). Varianten-Demo: <code>.btn.--full</code> oder <code>.btn</code> — Kurzinfo</td></tr>
@@ -7013,6 +7020,6 @@
 </div>
 
 <script src="planet-brands.js?v=28"></script>
-<script src="sg.js?v=6"></script>
+<script src="sg.js?v=7"></script>
 </body>
 </html>

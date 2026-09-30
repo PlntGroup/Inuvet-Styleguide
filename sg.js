@@ -474,33 +474,44 @@ function toggleAnnScrollDemo(btn) {
   update();
 })();
 
-/* ─── Marken-Haut (Inuvet | Planimol) ─── */
+/* ─── Marken-Haut (Inuvet | Campus | Planimol) ─── */
 var SG_LOGOS = {
   inuvet: 'assets/brands/inuvet/inuvet-logo.svg',
+  campus: 'assets/brands/campus/campus-logo.svg',
   planimol: 'assets/brands/planimol/planimol-logo.svg'
 };
 
 function currentSgBrand() {
-  return document.documentElement.getAttribute('data-brand') === 'planimol' ? 'planimol' : 'inuvet';
+  var b = document.documentElement.getAttribute('data-brand');
+  if (b === 'planimol' || b === 'campus') return b;
+  return 'inuvet';
 }
 
 function applySgBrand(brand, persist) {
-  brand = brand === 'planimol' ? 'planimol' : 'inuvet';
+  if (brand !== 'planimol' && brand !== 'campus') brand = 'inuvet';
+  var font = document.getElementById('font-planimol');
+  var campusCss = document.getElementById('skin-campus');
   if (brand === 'planimol') {
     document.documentElement.setAttribute('data-brand', 'planimol');
-    var font = document.getElementById('font-planimol');
     if (font) font.disabled = false;
+    if (campusCss) campusCss.disabled = true;
+  } else if (brand === 'campus') {
+    document.documentElement.setAttribute('data-brand', 'campus');
+    if (font) font.disabled = true;
+    if (campusCss) campusCss.disabled = false;
   } else {
     document.documentElement.removeAttribute('data-brand');
+    if (font) font.disabled = true;
+    if (campusCss) campusCss.disabled = true;
   }
   document.querySelectorAll('[data-brand-set]').forEach(function (btn) {
     btn.setAttribute('aria-pressed', btn.getAttribute('data-brand-set') === brand ? 'true' : 'false');
   });
   document.querySelectorAll('[data-sg-logo]').forEach(function (img) {
     img.src = SG_LOGOS[brand];
-    img.alt = brand === 'planimol' ? 'Planimol Logo' : 'inuvet Logo';
+    img.alt = brand === 'planimol' ? 'Planimol Logo' : brand === 'campus' ? 'inuvet Campus Logo' : 'inuvet Logo';
   });
-  document.title = brand === 'planimol' ? 'Design System – Planimol' : 'Design System – inuvet';
+  document.title = brand === 'planimol' ? 'Design System – Planimol' : brand === 'campus' ? 'Design System – Campus' : 'Design System – inuvet';
   document.querySelectorAll('[data-token]').forEach(function (el) {
     var val = getComputedStyle(document.documentElement).getPropertyValue(el.getAttribute('data-token')).trim();
     if (val) el.textContent = val;
@@ -508,8 +519,8 @@ function applySgBrand(brand, persist) {
   if (persist) {
     try { localStorage.setItem('sg-brand', brand); } catch (e) { /* private mode */ }
     var url = new URL(location.href);
-    if (brand === 'planimol') url.searchParams.set('brand', 'planimol');
-    else url.searchParams.delete('brand');
+    if (brand === 'inuvet') url.searchParams.delete('brand');
+    else url.searchParams.set('brand', brand);
     history.replaceState(null, '', url);
   }
 }
