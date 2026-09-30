@@ -54,25 +54,49 @@
   line-height: 1;
   flex-shrink: 0;
 }
-.pdp .tile__webinar-meta-item { font-size: var(--text-base); }
-.pdp .tile__webinar-meta-item .material-icons { font-size: var(--text-base); }
+.pdp .tile__webinar-meta-item,
+.section-type.--webinar .tile__webinar-meta-item { font-size: var(--text-base); }
+.pdp .tile__webinar-meta-item .material-icons,
+.section-type.--webinar .tile__webinar-meta-item .material-icons { font-size: var(--text-base); }
 
 @media (min-width: 1100px) {
-  .pdp .tile__webinar-meta {
+  .pdp .tile__webinar-meta,
+  .section-type.--webinar .tile__webinar-meta {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     border-bottom: 1px solid var(--border-light);
   }
-  .pdp .tile__webinar-meta-item {
+  .pdp .tile__webinar-meta-item,
+  .section-type.--webinar .tile__webinar-meta-item {
     width: auto;
     border-bottom: none;
   }
-  .pdp .tile__webinar-meta-item:only-child { grid-column: 1 / -1; }
-  .pdp .tile__webinar-meta-item:not(:last-child) { padding-right: var(--half-module); }
-  .pdp .tile__webinar-meta-item + .tile__webinar-meta-item {
+  .pdp .tile__webinar-meta-item:only-child,
+  .section-type.--webinar .tile__webinar-meta-item:only-child { grid-column: 1 / -1; }
+  .pdp .tile__webinar-meta-item:not(:last-child),
+  .section-type.--webinar .tile__webinar-meta-item:not(:last-child) { padding-right: var(--half-module); }
+  .pdp .tile__webinar-meta-item + .tile__webinar-meta-item,
+  .section-type.--webinar .tile__webinar-meta-item + .tile__webinar-meta-item {
     border-left: 1px solid var(--border-light);
     padding-left: var(--half-module);
   }
+}
+
+.featured-webinar__packshot {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  width: 100%;
+  align-self: stretch;
+}
+.featured-webinar__packshot > .tile__webinar-meta { margin-bottom: 0; }
+.section-type.--v1 .featured-webinar__packshot .section-type__image {
+  flex: 1 1 auto;
+}
+@media (max-width: 767px) {
+  .featured-webinar__packshot > .section-type__image { order: 0; }
+  .featured-webinar__packshot > .tile__webinar-meta { order: 1; }
 }
 
 .pdp__packshot {
