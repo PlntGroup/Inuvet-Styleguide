@@ -70,7 +70,6 @@
   .pdp .tile__webinar-meta-item:only-child { grid-column: 1 / -1; }
   .pdp .tile__webinar-meta-item:not(:last-child) { padding-right: var(--half-module); }
   .pdp .tile__webinar-meta-item + .tile__webinar-meta-item {
-    border-left: 1px solid var(--border-light);
     padding-left: var(--half-module);
   }
 }
