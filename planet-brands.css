@@ -984,7 +984,7 @@
   }
 
   /* ─── Hamburger ─── */
-  .nav-search--mobile { display: none; }
+  .btn.--icon.nav-search--mobile { display: none; }
   .nav-hamburger {
     display: flex;
     align-items: center;
@@ -1030,7 +1030,7 @@
     .nav-left > a,
     .nav-left .nav-item { display: none; } /* Direkte Links + Dropdowns weg, nur Hamburger */
     .nav-left { gap: 0; }
-    .nav-search--mobile { display: flex; }
+    .btn.--icon.nav-search--mobile { display: flex; }
     .btn.--icon.nav-search--desktop { display: none; }
     /* Glyphen an den Satzspiegel (--margin), trotz 2.25rem-Trefferfeld */
     .site-nav {
