@@ -4141,10 +4141,31 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     grid-auto-columns: calc((100% - var(--gutter) * 3) / 4);
   }
   /* Ein Zitat groß, durchblätterbar (auch mobil). Zitat visuell H2, kursiv, nicht fett.
-     Große Screens: Überschrift + Zitat 3 von 4 Spalten, erste Spalte leer. */
-  .testimonial-featured {
-    max-width: calc((100% - var(--gutter) * 3) / 4 * 3 + var(--gutter) * 2);
-    margin-inline-start: auto;
+     Große Screens: 4-Spalter, erste Spalte Format-Quote, Rest Überschrift + Zitat. */
+  .testimonial-featured > .testimonial__quote-mark {
+    display: none;
+  }
+  @media (min-width: 1101px) {
+    .testimonial-featured {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      align-items: start;
+    }
+    .testimonial-featured > .testimonial__quote-mark {
+      display: block;
+      grid-column: 1;
+      margin-bottom: 0;
+    }
+    .testimonial-featured > .testimonial__quote-mark .material-icons {
+      font-size: var(--module-2xl);
+    }
+    .testimonial-featured > .testimonial__quote-mark + :is(.section-header, .section-label) {
+      margin-top: 0;
+    }
+    .testimonial-featured > :not(.testimonial__quote-mark) {
+      grid-column: 2 / -1;
+    }
   }
   .testimonial-slider.--featured .slider-nav {
     justify-content: flex-start;
@@ -5281,10 +5302,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     .testimonial-grid.--cols-4 { grid-template-columns: 1fr 1fr 1fr; }
     .testimonial-slider.--cols-4 .testimonial-slider__track {
       grid-auto-columns: calc((100% - var(--gutter) * 2) / 3);
-    }
-    .testimonial-featured {
-      max-width: none;
-      margin-inline-start: 0;
     }
     .testimonial-grid.--cols-3 { grid-template-columns: 1fr 1fr; }
     .testimonial-slider.--cols-3 .testimonial-slider__track {
