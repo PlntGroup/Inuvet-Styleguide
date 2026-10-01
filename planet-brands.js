@@ -403,6 +403,8 @@ document.addEventListener('DOMContentLoaded', initTestimonials);
 
 function initSliders() {
   document.querySelectorAll('.testimonial-slider').forEach(function(slider) {
+    if (slider.dataset.sliderReady) return;
+    slider.dataset.sliderReady = '1';
     var track   = slider.querySelector('.testimonial-slider__track');
     var slides  = slider.querySelectorAll('.testimonial-slider__slide');
     var prevBtn = slider.querySelector('[data-dir="prev"]');
@@ -412,6 +414,7 @@ function initSliders() {
     var current = 0;
 
     function getVisible() {
+      if (slider.classList.contains('--featured') || slider.classList.contains('--cols-1')) return 1;
       var w = window.innerWidth;
       if (w <= 767) return slides.length;
       if (slider.classList.contains('--cols-4')) {
@@ -434,7 +437,10 @@ function initSliders() {
       } else {
         track.style.transform = 'translateX(0)';
       }
-      if (counter) counter.textContent = (current + 1) + ' – ' + Math.min(current + vis, slides.length) + ' / ' + slides.length;
+      if (counter) {
+        if (vis === 1) counter.textContent = (current + 1) + ' / ' + slides.length;
+        else counter.textContent = (current + 1) + ' – ' + Math.min(current + vis, slides.length) + ' / ' + slides.length;
+      }
       if (prevBtn) prevBtn.disabled = current === 0;
       if (nextBtn) nextBtn.disabled = current >= maxPage;
     }
@@ -446,7 +452,11 @@ function initSliders() {
       var diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) { if (diff > 0 && current < getMaxPage()) current++; else if (diff < 0 && current > 0) current--; update(); }
     }, { passive: true });
-    slides.forEach(function(s, i) { if (i < 3) s.classList.add('--visible'); });
+    slides.forEach(function(s, i) {
+      if (slider.classList.contains('--featured') || slider.classList.contains('--cols-1') || i < 3) {
+        s.classList.add('--visible');
+      }
+    });
     var moreDiv = slider.nextElementSibling;
     if (moreDiv && moreDiv.classList.contains('testimonial-more')) {
       if (slider.querySelectorAll('.testimonial-slider__slide:not(.--visible)').length === 0) {

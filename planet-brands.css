@@ -984,7 +984,7 @@
   }
 
   /* ─── Hamburger ─── */
-  .btn.--icon.nav-search--mobile { display: none; }
+  .nav-search--mobile { display: none; }
   .nav-hamburger {
     display: flex;
     align-items: center;
@@ -1030,7 +1030,7 @@
     .nav-left > a,
     .nav-left .nav-item { display: none; } /* Direkte Links + Dropdowns weg, nur Hamburger */
     .nav-left { gap: 0; }
-    .btn.--icon.nav-search--mobile { display: flex; }
+    .nav-search--mobile { display: flex; }
     .btn.--icon.nav-search--desktop { display: none; }
     /* Glyphen an den Satzspiegel (--margin), trotz 2.25rem-Trefferfeld */
     .site-nav {
@@ -1815,9 +1815,16 @@
     display: grid;
     gap: var(--gutter);
   }
+  .tile-grid[hidden],
+  .tile-grid.--inactive {
+    display: none !important;
+  }
   .tile-grid.--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tile-grid.--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tile-grid.--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .shopify-section--featured-collection .tile-grid {
+    row-gap: calc(var(--gutter) + var(--module));
+  }
 
   /* ─── Tile Base ─── */
   /* Text↔Text in .tile via .flow (A.7). Kein Flex-gap für Headline→Body.
@@ -4132,6 +4139,24 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .testimonial-slider.--cols-4 .testimonial-slider__track {
     grid-auto-columns: calc((100% - var(--gutter) * 3) / 4);
   }
+  /* Ein Zitat groß, durchblätterbar (auch mobil). Zitat visuell H2, kursiv, nicht fett. */
+  .testimonial-slider.--featured .testimonial-slider__track,
+  .testimonial-slider.--cols-1 .testimonial-slider__track {
+    grid-auto-columns: 100%;
+  }
+  .testimonial-slider.--featured .testimonial {
+    border-top: none;
+    padding-top: 0;
+  }
+  .testimonial-slider.--featured .testimonial__text {
+    font-size: var(--text-l);
+    font-weight: 400;
+    font-style: italic;
+    line-height: var(--lh-h2);
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
   
   /* ─── Slider Navigation ─── */
   .slider-nav {
@@ -5130,7 +5155,16 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .filter-group__title { margin-bottom: 0.5rem; }
   .filter-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--half-module); }
   .filter-tag { display: inline-flex; align-items: center; gap: 0.25rem; font-size: var(--text-xs); font-weight: 700; padding: 0.25rem 0.5rem; border: 1px solid var(--border); background: var(--bg); cursor: pointer; transition: background var(--anim-fast); }
+  a.filter-tag { text-decoration: none; color: inherit; }
   .filter-tag:hover { background: var(--accent-bg); }
+  .filter-tag[aria-current="page"],
+  .filter-tag[aria-selected="true"] {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+  .filter-tag[aria-current="page"]:hover,
+  .filter-tag[aria-selected="true"]:hover { background: var(--fg); color: var(--bg); }
   .filter-tag .material-icons { font-size: 0.875rem; }
   .filter-clear { font-family: var(--font); font-size: var(--text-xs); color: var(--fg-muted); background: none; border: none; cursor: pointer; padding: 0.25rem 0; transition: color var(--anim-fast); }
   .filter-clear:hover { color: var(--fg); }
@@ -5257,6 +5291,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     .collection-main .tile-grid {
       row-gap: calc(var(--gutter) + var(--module));
     }
+    .shopify-section--featured-collection .tile-grid {
+      row-gap: calc(var(--gutter) + var(--module));
+    }
     /* Content-Kacheln: Mobil 2-spaltig (auch --cols-3), außer .--mobile-stack */
     .shopify-section--content-tiles .tile-grid.--cols-3,
     .shopify-section--content-tiles .tile-grid.--cols-4 {
@@ -5381,27 +5418,27 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       display: none;
     }
 
-    /* Testimonial Slider */
-    .testimonial-slider__track {
+    /* Testimonial Slider — Raster-Slider stapelt mobil; Featured bleibt 1-Zitat-Slider. */
+    .testimonial-slider:not(.--featured) .testimonial-slider__track {
       display: flex;
       flex-direction: column;
       transform: none !important;
       gap: var(--gutter);
     }
-    .testimonial-slider .testimonial-slider__slide {
+    .testimonial-slider:not(.--featured) .testimonial-slider__slide {
       min-width: 100%;
       display: none;
     }
-    .testimonial-slider .testimonial-slider__slide.--visible {
+    .testimonial-slider:not(.--featured) .testimonial-slider__slide.--visible {
       display: flex;
     }
-    .slider-nav {
+    .testimonial-slider:not(.--featured) .slider-nav {
       display: none;
     }
-    .testimonial-slider + .testimonial-more {
+    .testimonial-slider:not(.--featured) + .testimonial-more {
       display: block;
     }
-    .testimonial-slider + .testimonial-more.--hidden {
+    .testimonial-slider:not(.--featured) + .testimonial-more.--hidden {
       display: none;
     }
 
