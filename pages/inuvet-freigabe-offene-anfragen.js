@@ -154,7 +154,7 @@ function confirmBulkAction() {
   const keys = buildBulkEmails(rows, type, note);
 
   rows.forEach(row => {
-    if (type === 'approve') empfehlungMarkPositionApproved(row.id);
+    if (type === 'approve') empfehlungMarkPositionApproved(row.id, { vetNote: note });
     else empfehlungMarkPositionDeclined(row.id, note);
   });
 
@@ -204,7 +204,7 @@ function renderOpenRequests() {
       <td data-label="Datum">${row.date}</td>
       ${empfehlungProductCellHtml(row.cartName, row.variantLabel, row.qty, false, 'Angefragte Produkte')}
       ${empfehlungCustomerNoteCellHtml(row.customerNote)}
-      <td class="data-table-action" data-label="Freigeben">
+      <td class="data-table-action" data-label="Freigeben?">
         <div class="data-table-actions">
           <button type="button" class="btn --icon --sm --success" aria-label="Freigeben, ${row.qty}×" onclick="quickApprove('${row.id}')">
             <span class="material-icons" aria-hidden="true">check</span>
@@ -463,7 +463,7 @@ function confirmRowAction() {
     ? empfehlungParseApprovalQty(rowActionQtyValue(row), row.qty)
     : null;
 
-  if (type === 'approve') empfehlungMarkPositionApproved(id, parsed);
+  if (type === 'approve') empfehlungMarkPositionApproved(id, { ...parsed, vetNote: note });
   else empfehlungMarkPositionDeclined(id, note);
 
   selectedIds.delete(id);

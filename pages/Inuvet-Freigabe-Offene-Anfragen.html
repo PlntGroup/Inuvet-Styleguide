@@ -6,7 +6,7 @@
   <title>Inuvet – Tierarzt-Empfehlung – Offene Anfragen</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="../planet-brands.css?v=208">
+  <link rel="stylesheet" href="../planet-brands.css?v=211">
   <link rel="stylesheet" href="inuvet-freigabe-portal.css?v=8">
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
@@ -47,8 +47,7 @@
       <div class="nav-item__dropdown">
         <a href="Inuvet-Freigabe-Ausstellen.html">Freigabe ausstellen</a>
         <a href="Inuvet-Freigabe-Offene-Anfragen.html" aria-current="page">Offene Anfragen <span class="circle-badge --num" data-nav-open-count hidden aria-hidden="true">0</span></a>
-        <a href="Inuvet-Freigabe-Freigegeben.html">Freigegeben</a>
-        <a href="Inuvet-Freigabe-Nicht-Freigegeben.html">Nicht freigegeben</a>
+        <a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html">Bearbeitete Anfragen</a>
         <a href="#">Meine Provisionen</a>
         <a href="Inuvet-Freigabe-Programm.html">So funktioniert's</a>
       </div>
@@ -77,8 +76,7 @@
     <a href="Inuvet-Freigabe-Ausstellen.html" onclick="closeMobile(); return false;">Freigabe <span class="circle-badge --num" data-nav-open-count hidden aria-hidden="true">0</span></a>
     <a href="Inuvet-Freigabe-Ausstellen.html" class="--indent" onclick="closeMobile(); return false;">Freigabe ausstellen</a>
     <a href="Inuvet-Freigabe-Offene-Anfragen.html" class="--indent" aria-current="page" onclick="closeMobile(); return false;">Offene Anfragen <span class="circle-badge --num" data-nav-open-count hidden aria-hidden="true">0</span></a>
-    <a href="Inuvet-Freigabe-Freigegeben.html" class="--indent" onclick="closeMobile(); return false;">Freigegeben</a>
-    <a href="Inuvet-Freigabe-Nicht-Freigegeben.html" class="--indent" onclick="closeMobile(); return false;">Nicht freigegeben</a>
+    <a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html" class="--indent" onclick="closeMobile(); return false;">Bearbeitete Anfragen</a>
     <a href="#" class="--indent" onclick="closeMobile(); return false;">Meine Provisionen</a>
     <a href="Inuvet-Freigabe-Programm.html" class="--indent" onclick="closeMobile(); return false;">So funktioniert's</a>
   </div>
@@ -162,7 +160,7 @@
             <button type="button">Angefragte Produkte <span class="material-icons" aria-hidden="true">unfold_more</span></button>
           </th>
           <th scope="col" class="data-table-note">Notiz vom Tierhalter</th>
-          <th scope="col" class="data-table-action">Freigeben</th>
+          <th scope="col" class="data-table-action">Freigeben?</th>
         </tr>
       </thead>
       <tbody id="openRequestsBody"></tbody>
@@ -215,7 +213,7 @@
 </div>
 
 <script src="../planet-brands.js?v=3"></script>
-<script src="inuvet-freigabe-mock.js?v=16"></script>
-<script src="inuvet-freigabe-offene-anfragen.js?v=13"></script>
+<script src="inuvet-freigabe-mock.js?v=17"></script>
+<script src="inuvet-freigabe-offene-anfragen.js?v=14"></script>
 </body>
 </html>

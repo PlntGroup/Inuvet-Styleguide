@@ -124,6 +124,7 @@
 
     /* ─── Fehlerfarben ─── */
     --color-error: #c00;
+    --color-error-hover: #990000;  /* Hover analog --green-hover — deutlich dunkler als --color-error */
     --color-error-bg: #c0392b;
     --color-error-light: #fdecec;  /* Tone-on-Tone-Fläche für Error-Status — analog --green-light */
 
@@ -364,9 +365,9 @@
     color: var(--bg);
   }
   .data-table-bulk__followup.--danger .btn.--primary:hover {
-    background: var(--color-error);
-    border-color: var(--color-error);
-    box-shadow: 0 0 0 2px var(--color-error);
+    background: var(--color-error-hover);
+    border-color: var(--color-error-hover);
+    box-shadow: 0 0 0 2px var(--color-error-hover);
   }
   .rte.--data-table td .form-field.--sm {
     min-width: 9.5rem;
@@ -868,6 +869,12 @@
   .badge.--honey { background: var(--color-honey); color: var(--fg); }
   .badge.--muted { color: var(--fg-muted); }
   .badge.--error { background: var(--color-error-light); color: var(--color-error); }
+  /* Pill behält den Radius; Status danach setzt die Fläche.
+     --muted setzt nur die Schrift — die grüne Pill-Fläche muss zurück. */
+  .badge.--pill.--muted {
+    background: var(--accent-bg);
+    color: var(--fg-muted);
+  }
   /* Counter-Badge — Positionierung via .icon-badged .badge.--count */
   .badge.--count {
     text-transform: none;
@@ -4976,7 +4983,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     height: var(--icon-box-sm);
     box-sizing: border-box;
     flex-shrink: 0;
-    transition: background var(--anim-fast), color var(--anim-fast), border-color var(--anim-fast), box-shadow var(--anim-fast);
+    transition: background var(--anim-fast), color var(--anim-fast), border-color var(--anim-fast), box-shadow var(--anim-fast), transform var(--anim-fast);
   }
   .btn.--icon.--primary {
     background: var(--fg);
@@ -5011,7 +5018,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     border: none;
   }
   .btn.--icon.--danger:not(:disabled):not(.--disabled):hover {
-    background: var(--color-error-bg);
+    background: var(--color-error-hover);
+    transform: scale(1.15);
   }
   /* Fläche ändert Farbe — kein Icon-Zoom wie bei schlichtem .btn.--icon */
   .btn.--icon.--primary:not(:disabled):not(.--disabled):hover .material-icons,
@@ -5578,9 +5586,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     color: var(--bg);
   }
   .modal.--danger .btn.--primary:hover {
-    background: var(--color-error);
-    border-color: var(--color-error);
-    box-shadow: 0 0 0 2px var(--color-error);
+    background: var(--color-error-hover);
+    border-color: var(--color-error-hover);
+    box-shadow: 0 0 0 2px var(--color-error-hover);
   }
   .modal.--danger .btn.--secondary {
     border-color: var(--color-error);

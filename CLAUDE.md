@@ -185,8 +185,7 @@ Globale Funktionen → `planet-brands.js` · Seitenspezifische Logik → `pages/
 | `pages/inuvet-freigabe-ausstellen.js` | Vet-Portal (inuvet.com), Freigabe ausstellen |
 | `pages/inuvet-freigabe-mock.js` | Gemeinsame Demo-Daten des Vet-Portals |
 | `pages/inuvet-freigabe-offene-anfragen.js` | Vet-Portal, Posteingang offener Produktanfragen |
-| `pages/inuvet-freigabe-freigegeben.js` | Vet-Portal, Historie Freigegeben |
-| `pages/inuvet-freigabe-nicht-freigegeben.js` | Vet-Portal, Historie Nicht freigegeben |
+| `pages/inuvet-freigabe-bearbeitete-anfragen.js` | Vet-Portal, Historie Bearbeitete Anfragen |
 | `pages/provision-portal.js` | Provision-Portal |
 | `pages/provision-portal-start.js` | Provision-Portal Startseite |
 | `pages/provision-portal-vetalita.js` | Provision-Portal Vetalita |
@@ -391,7 +390,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | Sek. | Komponente | Klasse(n) | Modifier |
 |---|---|---|---|
 | B.1 | Button | `.btn` | `--primary --secondary --ghost --back --sm --full --with-icon --icon --success --danger --honey --loading` · Icon-only: `--icon` schlicht · Fläche: `--icon.--success/--danger/--primary/--secondary` (Touch `--icon-box-sm`) · klein: `--icon.--sm` (Quadrat `calc(--base * 2)`) · Kombi `--full.--with-icon` zentriert Icon+Text via `justify-content` |
-| B.2 | Badge / Label | `.badge` | `--dark --sale --pill --free --info --honey --muted --error --count`; `[data-cat]` · Status-Pills: `.--pill` („freigegeben", mit `check`-Icon) / `.--pill.--honey` („Freigabe benötigt") · Icon im Badge global (Größe + Gap eingebaut) |
+| B.2 | Badge / Label | `.badge` | `--dark --sale --pill --free --info --honey --muted --error --count`; `[data-cat]` · Status-Pills: `.--pill` („freigegeben", „Ja") / `.--pill.--honey` („Freigabe benötigt") / `.--pill.--muted` („Nein") / `.--pill.--error` („nicht freigegeben") · Icon im Badge global (Größe + Gap eingebaut) |
 | B.3 | Icon-Box | `.icon-box` | — |
 | B.4 | Formularfeld | `.form-field` | `--sm --full`; `.form-grid`, `.form-check`, `.actionable-input` |
 | B.4 | Auswahlbox (Demo in B.4) | `.choice-box` | `--sm --block --detail` · `[disabled]`/`--disabled` = ausverkauft (durchgestrichen, muted) · Auswahl: `--border-active` + `--green-light` (kein grüner Border)
@@ -464,8 +463,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | `pages/Tierarzt-Empfehlung-Info.html` | — | — | Technische Doku (beide Sichten) |
 | `pages/Inuvet-Freigabe-Ausstellen.html` | `inuvet-freigabe-ausstellen.css` | `inuvet-freigabe-mock.js`, `inuvet-freigabe-ausstellen.js` | Vet-Portal (inuvet.com), Direkt-Freigabe |
 | `pages/Inuvet-Freigabe-Offene-Anfragen.html` | — | `inuvet-freigabe-mock.js`, `inuvet-freigabe-offene-anfragen.js` | Vet-Portal (inuvet.com), Posteingang offener Produktanfragen |
-| `pages/Inuvet-Freigabe-Freigegeben.html` | — | `inuvet-freigabe-mock.js`, `inuvet-freigabe-freigegeben.js` | Vet-Portal (inuvet.com), Historie erteilter Freigaben |
-| `pages/Inuvet-Freigabe-Nicht-Freigegeben.html` | — | `inuvet-freigabe-mock.js`, `inuvet-freigabe-nicht-freigegeben.js` | Vet-Portal (inuvet.com), Historie abgelehnter Freigaben |
+| `pages/Inuvet-Freigabe-Bearbeitete-Anfragen.html` | — | `inuvet-freigabe-mock.js`, `inuvet-freigabe-bearbeitete-anfragen.js` | Vet-Portal (inuvet.com), Historie freigegebener und abgelehnter Anfragen (Filter + Eingelöst?) |
 | `pages/Inuvet-Freigabe-Programm.html` | — | `inuvet-freigabe-mock.js` | Vet-Portal (inuvet.com), Artikel „So funktioniert's" |
 | `pages/Bundle.html` | `bundle.css` | `bundle.js` | Bundle-Builder mit Naturalrabatt |
 | `pages/Bundle-Info.html` | — | — | Konzept-Artikel Bundle |

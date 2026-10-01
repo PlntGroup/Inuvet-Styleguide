@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link id="font-planimol" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" disabled>
-  <link rel="stylesheet" href="planet-brands.css?v=209">
+  <link rel="stylesheet" href="planet-brands.css?v=212">
   <link rel="stylesheet" href="brand-planimol.css?v=2">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=1" disabled>
   <link rel="stylesheet" href="sg.css?v=51">
@@ -362,7 +362,7 @@
       <h3 class="sg-h3 --top" id="A4-data-table"><code>.rte.--data-table</code> — Daten-Listen</h3>
       <div class="col-grid" data-cols="2">
         <p>Erweiterung für Portal- und Übersichtstabellen (nicht CMS-Fließtext). Wrapper <code>.rte.--data-table</code> + native <code>&lt;table&gt;</code>. Jede <code>&lt;td&gt;</code> trägt <code>data-label</code> (= Spaltenname) für die Mobile-Ausgabe. Styles in <code>planet-brands.css</code> (A.4, direkt nach <code>.rte table</code>).</p>
-        <p>Referenz: <a href="pages/Inuvet-Freigabe-Offene-Anfragen.html">Offene Anfragen</a> · <a href="pages/Inuvet-Freigabe-Freigegeben.html">Freigegeben</a> · <a href="pages/Inuvet-Freigabe-Nicht-Freigegeben.html">Nicht freigegeben</a> · Zeilen-Aktionen: Icon-Buttons <code>.btn.--icon.--sm.--success/--danger</code> oder Links <code>.order-item__link</code> in <code>.data-table-actions</code> · Bulk: <code>.data-table-bulk</code> mit <code>.form-field.--sm</code>-Select · Follow-up (<code>.data-table-bulk__followup</code>) mit Notiz + Bestätigen erst nach Aktionswahl.</p>
+        <p>Referenz: <a href="pages/Inuvet-Freigabe-Offene-Anfragen.html">Offene Anfragen</a> · <a href="pages/Inuvet-Freigabe-Bearbeitete-Anfragen.html">Bearbeitete Anfragen</a> · Zeilen-Aktionen: Icon-Buttons <code>.btn.--icon.--sm.--success/--danger</code> oder Links <code>.order-item__link</code> in <code>.data-table-actions</code> · Bulk: <code>.data-table-bulk</code> mit <code>.form-field.--sm</code>-Select · Follow-up (<code>.data-table-bulk__followup</code>) mit Notiz + Bestätigen erst nach Aktionswahl.</p>
       </div>
 
       <table class="spec-table">
@@ -393,7 +393,7 @@
         &lt;th scope="col" data-sort="date"&gt;…&lt;/th&gt;
         &lt;th scope="col" data-sort="productLabel"&gt;…&lt;/th&gt;
         &lt;th scope="col" class="data-table-note"&gt;Notiz vom Tierhalter&lt;/th&gt;
-        &lt;th scope="col" class="data-table-action"&gt;Freigeben&lt;/th&gt;
+        &lt;th scope="col" class="data-table-action"&gt;Freigeben?&lt;/th&gt;
       &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;…&lt;/tbody&gt;
@@ -409,7 +409,7 @@
                 <th scope="col">Datum</th>
                 <th scope="col">Produkt</th>
                 <th scope="col" class="data-table-note">Notiz vom Tierhalter</th>
-                <th scope="col" class="data-table-action">Freigeben</th>
+                <th scope="col" class="data-table-action">Freigeben?</th>
               </tr>
             </thead>
             <tbody>
@@ -423,7 +423,7 @@
                   </div>
                 </td>
                 <td class="data-table-note" data-label="Notiz vom Tierhalter"><span class="data-table-stack__meta">Bitte möglichst schnell freigeben.</span></td>
-                <td class="data-table-action" data-label="Freigeben">
+                <td class="data-table-action" data-label="Freigeben?">
                   <div class="data-table-actions">
                     <button type="button" class="btn --icon --sm --success" aria-label="Freigeben"><span class="material-icons" aria-hidden="true">check</span></button>
                     <button type="button" class="btn --icon --sm --danger" aria-label="Ablehnen"><span class="material-icons" aria-hidden="true">close</span></button>
@@ -440,7 +440,7 @@
                   </div>
                 </td>
                 <td class="data-table-note --empty" data-label="Notiz vom Tierhalter"><span class="data-table-stack__meta">Keine Notiz</span></td>
-                <td class="data-table-action" data-label="Freigeben">
+                <td class="data-table-action" data-label="Freigeben?">
                   <div class="data-table-actions">
                     <button type="button" class="btn --icon --sm --success" aria-label="Freigeben"><span class="material-icons" aria-hidden="true">check</span></button>
                     <button type="button" class="btn --icon --sm --danger" aria-label="Ablehnen"><span class="material-icons" aria-hidden="true">close</span></button>
@@ -564,6 +564,14 @@
             <span class="color-card__token">--color-error</span>
             <span class="color-card__hex">#c00</span>
             <span class="color-card__role">Fehler, Validierung</span>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-card__swatch" style="background:#990000"></div>
+          <div class="color-card__info">
+            <span class="color-card__token">--color-error-hover</span>
+            <span class="color-card__hex">#990000</span>
+            <span class="color-card__role">Hover für rote Flächen (analog --green-hover)</span>
           </div>
         </div>
         <div class="color-card">
@@ -1270,7 +1278,7 @@
         <tr><th><code>.btn.--icon.--primary</code></th><td>Icon-Fläche schwarz · Touch <code>--icon-box-sm</code> · BG <code>--fg</code> · Icon <code>--bg</code> · Hover: Box-Shadow wie Primary</td></tr>
         <tr><th><code>.btn.--icon.--secondary</code></th><td>Icon-Fläche hellgrau · Touch <code>--icon-box-sm</code> · BG <code>--accent-bg</code> · Hover <code>--border-light</code> · z.&nbsp;B. Bundle qty-Zeile</td></tr>
         <tr><th><code>.btn.--icon.--success</code></th><td>Icon-Fläche grün · Touch <code>--icon-box-sm</code> · BG <code>--green</code> · Hover <code>--green-hover</code> · z.&nbsp;B. Freigeben</td></tr>
-        <tr><th><code>.btn.--icon.--danger</code></th><td>Icon-Fläche rot · Touch <code>--icon-box-sm</code> · BG <code>--color-error</code> · Hover <code>--color-error-bg</code> · z.&nbsp;B. Ablehnen</td></tr>
+        <tr><th><code>.btn.--icon.--danger</code></th><td>Icon-Fläche rot · Touch <code>--icon-box-sm</code> · BG <code>--color-error</code> · Hover <code>--color-error-hover</code> und <code>scale(1.15)</code> · z.&nbsp;B. Nicht freigeben</td></tr>
         <tr><th><code>.btn.--icon.--sm</code></th><td>Icon-only klein · Quadrat <code>calc(var(--base) * 2)</code> (wie <code>.btn.--sm</code>-Höhe) · Glyph <code>var(--base)</code> · kombinierbar mit Flächen-Modifiern</td></tr>
         <tr><th><code>.btn.--danger</code></th><td>Text-Button destruktiv · Schrift <code>--color-error</code> (ohne Fläche) · mit <code>.--icon</code>: siehe Icon-Fläche oben</td></tr>
         <tr><th><code>.btn.--honey</code></th><td>Freigabe-/Anfrage-Kontext · BG + Rand <code>--color-honey</code> · Schrift <code>--fg</code> · Hover: Box-Shadow <code>0 0 0 2px --color-honey</code></td></tr>
@@ -1456,8 +1464,8 @@
         <tr><th><code>.badge.--free</code></th><td>Tone-on-Tone Grün — Gratis-Hinweis (<code>--green-light</code> / <code>--green</code>)</td></tr>
         <tr><th><code>.badge.--info</code></th><td>Tone-on-Tone Info — Hinweis/Status (<code>--color-notice-bg</code> / <code>--color-amber</code>) · Palette wie <a href="#C7">C.7 Notice</a></td></tr>
         <tr><th><code>.badge.--honey</code></th><td>Freigabe-/Anfrage-Status (<code>--color-honey</code> / <code>--fg</code>, analog <code>.btn.--honey</code>) — „Angefragt", „Freigabe benötigt"</td></tr>
-        <tr><th><code>.badge.--muted</code></th><td>Inaktiv/abgelehnt — Schrift <code>--fg-muted</code> auf Standard-Grau</td></tr>
-        <tr><th><code>.badge.--error</code></th><td>Tone-on-Tone Rot — abgelehnter Status (<code>--color-error-light</code> / <code>--color-error</code>) — „nicht frei"</td></tr>
+        <tr><th><code>.badge.--muted</code></th><td>Inaktiv — Schrift <code>--fg-muted</code> auf Standard-Grau · mit <code>.--pill</code>: graue Pill („Nein“)</td></tr>
+        <tr><th><code>.badge.--error</code></th><td>Tone-on-Tone Rot — abgelehnter Status (<code>--color-error-light</code> / <code>--color-error</code>) — „nicht frei" · mit <code>.--pill</code>: rote Pill („nicht freigegeben“)</td></tr>
         <tr><th><code>.badge.--count</code></th><td>Runder Zähler · in <code>.icon-badged</code> absolut oben rechts</td></tr>
         <tr><th>Icon im Badge</th><td><code>.material-icons</code> als Kind · <code>calc(var(--base) * 0.8125)</code>, Gap eingebaut — z.&nbsp;B. <code>check</code> in „freigegeben"</td></tr>
       </table>
@@ -1483,6 +1491,9 @@
         <div class="sg-btn-row --sm" style="margin-top: var(--half-module);">
           <div class="badge --pill"><span class="material-icons" aria-hidden="true">check</span>freigegeben</div>
           <div class="badge --pill --honey">Freigabe benötigt</div>
+          <div class="badge --pill">Ja</div>
+          <div class="badge --pill --muted">Nein</div>
+          <div class="badge --pill --error">nicht freigegeben</div>
         </div>
         <div class="sg-btn-row" style="margin-top: var(--module);">
           <button class="btn --icon icon-badged" aria-label="Warenkorb 3 Artikel"><span class="material-icons">shopping_cart</span><span class="badge --count">3</span></button>
@@ -1490,7 +1501,7 @@
           <button class="btn --icon icon-badged" aria-label="Warenkorb 99 Artikel"><span class="material-icons">shopping_cart</span><span class="badge --count">99</span></button>
         </div>
       </div>
-      <p class="sg-caption">Kategorie · Status (<code>--dark</code>, <code>--sale</code>, <code>--free</code>, <code>--info</code>, <code>--honey</code>, <code>--muted</code>, <code>--error</code>) · Pill-Kombis <code>.--pill</code> / <code>.--pill.--honey</code> (Freigabe auf Produktbild) · Count in <code>.icon-badged</code> (Hover: Badge-Zoom).</p>
+      <p class="sg-caption">Kategorie · Status (<code>--dark</code>, <code>--sale</code>, <code>--free</code>, <code>--info</code>, <code>--honey</code>, <code>--muted</code>, <code>--error</code>) · Pill-Kombis: <code>.--pill</code> grün („freigegeben“, „Ja“) · <code>.--pill.--honey</code> („Freigabe benötigt“) · <code>.--pill.--muted</code> grau („Nein“) · <code>.--pill.--error</code> rot („nicht freigegeben“) · Count in <code>.icon-badged</code> (Hover: Badge-Zoom).</p>
 
       <h3 class="sg-h3 --top"><code>.circle-badge</code></h3>
       <table class="spec-table">
@@ -3166,7 +3177,7 @@
         <tr><th><code>--header-height</code></th><td><code>calc(var(--announcement-height) + var(--nav-height))</code> · nur bei Sticky-Bar (<code>body.--ann-sticky</code>) für <code>scroll-padding-top</code></td></tr>
         <tr><th><code>body.--ann-sticky</code></th><td>Opt-in: Bar + Nav sticky · <code>scroll-padding-top: var(--header-height)</code> · Shopify: <code>.announcement-bar.--scroll-away</code> am Section-Wrapper</td></tr>
         <tr><th><code>aria-current="page"</code></th><td>Aktiver Bereich: direkter Link, Trigger oder Dropdown-Link · <code>--fg</code>, bold · Dropdown-Treffer heben den Eltern-Trigger via <code>:has()</code> hervor</td></tr>
-        <tr><th><code>[data-nav-open-count]</code></th><td>Zähler-Badge in Trigger, Dropdown-Link, Subnav und Mobile-Menu (<code>.circle-badge.--num</code>) · <code>hidden</code> bei 0 · Sync per Page-JS (z.&nbsp;B. <code>empfehlungSyncOpenRequestNavBadges</code>) · nur Offene Anfragen, nicht „Nicht freigegeben“</td></tr>
+        <tr><th><code>[data-nav-open-count]</code></th><td>Zähler-Badge in Trigger, Dropdown-Link, Subnav und Mobile-Menu (<code>.circle-badge.--num</code>) · <code>hidden</code> bei 0 · Sync per Page-JS (z.&nbsp;B. <code>empfehlungSyncOpenRequestNavBadges</code>) · nur Offene Anfragen, nicht „Bearbeitete Anfragen“</td></tr>
         <tr><th><code>.nav-hamburger.icon-badged</code></th><td>Hamburger mit <code>.badge.--count</code> oben rechts — Mobile-Ersatz für den Zähler in der Desktop-Nav</td></tr>
         <tr><th><code>.nav-item.--end</code> (Land)</th><td>Länder-/Locale-Umschalter in <code>.nav-right</code> · Trigger zeigt ISO-Code (<code>DE</code>) · Dropdown mit Markt-Namen · Mockup: DACH (<code>de</code> · <code>at</code> · <code>ch</code>) · JS: <code>initNavCountry()</code> in <code>planet-brands.js</code></td></tr>
         <tr><th>Account</th><td><code>&lt;shopify-account class="nav-account"&gt;</code> · signed-out: Icon <code>person</code> · New Customer Accounts Sheet · Spec → <a href="#E6">E.6</a></td></tr>
@@ -3351,8 +3362,7 @@
     &lt;a href="#" onclick="closeMobile(); return false;"&gt;Empfehlung&lt;/a&gt;
     &lt;a href="Inuvet-Freigabe-Ausstellen.html" class="--indent" aria-current="page" onclick="closeMobile(); return false;"&gt;Empfehlung ausstellen&lt;/a&gt;
     &lt;a href="Inuvet-Freigabe-Offene-Anfragen.html" class="--indent" onclick="closeMobile(); return false;"&gt;Offene Anfragen&lt;/a&gt;
-    &lt;a href="Inuvet-Freigabe-Freigegeben.html" class="--indent" onclick="closeMobile(); return false;"&gt;Freigegeben&lt;/a&gt;
-    &lt;a href="Inuvet-Freigabe-Nicht-Freigegeben.html" class="--indent" onclick="closeMobile(); return false;"&gt;Nicht freigegeben&lt;/a&gt;
+    &lt;a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html" class="--indent" onclick="closeMobile(); return false;"&gt;Bearbeitete Anfragen&lt;/a&gt;
     &lt;a href="#" class="--indent" onclick="closeMobile(); return false;"&gt;Meine Provisionen&lt;/a&gt;
     &lt;a href="Inuvet-Freigabe-Programm.html" class="--indent" onclick="closeMobile(); return false;"&gt;So funktioniert's&lt;/a&gt;
     &lt;a href="#" onclick="closeMobile(); return false;"&gt;Über uns&lt;/a&gt;
@@ -3372,8 +3382,7 @@
   &lt;div class="nav-item__dropdown"&gt;
     &lt;a href="Inuvet-Freigabe-Ausstellen.html" aria-current="page"&gt;Empfehlung ausstellen&lt;/a&gt;
     &lt;a href="Inuvet-Freigabe-Offene-Anfragen.html"&gt;Offene Anfragen&lt;/a&gt;
-    &lt;a href="Inuvet-Freigabe-Freigegeben.html"&gt;Freigegeben&lt;/a&gt;
-    &lt;a href="Inuvet-Freigabe-Nicht-Freigegeben.html"&gt;Nicht freigegeben&lt;/a&gt;
+    &lt;a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html"&gt;Bearbeitete Anfragen&lt;/a&gt;
     &lt;a href="#"&gt;Meine Provisionen&lt;/a&gt;
     &lt;a href="Inuvet-Freigabe-Programm.html"&gt;So funktioniert's&lt;/a&gt;
   &lt;/div&gt;
@@ -5216,7 +5225,7 @@
       <h3 class="sg-h3 --top"><code>.page-header</code> — Seitenkopf</h3>
       <div class="col-grid" data-cols="2">
         <p>Seitenkopf für Portal- und Listen-Seiten: <code>&lt;header class="page-header"&gt;</code> mit H1, optional ein Zähler als <code>.circle-badge.--num</code> inline daneben. Abstand zum Seiteninhalt: <code>--module</code>.</p>
-        <p>Referenz: <a href="pages/Inuvet-Freigabe-Offene-Anfragen.html">Offene Anfragen</a> · <a href="pages/Inuvet-Freigabe-Freigegeben.html">Freigegeben</a> · <a href="pages/Inuvet-Freigabe-Nicht-Freigegeben.html">Nicht freigegeben</a>. Im Shopify-Theme für Account-, Bestell- und Portal-Übersichten.</p>
+        <p>Referenz: <a href="pages/Inuvet-Freigabe-Offene-Anfragen.html">Offene Anfragen</a> · <a href="pages/Inuvet-Freigabe-Bearbeitete-Anfragen.html">Bearbeitete Anfragen</a>. Im Shopify-Theme für Account-, Bestell- und Portal-Übersichten.</p>
       </div>
       <div class="sg-demo --white">
         <header class="page-header" style="margin-bottom: 0;">

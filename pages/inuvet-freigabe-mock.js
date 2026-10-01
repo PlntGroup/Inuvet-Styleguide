@@ -207,11 +207,13 @@ function empfehlungMarkPositionApproved(positionId, approval) {
     customerName: request.customerName,
     customerEmail: request.customerEmail,
     customerNote: request.customerNote || '',
+    vetNote: approval?.vetNote || '',
     cartName: position.cartName,
     variantLabel: position.variantLabel,
     qty,
     unlimited,
     sourceId: positionId,
+    purchased: false,
   });
 }
 
@@ -474,8 +476,7 @@ function empfehlungEnsurePortalSubnav() {
   const items = [
     { href: 'Inuvet-Freigabe-Ausstellen.html', label: 'Freigabe ausstellen' },
     { href: 'Inuvet-Freigabe-Offene-Anfragen.html', label: 'Offene Anfragen', badge: true },
-    { href: 'Inuvet-Freigabe-Freigegeben.html', label: 'Freigegeben' },
-    { href: 'Inuvet-Freigabe-Nicht-Freigegeben.html', label: 'Nicht freigegeben' },
+    { href: 'Inuvet-Freigabe-Bearbeitete-Anfragen.html', label: 'Bearbeitete Anfragen' },
     { href: '#', label: 'Meine Provisionen' },
     { href: 'Inuvet-Freigabe-Programm.html', label: 'So funktioniert\'s' },
   ];
@@ -506,8 +507,7 @@ function empfehlungEnsurePortalFooter() {
           <li><span>Produkte</span></li>
           <li><a href="Inuvet-Freigabe-Ausstellen.html">Freigabe ausstellen</a></li>
           <li><a href="Inuvet-Freigabe-Offene-Anfragen.html">Offene Anfragen</a></li>
-          <li><a href="Inuvet-Freigabe-Freigegeben.html">Freigegeben</a></li>
-          <li><a href="Inuvet-Freigabe-Nicht-Freigegeben.html">Nicht freigegeben</a></li>
+          <li><a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html">Bearbeitete Anfragen</a></li>
           <li><a href="#">Meine Provisionen</a></li>
           <li><a href="Inuvet-Freigabe-Programm.html">So funktioniert's</a></li>
         </ul>
@@ -592,7 +592,7 @@ function empfehlungParseApprovalQty(value, fallbackQty) {
   return { qty: fallbackQty ?? 1, unlimited: false };
 }
 
-function empfehlungAddRedeemedEntry({ customerName, customerEmail, cartName, variantLabel, qty, unlimited, sourceId, customerNote }) {
+function empfehlungAddRedeemedEntry({ customerName, customerEmail, cartName, variantLabel, qty, unlimited, sourceId, customerNote, vetNote, purchased }) {
   const entries = empfehlungGetRedeemedEntries();
   if (sourceId && entries.some(entry => entry.sourceId === sourceId)) return;
   entries.push({
@@ -601,11 +601,13 @@ function empfehlungAddRedeemedEntry({ customerName, customerEmail, cartName, var
     customerName,
     customerEmail: customerEmail || '',
     customerNote: customerNote || '',
+    vetNote: vetNote || '',
     orderDate: empfehlungTodayISO(),
     cartName,
     variantLabel,
     qty,
     unlimited: !!unlimited,
+    purchased: !!purchased,
   });
   empfehlungPersistRedeemedEntries(entries);
 }
@@ -711,4 +713,154 @@ function empfehlungFlattenDeclinedRows() {
       const byDate = b.date.localeCompare(a.date);
       return byDate !== 0 ? byDate : a.productLabel.localeCompare(b.productLabel, 'de');
     });
+}
+
+/* Bearbeitete Anfragen — Beispielzeilen (bleiben nach Reload).
+   Session-Freigaben und -Ablehnungen kommen zusätzlich dazu.
+   purchased = Tierhalter hat die Freigabe schon eingelöst. */
+const EMPFEHLUNG_PROCESSED_SEED = [
+  {
+    id: 'seed-keller-calmin',
+    status: 'approved',
+    purchased: true,
+    customerName: 'Maria Keller',
+    customerEmail: 'maria.keller@beispiel.de',
+    customerNote: 'Luna verträgt die Tabletten gut — bitte wieder freigeben.',
+    vetNote: '',
+    date: '2026-05-14',
+    cartName: 'Calmin balance Tabletten',
+    variantLabel: '60 Stück',
+    qty: 2,
+    unlimited: false,
+  },
+  {
+    id: 'seed-keller-hepax',
+    status: 'approved',
+    purchased: false,
+    customerName: 'Maria Keller',
+    customerEmail: 'maria.keller@beispiel.de',
+    customerNote: 'Zusätzlich zur Beruhigung, Leberwerte waren erhöht.',
+    vetNote: 'Erst die kleine Packung, Verlauf in vier Wochen.',
+    date: '2026-06-02',
+    cartName: 'Hepax forte Pulver',
+    variantLabel: '75 g',
+    qty: 1,
+    unlimited: false,
+  },
+  {
+    id: 'seed-richter-diabex',
+    status: 'declined',
+    purchased: false,
+    customerName: 'Jonas Richter',
+    customerEmail: 'jonas.richter@beispiel.de',
+    customerNote: 'Kater Milo, Diabetes frisch diagnostiziert.',
+    vetNote: 'Bitte erst das Blutbild abwarten, dann erneut anfragen.',
+    date: '2026-05-28',
+    cartName: 'Diabex Tabletten',
+    variantLabel: '60 Stück',
+    qty: 1,
+    unlimited: false,
+  },
+  {
+    id: 'seed-lang-cortisan',
+    status: 'approved',
+    purchased: true,
+    customerName: 'Petra Lang',
+    customerEmail: 'petra.lang@beispiel.de',
+    customerNote: '',
+    vetNote: '',
+    date: '2026-06-04',
+    cartName: 'Cortisan Öl-Komplex',
+    variantLabel: '100 ml Öl-Komplex',
+    qty: 1,
+    unlimited: false,
+  },
+  {
+    id: 'seed-lang-dermin',
+    status: 'declined',
+    purchased: false,
+    customerName: 'Petra Lang',
+    customerEmail: 'petra.lang@beispiel.de',
+    customerNote: 'Hautstellen am Ohr, zusätzlich zur Pflege.',
+    vetNote: 'Dermin passt hier nicht — wir bleiben bei Cortisan.',
+    date: '2026-06-04',
+    cartName: 'Dermin Pflege-Emulsion',
+    variantLabel: '10 ml',
+    qty: 1,
+    unlimited: false,
+  },
+  {
+    id: 'seed-vogel-entero',
+    status: 'approved',
+    purchased: false,
+    customerName: 'Henrik Vogel',
+    customerEmail: 'henrik.vogel@beispiel.de',
+    customerNote: 'Nach dem Futterwechsel immer wieder Durchfall.',
+    vetNote: '',
+    date: '2026-06-18',
+    cartName: 'EnteroGast akut Pulver',
+    variantLabel: '60 g',
+    qty: 1,
+    unlimited: false,
+  },
+];
+
+function empfehlungNormalizeProcessedRow(row) {
+  const approved = row.status === 'approved';
+  const qty = row.qty;
+  const unlimited = !!row.unlimited;
+  return {
+    id: row.id,
+    status: approved ? 'approved' : 'declined',
+    purchased: approved && !!row.purchased,
+    customerName: row.customerName,
+    customerEmail: row.customerEmail || '',
+    customerNote: row.customerNote || '',
+    vetNote: row.vetNote || '',
+    date: row.date,
+    cartName: row.cartName,
+    variantLabel: row.variantLabel,
+    qty,
+    unlimited,
+    productLabel: empfehlungProductLabel(row.cartName, row.variantLabel),
+    commission: approved
+      ? empfehlungRedeemedCommission(row.cartName, row.variantLabel, qty, unlimited)
+      : 0,
+  };
+}
+
+function empfehlungFlattenProcessedRows() {
+  const fromSeed = EMPFEHLUNG_PROCESSED_SEED.map(empfehlungNormalizeProcessedRow);
+  const fromApproved = empfehlungGetRedeemedEntries().map(row => empfehlungNormalizeProcessedRow({
+    id: row.id,
+    status: 'approved',
+    purchased: !!row.purchased,
+    customerName: row.customerName,
+    customerEmail: row.customerEmail || '',
+    customerNote: row.customerNote || '',
+    vetNote: row.vetNote || '',
+    date: row.orderDate,
+    cartName: row.cartName,
+    variantLabel: row.variantLabel,
+    qty: row.qty,
+    unlimited: !!row.unlimited,
+  }));
+  const fromDeclined = empfehlungFlattenDeclinedRows().map(row => empfehlungNormalizeProcessedRow({
+    id: row.id,
+    status: 'declined',
+    purchased: false,
+    customerName: row.customerName,
+    customerEmail: row.customerEmail || '',
+    customerNote: row.customerNote || '',
+    vetNote: row.vetNote || '',
+    date: row.date,
+    cartName: row.cartName,
+    variantLabel: row.variantLabel,
+    qty: row.qty,
+    unlimited: false,
+  }));
+  return [...fromSeed, ...fromApproved, ...fromDeclined].sort((a, b) => {
+    const byDate = b.date.localeCompare(a.date);
+    return byDate !== 0 ? byDate : a.productLabel.localeCompare(b.productLabel, 'de');
+  });
 }

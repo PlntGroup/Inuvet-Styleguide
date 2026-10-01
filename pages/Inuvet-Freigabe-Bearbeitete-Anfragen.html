@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inuvet – Tierarzt-Empfehlung – So funktioniert's</title>
+  <title>Inuvet – Tierarzt-Empfehlung – Bearbeitete Anfragen</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="../planet-brands.css?v=207">
+  <link rel="stylesheet" href="../planet-brands.css?v=212">
   <link rel="stylesheet" href="inuvet-freigabe-portal.css?v=8">
 </head>
-<body id="top">
+<body>
 
 <div class="announcement-bar --marquee" id="announcementBar">
   <div class="announcement-bar__track">
@@ -44,9 +44,9 @@
       <div class="nav-item__dropdown">
         <a href="Inuvet-Freigabe-Ausstellen.html">Freigabe ausstellen</a>
         <a href="Inuvet-Freigabe-Offene-Anfragen.html">Offene Anfragen <span class="circle-badge --num" data-nav-open-count hidden aria-hidden="true">0</span></a>
-        <a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html">Bearbeitete Anfragen</a>
+        <a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html" aria-current="page">Bearbeitete Anfragen</a>
         <a href="#">Meine Provisionen</a>
-        <a href="Inuvet-Freigabe-Programm.html" aria-current="page">So funktioniert's</a>
+        <a href="Inuvet-Freigabe-Programm.html">So funktioniert's</a>
       </div>
     </div>
   </div>
@@ -73,46 +73,89 @@
     <a href="Inuvet-Freigabe-Ausstellen.html" onclick="closeMobile(); return false;">Freigabe <span class="circle-badge --num" data-nav-open-count hidden aria-hidden="true">0</span></a>
     <a href="Inuvet-Freigabe-Ausstellen.html" class="--indent" onclick="closeMobile(); return false;">Freigabe ausstellen</a>
     <a href="Inuvet-Freigabe-Offene-Anfragen.html" class="--indent" onclick="closeMobile(); return false;">Offene Anfragen <span class="circle-badge --num" data-nav-open-count hidden aria-hidden="true">0</span></a>
-    <a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html" class="--indent" onclick="closeMobile(); return false;">Bearbeitete Anfragen</a>
+    <a href="Inuvet-Freigabe-Bearbeitete-Anfragen.html" class="--indent" aria-current="page" onclick="closeMobile(); return false;">Bearbeitete Anfragen</a>
     <a href="#" class="--indent" onclick="closeMobile(); return false;">Meine Provisionen</a>
-    <a href="Inuvet-Freigabe-Programm.html" class="--indent" aria-current="page" onclick="closeMobile(); return false;">So funktioniert's</a>
+    <a href="Inuvet-Freigabe-Programm.html" class="--indent" onclick="closeMobile(); return false;">So funktioniert's</a>
   </div>
 </div>
 
-<main>
-  <div class="container">
-    <div class="article-layout">
-      <aside class="article-sidebar">
-        <nav class="article-toc" aria-label="Inhalt">
-          <a href="#rolle">Deine Rolle als Tierärzt*in</a>
-          <a href="#inuvet">Das machen wir</a>
-        </nav>
-      </aside>
+<main class="container">
+  <header class="page-header">
+    <h1>
+      Bearbeitete Anfragen
+      <span class="circle-badge --num" id="processedCount" aria-label="Anzahl bearbeiteter Anfragen">0</span>
+    </h1>
+  </header>
 
-      <article class="article">
-        <header class="article__header">
-          <h1>So funktioniert's</h1>
-        </header>
+  <div class="notice --compact freigabe-price-hint" role="note">
+    <span class="material-icons notice__icon" aria-hidden="true">info</span>
+    <p>* Preise = Verkaufspreis; zahlt der Tierbesitzer beim Einlösen.</p>
+  </div>
 
-        <div class="article__body rte">
-          <p>Wenn eure Praxis am Empfehlungsprogramm teilnimmt, könnt ihr Empfehlungen ausstellen und somit Produkte für Tierbesitzer*innen freigeben. Entweder ihr gebt sie direkt aus der Praxis frei, oder die Besitzer*innen fragen eine Empfehlung an. Ihr prüft die Eignung und könnt dann die passende Packungsgröße auswählen. Außerdem könnt ihr sagen, wie häufig das Produkt bestellt werden darf.</p>
-
-          <h2 id="rolle">Deine Rolle als Tierärzt*in</h2>
-          <p>inuvet-Produkte sind tierarztexklusiv — und das aus gutem Grund: du kennst dich mit Tiergesundheit einfach aus. Deswegen braucht es auch deine Zustimmung, damit ein inuvet-Produkt bestellt werden darf. Du entscheidest, welches Produkt, welche Darreichungsform und welche Packungsgröße bestellt werden darf.</p>
-
-          <h2 id="inuvet">Das machen wir</h2>
-          <p>Bei der Tierarzt-Empfehlung kümmern wir uns um Beratung (bei technischen Fragen), Bezahlung und Versand. Für dich entsteht kein Aufwand — eine Provision bekommst du aber trotzdem pro Produkt.</p>
-        </div>
-      </article>
+  <div class="data-table-bulk" id="processedFilters">
+    <div class="form-radio-row" role="group" aria-label="Anfragen filtern">
+      <label class="form-check">
+        <input type="checkbox" id="filterApproved" checked onchange="setProcessedFilter('approved', this.checked)">
+        Freigegeben
+      </label>
+      <label class="form-check">
+        <input type="checkbox" id="filterDeclined" checked onchange="setProcessedFilter('declined', this.checked)">
+        Nicht freigegeben
+      </label>
     </div>
+  </div>
+
+  <div class="rte --data-table --sortable" id="processedTableWrap">
+    <div class="data-table-sort">
+      <label class="visually-hidden" for="processedSort">Tabelle sortieren</label>
+      <select id="processedSort" class="data-table-sort__select">
+        <option value="customerName:asc">Name A–Z</option>
+        <option value="customerName:desc">Name Z–A</option>
+        <option value="date:asc">Datum aufsteigend</option>
+        <option value="date:desc" selected>Datum absteigend</option>
+        <option value="status:asc">Status A–Z</option>
+        <option value="status:desc">Status Z–A</option>
+        <option value="productLabel:asc">Produkt A–Z</option>
+        <option value="productLabel:desc">Produkt Z–A</option>
+        <option value="commission:asc">Provision aufsteigend</option>
+        <option value="commission:desc">Provision absteigend</option>
+      </select>
+    </div>
+    <table class="--spacious">
+      <thead>
+        <tr>
+          <th scope="col" data-sort="customerName" aria-sort="none">
+            <button type="button">Name <span class="material-icons" aria-hidden="true">unfold_more</span></button>
+          </th>
+          <th scope="col" class="data-table-date" data-sort="date" aria-sort="descending">
+            <button type="button">Datum <span class="material-icons" aria-hidden="true">arrow_downward</span></button>
+          </th>
+          <th scope="col" data-sort="status" aria-sort="none">
+            <button type="button">Status <span class="material-icons" aria-hidden="true">unfold_more</span></button>
+          </th>
+          <th scope="col" data-sort="productLabel" aria-sort="none">
+            <button type="button">Produkt <span class="material-icons" aria-hidden="true">unfold_more</span></button>
+          </th>
+          <th scope="col" class="data-table-note">Notiz vom Tierhalter</th>
+          <th scope="col" class="data-table-note">Notiz an Tierbesitzer</th>
+          <th scope="col">Eingelöst?</th>
+          <th scope="col" class="data-table-commission" data-sort="commission" aria-sort="none">
+            <button type="button">Provision <span class="material-icons" aria-hidden="true">unfold_more</span></button>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="processedBody"></tbody>
+    </table>
+  </div>
+
+  <div class="empty-state" id="processedEmpty" hidden>
+    <span class="material-icons">history</span>
+    <p class="empty-state__title" id="processedEmptyTitle">Noch keine bearbeiteten Anfragen</p>
   </div>
 </main>
 
 <script src="../planet-brands.js"></script>
 <script src="inuvet-freigabe-mock.js?v=17"></script>
-<script>
-document.addEventListener('DOMContentLoaded', empfehlungSyncOpenRequestNavBadges);
-window.addEventListener('pageshow', empfehlungSyncOpenRequestNavBadges);
-</script>
+<script src="inuvet-freigabe-bearbeitete-anfragen.js?v=3"></script>
 </body>
 </html>
