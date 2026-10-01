@@ -4141,7 +4141,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     grid-auto-columns: calc((100% - var(--gutter) * 3) / 4);
   }
   /* Ein Zitat groß, durchblätterbar (auch mobil). Zitat visuell H2, kursiv, nicht fett.
-     Große Screens: 4-Spalter, erste Spalte Format-Quote, Rest Überschrift + Zitat. */
+     Große Screens: 4-Spalter, erste Spalte Format-Quote (spaltenfüllend, leicht transparent). */
   .testimonial-featured > .testimonial__quote-mark {
     display: none;
   }
@@ -4151,14 +4151,21 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       grid-template-columns: repeat(4, minmax(0, 1fr));
       column-gap: var(--gutter);
       align-items: start;
+      position: relative;
     }
     .testimonial-featured > .testimonial__quote-mark {
       display: block;
-      grid-column: 1;
-      margin-bottom: 0;
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      width: calc((100% - var(--gutter) * 3) / 4);
+      margin: 0;
+      container-type: inline-size;
+      pointer-events: none;
     }
     .testimonial-featured > .testimonial__quote-mark .material-icons {
-      font-size: var(--module-2xl);
+      font-size: 100cqw;
+      color: color-mix(in srgb, var(--green) 55%, transparent);
     }
     .testimonial-featured > .testimonial__quote-mark + :is(.section-header, .section-label) {
       margin-top: 0;
