@@ -3591,6 +3591,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   :is(.flow, .rte) > * + blockquote,
   :is(.flow, .rte) > * + figure { --flow-space: var(--module); }
+  :is(.flow, .rte) > blockquote + * { --flow-space: var(--module); }
 
   /* Nach .section-label / .section-label-row: deutlicher Abstand zum ersten Content-Element */
   .flow > .section-label + * { --flow-space: var(--module); }
@@ -4156,7 +4157,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     padding-top: 0;
   }
   .testimonial-slider.--featured .testimonial__author {
-    margin-top: 0;
     padding-top: 0;
   }
   .testimonial-slider.--featured .testimonial__text {
