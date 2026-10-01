@@ -4141,8 +4141,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     grid-auto-columns: calc((100% - var(--gutter) * 3) / 4);
   }
   /* Ein Zitat groß, durchblätterbar (auch mobil). Zitat visuell H2, kursiv, nicht fett.
-     Große Screens: 3 von 4 Spalten, erste Spalte leer (rechtsbündig im Raster). */
-  .testimonial-slider.--featured {
+     Große Screens: Überschrift + Zitat 3 von 4 Spalten, erste Spalte leer. */
+  .testimonial-featured {
     max-width: calc((100% - var(--gutter) * 3) / 4 * 3 + var(--gutter) * 2);
     margin-inline-start: auto;
   }
@@ -4170,7 +4170,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     border: none;
   }
   @media (min-width: 768px) {
-    .container:has(> .testimonial-slider.--featured):not(.--pt-0) {
+    .container:has(> .testimonial-featured):not(.--pt-0) {
       padding-top: var(--module-2xl);
     }
   }
@@ -5282,7 +5282,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     .testimonial-slider.--cols-4 .testimonial-slider__track {
       grid-auto-columns: calc((100% - var(--gutter) * 2) / 3);
     }
-    .testimonial-slider.--featured {
+    .testimonial-featured {
       max-width: none;
       margin-inline-start: 0;
     }
