@@ -1,0 +1,14 @@
+---
+description: Tile-Auflistungen mit extra Zeilenabstand (gutter + module)
+globs: "**/*.{css,html,js}"
+alwaysApply: false
+---
+
+# Tile-Auflistungen: extra row-gap
+
+Für mehrzeilige Kachel-Listen (Produkte, Content-Kacheln, Collection-Grids):
+
+- Spalten: `gap: var(--gutter)` (Default `.tile-grid`)
+- Zeilen: `row-gap: calc(var(--gutter) + var(--module))` via **`.tile-grid.--list`**
+
+Nicht bei kompakten USP-/Benefit-/Praxis-Reihen. Neue Auflistung: `--list` an `.tile-grid`.
