@@ -4139,7 +4139,16 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .testimonial-slider.--cols-4 .testimonial-slider__track {
     grid-auto-columns: calc((100% - var(--gutter) * 3) / 4);
   }
-  /* Ein Zitat groß, durchblätterbar (auch mobil). Zitat visuell H2, kursiv, nicht fett. */
+  /* Ein Zitat groß, durchblätterbar (auch mobil). Zitat visuell H2, kursiv, nicht fett.
+     Max. Lese-Breite wie .container.--narrow, auf der Seite zentriert. */
+  .testimonial-slider.--featured {
+    max-width: calc(var(--module) * 15);
+    margin-inline: auto;
+    text-align: center;
+  }
+  .testimonial-slider.--featured .slider-nav {
+    justify-content: center;
+  }
   .testimonial-slider.--featured .testimonial-slider__track,
   .testimonial-slider.--cols-1 .testimonial-slider__track {
     grid-auto-columns: 100%;
