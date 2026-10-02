@@ -1890,6 +1890,13 @@
     height: calc(var(--base) * 4);
     display: block;
   }
+  /* Med: doppelt so groß wie klein */
+  .tile__icon.--med lottie-player,
+  .tile__icon.--med svg,
+  .tile__icon.--med img {
+    width: calc(var(--base) * 8);
+    height: calc(var(--base) * 8);
+  }
   /* Große Lottie-Kacheln (Shop / PDP „Praxis-Vorteile“) — width:100% braucht aspect-ratio */
   .tile__animation { width: 100%; }
   .tile__animation lottie-player {
