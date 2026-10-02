@@ -1,0 +1,642 @@
+/* ═══════════════════════════════════════════════════════════
+   inuvet — print.css
+   ───────────────────────────────────────────────────────────
+   Print-Dialekt des Design Systems. Grundlage für druckfähige
+   PDF-Dokumente (Reports, Preislisten, Kataloge, Datenblätter).
+
+   Verhältnis zu planet-brands.css:
+   Gleiche Token-NAMEN, gleiche Farben, gleiche Spacing-Logik,
+   gleiches Linien-System, border-radius 0. Eine dokumentierte
+   Transformation: fluid → fix. A4 hat keinen Viewport, also
+   sind alle clamp()-Werte auf feste Print-Werte eingefroren.
+
+   Doku + Visualisierung: print-styleguide.html
+   Produktion:            tools/print/  (Playwright → CMYK → Messung)
+
+   WICHTIG — Farbe: In diesem Stylesheet steht Farbe AUSSCHLIESSLICH
+   in RGB. CMYK wird nie im CSS definiert, sondern erst im PDF durch
+   die Zuordnungstabelle tools/print/inks.py ersetzt. Grund: eine
+   CMYK-Vorgabe nach RGB zurückzurechnen verfälscht die Bildschirm-
+   darstellung (C60/M0/Y100/K0 → grelles #66FF00). Bildschirm bleibt
+   RGB, Druck wird CMYK — jeweils richtig, keines verfälscht das andere.
+   ═══════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════
+   1 — TOKENS
+   ═══════════════════════════════════════════ */
+
+:root {
+
+  /* ─── Format-Geometrie (pro Format überschrieben, siehe §2) ─── */
+  --page-w: 210mm;
+  --page-h: 297mm;
+
+  /* Ränder. Symmetrische Randecke: oben = seitlich. */
+  --margin-x: 18mm;
+  --margin-top: 18mm;
+  --margin-bottom: 18mm;
+
+  /* Modularer Grid. --modules = Anzahl gleich breiter Module im
+     Satzspiegel. Regel: modules = round(Satzspiegelbreite / 60mm),
+     Zielbreite eines Moduls 50–60 mm. Siehe print-styleguide.html §P.3. */
+  --modules: 3;
+  --col-gap: 8mm;
+
+  /* Logo — identisch auf jeder Seite, oben links. Kein laufender Header. */
+  --logo-size: 20mm;
+  --logo-y: 18mm;
+
+  /* Fußzeile — Grundlinie über der Blattunterkante. */
+  --footer-y: 10mm;
+  /* Reserve, die der Content unten freihält, damit nie etwas
+     in die Fußzeile läuft. */
+  --footer-reserve: 24mm;
+
+  /* Anschnitt. 0 = ohne. Druckerei-Abgabe braucht in der Regel 3mm;
+     der Wert muss von der Druckerei kommen, nicht geraten werden. */
+  --bleed: 0mm;
+
+  /* ─── Typografie ─── */
+  --font: "schnebel-sans-me", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Editorial-Skala (Default) — 1,5-Ratio, aus planet-brands.css eingefroren
+     auf das Desktop-Maximum. Für Reports, Whitepaper, Handouts. */
+  --text-xl: 40.5pt;   /* H1, Cover-Titel, Rail-Nummer */
+  --text-l: 27pt;      /* H2 / Section-Head */
+  --text-m: 18pt;      /* H3 + Lead + Zitat */
+  --text-base: 12pt;   /* Body + H4 (H4 = 700) */
+  --text-sm: 9.6pt;    /* Feld-Labels / Hilfstext */
+  --text-xs: 9pt;      /* Meta / Kicker / Footer / Section-Label */
+
+  --lh-base: 1.5;
+  --lh-h3: 1.2;
+  --lh-h2: 1.17;
+  --lh-h1: 1.11;
+
+  /* Metrik-Korrektur der Zeilenhöhe — PRO SCHRIFT ZU MESSEN.
+     line-height: 1 setzt die Glyphe nicht an die CSS-Oberkante;
+     Chromium zentriert den Textkörper in der Zeilenbox. Ist der
+     Textkörper höher als 1em, wandert der Text nach oben.
+     Messwert eines Vergleichsprojekts: 1,15 mm bei 10 pt.
+     → tools/print/measure.py ermittelt den Wert, sobald die
+       Schriftdateien vorliegen. NICHT von anderen Schriften übernehmen
+       und NICHT auf Elemente mit anderer Schrift vererben. */
+  --lh-metric-fix: 1;  /* PLATZHALTER — nach Messung ersetzen */
+
+  /* ─── Spacing ─── */
+  /* In pt, damit der Textrhythmus an der Typo hängt (wie planet-brands.css),
+     während die Seitengeometrie in mm läuft. */
+  --base: 12pt;
+  --half-module: 18pt;
+  --module: 36pt;
+  --module-2xl: 72pt;
+
+  /* ─── Farben (RGB — Bildschirmwahrheit, identisch zu planet-brands.css) ─── */
+  /* Jede Farbe, die im Druck erscheinen soll, braucht eine Zeile in
+     tools/print/inks.py. Farben ohne Eintrag meldet die Pipeline
+     namentlich als Fehler — sie werden nicht stillschweigend gewandelt. */
+  --fg: #2E2E2E;
+  --fg-muted: #666666;
+  --bg: #ffffff;
+  --green: #78b41b;
+  --green-hover: #58990F;
+  --green-light: #f0fae6;
+  --border: #adadad;
+  --border-light: #e0e0e0;
+  --accent-bg: #f2f2f2;
+
+  /* ─── Linien ─── */
+  /* Alle Linienstärken in mm, weil sie im SVG-Overlay in
+     mm-Koordinaten gezeichnet werden (siehe §9).
+     0,5pt = 0,176mm · 0,75pt = 0,265mm · 1pt = 0,353mm */
+  --rule-hair: 0.176mm;   /* Haarlinie — Tabellen-Rows, feine Trenner */
+  --rule-thin: 0.265mm;   /* Standard-Struktur */
+  --rule-bold: 0.353mm;   /* Betonte Trenner, Schreiblinien */
+  --rule-dash: 0.706mm;   /* Strichlänge/-lücke bei gepunkteten Linien */
+}
+
+
+/* ─── Dichte Skala — für tabellarische Dokumente ─── */
+/* Preislisten, Kataloge, Datenblätter. Die Editorial-Skala hat 12pt
+   Body; das ist für dichte Tabellen zu groß (eine Preisliste mit
+   12pt-Zeilen passt nicht auf ein Blatt). Ratio ~1,25 statt 1,5,
+   weil dichte Dokumente feinere Abstufung brauchen.
+   Auf <body class="scale--dense"> oder pro .page setzen. */
+.scale--dense {
+  --text-xl: 19pt;
+  --text-l: 15pt;
+  --text-m: 12pt;
+  --text-base: 9.5pt;
+  --text-sm: 8pt;
+  --text-xs: 7pt;
+
+  --base: 9.5pt;
+  --half-module: 14pt;
+  --module: 19pt;
+  --module-2xl: 38pt;
+}
+
+
+/* ═══════════════════════════════════════════
+   2 — FORMATE
+   ═══════════════════════════════════════════
+   Ein Format = ein Block Variablen-Overrides. Nichts weiter.
+   Neues Format hinzufügen: Blatt-Maße + Ränder setzen, --modules
+   nach der Regel round(SP/60) bestimmen, Logo/Fußzeile prüfen.
+   Kein Layoutcode anfassen.
+
+   PFLICHT im Dokument: @page muss die Maße LITERAL tragen —
+   @page akzeptiert kein var(). Ohne prefer_css_page_size beim
+   Export skaliert Chromium auf ein Standardformat (messbar als
+   297,3 mm statt 297,0).
+
+     A4 hoch:  <style>@page { size: 210mm 297mm; margin: 0 }</style>
+     A4 quer:  <style>@page { size: 297mm 210mm; margin: 0 }</style>
+   ═══════════════════════════════════════════ */
+
+/* ─── Abgeleitete Geometrie ─── */
+/* MUSS auf derselben Ebene stehen wie die Format-Variablen, nicht auf
+   :root. Eine benutzerdefinierte Eigenschaft löst ihre var()-Referenzen
+   an dem Element auf, an dem sie DEKLARIERT ist — läge --sp-w auf :root,
+   würde es dort gegen die :root-Werte (210mm) berechnet und der
+   Format-Override auf <body> käme nie an. Der Attribut-Selektor greift
+   jedes Element mit einer .fmt-*-Klasse, damit neue Formate den Block
+   automatisch mitbekommen. Nie direkt setzen. */
+[class*="fmt-"] {
+  --sp-w: calc(var(--page-w) - 2 * var(--margin-x));
+  --sp-h: calc(var(--page-h) - var(--margin-top) - var(--margin-bottom));
+  --module-w: calc((var(--sp-w) - (var(--modules) - 1) * var(--col-gap)) / var(--modules));
+  /* Rail = 1 Modul · Main = restliche Module inkl. ihrer Gutter */
+  --rail-w: var(--module-w);
+  --main-w: calc(var(--sp-w) - var(--rail-w) - var(--col-gap));
+}
+
+/* A4 hoch — Basisformat. Satzspiegel 174mm, 3 Module à 52,67mm.
+   An einer InDesign-Referenz abgeglichen (Ränder 18, Logo 20, Footer-y 10). */
+.fmt-a4 {
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --margin-x: 18mm;
+  --margin-top: 18mm;
+  --margin-bottom: 18mm;
+  --modules: 3;
+  --col-gap: 8mm;
+  --logo-size: 20mm;
+}
+
+/* A4 quer — Satzspiegel 261mm. 4 Module à 59,25mm (round(261/60) = 4).
+   Bei 3 Modulen wären die Spalten 81,67mm breit — zu breit zum Lesen. */
+.fmt-a4-land {
+  --page-w: 297mm;
+  --page-h: 210mm;
+  --margin-x: 18mm;
+  --margin-top: 18mm;
+  --margin-bottom: 18mm;
+  --modules: 4;
+  --col-gap: 8mm;
+  --logo-size: 20mm;
+}
+
+
+/* ═══════════════════════════════════════════
+   3 — SEITENMODELL
+   ═══════════════════════════════════════════ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  color: var(--fg);
+  background: var(--bg);
+  /* Sonst verschwinden Flächen im Ausdruck — betrifft jede
+     Rasterfläche und jeden farbigen Balken. */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  /* Seitenzahl aus CSS-Counter: immer sichtbar, auch ohne JS. */
+  counter-reset: page-num;
+}
+
+.page {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--page-w);
+  height: var(--page-h);
+  /* Eigene Schriftgröße pro Seite, damit .scale--dense auch auf einer
+     einzelnen .page wirkt. Ohne diese Zeile erben Absätze die an <body>
+     berechneten 12pt, und ein --text-base-Override auf der Seite bliebe
+     wirkungslos. */
+  font-size: var(--text-base);
+  /* Notbremse: läuft ein Element über, wird es abgeschnitten statt
+     das Seitenraster zu sprengen. Sichtbarer Fehler statt stiller
+     Verschiebung. Der Überlauf-Wächter (§11) macht ihn zusätzlich
+     am Bildschirm sichtbar — overflow allein kaschiert lautlos. */
+  overflow: hidden;
+  background: var(--bg);
+  break-after: page;
+  counter-increment: page-num;
+}
+
+.page:last-child {
+  break-after: auto;
+}
+
+/* Anschnitt — nur setzen, wenn die Druckerei ihn verlangt.
+   Das Blatt wird größer, der Satzspiegel bleibt, wo er ist. */
+.page.--bleed {
+  width: calc(var(--page-w) + 2 * var(--bleed));
+  height: calc(var(--page-h) + 2 * var(--bleed));
+  padding: var(--bleed);
+}
+
+/* Satzspiegel-Fläche */
+.page-body {
+  position: absolute;
+  top: var(--margin-top);
+  left: var(--margin-x);
+  width: var(--sp-w);
+  height: var(--sp-h);
+  overflow: hidden;
+}
+
+/* Seiten mit Fußzeile halten unten Platz frei — Content endet
+   ~10mm oberhalb der Fußzeile, egal wie lang der Text ist. */
+.page.--has-footer .page-body {
+  height: calc(var(--sp-h) - var(--footer-reserve));
+}
+
+
+/* ═══════════════════════════════════════════
+   4 — DOKUMENTMODI
+   ═══════════════════════════════════════════
+   Zwei Modi, weil zwei Dokumentarten. Der Modus gehört auf <body>.
+
+   .doc--flow   Editorial. Text fließt in einem Grid, der Überlauf-
+                Wächter meldet zu volle Seiten. Für Prosa: Reports,
+                Whitepaper, Handouts, Dossiers. Praktikabel, weil
+                Fließtext sonst manuell umbrochen werden müsste.
+
+   .doc--fixed  Tabellarisch. Jedes Element absolut in mm, kein
+                Textfluss, kein automatischer Umbruch, keine
+                Tabellen-Layouts. Zeilen pro Seite aus der Resthöhe
+                berechnet. Für Preislisten, Kataloge, Datenblätter —
+                überall, wo Millimeter-Genauigkeit zählt.
+                Was fließen kann, bricht irgendwann an einer Stelle,
+                die niemand getestet hat.
+   ═══════════════════════════════════════════ */
+
+/* ─── Editorial-Modus ─── */
+.doc--flow .page-body {
+  display: grid;
+  grid-template-columns: var(--rail-w) var(--main-w);
+  column-gap: var(--col-gap);
+  align-content: start;
+}
+
+/* ─── Fixed-Modus ─── */
+/* Positionierung passiert vollständig über Inline-mm-Werte, die der
+   Generator berechnet. Hier nur die Basis-Regeln. */
+.doc--fixed .page-body {
+  display: block;
+}
+
+.doc--fixed .abs {
+  position: absolute;
+  margin: 0;
+  /* Kein Umbruch — eine zu lange Zelle soll sichtbar anstoßen,
+     nicht die Zeilenhöhe verändern. */
+  white-space: nowrap;
+}
+
+
+/* ═══════════════════════════════════════════
+   5 — RASTER
+   ═══════════════════════════════════════════ */
+
+.rail {
+  grid-column: 1;
+}
+
+.main {
+  grid-column: 2;
+  min-width: 0;
+}
+
+/* Breite Blöcke über den ganzen Satzspiegel. */
+.span-all {
+  grid-column: 1 / -1;
+}
+
+/* Zweispaltiger Content. Jede Spalte = Rail-Breite.
+   Maximal zwei Spalten — dreispaltig ist im 174mm-Satz zu eng.
+   Drei Elemente in zwei Spalten → 2 + 1, der Weißraum ist gewollt. */
+.cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--col-gap);
+}
+
+/* Rail-Möbel — kuratierte Slots, keine Grabbelkiste.
+   Leere Rail = bewusster Weißraum. */
+.rail-num {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: var(--lh-h1);
+  color: var(--green);
+  margin: 0;
+}
+
+.rail-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.rail-note {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+
+/* ═══════════════════════════════════════════
+   6 — TYPOGRAFIE
+   ═══════════════════════════════════════════ */
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 700;
+}
+
+h1 { font-size: var(--text-xl); line-height: var(--lh-h1); }
+h2 { font-size: var(--text-l);  line-height: var(--lh-h2); }
+h3 { font-size: var(--text-m);  line-height: var(--lh-h3); }
+h4 { font-size: var(--text-base); line-height: var(--lh-base); }
+
+p, ul, ol {
+  margin: 0;
+}
+
+.lead {
+  font-size: var(--text-m);
+  line-height: var(--lh-h3);
+}
+
+/* Kursiv nur für Zitate und wörtliche Rede. Sonst kein Kursiv. */
+.quote {
+  font-style: italic;
+}
+
+/* ─── .flow — Textrhythmus (identische Logik zu planet-brands.css A.7) ─── */
+/* Abstände zwischen Überschriften und Absätzen kommen ausschließlich
+   hier her, nie aus Ad-hoc-Margins und nie aus Flex-/Grid-gap.
+   gap trennt nur strukturelle Blöcke (Medien / Text / Actions). */
+.flow > * + * {
+  margin-top: var(--flow-space, var(--base));
+}
+
+.flow > :is(h1, h2) + * { --flow-space: var(--half-module); }
+.flow > h3 + *          { --flow-space: calc(var(--base) * 0.75); }
+.flow > h4 + *          { --flow-space: calc(var(--base) * 0.5); }
+.flow > * + h2          { --flow-space: var(--module); }
+.flow > * + h3          { --flow-space: var(--half-module); }
+
+
+/* ═══════════════════════════════════════════
+   7 — LOGO
+   ═══════════════════════════════════════════
+   Identisch auf jeder Seite, absolut oben links. Kein laufender
+   Header, keine Header-Linie. Auf grünen Vollflächen weiß.
+   ═══════════════════════════════════════════ */
+
+.brandmark {
+  position: absolute;
+  top: var(--logo-y);
+  left: var(--margin-x);
+  width: var(--logo-size);
+  height: var(--logo-size);
+  fill: var(--green);
+}
+
+.page.--on-green .brandmark,
+.brandmark.--on-green {
+  fill: var(--bg);
+}
+
+
+/* ═══════════════════════════════════════════
+   8 — FUSSZEILE
+   ═══════════════════════════════════════════
+   Keine Linie. Seitenzahl links in der Rail-Spalte, Domain an
+   Spalte 2 (bündig mit der Lesespalte), Adresse rechtsbündig.
+   Die Zahl kommt aus dem CSS-Counter, damit sie auch ohne JS steht.
+   ═══════════════════════════════════════════ */
+
+.page-footer {
+  position: absolute;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  bottom: var(--footer-y);
+  display: grid;
+  grid-template-columns: var(--rail-w) var(--main-w);
+  column-gap: var(--col-gap);
+  font-size: var(--text-xs);
+  line-height: var(--lh-base);
+  color: var(--fg);
+}
+
+.page-num::before {
+  content: counter(page-num);
+}
+
+.page-footer--full .foot-main {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--half-module);
+}
+
+.foot-domain {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.foot-addr {
+  text-align: right;
+}
+
+
+/* ═══════════════════════════════════════════
+   9 — LINIEN
+   ═══════════════════════════════════════════
+   Regel ohne Ausnahme: Haarlinien als SVG-Vektor, NIE als
+   CSS-Rahmen. CSS-Rahmen unter ~0,25mm werden beim PDF-Export von
+   Chromium teilweise verworfen — bei 37 Tabellen-Trennlinien fehlte
+   jede zweite, ohne Fehler und ohne Warnung.
+
+   Alle Linien einer Seite kommen als EIN SVG-Overlay in
+   mm-Koordinaten. Der Generator schreibt die <line>-Elemente.
+
+     <svg class="page-rules" viewBox="0 0 210 297"
+          width="210mm" height="297mm">
+       <g stroke="#2E2E2E" stroke-width="0.176">
+         <line x1="18" y1="54.92" x2="192" y2="54.92"/>
+       </g>
+     </svg>
+
+   Gepunktet über stroke-dasharray="0.706 0.706" — exakt steuerbar,
+   was CSS dashed nicht ist.
+   ═══════════════════════════════════════════ */
+
+.page-rules {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* CSS-Rahmen bleiben erlaubt für FLÄCHEN-Kanten (Boxen, Kästen) —
+   dort ist die Linie kräftig genug und ein Ausfall wäre sichtbar. */
+.box {
+  border: var(--rule-thin) solid var(--border);
+  padding: var(--half-module);
+}
+
+.box.--soft {
+  border: none;
+  background: var(--accent-bg);
+}
+
+.box.--primary {
+  border: none;
+  background: var(--green-light);
+}
+
+
+/* ═══════════════════════════════════════════
+   10 — BAUSTEINE
+   ═══════════════════════════════════════════ */
+
+/* ─── Tabellen (Editorial-Modus) ─── */
+/* Für dichte Preislisten .doc--fixed verwenden — dort zeichnet das
+   SVG-Overlay die Linien und die Zellen sind absolut positioniert. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+
+.table th {
+  text-align: left;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 0 calc(var(--base) * 0.4);
+}
+
+.table td {
+  padding: calc(var(--base) * 0.4) 0;
+  vertical-align: baseline;
+}
+
+.table .num {
+  text-align: right;
+  /* Tabellenziffern — sonst tanzen die Preisspalten. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Bild ─── */
+.figure {
+  margin: 0;
+  overflow: hidden;
+  background: var(--accent-bg);
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Ganzseiten ─── */
+.page--cover .cover-title {
+  position: absolute;
+  left: var(--margin-x);
+  bottom: var(--margin-bottom);
+  width: var(--sp-w);
+  font-size: var(--text-xl);
+  line-height: var(--lh-h1);
+}
+
+.page.--on-green {
+  background: var(--green);
+  color: var(--bg);
+}
+
+
+/* ═══════════════════════════════════════════
+   11 — BILDSCHIRM-VORSCHAU
+   ═══════════════════════════════════════════
+   Nur für die Ansicht im Browser. Druckt nicht mit und beeinflusst
+   die Geometrie nicht.
+   ═══════════════════════════════════════════ */
+
+@media screen {
+  body {
+    background: var(--accent-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8mm;
+    padding: 8mm 0;
+  }
+
+  .page {
+    box-shadow: 0 0 0 var(--rule-hair) var(--border-light);
+    flex-shrink: 0;
+  }
+
+  /* Überlauf-Wächter — markiert überlaufende Seiten. overflow: hidden
+     kaschiert Überlauf sonst lautlos; die Markierung ist maßgeblich,
+     nicht der Augenschein. Setzt tools/print/build.py per JS. */
+  .page.--overflow {
+    box-shadow: 0 0 0 1mm #c0392b;
+  }
+
+  .page.--overflow::after {
+    content: "Überlauf — Inhalt kürzen oder auf eine zweite Seite aufteilen";
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #c0392b;
+    color: #fff;
+    font-size: 8pt;
+    padding: 1mm 2mm;
+  }
+}
+
+@media print {
+  body {
+    background: none;
+    display: block;
+    gap: 0;
+    padding: 0;
+  }
+
+  .page {
+    box-shadow: none;
+  }
+
+  .page.--overflow,
+  .page.--overflow::after {
+    box-shadow: none;
+    content: none;
+  }
+}

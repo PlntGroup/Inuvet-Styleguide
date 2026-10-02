@@ -1,0 +1,18 @@
+# inuvet Print — PDF-Pipeline
+#
+# Einrichten:
+#   pip3 install -r tools/print/requirements.txt
+#   python3 -m playwright install chromium
+#
+# Reihenfolge der Schritte:
+#   fonts.py    Schrift subsetten + einbetten + Zeilenhöhe messen
+#   build.py    HTML → PDF (Playwright)
+#   cmyk.py     RGB → CMYK (pikepdf)
+#   measure.py  PDF nachmessen (pdfplumber)
+
+playwright>=1.44        # HTML → PDF, exakte Blattgeometrie
+pikepdf>=8.0            # Farboperatoren im PDF umschreiben
+pdfplumber>=0.11        # PDF nachmessen
+fonttools>=4.53         # Schrift subsetten
+brotli>=1.1             # WOFF2-Kompression (fontTools-Abhängigkeit)
+pypdfium2>=4.0          # PNG-Vorschau in measure.py --png

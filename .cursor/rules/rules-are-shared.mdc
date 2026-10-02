@@ -1,0 +1,14 @@
+---
+description: Regeln und Doku leben im Repo und werden laufend ergänzt
+alwaysApply: true
+---
+
+# Regeln sind lebendig — und immer im Repo
+
+Styleguide und Cursor-Regeln sind **kein einmaliges Setup**. Neue Konvention sofort ins Git, nicht nach `~/.cursor/rules/` oder nur in den Chat.
+
+- Cursor: `.cursor/rules/*.mdc`
+- Spec/Doku: `styleguide.html` bzw. die passende Seite
+- Themes spiegeln die Regel, sobald sie Theme-Arbeit steuert
+
+Push auf **`main`** (dieses Repo ist Live). Themes: **`staging`**. Jede:r holt den Stand mit `git pull`.

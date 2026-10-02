@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════════════════════════
+   print-sg.css — Doku-Chrome für print-styleguide.html
+   ───────────────────────────────────────────────────────────
+   Nur Guide-UI, kein Produktionscode. Präfix .pg-* (print guide).
+
+   Bewusst getrennt von sg.css: der Web-Guide bleibt unangetastet.
+   Bewusst getrennt von print.css: print.css restyled <body> für die
+   Seitenvorschau und kann in einer normalen Web-Seite nicht mitlaufen.
+   Deshalb zeigt dieser Guide die Print-Geometrie als maßstäbliche
+   SVG-Diagramme in mm-Koordinaten — dieselbe Technik, die print.css
+   für Haarlinien vorschreibt.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Diagramm-Rahmen ─── */
+.pg-diagram {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  padding: var(--module);
+  overflow-x: auto;
+}
+
+.pg-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 22rem;
+}
+
+/* ─── SVG-Bausteine ─── */
+/* Blattkante */
+.pg-sheet {
+  fill: var(--bg);
+  stroke: var(--fg);
+  stroke-width: 0.4;
+}
+
+/* Satzspiegel */
+.pg-sp {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 0.3;
+  stroke-dasharray: 2 1.5;
+}
+
+/* Modulfläche */
+.pg-mod {
+  fill: var(--green-light);
+  stroke: none;
+}
+
+/* Rail-Modul hervorgehoben */
+.pg-mod.--rail {
+  fill: var(--green);
+  fill-opacity: 0.28;
+}
+
+/* Maßlinie + Bemaßungstext */
+.pg-dim {
+  stroke: var(--fg-muted);
+  stroke-width: 0.2;
+}
+
+.pg-lbl {
+  font-family: var(--font);
+  font-size: 5px;
+  fill: var(--fg);
+}
+
+.pg-lbl.--sm {
+  font-size: 4px;
+  fill: var(--fg-muted);
+}
+
+.pg-lbl.--mid {
+  text-anchor: middle;
+}
+
+.pg-lbl.--end {
+  text-anchor: end;
+}
+
+/* Logo-Platzhalter im Diagramm */
+.pg-logo {
+  fill: var(--green);
+}
+
+/* Textzeilen-Attrappe */
+.pg-textline {
+  fill: var(--border-light);
+}
+
+/* ─── Typo-Skala ─── */
+.pg-scale {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--half-module) var(--module);
+  align-items: baseline;
+}
+
+.pg-scale__meta {
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  font-family: monospace;
+}
+
+/* Die Muster stehen in echten pt — auf dem Bildschirm entspricht
+   1pt = 1,333px, die Vorschau ist also maßstabsgetreu zum Druck. */
+.pg-scale__sample {
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Farbfelder ─── */
+.pg-inks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: var(--half-module);
+}
+
+.pg-ink {
+  border: 1px solid var(--border-light);
+}
+
+.pg-ink__chip {
+  height: calc(var(--base) * 3.5);
+}
+
+.pg-ink__meta {
+  padding: calc(var(--base) * 0.6);
+  font-size: var(--text-xs);
+  line-height: var(--lh-base);
+}
+
+.pg-ink__token {
+  font-family: monospace;
+  font-weight: 700;
+  display: block;
+}
+
+.pg-ink__hex {
+  color: var(--fg-muted);
+  font-family: monospace;
+}
+
+.pg-ink__cmyk {
+  display: block;
+  margin-top: calc(var(--base) * 0.3);
+  font-family: monospace;
+}
+
+.pg-ink__cmyk.--pending {
+  color: var(--color-error, #c0392b);
+  font-weight: 700;
+}
+
+/* ─── Pipeline-Schritte ─── */
+.pg-steps {
+  display: grid;
+  gap: var(--half-module);
+  counter-reset: pg-step;
+}
+
+.pg-step {
+  display: grid;
+  grid-template-columns: calc(var(--base) * 2.5) 1fr;
+  gap: var(--half-module);
+  padding-bottom: var(--half-module);
+  border-bottom: 1px solid var(--border-light);
+  counter-increment: pg-step;
+}
+
+.pg-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pg-step::before {
+  content: counter(pg-step, decimal-leading-zero);
+  font-size: var(--text-m);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+}
+
+.pg-step__body > code {
+  display: inline-block;
+  margin-top: calc(var(--base) * 0.4);
+}
+
+/* ─── Offene Punkte ─── */
+.pg-open {
+  border-left: calc(var(--base) * 0.25) solid var(--color-amber, #E8A020);
+  padding-left: var(--half-module);
+}
+
+@media (max-width: 767px) {
+  .pg-scale { grid-template-columns: 1fr; }
+  .pg-diagram { padding: var(--half-module); }
+}
