@@ -5343,7 +5343,11 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     :root {
       --announcement-height: var(--module);
     }
-    .container { padding: var(--module); }
+    .container {
+      padding-top: var(--module);
+      padding-inline: var(--module);
+      padding-bottom: 0; /* A.7: unten nur mit .--pb */
+    }
     .col-grid[data-cols="2"], .col-grid[data-cols="3"], .col-grid[data-cols="4"] { grid-template-columns: 1fr; }
     /* --cols-4 global: bleibt 2-spaltig (Benefit-/Icon-Raster).
        Collection-Produkte: nie 2-spaltig mobil — zu eng → 1 Spalte. */
