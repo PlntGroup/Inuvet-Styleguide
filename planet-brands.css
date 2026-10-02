@@ -1884,7 +1884,8 @@
   /* .tile__icon — nutzt .icon-box + .placeholder-bg · oder <lottie-player>
      margin = struktureller Abstand Media → Textblock (.flow) */
   .tile__icon { margin-bottom: var(--half-module); }
-  .tile__icon lottie-player {
+  .tile__icon lottie-player,
+  .tile__icon svg {
     width: calc(var(--base) * 4);
     height: calc(var(--base) * 4);
     display: block;
