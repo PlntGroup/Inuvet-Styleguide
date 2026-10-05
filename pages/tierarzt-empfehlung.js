@@ -1532,7 +1532,7 @@ function renderSuccessStep(opts = {}) {
       <p><strong>Birka Beispiel</strong> · Tierärztlicher Außendienst<br>
       <a href="tel:+4915112345678" style="color:var(--green);">+49 151 123 456 78</a> · <a href="mailto:birka@inuvet.com" style="color:var(--green);">birka@inuvet.com</a></p>
 
-      <p class="mockup-email-panel__note">@Birka (Marketing): Texte zu Prozess & persönlichem Kontakt final abstimmen (Tonalität, Name/Telefon/Mail der Ansprechpartner*in, ggf. Hinweis auf Provision/Patientenbindung).</p>`
+      <p class="mockup-email-panel__note">@Birka (Marketing): Texte zu Prozess & persönlichem Kontakt final abstimmen (Tonalität, Name/Telefon/Mail der Ansprechpartner*in, ggf. Hinweis auf Patientenbindung).</p>`
     };
 
     emailOverlayData.internal = {

@@ -46,17 +46,6 @@
   border-bottom: none;
 }
 
-/* ─── Provision unter dem Produktnamen (Summe über alle Größen der Form) ─── */
-.approval-product-card__commission {
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--green);
-}
-.approval-product-card .flow > .cart-item__name + .approval-product-card__commission {
-  --flow-space: calc(var(--base) * 0.25);
-}
-.approval-product-card__commission.--muted { color: var(--fg-muted); font-weight: 400; }
-
 /* ─── Varianten-Block: je Größe eine Zeile mit eigenem Mengen-Dropdown ───
    Horizontallinien führen das Auge (bewusste Ausnahme zur „Linien sparsam"-Regel). */
 .approval-variants { margin-top: var(--half-module); }

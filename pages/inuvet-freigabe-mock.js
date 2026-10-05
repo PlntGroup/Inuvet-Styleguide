@@ -546,28 +546,6 @@ function empfehlungEnsurePortalFooter() {
 }
 
 /* Freigegeben — Historie; wächst mit Freigaben (sessionStorage, Start leer). */
-const EMPFEHLUNG_VARIANT_COMMISSIONS = {
-  'Calmin balance Tabletten|60 Stück': 4.50,
-  'Calmin balance Tabletten|90 Stück': 6.20,
-  'Calmin balance Pulver|30 g': 3.40,
-  'Calmin balance Pulver|60 g': 5.60,
-  'Hepax forte Tabletten|30 Stück': 5.20,
-  'Hepax forte Tabletten|60 Stück': 9.70,
-  'Hepax forte Pulver|75 g': 4.80,
-  'Hepax forte Pulver|175 g': 9.90,
-  'EnteroGast akut Tabletten|6 Stück': 0.90,
-  'EnteroGast akut Tabletten|21 Stück': 1.90,
-  'EnteroGast akut Pulver|60 g': 2.60,
-  'EnteroGast akut Sachets|80 Sachets': 10.50,
-  'Cortisan Öl-Komplex|30 ml Öl-Komplex': 2.00,
-  'Cortisan Öl-Komplex|100 ml Öl-Komplex': 4.70,
-  'Cortisan Öl-Komplex|300 ml Öl-Komplex': 7.20,
-  'Dermin Pflege-Emulsion|10 ml': 1.60,
-  'Diabex Tabletten|60 Stück': 2.60,
-  'Diabex Tabletten|220 Stück': 5.70,
-  'Diabex Pulver|60 g': 2.40,
-  'Diabex Pulver|210 g': 4.80,
-};
 
 function empfehlungTodayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -633,16 +611,6 @@ function empfehlungRecordRedeemedFromSubmit(customerName, requestId, approvedVar
   });
 }
 
-function empfehlungLineCommission(cartName, variantLabel, qty) {
-  const perUnit = EMPFEHLUNG_VARIANT_COMMISSIONS[`${cartName}|${variantLabel}`] ?? 0;
-  return perUnit * qty;
-}
-
-function empfehlungRedeemedCommission(cartName, variantLabel, qty, unlimited) {
-  const perUnit = EMPFEHLUNG_VARIANT_COMMISSIONS[`${cartName}|${variantLabel}`] ?? 0;
-  return unlimited ? perUnit : empfehlungLineCommission(cartName, variantLabel, qty);
-}
-
 function empfehlungRedeemedProductLabel(cartName, variantLabel, qty, unlimited) {
   const suffix = unlimited ? 'unbegrenzt' : `${qty}×`;
   return `${empfehlungProductLabel(cartName, variantLabel)} · ${suffix}`;
@@ -661,7 +629,6 @@ function empfehlungFlattenRedeemedRows() {
     unlimited: !!row.unlimited,
     productLabel: empfehlungRedeemedProductLabel(row.cartName, row.variantLabel, row.qty, row.unlimited),
     unitPrice: empfehlungUnitPrice(row.cartName, row.variantLabel),
-    commission: empfehlungRedeemedCommission(row.cartName, row.variantLabel, row.qty, row.unlimited),
   })).sort((a, b) => {
     const byDate = b.date.localeCompare(a.date);
     return byDate !== 0 ? byDate : a.productLabel.localeCompare(b.productLabel, 'de');
@@ -823,9 +790,6 @@ function empfehlungNormalizeProcessedRow(row) {
     qty,
     unlimited,
     productLabel: empfehlungProductLabel(row.cartName, row.variantLabel),
-    commission: approved
-      ? empfehlungRedeemedCommission(row.cartName, row.variantLabel, qty, unlimited)
-      : 0,
   };
 }
 

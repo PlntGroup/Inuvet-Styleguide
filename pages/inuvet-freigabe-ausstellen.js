@@ -14,61 +14,60 @@ const DERMIN_1     = '../assets/images/Dermin_Packshot_01.jpg';
 const DIABEX_1     = '../assets/images/Diabex_Packshot_01.jpg';
 
 /* Katalog — Darreichungsformen mit Packshot.
-   Hover-Zweitbild nur bei Calmin/Hepax.
-   commission = Provision pro tatsächlicher Bestellung. */
+   Hover-Zweitbild nur bei Calmin/Hepax. */
 const CATALOG = [
   { id: 1, cartName: 'Calmin balance Tabletten', img: CALMIN_1, imgHover: CALMIN_2,
     variants: [
-      { label: '60 Stück', price: '39,90 €', commission: 4.50 },
-      { label: '90 Stück', price: '54,90 €', commission: 6.20 },
+      { label: '60 Stück', price: '39,90 €' },
+      { label: '90 Stück', price: '54,90 €' },
     ] },
   { id: 2, cartName: 'Calmin balance Pulver', img: CALMIN_1, imgHover: CALMIN_2,
     variants: [
-      { label: '30 g', price: '29,90 €', commission: 3.40 },
-      { label: '60 g', price: '49,90 €', commission: 5.60 },
+      { label: '30 g', price: '29,90 €' },
+      { label: '60 g', price: '49,90 €' },
     ] },
   { id: 3, cartName: 'Hepax forte Tabletten', img: HEPAX_1, imgHover: HEPAX_2,
     variants: [
-      { label: '30 Stück', price: '34,90 €', commission: 5.20 },
-      { label: '60 Stück', price: '64,90 €', commission: 9.70 },
+      { label: '30 Stück', price: '34,90 €' },
+      { label: '60 Stück', price: '64,90 €' },
     ] },
   { id: 4, cartName: 'Hepax forte Pulver', img: HEPAX_1, imgHover: HEPAX_2,
     variants: [
-      { label: '75 g',  price: '39,90 €', commission: 4.80 },
-      { label: '175 g', price: '84,90 €', commission: 9.90 },
+      { label: '75 g',  price: '39,90 €' },
+      { label: '175 g', price: '84,90 €' },
     ] },
   { id: 6, cartName: 'EnteroGast akut Tabletten', img: ENTEROGAST_1, imgHover: null,
     variants: [
-      { label: '6 Stück',  price: '7,60 €',  commission: 0.90 },
-      { label: '21 Stück', price: '16,75 €', commission: 1.90 },
+      { label: '6 Stück',  price: '7,60 €' },
+      { label: '21 Stück', price: '16,75 €' },
     ] },
   { id: 7, cartName: 'EnteroGast akut Pulver', img: ENTEROGAST_1, imgHover: null,
     variants: [
-      { label: '60 g', price: '23,30 €', commission: 2.60 },
+      { label: '60 g', price: '23,30 €' },
     ] },
   { id: 9, cartName: 'EnteroGast akut Sachets', img: ENTEROGAST_1, imgHover: null,
     variants: [
-      { label: '80 Sachets', price: '92,50 €', commission: 10.50 },
+      { label: '80 Sachets', price: '92,50 €' },
     ] },
   { id: 10, cartName: 'Cortisan Öl-Komplex', img: CORTISAN_1, imgHover: null,
     variants: [
-      { label: '30 ml Öl-Komplex',  price: '17,80 €', commission: 2.00 },
-      { label: '100 ml Öl-Komplex', price: '41,35 €', commission: 4.70 },
-      { label: '300 ml Öl-Komplex', price: '63,45 €', commission: 7.20 },
+      { label: '30 ml Öl-Komplex',  price: '17,80 €' },
+      { label: '100 ml Öl-Komplex', price: '41,35 €' },
+      { label: '300 ml Öl-Komplex', price: '63,45 €' },
     ] },
   { id: 11, cartName: 'Dermin Pflege-Emulsion', img: DERMIN_1, imgHover: null,
     variants: [
-      { label: '10 ml', price: '14,15 €', commission: 1.60 },
+      { label: '10 ml', price: '14,15 €' },
     ] },
   { id: 12, cartName: 'Diabex Tabletten', img: DIABEX_1, imgHover: null,
     variants: [
-      { label: '60 Stück',  price: '23,05 €', commission: 2.60 },
-      { label: '220 Stück', price: '50,55 €', commission: 5.70 },
+      { label: '60 Stück',  price: '23,05 €' },
+      { label: '220 Stück', price: '50,55 €' },
     ] },
   { id: 13, cartName: 'Diabex Pulver', img: DIABEX_1, imgHover: null,
     variants: [
-      { label: '60 g',  price: '20,95 €', commission: 2.40 },
-      { label: '210 g', price: '42,30 €', commission: 4.80 },
+      { label: '60 g',  price: '20,95 €' },
+      { label: '210 g', price: '42,30 €' },
     ] },
 ];
 
@@ -118,35 +117,6 @@ function qtyLabel(value) {
   if (value && value.startsWith('max')) return 'max. ' + value.slice(3) + '×';
   return value;
 }
-function formatEur(value) {
-  return value.toFixed(2).replace('.', ',') + ' €';
-}
-
-/* ── Provision pro Produkt (Summe über alle freigegebenen Größen) ── */
-function productCommissionText(p) {
-  let fixed = 0;
-  let unlimitedPerOrder = 0;
-  p.variants.forEach((v, vi) => {
-    const value = submitVariantValue(p, v, vi);
-    if (!isExplicitApprovalValue(value)) return;
-    const max = qtyMax(value);
-    if (max === Infinity) unlimitedPerOrder += v.commission;
-    else fixed += v.commission * max;
-  });
-  if (fixed === 0 && unlimitedPerOrder === 0) return { text: '', muted: true };
-  return { text: `Provision: bis zu ${formatEur(fixed + unlimitedPerOrder)}`, muted: false };
-}
-
-function updateProductCommission(productId) {
-  const p  = CATALOG.find(x => x.id === productId);
-  const el = document.getElementById('prodcomm-' + productId);
-  if (!el) return;
-  const c = productCommissionText(p);
-  el.textContent = c.text;
-  el.hidden = !c.text;
-  el.classList.toggle('--muted', c.muted);
-}
-
 function optionsHTML(selected) {
   const sorted = [...QTY_PRESETS].sort((a, b) => a - b);
   let opts = `<option value="${VARIANT_SETTLED}"${selected === VARIANT_SETTLED ? ' selected' : ''}>–</option>`;
@@ -175,7 +145,6 @@ function variantRowHTML(p, v, vi) {
 }
 
 function cardHTML(p) {
-  const prodComm = productCommissionText(p);
   const thumb = p.img
     ? `<div class="product-thumb"><img src="${p.img}" alt="${p.cartName}">${p.imgHover ? `<img src="${p.imgHover}" alt="" aria-hidden="true">` : ''}</div>`
     : `<div class="product-thumb placeholder-bg" aria-hidden="true"></div>`;
@@ -188,7 +157,6 @@ function cardHTML(p) {
             <div>
               <div class="flow">
                 <p class="cart-item__name">${p.cartName}</p>
-                <p class="approval-product-card__commission${prodComm.muted ? ' --muted' : ''}" id="prodcomm-${p.id}"${prodComm.text ? '' : ' hidden'}>${prodComm.text}</p>
               </div>
             </div>
           </div>
@@ -384,27 +352,17 @@ function refreshVariantSelect(id) {
 
 function setVariantQty(id, value) {
   approvalState[id] = value;
-  const [productId] = id.split('-');
   refreshVariantSelect(id);
-  updateProductCommission(Number(productId));
   updateCounter();
 }
 
 function updateCounter() {
   let approvedProducts = 0;
-  let totalFixed = 0;
-  let unlimitedPerOrder = 0;
 
   CATALOG.forEach(p => {
-    let anyApproved = false;
-    p.variants.forEach((v, vi) => {
-      const value = variantSelectionValue(p, v, vi);
-      if (!isExplicitApprovalValue(value)) return;
-      anyApproved = true;
-      const max = qtyMax(value);
-      if (max === Infinity) unlimitedPerOrder += v.commission;
-      else totalFixed += v.commission * max;
-    });
+    const anyApproved = p.variants.some((v, vi) =>
+      isExplicitApprovalValue(variantSelectionValue(p, v, vi))
+    );
     if (anyApproved) approvedProducts++;
   });
 
@@ -413,8 +371,7 @@ function updateCounter() {
 
   if (approvedProducts > 0) {
     const countLine = `${approvedProducts} Produkt${approvedProducts !== 1 ? 'e' : ''} ausgewählt`;
-    const provLine  = `Provision: bis zu ${formatEur(totalFixed + unlimitedPerOrder)}`;
-    setCounterText(countLine, provLine);
+    setCounterText(countLine);
   } else {
     setCounterText('Noch keine Entscheidung getroffen');
   }

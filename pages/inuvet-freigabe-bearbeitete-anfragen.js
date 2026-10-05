@@ -12,12 +12,7 @@ const PROCESSED_SORT_GETTERS = {
   date: row => row.date,
   status: row => (row.status === 'approved' ? 'freigegeben' : 'nicht freigegeben'),
   productLabel: row => row.productLabel,
-  commission: row => (row.purchased ? row.commission : 0),
 };
-
-function formatPrice(value) {
-  return value.toFixed(2).replace('.', ',') + ' €';
-}
 
 function setProcessedFilter(key, checked) {
   if (key !== 'approved' && key !== 'declined') return;
@@ -85,7 +80,6 @@ function renderProcessedRequests() {
       ${empfehlungCustomerNoteCellHtml(row.customerNote)}
       ${empfehlungVetNoteCellHtml(row.vetNote)}
       ${processedPurchasedCellHtml(row)}
-      <td class="data-table-commission" data-label="Provision">${row.purchased ? formatPrice(row.commission) : '—'}</td>
     </tr>
   `).join('');
 }
