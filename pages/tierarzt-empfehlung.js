@@ -1,17 +1,17 @@
 /* ════════════════════════════════════════════
    BILD-KONSTANTEN
    ════════════════════════════════════════════ */
-const HERO_IMG = '../assets/images/Hero_Mood_03.jpg';
+const HERO_IMG = '../assets/brands/inuvet/images/Hero_Mood_03.jpg';
 
-const CALMIN_1 = '../assets/images/Calmin_Packshot_01.jpeg';
-const CALMIN_2 = '../assets/images/Calmin_Packshot_02.png';
-const CALMIN_3 = '../assets/images/Calmin_Packshot_04.png';
-const HEPAX_1  = '../assets/images/Hepax_Packshot_01.jpeg';
-const HEPAX_2  = '../assets/images/Hepax_Packshot_02.png';
-const ENTEROGAST_1 = '../assets/images/EnteroGast_Packshot_01.jpg';
-const CORTISAN_1   = '../assets/images/Cortisan_Packshot_01.jpg';
-const DERMIN_1     = '../assets/images/Dermin_Packshot_01.jpg';
-const DIABEX_1     = '../assets/images/Diabex_Packshot_01.jpg';
+const CALMIN_1 = '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg';
+const CALMIN_2 = '../assets/brands/inuvet/images/Calmin_Packshot_02.png';
+const CALMIN_3 = '../assets/brands/inuvet/images/Calmin_Packshot_04.png';
+const HEPAX_1  = '../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg';
+const HEPAX_2  = '../assets/brands/inuvet/images/Hepax_Packshot_02.png';
+const ENTEROGAST_1 = '../assets/brands/inuvet/images/EnteroGast_Packshot_01.jpg';
+const CORTISAN_1   = '../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg';
+const DERMIN_1     = '../assets/brands/inuvet/images/Dermin_Packshot_01.jpg';
+const DIABEX_1     = '../assets/brands/inuvet/images/Diabex_Packshot_01.jpg';
 
 /* ════════════════════════════════════════════
    PRODUKTDATEN — Katalog analog Vet-Portal (ohne Inzym)
@@ -758,8 +758,8 @@ function pdpSocialProofHTML() {
   return `
     <div class="social-proof">
       <div class="social-proof__avatars" aria-hidden="true">
-        <img class="social-proof__avatar" src="../assets/images/Partner_Krause_Erl_Thumbnail.jpg" alt="">
-        <img class="social-proof__avatar" src="../assets/images/Sarah_Inuvet.png" alt="">
+        <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg" alt="">
+        <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Sarah_Inuvet.png" alt="">
       </div>
       <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
     </div>`;
@@ -886,7 +886,7 @@ function pdpBenefitsHTML() {
       <div class="tile-grid --cols-4">
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Tierarztpraxis.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Tierarztpraxis.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
@@ -895,7 +895,7 @@ function pdpBenefitsHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Langzeitgabe.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Langzeitgabe.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Für die Langzeitgabe</p>
@@ -904,7 +904,7 @@ function pdpBenefitsHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Schutz.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Schutz.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Immer gut unterstützt</p>
@@ -913,7 +913,7 @@ function pdpBenefitsHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Auto.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Auto.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Schnell bei dir</p>
@@ -926,10 +926,10 @@ function pdpBenefitsHTML() {
 
 function pdpTestimonialsHTML() {
   const items = [
-    { text: 'Bei Inuvet fühle ich mich als Praxis gut aufgehoben. Die Antworten kommen schnell, und man merkt, dass hinter dem Shop echte fachliche Expertise steckt.', name: 'Dr. Sandra Meier', role: 'Tierärztin, München', img: '../assets/images/Sarah_Inuvet.png' },
-    { text: 'Was mir an Inuvet gefällt: die enge, verlässliche Zusammenarbeit mit uns Tierärztinnen und Tierärzten. Das spüre ich in jedem Kontakt.', name: 'Dr. Thomas Krause', role: 'Tierarzt, Hamburg', img: '../assets/images/Partner_Krause_Erl_Thumbnail.jpg' },
-    { text: 'Bestellen bei Inuvet ist unkompliziert — übersichtlich, klar und ohne Schnickschnack. Genau so soll ein Shop für die Praxis funktionieren.', name: 'Dr. Julia Richter', role: 'Tierärztin, Berlin', img: '../assets/images/Partner_Mia_01.png' },
-    { text: 'Zuverlässige Lieferung, freundlicher Kontakt und ein Markenauftritt, dem ich vertraue. Deshalb empfehle ich Inuvet in meiner Praxis weiter.', name: 'Dr. Markus Thal', role: 'Tierarzt, Köln', img: '../assets/images/Tierhalter_Test_Thumbnail.jpg' },
+    { text: 'Bei Inuvet fühle ich mich als Praxis gut aufgehoben. Die Antworten kommen schnell, und man merkt, dass hinter dem Shop echte fachliche Expertise steckt.', name: 'Dr. Sandra Meier', role: 'Tierärztin, München', img: '../assets/brands/inuvet/images/Sarah_Inuvet.png' },
+    { text: 'Was mir an Inuvet gefällt: die enge, verlässliche Zusammenarbeit mit uns Tierärztinnen und Tierärzten. Das spüre ich in jedem Kontakt.', name: 'Dr. Thomas Krause', role: 'Tierarzt, Hamburg', img: '../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg' },
+    { text: 'Bestellen bei Inuvet ist unkompliziert — übersichtlich, klar und ohne Schnickschnack. Genau so soll ein Shop für die Praxis funktionieren.', name: 'Dr. Julia Richter', role: 'Tierärztin, Berlin', img: '../assets/brands/inuvet/images/Partner_Mia_01.png' },
+    { text: 'Zuverlässige Lieferung, freundlicher Kontakt und ein Markenauftritt, dem ich vertraue. Deshalb empfehle ich Inuvet in meiner Praxis weiter.', name: 'Dr. Markus Thal', role: 'Tierarzt, Köln', img: '../assets/brands/inuvet/images/Tierhalter_Test_Thumbnail.jpg' },
   ];
   const cards = items.map(t => `
     <div class="testimonial">
@@ -987,7 +987,7 @@ function pdpPraxisHTML() {
       <div class="tile-grid --cols-3">
         <div class="tile">
           <div class="tile__icon tile__animation --ratio-1">
-            <lottie-player src="../assets/brands/inuvet/inuvet_tierarzt_nur_bei_euch.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/inuvet_tierarzt_nur_bei_euch.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Nur bei euch</p>
@@ -996,7 +996,7 @@ function pdpPraxisHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon tile__animation --ratio-1">
-            <lottie-player src="../assets/brands/inuvet/Inuvet_animation_Weltweit.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_animation_Weltweit.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Verträglich, beliebt und hoch konzentriert</p>
@@ -1005,7 +1005,7 @@ function pdpPraxisHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon tile__animation --ratio-1">
-            <lottie-player src="../assets/brands/inuvet/inuvet_animation_inhaltsstoffe.json?v=2" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/inuvet_animation_inhaltsstoffe.json?v=2" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Grüne Pfoten</p>
@@ -1855,9 +1855,9 @@ function renderNav() {
    TESTIMONIAL-SLIDER
    ════════════════════════════════════════════ */
 const TESTIMONIALS = [
-  { text: 'Nach der Empfehlung meines Tierarztes haben wir Calmin balance ausprobiert — mein ängstlicher Beagle ist eine andere Seele geworden.', name: 'Anna W.',    role: 'Beagle-Mama, Frankfurt',    img: '../assets/images/Partner_Krause_Erl_Thumbnail.jpg' },
-  { text: 'Super Service und top Beratung. Meine Tierärztin arbeitet seit Jahren mit Inuvet und ich merke den Unterschied jeden Tag.',             name: 'Sandra M.', role: 'Hundemama, München',        img: '../assets/images/Tierhalter_Test_Thumbnail.jpg' },
-  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',                              name: 'Julia R.',  role: 'Tierliebhaberin, Berlin',   img: '../assets/images/Partner_Mia_01.png' },
+  { text: 'Nach der Empfehlung meines Tierarztes haben wir Calmin balance ausprobiert — mein ängstlicher Beagle ist eine andere Seele geworden.', name: 'Anna W.',    role: 'Beagle-Mama, Frankfurt',    img: '../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg' },
+  { text: 'Super Service und top Beratung. Meine Tierärztin arbeitet seit Jahren mit Inuvet und ich merke den Unterschied jeden Tag.',             name: 'Sandra M.', role: 'Hundemama, München',        img: '../assets/brands/inuvet/images/Tierhalter_Test_Thumbnail.jpg' },
+  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',                              name: 'Julia R.',  role: 'Tierliebhaberin, Berlin',   img: '../assets/brands/inuvet/images/Partner_Mia_01.png' },
   { text: 'Meine Katze hat nach zwei Wochen deutlich besser geschlafen. Ohne die Empfehlung unseres Tierarztes hätte ich es nicht gekauft.', name: 'Petra K.', role: 'Katzenbesitzerin, Hamburg', img: null },
 ];
 
@@ -1975,8 +1975,8 @@ function tileHTML(p) {
 
 /* ── Testimonial-Strip ── */
 const STRIP_TESTIMONIALS = [
-  { text: 'Schon nach wenigen Wochen war mein Golden Retriever viel entspannter — ich bin so dankbar für die Empfehlung.',  name: 'Sandra M.',         role: 'Tierbesitzerin, München', img: '../assets/images/Tierhalter_Test_Thumbnail.jpg' },
-  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',       name: 'Dr. Thomas Berger', role: 'Tierarzt, Hamburg',       img: '../assets/images/Partner_Krause_Erl_Thumbnail.jpg' },
+  { text: 'Schon nach wenigen Wochen war mein Golden Retriever viel entspannter — ich bin so dankbar für die Empfehlung.',  name: 'Sandra M.',         role: 'Tierbesitzerin, München', img: '../assets/brands/inuvet/images/Tierhalter_Test_Thumbnail.jpg' },
+  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',       name: 'Dr. Thomas Berger', role: 'Tierarzt, Hamburg',       img: '../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg' },
   { text: 'Hepax forte hilft meinen Patienten nach der OP. Schnelle Lieferung, unkompliziert.',                          name: 'Klaus W.',          role: 'Tierärztin, Frankfurt' },
   { text: 'Als Tierärztin schätze ich fundierte Formeln — und meine Klientinnen fragen regelmäßig gezielt danach.',        name: 'Dr. Sarah Koch',    role: 'Tierärztin, Berlin' },
 ];
@@ -2153,7 +2153,7 @@ function renderHome() {
     heroHtml = `
     <div class="section-type --v1 --hero-test">
       <div class="section-type__animation">
-        <lottie-player src="../assets/brands/inuvet/Animation_About_Inuvet.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <lottie-player src="../assets/brands/inuvet/lotties/Animation_About_Inuvet.json" background="transparent" speed="1" loop autoplay></lottie-player>
       </div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Weil dein Tier das Beste verdient</h2>
@@ -2208,7 +2208,7 @@ function renderHome() {
       <div class="tile-grid --cols-4">
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Tierarztpraxis.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Tierarztpraxis.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
@@ -2217,7 +2217,7 @@ function renderHome() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Langzeitgabe.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Langzeitgabe.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Für die Langzeitgabe</p>
@@ -2226,7 +2226,7 @@ function renderHome() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Schutz.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Schutz.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Immer gut unterstützt</p>
@@ -2235,7 +2235,7 @@ function renderHome() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Auto.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Auto.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Schnell bei dir</p>
@@ -2245,7 +2245,7 @@ function renderHome() {
       </div>
     </div>
     <div class="section-type --v2 --reverse" id="aboutPraxis">
-      <div class="section-type__image" style="background-image:url('../assets/images/Partner_Mia_01.png');"></div>
+      <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Partner_Mia_01.png');"></div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Ich habe keine Produktfreigabe. Was tun?</h2>
         <div class="section-type__bottom flow">
@@ -2266,7 +2266,7 @@ function renderHome() {
     ${testimonialSectionHTML('--no-borders')}
     <div class="section-type --v1">
       <div class="section-type__animation">
-        <lottie-player src="../assets/brands/inuvet/inuvet_animation_vet_katze.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <lottie-player src="../assets/brands/inuvet/lotties/inuvet_animation_vet_katze.json" background="transparent" speed="1" loop autoplay></lottie-player>
       </div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Nur über deine Tierarztpraxis</h2>
@@ -2286,7 +2286,7 @@ function renderAbout() {
   return `
     <div class="section-type --v1">
       <div class="section-type__animation">
-        <lottie-player src="../assets/brands/inuvet/Animation_About_Inuvet.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <lottie-player src="../assets/brands/inuvet/lotties/Animation_About_Inuvet.json" background="transparent" speed="1" loop autoplay></lottie-player>
       </div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Pflanzlich. Hoch dosiert. Nur über die Praxis.</h2>
@@ -2300,7 +2300,7 @@ function renderAbout() {
       <div class="tile-grid --cols-4">
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Tierarztpraxis.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Tierarztpraxis.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
@@ -2309,7 +2309,7 @@ function renderAbout() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Langzeitgabe.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Langzeitgabe.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Für die Langzeitgabe</p>
@@ -2318,7 +2318,7 @@ function renderAbout() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Schutz.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Schutz.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Immer gut unterstützt</p>
@@ -2327,7 +2327,7 @@ function renderAbout() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/Icon_Auto.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Icon_Auto.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Schnell bei dir</p>
@@ -2337,7 +2337,7 @@ function renderAbout() {
       </div>
     </div>
     <div class="section-type --v2 --reverse" id="aboutPraxis">
-      <div class="section-type__image" style="background-image:url('../assets/images/Partner_Mia_01.png');"></div>
+      <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Partner_Mia_01.png');"></div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Warum gibt es Inuvet-Produkte nur über deine Tierarztpraxis?</h2>
         <div class="section-type__bottom flow">
@@ -2363,7 +2363,7 @@ function renderCollection() {
   return `
     <div class="section-type --v1 --reverse">
       <div class="section-type__animation">
-        <lottie-player src="../assets/brands/inuvet/inuvet_website_animation_pagenotfound.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        <lottie-player src="../assets/brands/inuvet/lotties/inuvet_website_animation_pagenotfound.json" background="transparent" speed="1" loop autoplay></lottie-player>
       </div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Produkte finden und von deinem Tierarzt freigeben lassen</h2>

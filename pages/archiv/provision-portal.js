@@ -9,7 +9,7 @@ const PREMIUMS = [
     price: 1200.00,
     desc: 'Vier Tage Auszeit an der Adria: Hotel, Frühstück und Strandkorb inklusive.',
     longDesc: 'Erhol dich nach einem langen Praxis-Jahr an der Adria. Das Paket beinhaltet 4 Übernachtungen im 4-Sterne-Hotel mit Meerblick, tägliches Frühstücksbuffet sowie einen reservierten Strandkorb. Reisetermin frei wählbar (April–Oktober). Buchungsbestätigung innerhalb von 48 Stunden.',
-    image: '../assets/images/Rimini.jpg'
+    image: '../assets/brands/inuvet/images/Rimini.jpg'
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const PREMIUMS = [
     price: 456.99,
     desc: 'Professioneller Kaffeegenuß für zuhause — die deLonghi Dedica Style im klassischen Design.',
     longDesc: 'Die deLonghi Dedica Style EC 685 überzeugt mit kompakter Bauform und professioneller Brühtechnik. 15 Bar Pumpendruck, Thermoblock-Heizsystem und ein Milchaufschäumer für perfekten Cappuccino — direkt aus deiner Praxis-Küche. Lieferung frei Haus, innerhalb von 3–5 Werktagen.',
-    image: '../assets/images/Kaffeemaschine.jpg'
+    image: '../assets/brands/inuvet/images/Kaffeemaschine.jpg'
   },
   {
     id: 1,

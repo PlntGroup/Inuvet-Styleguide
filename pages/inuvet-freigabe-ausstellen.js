@@ -4,14 +4,14 @@
    freigeben. Anfragen laufen über Offene Anfragen — nicht über diese Seite.
    ════════════════════════════════════════════ */
 
-const CALMIN_1     = '../assets/images/Calmin_Packshot_01.jpeg';
-const CALMIN_2     = '../assets/images/Calmin_Packshot_02.png';
-const HEPAX_1      = '../assets/images/Hepax_Packshot_01.jpeg';
-const HEPAX_2      = '../assets/images/Hepax_Packshot_02.png';
-const ENTEROGAST_1 = '../assets/images/EnteroGast_Packshot_01.jpg';
-const CORTISAN_1   = '../assets/images/Cortisan_Packshot_01.jpg';
-const DERMIN_1     = '../assets/images/Dermin_Packshot_01.jpg';
-const DIABEX_1     = '../assets/images/Diabex_Packshot_01.jpg';
+const CALMIN_1     = '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg';
+const CALMIN_2     = '../assets/brands/inuvet/images/Calmin_Packshot_02.png';
+const HEPAX_1      = '../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg';
+const HEPAX_2      = '../assets/brands/inuvet/images/Hepax_Packshot_02.png';
+const ENTEROGAST_1 = '../assets/brands/inuvet/images/EnteroGast_Packshot_01.jpg';
+const CORTISAN_1   = '../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg';
+const DERMIN_1     = '../assets/brands/inuvet/images/Dermin_Packshot_01.jpg';
+const DIABEX_1     = '../assets/brands/inuvet/images/Diabex_Packshot_01.jpg';
 
 /* Katalog — Darreichungsformen mit Packshot.
    Hover-Zweitbild nur bei Calmin/Hepax. */

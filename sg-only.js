@@ -213,9 +213,9 @@ const SEARCH_DATA = {
     { text: 'Calmin balance' },
   ],
   products: [
-    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/images/Hepax_Packshot_01.jpeg', imgHover: 'assets/images/Hepax_Packshot_02.png' },
-    { name: 'Calmin balance', meta: 'Beruhigung', price: '39,90 €', img: 'assets/images/Calmin_Packshot_01.jpeg', imgHover: 'assets/images/Calmin_Packshot_02.png' },
-    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/images/Hepax_Packshot_01.jpeg', imgHover: 'assets/images/Hepax_Packshot_02.png' },
+    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/brands/inuvet/images/Hepax_Packshot_01.jpeg', imgHover: 'assets/brands/inuvet/images/Hepax_Packshot_02.png' },
+    { name: 'Calmin balance', meta: 'Beruhigung', price: '39,90 €', img: 'assets/brands/inuvet/images/Calmin_Packshot_01.jpeg', imgHover: 'assets/brands/inuvet/images/Calmin_Packshot_02.png' },
+    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/brands/inuvet/images/Hepax_Packshot_01.jpeg', imgHover: 'assets/brands/inuvet/images/Hepax_Packshot_02.png' },
   ]
 };
 

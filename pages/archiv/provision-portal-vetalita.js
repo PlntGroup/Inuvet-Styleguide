@@ -9,7 +9,7 @@ const PREMIUMS = [
     price: 1200.00,
     desc: 'Quattro giorni di pausa sull\'Adriatico: hotel, colazione e lettino da spiaggia inclusi.',
     longDesc: 'Ricaricati dopo un lungo anno di lavoro in clinica sull\'Adriatico. Il pacchetto include 4 notti in hotel 4 stelle con vista mare, buffet colazione giornaliero e lettino da spiaggia riservato. Data di viaggio liberamente scelta (aprile–ottobre). Conferma prenotazione entro 48 ore.',
-    image: '../assets/images/Rimini.jpg'
+    image: '../assets/brands/inuvet/images/Rimini.jpg'
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const PREMIUMS = [
     price: 456.99,
     desc: 'Piacere del caffè professionale per casa — la deLonghi Dedica Style nel design classico.',
     longDesc: 'La deLonghi Dedica Style EC 685 convince con dimensioni compatte e tecnica di estrazione professionale. 15 bar di pressione pompa, sistema di riscaldamento thermoblock e schiumalatte per un cappuccino perfetto — direttamente dalla tua cucina in clinica. Consegna a domicilio entro 3–5 giorni lavorativi.',
-    image: '../assets/images/Kaffeemaschine.jpg'
+    image: '../assets/brands/inuvet/images/Kaffeemaschine.jpg'
   },
   {
     id: 1,
