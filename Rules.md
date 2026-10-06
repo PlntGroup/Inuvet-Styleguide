@@ -1,8 +1,8 @@
 # Rules — Inuvet Styleguide
 
-Verbindliche Arbeitsregeln für den Styleguide und `planet-brands`. Spec: [`CLAUDE.md`](./CLAUDE.md). Live: GitHub Pages von `main`.
+Verbindliche Arbeitsregeln für den Styleguide und `planet-brands`. Spec: [`Spec.md`](./Spec.md). Live: GitHub Pages von `main`.
 
-Neue Regel hier eintragen (Spec in `CLAUDE.md`) und nach `main` pushen.
+Neue Regel hier eintragen (Spec in `Spec.md`) und nach `main` pushen.
 
 ---
 
