@@ -1,4 +1,6 @@
-# Inuvet Styleguide — Claude Code
+# Inuvet Styleguide
+
+Regeln: [`Rules.md`](./Rules.md). Spec: diese Datei.
 
 ---
 
@@ -46,7 +48,7 @@ Unterordner `reports/` und `vetalita/`: kebab-case Dateien ok · Vetalita-Brand 
 12. **Mockup-UI strikt isoliert** — Alle Styles für Mockup-Steuerelemente kommen ausschließlich aus `mockup-ui.css`. Keine `planet-brands.css`-Klassen innerhalb von `.mockup-fab-panel`, `.mockup-bar` oder `.mockup-modal`. JS: `mockup-ui.js` (Alt+M / ⌥M blendet Mockup-Chrome global ein/aus).
 13. **JS analog zu CSS schichten** — Globale Funktionen in `planet-brands.js`, seitenspezifische Logik in `pages/xyz.js`. Kein Inline-Script.
 14. **Live = `main`** — GitHub Pages deployed ausschließlich von `main` → https://plntgroup.github.io/Inuvet-Styleguide/. Bei Push/Deploy/Live-Schalten: **immer `main` pushen**, nie nur `feat/*` oder `session/*`. Workflow: committen (auf beliebigem Branch) → `git checkout main` → merge/fast-forward → `git push origin main`.
-15. **Text-Rhythmus gehört immer `.flow`** — Abstände zwischen Überschriften und Absätzen (Text↔Text) kommen **ausschließlich** aus dem `.flow`-System (`planet-brands.css`, Doku A.7) — kontextunabhängig, egal ob Info-Page, Modal, Card oder Hero. Jeder Fließtext-Block bekommt `.flow`. Das `gap`/Margin einer Komponente trennt **nur strukturelle Blöcke** (Medien / Textblock / Actions), nie Headline→Paragraph. Kein Heading→Paragraph-Abstand über Flex-/Grid-`gap` oder Ad-hoc-Margins. Sonderfall: `--flow-space` am Element überschreiben, nicht neue Margins. Siehe `.cursor/rules/flow-spacing.mdc`.
+15. **Text-Rhythmus gehört immer `.flow`** — Abstände zwischen Überschriften und Absätzen (Text↔Text) kommen **ausschließlich** aus dem `.flow`-System (`planet-brands.css`, Doku A.7) — kontextunabhängig, egal ob Info-Page, Modal, Card oder Hero. Jeder Fließtext-Block bekommt `.flow`. Das `gap`/Margin einer Komponente trennt **nur strukturelle Blöcke** (Medien / Textblock / Actions), nie Headline→Paragraph. Kein Heading→Paragraph-Abstand über Flex-/Grid-`gap` oder Ad-hoc-Margins. Sonderfall: `--flow-space` am Element überschreiben, nicht neue Margins. Siehe `Rules.md`.
 16. **`index.html` immer aktuell halten** — Die Mockup-Übersicht (`index.html` + `index.js`, Live: https://plntgroup.github.io/Inuvet-Styleguide/) ist der Bookmark für IT und Team. Michael und Agent: bei **neuen zentralen Mockup-Seiten**, **Umbenennungen** oder **Link-Änderungen** die Index-Seite mitziehen (DE|EN-Texte in `index.js` inklusive). Nie nur die Page anlegen/verschieben und den Index vergessen.
 
 ---
