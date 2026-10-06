@@ -207,10 +207,10 @@ function renderOpenRequests() {
       <td class="data-table-action" data-label="Freigeben?">
         <div class="data-table-actions">
           <button type="button" class="btn --icon --sm --success" aria-label="Freigeben, ${row.qty}×" onclick="quickApprove('${row.id}')">
-            <span class="material-icons" aria-hidden="true">check</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>
           </button>
           <button type="button" class="btn --icon --sm --danger" aria-label="Nicht freigeben" onclick="quickDecline('${row.id}')">
-            <span class="material-icons" aria-hidden="true">close</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
           </button>
         </div>
       </td>

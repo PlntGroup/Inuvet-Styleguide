@@ -6,7 +6,7 @@
       var item = document.createElement('div');
       item.className = 'form-upload__file';
       item.innerHTML =
-        '<span class="material-icons">image</span>' +
+        '<svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-image"></use></svg>' +
         '<span class="form-upload__file__name">' + file.name + '</span>' +
         '<span class="form-upload__file__size">' + (file.size / 1024 / 1024).toFixed(1) + ' MB</span>';
       list.appendChild(item);

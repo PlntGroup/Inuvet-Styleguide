@@ -351,15 +351,15 @@ function renderPDP() {
           </div>
           <div class="accordion">
             <div class="accordion-item --open">
-              <button class="accordion-trigger" type="button" aria-expanded="true" onclick="toggleAccordion(this)">Descrizione<span class="accordion-icon material-icons">expand_more</span></button>
+              <button class="accordion-trigger" type="button" aria-expanded="true" onclick="toggleAccordion(this)">Descrizione<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>${p.longDesc}</p></div></div>
             </div>
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Come funziona?<span class="accordion-icon material-icons">expand_more</span></button>
+              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Come funziona?<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>Il valore del premio viene detratto dalla tua provvigione disponibile. Attualmente hai <strong>${fmt(provisionAvailable())}</strong> disponibili.</p></div></div>
             </div>
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Spedizione &amp; consegna<span class="accordion-icon material-icons">expand_more</span></button>
+              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Spedizione &amp; consegna<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>Il premio verrà inviato entro 5–7 giorni lavorativi dal riscatto all'indirizzo registrato.</p></div></div>
             </div>
           </div>
@@ -378,12 +378,12 @@ function renderCartDrawer() {
       <div class="cart-drawer__header">
         <span class="cart-drawer__title">Carrello premi <span class="cart-drawer__count">(0)</span></span>
         <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Chiudi">
-          <span class="material-icons">close</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
         </button>
       </div>
       <div class="cart-drawer__empty">
         <div class="empty-state">
-          <span class="material-icons">redeem</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg>
           <p class="empty-state__title">Nessun premio selezionato</p>
           <p class="empty-state__sub">Scegli un premio e riscatta la tua provvigione.</p>
         </div>
@@ -402,7 +402,7 @@ function renderCartDrawer() {
               <div class="cart-item__variant">Premio</div>
             </div>
             <button type="button" class="btn --icon cart-item__remove" onclick="removeFromCart(${id})" aria-label="Rimuovi">
-              <span class="material-icons">close</span>
+              <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
             </button>
           </div>
           <div class="cart-item__bottom">
@@ -420,7 +420,7 @@ function renderCartDrawer() {
     <div class="cart-drawer__header">
       <span class="cart-drawer__title">Carrello premi <span class="cart-drawer__count">(${cart.length})</span></span>
       <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Chiudi">
-        <span class="material-icons">close</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="cart-drawer__items">${items}</div>
@@ -516,11 +516,11 @@ function renderCheckout() {
             <h3 class="section-label --sub">Metodo di spedizione</h3>
             <div class="tile-grid --compact">
               <button class="choice-box --block --active" type="button" onclick="setCheckoutOption(this)">
-                <span class="material-icons">local_shipping</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg>
                 <span><strong>Spedizione standard</strong> — GLS · 3–5 giorni lavorativi · <strong>gratuita</strong></span>
               </button>
               <button class="choice-box --block" type="button" onclick="setCheckoutOption(this)">
-                <span class="material-icons">rocket_launch</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-rocket_launch"></use></svg>
                 <span><strong>Spedizione express</strong> — GLS Express · 1–2 giorni lavorativi · <strong>4,99 €</strong></span>
               </button>
             </div>
@@ -552,7 +552,7 @@ function renderSuccess() {
     return `
       <div class="container --narrow portal-section">
         <div class="success-state">
-          <span class="success-state__icon material-icons">check_circle</span>
+          <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
           <h1 class="success-state__title">Pagamento richiesto!</h1>
           <p class="success-state__body"><strong>${fmt(lastOrder.total)}</strong> saranno accreditati entro 3–5 giorni lavorativi sul tuo conto registrato.</p>
         </div>
@@ -582,7 +582,7 @@ function renderSuccess() {
   return `
     <div class="container --narrow portal-section">
       <div class="success-state">
-        <span class="success-state__icon material-icons">check_circle</span>
+        <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
         <h1 class="success-state__title">Il tuo premio è in arrivo!</h1>
         <p class="success-state__body">Hai riscattato con successo <strong>${fmt(lastOrder.total)}</strong> di provvigione. Una conferma verrà inviata al tuo indirizzo e-mail registrato.</p>
       </div>

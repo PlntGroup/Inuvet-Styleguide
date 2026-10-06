@@ -22,7 +22,7 @@ function setProcessedFilter(key, checked) {
 
 function processedStatusCellHtml(status) {
   if (status === 'approved') {
-    return `<td data-label="Status"><div class="badge --pill"><span class="material-icons" aria-hidden="true">check</span>freigegeben</div></td>`;
+    return `<td data-label="Status"><div class="badge --pill"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>freigegeben</div></td>`;
   }
   return `<td data-label="Status"><div class="badge --pill --error">nicht freigegeben</div></td>`;
 }

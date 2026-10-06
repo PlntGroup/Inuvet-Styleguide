@@ -169,8 +169,8 @@ function completePayout() {
 function copyPromoCode(btn) {
   navigator.clipboard.writeText('T159075X').then(() => {
     const icon = btn.querySelector('.material-icons');
-    icon.textContent = 'check';
-    setTimeout(() => { icon.textContent = 'content_copy'; }, 1500);
+    setUiIcon(icon, 'check');
+    setTimeout(() => { setUiIcon(icon, 'content_copy'); }, 1500);
   });
 }
 
@@ -367,15 +367,15 @@ function renderPDP() {
           </div>
           <div class="accordion">
             <div class="accordion-item --open">
-              <button class="accordion-trigger" type="button" aria-expanded="true" onclick="toggleAccordion(this)">Beschreibung<span class="accordion-icon material-icons">expand_more</span></button>
+              <button class="accordion-trigger" type="button" aria-expanded="true" onclick="toggleAccordion(this)">Beschreibung<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>${p.longDesc}</p></div></div>
             </div>
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Wie funktioniert das?<span class="accordion-icon material-icons">expand_more</span></button>
+              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Wie funktioniert das?<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>Der Wert der Prämie wird von deiner verfügbaren Provision abgezogen. Du hast aktuell <strong>${fmt(provisionAvailable())}</strong> verfügbar.</p></div></div>
             </div>
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Versand &amp; Lieferung<span class="accordion-icon material-icons">expand_more</span></button>
+              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Versand &amp; Lieferung<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>Die Prämie wird innerhalb von 5–7 Werktagen nach Einlösung an deine hinterlegte Adresse gesendet.</p></div></div>
             </div>
           </div>
@@ -394,12 +394,12 @@ function renderCartDrawer() {
       <div class="cart-drawer__header">
         <span class="cart-drawer__title">Prämien-Warenkorb <span class="cart-drawer__count">(0)</span></span>
         <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen">
-          <span class="material-icons">close</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
         </button>
       </div>
       <div class="cart-drawer__empty">
         <div class="empty-state">
-          <span class="material-icons">redeem</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg>
           <p class="empty-state__title">Noch keine Prämie gewählt</p>
           <p class="empty-state__sub">Wähle eine Prämie aus und löse deine Provision ein.</p>
         </div>
@@ -418,7 +418,7 @@ function renderCartDrawer() {
               <div class="cart-item__variant">Prämie</div>
             </div>
             <button type="button" class="btn --icon cart-item__remove" onclick="removeFromCart(${id})" aria-label="Entfernen">
-              <span class="material-icons">close</span>
+              <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
             </button>
           </div>
           <div class="cart-item__bottom">
@@ -436,7 +436,7 @@ function renderCartDrawer() {
     <div class="cart-drawer__header">
       <span class="cart-drawer__title">Prämien-Warenkorb <span class="cart-drawer__count">(${cart.length})</span></span>
       <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen">
-        <span class="material-icons">close</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="cart-drawer__items">${items}</div>
@@ -532,11 +532,11 @@ function renderCheckout() {
             <h3 class="section-label --sub">Versandart</h3>
             <div class="tile-grid --compact">
               <button class="choice-box --block --active" type="button" onclick="setCheckoutOption(this)">
-                <span class="material-icons">local_shipping</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg>
                 <span><strong>Standardversand</strong> — DHL · 3–5 Werktage · <strong>kostenlos</strong></span>
               </button>
               <button class="choice-box --block" type="button" onclick="setCheckoutOption(this)">
-                <span class="material-icons">rocket_launch</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-rocket_launch"></use></svg>
                 <span><strong>Expressversand</strong> — DHL Express · 1–2 Werktage · <strong>4,99 €</strong></span>
               </button>
             </div>
@@ -568,7 +568,7 @@ function renderSuccess() {
     return `
       <div class="container --narrow portal-section">
         <div class="success-state">
-          <span class="success-state__icon material-icons">check_circle</span>
+          <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
           <h1 class="success-state__title">Auszahlung beantragt!</h1>
           <p class="success-state__body"><strong>${fmt(lastOrder.total)}</strong> werden innerhalb von 3–5 Werktagen auf dein hinterlegtes Konto überwiesen.</p>
         </div>
@@ -598,7 +598,7 @@ function renderSuccess() {
   return `
     <div class="container --narrow portal-section">
       <div class="success-state">
-        <span class="success-state__icon material-icons">check_circle</span>
+        <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
         <h1 class="success-state__title">Deine Prämie ist unterwegs!</h1>
         <p class="success-state__body">Du hast <strong>${fmt(lastOrder.total)}</strong> Provision erfolgreich eingelöst. Eine Bestätigung wird an deine hinterlegte E-Mail-Adresse gesendet.</p>
       </div>

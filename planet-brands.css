@@ -1189,6 +1189,23 @@
   }
   .skip-link:focus { top: var(--half-module); }
 
+
+  /* ─── UI icons (official Material SVG, not the Google icon font) ───
+     Keep class .material-icons so existing size/color rules still apply.
+     Default 24px matches the old icon font. font-size on the SVG sets 1em. */
+  .material-icons,
+  .material-icons-outlined {
+    width: 1em;
+    height: 1em;
+    font-size: 1.5rem;
+    fill: currentColor;
+    display: inline-block;
+    flex-shrink: 0;
+    overflow: visible;
+    vertical-align: middle;
+  }
+
+
   /* ─── col-grid — Spaltenraster ───
      row-gap --base: Text stapelt eng wie .flow. column-gap --gutter: Spalten weit.
      .--spaced: einheitlicher Gutter in beide Richtungen (Kacheln, Demos).

@@ -8,6 +8,23 @@
    (demo data, localStorage cart — replace with Cart AJAX).
    ═══════════════════════════════════════════ */
 
+/* UI icons: official Material SVG sprite (#ui-name). Not Inuvet_Icon_* drawings. */
+function uiIcon(name, extraClass) {
+  extraClass = extraClass || '';
+  var cls = 'material-icons' + (extraClass ? ' ' + extraClass : '');
+  return '<svg class="' + cls + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#ui-' + name + '"></use></svg>';
+}
+function setUiIcon(el, name) {
+  if (!el) return;
+  var node = el;
+  if (!node.tagName || node.tagName.toLowerCase() !== 'svg') {
+    node = (el.closest && el.closest('svg')) || (el.querySelector && el.querySelector('svg')) || el;
+  }
+  var u = node.querySelector && node.querySelector('use');
+  if (u) u.setAttribute('href', '#ui-' + name);
+}
+
+
 /* ═══════════════════════════════════════════════════════
    BASIS-UI — Nav, Marquee, Accordion, Scroll-Animationen
    [PORTABEL → Theme]
@@ -1081,7 +1098,7 @@ function renderOptionsDrawer() {
     <div class="options-drawer__header">
       <span class="options-drawer__title">Optionen wählen</span>
       <button type="button" class="btn --icon" onclick="closeOptions()" aria-label="Schließen">
-        <span class="material-icons">close</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="options-drawer__items">
@@ -1105,11 +1122,11 @@ function renderOptionsDrawer() {
         <div class="label-caps options-drawer__section-label">Menge</div>
         <div class="qty-selector --sm">
           <button class="qty-selector__btn" type="button" aria-label="Weniger" onclick="optionsQtyChange(-1)">
-            <span class="material-icons">remove</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg>
           </button>
           <input class="qty-selector__input" type="number" value="1" min="1" max="99" id="optionsQty">
           <button class="qty-selector__btn" type="button" aria-label="Mehr" onclick="optionsQtyChange(1)">
-            <span class="material-icons">add</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg>
           </button>
         </div>
       </div>
@@ -1133,7 +1150,7 @@ function renderCartDrawer() {
     drawer.innerHTML = `
       <div class="cart-drawer__header">
         <span class="cart-drawer__title">Warenkorb <span class="cart-drawer__count">(${cartLineCount()})</span></span>
-        <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><span class="material-icons">close</span></button>
+        <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
       </div>
       <div class="cart-drawer__empty">
         <p class="text-muted">Dein Warenkorb ist noch leer.</p>
@@ -1165,14 +1182,14 @@ function renderCartDrawer() {
               <div class="cart-item__variant">${v.sizeLabel ? v.sizeLabel + ' · ' : ''}${fmt(v.price)} / Stk.</div>
             </div>
             <button type="button" class="btn --icon cart-item__remove" onclick="cartRemove('${v.key}')" aria-label="Entfernen">
-              <span class="material-icons">close</span>
+              <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
             </button>
           </div>
           <div class="cart-item__bottom">
             <div class="qty-selector --sm">
-              <button type="button" class="qty-selector__btn" onclick="cartChangeQty('${v.key}', -1)"><span class="material-icons">remove</span></button>
+              <button type="button" class="qty-selector__btn" onclick="cartChangeQty('${v.key}', -1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
               <input class="qty-selector__input" type="number" value="${v.qty}" min="1" onchange="cartSetQty('${v.key}', parseInt(this.value)||1)">
-              <button type="button" class="qty-selector__btn" onclick="cartChangeQty('${v.key}', 1)"><span class="material-icons">add</span></button>
+              <button type="button" class="qty-selector__btn" onclick="cartChangeQty('${v.key}', 1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
             </div>
             <span class="cart-item__qty-text">${fmt(v.price * v.qty)}</span>
           </div>
@@ -1184,7 +1201,7 @@ function renderCartDrawer() {
   drawer.innerHTML = `
     <div class="cart-drawer__header">
       <span class="cart-drawer__title">Warenkorb <span class="cart-drawer__count">(${cartLineCount()})</span></span>
-      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><span class="material-icons">close</span></button>
+      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     </div>
     <div class="cart-drawer__items">${itemsHTML}</div>
     <div class="cart-drawer__footer">
@@ -1257,7 +1274,7 @@ function showToast(message, variant = 'success') {
   const icons = { success: 'check_circle', error: 'error', info: 'info' };
   const toast = document.createElement('div');
   toast.className = `toast --${variant}`;
-  toast.innerHTML = `<span class="material-icons">${icons[variant] || 'check_circle'}</span><span>${message}</span>`;
+  toast.innerHTML = uiIcon(icons[variant] || 'check_circle') + `<span>${message}</span>`;
   container.appendChild(toast);
   setTimeout(() => {
     toast.classList.add('--out');

@@ -41,7 +41,7 @@ function showToast(message, type) {
   if (!container) return;
   var toast = document.createElement('div');
   toast.className = 'toast --' + type;
-  toast.innerHTML = '<span class="material-icons">' + (icons[type] || 'info') + '</span><span>' + message + '</span>';
+  toast.innerHTML = uiIcon(icons[type] || 'info') + '<span>' + message + '</span>';
   container.appendChild(toast);
   setTimeout(function() {
     toast.classList.add('--out');
@@ -254,7 +254,7 @@ function renderSearchResults(query) {
   if (!matchedProducts.length && !matchedQueries.length) {
     container.innerHTML = `
       <div class="empty-state">
-        <span class="material-icons">search_off</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-search_off"></use></svg>
         <p>Keine Ergebnisse für „${query}"</p>
       </div>`;
     return;
@@ -267,7 +267,7 @@ function renderSearchResults(query) {
       <div class="section-label">Vorschläge</div>`;
     matchedQueries.forEach((qr, i) => {
       html += `<div class="search-result" role="option" data-index="${i}" onclick="closeSearch()">
-        <div class="icon-box --lg"><span class="material-icons">search</span></div>
+        <div class="icon-box --lg"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-search"></use></svg></div>
         <div class="search-result__info"><p class="search-result__name">${qr.text}</p></div>
       </div>`;
     });

@@ -136,8 +136,8 @@ function ratingStarsHTML(ratingStr) {
   const full = Math.round(val);
   return Array.from({ length: 5 }, (_, i) =>
     i < full
-      ? `<span class="material-icons" aria-hidden="true">star</span>`
-      : `<span class="material-icons --empty" aria-hidden="true">star_border</span>`
+      ? `<svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg>`
+      : `<svg class="material-icons --empty" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star_border"></use></svg>`
   ).join('');
 }
 
@@ -158,7 +158,7 @@ function showToast(msg, type = '') {
   const icon = type === 'success' ? 'check_circle' : type === 'error' ? 'error_outline' : 'info';
   const el = document.createElement('div');
   el.className = 'toast' + (type ? ' --' + type : '');
-  el.innerHTML = `<span class="material-icons">${icon}</span><span>${msg}</span>`;
+  el.innerHTML = uiIcon(icon) + `<span>${msg}</span>`;
   container.appendChild(el);
   setTimeout(() => { el.classList.add('--out'); setTimeout(() => el.remove(), 300); }, 3000);
 }
@@ -455,7 +455,7 @@ function openLoginResultPopup() {
 
   document.getElementById('loginResultBody').innerHTML = `
     <div class="mockup-modal__note">
-      <span class="material-icons">info</span>
+      <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-info"></use></svg>
       <span>Simuliert die Backend-Antwort nach Login — welche Freigaben liegen für diesen Kunden vor?</span>
     </div>
     <p class="mockup-modal__desc">Freigaben für diesen Kunden:</p>
@@ -605,7 +605,7 @@ function renderOptionsDrawer() {
     const formBtns = p.darreichungsformen.map((f, i) => {
       const isApprovedForm = av && av.formIndex === i;
       return `<button class="choice-box${i === teOptionsState.formIndex ? ' --active' : ''}${isApprovedForm ? ' --approved' : ''}" type="button"
-        onclick="selectOptionsForm(${i})">${f.label}${isApprovedForm ? '<span class="circle-badge --check choice-box__check"><span class="material-icons">check</span></span>' : ''}</button>`;
+        onclick="selectOptionsForm(${i})">${f.label}${isApprovedForm ? '<span class="circle-badge --check choice-box__check"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg></span>' : ''}</button>`;
     }).join('');
     formSection = `
     <div class="options-drawer__section">
@@ -617,14 +617,14 @@ function renderOptionsDrawer() {
   const variantBtns = currentVariants.map((v, i) => {
     const isApprovedSize = av && av.formIndex === teOptionsState.formIndex && av.variantIndex === i;
     return `<button class="choice-box --sm${i === teOptionsState.variantIndex ? ' --active' : ''}${isApprovedSize ? ' --approved' : ''}" type="button"
-      onclick="selectOptionsVariant(${i})">${v.label}${isApprovedSize ? '<span class="circle-badge --check choice-box__check"><span class="material-icons">check</span></span>' : ''}</button>`;
+      onclick="selectOptionsVariant(${i})">${v.label}${isApprovedSize ? '<span class="circle-badge --check choice-box__check"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg></span>' : ''}</button>`;
   }).join('');
 
   document.getElementById('optionsDrawer').innerHTML = `
     <div class="cart-drawer__header">
       <span class="cart-drawer__title">Optionen wählen</span>
       <button type="button" class="btn --icon" onclick="closeOptions()" aria-label="Schließen">
-        <span class="material-icons">close</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="options-drawer__items">
@@ -649,12 +649,12 @@ function renderOptionsDrawer() {
         <div class="qty-selector --sm">
           <button class="qty-selector__btn" type="button" aria-label="Weniger"
             onclick="optionsQtyChange(-1)">
-            <span class="material-icons">remove</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg>
           </button>
           <input class="qty-selector__input" type="number" value="1" min="1" max="99" id="optionsQty">
           <button class="qty-selector__btn" type="button" aria-label="Mehr"
             onclick="optionsQtyChange(1)">
-            <span class="material-icons">add</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg>
           </button>
         </div>
       </div>
@@ -723,7 +723,7 @@ function pdpGalleryHTML() {
   const approved = isApproved(p);
   const media = [p.img, p.imgHover, p.imgDetail].filter(Boolean);
   const freigabeBadge = approved
-    ? '<div class="badge --pill"><span class="material-icons" aria-hidden="true">check</span>freigegeben</div>'
+    ? '<div class="badge --pill"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>freigegeben</div>'
     : '<div class="badge --pill --honey">Freigabe benötigt</div>';
   const meta = `
     <div class="floating-meta">
@@ -761,7 +761,7 @@ function pdpSocialProofHTML() {
         <img class="social-proof__avatar" src="../assets/images/Partner_Krause_Erl_Thumbnail.jpg" alt="">
         <img class="social-proof__avatar" src="../assets/images/Sarah_Inuvet.png" alt="">
       </div>
-      <p class="social-proof__text">Dr. med vet. Michael Kluge <span class="material-icons social-proof__verified" aria-label="Verifiziert">verified</span> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
+      <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
     </div>`;
 }
 
@@ -769,7 +769,7 @@ function pdpAccordionHTML() {
   const p = activeProduct;
   const item = (title, body) => body ? `
     <div class="accordion-item">
-      <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">${title}<span class="accordion-icon material-icons">expand_more</span></button>
+      <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">${title}<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
       <div class="accordion-content"><div class="accordion-content__inner"><p>${body}</p></div></div>
     </div>` : '';
   return `
@@ -794,7 +794,7 @@ function pdpBuyHTML() {
     const formRows = p.darreichungsformen.map((f, i) => {
       const isApprovedForm = pdpAv && pdpAv.formIndex === i;
       const badge = isApprovedForm
-        ? '<span class="circle-badge --check pdp__type-badge"><span class="material-icons">check</span></span>'
+        ? '<span class="circle-badge --check pdp__type-badge"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg></span>'
         : '';
       return `<label class="pdp__type-row${isApprovedForm ? ' --approved' : ''}">
         <input type="radio" name="pdpType"${i === pdpState.formIndex ? ' checked' : ''} onchange="selectPdpForm(${i})">
@@ -815,7 +815,7 @@ function pdpBuyHTML() {
   const sizeBtns = variants.map((v, i) => {
     const isApprovedSize = pdpAv && pdpAv.formIndex === pdpState.formIndex && pdpAv.variantIndex === i;
     return `<button class="choice-box${i === pdpState.variantIndex ? ' --active' : ''}${isApprovedSize ? ' --approved' : ''}" type="button"
-      onclick="selectPdpVariant(${i})">${v.label}${isApprovedSize ? '<span class="circle-badge --check choice-box__check"><span class="material-icons">check</span></span>' : ''}</button>`;
+      onclick="selectPdpVariant(${i})">${v.label}${isApprovedSize ? '<span class="circle-badge --check choice-box__check"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg></span>' : ''}</button>`;
   }).join('');
   const sizeSection = `
     <div class="pdp__variants">
@@ -823,7 +823,7 @@ function pdpBuyHTML() {
     </div>`;
 
   const usps = (p.usps || []).map(u =>
-    `<li><span class="material-icons" aria-hidden="true">add</span><span>${u}</span></li>`).join('');
+    `<li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>${u}</span></li>`).join('');
   const uspsBlock = usps ? `<ul class="check-list">${usps}</ul>` : '';
 
   const ctaClass = approvedNow ? 'btn --primary' : 'btn --honey';
@@ -853,13 +853,13 @@ function pdpBuyHTML() {
       <div class="pdp__actions">
         <div>
           <div class="qty-selector">
-            <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="pdpQtyChange(-1)"><span class="material-icons">remove</span></button>
+            <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="pdpQtyChange(-1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
             <input class="qty-selector__input" type="number" value="${pdpState.qty}" min="1" max="${maxQty}" id="pdpQty" onchange="pdpSetQty(parseInt(this.value)||1)" aria-label="Menge">
-            <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="pdpQtyChange(1)"><span class="material-icons">add</span></button>
+            <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="pdpQtyChange(1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
           </div>
         </div>
         <button class="${ctaClass}" type="button" onclick="pdpAddToCart()">${ctaLabel}</button>
-        ${productApproved ? `<button class="pdp__wishlist icon-box --md" type="button" aria-label="Zur Wunschliste"><span class="material-icons">favorite_border</span></button>` : ''}
+        ${productApproved ? `<button class="pdp__wishlist icon-box --md" type="button" aria-label="Zur Wunschliste"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-favorite_border"></use></svg></button>` : ''}
       </div>
       ${pdpSocialProofHTML()}
       ${pdpAccordionHTML()}
@@ -933,10 +933,10 @@ function pdpTestimonialsHTML() {
   ];
   const cards = items.map(t => `
     <div class="testimonial">
-      <div class="testimonial__quote-mark"><span class="material-icons">format_quote</span></div>
+      <div class="testimonial__quote-mark"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-format_quote"></use></svg></div>
       <p class="testimonial__text">${t.text}</p>
       <div class="rating">
-        <span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg>
       </div>
       <div class="testimonial__author">
         <div class="testimonial__avatar icon-box"><img src="${t.img}" alt=""></div>
@@ -957,7 +957,7 @@ function pdpRecommendationsHTML() {
   if (!others.length) return '';
   const tiles = others.map(o => {
     const freigabe = isApproved(o)
-      ? '<div class="badge --pill"><span class="material-icons" aria-hidden="true">check</span>freigegeben</div>'
+      ? '<div class="badge --pill"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>freigegeben</div>'
       : '<div class="badge --pill --honey">Freigabe benötigt</div>';
     const animals = productTileAnimalsHTML(o);
     return `
@@ -968,7 +968,7 @@ function pdpRecommendationsHTML() {
           ${o.img ? `<div class="tile__image"><img src="${o.img}" alt="${o.name}"></div>` : '<div class="tile__image placeholder-bg"></div>'}
         </div>
         <div class="flow">
-          <div class="tile__headline-row"><h3 class="tile__headline">${o.name}</h3><div class="rating"><span class="material-icons" aria-hidden="true">star</span> ${o.rating}</div></div>
+          <div class="tile__headline-row"><h3 class="tile__headline">${o.name}</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> ${o.rating}</div></div>
           <div class="tile__description">${o.shortDesc}</div>
         </div>
         <div class="tile__price"><div class="price-stack"><span>ab ${teProductStartPrice(o)}</span></div>${animals}</div>
@@ -1037,7 +1037,7 @@ function updatePdpStickyCta() {
     ? `<div class="pdp__sticky-cta__sizes" role="group" aria-label="Größe">${
         variants.map((s, i) => {
           const isApprovedSize = pdpAv && pdpAv.formIndex === pdpState.formIndex && pdpAv.variantIndex === i;
-          return `<button class="choice-box --sm${i === pdpState.variantIndex ? ' --active' : ''}${isApprovedSize ? ' --approved' : ''}" type="button" onclick="selectPdpVariant(${i})">${s.label}${isApprovedSize ? '<span class="circle-badge --check choice-box__check"><span class="material-icons">check</span></span>' : ''}</button>`;
+          return `<button class="choice-box --sm${i === pdpState.variantIndex ? ' --active' : ''}${isApprovedSize ? ' --approved' : ''}" type="button" onclick="selectPdpVariant(${i})">${s.label}${isApprovedSize ? '<span class="circle-badge --check choice-box__check"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg></span>' : ''}</button>`;
         }).join('')
       }</div>`
     : '';
@@ -1046,9 +1046,9 @@ function updatePdpStickyCta() {
 
   inner.innerHTML = `
     <div class="qty-selector --sm" aria-label="Menge">
-      <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="pdpQtyChange(-1)"><span class="material-icons">remove</span></button>
+      <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="pdpQtyChange(-1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
       <input class="qty-selector__input" type="number" value="${pdpState.qty}" min="1" max="${maxQty}" onchange="pdpSetQty(parseInt(this.value)||1)" aria-label="Menge">
-      <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="pdpQtyChange(1)"><span class="material-icons">add</span></button>
+      <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="pdpQtyChange(1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
     </div>
     ${sizeBlock}
     <button class="${ctaClass}" type="button" onclick="pdpAddToCart()">${ctaLabel}</button>`;
@@ -1155,7 +1155,7 @@ function vetDisplayHTML(vet) {
           aria-label="Ausgewählte Praxis">
         <label for="vetDisplayInput">Deine Praxis</label>
         <button type="button" class="vet-display__clear" onclick="clearSelectedVet()" aria-label="Praxis entfernen">
-          <span class="material-icons" aria-hidden="true">close</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
         </button>
       </div>`;
 }
@@ -1251,7 +1251,7 @@ function renderVetMap() {
     const empty = v.hasRecommended ? '' : ' --empty';
     return `<button type="button" class="vet-map-pin${empty}" style="left:${pos.left};top:${pos.top}"
       onclick="selectVetFromMap(${v.id})" title="${v.name}">
-      <span class="material-icons" aria-hidden="true">location_on</span>
+      <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-location_on"></use></svg>
       <span class="vet-map-pin__label">${v.name}</span>
     </button>`;
   }).join('');
@@ -1452,14 +1452,14 @@ function renderRequestStep() {
   const needsName = hasVet && selectedVet.hasRecommended;
   drawer.innerHTML = `
     <div class="cart-drawer__header">
-      <button type="button" class="btn --icon" onclick="setCartStep(1)" aria-label="Zurück"><span class="material-icons">arrow_back</span></button>
+      <button type="button" class="btn --icon" onclick="setCartStep(1)" aria-label="Zurück"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_back"></use></svg></button>
       <span class="cart-drawer__title">Deine Anfragen</span>
-      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><span class="material-icons">close</span></button>
+      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     </div>
     <div class="cart-drawer__items flow">
       <p class="vet-search__intro">An welche Praxis möchtest du deine Freigabe-Anfrage stellen?</p>
       <button type="button" class="btn --primary --full --with-icon" onclick="openVetMap()">
-        <span class="material-icons">place</span>Praxis auswählen
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-place"></use></svg>Praxis auswählen
       </button>
       ${hasVet ? vetDisplayHTML(selectedVet) : ''}
       ${needsName ? `
@@ -1569,11 +1569,11 @@ function renderSuccessStep(opts = {}) {
   drawer.innerHTML = `
     <div class="cart-drawer__header">
       <span class="cart-drawer__title">Anfrage versendet</span>
-      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><span class="material-icons">close</span></button>
+      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     </div>
     <div class="cart-drawer__items">
       <div class="success-state">
-        <span class="material-icons success-state__icon">check_circle</span>
+        <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
         <div class="flow">
           <h3 class="success-state__title">Anfrage an <strong>${vetName}</strong> erfolgreich versendet.</h3>
           <p class="success-state__body">
@@ -1611,11 +1611,11 @@ function renderCartDrawer() {
     drawer.innerHTML = `
       <div class="cart-drawer__header">
         <span class="cart-drawer__title">Warenkorb <span class="cart-drawer__count">(0)</span></span>
-        <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><span class="material-icons">close</span></button>
+        <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
       </div>
       <div class="cart-drawer__empty">
         <div class="empty-state">
-          <span class="material-icons" aria-hidden="true">shopping_cart</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg>
           <div class="flow">
             <p class="empty-state__title">Dein Warenkorb ist leer.</p>
           </div>
@@ -1658,7 +1658,7 @@ function renderCartDrawer() {
   drawer.innerHTML = `
     <div class="cart-drawer__header">
       <span class="cart-drawer__title">Warenkorb <span class="cart-drawer__count">(${cartTotal()})</span></span>
-      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><span class="material-icons">close</span></button>
+      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     </div>
     <div class="cart-drawer__items">${items}</div>
     <div class="cart-drawer__footer">
@@ -1693,16 +1693,16 @@ function drawerItemHTML(item, type) {
         </div>
         <button type="button" class="btn --icon cart-item__remove" aria-label="Entfernen"
           onclick="removeFromCart('${eName}','${eVar}')">
-          <span class="material-icons">close</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
         </button>
       </div>
       <div class="cart-item__bottom">
         <div class="qty-selector --sm">
           <button class="qty-selector__btn" type="button" aria-label="Weniger"
-            onclick="changeCartQty('${eName}','${eVar}','${type}',-1)"><span class="material-icons">remove</span></button>
+            onclick="changeCartQty('${eName}','${eVar}','${type}',-1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
           <input class="qty-selector__input" type="number" value="${item.qty}" min="1" max="${maxQty}" readonly>
           <button class="qty-selector__btn" type="button" aria-label="Mehr"
-            onclick="changeCartQty('${eName}','${eVar}','${type}',1)"><span class="material-icons">add</span></button>
+            onclick="changeCartQty('${eName}','${eVar}','${type}',1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
         </div>
         <span class="cart-item__qty-text">${(item.price * item.qty).toFixed(2).replace('.',',')} €</span>
       </div>
@@ -1836,13 +1836,13 @@ function renderNav() {
   const cartBtn = document.getElementById('cartBtn');
   cartBtn.setAttribute('aria-label', 'Warenkorb öffnen');
   cartBtn.setAttribute('onclick', 'openCart()');
-  cartBtn.querySelector('.material-icons').textContent = 'shopping_cart';
+  setUiIcon(cartBtn.querySelector('.material-icons'), 'shopping_cart');
 
   if (state === 'guest') {
     const loginBtn = document.createElement('button');
     loginBtn.className = 'btn --icon';
     loginBtn.setAttribute('aria-label', 'Einloggen');
-    loginBtn.innerHTML = '<span class="material-icons">person_outline</span>';
+    loginBtn.innerHTML = '<svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person_outline"></use></svg>';
     loginBtn.onclick = () => openLoginModal('login', 'no-release');
     navRight.appendChild(loginBtn);
   }
@@ -1864,10 +1864,10 @@ const TESTIMONIALS = [
 function testimonialSlideHTML(t) {
   return `
     <div class="testimonial-slider__slide testimonial">
-      <div class="testimonial__quote-mark"><span class="material-icons">format_quote</span></div>
+      <div class="testimonial__quote-mark"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-format_quote"></use></svg></div>
       <p class="testimonial__text">${t.text}</p>
       <div class="rating">
-        <span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span><span class="material-icons" aria-hidden="true">star</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg>
       </div>
       <div class="testimonial__author">
         <div class="testimonial__avatar icon-box${t.img ? '' : ' placeholder-bg'}">${t.img ? `<img src="${t.img}" alt="${t.name}">` : ''}</div>
@@ -1884,9 +1884,9 @@ function testimonialSectionHTML(extraClass = '') {
           ${TESTIMONIALS.map(testimonialSlideHTML).join('')}
         </div>
         <div class="slider-nav">
-          <button class="slider-btn icon-box" type="button" aria-label="Zurück" data-dir="prev" disabled><span class="material-icons">arrow_back</span></button>
+          <button class="slider-btn icon-box" type="button" aria-label="Zurück" data-dir="prev" disabled><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_back"></use></svg></button>
           <span class="slider-counter"></span>
-          <button class="slider-btn icon-box" type="button" aria-label="Weiter" data-dir="next"><span class="material-icons">arrow_forward</span></button>
+          <button class="slider-btn icon-box" type="button" aria-label="Weiter" data-dir="next"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_forward"></use></svg></button>
         </div>
       </div>
       <div class="testimonial-more"><button class="btn --secondary" type="button" onclick="showMoreSlider(this)">Mehr anzeigen</button></div>
@@ -1924,7 +1924,7 @@ function tileHTML(p) {
   if (approved) {
     cartOverlay = `
       <button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb" onclick="openOptions(${p.id})">
-        <span class="material-icons">shopping_cart</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg>
       </button>
       <div class="tile__cart">
         <button class="btn --primary" onclick="openOptions(${p.id})">In den Warenkorb</button>
@@ -1932,7 +1932,7 @@ function tileHTML(p) {
   } else {
     cartOverlay = `
       <button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="Freigabe anfragen" onclick="openOptions(${p.id})">
-        <span class="material-icons">mail_outline</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-mail_outline"></use></svg>
       </button>
       <div class="tile__cart">
         <button class="btn --honey" onclick="openOptions(${p.id})">Freigabe anfragen</button>
@@ -1951,14 +1951,14 @@ function tileHTML(p) {
         <div class="badge" data-cat="${p.cat}">${p.catLabel}</div>
         ${p.familie ? '<div class="badge">Produktfamilie</div>' : ''}
       </div>
-      <div class="floating-meta --right">${approved ? '<div class="badge --pill"><span class="material-icons" aria-hidden="true">check</span>freigegeben</div>' : '<div class="badge --pill --honey">Freigabe benötigt</div>'}</div>
+      <div class="floating-meta --right">${approved ? '<div class="badge --pill"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>freigegeben</div>' : '<div class="badge --pill --honey">Freigabe benötigt</div>'}</div>
       <div class="${imgClass}">${imgContent}</div>
       ${cartOverlay}
     </div>
     <div class="flow">
       <div class="tile__headline-row">
         <h3 class="tile__headline">${p.name}</h3>
-        ${p.rating ? `<div class="rating"><span class="material-icons" aria-hidden="true">star</span><span>${p.rating}</span></div>` : ''}
+        ${p.rating ? `<div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><span>${p.rating}</span></div>` : ''}
       </div>
       <div class="tile__description">${p.shortDesc}</div>
     </div>
@@ -2087,7 +2087,7 @@ function renderFinderStep() {
     <div class="modal finder__modal">
       <div class="modal__header">
         <span class="label-caps">Schritt ${finderStep + 1} von 2</span>
-        <button class="btn --icon" onclick="closeFinder()"><span class="material-icons">close</span></button>
+        <button class="btn --icon" onclick="closeFinder()"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
       </div>
       <div class="modal__body flow">
         <p class="finder__question">${isAnimal ? 'Welches Tier hast du?' : 'Was beschäftigt dich?'}</p>
@@ -2132,7 +2132,7 @@ function renderFinderResult(matches) {
     <div class="modal finder__modal">
       <div class="modal__header">
         <span class="label-caps">Unser Tipp für dich</span>
-        <button class="btn --icon" onclick="closeFinder()"><span class="material-icons">close</span></button>
+        <button class="btn --icon" onclick="closeFinder()"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
       </div>
       <div class="modal__body flow">
         <p class="finder__question">Das könnte passen:</p>
@@ -2449,11 +2449,11 @@ function renderCheckout() {
             <h3 class="section-label">Versandart</h3>
             <div class="tile-grid" style="gap:var(--half-module)">
               <button class="choice-box --block --active" type="button" onclick="this.parentNode.querySelectorAll('.choice-box').forEach(b=>b.classList.remove('--active'));this.classList.add('--active')">
-                <span class="material-icons">local_shipping</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg>
                 <span><strong>Standardversand</strong> — DHL · 3–5 Werktage · <strong>kostenlos</strong></span>
               </button>
               <button class="choice-box --block" type="button" onclick="this.parentNode.querySelectorAll('.choice-box').forEach(b=>b.classList.remove('--active'));this.classList.add('--active')">
-                <span class="material-icons">rocket_launch</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-rocket_launch"></use></svg>
                 <span><strong>Expressversand</strong> — DHL Express · 1–2 Werktage · <strong>4,99 €</strong></span>
               </button>
             </div>
@@ -2463,15 +2463,15 @@ function renderCheckout() {
             <h3 class="section-label">Zahlung</h3>
             <div class="tile-grid" style="gap:var(--half-module)">
               <button class="choice-box --block --active" type="button" onclick="this.parentNode.querySelectorAll('.choice-box').forEach(b=>b.classList.remove('--active'));this.classList.add('--active')">
-                <span class="material-icons">credit_card</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-credit_card"></use></svg>
                 <span>Kreditkarte</span>
               </button>
               <button class="choice-box --block" type="button" onclick="this.parentNode.querySelectorAll('.choice-box').forEach(b=>b.classList.remove('--active'));this.classList.add('--active')">
-                <span class="material-icons">account_balance_wallet</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-account_balance_wallet"></use></svg>
                 <span>PayPal</span>
               </button>
               <button class="choice-box --block" type="button" onclick="this.parentNode.querySelectorAll('.choice-box').forEach(b=>b.classList.remove('--active'));this.classList.add('--active')">
-                <span class="material-icons">receipt_long</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-receipt_long"></use></svg>
                 <span>Rechnung</span>
               </button>
             </div>
@@ -2618,7 +2618,7 @@ function renderSearchResults(query) {
   if (!matchedProducts.length && !matchedQueries.length) {
     container.innerHTML = `
       <div class="empty-state">
-        <span class="material-icons">search_off</span>
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-search_off"></use></svg>
         <div class="flow">
           <p class="empty-state__title">Keine Ergebnisse für „${query}“</p>
         </div>
@@ -2631,7 +2631,7 @@ function renderSearchResults(query) {
     html += `<div class="search-results__section"><div class="section-label">Vorschläge</div>`;
     matchedQueries.forEach((qr, i) => {
       html += `<div class="search-result" role="option" data-index="${i}" onclick="closeSearch()">
-        <div class="icon-box --lg"><span class="material-icons">search</span></div>
+        <div class="icon-box --lg"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-search"></use></svg></div>
         <div class="search-result__info"><p class="search-result__name">${qr.text}</p></div>
       </div>`;
     });

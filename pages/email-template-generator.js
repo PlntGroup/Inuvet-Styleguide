@@ -1390,7 +1390,7 @@
     instructionsEl.innerHTML =
       '<h3 class="section-label --sub">' + escapeHtml(ui.sectionSetup) + '</h3>'
       + '<div class="notice">'
-      + '<p class="notice__title"><span class="material-icons notice__icon" aria-hidden="true">info</span> '
+      + '<p class="notice__title"><svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-info"></use></svg> '
       + escapeHtml(ui.noticeTitle) + '</p>'
       + '<p>' + ui.noticeBody + '</p>'
       + '</div>'

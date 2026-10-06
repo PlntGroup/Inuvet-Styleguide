@@ -197,21 +197,21 @@ const renderBundle = () => {
     if (allMovedToCart() && cartLineCount() > 0) {
       list.innerHTML = `
         <div class="empty-state">
-          <span class="material-icons">shopping_cart</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg>
           <p>Alle Produkte sind in deinem Warenkorb.</p>
           <button type="button" class="btn --secondary --sm" onclick="openCart()">Warenkorb ansehen</button>
         </div>`;
     } else if (restorableSnapshot().length > 0 && !locked) {
       list.innerHTML = `
         <div class="empty-state">
-          <span class="material-icons">inventory_2</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-inventory_2"></use></svg>
           <p>Dein Bundle ist leer.</p>
           <button type="button" class="btn --secondary --sm" onclick="restoreBundle()">Wiederherstellen</button>
         </div>`;
     } else {
       list.innerHTML = `
         <div class="empty-state">
-          <span class="material-icons">inventory_2</span>
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-inventory_2"></use></svg>
           <p>Dein Bundle ist leer.</p>
         </div>`;
     }
@@ -255,7 +255,7 @@ const renderBundle = () => {
             <button type="button" class="btn --icon cart-item__remove"
               onclick="removeProduct(${p.id})" title="Aus Angebot entfernen"
               aria-label="Aus Angebot entfernen"${locked ? ' disabled' : ''}>
-              <span class="material-icons">close</span>
+              <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
             </button>
           </div>
         </div>
@@ -264,14 +264,14 @@ const renderBundle = () => {
             <div class="qty-selector --sm${locked ? ' --disabled' : ''}">
               <button type="button" class="qty-selector__btn"
                 onclick="updateQuantity(${p.id}, -1)"${locked ? ' disabled' : ''}>
-                <span class="material-icons">remove</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg>
               </button>
               <input class="qty-selector__input" type="number"
                 value="${p.quantity}" min="1"${locked ? ' readonly disabled' : ''}
                 onchange="setQuantity(${p.id}, parseInt(this.value)||1)">
               <button type="button" class="qty-selector__btn"
                 onclick="updateQuantity(${p.id}, 1)"${locked ? ' disabled' : ''}>
-                <span class="material-icons">add</span>
+                <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg>
               </button>
             </div>
             ${freeItems > 0 ? `<span class="badge --free">+ ${freeItems} Gratis</span>` : ''}
@@ -279,7 +279,7 @@ const renderBundle = () => {
           <button type="button" class="btn --icon --sm --secondary cart-item__add-to-cart"
             onclick="moveProductToCart(${p.id})" title="In den Warenkorb legen"
             aria-label="In den Warenkorb legen"${locked ? ' disabled' : ''}>
-            <span class="material-icons">shopping_cart</span>
+            <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg>
           </button>
         </div>
       </div>

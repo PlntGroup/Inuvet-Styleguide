@@ -5,7 +5,7 @@
 ## Erstkontakt-Checkliste
 
 1. Sprache: **Deutsch** (Doku, Commits, Antworten). Dateiköpfe in `planet-brands.*`, `brand-*.css`, `sg-only.*` auf **Englisch** (IT-Übergabe).
-2. Globale System-Dateien: `planet-brands.css` / `planet-brands.js` — in alle Pages einbinden. Seitenspezifische Logik → `pages/xyz.js`. Kein Inline-Script. → Details unter „JS-Schichtung".
+2. Globale System-Dateien: `planet-brands.css` / `planet-brands.js` — in alle Pages einbinden. UI-Icons: Material-SVG-Sprite (`#ui-icon-sprite`), nicht das Google-Icon-Font. `Inuvet_Icon_*` bleiben eigene Zeichnungen. Seitenspezifische Logik → `pages/xyz.js`. Kein Inline-Script. → Details unter „JS-Schichtung".
 2b. **Drei Schichten:** System (`planet-brands.*`) · Haut (`brand-{handle}.css`) · Kühlschrank (Store-Inhalte). Inuvet bleibt `:root` in `planet-brands.css`. Planimol = Token-Haut `brand-planimol.css` (`html[data-brand="planimol"]`). Campus = `brand-campus.css` (Campus-only Komponenten + künftige Tokens; im Theme immer geladen, im Guide via Schalter). Neue Marke = `brand-{handle}.css` + eigener Store — niemals Tokens in `planet-brands.css`. `brand-inuvet.css` nur, wenn Inuvet wie andere umgeschaltet werden muss. Shopify `assets/` ist flach, gleicher Basename wie hier.
 2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf `?brand=planimol` / `?brand=campus` + passende `brand-*.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `CLAUDE.md`.
 2d. **Guide-Ordner** (echte Ordner nur hier; Theme `assets/` bleibt flach): `assets/brands/{handle}/{handle}-logo.svg` · `assets/graphics/icons/` (shared, Dateiname = Theme-Asset) · `assets/lotties/` flach (Kühlschrank, gleicher Dateiname im Theme). Neue Marke = neuer Ordner `brands/{handle}/`. `brand-*.css` bleibt im Root.
@@ -107,6 +107,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 | `brand-planimol.css` | Marken-Haut: `html[data-brand="planimol"]` überschreibt Schrift, Grün, FG, Borders, Produktfarben. Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
 | `brand-campus.css` | Campus-Haut: Weiche, Webinar-Metas, PDP-/Collection-Deltas. Theme immer; Guide `#skin-campus` bei `data-brand="campus"`. | Inuvet-Shop-Styles, Guide-Chrome |
 | `sg-only.css` | Styleguide-eigene UI (`.sg-*` Präfix) — nicht für Shopify | Echte Produkt-Komponenten |
+| `assets/graphics/material-icons/` | UI-Icons: offizielle Material-SVGs (Apache-2.0), Sprite im HTML. Klasse `.material-icons`. Theme: `snippets/icon.liquid` + `ui-icon-sprite`. | Benefit-/Markenzeichnungen `Inuvet_Icon_*`, Google-Fonts-CDN |
 | `mockup-ui.css` | Dev-UI Chrome (Mockup-Bar, FAB, Mockup-Modal) | Page-Content, `planet-brands.css`-Klassen wie `.btn` oder `.form-field` |
 | `mockup-ui.js` | Mockup-Chrome-JS (Alt+M / ⌥M Toggle) | Produktions-/Theme-Code |
 | `pages/[name].css` | Page-spezifische Overrides | Globale Design-System-Änderungen |
