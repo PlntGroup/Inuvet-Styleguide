@@ -1,8 +1,9 @@
 /* ═══════════════════════════════════════════
    planet-brands.css — Design System
-   Tokens · Komponenten · Layout
-   Inuvet bleibt :root-Default
-   Verwendung: alle Seiten (Theme + Dokumentation)
+   Base styles for all Planet brands:
+   tokens, components, layout.
+   Load this in every Shopify theme.
+   Brand extensions (brand-*.css) load after.
    ═══════════════════════════════════════════ */
   :root {
     --base: 1rem;
@@ -1144,6 +1145,10 @@
   .container.--pt-0,
   .container.--flush-top { padding-top: 0; } /* --flush-top = Alias für --pt-0 */
   .container.--pb { padding-bottom: var(--section-gap); }
+
+  /* Section-Hintergrund: volle Breite der Shopify-Section, Tokens */
+  .shopify-section:has(.--bg-green-light) { background-color: var(--green-light); }
+  .shopify-section:has(.--bg-notice) { background-color: var(--color-notice-bg); }
 
   /* ─── Page-Header — Seitenkopf für Portal- und Listen-Seiten ───
      H1 mit optionalem Zähler (.circle-badge.--num) inline daneben.

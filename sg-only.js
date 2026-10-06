@@ -1,3 +1,9 @@
+/* ═══════════════════════════════════════════
+   sg-only.js — Styleguide scripts
+   Documentation pages only.
+   Do not copy into Shopify or any production theme.
+   ═══════════════════════════════════════════ */
+
 // ─── Modal ───
 function openModal(id) {
   document.getElementById(id).classList.add('--open');

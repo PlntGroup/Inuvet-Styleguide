@@ -1,9 +1,9 @@
 /* ═══════════════════════════════════════════
-   Campus — Haut + Campus-only Komponenten
-   Nach planet-brands.css laden.
-   Theme: immer (kein data-brand).
-   Styleguide: Link #skin-campus, aktiv bei data-brand="campus".
-   Tokens hier, sobald die Campus-Haut feststeht — nicht in planet-brands.css.
+   brand-campus.css — Brand extension
+   Campus-only additions on top of planet-brands.css.
+   Load after the base file. One brand-*.css per brand.
+   Theme: always (no data-brand switch).
+   Styleguide: enable via #skin-campus when data-brand="campus".
    ═══════════════════════════════════════════ */
 
 /* ─── Collection: größere Produkt-Headlines ─── */

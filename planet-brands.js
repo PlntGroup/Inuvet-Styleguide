@@ -1,12 +1,12 @@
-/* ═══════════════════════════════════════════════════════
-   planet-brands.js — Globale UI-Hilfsfunktionen & Shop-Core
-   Auf allen Seiten einbinden (analog zu planet-brands.css).
+/* ═══════════════════════════════════════════
+   planet-brands.js — Design System
+   Base scripts for all Planet brands.
+   Load this alongside planet-brands.css.
 
-   Theme-Portabilität (Shopify): Jeder Block ist markiert.
-   [PORTABEL → Theme]        unverändert ins Theme-Bundle übernehmen
-   [MOCKUP — nicht portieren] Demo-Daten & localStorage-Warenkorb —
-   im Theme neu gegen die Cart AJAX API (siehe CLAUDE.md → JS-Schichtung).
-   ═══════════════════════════════════════════════════════ */
+   Shopify: copy [PORTABEL → Theme] blocks into the theme.
+   [MOCKUP — nicht portieren] stays in the styleguide
+   (demo data, localStorage cart — replace with Cart AJAX).
+   ═══════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════════════════
    BASIS-UI — Nav, Marquee, Accordion, Scroll-Animationen

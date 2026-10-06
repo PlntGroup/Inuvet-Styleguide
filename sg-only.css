@@ -1,6 +1,7 @@
 /* ═══════════════════════════════════════════
-   inuvet Styleguide UI
-   Nur für Dokumentationsseiten verwenden
+   sg-only.css — Styleguide UI
+   Documentation pages only.
+   Do not copy into Shopify or any production theme.
    ═══════════════════════════════════════════ */
   /* ─── Section ─── */
   .sg-section { margin-bottom: var(--module-2xl); }

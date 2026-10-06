@@ -1,8 +1,9 @@
 /* ═══════════════════════════════════════════
-   Planimol — Marken-Haut
-   Nur Tokens. Rhythmus und Komponenten bleiben planet-brands.css.
-   Aktiv: html[data-brand="planimol"]
-   Primärfarbe = Gastro (#38b449)
+   brand-planimol.css — Brand extension
+   Planimol token skin on top of planet-brands.css.
+   Tokens only — rhythm and components stay in the base file.
+   Load after planet-brands.css.
+   Active: html[data-brand="planimol"]
    ═══════════════════════════════════════════ */
 
 html[data-brand="planimol"] {
