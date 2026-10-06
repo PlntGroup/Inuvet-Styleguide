@@ -360,7 +360,7 @@
     <section class="sg-section-v2 flow" id="A4">
       <h2 class="section-label">A.4 — Typografie</h2>
       <div class="col-grid" data-cols="2">
-        <p>Schrift: <strong>Schnebel Sans</strong> via Adobe Typekit (Fallback <code>sans-serif</code>). Sechs Ebenen: H1–H4, Body, Caption — plus das Uppercase-Label für Sektions-Titel und Tabellen-Header. Icons: Google Material Icons (CDN).</p>
+        <p>Schrift: <strong>Schnebel Sans</strong> via Adobe Typekit (Fallback <code>sans-serif</code>). Sechs Ebenen: H1–H4, Body, Caption — plus das Uppercase-Label für Sektions-Titel und Tabellen-Header. UI-Icons: Material-SVG-Sprite (nicht der Google-Icon-Font) → <a href="#B3">B.3</a>.</p>
         <p>Fluid Typography: alle Größen skalieren stufenlos via <code>clamp()</code> zwischen Mobil-Minimum und Desktop-Maximum. Line-Heights als Faktor, nicht als fester rem-Wert.</p>
       </div>
 
@@ -1604,14 +1604,14 @@
     <section class="sg-section-v2 flow" id="B3">
       <h2 class="section-label">B.3 — Icons &amp; icon-box</h2>
       <div class="col-grid" data-cols="2">
-        <p>Google Material Icons (Filled) als Standard — Einbindung via Google Fonts CDN. Brand-Logos (Footer) als inline-SVG aus <a href="https://simpleicons.org/" target="_blank">Simple Icons</a> → <code>.footer-social</code> unten.</p>
+        <p>UI-Icons: offizielle Material-SVGs (Filled 24px, Apache-2.0) als Sprite <code>#ui-icon-sprite</code>. Klasse <code>.material-icons</code> bleibt — kein Webfont, kein Google-CDN. Nicht die Benefit-Zeichnungen <code>Inuvet_Icon_*</code>. Footer-Markenlogos weiter als inline-SVG aus <a href="https://simpleicons.org/" target="_blank">Simple Icons</a> → <code>.footer-social</code> unten.</p>
         <p><code>.icon-box</code> = quadratischer Flex-Container in vier Stufen. Count-Badges über <code>.icon-badged</code> → auch <a href="#B2">B.2</a>.</p>
       </div>
 
       <div class="rules">
         <div class="rule">
           <h4>Icon-Set</h4>
-          <p>Google Material Icons (Filled) als Standard. Größe nach Kontext: <code>1rem</code> inline, <code>1.25rem</code> in Buttons/Navigation, <code>2.25rem</code> als Feature-Icon.</p>
+          <p>Material filled 24px als inline-SVG. Größe nach Kontext via <code>font-size</code> auf <code>.material-icons</code> (<code>width/height: 1em</code>): <code>1rem</code> inline, <code>1.25rem</code> in Buttons/Navigation, <code>2.25rem</code> als Feature-Icon. Default: <code>1.5rem</code> (24px).</p>
         </div>
         <div class="rule">
           <h4>icon-box</h4>
@@ -1619,17 +1619,19 @@
         </div>
         <div class="rule">
           <h4>Interaktiver Hover</h4>
-          <p>Klickbare Icons skalieren auf Hover auf <code>1.15</code> — gilt für <code>.btn.--icon</code> (Material Icons) und <code>.footer-social__link</code> (Brand-SVG). Transition: <code>var(--anim-fast)</code>.</p>
+          <p>Klickbare Icons skalieren auf Hover auf <code>1.15</code> — gilt für <code>.btn.--icon</code> (UI-SVG) und <code>.footer-social__link</code> (Brand-SVG). Transition: <code>var(--anim-fast)</code>.</p>
         </div>
       </div>
 
       <h3 class="sg-h3 --top"><code>.material-icons</code></h3>
       <table class="spec-table">
-        <tr><th>Set</th><td>Google Material Icons · <code>font-family: 'Material Icons'</code></td></tr>
-        <tr><th>Größen</th><td><code>1rem</code> (inline/Sterne) · <code>1.25rem</code> (Nav/Buttons/Accordion) · <code>2.25rem</code> (Upload/Feature)</td></tr>
-        <tr><th>Farbe</th><td>Erbt <code>color</code> vom Elternelement. Standard: <code>--fg</code>. Sekundär: <code>--fg-muted</code>.</td></tr>
+        <tr><th>Set</th><td>Offizielle Material-SVGs (Filled 24px, Apache-2.0) · Sprite <code>#ui-icon-sprite</code> · Quelle <code>assets/graphics/material-icons/</code>. Kein Webfont, kein Google-CDN.</td></tr>
+        <tr><th>Markup</th><td><code>&lt;svg class="material-icons" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="#ui-close"&gt;&lt;/use&gt;&lt;/svg&gt;</code> · Theme: <code>{% render 'icon', name: 'close' %}</code></td></tr>
+        <tr><th>Größen</th><td><code>1rem</code> (inline/Sterne) · <code>1.25rem</code> (Nav/Buttons/Accordion) · <code>2.25rem</code> (Upload/Feature) · Default <code>1.5rem</code>. Größe setzt <code>font-size</code>; das SVG ist <code>1em</code>.</td></tr>
+        <tr><th>Farbe</th><td><code>fill: currentColor</code> — erbt <code>color</code> vom Elternelement. Standard: <code>--fg</code>. Sekundär: <code>--fg-muted</code>.</td></tr>
         <tr><th>Ausrichtung</th><td>Vertikal zentriert zum Text via <code>vertical-align: middle</code> oder Flex-Alignment.</td></tr>
         <tr><th>Hover (interaktiv)</th><td>In <code>.btn.--icon</code>: <code>transform: scale(1.15)</code> auf dem Icon · gleiches Muster für Footer-Brand-Icons → <code>.footer-social</code></td></tr>
+        <tr><th>Nicht hier</th><td>Benefit-/Kachel-Zeichnungen <code>Inuvet_Icon_*</code> — eigener Satz, nicht Material.</td></tr>
       </table>
 
       <h3 class="sg-h3 --top"><code>.link.--with-icon</code></h3>
@@ -3357,7 +3359,7 @@
 
       <pre class="sg-code"><code>&lt;div class="nav-item"&gt;
   &lt;a href="#" class="nav-item__trigger"&gt;
-    Produkte &lt;span class="material-icons" aria-hidden="true"&gt;expand_more&lt;/span&gt;
+    Produkte &lt;svg class="material-icons" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="#ui-expand_more"&gt;&lt;/use&gt;&lt;/svg&gt;
   &lt;/a&gt;
   &lt;div class="nav-item__dropdown"&gt;
     &lt;a href="#"&gt;Gelenke &amp;amp; Bewegung&lt;/a&gt;
@@ -3449,7 +3451,7 @@
       <pre class="sg-code"><code>&lt;!-- Desktop: Portal-Bereich als .nav-item (Empfehlung) --&gt;
 &lt;div class="nav-item"&gt;
   &lt;a href="Inuvet-Freigabe-Ausstellen.html" class="nav-item__trigger"&gt;
-    Empfehlung &lt;span class="material-icons" aria-hidden="true"&gt;expand_more&lt;/span&gt;
+    Empfehlung &lt;svg class="material-icons" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="#ui-expand_more"&gt;&lt;/use&gt;&lt;/svg&gt;
   &lt;/a&gt;
   &lt;div class="nav-item__dropdown"&gt;
     &lt;a href="Inuvet-Freigabe-Ausstellen.html" aria-current="page"&gt;Empfehlung ausstellen&lt;/a&gt;
@@ -3468,7 +3470,7 @@
         </div>
         <div class="rule">
           <h4>Account</h4>
-          <p>Icon-Link <code>.btn.--icon</code> mit Material Icon <code>person</code> — Label nur per <code>aria-label</code> („Anmelden" / „Konto"). Reihenfolge: Land → Account → Suche → Warenkorb.</p>
+          <p>Icon-Link <code>.btn.--icon</code> mit UI-Icon <code>person</code> — Label nur per <code>aria-label</code> („Anmelden" / „Konto"). Reihenfolge: Land → Account → Suche → Warenkorb.</p>
         </div>
         <div class="rule">
           <h4>Mobile</h4>
@@ -3487,7 +3489,7 @@
   &lt;a href="#" class="nav-item__trigger" id="countryTrigger"
     aria-haspopup="true" aria-expanded="false" aria-label="Land wählen"&gt;
     &lt;span data-country-label&gt;DE&lt;/span&gt;
-    &lt;span class="material-icons" aria-hidden="true"&gt;expand_more&lt;/span&gt;
+    &lt;svg class="material-icons" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="#ui-expand_more"&gt;&lt;/use&gt;&lt;/svg&gt;
   &lt;/a&gt;
   &lt;div class="nav-item__dropdown" role="menu"&gt;
     &lt;a href="#" role="menuitem" data-country="de" aria-current="true"&gt;Deutschland&lt;/a&gt;
@@ -3496,7 +3498,7 @@
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;a class="btn --icon" href="/account/login" aria-label="Anmelden"&gt;
-  &lt;span class="material-icons"&gt;person&lt;/span&gt;
+  &lt;svg class="material-icons" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="#ui-person"&gt;&lt;/use&gt;&lt;/svg&gt;
 &lt;/a&gt;</code></pre>
 
       <div class="sg-demo --white --flush">
