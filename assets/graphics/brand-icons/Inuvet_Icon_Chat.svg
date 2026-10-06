@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 960" aria-hidden="true">
   <path fill="currentColor" d="M80,880V160c0-22,7.8-40.8,23.5-56.5s34.5-23.5,56.5-23.5h640c22,0,40.8,7.8,56.5,23.5s23.5,34.5,23.5,56.5v480c0,22-7.8,40.8-23.5,56.5-15.7,15.7-34.5,23.5-56.5,23.5H240l-160,160ZM206,640h594V160H160v525l46-45ZM160,640V160v480Z"/>
-  <rect fill="#78b41b" x="240" y="480" width="320" height="80"/>
-  <rect fill="#78b41b" x="240" y="360" width="480" height="80"/>
-  <rect fill="#78b41b" x="240" y="240" width="480" height="80"/>
+  <rect fill="var(--green)" x="240" y="480" width="320" height="80"/>
+  <rect fill="var(--green)" x="240" y="360" width="480" height="80"/>
+  <rect fill="var(--green)" x="240" y="240" width="480" height="80"/>
 </svg>

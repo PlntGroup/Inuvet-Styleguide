@@ -1347,14 +1347,14 @@ document.addEventListener('DOMContentLoaded', updateCartBadge);
    [PORTABEL → Theme]
    ═══════════════════════════════════════════════════════ */
 
-/** Icon-URL: Theme = flache Assets via body[data-asset-base]; Styleguide = graphics/icons/. */
+/** Icon-URL: Theme = flache Assets via body[data-asset-base]; Styleguide = graphics/brand-icons/. */
 function themeIconUrl(file) {
   var base = (typeof document !== 'undefined' && document.body && document.body.dataset.assetBase)
     ? document.body.dataset.assetBase
     : '';
   if (base) return base + file;
   var root = (/\/pages(\/|$)/.test(location.pathname) ? '../assets/' : 'assets/');
-  return root + 'graphics/icons/' + file;
+  return root + 'graphics/brand-icons/' + file;
 }
 
 function animalsIconsHTML(animals, opts) {

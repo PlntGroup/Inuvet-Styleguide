@@ -1741,7 +1741,7 @@
       <table class="spec-table">
         <tr><th><code>.footer-social</code></th><td>Flex-Zeile · <code>gap: calc(var(--base) * 0.5)</code> · Footer-Spalte „Folge uns“ → <a href="#footer-social">D.2</a></td></tr>
         <tr><th><code>.footer-social__link</code></th><td>Touch-Target <code>var(--icon-box-sm)</code> · kein Border, kein Hintergrund, kein <code>.icon-box</code> · <code>aria-label</code> Pflicht</td></tr>
-        <tr><th><code>.footer-social__icon</code></th><td>Inline-SVG · <code>1.125rem</code> · <code>fill: currentColor</code> · Quellen: <a href="https://simpleicons.org/" target="_blank">Simple Icons</a> (MIT) in <code>assets/graphics/social/</code></td></tr>
+        <tr><th><code>.footer-social__icon</code></th><td>Inline-SVG · <code>1.125rem</code> · <code>fill: currentColor</code> · Quellen: <a href="https://simpleicons.org/" target="_blank">Simple Icons</a> (MIT) in <code>assets/graphics/social-icons/</code></td></tr>
         <tr><th>Hover</th><td>Icon <code>scale(1.15)</code> — identisch zu <code>.btn.--icon:hover .material-icons</code></td></tr>
       </table>
       <div class="sg-demo">
@@ -5447,7 +5447,7 @@
                   <span class="price-stack__compare">37,40 €</span>
                 </div>
                 <div class="pdp__daily-cost" aria-label="Tageskosten ab 0,77 Euro für einen 10kg Hund">
-                  <span class="pdp__daily-cost__icon" aria-hidden="true" style="-webkit-mask-image:url('assets/graphics/icons/Icon_Form_Pulver.svg');mask-image:url('assets/graphics/icons/Icon_Form_Pulver.svg')"></span>
+                  <span class="pdp__daily-cost__icon" aria-hidden="true" style="-webkit-mask-image:url('assets/graphics/brand-icons/Icon_Form_Pulver.svg');mask-image:url('assets/graphics/brand-icons/Icon_Form_Pulver.svg')"></span>
                   <span class="pdp__daily-cost__text">
                     <span class="pdp__daily-cost__amount">ab €0,77 EUR</span>
                     <span class="pdp__daily-cost__note">für einen 10kg Hund</span>
@@ -5598,7 +5598,7 @@
       <p class="sg-caption">Sticky-Galerie · Trust unter Angebot (ohne Aside in der Demo) · Akkordeon in der Info-Spalte · Live inkl. Aside → <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html</a> · Warenkorb → <a href="#E4">E.4</a>.</p>
 
       <h3 class="sg-h3 --top" id="pdp-family">Produktfamilie — Typ-Selektor</h3>
-      <p>Oberhalb der Größenauswahl: <code>.pdp__type-selector</code> mit Radio-Zeilen — <strong>ohne</strong> Spaltenköpfe. Tierart rechts als Icons (<code>assets/graphics/icons/Icon_Tier_*.svg</code>). Form-Hinweis → <code>.pdp__type-hint</code>. Galerie: Kategorie-Badge + „Produktfamilie" (Pflicht). Layout: <code>.pdp--sticky-gallery</code>; Social Proof in der Demo ohne Aside (Aside ≥1536 nur Live).</p>
+      <p>Oberhalb der Größenauswahl: <code>.pdp__type-selector</code> mit Radio-Zeilen — <strong>ohne</strong> Spaltenköpfe. Tierart rechts als Icons (<code>assets/graphics/brand-icons/Icon_Tier_*.svg</code>). Form-Hinweis → <code>.pdp__type-hint</code>. Galerie: Kategorie-Badge + „Produktfamilie" (Pflicht). Layout: <code>.pdp--sticky-gallery</code>; Social Proof in der Demo ohne Aside (Aside ≥1536 nur Live).</p>
       <table class="spec-table">
         <tr><th><code>.pdp__type-selector</code></th><td>Radio-Zeilen in <code>.pdp__variants</code> · keine Header-Zeile</td></tr>
         <tr><th><code>.pdp__type-row</code></th><td>Grid: Radio + Label + Tierart-Icons · Trennlinie <code>--border-light</code></td></tr>
@@ -5647,15 +5647,15 @@
                     <input type="radio" name="pdpType" checked> <span class="pdp__type-label">Pulver (für Allergiker geeignet)</span>
                     <span class="pdp__type-animals">
                       <span class="visually-hidden">für </span>
-                      <span class="pdp__type-animal-icon" role="img" aria-label="Katze" style="-webkit-mask-image:url('assets/graphics/icons/Icon_Tier_Katze.svg');mask-image:url('assets/graphics/icons/Icon_Tier_Katze.svg')"></span>
-                      <span class="pdp__type-animal-icon" role="img" aria-label="Hund" style="-webkit-mask-image:url('assets/graphics/icons/Icon_Tier_Hund_L.svg');mask-image:url('assets/graphics/icons/Icon_Tier_Hund_L.svg')"></span>
+                      <span class="pdp__type-animal-icon" role="img" aria-label="Katze" style="-webkit-mask-image:url('assets/graphics/brand-icons/Icon_Tier_Katze.svg');mask-image:url('assets/graphics/brand-icons/Icon_Tier_Katze.svg')"></span>
+                      <span class="pdp__type-animal-icon" role="img" aria-label="Hund" style="-webkit-mask-image:url('assets/graphics/brand-icons/Icon_Tier_Hund_L.svg');mask-image:url('assets/graphics/brand-icons/Icon_Tier_Hund_L.svg')"></span>
                     </span>
                   </label>
                   <label class="pdp__type-row">
                     <input type="radio" name="pdpType"> <span class="pdp__type-label">Tabletten</span>
                     <span class="pdp__type-animals">
                       <span class="visually-hidden">für </span>
-                      <span class="pdp__type-animal-icon" role="img" aria-label="Hund" style="-webkit-mask-image:url('assets/graphics/icons/Icon_Tier_Hund_L.svg');mask-image:url('assets/graphics/icons/Icon_Tier_Hund_L.svg')"></span>
+                      <span class="pdp__type-animal-icon" role="img" aria-label="Hund" style="-webkit-mask-image:url('assets/graphics/brand-icons/Icon_Tier_Hund_L.svg');mask-image:url('assets/graphics/brand-icons/Icon_Tier_Hund_L.svg')"></span>
                     </span>
                   </label>
                 </div>
@@ -5667,7 +5667,7 @@
                   <span class="price-stack__compare">49,90 €</span>
                 </div>
                 <div class="pdp__daily-cost" aria-label="Tageskosten ab 0,77 Euro für einen 10kg Hund">
-                  <span class="pdp__daily-cost__icon" aria-hidden="true" style="-webkit-mask-image:url('assets/graphics/icons/Icon_Form_Pulver.svg');mask-image:url('assets/graphics/icons/Icon_Form_Pulver.svg')"></span>
+                  <span class="pdp__daily-cost__icon" aria-hidden="true" style="-webkit-mask-image:url('assets/graphics/brand-icons/Icon_Form_Pulver.svg');mask-image:url('assets/graphics/brand-icons/Icon_Form_Pulver.svg')"></span>
                   <span class="pdp__daily-cost__text">
                     <span class="pdp__daily-cost__amount">ab €0,77 EUR</span>
                     <span class="pdp__daily-cost__note">für einen 10kg Hund</span>
