@@ -220,6 +220,13 @@ function initLottieAspect(root) {
         const w = data && data.w;
         const h = data && data.h;
         if (w && h) {
+          const sectionEl = player.closest('.section-type');
+          const hasFixedRatio = sectionEl && (
+            sectionEl.classList.contains('--ratio-1-1') ||
+            sectionEl.classList.contains('--ratio-4-3') ||
+            sectionEl.classList.contains('--ratio-16-9')
+          );
+          if (hasFixedRatio) return;
           player.style.aspectRatio = w + ' / ' + h;
           /* V3/V4 Cover: height 100%. V3 --media-ratio und V1/V2: Höhe aus JSON-Ratio. */
           if (player.closest('.section-type.--v3.--media-ratio') ||

@@ -411,7 +411,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 |---|---|---|---|
 | D.1 | Navigation | `.site-nav .announcement-bar .nav-logo` | Frosted Glass · `body.--nav-scrolled` · Logo-Setting `body[data-nav-logo="campus"]` · Aktiv-Zustand via `aria-current="page"` · Zähler-Badge `[data-nav-open-count]` · Utility: `.nav-item.--end` Land + Account-Icon in `.nav-right` |
 | D.2 | Footer | `.site-footer` | `.footer-bar__top` („Nach oben“) · `.footer-payment` |
-| D.3 | Hero-Sections | `.section-type` | `--v1 --v2 --v3 --v4 --reverse --viewport` · **V1–V4:** Bild / Lottie / Video · Video: Ambient (stumm, Loop) oder Klick (Poster + Ton) · `.media-video` · V3/V4 Cover · `--content-top|--content-center|--content-bottom` · V3/V4 `--mt`/`--mb` (`margin_top` Default an) · Badges nur V1/V2 · Shopify: `Hero V1`–`V4`, Snippets `section-type-media` + `media-video` |
+| D.3 | Hero-Sections | `.section-type` | `--v1 --v2 --v3 --v4 --reverse --viewport` · **V1–V4:** Bild / Lottie / Video · Video: Ambient (stumm, Loop) oder Klick (Poster + Ton) · `.media-video` · **V1/V2 Medienverhältnis:** Original oder `--ratio-1-1` / `--ratio-4-3` / `--ratio-16-9` (Cover mittig; V2 + Viewport ignoriert) · V3/V4 Cover · `--content-top|--content-center|--content-bottom` · V3/V4 `--mt`/`--mb` (`margin_top` Default an) · Badges nur V1/V2 · Shopify: `Hero V1`–`V4`, Snippets `section-type-media` + `media-video` |
 | D.4 | Kachel-Raster | `.tile-grid` | `--cols-2/3/4` · Kacheln: `--featured` (grün, optional Bild/Lottie/Video), `--product` |
 | D.5 | Testimonials | `.testimonial-grid .testimonial-slider` | — |
 | D.6 | Marquee | `.marquee` | — |

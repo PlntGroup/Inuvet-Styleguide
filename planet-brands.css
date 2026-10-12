@@ -1531,6 +1531,54 @@
     min-height: 0;
     align-self: stretch;
   }
+
+  /* V1/V2 Medienverhältnis. Ohne Modifier = Original (Datei).
+     1:1 / 4:3 / 16:9: Slot-Höhe aus aspect-ratio, Motiv cover mittig.
+     V2 --viewport bleibt Cover auf Section-Höhe. */
+  .section-type.--v1.--ratio-1-1:not(.--viewport),
+  .section-type.--v2.--ratio-1-1:not(.--viewport) { --media-slot-ratio: 1 / 1; }
+  .section-type.--v1.--ratio-4-3:not(.--viewport),
+  .section-type.--v2.--ratio-4-3:not(.--viewport) { --media-slot-ratio: 4 / 3; }
+  .section-type.--v1.--ratio-16-9:not(.--viewport),
+  .section-type.--v2.--ratio-16-9:not(.--viewport) { --media-slot-ratio: 16 / 9; }
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image,
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation {
+    aspect-ratio: var(--media-slot-ratio);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    align-self: start;
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture,
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image .media-video,
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation lottie-player,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image .media-video,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation lottie-player {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-width: none;
+    max-height: none;
+  }
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
+  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video {
+    object-fit: cover;
+    object-position: center;
+  }
+
   .section-type.--v2 .section-type__content > * {
     animation: heroFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
@@ -5408,6 +5456,25 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       height: auto;
       min-height: 0;
       object-fit: unset;
+    }
+    /* Festes Verhältnis bleibt Cover, auch gestapelt */
+    .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture,
+    .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      min-height: 0;
+    }
+    .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
+    .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
+    .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
+    .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
     }
     .section-type.--reverse { direction: ltr; }
     .section-type.--v1 .section-type__content,

@@ -3735,12 +3735,13 @@
         <tr><th><code>.section-type__content.flow</code></th><td>Content-Box · Headline → <code>.section-type__bottom.flow</code></td></tr>
         <tr><th><code>.section-type__bottom.flow</code></th><td>Body + CTA · Body → Button via <code>* + .btn</code> / <code>* + .btn-row</code> (<a href="#A7">A.7</a>) · Shop: immer <code>.btn-row</code> (auch bei einem Button)</td></tr>
         <tr><th>Medien-Typ</th><td><code>lottie</code> · <code>image</code> · <code>video</code> · Shopify: Toggle + Snippet <code>section-type-media</code> / <code>media-video</code></td></tr>
+        <tr><th>Medienverhältnis</th><td>V1/V2: Default Original (Datei) · optional fest <code>--ratio-1-1</code> · <code>--ratio-4-3</code> · <code>--ratio-16-9</code> (Cover mittig) · V2 + <code>--viewport</code> ignoriert das Verhältnis · Shopify: Select an Hero V1 / V2</td></tr>
         <tr><th>Video Ambient</th><td><code>data-media-video="ambient"</code> · stumm · Loop · Autoplay · Pause außerhalb Viewport · bei <code>prefers-reduced-motion</code> nur Poster</td></tr>
         <tr><th>Video Klick</th><td><code>data-media-video="click"</code> · Poster + <code>.media-video__play</code> · nach Klick Ton + Controls · Datei aus Shopify Files, kein YouTube</td></tr>
       </table>
 
       <h3 class="sg-h3 --top" id="hero-v1">Variante 1 — Bild + Text</h3>
-      <p>Kein Hintergrund auf der Content-Seite · H1 · Gap <code>var(--gutter)</code>. Medienhöhe folgt der <strong>Dateiproportion</strong> — kein Cover mit fixer Min-Höhe.</p>
+      <p>Kein Hintergrund auf der Content-Seite · H1 · Gap <code>var(--gutter)</code>. Medienhöhe folgt der <strong>Dateiproportion</strong> — oder fest 1:1 / 4:3 / 16:9 (Cover mittig).</p>
       <table class="spec-table">
         <tr><th>Headline</th><td><code>.section-type__headline</code> · H1-Stufe · <code>--text-xl</code> · Shopify: Tag H1|H2 einstellbar (eine H1 pro Seite)</td></tr>
         <tr><th>Content-BG</th><td>Transparent</td></tr>
@@ -3748,7 +3749,8 @@
         <tr><th>Layout</th><td>Headline + <code>.section-type__bottom</code> (Body + CTA) · Abstände via <code>.flow</code></td></tr>
         <tr><th>Breite</th><td><code>max-width: var(--container-max)</code> · Content mit Bild: max <code>36rem</code></td></tr>
         <tr><th>Bild-Markup</th><td><code>.section-type__image</code> → <code>&lt;img&gt;</code> (<code>width: 100%</code>, <code>height: auto</code>) · kein <code>background-image</code> + Cover</td></tr>
-        <tr><th>Höhe</th><td>Desktop: Bild-Spalte mind. Content-Höhe (<code>align-items: stretch</code> + <code>object-fit: cover</code>) · hohes Bild darf Zeile wachsen · Mobil: natürliche Bildhöhe · Placeholder ohne <code>&lt;img&gt;</code>: <code>--section-min-height</code></td></tr>
+        <tr><th>Höhe</th><td>Desktop Original: Bild-Spalte mind. Content-Höhe (<code>align-items: stretch</code> + <code>object-fit: cover</code>) · hohes Bild darf Zeile wachsen · Mobil Original: natürliche Bildhöhe · festes Verhältnis: Slot <code>aspect-ratio</code>, Motiv Cover · Placeholder ohne <code>&lt;img&gt;</code>: <code>--section-min-height</code></td></tr>
+        <tr><th>Medienverhältnis</th><td>Shopify Select · Default Original · <code>--ratio-1-1</code> · <code>--ratio-4-3</code> · <code>--ratio-16-9</code> → <a href="#hero-media-ratio">Medienverhältnis</a></td></tr>
         <tr><th>Mobile-Bild</th><td>Shopify: optional zweites Image · <code>&lt;picture&gt;</code> + <code>source media="(max-width: 767px)"</code> · leer = Desktop auch mobil</td></tr>
         <tr><th>Media-Labels</th><td>Optionale Badges auf Bild <em>oder</em> Lottie → <a href="#hero-v1-labels">Media-Labels</a> · Pattern wie <a href="#tile-featured-labels">D.4</a></td></tr>
       </table>
@@ -3793,6 +3795,51 @@
         </div>
       </div>
       <p class="sg-caption">Mit <code>--reverse</code> · Text links, Bild rechts · zwei CTAs in <code>.btn-row</code>.</p>
+
+      <h3 class="sg-h3 --top" id="hero-media-ratio">Medienverhältnis (V1 / V2)</h3>
+      <p>Default <strong>Original</strong> (Breite × Höhe der Datei). Optional fest: Quadrat, 4:3 oder 16:9 — der Medien-Slot bekommt <code>aspect-ratio</code>, das Motiv füllt mit <code>object-fit: cover</code> mittig. Gilt für Bild und Video; Lottie füllt denselben Slot. V2 mit <code>--viewport</code> ignoriert das Setting (Cover auf Section-Höhe). Shopify: Select an Hero V1 und Hero V2.</p>
+      <table class="spec-table">
+        <tr><th>Original</th><td>kein Modifier · Dateiproportion wie bisher</td></tr>
+        <tr><th><code>--ratio-1-1</code></th><td>Quadrat</td></tr>
+        <tr><th><code>--ratio-4-3</code></th><td>Klassisches Fotoformat</td></tr>
+        <tr><th><code>--ratio-16-9</code></th><td>Querformat / Video</td></tr>
+      </table>
+
+      <div class="sg-demo --flush">
+        <div class="section-type --v1 --ratio-16-9">
+          <div class="section-type__image">
+            <img src="assets/brands/inuvet/images/Hero_Mood_01.jpg" alt="Hund in entspannter Pose" width="3354" height="2516" loading="lazy">
+          </div>
+          <div class="section-type__content flow">
+            <h1 class="section-type__headline">16:9</h1>
+            <div class="section-type__bottom flow">
+              <p class="section-type__body">Festes Querformat — Motiv wird mittig zugeschnitten, wenn die Datei höher ist.</p>
+              <div class="btn-row">
+                <a class="btn --primary">Call to Action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sg-caption">V1 mit <code>--ratio-16-9</code>.</p>
+
+      <div class="sg-demo --flush">
+        <div class="section-type --v1 --ratio-1-1">
+          <div class="section-type__image">
+            <img src="assets/brands/inuvet/images/Hero_Mood_02.jpg" alt="Hund in entspannter Pose" width="2545" height="2427" loading="lazy">
+          </div>
+          <div class="section-type__content flow">
+            <h1 class="section-type__headline">1:1</h1>
+            <div class="section-type__bottom flow">
+              <p class="section-type__body">Quadratischer Medien-Slot — dasselbe Motiv, anderer Zuschnitt.</p>
+              <div class="btn-row">
+                <a class="btn --primary">Call to Action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sg-caption">V1 mit <code>--ratio-1-1</code>.</p>
 
       <div class="sg-demo --flush">
         <div class="section-type --v1">
@@ -3940,7 +3987,8 @@
         <tr><th>Content-BG</th><td><code>--green-light</code> (CSS Default)</td></tr>
         <tr><th>Gap</th><td><code>0</code> — Medium und Box nahtlos</td></tr>
         <tr><th>Padding</th><td>Content-Box: <code>var(--module)</code> allseitig</td></tr>
-        <tr><th>Medien</th><td>Bild: <code>&lt;img&gt;</code> · Video: <code>.media-video</code> im Bild-Slot · ohne Viewport: Höhe aus Dateiproportion steuert die Zeile · grüne Box zieht mit · Lottie: <code>.section-type__animation</code> · native JSON-Ratio · Shopify: Toggle Medien-Typ (Default Bild)</td></tr>
+        <tr><th>Medien</th><td>Bild: <code>&lt;img&gt;</code> · Video: <code>.media-video</code> im Bild-Slot · ohne Viewport: Höhe aus Dateiproportion oder festem Verhältnis steuert die Zeile · grüne Box zieht mit · Lottie: <code>.section-type__animation</code> · native JSON-Ratio oder festes Verhältnis · Shopify: Toggle Medien-Typ (Default Bild)</td></tr>
+        <tr><th>Medienverhältnis</th><td>Wie V1 · Select ausgeblendet wenn <code>--viewport</code> an</td></tr>
         <tr><th>Mobile-Bild</th><td>Optional · <code>&lt;picture&gt;</code> · Breakpoint 767px · nur bei Medien-Typ Bild</td></tr>
         <tr><th>Media-Labels</th><td>Wie V1 → <a href="#hero-v1-labels">Media-Labels</a> (Bild, Lottie oder Video)</td></tr>
         <tr><th><code>--viewport</code></th><td>Section = Viewport-Höhe · Bild <code>object-fit: cover</code> füllt die Medien-Spalte · Lottie füllt die Spalte · Mobil: Höhe wieder auto</td></tr>
@@ -3968,6 +4016,24 @@
         </div>
       </div>
       <p class="sg-caption">Default · Gap 0 · Content-Box mit Padding · Bild-Aspect · Badges · <code>.btn-row</code>.</p>
+
+      <div class="sg-demo --flush">
+        <div class="section-type --v2 --ratio-4-3">
+          <div class="section-type__image">
+            <img src="assets/brands/inuvet/images/Hero_Mood_04.jpg" alt="" width="3798" height="2532" loading="lazy">
+          </div>
+          <div class="section-type__content flow">
+            <h2 class="section-type__headline">4:3</h2>
+            <div class="section-type__bottom flow">
+              <p class="section-type__body">Festes Verhältnis steuert die Zeilenhöhe — die grüne Box zieht mit.</p>
+              <div class="btn-row">
+                <a class="btn --primary">Call to Action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sg-caption">V2 mit <code>--ratio-4-3</code> · Box-Höhe folgt dem Slot.</p>
 
       <div class="sg-demo --flush">
         <div class="section-type --v2 --viewport">
