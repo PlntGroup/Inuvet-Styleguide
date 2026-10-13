@@ -129,11 +129,11 @@
 const PREMIUMS = [
   {
     id: 3,
-    name: 'Viaggio di lusso a Rimini',
-    price: 1200.00,
-    desc: 'Quattro giorni di pausa sull\'Adriatico: hotel, colazione e lettino da spiaggia inclusi.',
-    longDesc: 'Ricaricati dopo un lungo anno di lavoro in clinica sull\'Adriatico. Il pacchetto include 4 notti in hotel 4 stelle con vista mare, buffet colazione giornaliero e lettino da spiaggia riservato. Data di viaggio liberamente scelta (aprile–ottobre). Conferma prenotazione entro 48 ore.',
-    image: '../assets/images/Rimini.jpg'
+    name: 'Formazione',
+    price: 100.00,
+    desc: '(Per esempio: SCIVAC)',
+    longDesc: 'Utilizza la provvigione accumulata per la partecipazione a un corso di formazione veterinaria — ad esempio il congresso SCIVAC. Dopo il riscatto, il team Vetalità ti contatterà per confermare l\'evento e completare l\'iscrizione.',
+    priceLabel: 'Da 100 €'
   },
   {
     id: 2,
@@ -345,7 +345,7 @@ ${p.voucher
       </div>
       <p class="tile__description">${p.desc}</p>
       <div class="tile__price">
-        <div class="price-stack"><span>${fmt(p.price)}</span></div>
+        <div class="price-stack"><span>${p.priceLabel || fmt(p.price)}</span></div>
       </div>
     </div>`;
 }
@@ -467,7 +467,7 @@ function renderPDP() {
           <h1 class="pdp__title">${p.name}</h1>
           <p class="pdp__description">${p.desc}</p>
           <div class="pdp__price">
-            <div class="price-stack"><span>${fmt(p.price)}</span></div>
+            <div class="price-stack"><span>${p.priceLabel || fmt(p.price)}</span></div>
             <span class="label-caps">Valore provvigione</span>
           </div>
           <div class="pdp__actions">
