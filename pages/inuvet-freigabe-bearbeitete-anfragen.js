@@ -1,7 +1,9 @@
 /* ════════════════════════════════════════════
    Inuvet-Freigabe-Bearbeitete-Anfragen — Historie · inuvet.com
-   Freigegeben und nicht freigegeben in einer Tabelle.
-   Filter blendet die Status ein und aus. Eingelöst? = Ja, wenn der Tierhalter gekauft hat.
+   Filter blendet freigegebene und abgelehnte Zeilen ein und aus.
+   Spalte freigegeben = Menge der Freigabe als grüne Pill, sonst „nein“.
+   Spalte eingelöst = gekaufte Menge als grüne Pill, sonst „nein“.
+   Steht in freigegeben „nein“, bleibt eingelöst leer.
    Daten: inuvet-freigabe-mock.js
    ════════════════════════════════════════════ */
 
@@ -10,7 +12,7 @@ const processedSortState = { key: 'date', dir: 'desc' };
 const PROCESSED_SORT_GETTERS = {
   customerName: row => row.customerName,
   date: row => row.date,
-  status: row => (row.status === 'approved' ? 'freigegeben' : 'nicht freigegeben'),
+  approvedQty: row => (row.status === 'approved' ? (row.unlimited ? Infinity : Number(row.qty) || 0) : 0),
   productLabel: row => row.productLabel,
 };
 
@@ -20,21 +22,32 @@ function setProcessedFilter(key, checked) {
   renderProcessedRequests();
 }
 
-function processedStatusCellHtml(status) {
-  if (status === 'approved') {
-    return `<td data-label="Status"><div class="badge --pill"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>freigegeben</div></td>`;
-  }
-  return `<td data-label="Status"><div class="badge --pill --error">nicht freigegeben</div></td>`;
+function processedQtyText(row) {
+  if (row.unlimited) return 'unbegrenzt';
+  const qty = Number(row.qty);
+  if (!Number.isFinite(qty) || qty <= 0) return '';
+  return `${qty}×`;
+}
+
+function processedNeinCellHtml(label) {
+  return `<td data-label="${label}"><div class="badge --pill --muted">nein</div></td>`;
+}
+
+function processedQtyCellHtml(row, label) {
+  const text = processedQtyText(row);
+  if (!text) return processedNeinCellHtml(label);
+  return `<td data-label="${label}"><div class="badge --pill">${empfehlungEscapeHtml(text)}</div></td>`;
+}
+
+function processedReleasedCellHtml(row) {
+  if (row.status !== 'approved') return processedNeinCellHtml('freigegeben');
+  return processedQtyCellHtml(row, 'freigegeben');
 }
 
 function processedPurchasedCellHtml(row) {
-  if (row.status !== 'approved') {
-    return `<td data-label="Eingelöst?"><span class="data-table-stack__meta">—</span></td>`;
-  }
-  if (row.purchased) {
-    return `<td data-label="Eingelöst?"><div class="badge --pill">Ja</div></td>`;
-  }
-  return `<td data-label="Eingelöst?"><div class="badge --pill --muted">Nein</div></td>`;
+  if (row.status !== 'approved') return `<td data-label="eingelöst"></td>`;
+  if (!row.purchased) return processedNeinCellHtml('eingelöst');
+  return processedQtyCellHtml(row, 'eingelöst');
 }
 
 function renderProcessedRequests() {
@@ -75,8 +88,8 @@ function renderProcessedRequests() {
     <tr data-id="${row.id}" data-status="${row.status}">
       ${empfehlungCustomerNameCellHtml(row.customerName)}
       <td class="data-table-date" data-label="Datum">${empfehlungFormatDateDE(row.date)}</td>
-      ${processedStatusCellHtml(row.status)}
-      ${empfehlungProductCellHtml(row.cartName, row.variantLabel, row.qty, row.unlimited)}
+      ${processedReleasedCellHtml(row)}
+      ${empfehlungProductCellHtml(row.cartName, row.variantLabel, null, false)}
       ${empfehlungCustomerNoteCellHtml(row.customerNote)}
       ${empfehlungVetNoteCellHtml(row.vetNote)}
       ${processedPurchasedCellHtml(row)}
