@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – inuvet</title>
+  <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten und Naturalrabatt.">
+  <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
+  <link rel="stylesheet" href="../planet-brands.css?v=226">
+  <link rel="stylesheet" href="../mockup-ui.css?v=2">
+  <script src="../mockup-ui.js?v=3" defer></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" id="ui-icon-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="ui-close" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></symbol>
+</svg>
+<a class="skip-link" href="#MainContent">Zum Inhalt springen</a>
+
+<main id="MainContent">
+  <div class="container --pb">
+    <aside class="checkout-banner" aria-label="Produkthinweis">
+      <div class="checkout-banner__photo placeholder-bg">
+        <p>hier wird das Kampagnen-Motiv (Bild oder Animation) platziert.</p>
+      </div>
+      <div class="checkout-banner__packshot">
+        <img src="../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="Hepax forte Pulver">
+      </div>
+      <div class="checkout-banner__copy flow">
+        <h2 class="text-m">Headline der Kampagne</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+        <div class="btn-row">
+          <a class="btn --primary" href="#MainContent">In den Warenkorb</a>
+        </div>
+      </div>
+    </aside>
+
+    <header class="page-header">
+      <h1>Checkout</h1>
+    </header>
+
+    <div class="checkout">
+
+      <div class="checkout__main">
+        <div class="flow">
+          <h2 class="section-label --sub">Versand an diese Adresse</h2>
+          <p>Tierarztpraxis am Kiez - Urs Umsatz<br>Analweg 1<br>22224 Berlin<br>Deutschland</p>
+          <p><a href="#">Du möchtest deine Adresse ändern? Kontaktiere uns jetzt!</a></p>
+        </div>
+
+        <div class="form-field">
+          <input type="email" id="invoice-email" name="invoice-email" value="test@toast327.de" placeholder=" " autocomplete="email">
+          <label for="invoice-email">E-Mail-Adresse für Rechnungen</label>
+        </div>
+
+        <nav class="link-stack" aria-label="Weiteres">
+          <a href="../index.html">Zurück zur Startseite</a>
+          <a href="#">Rückgabe- und Rückerstattungsrichtlinien</a>
+          <a href="#">Versandbedingungen &amp; Lieferzeiten</a>
+        </nav>
+      </div>
+
+      <aside class="checkout__sidebar">
+        <h2 class="section-label">Deine Bestellung</h2>
+
+        <div class="cart-item">
+          <div class="product-thumb">
+            <img src="../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance Tabletten">
+          </div>
+          <div class="cart-item__info">
+            <div class="cart-item__top">
+              <div>
+                <p class="cart-item__name">Calmin balance Tabletten</p>
+                <div class="cart-item__variant">60 Stück · 39,90 €</div>
+              </div>
+            </div>
+            <div class="cart-item__bottom">
+              <span class="cart-item__qty-text">Menge: 2</span>
+              <div>
+                <div class="cart-item__price">79,80 €</div>
+                <div class="cart-item__variant">zzgl. 7 % USt.: 5,59 €</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="product-thumb placeholder-bg" role="img" aria-label="Inzym Pulver"></div>
+          <div class="cart-item__info">
+            <div class="cart-item__top">
+              <div>
+                <p class="cart-item__name">Inzym Pulver</p>
+                <div class="cart-item__variant">50 g · 24,90 €</div>
+              </div>
+            </div>
+            <div class="cart-item__bottom">
+              <span class="cart-item__qty-text">Menge: 1</span>
+              <div>
+                <div class="cart-item__price">24,90 €</div>
+                <div class="cart-item__variant">zzgl. 7 % USt.: 1,74 €</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="product-thumb">
+            <img src="../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="Hepax forte Pulver">
+          </div>
+          <div class="cart-item__info">
+            <div class="cart-item__top">
+              <div>
+                <p class="cart-item__name">Hepax forte Pulver</p>
+                <div class="cart-item__variant">175 g · 84,90 €</div>
+              </div>
+            </div>
+            <div class="cart-item__bottom">
+              <span class="cart-item__qty-text">Menge: 12</span>
+              <div>
+                <div class="cart-item__price">1.018,80 €</div>
+                <div class="cart-item__variant">zzgl. 7 % USt.: 71,32 €</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-label --sub">Deine Gratisprodukte</h3>
+
+        <div class="cart-item">
+          <div class="product-thumb-wrap">
+            <div class="product-thumb">
+              <img src="../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="Hepax forte Pulver">
+            </div>
+            <div class="floating-meta"><span class="badge --free">Gratis</span></div>
+          </div>
+          <div class="cart-item__info">
+            <div class="cart-item__top">
+              <div>
+                <p class="cart-item__name">Hepax forte Pulver</p>
+                <div class="cart-item__variant">175 g · 84,90 €</div>
+              </div>
+            </div>
+            <div class="cart-item__bottom">
+              <span class="cart-item__qty-text">Menge: 2</span>
+              <span class="cart-item__price">0,00 €</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-drawer__amounts">
+          <div class="cart-drawer__savings-row">
+            <span>Gratisprodukte (2×)</span>
+            <span>Kostenlos</span>
+          </div>
+          <div class="cart-drawer__savings-row">
+            <span>Dein Naturalrabatt</span>
+            <span>+ 169,80 €</span>
+          </div>
+        </div>
+
+        <div class="actionable-input mt-half">
+          <div class="form-field">
+            <input type="text" id="discount-code" name="discount-code" placeholder=" " autocomplete="off">
+            <label for="discount-code">Rabattcode</label>
+          </div>
+          <button type="button" class="btn --primary">Anwenden</button>
+        </div>
+
+        <div>
+          <div class="summary-line"><span>Warenwert</span><span>1.123,50 €</span></div>
+          <div class="summary-line"><span>USt. auf Waren</span><span>78,65 €</span></div>
+          <div class="summary-line"><span>Versandkosten</span><span>–</span></div>
+          <div class="summary-line"><span>USt. auf Versand</span><span>–</span></div>
+          <div class="summary-total"><span>Gesamtbetrag</span><span>1.202,15 €</span></div>
+          <div class="summary-line"><span>inkl. USt.</span><span>78,65 €</span></div>
+        </div>
+
+        <div class="flow mt-half">
+          <div class="form-field">
+            <textarea id="order-note" name="order-note" placeholder=" "></textarea>
+            <label for="order-note">Sonstige Mitteilungen zur Bestellung</label>
+          </div>
+          <label class="form-check">
+            <input type="checkbox" name="terms">
+            <span>Ich habe die <a href="#">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="#">Widerrufsbelehrung</a> gelesen und stimme ihnen zu.</span>
+          </label>
+          <label class="form-check">
+            <input type="checkbox" name="privacy">
+            <span>Ich habe die <a href="#">Datenschutzerklärung</a> zur Kenntnis genommen.</span>
+          </label>
+        </div>
+
+        <button type="button" class="btn --primary --full checkout__cta">Zahlungspflichtig bestellen</button>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="checkoutPromo" onclick="closeCheckoutPromo()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="checkoutPromoTitle" onclick="event.stopPropagation()">
+    <button type="button" class="btn --icon" onclick="closeCheckoutPromo()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+    <div class="checkout-banner__packshot" data-animate>
+      <img src="../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg" alt="Cortisan Öl-Komplex">
+    </div>
+    <div class="modal__header">
+      <h2 class="modal__title" id="checkoutPromoTitle">Kennst du schon Cortisan Öl-Komplex?</h2>
+    </div>
+    <div class="modal__body flow">
+      <p data-animate>Weihrauch und Kurkuma in solubilisierter Form zur Unterstützung des Entzündungsstoffwechsels. Mit Algenöl als Omega-3-Quelle.</p>
+    </div>
+    <div class="modal__footer">
+      <div class="btn-row" data-animate>
+        <a class="btn --primary" href="#MainContent" onclick="closeCheckoutPromo()">In den Warenkorb</a>
+        <a class="btn --ghost" href="#">Mehr Infos</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function closeCheckoutPromo() {
+  document.getElementById('checkoutPromo').classList.remove('--open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('DOMContentLoaded', function () {
+  var overlay = document.getElementById('checkoutPromo');
+  var bits = overlay.querySelectorAll('[data-animate]');
+  bits.forEach(function (el, i) {
+    el.style.setProperty('--anim-delay', Math.min(i, 5) * 70 + 'ms');
+  });
+  requestAnimationFrame(function () {
+    overlay.classList.add('--open');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function () {
+      bits.forEach(function (el) { el.classList.add('--in-view'); });
+    });
+  });
+});
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') closeCheckoutPromo();
+});
+</script>
+</body>
+</html>

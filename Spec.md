@@ -424,7 +424,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | E.2 | PDP | `.pdp`, `.pdp__accordion`, `.nr-widget`, `.social-proof`, `.pdp__benefits`, `.ingredient-list`, `.pdp__faq`, `.pdp__testimonials` (Brand-only), `.pdp__recommendations`, `.pdp__praxis` · Reihenfolge: Kaufblock → Benefits → Inhaltsstoffe → FAQ → Testimonials → Empfehlungen → Praxis |
 | E.3 | Collection | `.collection-layout` · `.collection-sidebar` · `.collection-filter-toggle` · `.collection-toolbar` · Modifier `.--no-sidebar` (Filter optional) |
 | E.4 | Cart-Drawer | `.cart-drawer .cart-overlay` |
-| E.5 | Checkout | `.checkout .summary-line .summary-total` |
+| E.5 | Checkout | `.checkout` · `.checkout-banner` (über den Spalten: 2 Foto + quadratischer Packshot + Text, Foto in Packshot-Höhe; mobil Foto, darunter Packshot \| Text) · Produkt-Popup: bestehendes `.modal`, Packshot volle Breite ohne Rand, Schließen oben rechts auf dem Bild, darunter Titel, Text, Button-Paar Primary + Ghost, Inhalte über `[data-animate]` · `.checkout__main` (linke Spalte, sticky ab 768px) · `.checkout__sidebar` · `.summary-line` · `.summary-total` |
 | E.6 | Account-Seiten | `.order-item` · Formulare `.form-field` / `.tab-nav` |
 | E.7 | Suche | `.search-overlay .search-panel` |
 | E.8 | Blog & Artikel | `.blog-card` · `.article-layout` · `.article-toc` (Sidebar-Inhaltsverzeichnis, Desktop) · `.rte` |
@@ -462,6 +462,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | `pages/Inuvet-Freigabe-Offene-Anfragen.html` | — | `inuvet-freigabe-mock.js`, `inuvet-freigabe-offene-anfragen.js` | Vet-Portal (inuvet.com), Posteingang offener Produktanfragen |
 | `pages/Inuvet-Freigabe-Bearbeitete-Anfragen.html` | — | `inuvet-freigabe-mock.js`, `inuvet-freigabe-bearbeitete-anfragen.js` | Vet-Portal (inuvet.com), Historie freigegebener und abgelehnter Anfragen (Filter + Eingelöst?) |
 | `pages/Inuvet-Freigabe-Programm.html` | — | `inuvet-freigabe-mock.js` | Vet-Portal (inuvet.com), Artikel „So funktioniert's" |
+| `pages/Inuvet-Checkout.html` | — | — | Individueller Praxis-Checkout (inuvet.com), kein Shopify-Standard |
 | `pages/Bundle.html` | `bundle.css` | `bundle.js` | Bundle-Builder mit Naturalrabatt |
 | `pages/Bundle-Info.html` | — | — | Konzept-Artikel Bundle |
 | `pages/Signature-Generator.html` | `signature-generator.css` | `signature-generator.js` | E-Mail-Signatur-Generator |

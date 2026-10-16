@@ -65,3 +65,11 @@ html[data-brand="planimol"] .story-iconslider__media[data-cat="intestic"] { back
 html[data-brand="planimol"] .story-iconslider__media[data-cat="liver"]    { background: var(--cat-liver); }
 html[data-brand="planimol"] .story-iconslider__media[data-cat="ocean"]    { background: var(--cat-ocean); }
 html[data-brand="planimol"] .story-iconslider__media[data-cat="relax"]    { background: var(--cat-relax); }
+
+/* Badge bündig oben links auf dem Bild (PDP + Produktkachel) */
+html[data-brand="planimol"] .pdp__main-image > .floating-meta,
+html[data-brand="planimol"] .pdp__mosaic-hero > .floating-meta,
+html[data-brand="planimol"] .tile.--product .tile__image-wrap > .floating-meta {
+  top: 0;
+  left: 0;
+}
