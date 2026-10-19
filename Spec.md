@@ -189,6 +189,7 @@ Globale Funktionen → `planet-brands.js` · Seitenspezifische Logik → `pages/
 | `pages/formular-reklamation.js` | Formular Reklamation |
 | `pages/formular-nebenwirkungen-ta.js` | Formular Nebenwirkungen (Tierarzt) |
 | `pages/formular-nebenwirkungen-tb.js` | Formular Nebenwirkungen (Tierbesitzer) |
+| `pages/formular-manukalind.js` | Formular ManukaLind Produkttest |
 | `pages/bundle.js` | Bundle-Builder (Persönliches Angebot) |
 | `sg-only.js` | Styleguide (nicht für Shopify) |
 
@@ -470,6 +471,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | `pages/Formular-Reklamation.html` | — | `formular-reklamation.js` | Stand-Alone-Formular |
 | `pages/Formular-Nebenwirkungen-TB.html` | — | `formular-nebenwirkungen-tb.js` | Meldeformular Tierbesitzer |
 | `pages/Formular-Nebenwirkungen-TA.html` | — | `formular-nebenwirkungen-ta.js` | Meldeformular Tierarztpraxis |
+| `pages/Formular-ManukaLind.html` | — | `formular-manukalind.js` | Produkttest-Feedback ManukaLind |
 | `pages/Produkt-Modell.html` | — | — | Artikel: Indikation → Variante |
 | `pages/Provision-Portal-Start.html` | `provision-portal.css` | `provision-portal-start.js` | Provision-Portal Startseite |
 | `pages/Provision-Portal.html` | `provision-portal.css` | `provision-portal.js` | Tierarzt löst Provisionen ein |

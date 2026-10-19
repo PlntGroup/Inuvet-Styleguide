@@ -3558,6 +3558,13 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     object-fit: cover;
     display: block;
   }
+  /* Lottie im Banner: volle Breite, Höhe aus dem JSON — nicht der Bild-Crop */
+  .form-page__banner:has(lottie-player) { height: auto; }
+  .form-page__banner lottie-player {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
   @media (max-width: 480px) {
     .form-page__banner { margin-right: calc(var(--half-module) * -1); margin-left: calc(var(--half-module) * -1); }
   }
