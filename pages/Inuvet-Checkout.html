@@ -6,7 +6,7 @@
   <title>Checkout – inuvet</title>
   <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten und Naturalrabatt.">
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
-  <link rel="stylesheet" href="../planet-brands.css?v=226">
+  <link rel="stylesheet" href="../planet-brands.css?v=228">
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
 </head>
@@ -197,21 +197,23 @@
 </main>
 
 <div class="modal-overlay" id="checkoutPromo" onclick="closeCheckoutPromo()">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="checkoutPromoTitle" onclick="event.stopPropagation()">
+  <div class="modal checkout-promo" role="dialog" aria-modal="true" aria-labelledby="checkoutPromoTitle" onclick="event.stopPropagation()">
     <button type="button" class="btn --icon" onclick="closeCheckoutPromo()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     <div class="checkout-banner__packshot" data-animate>
       <img src="../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg" alt="Cortisan Öl-Komplex">
     </div>
-    <div class="modal__header">
-      <h2 class="modal__title" id="checkoutPromoTitle">Kennst du schon Cortisan Öl-Komplex?</h2>
-    </div>
-    <div class="modal__body flow">
-      <p data-animate>Weihrauch und Kurkuma in solubilisierter Form zur Unterstützung des Entzündungsstoffwechsels. Mit Algenöl als Omega-3-Quelle.</p>
-    </div>
-    <div class="modal__footer">
-      <div class="btn-row" data-animate>
-        <a class="btn --primary" href="#MainContent" onclick="closeCheckoutPromo()">In den Warenkorb</a>
-        <a class="btn --ghost" href="#">Mehr Infos</a>
+    <div class="checkout-promo__copy">
+      <div class="modal__header">
+        <h2 class="modal__title" id="checkoutPromoTitle">Kennst du schon Cortisan Öl-Komplex?</h2>
+      </div>
+      <div class="modal__body flow">
+        <p data-animate>Weihrauch und Kurkuma in solubilisierter Form zur Unterstützung des Entzündungsstoffwechsels. Mit Algenöl als Omega-3-Quelle.</p>
+      </div>
+      <div class="modal__footer">
+        <div class="btn-row" data-animate>
+          <a class="btn --primary" href="#MainContent" onclick="closeCheckoutPromo()">In den Warenkorb</a>
+          <a class="btn --ghost" href="#">Mehr Infos</a>
+        </div>
       </div>
     </div>
   </div>

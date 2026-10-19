@@ -289,6 +289,7 @@
   .icon-gallery__group { display: flex; flex-direction: column; gap: var(--half-module); }
   .sg-demo-stack { display: flex; flex-direction: column; gap: var(--module); }
   .sg-demo-stack.--inset { margin: 0 calc(-1 * var(--margin)); }
+  .glyph.--2xs { font-size: var(--text-2xs); }
   .glyph.--xs { font-size: var(--text-xs); }
   .glyph.--sm { font-size: var(--text-sm); }
   .glyph.--base { font-size: var(--text-base); }

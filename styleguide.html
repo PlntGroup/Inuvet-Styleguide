@@ -287,6 +287,7 @@
 
       <h3 class="sg-h3 --top"><code>--text-base</code></h3>
       <table class="spec-table">
+        <tr><th><code>--text-2xs</code></th><td><code>0.6875rem</code> — 11px, fest. KI-/Quellen-Hinweis (<code>.media-credit__label</code>)</td></tr>
         <tr><th><code>--text-xs</code></th><td><code>clamp(0.75rem, 0.7rem + 0.15vw, 0.8125rem)</code> — Labels, Captions, Metainfos</td></tr>
         <tr><th><code>--text-sm</code></th><td><code>0.875rem</code> — Kompakter Hilfstext, Formular-Labels</td></tr>
         <tr><th><code>--text-base</code></th><td><code>clamp(1rem, 0.95rem + 0.2vw, 1.0625rem)</code> — Fließtext</td></tr>
@@ -367,6 +368,7 @@
       </div>
 
       <div class="type-scale">
+        <div class="type-scale-step"><div class="glyph --2xs">Ag</div><div class="meta"><span class="sg-token">--text-2xs</span>0.6875rem</div></div>
         <div class="type-scale-step"><div class="glyph --xs">Ag</div><div class="meta"><span class="sg-token">--text-xs</span>0.75–0.8125rem</div></div>
         <div class="type-scale-step"><div class="glyph --sm">Ag</div><div class="meta"><span class="sg-token">--text-sm</span>0.875rem</div></div>
         <div class="type-scale-step"><div class="glyph --base">Ag</div><div class="meta"><span class="sg-token">--text-base</span>1–1.0625rem</div></div>
@@ -383,6 +385,7 @@
         <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-base</span><span>1–1.0625rem</span><span>LH 1.5</span></div><h4>Headline 4</h4></div>
         <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-base</span><span>1–1.0625rem</span><span>LH 1.5 · Body</span></div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Alle Produkte enthalten <a href="#">natürliche Wirkstoffe</a> – ohne unnötige Zusatzstoffe. Mehr dazu in unserem <a href="#">Ratgeber</a>.</p></div>
         <div class="specimen-row"><div class="specimen-meta"><span>ul · ol</span><span>a:not([class])</span></div><div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--module)"><ul><li>Tierärztlich entwickelt</li><li>Ohne künstliche Zusätze</li><li>Nachhaltige Rohstoffe</li></ul><ol><li>Produkt wählen</li><li>Dosierung beachten</li><li>Regelmäßig anwenden</li></ol></div></div>
+        <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-2xs</span><span>0.6875rem</span><span>LH 1</span></div><p style="font-size: var(--text-2xs); letter-spacing: 0.05em;">A.I. generated</p></div>
         <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-xs</span><span>0.75–0.8125rem</span><span>LH 1.5</span></div><p style="font-size: var(--text-xs)">Caption · Label · Kleingedrucktes · Metainfo</p></div>
         <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-xs</span><span>0.75–0.8125rem</span><span>Uppercase · 0.15em</span></div><div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted);">Section Label · Tabellen-Header · Filter-Label</div></div>
         <div class="specimen-row"><div class="specimen-meta"><span>0.85em (relativ)</span><span>Monospace</span></div><div style="font-size: var(--text-base); line-height: var(--lh-base); color: var(--fg-muted);">Inline-Code: <code>var(--module)</code>, <code>clamp()</code>, <code>#78b41b</code></div></div>
@@ -3870,7 +3873,7 @@
         <tr><th>Markup Lottie</th><td><code>.section-type__animation</code> → <code>.floating-meta</code> vor <code>&lt;lottie-player&gt;</code></td></tr>
         <tr><th>Mehrere Labels</th><td>Alle in <strong>einer</strong> <code>.floating-meta</code> · Reihenfolge = Anzeigereihenfolge (links→rechts)</td></tr>
         <tr><th>Shopify</th><td>Blocks <code>badge</code> an Section Hero V1 (max. 4) · Select <code>style</code> = <code>category</code> | <code>dark</code> | <code>sale</code> | <code>plain</code> · bei <code>category</code>: Select <code>category</code></td></tr>
-        <tr><th><code>.media-credit</code></th><td>KI-/Quellen-Hinweis, rechts vertikal — auf Bild oder Video · kombinierbar mit Badges</td></tr>
+        <tr><th><code>.media-credit</code></th><td>KI-/Quellen-Hinweis, rechts vertikal — auf Bild oder Video · Schrift <code>--text-2xs</code> · kombinierbar mit Badges</td></tr>
       </table>
       <div class="sg-demo --flush">
         <div class="section-type --v1">
@@ -6472,7 +6475,7 @@
         </div>
         <div class="rule">
           <h4>Atome</h4>
-          <p>Ausschließlich bestehende Steine: <code>.form-grid</code>, <code>.form-field</code>, <code>.choice-box</code>, <code>.cart-item</code>, <code>.summary-line</code>, <code>.summary-total</code>, <code>.btn</code>. Zweites Produkt als bestehendes <code>.modal</code>: Packshot volle Breite, bündig, Schließen oben rechts auf dem Bild, darunter Titel, Text und Button-Paar (Primary + Ghost). Die Inhalte nutzen <code>[data-animate]</code>.</p>
+          <p>Ausschließlich bestehende Steine: <code>.form-grid</code>, <code>.form-field</code>, <code>.choice-box</code>, <code>.cart-item</code>, <code>.summary-line</code>, <code>.summary-total</code>, <code>.btn</code>. Zweites Produkt als bestehendes <code>.modal.checkout-promo</code>: ab 768px Packshot links, Text rechts; mobil Packshot volle Breite darüber. Schließen oben rechts, Titel, Text und Button-Paar (Primary + Ghost). Die Inhalte nutzen <code>[data-animate]</code>.</p>
         </div>
         <div class="rule">
           <h4><code>.summary-line</code> / <code>.summary-total</code></h4>
