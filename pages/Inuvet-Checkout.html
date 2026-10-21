@@ -6,13 +6,15 @@
   <title>Checkout – inuvet</title>
   <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten und Naturalrabatt.">
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
-  <link rel="stylesheet" href="../planet-brands.css?v=228">
+  <link rel="stylesheet" href="../planet-brands.css?v=239">
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" id="ui-icon-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="ui-add" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></g></symbol>
   <symbol id="ui-close" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></symbol>
+  <symbol id="ui-remove" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 13H5v-2h14v2z"/></g></symbol>
 </svg>
 <a class="skip-link" href="#MainContent">Zum Inhalt springen</a>
 
@@ -22,14 +24,24 @@
       <div class="checkout-banner__photo placeholder-bg">
         <p>hier wird das Kampagnen-Motiv (Bild oder Animation) platziert.</p>
       </div>
-      <div class="checkout-banner__packshot">
-        <img src="../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="Hepax forte Pulver">
-      </div>
-      <div class="checkout-banner__copy flow">
-        <h2 class="text-m">Headline der Kampagne</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-        <div class="btn-row">
-          <a class="btn --primary" href="#MainContent">In den Warenkorb</a>
+      <div class="checkout-banner__panel">
+        <div class="checkout-banner__packshot">
+          <img src="../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="Hepax forte Pulver">
+        </div>
+        <div class="checkout-banner__copy flow">
+          <h2 class="text-m">Headline der Kampagne</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+          <div class="pdp__actions">
+            <div class="cart-item__counter">
+              <div class="qty-selector --sm" aria-label="Menge">
+                <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="changeQty(this, -1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+                <input class="qty-selector__input" type="number" value="6" min="1" aria-label="Menge" oninput="syncGratis(this)">
+                <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="changeQty(this, 1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+              </div>
+              <span><span class="badge --free">+ 1 Gratis</span></span>
+            </div>
+            <a class="btn --primary" href="#MainContent">In den Warenkorb</a>
+          </div>
         </div>
       </div>
     </aside>
@@ -208,11 +220,16 @@
       </div>
       <div class="modal__body flow">
         <p data-animate>Weihrauch und Kurkuma in solubilisierter Form zur Unterstützung des Entzündungsstoffwechsels. Mit Algenöl als Omega-3-Quelle.</p>
-      </div>
-      <div class="modal__footer">
-        <div class="btn-row" data-animate>
+        <div class="pdp__actions" data-animate>
+          <div class="cart-item__counter">
+            <div class="qty-selector --sm" aria-label="Menge">
+              <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="changeQty(this, -1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+              <input class="qty-selector__input" type="number" value="6" min="1" aria-label="Menge" oninput="syncGratis(this)">
+              <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="changeQty(this, 1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+            </div>
+            <span><span class="badge --free">+ 1 Gratis</span></span>
+          </div>
           <a class="btn --primary" href="#MainContent" onclick="closeCheckoutPromo()">In den Warenkorb</a>
-          <a class="btn --ghost" href="#">Mehr Infos</a>
         </div>
       </div>
     </div>
@@ -220,6 +237,18 @@
 </div>
 
 <script>
+function syncGratis(input) {
+  var badge = input.closest('.cart-item__counter').querySelector('.badge.--free');
+  var val = parseInt(input.value, 10) || 1;
+  badge.parentElement.hidden = val < 6;
+}
+function changeQty(btn, delta) {
+  var input = btn.closest('.qty-selector').querySelector('.qty-selector__input');
+  var val = (parseInt(input.value, 10) || 1) + delta;
+  if (val < 1) val = 1;
+  input.value = String(val);
+  syncGratis(input);
+}
 function closeCheckoutPromo() {
   document.getElementById('checkoutPromo').classList.remove('--open');
   document.body.style.overflow = '';

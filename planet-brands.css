@@ -3999,20 +3999,21 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
      CHECKOUT
      ═══════════════════════════════════════════ */
 
-  /* Promo über dem Checkout: 2 Foto + 1 Packshot + 1 Text. Packshot quadratisch, Foto gleich hoch. Mobil: Foto, darunter Packshot | Text. */
+  /* Promo über dem Checkout.
+     Ab 768px: 2 Spalten. Links Kampagnen-Motiv, rechts Produkt in Cart-Item-Größe plus Text und CTA.
+     Mobil: Motiv volle Breite, darunter dieselbe rechte Spalte. */
   .checkout-banner {
     container-type: inline-size;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--gutter);
     margin-bottom: var(--section-gap);
-    align-items: start;
+    align-items: stretch;
   }
   .checkout-banner__photo {
-    grid-column: span 2;
     position: relative;
     overflow: hidden;
-    height: calc((100cqw - 3 * var(--gutter)) / 4);
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4043,20 +4044,21 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     object-fit: cover;
     display: block;
   }
+  .checkout-banner__panel {
+    display: grid;
+    grid-template-columns: calc(var(--base) * 5) minmax(0, 1fr);
+    gap: var(--gutter);
+    align-items: start;
+    min-width: 0;
+  }
   .checkout-banner__copy {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     min-width: 0;
-    min-height: calc((100cqw - 3 * var(--gutter)) / 4);
   }
   @media (max-width: 767px) {
-    .checkout-banner { grid-template-columns: 1fr 1fr; }
-    .checkout-banner__photo {
-      grid-column: 1 / -1;
-      height: calc((100cqw - var(--gutter)) / 2);
-    }
-    .checkout-banner__copy { min-height: calc((100cqw - var(--gutter)) / 2); }
+    .checkout-banner { grid-template-columns: minmax(0, 1fr); }
+    .checkout-banner__photo { height: calc((100cqw - var(--gutter)) / 2); }
   }
 
   /* Produkt-Popup: mobil Bild über dem Text. Ab 768px Bild links, Text rechts — sonst sprengt das Quadrat niedrige Fenster. */
@@ -4068,6 +4070,20 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     z-index: 1;
   }
   .checkout-promo__copy { min-width: 0; }
+  /* Mobil: Dialog bleibt volle Breite. Bei niedriger Höhe schrumpft nur der Bildcontainer,
+     das Bild füllt ihn, die Warenkorb-Zeile bleibt im Fenster. */
+  @media (max-width: 767px) {
+    .modal.checkout-promo {
+      max-height: calc(100% - 2 * var(--module));
+      overflow: hidden;
+    }
+    .modal.checkout-promo > .checkout-banner__packshot {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+    }
+    .modal.checkout-promo > .checkout-promo__copy { flex-shrink: 0; }
+  }
   @media (min-width: 768px) {
     .modal.checkout-promo {
       max-width: min(56rem, calc(100vw - 2 * var(--module)));
