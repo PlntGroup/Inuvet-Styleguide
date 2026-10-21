@@ -3568,6 +3568,32 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* Ankreuz-Tabelle: .rte table ist sonst display:block und verliert die Spalten */
   .form-page .rte table { display: table; }
   .form-page .rte table .form-check { margin-bottom: 0; }
+  /* Beobachtungsmatrix: fünf Spalten in der 640px-Karte, Überschriften umbrechen */
+  .form-page .form-obs-table { table-layout: fixed; }
+  .form-page .form-obs-table th:first-child { width: 32%; }
+  .form-page .form-obs-table th,
+  .form-page .form-obs-table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: calc(var(--base) * 0.35) calc(var(--base) * 0.2);
+    font-size: var(--text-xs);
+  }
+  .form-page .form-obs-table thead th:first-child,
+  .form-page .form-obs-table tbody th {
+    text-align: left;
+    font-size: var(--text-sm);
+  }
+  .form-page .form-obs-table tbody th { font-weight: 400; }
+  .form-page .form-obs-table .form-check { justify-content: center; min-height: 1.75rem; }
+  @media (max-width: 480px) {
+    .form-page .form-obs-table th:first-child { width: 28%; }
+    .form-page .form-obs-table thead th {
+      font-size: 0.625rem;
+      line-height: 1.15;
+      padding-right: 0.1rem;
+      padding-left: 0.1rem;
+    }
+  }
   @media (max-width: 480px) {
     .form-page__banner { margin-right: calc(var(--half-module) * -1); margin-left: calc(var(--half-module) * -1); }
   }

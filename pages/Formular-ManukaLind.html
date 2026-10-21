@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ManukaLind Product Feedback – inuvet</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
-  <link rel="stylesheet" href="../planet-brands.css?v=230">
+  <link rel="stylesheet" href="../planet-brands.css?v=234">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
@@ -281,60 +281,69 @@
 
       <p>Please indicate the changes observed during treatment.</p>
 
-      <p class="form-group-label">Redness</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_redness" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_redness" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_redness" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_redness" value="Not applicable"><span>Not applicable</span></label>
-      </div>
-
-      <p class="form-group-label">Swelling</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_swelling" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_swelling" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_swelling" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_swelling" value="Not applicable"><span>Not applicable</span></label>
-      </div>
-
-      <p class="form-group-label">Discharge / exudate</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_discharge" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_discharge" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_discharge" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_discharge" value="Not applicable"><span>Not applicable</span></label>
-      </div>
-
-      <p class="form-group-label">Odor</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_odor" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_odor" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_odor" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_odor" value="Not applicable"><span>Not applicable</span></label>
-      </div>
-
-      <p class="form-group-label">Wound appearance</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_appearance" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_appearance" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_appearance" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_appearance" value="Not applicable"><span>Not applicable</span></label>
-      </div>
-
-      <p class="form-group-label">Tissue condition</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_tissue" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_tissue" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_tissue" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_tissue" value="Not applicable"><span>Not applicable</span></label>
-      </div>
-
-      <p class="form-group-label">Pain / discomfort</p>
-      <div class="form-radio-grid">
-        <label class="form-check"><input type="radio" name="obs_pain" value="Improved"><span>Improved</span></label>
-        <label class="form-check"><input type="radio" name="obs_pain" value="No change"><span>No change</span></label>
-        <label class="form-check"><input type="radio" name="obs_pain" value="Worsened"><span>Worsened</span></label>
-        <label class="form-check"><input type="radio" name="obs_pain" value="Not applicable"><span>Not applicable</span></label>
+      <div class="rte">
+        <table class="form-obs-table">
+          <thead>
+            <tr>
+              <th scope="col">Observation</th>
+              <th scope="col">Improved</th>
+              <th scope="col">No change</th>
+              <th scope="col">Worsened</th>
+              <th scope="col">Not applicable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Redness</th>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="Improved" aria-label="Redness, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="No change" aria-label="Redness, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="Worsened" aria-label="Redness, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="Not applicable" aria-label="Redness, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Swelling</th>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="Improved" aria-label="Swelling, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="No change" aria-label="Swelling, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="Worsened" aria-label="Swelling, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="Not applicable" aria-label="Swelling, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Discharge / exudate</th>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="Improved" aria-label="Discharge / exudate, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="No change" aria-label="Discharge / exudate, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="Worsened" aria-label="Discharge / exudate, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="Not applicable" aria-label="Discharge / exudate, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Odor</th>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="Improved" aria-label="Odor, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="No change" aria-label="Odor, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="Worsened" aria-label="Odor, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="Not applicable" aria-label="Odor, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Wound appearance</th>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="Improved" aria-label="Wound appearance, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="No change" aria-label="Wound appearance, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="Worsened" aria-label="Wound appearance, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="Not applicable" aria-label="Wound appearance, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Tissue condition</th>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="Improved" aria-label="Tissue condition, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="No change" aria-label="Tissue condition, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="Worsened" aria-label="Tissue condition, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="Not applicable" aria-label="Tissue condition, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Pain / discomfort</th>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="Improved" aria-label="Pain / discomfort, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="No change" aria-label="Pain / discomfort, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="Worsened" aria-label="Pain / discomfort, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="Not applicable" aria-label="Pain / discomfort, Not applicable"></label></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <h3 class="section-label --sub --in-view" data-animate="">7. Overall Results</h3>
