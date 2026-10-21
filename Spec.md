@@ -189,7 +189,7 @@ Globale Funktionen → `planet-brands.js` · Seitenspezifische Logik → `pages/
 | `pages/formular-reklamation.js` | Formular Reklamation |
 | `pages/formular-nebenwirkungen-ta.js` | Formular Nebenwirkungen (Tierarzt) |
 | `pages/formular-nebenwirkungen-tb.js` | Formular Nebenwirkungen (Tierbesitzer) |
-| `pages/formular-manukalind.js` | Formular ManukaLind Produkttest |
+| `pages/formular-manukalind.js` | Formular ManukaLind Produktfeedback |
 | `pages/bundle.js` | Bundle-Builder (Persönliches Angebot) |
 | `sg-only.js` | Styleguide (nicht für Shopify) |
 
@@ -425,7 +425,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | E.2 | PDP | `.pdp`, `.pdp__accordion`, `.nr-widget`, `.social-proof`, `.pdp__benefits`, `.ingredient-list`, `.pdp__faq`, `.pdp__testimonials` (Brand-only), `.pdp__recommendations`, `.pdp__praxis` · Reihenfolge: Kaufblock → Benefits → Inhaltsstoffe → FAQ → Testimonials → Empfehlungen → Praxis |
 | E.3 | Collection | `.collection-layout` · `.collection-sidebar` · `.collection-filter-toggle` · `.collection-toolbar` · Modifier `.--no-sidebar` (Filter optional) |
 | E.4 | Cart-Drawer | `.cart-drawer .cart-overlay` |
-| E.5 | Checkout | `.checkout` · `.checkout-banner` (über den Spalten: 2 Foto + quadratischer Packshot + Text, Foto in Packshot-Höhe; mobil Foto, darunter Packshot \| Text) · Produkt-Popup: bestehendes `.modal.checkout-promo`, ab 768px Packshot links und Text rechts (sonst übersteigt das Quadrat niedrige Fenster), mobil Packshot volle Breite darüber, Schließen oben rechts, Titel, Text, Button-Paar Primary + Ghost, Inhalte über `[data-animate]` · `.checkout__main` (linke Spalte, sticky ab 768px) · `.checkout__sidebar` · `.summary-line` · `.summary-total` |
+| E.5 | Checkout | `.checkout` · `.checkout-banner` (ab 768px zwei Spalten: Kampagnen-Motiv | Produkt in Cart-Item-Größe (`calc(var(--base) * 5)`) plus Text und CTA; mobil Motiv volle Breite, darunter dieselbe Zeile) · Produkt-Popup und `.checkout-banner`: Mengenwahl `.qty-selector.--sm` im `.cart-item__counter` wie Bundle, vorausgewählt 6, `.badge.--free` „+ 1 Gratis“ ab 6 Stück, ein Warenkorb-Button · Popup: bestehendes `.modal.checkout-promo`, ab 768px Packshot links und Text rechts, mobil Packshot volle Breite darüber; bei niedriger Fensterhöhe schrumpft nur der Bildcontainer, das Bild füllt ihn, der Dialog bleibt breit, die Warenkorb-Zeile bleibt sichtbar, Schließen oben rechts, Inhalte über `[data-animate]` · `.checkout__main` (linke Spalte, sticky ab 768px) · `.checkout__sidebar` · `.summary-line` · `.summary-total` |
 | E.6 | Account-Seiten | `.order-item` · Formulare `.form-field` / `.tab-nav` |
 | E.7 | Suche | `.search-overlay .search-panel` |
 | E.8 | Blog & Artikel | `.blog-card` · `.article-layout` · `.article-toc` (Sidebar-Inhaltsverzeichnis, Desktop) · `.rte` |
@@ -471,7 +471,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | `pages/Formular-Reklamation.html` | — | `formular-reklamation.js` | Stand-Alone-Formular |
 | `pages/Formular-Nebenwirkungen-TB.html` | — | `formular-nebenwirkungen-tb.js` | Meldeformular Tierbesitzer |
 | `pages/Formular-Nebenwirkungen-TA.html` | — | `formular-nebenwirkungen-ta.js` | Meldeformular Tierarztpraxis |
-| `pages/Formular-ManukaLind.html` | — | `formular-manukalind.js` | Produkttest-Feedback ManukaLind |
+| `pages/Formular-ManukaLind.html` | — | `formular-manukalind.js` | Produktfeedback ManukaLind |
 | `pages/Produkt-Modell.html` | — | — | Artikel: Indikation → Variante |
 | `pages/Provision-Portal-Start.html` | `provision-portal.css` | `provision-portal-start.js` | Provision-Portal Startseite |
 | `pages/Provision-Portal.html` | `provision-portal.css` | `provision-portal.js` | Tierarzt löst Provisionen ein |

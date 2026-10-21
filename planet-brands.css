@@ -3565,6 +3565,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     height: auto;
     display: block;
   }
+  /* Ankreuz-Tabelle: .rte table ist sonst display:block und verliert die Spalten */
+  .form-page .rte table { display: table; }
+  .form-page .rte table .form-check { margin-bottom: 0; }
   @media (max-width: 480px) {
     .form-page__banner { margin-right: calc(var(--half-module) * -1); margin-left: calc(var(--half-module) * -1); }
   }

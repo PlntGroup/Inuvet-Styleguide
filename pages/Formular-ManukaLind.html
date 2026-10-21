@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ManukaLind Product Trial Feedback – inuvet</title>
+  <title>ManukaLind Product Feedback – inuvet</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
-  <link rel="stylesheet" href="../planet-brands.css?v=229">
+  <link rel="stylesheet" href="../planet-brands.css?v=230">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
@@ -25,7 +25,7 @@
       <lottie-player src="../assets/brands/inuvet/lotties/Hero_Animation_01.json" background="transparent" speed="1" loop autoplay></lottie-player>
     </div>
 
-    <h1 class="form-page__title">ManukaLind Product Trial Feedback Form</h1>
+    <h1 class="form-page__title">ManukaLind Product Feedback Form</h1>
 
     <form id="manukaForm" class="flow" novalidate>
 
@@ -149,67 +149,59 @@
       </div>
       <p class="form-hint">e.g. 5 days, 3 weeks</p>
 
-      <p class="form-group-label">Initial condition</p>
-      <div class="form-radio-col">
-        <label class="form-check">
-          <input type="checkbox" name="initial_condition" value="Acute">
-          <span>Acute</span>
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="initial_condition" value="Chronic">
-          <span>Chronic</span>
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="initial_condition" value="Surgical wound">
-          <span>Surgical wound</span>
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="initial_condition" value="Superficial wound">
-          <span>Superficial wound</span>
-        </label>
-        <label class="form-check">
-          <input type="checkbox" name="initial_condition" value="Contaminated / infected wound">
-          <span>Contaminated / infected wound</span>
-        </label>
-        <label class="form-check --with-input">
-          <input type="checkbox" name="initial_condition" value="Other">
-          <span>Other:</span>
-          <input type="text" id="condition-other" class="form-check__inline-input" placeholder=" " aria-label="Other initial condition">
-        </label>
-      </div>
-
-      <p class="form-group-label">Initial clinical observations</p>
-
-      <div class="form-grid">
-        <div class="form-field">
-          <input type="text" id="init-redness" name="init_redness" placeholder=" ">
-          <label for="init-redness">Redness</label>
-        </div>
-        <div class="form-field">
-          <input type="text" id="init-swelling" name="init_swelling" placeholder=" ">
-          <label for="init-swelling">Swelling</label>
-        </div>
-        <div class="form-field">
-          <input type="text" id="init-discharge" name="init_discharge" placeholder=" ">
-          <label for="init-discharge">Discharge / exudate</label>
-        </div>
-        <div class="form-field">
-          <input type="text" id="init-odor" name="init_odor" placeholder=" ">
-          <label for="init-odor">Odor</label>
-        </div>
-        <div class="form-field">
-          <input type="text" id="init-appearance" name="init_appearance" placeholder=" ">
-          <label for="init-appearance">Wound appearance</label>
-        </div>
-        <div class="form-field">
-          <input type="text" id="init-granulation" name="init_granulation" placeholder=" ">
-          <label for="init-granulation">Granulation tissue</label>
-        </div>
-      </div>
-
-      <div class="form-field">
-        <input type="text" id="init-pain" name="init_pain" placeholder=" ">
-        <label for="init-pain">Pain / discomfort</label>
+      <p class="form-hint">Tick all that apply.</p>
+      <div class="rte">
+        <table>
+          <thead>
+            <tr>
+              <th scope="colgroup" colspan="2">Initial condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Acute"><span>Acute</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Chronic"><span>Chronic</span></label></td>
+            </tr>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Surgical wound"><span>Surgical wound</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Superficial wound"><span>Superficial wound</span></label></td>
+            </tr>
+            <tr>
+              <td colspan="2"><label class="form-check"><input type="checkbox" name="initial_condition" value="Contaminated / infected wound"><span>Contaminated / infected wound</span></label></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label class="form-check --with-input">
+                  <input type="checkbox" name="initial_condition" value="Other">
+                  <span>Other:</span>
+                  <input type="text" id="condition-other" class="form-check__inline-input" placeholder=" " aria-label="Other initial condition">
+                </label>
+              </td>
+            </tr>
+          </tbody>
+          <thead>
+            <tr>
+              <th scope="colgroup" colspan="2">Initial clinical observations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Redness"><span>Redness</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Swelling"><span>Swelling</span></label></td>
+            </tr>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Discharge / exudate"><span>Discharge / exudate</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Odor"><span>Odor</span></label></td>
+            </tr>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Wound appearance"><span>Wound appearance</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Granulation tissue"><span>Granulation tissue</span></label></td>
+            </tr>
+            <tr>
+              <td colspan="2"><label class="form-check"><input type="checkbox" name="initial_sign" value="Pain / discomfort"><span>Pain / discomfort</span></label></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="form-field">
@@ -230,26 +222,6 @@
           <span>ManukaLind Spray</span>
         </label>
       </div>
-
-      <div class="form-field">
-        <input type="text" id="batch" name="batch" placeholder=" ">
-        <label for="batch">Batch / lot no.</label>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-field">
-          <input type="date" id="treatment-start" name="treatment_start">
-          <label for="treatment-start">Treatment start date</label>
-        </div>
-        <div class="form-field">
-          <input type="date" id="treatment-end" name="treatment_end">
-          <label for="treatment-end">Treatment end date</label>
-        </div>
-      </div>
-      <label class="form-check">
-        <input type="checkbox" id="treatment-ongoing" name="treatment_ongoing" value="Ongoing">
-        <span>Ongoing</span>
-      </label>
 
       <h3 class="section-label --sub --in-view" data-animate="">5. Application &amp; Treatment</h3>
 
@@ -513,6 +485,10 @@
         <label for="signature-date">Date *</label>
       </div>
 
+      <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <p class="form-field__error" id="form-error" role="alert" hidden>The form could not be sent. Please check your connection and try again.</p>
+
       <button type="submit" class="btn --primary --full">Submit</button>
 
     </form>
@@ -522,7 +498,7 @@
         <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
         <div class="flow">
           <h2 class="success-state__title">Thank you</h2>
-          <p class="success-state__body">Thank you for taking the time to share this case.</p>
+          <p class="success-state__body">Your ManukaLind feedback has been sent. We appreciate you taking the time to share this case.</p>
         </div>
       </div>
     </template>
@@ -536,6 +512,6 @@
 </div>
 
 <script src="../planet-brands.js"></script>
-<script src="formular-manukalind.js?v=230"></script>
+<script src="formular-manukalind.js?v=231"></script>
 </body>
 </html>
