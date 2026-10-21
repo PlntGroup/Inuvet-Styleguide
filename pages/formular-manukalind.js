@@ -93,15 +93,19 @@
     data.append(label, value || '—');
   }
 
-  function files(data, label, id) {
+  function files(data, label, id, prefix) {
     var input = document.getElementById(id);
     if (!input || !input.files.length) {
       data.append(label, '—');
       return;
     }
+    var names = [];
     Array.prototype.forEach.call(input.files, function (file) {
-      data.append(label, file, file.name);
+      var named = new File([file], prefix + ' - ' + file.name, { type: file.type });
+      data.append('attachment', named, named.name);
+      names.push(file.name);
     });
+    data.append(label, names.join(', '));
   }
 
   function showSuccess() {
@@ -177,9 +181,9 @@
     field(data, 'Liked most', text('liked'));
     field(data, 'Could be improved', text('improve'));
     field(data, 'Additional comments', text('comments'));
-    files(data, 'Photos before treatment', 'photos-before');
-    files(data, 'Photos during treatment', 'photos-during');
-    files(data, 'Photos after treatment', 'photos-after');
+    files(data, 'Photos before treatment', 'photos-before', 'before');
+    files(data, 'Photos during treatment', 'photos-during', 'during');
+    files(data, 'Photos after treatment', 'photos-after', 'after');
     field(data, 'Consent for case use', one('consent'));
     field(data, 'Signing veterinarian', text('signature-name'));
     field(data, 'Signature', text('signature'));
