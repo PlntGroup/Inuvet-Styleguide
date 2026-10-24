@@ -109,6 +109,40 @@ html[data-brand="manukalind"] .tile.--product .tile__image-wrap > .floating-meta
   left: 0;
 }
 
+/* Collection, Desktop: senkrechte Linie in der Spaltenlücke. Nur diese Marke. */
+@media (min-width: 768px) {
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-2,
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-3,
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-4 {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(var(--border-light), var(--border-light));
+    background-size: 1px 100%;
+    background-position: center top;
+  }
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-3 {
+    background-image:
+      linear-gradient(var(--border-light), var(--border-light)),
+      linear-gradient(var(--border-light), var(--border-light));
+    background-size: 1px 100%, 1px 100%;
+    background-position:
+      calc((100% - 2 * var(--gutter)) / 3 + var(--gutter) / 2) top,
+      calc(2 * (100% - 2 * var(--gutter)) / 3 + var(--gutter) * 1.5) top;
+  }
+}
+@media (min-width: 900px) {
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-4 {
+    background-image:
+      linear-gradient(var(--border-light), var(--border-light)),
+      linear-gradient(var(--border-light), var(--border-light)),
+      linear-gradient(var(--border-light), var(--border-light));
+    background-size: 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      calc((100% - 3 * var(--gutter)) / 4 + var(--gutter) / 2) top,
+      calc(2 * (100% - 3 * var(--gutter)) / 4 + var(--gutter) * 1.5) top,
+      calc(3 * (100% - 3 * var(--gutter)) / 4 + var(--gutter) * 2.5) top;
+  }
+}
+
 /* Mobil: Warenkorb-Icon bündig unten rechts, hellgrün hinterlegt. */
 @media (max-width: 767px) {
   html[data-brand="manukalind"] .tile.--product .tile__cart-icon.btn {
