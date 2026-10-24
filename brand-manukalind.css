@@ -55,6 +55,46 @@ html[data-brand="manukalind"] .pdp__daily-cost__note {
   html[data-brand="manukalind"] .collection-sidebar__title { font-weight: 300; }
 }
 
+/* Produktkarte: Bewertung aus der Titelzeile nach rechts in die Preiszeile.
+   Markup im Guide bleibt beim System (Rating neben dem Titel). */
+html[data-brand="manukalind"] .tile.--product {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--half-module);
+  align-items: center;
+}
+html[data-brand="manukalind"] .tile.--product > .tile__image-wrap {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: stretch;
+}
+html[data-brand="manukalind"] .tile.--product > .flow,
+html[data-brand="manukalind"] .tile.--product .tile__headline-row {
+  display: contents;
+}
+html[data-brand="manukalind"] .tile.--product .tile__headline,
+html[data-brand="manukalind"] .tile.--product .tile__description {
+  grid-column: 1 / -1;
+  align-self: start;
+  min-width: 0;
+}
+html[data-brand="manukalind"] .tile.--product .tile__headline { grid-row: 2; }
+html[data-brand="manukalind"] .tile.--product .tile__description { grid-row: 3; }
+html[data-brand="manukalind"] .tile.--product > .tile__price {
+  grid-column: 1;
+  grid-row: 4;
+  align-self: center;
+}
+html[data-brand="manukalind"] .tile.--product .tile__headline-row .rating {
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: end;
+  align-self: center;
+  margin-top: calc(var(--base) * 0.5);
+  margin-left: 0;
+  white-space: nowrap;
+}
+
 /* Produktkarte: Titel eine Stufe über dem Fließtext, Größe der h3. Nur diese Marke. */
 html[data-brand="manukalind"] .tile.--product .tile__headline {
   font-size: var(--text-m);
