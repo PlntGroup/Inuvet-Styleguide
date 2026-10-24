@@ -109,37 +109,42 @@ html[data-brand="manukalind"] .tile.--product .tile__image-wrap > .floating-meta
   left: 0;
 }
 
-/* Collection, Desktop: senkrechte Linie in der Spaltenlücke. Nur diese Marke. */
+/* Collection, Desktop: gestrichelte Linie in der Spaltenlücke, bis zur Preiszeile. Nur diese Marke. */
 @media (min-width: 768px) {
-  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-2,
-  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-3,
-  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-4 {
-    background-repeat: no-repeat;
-    background-image: linear-gradient(var(--border-light), var(--border-light));
-    background-size: 1px 100%;
-    background-position: center top;
-  }
-  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-3 {
-    background-image:
-      linear-gradient(var(--border-light), var(--border-light)),
-      linear-gradient(var(--border-light), var(--border-light));
-    background-size: 1px 100%, 1px 100%;
-    background-position:
-      calc((100% - 2 * var(--gutter)) / 3 + var(--gutter) / 2) top,
-      calc(2 * (100% - 2 * var(--gutter)) / 3 + var(--gutter) * 1.5) top;
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-2 > :nth-child(2n)::before,
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-3 > :nth-child(3n)::before,
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-3 > :nth-child(3n + 2)::before,
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-4 > :nth-child(2n)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--gutter) / -2);
+    width: 1px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--border-light) 0 6px,
+      transparent 6px 12px
+    );
+    pointer-events: none;
   }
 }
 @media (min-width: 900px) {
-  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-4 {
-    background-image:
-      linear-gradient(var(--border-light), var(--border-light)),
-      linear-gradient(var(--border-light), var(--border-light)),
-      linear-gradient(var(--border-light), var(--border-light));
-    background-size: 1px 100%, 1px 100%, 1px 100%;
-    background-position:
-      calc((100% - 3 * var(--gutter)) / 4 + var(--gutter) / 2) top,
-      calc(2 * (100% - 3 * var(--gutter)) / 4 + var(--gutter) * 1.5) top,
-      calc(3 * (100% - 3 * var(--gutter)) / 4 + var(--gutter) * 2.5) top;
+  html[data-brand="manukalind"] .collection-main .tile-grid.--cols-4 > :nth-child(4n + 3)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--gutter) / -2);
+    width: 1px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--border-light) 0 6px,
+      transparent 6px 12px
+    );
+    pointer-events: none;
   }
 }
 
