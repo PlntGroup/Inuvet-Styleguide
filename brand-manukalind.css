@@ -55,6 +55,12 @@ html[data-brand="manukalind"] .pdp__daily-cost__note {
   html[data-brand="manukalind"] .collection-sidebar__title { font-weight: 300; }
 }
 
+/* Produktkarte: Titel eine Stufe über dem Fließtext, Größe der h3. Nur diese Marke. */
+html[data-brand="manukalind"] .tile.--product .tile__headline {
+  font-size: var(--text-m);
+  line-height: var(--lh-h3);
+}
+
 /* Produktkarte: Badge bündig oben links, wie Planimol. Nur diese Marke. */
 html[data-brand="manukalind"] .pdp__main-image > .floating-meta,
 html[data-brand="manukalind"] .pdp__mosaic-hero > .floating-meta,
