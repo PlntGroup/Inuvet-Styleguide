@@ -54,3 +54,28 @@ html[data-brand="manukalind"] .pdp__daily-cost__note {
 @media (min-width: 768px) {
   html[data-brand="manukalind"] .collection-sidebar__title { font-weight: 300; }
 }
+
+/* Produktkarte: Badge bündig oben links, wie Planimol. Nur diese Marke. */
+html[data-brand="manukalind"] .pdp__main-image > .floating-meta,
+html[data-brand="manukalind"] .pdp__mosaic-hero > .floating-meta,
+html[data-brand="manukalind"] .tile.--product .tile__image-wrap > .floating-meta {
+  top: 0;
+  left: 0;
+}
+
+/* Mobil: Warenkorb-Icon bündig unten rechts, hellgrün hinterlegt. */
+@media (max-width: 767px) {
+  html[data-brand="manukalind"] .tile.--product .tile__cart-icon.btn {
+    bottom: 0;
+    right: 0;
+    --cart-glass: var(--green-light);
+    background: var(--green-light);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  html[data-brand="manukalind"] .tile.--product .tile__cart-icon.btn:hover {
+    background: color-mix(in srgb, var(--green) 16%, var(--green-light));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
