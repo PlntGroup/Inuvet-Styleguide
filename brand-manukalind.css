@@ -1,0 +1,56 @@
+/* ═══════════════════════════════════════════
+   brand-manukalind.css — Brand extension
+   ManukaLind token skin on top of planet-brands.css.
+   Tokens only — rhythm and components stay in the base file.
+   Load after planet-brands.css.
+   Active: html[data-brand="manukalind"]
+
+   Screen palette:
+   Grün #00975f · Dunkelgrün #006b43 · Hellgrün #E6F4EF
+   Schwarz #000000 · Honig #ffc800 · Weiß #fff
+   Type: Sofia Pro — web family "sofia-pro".
+   Satz Light (300), nur diese Marke. Überschriften bleiben Bold (700).
+   ═══════════════════════════════════════════ */
+
+html[data-brand="manukalind"] {
+  --font: "sofia-pro", "Sofia Pro", "Helvetica Neue", Arial, sans-serif;
+
+  --fg: #000000;
+  --bg: #fff;
+
+  --green: #00975f;
+  --green-hover: #006b43;
+  --green-light: #E6F4EF;
+
+  --color-honey: #ffc800;
+}
+
+/* Regular (400) im System wird hier Light. Andere Marken bleiben Regular. */
+html[data-brand="manukalind"] body,
+html[data-brand="manukalind"] .rte.--data-table td,
+html[data-brand="manukalind"] .rte.--data-table td.--sm,
+html[data-brand="manukalind"] .rte.--data-table .data-table-stack__primary,
+html[data-brand="manukalind"] .nav-left > a,
+html[data-brand="manukalind"] .nav-left > a:visited,
+html[data-brand="manukalind"] .nav-item__trigger,
+html[data-brand="manukalind"] .tile.--product .tile__price .price-stack,
+html[data-brand="manukalind"] .price-stack .--old,
+html[data-brand="manukalind"] .price-stack__unit,
+html[data-brand="manukalind"] .choice-box.--sm,
+html[data-brand="manukalind"] .choice-box.--detail,
+html[data-brand="manukalind"] .testimonial__text,
+html[data-brand="manukalind"] .testimonial-slider.--featured .testimonial__text,
+html[data-brand="manukalind"] .pdp__price .price-stack__compare,
+html[data-brand="manukalind"] .ingredient__latin,
+html[data-brand="manukalind"] .cart-drawer__count,
+html[data-brand="manukalind"] .cart-drawer__savings-row,
+html[data-brand="manukalind"] .filter-count,
+html[data-brand="manukalind"] .search-panel__input::placeholder,
+html[data-brand="manukalind"] .search-page__form .search-panel__input,
+html[data-brand="manukalind"] .pdp__daily-cost__note {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  html[data-brand="manukalind"] .collection-sidebar__title { font-weight: 300; }
+}
