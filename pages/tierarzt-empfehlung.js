@@ -2560,7 +2560,7 @@ function render() {
     case 'checkout':    main.innerHTML = renderCheckout();    break;
   }
   initSliders();
-  initMarquees();
+  initMarquees(true);
 }
 
 /* ════════════════════════════════════════════
@@ -2696,36 +2696,82 @@ document.addEventListener('click', e => {
   }
 });
 
-const _marqueeBase = new Map();
+const teMarqueeBase = new WeakMap();
 
-function initMarquees() {
-  requestAnimationFrame(() => {
-    document.querySelectorAll('.announcement-bar.--marquee .announcement-bar__track').forEach(track => {
-      if (_marqueeBase.has(track)) {
-        track.innerHTML = _marqueeBase.get(track);
-      } else {
-        _marqueeBase.set(track, track.innerHTML);
-      }
-      track.querySelectorAll('.--guest-only').forEach(el => {
-        el.style.display = (state === 'guest') ? '' : 'none';
-      });
-      const sentinel = track.querySelector('.announcement-bar__sentinel');
-      if (!sentinel) return;
-      const shift = sentinel.offsetLeft;
-      const barWidth = track.parentElement.offsetWidth;
-      const afterSentinel = Array.from(track.children).slice(
-        Array.from(track.children).indexOf(sentinel) + 1
-      );
-      let safety = 0;
-      while (track.scrollWidth - shift < barWidth * 2 && safety++ < 20) {
-        afterSentinel.forEach(el => track.appendChild(el.cloneNode(true)));
-      }
-      track.style.setProperty('--marquee-shift', `-${shift}px`);
+function layoutMarquee(track, force) {
+  const bar = track.parentElement;
+  if (!bar) return;
+  const barWidth = bar.offsetWidth;
+  if (!teMarqueeBase.has(track)) teMarqueeBase.set(track, track.innerHTML);
+
+  const sentinelNow = track.querySelector('.announcement-bar__sentinel');
+  if (!sentinelNow) return;
+  const live = sentinelNow.getBoundingClientRect().left - track.getBoundingClientRect().left;
+  if (!force && track._marqueeBar === barWidth && track._marqueeShift && Math.abs(track._marqueeShift - live) < 0.5) return;
+
+  if (track._marqueeAnim) {
+    track._marqueeAnim.cancel();
+    track._marqueeAnim = null;
+  }
+  track.style.animation = 'none';
+  track.style.transform = 'none';
+  track.innerHTML = teMarqueeBase.get(track);
+  track.querySelectorAll('.--guest-only').forEach(el => {
+    el.style.display = (state === 'guest') ? '' : 'none';
+  });
+
+  const sentinel = track.querySelector('.announcement-bar__sentinel');
+  if (!sentinel) return;
+  const shift = sentinel.getBoundingClientRect().left - track.getBoundingClientRect().left;
+  if (shift < 1) return;
+
+  const kids = Array.from(track.children);
+  const rest = kids.slice(kids.indexOf(sentinel) + 1);
+  let safety = 0;
+  while (barWidth && track.scrollWidth < shift + barWidth && rest.length && safety++ < 20) {
+    rest.forEach(el => track.appendChild(el.cloneNode(true)));
+  }
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && typeof track.animate === 'function') {
+    track._marqueeAnim = track.animate(
+      [
+        { transform: 'translate3d(0,0,0)' },
+        { transform: 'translate3d(' + (-shift) + 'px,0,0)' }
+      ],
+      { duration: 28000, iterations: Infinity, easing: 'linear' }
+    );
+  }
+  track._marqueeShift = shift;
+  track._marqueeBar = barWidth;
+}
+
+function initMarquees(force) {
+  document.querySelectorAll('.announcement-bar.--marquee .announcement-bar__track').forEach(track => {
+    layoutMarquee(track, force);
+    const bar = track.parentElement;
+    if (!bar || bar._marqueePause) return;
+    bar._marqueePause = true;
+    const pause = () => { if (track._marqueeAnim) track._marqueeAnim.pause(); };
+    const play = () => { if (track._marqueeAnim) track._marqueeAnim.play(); };
+    bar.addEventListener('mouseenter', pause);
+    bar.addEventListener('mouseleave', play);
+    bar.addEventListener('focusin', pause);
+    bar.addEventListener('focusout', (e) => { if (!bar.contains(e.relatedTarget)) play(); });
+    if (track._marqueeObserver || typeof ResizeObserver === 'undefined') return;
+    let frame = 0;
+    const ro = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => layoutMarquee(track));
     });
+    ro.observe(bar);
+    ro.observe(track);
+    track._marqueeObserver = ro;
   });
 }
 
-(document.fonts ? document.fonts.ready : Promise.resolve()).then(initMarquees);
+document.addEventListener('DOMContentLoaded', () => initMarquees(true));
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => initMarquees(true));
 
 initAssignedVetMockupSelect();
 render();
