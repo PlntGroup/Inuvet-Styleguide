@@ -8,9 +8,9 @@ Regeln: [`Rules.md`](./Rules.md). Spec: diese Datei.
 
 1. Sprache: **Deutsch** (Doku, Commits, Antworten). Dateiköpfe in `planet-brands.*`, `brand-*.css`, `sg-only.*` auf **Englisch** (IT-Übergabe).
 2. Globale System-Dateien: `planet-brands.css` / `planet-brands.js` — in alle Pages einbinden. UI-Icons: Material-SVG-Sprite (`#ui-icon-sprite`), nicht das Google-Icon-Font. `Inuvet_Icon_*` bleiben eigene Zeichnungen. Seitenspezifische Logik → `pages/xyz.js`. Kein Inline-Script. → Details unter „JS-Schichtung".
-2b. **Drei Schichten:** System (`planet-brands.*`) · Haut (`brand-{handle}.css`) · Kühlschrank (Store-Inhalte). Inuvet bleibt `:root` in `planet-brands.css`. Planimol = Token-Haut `brand-planimol.css` (`html[data-brand="planimol"]`). Campus = `brand-campus.css` (Campus-only Komponenten + künftige Tokens; im Theme immer geladen, im Guide via Schalter). Neue Marke = `brand-{handle}.css` + eigener Store — niemals Tokens in `planet-brands.css`. `brand-inuvet.css` nur, wenn Inuvet wie andere umgeschaltet werden muss. Shopify `assets/` ist flach, gleicher Basename wie hier.
-2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf `?brand=planimol` / `?brand=campus` + passende `brand-*.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `Spec.md`.
-2d. **Guide-Ordner** (echte Ordner nur hier; Theme `assets/` bleibt flach, Dateiname = Theme-Asset, Dateinamen nicht umbenennen): `assets/planet/` = markenübergreifend (Material-UI `material-icons/` + Sprite, `social-icons/`). `assets/brands/{handle}/` = alles Markenspezifische (Logo, `icons/`, `lotties/`, `images/`). `Inuvet_Icon_*` teilen Inuvet + Campus (gleiche Akzentfarbe `#78b41b`). `Icon_Tier_*`, Lotties, Bilder = Inuvet. Planimol, Byox, EQX: eigener Ordner, nicht umfärben. `brand-*.css` bleibt im Root.
+2b. **Drei Schichten:** System (`planet-brands.*`) · Haut (`brand-{handle}.css`) · Kühlschrank (Store-Inhalte). Inuvet bleibt `:root` in `planet-brands.css`. Planimol = Token-Haut `brand-planimol.css` (`html[data-brand="planimol"]`). ManukaLind = Token-Haut `brand-manukalind.css` (`html[data-brand="manukalind"]`, Sofia Pro, Screen-Palette). Campus = `brand-campus.css` (Campus-only Komponenten + künftige Tokens; im Theme immer geladen, im Guide via Schalter). Neue Marke = `brand-{handle}.css` + eigener Store — niemals Tokens in `planet-brands.css`. `brand-inuvet.css` nur, wenn Inuvet wie andere umgeschaltet werden muss. Shopify `assets/` ist flach, gleicher Basename wie hier.
+2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf `?brand=planimol` / `?brand=campus` / `?brand=manukalind` + passende `brand-*.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `Spec.md`.
+2d. **Guide-Ordner** (echte Ordner nur hier; Theme `assets/` bleibt flach, Dateiname = Theme-Asset, Dateinamen nicht umbenennen): `assets/planet/` = markenübergreifend (Material-UI `material-icons/` + Sprite, `social-icons/`). `assets/brands/{handle}/` = alles Markenspezifische (Logo, `icons/`, `lotties/`, `images/`). `Inuvet_Icon_*` teilen Inuvet + Campus (gleiche Akzentfarbe `#78b41b`). `Icon_Tier_*`, Lotties, Bilder = Inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner, nicht umfärben. `brand-*.css` bleibt im Root.
 2e. **Shopify-Themes Git:** nur Branch **`staging`** pushen. Nie `main`/`master`. Gilt für jedes Shopify-Theme.
 
 ---
@@ -97,7 +97,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 | Schicht | Datei | Rolle |
 |---|---|---|
 | **System** | `planet-brands.css` / `planet-brands.js` | Tokens (`:root` = Inuvet) + Komponenten + globale JS. Gleicher Basename im Theme. |
-| **Haut** | `brand-{handle}.css` | Planimol: nur Tokens (`brand-planimol.css`). Campus: Komponenten + künftige Tokens (`brand-campus.css`). |
+| **Haut** | `brand-{handle}.css` | Planimol: nur Tokens (`brand-planimol.css`). ManukaLind: nur Tokens (`brand-manukalind.css`). Campus: Komponenten + künftige Tokens (`brand-campus.css`). |
 | **Kühlschrank** | Store-Content | Logos, Icons, Lotties, Bilder — Dateinamen nicht umbenennen, nicht ins System mischen. Guide: `assets/brands/{handle}/`. Nur UI-Chrome/Social: `assets/planet/`. |
 
 ### CSS-Schichten
@@ -106,6 +106,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 |---|---|---|
 | `planet-brands.css` | Design System — Tokens, Atome, Moleküle, Organismen | Styleguide-UI, Mockup-Chrome, Page-Spezifika |
 | `brand-planimol.css` | Marken-Haut: `html[data-brand="planimol"]` überschreibt Schrift, Grün, FG, Borders, Produktfarben. Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
+| `brand-manukalind.css` | Marken-Haut: `html[data-brand="manukalind"]` überschreibt Schrift (Sofia Pro), Grün, Schwarz, Honig. Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
 | `brand-campus.css` | Campus-Haut: Weiche, Webinar-Metas, PDP-/Collection-Deltas. Theme immer; Guide `#skin-campus` bei `data-brand="campus"`. | Inuvet-Shop-Styles, Guide-Chrome |
 | `sg-only.css` | Styleguide-eigene UI (`.sg-*` Präfix) — nicht für Shopify | Echte Produkt-Komponenten |
 | `assets/planet/material-icons/` | UI-Icons: offizielle Material-SVGs (Apache-2.0), Sprite im HTML. Klasse `.material-icons`. Theme: `snippets/icon.liquid` + `ui-icon-sprite`. | Benefit-/Markenzeichnungen `Inuvet_Icon_*`, Google-Fonts-CDN |

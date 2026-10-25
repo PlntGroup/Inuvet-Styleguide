@@ -95,6 +95,15 @@ html[data-brand="manukalind"] .tile.--product .tile__headline-row .rating {
   white-space: nowrap;
 }
 
+/* Plus-Kreuz: anderthalbmal System (1,25 × 1,5) — .check-list und .rte ul. */
+html[data-brand="manukalind"] :is(.check-list li, .rte ul li)::before {
+  width: calc(var(--base) * 1.875);
+  height: calc(var(--base) * 1.875);
+}
+html[data-brand="manukalind"] :is(.check-list li, .rte ul li) {
+  padding-left: calc(var(--base) * 2.375);
+}
+
 /* Produktkarte: Titel eine Stufe über dem Fließtext, Größe der h3. Nur diese Marke. */
 html[data-brand="manukalind"] .tile.--product .tile__headline {
   font-size: var(--text-m);

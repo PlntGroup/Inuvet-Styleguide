@@ -189,7 +189,7 @@
      direkte h1–h4 / p / Listen laufen über dieselben --flow-space-Regeln.
      Hier nur Tag-Styles (Listen, Quote, Tabelle, Figure) — keine Extra-Margins
      zwischen Überschrift und Absatz. */
-  .rte ul, .rte ol { padding-left: calc(var(--base) * 1.5); }
+  .rte ol { padding-left: calc(var(--base) * 1.5); }
   .rte li { margin-bottom: calc(var(--base) * 0.25); }
   .rte h2, .rte h3, .rte h4 { line-height: 1.2; }
   .rte blockquote { padding-left: var(--half-module); border-left: 2px solid var(--green); font-size: var(--text-m); font-style: italic; }
@@ -3858,27 +3858,37 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* ─── Label Caps — kompaktes Uppercase-Label ohne Border/Padding (z.B. Varianten, Filter) ─── */
   .label-caps { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); }
 
-  /* ─── Check List (Textliste mit Häkchen, Landing-Pages) ─── */
+  /* ─── Check List + CMS-Aufzählungen (.rte ul) ───
+     Plus-Kreuz (add_cross) per ::before — auch Händler-HTML ohne Icon-Markup. */
   .check-list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .check-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: calc(var(--base) * 0.5);
-    padding: calc(var(--base) * 0.25) 0;
+  .rte ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .rte ul ul {
+    margin-top: calc(var(--base) * 0.25);
+    padding-left: calc(var(--base) * 0.5);
+  }
+  :is(.check-list li, .rte ul li) {
+    position: relative;
+    padding: calc(var(--base) * 0.25) 0 calc(var(--base) * 0.25) calc(var(--base) * 1.75);
     font-size: var(--text-base);
     line-height: var(--lh-base);
   }
-  /* Plus statt Check — Gesundheitsbezug; etwas größer für kräftigere Strichwirkung */
-  .check-list li .material-icons {
-    color: var(--green);
-    font-size: calc(var(--base) * 1.25);
-    flex-shrink: 0;
-    margin-top: 0.1em;
-    font-weight: 700;
+  :is(.check-list li, .rte ul li)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(var(--base) * 0.25 + 0.1em);
+    width: calc(var(--base) * 1.25);
+    height: calc(var(--base) * 1.25);
+    background: var(--green);
+    -webkit-mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9.9 5h4.2v4.9h4.9v4.2h-4.9v4.9h-4.2v-4.9H5v-4.2h4.9z'/%3E%3C/svg%3E");
+    mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9.9 5h4.2v4.9h4.9v4.2h-4.9v4.9h-4.2v-4.9H5v-4.2h4.9z'/%3E%3C/svg%3E");
   }
 
   /* ─── Divider / Line ─── */

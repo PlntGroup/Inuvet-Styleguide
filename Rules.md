@@ -31,7 +31,7 @@ Shopify-`assets/` ist flach. Dateiname = Theme-Asset.
 - `assets/planet/` — markenübergreifend (Material-UI, Social)
 - `assets/brands/{handle}/` — Logo, `icons/`, `lotties/`, `images/`
 
-`Inuvet_Icon_*`: Inuvet + Campus (gleiche Akzentfarbe). `Icon_Tier_*`, Lotties, Bilder: Inuvet. Planimol, Byox, EQX: eigener Ordner.
+`Inuvet_Icon_*`: Inuvet + Campus (gleiche Akzentfarbe). `Icon_Tier_*`, Lotties, Bilder: Inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner.
 
 ## Kein neues CSS ohne Design-OK
 
