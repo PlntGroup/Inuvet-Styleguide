@@ -823,7 +823,7 @@ function pdpBuyHTML() {
     </div>`;
 
   const usps = (p.usps || []).map(u =>
-    `<li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>${u}</span></li>`).join('');
+    `<li>${u}</li>`).join('');
   const uspsBlock = usps ? `<ul class="check-list">${usps}</ul>` : '';
 
   const ctaClass = approvedNow ? 'btn --primary' : 'btn --honey';

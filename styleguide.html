@@ -2384,25 +2384,25 @@
         </div>
         <div class="rule">
           <h4>Aufbau</h4>
-          <p>Pro Item ein Material-Icon <code>add</code> (Plus, Gesundheitsbezug) links + Text. Flex-Row je <code>li</code>, kein Standard-Bullet.</p>
+          <p>Nur Text im <code>li</code>, kein Icon im Markup. Das Plus-Kreuz <code>add_cross</code> (Gesundheitsbezug) setzt <code>::before</code> links, auch für <code>.rte ul</code> aus dem Admin.</p>
         </div>
       </div>
 
       <table class="spec-table">
-        <tr><th><code>.check-list</code></th><td>Liste ohne Standard-Bullets · Flex-Layout pro Item · Icon links</td></tr>
-        <tr><th><code>.check-list li</code></th><td>Flex-Row · Gap <code>calc(var(--base) * 0.5)</code></td></tr>
-        <tr><th>Icon</th><td>Material Icon <code>add</code> · <code>var(--green)</code> · <code>calc(var(--base) * 1.25)</code> · etwas kräftiger als Check</td></tr>
+        <tr><th><code>.check-list</code></th><td>Liste ohne Standard-Bullets · Icon links per <code>::before</code></td></tr>
+        <tr><th><code>.check-list li</code></th><td>Einzug links <code>calc(var(--base) * 1.75)</code></td></tr>
+        <tr><th>Icon</th><td><code>add_cross</code> als Maske · <code>var(--green)</code> · <code>calc(var(--base) * 1.25)</code> · ManukaLind 1,5-fach</td></tr>
       </table>
 
       <div class="sg-demo --white">
         <ul class="check-list">
-          <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Tierärztlich entwickelt und klinisch getestet</span></li>
-          <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Hochwertige Inhaltsstoffe ohne künstliche Zusätze</span></li>
-          <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Einfache Dosierung für alle Tiergrößen</span></li>
-          <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Kostenloser Versand ab 49 €</span></li>
+          <li>Tierärztlich entwickelt und klinisch getestet</li>
+          <li>Hochwertige Inhaltsstoffe ohne künstliche Zusätze</li>
+          <li>Einfache Dosierung für alle Tiergrößen</li>
+          <li>Kostenloser Versand ab 49 €</li>
         </ul>
       </div>
-      <p class="sg-caption">USP-Liste — kein Bullet, grünes Häkchen links.</p>
+      <p class="sg-caption">USP-Liste — kein Bullet, grünes Plus-Kreuz links.</p>
     </section>
 
 
@@ -5516,9 +5516,9 @@
               </div>
               <p class="pdp__description">Ergänzungsfuttermittel. Die natürliche Unterstützung für nervöse und gestresste Tiere. Hilft Hunden und Katzen, bei Gewitter, Feuerwerk, Autofahrten oder Tierarztbesuchen ruhiger und ausgeglichener zu bleiben.</p>
               <ul class="check-list">
-                <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Rein pflanzlich, ohne künstliche Zusatzstoffe</span></li>
-                <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Hohe Akzeptanz — auch bei wählerischen Tieren</span></li>
-                <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Von über 20.000 Tierärzten empfohlen</span></li>
+                <li>Rein pflanzlich, ohne künstliche Zusatzstoffe</li>
+                <li>Hohe Akzeptanz — auch bei wählerischen Tieren</li>
+                <li>Von über 20.000 Tierärzten empfohlen</li>
               </ul>
               <div class="pdp__price">
                 <div class="price-stack">
@@ -5716,9 +5716,9 @@
               </div>
               <p class="pdp__description">Diät-Ergänzungsfuttermittel / Ergänzungsfuttermittel. Unterstützt die Leberfunktion bei Hund und Katze. Mit hochwertigen pflanzlichen Wirkstoffen zur täglichen Anwendung.</p>
               <ul class="check-list">
-                <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Unterstützt die normale Leberfunktion.</span></li>
-                <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Lange Reichweite dank hoher Dosierung.</span></li>
-                <li><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg><span>Pulver allergikergeeignet.</span></li>
+                <li>Unterstützt die normale Leberfunktion.</li>
+                <li>Lange Reichweite dank hoher Dosierung.</li>
+                <li>Pulver allergikergeeignet.</li>
               </ul>
               <div class="pdp__variants">
                 <div class="pdp__type-selector">
