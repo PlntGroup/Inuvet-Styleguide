@@ -5014,7 +5014,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .pdp__title { font-size: var(--text-xl); font-weight: 700; line-height: var(--lh-h2); margin-bottom: 0; }
   /* Rhythmus über margin-top des Folgeelements (flow-artig): greift auch, wenn keine .rating-Zeile folgt */
   .pdp__title + * { margin-top: var(--half-module); }
-  .pdp__title + .rating { margin-top: calc(var(--base) * 0.5); }
+  .pdp__title + .rating { margin-top: var(--base); }
   .pdp__price { display: flex; align-items: center; flex-wrap: wrap; gap: var(--half-module); margin-bottom: var(--half-module); }
   .pdp__price .price-stack {
     font-size: var(--text-l);
