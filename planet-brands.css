@@ -5590,13 +5590,13 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .cart-drawer__continue { width: 100%; text-align: center; padding-top: calc(var(--base) * 0.5); padding-bottom: calc(var(--base) * 0.5); }
   .cart-drawer__empty { flex: 1; display: flex; align-items: center; justify-content: center; padding: var(--module); }
 
-  /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, hellgrün.
+  /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, Notice-Gelb.
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
      Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf. ─── */
   .cart-drawer__recs {
     margin: var(--module) calc(var(--module) * -1) 0;
     padding: var(--half-module) var(--module);
-    background: var(--green-light);
+    background: var(--color-notice-bg);
   }
   .cart-drawer__recs > .section-label { margin: 0; }
   .cart-drawer__recs > .cart-item:last-child { border-bottom: 0; }
