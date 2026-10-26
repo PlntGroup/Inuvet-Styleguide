@@ -5594,7 +5594,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
      Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf. ─── */
   .cart-drawer__recs {
-    margin: var(--half-module) calc(var(--module) * -1) 0;
+    margin: var(--module) calc(var(--module) * -1) 0;
     padding: var(--half-module) var(--module);
     background: var(--green-light);
   }
