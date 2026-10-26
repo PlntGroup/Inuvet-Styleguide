@@ -5600,6 +5600,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .cart-drawer__recs > .section-label { margin: 0; }
   .cart-drawer__recs > .cart-item:last-child { border-bottom: 0; }
+  /* Vorschlag: Titel so groß wie der Preis darunter (.cart-item__variant) */
+  .cart-drawer__recs .cart-item__name { font-size: var(--text-xs); }
   @media (min-width: 768px) {
     .cart-drawer:has(.cart-drawer__recs) { transform: translateX(calc(100% + var(--base) * 18)); }
     .cart-drawer.--open:has(.cart-drawer__recs) { transform: translateX(0); }
