@@ -6436,8 +6436,10 @@
         <tr><th>Overlay</th><td><code>rgba(0,0,0,0.4)</code>. Klick schließt den Drawer.</td></tr>
         <tr><th>Drawer</th><td>Breite <code>min(28rem, 100vw)</code>. Border-left: <code>1px solid #000</code>.</td></tr>
         <tr><th>Item</th><td><code>.cart-item</code> (<a href="#C2">C.2</a>) · Grid: <code>5rem</code> Bild + <code>1fr</code> Info · kompakte ±Buttons (<code>--sm</code>)</td></tr>
-        <tr><th>Tier-Hint</th><td><code>.cart-item__tier-hint</code> (<a href="#C2">C.2</a>) · <strong>standardmäßig sichtbar</strong> auf jeder berechtigten Zeile — Text „X Stück hinzufügen für Y weitere Gratisprodukte" · produktiv via <code>formatHint()</code> pro Produkt</td></tr>
+        <tr><th>Tier-Hint</th><td><code>.cart-item__tier-hint</code> (<a href="#C2">C.2</a>) · <strong>standardmäßig sichtbar</strong> auf jeder berechtigten Zeile — Text „X Stück hinzufügen für Y weitere Gratisprodukte" · produktiv via <code>formatHint()</code> pro Produkt · <strong>nur Inuvet</strong></td></tr>
+        <tr><th>Planimol, ManukaLind, Campus</th><td>Kein Tier-Hint und kein Gratis-Badge · stattdessen Label <code>.badge.--sale</code> („Sale“) in <code>.floating-meta</code> auf dem Thumb, wenn <code>item.variant.compare_at_price &gt; item.original_price</code></td></tr>
         <tr><th>Footer</th><td>Versandhinweis, Zwischensumme (<code>--text-m</code>), Checkout (Primary), Weiter einkaufen (Ghost).</td></tr>
+        <tr><th>Empfehlungen</th><td><code>.cart-drawer__recs</code> als letztes Kind von <code>.cart-drawer__items</code> · Fläche <code>--green-light</code> · Überschrift <code>.section-label</code> „Andere Kunden kauften auch“ · 3–4 Vorschläge als <code>.cart-item</code> mit demselben Aufbau wie Warenkorb-Zeilen (<code>__top</code>: Name + „ab“-Preis in <code>.cart-item__variant</code> · <code>__bottom</code>: <code>.btn.--secondary.--sm</code> „Hinzufügen“, bündig mit der Bildunterkante) · <strong>mobil</strong> Liste unter den Produkten, vollflächig im Drawer · <strong>ab 768px</strong> Panel links am Drawer (<code>calc(var(--base) * 18)</code>, volle Höhe, fährt mit dem Drawer), Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf · ohne Vorschläge kein Block</td></tr>
         <tr><th>Leer</th><td>Zentriertes Icon + Text + Button (<a href="#C8">C.8</a>).</td></tr>
         <tr><th>JS</th><td><code>openCart(id)</code> / <code>closeCart(id)</code> in <code>sg-only.js</code> — IDs <code>cartFull</code> / <code>cartEmpty</code></td></tr>
         <tr><th><code>.options-drawer</code></th><td>Varianten-Auswahl — gleicher Overlay-Typ, Breite und Z-Index wie Cart-Drawer · Overlay <code>var(--z-overlay)</code>, Drawer <code>var(--z-drawer)</code></td></tr>
@@ -6469,6 +6471,7 @@
         <tr><th>Footer</th><td>Zwischensumme <code>cart.items_subtotal_price | money</code> → <code>.summary-total</code> · Checkout-Button → <code>/checkout</code></td></tr>
         <tr><th>Leer</th><td><code>{% if cart.item_count == 0 %}</code> → <code>.cart-drawer__empty</code> mit <code>.empty-state</code> (→ <a href="#C8">C.8</a>)</td></tr>
         <tr><th>Options-Drawer</th><td>Kein Shopify-Standard — Theme-JS baut Varianten aus <code>product.options_with_values</code>, Add via <code>/cart/add.js</code></td></tr>
+        <tr><th>Empfehlungen</th><td>Shopify Product Recommendations API: <code>/recommendations/products?product_id={erstes Warenkorb-Produkt}&amp;intent=complementary&amp;section_id=…</code>, leer → <code>intent=related</code> · Ergänzende Produkte pflegt der Shop in der App <strong>Search &amp; Discovery</strong> · Produkte im Warenkorb ausblenden · „Hinzufügen“: eine Variante → <code>/cart/add.js</code>, mehrere → Options-Drawer · danach Drawer neu laden</td></tr>
       </table>
       <p class="sg-caption">Alle Beträge über den <code>money</code>-Filter · Drawer-State über die Cart AJAX API, Markup und Klassen 1:1 aus C.2 / E.4.</p>
     </section>
@@ -7157,6 +7160,65 @@
       </div>
       <span class="cart-item__tier-hint" aria-hidden="true">4 Stück hinzufügen für 2 weitere Gratisprodukte</span>
     </div>
+    <aside class="cart-drawer__recs" aria-label="Andere Kunden kauften auch">
+      <p class="section-label">Andere Kunden kauften auch</p>
+      <div class="cart-item">
+        <div class="product-thumb"><img src="assets/brands/inuvet/images/Cortisan_Packshot_01.jpg" alt="Cortisan"></div>
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <div>
+              <p class="cart-item__name"><a href="#">Cortisan</a></p>
+              <div class="cart-item__variant">ab 29,90 €</div>
+            </div>
+          </div>
+          <div class="cart-item__bottom">
+            <button type="button" class="btn --secondary --sm">Hinzufügen</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-thumb"><img src="assets/brands/inuvet/images/Dermin_Packshot_01.jpg" alt="Dermin"></div>
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <div>
+              <p class="cart-item__name"><a href="#">Dermin</a></p>
+              <div class="cart-item__variant">ab 24,90 €</div>
+            </div>
+          </div>
+          <div class="cart-item__bottom">
+            <button type="button" class="btn --secondary --sm">Hinzufügen</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-thumb"><img src="assets/brands/inuvet/images/EnteroGast_Packshot_01.jpg" alt="EnteroGast"></div>
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <div>
+              <p class="cart-item__name"><a href="#">EnteroGast</a></p>
+              <div class="cart-item__variant">ab 19,90 €</div>
+            </div>
+          </div>
+          <div class="cart-item__bottom">
+            <button type="button" class="btn --secondary --sm">Hinzufügen</button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item">
+        <div class="product-thumb"><img src="assets/brands/inuvet/images/Diabex_Packshot_01.jpg" alt="Diabex"></div>
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <div>
+              <p class="cart-item__name"><a href="#">Diabex</a></p>
+              <div class="cart-item__variant">ab 34,90 €</div>
+            </div>
+          </div>
+          <div class="cart-item__bottom">
+            <button type="button" class="btn --secondary --sm">Hinzufügen</button>
+          </div>
+        </div>
+      </div>
+    </aside>
   </div>
   <div class="cart-drawer__footer">
     <div class="cart-drawer__amounts">
