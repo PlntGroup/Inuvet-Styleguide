@@ -5549,6 +5549,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     margin-top: var(--section-label-mt, var(--half-module));
   }
   .cart-item { display: grid; grid-template-columns: calc(var(--base) * 5) 1fr; gap: var(--half-module); padding: var(--half-module) 0; border-bottom: 1px solid var(--border-light); }
+  /* Drawer: keine Linie unter der letzten Warenkorb-Zeile. Ausnahme: Zeile mit Tier-Hint (Inuvet),
+     der sitzt auf der Linie. */
+  .cart-drawer__items > .cart-item:not(:has(~ .cart-item)):not(:has(.cart-item__tier-hint)) { border-bottom: 0; }
   .cart-item.--clickable { cursor: pointer; }
   /* ─── Product Thumb — geteiltes Atom für Produkt-Vorschaubilder (Cart, Search) ─── */
   .product-thumb {
@@ -5591,7 +5594,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .cart-drawer__empty { flex: 1; display: flex; align-items: center; justify-content: center; padding: var(--module); }
 
   /* ─── Rabatt-Staffel (E.4) — zwischen Drawer-Kopf und Produkten.
-     Hinweis + Stufenleiste; erreichte Stufen grün. Nur Anzeige,
+     Hinweis + Stufenleiste ohne eigene Fläche; erreichte Stufen Honig wie das Label „Aktion“. Nur Anzeige,
      den Rabatt selbst rechnet Shopify (automatischer Rabatt). ─── */
   .discount-tiers {
     display: flex;
@@ -5599,7 +5602,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     gap: calc(var(--base) * 0.5);
     flex-shrink: 0;
     padding: var(--half-module) var(--module);
-    background: var(--green-light);
     border-bottom: 1px solid var(--border);
   }
   .discount-tiers__hint { margin: 0; font-size: var(--text-base); line-height: var(--lh-base); }
@@ -5628,15 +5630,15 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     background: var(--border-light);
   }
   .discount-tiers__step.--reached { color: var(--fg); }
-  .discount-tiers__step.--reached::after { background: var(--green); }
+  .discount-tiers__step.--reached::after { background: var(--color-honey); }
 
-  /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, Notice-Gelb.
+  /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, Hellgrün.
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
      Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf. ─── */
   .cart-drawer__recs {
     margin: var(--module) calc(var(--module) * -1) 0;
     padding: var(--half-module) var(--module);
-    background: var(--color-notice-bg);
+    background: var(--green-light);
   }
   .cart-drawer__recs > .section-label { margin: 0; }
   .cart-drawer__recs > .cart-item:last-child { border-bottom: 0; }
