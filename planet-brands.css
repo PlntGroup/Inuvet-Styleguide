@@ -4147,9 +4147,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     background: var(--green-light);
     margin-top: var(--section-gap);
   }
-  /* Section-Stack: Padding oben aus (--pt-0). */
+  /* Section-Stack: „Padding oben“ schaltet nur den weißen Abstand über dem Footer.
+     Der Innenabstand oben bleibt fest (.footer-main). */
   .site-footer.--pt-0 { margin-top: 0; }
-  .site-footer.--pt-0 .footer-main { padding-top: 0; }
   .site-footer a,
   .site-footer a:visited {
     color: var(--fg);
@@ -4161,7 +4161,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .footer-main {
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: var(--module-2xl) var(--margin) var(--module);
+    padding: var(--module) var(--margin);
     display: flex;
     flex-direction: column;
     gap: 0;
