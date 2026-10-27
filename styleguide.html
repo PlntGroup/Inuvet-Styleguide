@@ -6440,6 +6440,7 @@
         <tr><th>Planimol, ManukaLind, Campus</th><td>Kein Tier-Hint und kein Gratis-Badge · stattdessen Label <code>.badge.--sale</code> („Sale“) in <code>.floating-meta</code> auf dem Thumb, wenn <code>item.variant.compare_at_price &gt; item.original_price</code></td></tr>
         <tr><th>Footer</th><td>Versandhinweis, Zwischensumme (<code>--text-m</code>), Checkout (Primary), Weiter einkaufen (Ghost).</td></tr>
         <tr><th>Empfehlungen</th><td><code>.cart-drawer__recs</code> als letztes Kind von <code>.cart-drawer__items</code> · Fläche <code>--color-notice-bg</code> · Überschrift <code>.section-label</code> „Andere Kunden kauften auch“ · 3–4 Vorschläge als <code>.cart-item</code> mit demselben Aufbau wie Warenkorb-Zeilen (<code>__top</code>: Name in <code>--text-xs</code>, so groß wie der „ab“-Preis in <code>.cart-item__variant</code> · <code>__bottom</code>: <code>.btn.--secondary.--sm</code> „Hinzufügen“, bündig mit der Bildunterkante) · <strong>mobil</strong> Liste unter den Produkten, vollflächig im Drawer · <strong>ab 768px</strong> Panel links am Drawer (<code>calc(var(--base) * 18)</code>, volle Höhe, fährt mit dem Drawer), Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf · ohne Vorschläge kein Block</td></tr>
+        <tr><th>Rabatt-Staffel</th><td><code>.discount-tiers</code> zwischen Drawer-Kopf und Produkten · Fläche <code>--green-light</code>, Linie unten · <code>__hint</code>: „<strong>Du sparst X&nbsp;%.</strong> Füge N weiteres Produkt deiner Wahl hinzu, um <strong>Y&nbsp;%</strong> zu sparen.“ (höchste Stufe: nur „Du sparst …“) · <code>__steps</code> als <code>&lt;ol&gt;</code>, eine Stufe je <code>__step</code>: Prozent in <code>--text-xs</code> bold, Balken darunter (<code>--progress-bar-height</code>), <code>.--reached</code> grün, offen <code>--border-light</code> · <strong>nur Anzeige</strong> — Rabatt rechnet Shopify, Betrag erscheint unten als „Du sparst“ · Planimol, ManukaLind, Campus, Vetalità; Inuvet hat stattdessen Naturalrabatt</td></tr>
         <tr><th>Leer</th><td>Zentriertes Icon + Text + Button (<a href="#C8">C.8</a>).</td></tr>
         <tr><th>JS</th><td><code>openCart(id)</code> / <code>closeCart(id)</code> in <code>sg-only.js</code> — IDs <code>cartFull</code> / <code>cartEmpty</code></td></tr>
         <tr><th><code>.options-drawer</code></th><td>Varianten-Auswahl — gleicher Overlay-Typ, Breite und Z-Index wie Cart-Drawer · Overlay <code>var(--z-overlay)</code>, Drawer <code>var(--z-drawer)</code></td></tr>
@@ -6472,6 +6473,7 @@
         <tr><th>Leer</th><td><code>{% if cart.item_count == 0 %}</code> → <code>.cart-drawer__empty</code> mit <code>.empty-state</code> (→ <a href="#C8">C.8</a>)</td></tr>
         <tr><th>Options-Drawer</th><td>Kein Shopify-Standard — Theme-JS baut Varianten aus <code>product.options_with_values</code>, Add via <code>/cart/add.js</code></td></tr>
         <tr><th>Empfehlungen</th><td>Shopify Product Recommendations API: <code>/recommendations/products?product_id={erstes Warenkorb-Produkt}&amp;intent=complementary&amp;section_id=…</code>, leer → <code>intent=related</code> · Ergänzende Produkte pflegt der Shop in der App <strong>Search &amp; Discovery</strong> · Produkte im Warenkorb ausblenden · „Hinzufügen“: eine Variante → <code>/cart/add.js</code>, mehrere → Options-Drawer · danach Drawer neu laden</td></tr>
+        <tr><th>Rabatt-Staffel</th><td>Zählt die Stückzahl der Warenkorb-Zeilen mit Produkt-Tag aus Theme-Einstellung (z.&nbsp;B. <code>promo_eligible</code>) · Stufen aus Theme-Einstellung als <code>Menge:Prozent</code>, z.&nbsp;B. <code>2:5, 3:10, 4:15</code> (erste Stufe 0&nbsp;% bei 1 Stück) · leer = keine Staffel · Texte aus Locales · <strong>Abzug selbst</strong>: automatischer Mengenrabatt im Admin mit denselben Stufen und demselben Tag — sonst zeigt die Leiste etwas, das Shopify nicht abzieht</td></tr>
       </table>
       <p class="sg-caption">Alle Beträge über den <code>money</code>-Filter · Drawer-State über die Cart AJAX API, Markup und Klassen 1:1 aus C.2 / E.4.</p>
     </section>
@@ -7086,6 +7088,15 @@
     <button type="button" class="btn --icon" onclick="closeCart('cartFull')" aria-label="Schließen">
       <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
     </button>
+  </div>
+  <div class="discount-tiers">
+    <p class="discount-tiers__hint"><strong>Du sparst 10&nbsp;%.</strong> Füge 1 weiteres Produkt deiner Wahl hinzu, um <strong>15&nbsp;%</strong> zu sparen.</p>
+    <ol class="discount-tiers__steps" aria-label="Rabattstufen">
+      <li class="discount-tiers__step --reached">0&nbsp;%</li>
+      <li class="discount-tiers__step --reached">5&nbsp;%</li>
+      <li class="discount-tiers__step --reached" aria-current="step">10&nbsp;%</li>
+      <li class="discount-tiers__step">15&nbsp;%</li>
+    </ol>
   </div>
   <div class="cart-drawer__items">
     <div class="cart-item">

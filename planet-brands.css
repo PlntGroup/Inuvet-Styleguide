@@ -5590,6 +5590,46 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .cart-drawer__continue { width: 100%; text-align: center; padding-top: calc(var(--base) * 0.5); padding-bottom: calc(var(--base) * 0.5); }
   .cart-drawer__empty { flex: 1; display: flex; align-items: center; justify-content: center; padding: var(--module); }
 
+  /* ─── Rabatt-Staffel (E.4) — zwischen Drawer-Kopf und Produkten.
+     Hinweis + Stufenleiste; erreichte Stufen grün. Nur Anzeige,
+     den Rabatt selbst rechnet Shopify (automatischer Rabatt). ─── */
+  .discount-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 0.5);
+    flex-shrink: 0;
+    padding: var(--half-module) var(--module);
+    background: var(--green-light);
+    border-bottom: 1px solid var(--border);
+  }
+  .discount-tiers__hint { margin: 0; font-size: var(--text-base); line-height: var(--lh-base); }
+  .discount-tiers__steps {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: calc(var(--base) * 0.25);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .discount-tiers__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--base) * 0.25);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--fg-muted);
+  }
+  .discount-tiers__step::after {
+    content: "";
+    align-self: stretch;
+    height: var(--progress-bar-height);
+    background: var(--border-light);
+  }
+  .discount-tiers__step.--reached { color: var(--fg); }
+  .discount-tiers__step.--reached::after { background: var(--green); }
+
   /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, Notice-Gelb.
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
      Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf. ─── */
