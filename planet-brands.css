@@ -5616,13 +5616,18 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       overflow-y: auto;
       border-left: 1px solid var(--border);
     }
+    /* Kopf und Panel-Überschrift: gleiche feste Höhe aus derselben Formel,
+       sonst runden Schriften unterschiedlich und die Linien versetzen sich. */
+    .cart-drawer:has(.cart-drawer__recs) .cart-drawer__header,
+    .cart-drawer__recs > .section-label {
+      box-sizing: border-box;
+      height: calc(var(--text-base) * var(--lh-base) + var(--half-module) * 2 + 1px);
+    }
     .cart-drawer__recs > .section-label {
       display: flex;
       align-items: center;
-      height: calc(var(--text-base) * var(--lh-base));
       margin-inline: calc(var(--half-module) * -1);
-      padding: var(--half-module);
-      box-sizing: content-box;
+      padding: 0 var(--half-module);
     }
   }
 
