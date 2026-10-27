@@ -5631,11 +5631,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .discount-tiers__step.--reached { color: var(--fg); }
   .discount-tiers__step.--reached::after { background: var(--color-honey); }
-  /* PDP-Variante (E.2): am Platz des Naturalrabatts nach .pdp__actions, ohne Innenabstand und Linie.
-     __preview: Staffelpreis ab Menge 2. */
+  /* PDP-Variante (E.2): am Platz des Naturalrabatts nach .pdp__actions, ohne Innenabstand und Linie. */
   .discount-tiers.--pdp { margin: var(--half-module) 0 var(--module); padding: 0; border-bottom: 0; }
-  .discount-tiers__preview { margin: 0; font-size: var(--text-base); line-height: var(--lh-base); }
-  .discount-tiers__preview s { color: var(--fg-muted); }
 
   /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, Hellgrün.
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,

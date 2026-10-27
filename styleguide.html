@@ -5440,7 +5440,7 @@
         <tr><th>Kaufblock-Prototype</th><td>Live <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html</a>: NR persönlich oder (ohne Historie / <code>?nr=default</code>) Progress-Hint + Auffüllen · <code>.pdp__order-meta</code> optional (Demo ausgeblendet)</td></tr>
         <tr><th>Sticky ATC</th><td>Opt-in: Klasse <code>.pdp--sticky-cta</code> am PDP-Root · Bar <code>.pdp__sticky-cta</code> · Mobil: Menge + CTA · Desktop (≥900px): + Größenwahl · kein Titel/Preis · erscheint wenn Kaufblock-CTA den Viewport verlässt · Demo: an (<code>?sticky=0</code> aus) · Shopify: Section-Setting Checkbox <code>sticky_atc</code></td></tr>
         <tr><th>Naturalrabatt</th><td><code>.nr-widget</code> nach den Actions — mit Historie <code>.nr-widget.--personal</code> · nach ATC des Angebots Widget ausblenden (kein Standard-Folge-Widget) · ohne Historie Standard (Progress-Bar + Hint) · Live → <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html</a> · Standard erzwingen: <code>?nr=default</code></td></tr>
-        <tr><th>Rabatt-Staffel</th><td>ManukaLind statt Naturalrabatt: <code>.discount-tiers.--pdp</code> nach den Actions, nur bei Produkten aus der Aktions-Collection · zählt Warenkorb + dieses Produkt in der gewählten Menge · Hinweis „Mit diesem Produkt sparst du X&nbsp;%. Mit N weiteren Aktionsprodukten sind es Y&nbsp;%.“ · ab Menge 2 <code>__preview</code> „N Stück: Staffelpreis“ mit durchgestrichenem Normalpreis · aktualisiert sich bei Mengenwechsel und nach „In den Warenkorb“ (→ <a href="#pdp-discount-tiers">Demo</a>)</td></tr>
+        <tr><th>Rabatt-Staffel</th><td>ManukaLind statt Naturalrabatt: <code>.discount-tiers.--pdp</code> nach den Actions, nur bei Produkten aus der Aktions-Collection · zählt Warenkorb + dieses Produkt in der gewählten Menge · Hinweis „Mit diesem Produkt sparst du X&nbsp;%. Mit N weiteren Aktionsprodukten sind es Y&nbsp;%.“ · aktualisiert sich bei Mengenwechsel und nach „In den Warenkorb“ (→ <a href="#pdp-discount-tiers">Demo</a>)</td></tr>
         <tr><th>Produkt-Akkordeon</th><td>In der Info-Spalte unter Social Proof · ein Item pro Thema · Live einspaltig · Spec → <a href="#pdp-accordion">unten</a></td></tr>
         <tr><th>Benefit-Leiste</th><td><code>.pdp__benefits</code> direkt unter dem Kaufblock — <code>.tile-grid.--cols-4</code> mit 4× Variante&nbsp;A + Lottie-Icons · wie <a href="pages/Tierarzt-Empfehlung.html">Tierarzt-Empfehlung</a> / Shop · Spec → <a href="#pdp-benefits">unten</a></td></tr>
         <tr><th>Inhaltsstoffe (Auszug) im Detail</th><td><code>.ingredient-list</code> nach der Benefit-Leiste (volle Content-Breite) — 3–4 Schlüssel-Inhaltsstoffe · Desktop <code>--cols-3</code> (asymmetrisch) / <code>--cols-4</code> · SEO-Content, nicht die Deklarationsliste im Akkordeon · Spec → <a href="#pdp-ingredients">unten</a></td></tr>
@@ -5934,7 +5934,7 @@
       <h3 class="sg-h3 --top" id="pdp-discount-tiers">Rabatt-Staffel (ManukaLind)</h3>
       <div class="col-grid" data-cols="2">
         <p>Gegenstück zum Naturalrabatt: <code>.discount-tiers.--pdp</code> am selben Platz nach <code>.pdp__actions</code>, nur bei Aktionsprodukten. Gleiche Komponente wie im Drawer (→ <a href="#E4">E.4</a>), ohne Innenabstand und Linie.</p>
-        <p>Dynamisch: zählt Warenkorb + dieses Produkt in der gewählten Menge. Ab Menge 2 zusätzlich <code>__preview</code> mit Staffelpreis — Rabatt pro Stück auf volle Cent abgerundet, wie Shopify rechnet.</p>
+        <p>Dynamisch: zählt Warenkorb + dieses Produkt in der gewählten Menge. Keine Preis-Vorschau — den Staffelpreis zeigt der Warenkorb.</p>
       </div>
       <div class="col-grid" data-cols="2">
         <div class="sg-demo --white">
@@ -5950,7 +5950,6 @@
         </div>
         <div class="sg-demo --white">
           <div class="discount-tiers --pdp" aria-label="Mengenrabatt">
-            <p class="discount-tiers__preview"><strong>2 Stück: 47,46&nbsp;€</strong> <s>49,94&nbsp;€</s></p>
             <p class="discount-tiers__hint"><strong>Damit sparst du 5&nbsp;%.</strong> Mit 1 weiteren <a href="#">Aktionsprodukt</a> sind es 10&nbsp;%.</p>
             <ol class="discount-tiers__steps" aria-label="Rabattstufen">
               <li class="discount-tiers__step --reached">0&nbsp;%</li>
@@ -5961,7 +5960,7 @@
           </div>
         </div>
       </div>
-      <p class="sg-caption">Links: Menge 1, im Warenkorb liegt schon 1 Aktionsprodukt. Rechts: Menge 2, Warenkorb leer — Vorschau mit Staffelpreis.</p>
+      <p class="sg-caption">Links: Menge 1, im Warenkorb liegt schon 1 Aktionsprodukt. Rechts: Menge 2, Warenkorb leer.</p>
 
       <h3 class="sg-h3 --top" id="pdp-recommendations">Empfehlungen</h3>
       <div class="col-grid" data-cols="2">
