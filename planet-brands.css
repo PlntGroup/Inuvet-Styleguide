@@ -2186,7 +2186,7 @@
   .tile__image { position: relative; overflow: hidden; }
   .tile__image.--square { aspect-ratio: 1 / 1; }
   .tile__image.--landscape { aspect-ratio: 4 / 3; }
-  .tile__image img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; transition: transform var(--anim-mid); }
+  .tile__image img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; transition: transform var(--anim-mid), filter var(--anim-mid); }
   .tile__image:hover img:nth-child(1) { transform: scale(1.05); }
   /* Badge-Overlay-Wrapper (Produkt + Collection-Kachel)
      margin = struktureller Abstand Bild → Textblock */
@@ -2592,6 +2592,16 @@
     align-items: flex-start;
     gap: 0.25rem;
   }
+  /* Zwei Labels an den Bildkanten links | rechts (z. B. Vorher | Nachher) */
+  .floating-meta.--split { justify-content: space-between; }
+  /* ─── Bilder-Schutz (.--gated): Fotos verschwommen bis „Bilder anzeigen“ (data-gate-reveal), Button verschwindet ─── */
+  .--gated .tile__image img {
+    filter: blur(calc(var(--base) * 1.25));
+    transform: scale(1.1);
+  }
+  .--gated .tile__image:hover img:nth-child(1) { transform: scale(1.1); }
+  [data-gate-notice][hidden],
+  .btn[data-gate-notice][hidden] { display: none; }
 
   /* ═══════════════════════════════════════════
      ACCORDION
@@ -3862,6 +3872,22 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     color: var(--fg);
     max-width: 40rem;
     margin: 0;
+  }
+  /* Optionale Aktion (z. B. „Bilder anzeigen“): Desktop rechts, unten bündig zum Kopf; mobil darunter */
+  .section-header.flow > .section-header__action { --flow-space: var(--half-module); }
+  @media (min-width: 768px) {
+    .section-header.--action {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: var(--gutter);
+      align-items: end;
+    }
+    .section-header.--action > :not(.section-header__action) { grid-column: 1; }
+    .section-header.--action > .section-header__action {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      margin-top: 0;
+    }
   }
 
   /* ─── Label Caps — kompaktes Uppercase-Label ohne Border/Padding (z.B. Varianten, Filter) ─── */
@@ -6193,6 +6219,26 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     }
     .testimonial-slider:not(.--featured) + .testimonial-more.--hidden {
       display: none;
+    }
+    /* Slider .--swipe: mobil nebeneinander wischbar statt gestapelt (Scroll-Snap, rechts angeschnitten) */
+    .testimonial-slider.--swipe:not(.--featured) { overflow: visible; }
+    .testimonial-slider.--swipe:not(.--featured) .testimonial-slider__track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 75%;
+      gap: var(--gutter);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 0 var(--margin);
+      scrollbar-width: none;
+      margin-inline-end: calc(var(--margin) * -1);
+      padding-inline-end: var(--margin);
+    }
+    .testimonial-slider.--swipe:not(.--featured) .testimonial-slider__track::-webkit-scrollbar { display: none; }
+    .testimonial-slider.--swipe:not(.--featured) .testimonial-slider__slide {
+      display: block;
+      min-width: 0;
+      scroll-snap-align: start;
     }
 
     /* PDP */

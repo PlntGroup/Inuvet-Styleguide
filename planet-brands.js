@@ -553,6 +553,19 @@ function initSliders() {
   });
 }
 
+/* ═══════════════════════════════════════════════════════
+   BILDER-SCHUTZ — „Bilder anzeigen“ hebt .--gated in derselben Section auf
+   Markup: [data-gate-notice] mit Button [data-gate-reveal], Inhalt mit .--gated
+   ═══════════════════════════════════════════════════════ */
+document.addEventListener('click', function (event) {
+  var btn = event.target.closest('[data-gate-reveal]');
+  if (!btn) return;
+  var scope = btn.closest('.shopify-section, .sg-demo') || document;
+  scope.querySelectorAll('.--gated').forEach(function (el) { el.classList.remove('--gated'); });
+  var notice = btn.closest('[data-gate-notice]');
+  if (notice) notice.hidden = true;
+});
+
 function showMoreSlider(btn) {
   var moreDiv = btn.parentElement;
   var slider = moreDiv.previousElementSibling;
