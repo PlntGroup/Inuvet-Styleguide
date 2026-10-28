@@ -5939,7 +5939,7 @@
       <div class="col-grid" data-cols="2">
         <div class="sg-demo --white">
           <div class="discount-tiers --pdp" aria-label="Mengenrabatt">
-            <p class="discount-tiers__hint"><strong>Mit diesem Produkt sparst du 5&nbsp;%.</strong> Mit 1 weiteren <a href="#">Aktionsprodukt</a> sparst du 10&nbsp;%.</p>
+            <p class="discount-tiers__hint">Mit diesem Produkt sparst du 5&nbsp;%. Mit 1 weiteren <a href="#">Aktionsprodukt</a> sparst du 10&nbsp;%.</p>
             <ol class="discount-tiers__steps" aria-label="Rabattstufen">
               <li class="discount-tiers__step --reached">0&nbsp;%</li>
               <li class="discount-tiers__step --reached" aria-current="step">5&nbsp;%</li>
@@ -5950,7 +5950,7 @@
         </div>
         <div class="sg-demo --white">
           <div class="discount-tiers --pdp" aria-label="Mengenrabatt">
-            <p class="discount-tiers__hint"><strong>Damit sparst du 5&nbsp;%.</strong> Mit 1 weiteren <a href="#">Aktionsprodukt</a> sparst du 10&nbsp;%.</p>
+            <p class="discount-tiers__hint">Damit sparst du 5&nbsp;%. Mit 1 weiteren <a href="#">Aktionsprodukt</a> sparst du 10&nbsp;%.</p>
             <ol class="discount-tiers__steps" aria-label="Rabattstufen">
               <li class="discount-tiers__step --reached">0&nbsp;%</li>
               <li class="discount-tiers__step --reached" aria-current="step">5&nbsp;%</li>
@@ -6472,7 +6472,7 @@
         <tr><th>Planimol, ManukaLind, Campus</th><td>Kein Tier-Hint und kein Gratis-Badge · stattdessen Label <code>.badge.--sale</code> („Sale“) in <code>.floating-meta</code> auf dem Thumb, wenn <code>item.variant.compare_at_price &gt; item.original_price</code></td></tr>
         <tr><th>Footer</th><td>Versandhinweis, Zwischensumme (<code>--text-m</code>), Checkout (Primary), Weiter einkaufen (Ghost).</td></tr>
         <tr><th>Empfehlungen</th><td><code>.cart-drawer__recs</code> als letztes Kind von <code>.cart-drawer__items</code> · Fläche <code>--green-light</code> · Überschrift <code>.section-label</code> „Andere Kunden kauften auch“ · 3–4 Vorschläge als <code>.cart-item</code> mit demselben Aufbau wie Warenkorb-Zeilen (<code>__top</code>: Name in <code>--text-xs</code>, so groß wie der „ab“-Preis in <code>.cart-item__variant</code> · <code>__bottom</code>: <code>.btn.--secondary.--sm</code> „Hinzufügen“, bündig mit der Bildunterkante) · <strong>mobil</strong> Liste unter den Produkten, vollflächig im Drawer · <strong>ab 768px</strong> Panel links am Drawer (<code>calc(var(--base) * 18)</code>, volle Höhe, fährt mit dem Drawer), Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf · ohne Vorschläge kein Block</td></tr>
-        <tr><th>Rabatt-Staffel</th><td><code>.discount-tiers</code> zwischen Drawer-Kopf und Produkten · keine eigene Fläche, Linie unten · <code>__hint</code>: „<strong>Du sparst X&nbsp;%.</strong> Füge N weiteres <u>Aktionsprodukt</u> hinzu, um <strong>Y&nbsp;%</strong> zu sparen.“ (Link auf die Collection) (höchste Stufe: nur „Du sparst …“) · <code>__steps</code> als <code>&lt;ol&gt;</code>, eine Stufe je <code>__step</code>: Prozent in <code>--text-xs</code> bold, Balken darunter (<code>--progress-bar-height</code>), <code>.--reached</code> <code>--color-honey</code> wie das Label „Aktion“ (<code>.badge.--honey</code>), offen <code>--border-light</code> · <strong>nur Anzeige</strong> — Rabatt rechnet Shopify, Betrag erscheint unten als „Du sparst“ · nur ManukaLind; Inuvet hat stattdessen Naturalrabatt</td></tr>
+        <tr><th>Rabatt-Staffel</th><td><code>.discount-tiers</code> zwischen Drawer-Kopf und Produkten · keine eigene Fläche, Linie unten · <code>__hint</code>: „Du sparst X&nbsp;%. Füge N weiteres <u>Aktionsprodukt</u> hinzu, um Y&nbsp;% zu sparen.“ (ohne Hervorhebung, Schnitt wie Fließtext) (Link auf die Collection) (höchste Stufe: nur „Du sparst …“) · <code>__steps</code> als <code>&lt;ol&gt;</code>, eine Stufe je <code>__step</code>: Prozent in <code>--text-xs</code> bold, Balken darunter (<code>--progress-bar-height</code>), <code>.--reached</code> <code>--color-honey</code> wie das Label „Aktion“ (<code>.badge.--honey</code>), offen <code>--border-light</code> · <strong>nur Anzeige</strong> — Rabatt rechnet Shopify, Betrag erscheint unten als „Du sparst“ · nur ManukaLind; Inuvet hat stattdessen Naturalrabatt</td></tr>
         <tr><th>Leer</th><td>Zentriertes Icon + Text + Button (<a href="#C8">C.8</a>).</td></tr>
         <tr><th>JS</th><td><code>openCart(id)</code> / <code>closeCart(id)</code> in <code>sg-only.js</code> — IDs <code>cartFull</code> / <code>cartEmpty</code></td></tr>
         <tr><th><code>.options-drawer</code></th><td>Varianten-Auswahl — gleicher Overlay-Typ, Breite und Z-Index wie Cart-Drawer · Overlay <code>var(--z-overlay)</code>, Drawer <code>var(--z-drawer)</code></td></tr>
@@ -7122,7 +7122,7 @@
     </button>
   </div>
   <div class="discount-tiers">
-    <p class="discount-tiers__hint"><strong>Du sparst 10&nbsp;%.</strong> Füge 1 weiteres <a href="#">Aktionsprodukt</a> hinzu, um <strong>15&nbsp;%</strong> zu sparen.</p>
+    <p class="discount-tiers__hint">Du sparst 10&nbsp;%. Füge 1 weiteres <a href="#">Aktionsprodukt</a> hinzu, um 15&nbsp;% zu sparen.</p>
     <ol class="discount-tiers__steps" aria-label="Rabattstufen">
       <li class="discount-tiers__step --reached">0&nbsp;%</li>
       <li class="discount-tiers__step --reached">5&nbsp;%</li>
