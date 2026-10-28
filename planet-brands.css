@@ -1519,8 +1519,9 @@
   }
 
   /* Variante 2: Content-Box mit Hintergrund, H2, kein Gap, Padding module.
-     Bild oder Lottie. Ohne --viewport: Medienhöhe steuert die Zeile,
-     grüne Box zieht mit. Mit --viewport: Section-Höhe = Viewport, Medium cover. */
+     Bild oder Lottie. Ohne --viewport: Medienhöhe steuert die Zeile, grüne Box zieht mit;
+     ist der Text höher als das Bild, wächst die Zeile und das Bild füllt sie (cover).
+     Mit --viewport: Section-Höhe = Viewport, Medium cover. */
   .section-type.--v2 {
     gap: 0;
     max-width: var(--container-max);
@@ -1533,7 +1534,7 @@
   }
   .section-type.--v2 .section-type__image {
     overflow: hidden;
-    align-self: start;
+    align-self: stretch;
     min-height: 0;
     width: 100%;
   }
@@ -1562,11 +1563,20 @@
     justify-content: center;
     gap: 0;
   }
-  /* Grüne Box = Bildhöhe: Content trägt nicht zur Row-Höhe bei, füllt sie aber */
+  .section-type.--v2.--box-notice .section-type__content { background: var(--color-notice-bg); }
+  /* Grüne Box mindestens Bildhöhe; längerer Text lässt die Zeile wachsen,
+     das Bild füllt sie dann per cover (natürliche Höhe bleibt das Minimum) */
   .section-type.--v2:not(.--viewport) .section-type__content {
-    height: 0;
-    min-height: 100%;
     margin-block: 0;
+  }
+  .section-type.--v2:not(.--viewport) .section-type__image picture {
+    display: block;
+    height: 100%;
+  }
+  .section-type.--v2:not(.--viewport) .section-type__image img,
+  .section-type.--v2:not(.--viewport) .section-type__image video {
+    height: 100%;
+    object-fit: cover;
   }
 
   /* V2 + Viewport: Bild füllt die Section-Höhe (cover) */
@@ -1603,19 +1613,15 @@
     align-self: stretch;
   }
 
-  /* V1/V2 Medienverhältnis. Ohne Modifier = Original (Datei).
-     1:1 / 4:3 / 16:9: Slot-Höhe aus aspect-ratio, Motiv cover mittig.
-     V2 --viewport bleibt Cover auf Section-Höhe. */
-  .section-type.--v1.--ratio-1-1:not(.--viewport),
-  .section-type.--v2.--ratio-1-1:not(.--viewport) { --media-slot-ratio: 1 / 1; }
-  .section-type.--v1.--ratio-4-3:not(.--viewport),
-  .section-type.--v2.--ratio-4-3:not(.--viewport) { --media-slot-ratio: 4 / 3; }
-  .section-type.--v1.--ratio-16-9:not(.--viewport),
-  .section-type.--v2.--ratio-16-9:not(.--viewport) { --media-slot-ratio: 16 / 9; }
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image,
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation {
+  /* V1 Bildformat (D.3). Ohne Modifier = Original (Datei), Box wächst mit dem Text.
+     1:1 / 5:4 / 4:3 / 16:9: Slot-Höhe aus aspect-ratio, Motiv cover mittig.
+     --fit-text: Bild so hoch wie der Text (Slot trägt nicht zur Zeilenhöhe bei), cover.
+     --viewport: Section-Höhe = Viewport, Medium cover (mit und ohne Content-Box). */
+  .section-type:is(.--v1, .--v2).--ratio-1-1:not(.--viewport) { --media-slot-ratio: 1 / 1; }
+  .section-type:is(.--v1, .--v2).--ratio-5-4:not(.--viewport) { --media-slot-ratio: 5 / 4; }
+  .section-type:is(.--v1, .--v2).--ratio-4-3:not(.--viewport) { --media-slot-ratio: 4 / 3; }
+  .section-type:is(.--v1, .--v2).--ratio-16-9:not(.--viewport) { --media-slot-ratio: 16 / 9; }
+  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) :is(.section-type__image, .section-type__animation) {
     aspect-ratio: var(--media-slot-ratio);
     position: relative;
     overflow: hidden;
@@ -1624,16 +1630,9 @@
     flex: 0 0 auto;
     min-height: 0;
   }
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture,
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image .media-video,
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation lottie-player,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image .media-video,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation lottie-player {
+  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image :is(picture, .media-video, img, video),
+  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation lottie-player,
+  .section-type:is(.--v1, .--v2).--fit-text:not(.--viewport) .section-type__image :is(picture, .media-video, img, video) {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1642,12 +1641,22 @@
     max-width: none;
     max-height: none;
   }
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
-  .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
-  .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video {
+  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9, .--fit-text):not(.--viewport) .section-type__image :is(img, video) {
     object-fit: cover;
     object-position: center;
+  }
+  .section-type:is(.--v1, .--v2).--fit-text:not(.--viewport) .section-type__image {
+    position: relative;
+    overflow: hidden;
+    align-self: stretch;
+    min-height: 0;
+  }
+  /* V1 ohne Box + Viewport: Bild füllt die Spalte */
+  .section-type.--v1.--viewport .section-type__image picture { height: 100%; }
+  .section-type.--v1.--viewport .section-type__image :is(img, video) {
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
   }
 
   .section-type.--v2 .section-type__content > * {
@@ -6051,23 +6060,18 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       object-fit: unset;
     }
     /* Festes Verhältnis bleibt Cover, auch gestapelt */
-    .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture,
-    .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image picture {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      min-height: 0;
-    }
-    .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
-    .section-type.--v1:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video,
-    .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image img,
-    .section-type.--v2:is(.--ratio-1-1, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image video {
+    .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image :is(picture, .media-video, img, video) {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       min-height: 0;
-      object-fit: cover;
+    }
+    .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image :is(img, video) { object-fit: cover; }
+    /* An Texthöhe: gestapelt wieder Dateiproportion */
+    .section-type:is(.--v1, .--v2).--fit-text:not(.--viewport) .section-type__image :is(picture, .media-video, img, video) {
+      position: static;
+      height: auto;
     }
     .section-type.--reverse { direction: ltr; }
     .section-type.--v1 .section-type__content,
@@ -6075,8 +6079,10 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       justify-content: flex-start;
       gap: 0;
     }
-    /* Mobil gestapelt: grüne Box wieder inhaltsgroß (keine Medien-Match-Höhe) */
-    .section-type.--v2 .section-type__content {
+    /* Mobil gestapelt: grüne Box wieder inhaltsgroß (keine Medien-Match-Höhe).
+       :not(.--viewport) für dieselbe Spezifität wie die Desktop-Regel. */
+    .section-type.--v2:not(.--viewport) .section-type__content,
+    .section-type.--v2.--viewport .section-type__content {
       height: auto;
       min-height: 0;
     }

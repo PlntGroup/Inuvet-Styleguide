@@ -234,11 +234,11 @@ Globale Funktionen → `planet-brands.js` · Seitenspezifische Logik → `pages/
 
 Vertikaler Abstand zwischen Shop-Sections (nicht Text-`.flow`):
 
-1. **Default V1/V2:** `padding-top: var(--section-gap)` · `padding-bottom: 0` · kein vertikales `margin` am Stack-Root. Shopify-Schema: `pad_top` Default **immer `true`** (auch neue Instanzen per Editor/Prompt). Flush unter Header nur im Template-JSON.
-2. **Ein/Aus V1/V2:** `--pt-0` (oben aus) · `--pb` (unten an, Wert = `--section-gap`). Keine freien Pixel.
-3. **Gilt für** `.container` und `.section-type` (V1/V2).
-4. **V3/V4 Vollbild:** kein Stack-Padding (Bild edge-to-edge). Optional `--mt` / `--mb` = `margin-*: var(--section-gap)` — Spalt zeigt Seitenfläche. Schema-Default **oben an**, unten aus. Bündig unter Header nur im Template-JSON.
-5. **Shopify:** Neue Section (Editor + Prompt) startet immer mit Abstand oben. V1/V2 „Padding oben“ (`pad_top` Default `true`) · V3/V4 „Margin oben“ (`margin_top` Default `true`). Unten aus. Stories unter Nav: oben aus nur im Template, nicht als Schema-Default.
+1. **Default V1:** `padding-top: var(--section-gap)` · `padding-bottom: 0` · kein vertikales `margin` am Stack-Root. Shopify-Schema: `pad_top` Default **immer `true`** (auch neue Instanzen per Editor/Prompt). Flush unter Header nur im Template-JSON.
+2. **Ein/Aus V1:** `--pt-0` (oben aus) · `--pb` (unten an, Wert = `--section-gap`). Keine freien Pixel.
+3. **Gilt für** `.container` und `.section-type` (V1).
+4. **V2/V3 Vollbild:** kein Stack-Padding (Bild edge-to-edge). Optional `--mt` / `--mb` = `margin-*: var(--section-gap)` — Spalt zeigt Seitenfläche. Schema-Default **oben an**, unten aus. Bündig unter Header nur im Template-JSON.
+5. **Shopify:** Neue Section (Editor + Prompt) startet immer mit Abstand oben. V1 „Padding oben“ (`pad_top` Default `true`) · V2/V3 „Margin oben“ (`margin_top` Default `true`). Unten aus. Stories unter Nav: oben aus nur im Template, nicht als Schema-Default.
 6. **Alias:** `.container.--flush-top` = `--pt-0`.
 
 Doku → Styleguide A.7 „Section-Stack" (`styleguide.html#section-stack`).
@@ -331,7 +331,7 @@ Page-spezifische Card-Patterns (`summary-card`, `approval-product-card`) bleiben
 - **Styleguide-Doku:** Gruppen-Überschriften im Guide nutzen `.sg-h3` (gemischte Schreibweise, fett, ohne Linie) — **nicht** `.section-label --sub`. Grund: neben der Sektions-`.section-label` (klein, Uppercase, mit Linie) würde `--sub` zu ähnlich aussehen; `.sg-h3` hebt sich klar als untergeordnete Inhalts-Überschrift ab.
 
 ### Spacing: H→p→Button-Stacks
-Überall wo Headline + Fließtext + CTA gestapelt: **via `.flow`** (nicht Ad-hoc-Margins). Headline → Body: `--half-module` · Body → CTA: `calc(var(--half-module) * 1.5)` über `* + .btn` / `* + .btn-row` / `* + .section-type--v4__cta`. Shop/Theme: CTAs in `.btn-row` (auch bei einem Button); Hero V4 nutzt `.section-type--v4__cta`. Nie `.btn-row` in die Formular-Flow-Gruppe ziehen (überschreibt sonst den CTA-Abstand).
+Überall wo Headline + Fließtext + CTA gestapelt: **via `.flow`** (nicht Ad-hoc-Margins). Headline → Body: `--half-module` · Body → CTA: `calc(var(--half-module) * 1.5)` über `* + .btn` / `* + .btn-row` / `* + .section-type--v4__cta`. Shop/Theme: CTAs in `.btn-row` (auch bei einem Button); Hero V3 nutzt `.section-type--v4__cta`. Nie `.btn-row` in die Formular-Flow-Gruppe ziehen (überschreibt sonst den CTA-Abstand).
 
 ### Header-Verhalten: Announcement Bar Scroll-Away
 Standard: Announcement Bar **scrollt weg** (nicht sticky), nur die Nav bleibt sticky (`top: 0`). `scroll-padding-top` = `--nav-height`. Opt-in für Sticky-Bar: Klasse `--ann-sticky` auf `<body>` — Bar und Nav bleiben oben, Nav sitzt unter der Bar (`top: var(--announcement-height)`), `scroll-padding-top` = `--header-height`. Styleguide D.1: Toggle „Sticky Header aktivieren“. Shopify: `.announcement-bar.--scroll-away` am Section-Wrapper (entspricht Default). Das Mobile-Menü-`top` wird in beiden Modi von `positionMobileMenu()` (in `toggleMobile()`) dynamisch an die Nav-Unterkante gesetzt — beim Öffnen ist der Scroll via `body{overflow:hidden}` gesperrt, daher stabil.
@@ -413,7 +413,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 |---|---|---|---|
 | D.1 | Navigation | `.site-nav .announcement-bar .nav-logo` | Frosted Glass · `body.--nav-scrolled` · Logo-Setting `body[data-nav-logo="campus"]` · Aktiv-Zustand via `aria-current="page"` · Zähler-Badge `[data-nav-open-count]` · Utility: `.nav-item.--end` Land + Account-Icon in `.nav-right` |
 | D.2 | Footer | `.site-footer` | `.footer-bar__top` („Nach oben“) · `.footer-payment` |
-| D.3 | Hero-Sections | `.section-type` | `--v1 --v2 --v3 --v4 --reverse --viewport` · **V1–V4:** Bild / Lottie / Video · Video: Ambient (stumm, Loop) oder Klick (Poster + Ton) · `.media-video` · **V1/V2 Medienverhältnis:** Original oder `--ratio-1-1` / `--ratio-4-3` / `--ratio-16-9` (Cover mittig; V2 + Viewport ignoriert) · V3/V4 Cover · `--content-top|--content-center|--content-bottom` · V3/V4 `--mt`/`--mb` (`margin_top` Default an) · Badges nur V1/V2 · Shopify: `Hero V1`–`V4`, Snippets `section-type-media` + `media-video` |
+| D.3 | Hero-Sections | `.section-type` | `--v1 --v2 --v3 --v4 --reverse --viewport --box-notice` · **V1** = `--v1` (Content-Box keine) bzw. `--v2` (Grün hell / Hinweis) · **V2** = `--v3` · **V3** = `--v4` (Klassen technisch unverändert) · **V1–V3:** Bild / Lottie / Video · Video: Ambient (stumm, Loop) oder Klick (Poster + Ton) · `.media-video` · **V1 Bildformat:** Original · `--fit-text` (An Texthöhe) · `--ratio-1-1` / `--ratio-5-4` / `--ratio-4-3` / `--ratio-16-9` (Cover mittig) · `--viewport` · V2/V3 Cover · `--content-top|--content-center|--content-bottom` · V2/V3 `--mt`/`--mb` (`margin_top` Default an) · Badges nur V1 · Shopify: `Hero V1`–`V3`, Snippets `section-type-media` + `media-video` |
 | D.4 | Kachel-Raster | `.tile-grid` | `--cols-2/3/4` · Kacheln: `--featured` (grün, optional Bild/Lottie/Video), `--product` |
 | D.5 | Testimonials | `.testimonial-grid .testimonial-slider` | — |
 | D.6 | Marquee | `.marquee` | — |
