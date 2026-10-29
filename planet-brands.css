@@ -4402,10 +4402,10 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     margin-block: var(--half-module);
   }
   .story-iconslider.--flush {
-    margin-block: 0;
-    padding-block: 0;
+    margin-top: 0;
+    padding-top: 0;
   }
-  /* --flush greift nur den Slider selbst (kein Extra-Margin).
+  /* --flush greift nur oben am Slider selbst (kein Extra-Margin), unten bleibt der Abstand.
      Section-Abstand bleibt bei .container / --pt-0 / --pb (A.7). */
   .story-iconslider__track {
     --story-fade: var(--half-module);
@@ -4434,9 +4434,11 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .story-iconslider__track::-webkit-scrollbar {
     display: none;
   }
+  /* Wischen bis an beide Browserränder, Start bündig mit dem Satzspiegel. */
   .container .story-iconslider__track {
-    margin-inline-end: calc(var(--margin) * -1);
-    padding-inline-end: var(--margin);
+    margin-inline: calc(var(--margin) * -1);
+    padding-inline: var(--margin);
+    scroll-padding-inline: var(--margin);
   }
   /* Desktop: Restbreite als Linie (Höhe = Kreismitte). Default rechts; .--center beidseitig.
      Bei vollem/overflowendem Track flex → 0. */
@@ -4458,8 +4460,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       mask-image: none;
     }
     .container .story-iconslider.--center .story-iconslider__track {
-      margin-inline-end: 0;
-      padding-inline-end: 0;
+      margin-inline: 0;
+      padding-inline: 0;
     }
   }
   .story-iconslider__item {
@@ -4536,10 +4538,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     line-height: var(--lh-base);
     color: var(--fg);
     max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     text-align: center;
+    text-wrap: balance;
+    overflow-wrap: break-word;
   }
 
 /* ═══════════════════════════════════════════
