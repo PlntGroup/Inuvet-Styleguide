@@ -1,0 +1,129 @@
+/* ═══════════════════════════════════════════
+   brand-manukalind.css — Brand extension
+   ManukaLind token skin on top of planet-brands.css.
+   Tokens only — rhythm and components stay in the base file.
+   Load after planet-brands.css.
+   Active: html[data-brand="manukalind"]
+
+   Screen palette:
+   Grün #00975f · Dunkelgrün #006b43 · Hellgrün #E6F4EF
+   Schwarz #000000 · Honig #ffc800 · Weiß #fff
+   Type: Sofia Pro — web family "sofia-pro".
+   Satz Light (300), nur diese Marke. Überschriften bleiben Bold (700).
+   ═══════════════════════════════════════════ */
+
+html[data-brand="manukalind"] {
+  --font: "sofia-pro", "Sofia Pro", "Helvetica Neue", Arial, sans-serif;
+
+  --fg: #000000;
+  --bg: #fff;
+
+  --green: #00975f;
+  --green-hover: #006b43;
+  --green-light: #E6F4EF;
+
+  --color-honey: #ffc800;
+}
+
+/* Regular (400) im System wird hier Light. Andere Marken bleiben Regular. */
+html[data-brand="manukalind"] body,
+html[data-brand="manukalind"] .rte.--data-table td,
+html[data-brand="manukalind"] .rte.--data-table td.--sm,
+html[data-brand="manukalind"] .rte.--data-table .data-table-stack__primary,
+html[data-brand="manukalind"] .nav-left > a,
+html[data-brand="manukalind"] .nav-left > a:visited,
+html[data-brand="manukalind"] .nav-item__trigger,
+html[data-brand="manukalind"] .tile.--product .tile__price .price-stack,
+html[data-brand="manukalind"] .price-stack .--old,
+html[data-brand="manukalind"] .price-stack__unit,
+html[data-brand="manukalind"] .choice-box.--sm,
+html[data-brand="manukalind"] .choice-box.--detail,
+html[data-brand="manukalind"] .testimonial__text,
+html[data-brand="manukalind"] .testimonial-slider.--featured .testimonial__text,
+html[data-brand="manukalind"] .pdp__price .price-stack__compare,
+html[data-brand="manukalind"] .ingredient__latin,
+html[data-brand="manukalind"] .cart-drawer__count,
+html[data-brand="manukalind"] .cart-drawer__savings-row,
+.discount-tiers__hint,
+html[data-brand="manukalind"] .filter-count,
+html[data-brand="manukalind"] .search-panel__input::placeholder,
+html[data-brand="manukalind"] .search-page__form .search-panel__input,
+html[data-brand="manukalind"] .pdp__daily-cost__note {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  html[data-brand="manukalind"] .collection-sidebar__title { font-weight: 300; }
+}
+
+/* Produktkarte: Bewertung aus der Titelzeile nach rechts in die Preiszeile.
+   Markup im Guide bleibt beim System (Rating neben dem Titel). */
+html[data-brand="manukalind"] .tile.--product {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--half-module);
+  align-items: center;
+}
+html[data-brand="manukalind"] .tile.--product > .tile__image-wrap {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: stretch;
+}
+html[data-brand="manukalind"] .tile.--product > .flow,
+html[data-brand="manukalind"] .tile.--product .tile__headline-row {
+  display: contents;
+}
+html[data-brand="manukalind"] .tile.--product .tile__headline,
+html[data-brand="manukalind"] .tile.--product .tile__description {
+  grid-column: 1 / -1;
+  align-self: start;
+  min-width: 0;
+}
+html[data-brand="manukalind"] .tile.--product .tile__headline { grid-row: 2; }
+html[data-brand="manukalind"] .tile.--product .tile__description { grid-row: 3; }
+html[data-brand="manukalind"] .tile.--product > .tile__price {
+  grid-column: 1;
+  grid-row: 4;
+  align-self: center;
+}
+html[data-brand="manukalind"] .tile.--product .tile__headline-row .rating {
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: end;
+  align-self: center;
+  margin-top: calc(var(--base) * 0.5);
+  margin-left: 0;
+  white-space: nowrap;
+}
+
+
+/* Produktkarte: Titel eine Stufe über dem Fließtext, Größe der h3. Nur diese Marke. */
+html[data-brand="manukalind"] .tile.--product .tile__headline {
+  font-size: var(--text-m);
+  line-height: var(--lh-h3);
+}
+
+/* Produktkarte: Badge bündig oben links, wie Planimol. Nur diese Marke. */
+html[data-brand="manukalind"] .pdp__main-image > .floating-meta,
+html[data-brand="manukalind"] .pdp__mosaic-hero > .floating-meta,
+html[data-brand="manukalind"] .tile.--product .tile__image-wrap > .floating-meta {
+  top: 0;
+  left: 0;
+}
+
+/* Mobil: Warenkorb-Icon bündig unten rechts, hellgrün hinterlegt. */
+@media (max-width: 767px) {
+  html[data-brand="manukalind"] .tile.--product .tile__cart-icon.btn {
+    bottom: 0;
+    right: 0;
+    --cart-glass: var(--green-light);
+    background: var(--green-light);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  html[data-brand="manukalind"] .tile.--product .tile__cart-icon.btn:hover {
+    background: color-mix(in srgb, var(--green) 16%, var(--green-light));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
