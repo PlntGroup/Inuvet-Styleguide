@@ -5760,21 +5760,23 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* PDP-Variante (E.2): am Platz des Naturalrabatts nach .pdp__actions, ohne Innenabstand und Linie. */
   .discount-tiers.--pdp { margin: var(--half-module) 0 var(--module); padding: 0; border-bottom: 0; }
 
-  /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, Hellgrün.
+  /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, hellgrau (--accent-bg).
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
      Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf. ─── */
   .cart-drawer__recs {
     margin: var(--module) calc(var(--module) * -1) 0;
     padding: var(--half-module) var(--module);
-    background: var(--green-light);
+    background: var(--accent-bg);
   }
   .cart-drawer__recs > .section-label { margin: 0; }
   .cart-drawer__recs > .cart-item:last-child { border-bottom: 0; }
   /* Vorschlag: Titel so groß wie der Preis darunter (.cart-item__variant) */
   .cart-drawer__recs .cart-item__name { font-size: var(--text-xs); }
   @media (min-width: 768px) {
-    .cart-drawer:has(.cart-drawer__recs) { transform: translateX(calc(100% + var(--base) * 18)); }
-    .cart-drawer.--open:has(.cart-drawer__recs) { transform: translateX(0); }
+    /* Geschlossen immer um die Panelbreite weiter draußen, nicht erst wenn die Vorschläge
+       geladen sind: sonst animiert der Transform und das Panel huscht beim Seitenaufruf durchs Bild. */
+    .cart-drawer { transform: translateX(calc(100% + var(--base) * 18)); }
+    .cart-drawer.--open { transform: translateX(0); }
     .cart-drawer__recs {
       position: absolute;
       top: 0;
@@ -5785,6 +5787,34 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       padding: 0 var(--half-module);
       overflow-y: auto;
       border-left: 1px solid var(--border);
+      /* Weicher Schatten von rechts: das Panel liegt optisch hinter dem Drawer. */
+      box-shadow: inset calc(var(--base) * -0.75) 0 calc(var(--base) * 1.25) calc(var(--base) * -0.75) color-mix(in srgb, var(--fg) 14%, transparent);
+    }
+    /* Versetzt: Erst fährt der Drawer herein, dann fährt das Panel unter ihm hervor nach links.
+       Dafür liegt das Panel unter der Drawer-Fläche: Hintergrund auf ::before (z -1), Panel z -2.
+       Beim Schließen ohne Verzögerung zurück. */
+    .cart-drawer { background: transparent; }
+    .cart-drawer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--bg);
+      pointer-events: none;
+    }
+    .cart-drawer__recs {
+      z-index: -2;
+      transform: translateX(100%);
+      transition: transform var(--anim-base);
+    }
+    .cart-drawer.--open .cart-drawer__recs {
+      transform: translateX(0);
+      transition: transform var(--anim-base);
+      transition-delay: 0.15s; /* Drawer (--anim-base) ist dann gut ein Drittel drin */
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cart-drawer__recs,
+      .cart-drawer.--open .cart-drawer__recs { transition: none; }
     }
     /* Kopf und Panel-Überschrift: gleiche feste Höhe aus derselben Formel,
        sonst runden Schriften unterschiedlich und die Linien versetzen sich. */
