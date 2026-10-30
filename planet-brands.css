@@ -778,6 +778,10 @@
   body:not(.--nav-scrolled):not(:has(.mobile-menu.--open)):has(#MainContent > .shopify-section--section-type-v4:first-child) .site-nav.--over-hero .nav-account::part(signed-out-avatar) {
     color: var(--header-transparent-fg, var(--bg));
   }
+  /* Pfeile der Hauptpunkte mit Subnavi: Farbe wie der Text (sonst --fg-muted / --fg). */
+  body:not(.--nav-scrolled):not(:has(.mobile-menu.--open)):has(#MainContent > .shopify-section--section-type-v4:first-child) .site-nav.--over-hero .nav-item__trigger .material-icons {
+    color: inherit;
+  }
   body:not(.--nav-scrolled):not(:has(.mobile-menu.--open)):has(#MainContent > .shopify-section--section-type-v4:first-child) .site-nav.--over-hero .nav-hamburger span:not(.badge) {
     background: var(--header-transparent-fg, var(--bg));
   }
