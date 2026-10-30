@@ -4713,11 +4713,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     padding: 0;
     border: none;
   }
-  @media (min-width: 768px) {
-    .container:has(> .testimonial-featured):not(.--pt-0) {
-      padding-top: var(--module-2xl);
-    }
-  }
   
   /* ─── Slider Navigation ─── */
   .slider-nav {
