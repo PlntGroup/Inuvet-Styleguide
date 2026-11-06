@@ -6,7 +6,8 @@
   <title>Checkout – inuvet</title>
   <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten und Naturalrabatt.">
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
-  <link rel="stylesheet" href="../planet-brands.css?v=239">
+  <link rel="stylesheet" href="../planet-brands.css?v=244">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
 </head>
@@ -213,6 +214,7 @@
     <button type="button" class="btn --icon" onclick="closeCheckoutPromo()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     <div class="checkout-banner__packshot" data-animate>
       <img src="../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg" alt="Cortisan Öl-Komplex">
+      <lottie-player background="transparent" speed="1" aria-hidden="true"></lottie-player>
     </div>
     <div class="checkout-promo__copy">
       <div class="modal__header">
@@ -236,6 +238,7 @@
   </div>
 </div>
 
+<script src="../assets/brands/inuvet/lotties/inuvet_crosselling_veti_thumbup.js"></script>
 <script>
 function syncGratis(input) {
   var badge = input.closest('.cart-item__counter').querySelector('.badge.--free');
@@ -248,6 +251,26 @@ function changeQty(btn, delta) {
   if (val < 1) val = 1;
   input.value = String(val);
   syncGratis(input);
+}
+function startCheckoutCharacter() {
+  var player = document.querySelector('.modal.checkout-promo lottie-player');
+  if (!player || !window.checkoutPromoCharacter || typeof player.load !== 'function' || player.dataset.loaded) return;
+  player.dataset.loaded = '1';
+  player.addEventListener('ready', function () {
+    var anim = player.getLottie && player.getLottie();
+    if (!anim) return;
+    anim.loop = false;
+    anim.goToAndStop(0, true);
+    window.setTimeout(function () {
+      anim.addEventListener('complete', function () {
+        anim.goToAndPlay(14, true);
+      });
+      anim.resetSegments(true);
+      anim.loop = false;
+      anim.goToAndPlay(0, true);
+    }, 700);
+  });
+  player.load(window.checkoutPromoCharacter);
 }
 function closeCheckoutPromo() {
   document.getElementById('checkoutPromo').classList.remove('--open');
@@ -264,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(function () {
       bits.forEach(function (el) { el.classList.add('--in-view'); });
+      customElements.whenDefined('lottie-player').then(startCheckoutCharacter);
     });
   });
 });

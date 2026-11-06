@@ -4123,6 +4123,18 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   /* Produkt-Popup: mobil Bild über dem Text. Ab 768px Bild links, Text rechts — sonst sprengt das Quadrat niedrige Fenster. */
   .modal > .checkout-banner__packshot { flex-shrink: 0; }
+  /* Figur zeigt aufs Produkt: links unten, 55 % der Bildhöhe. Kommt verzögert von unten. */
+  .modal.checkout-promo > .checkout-banner__packshot { container-type: size; }
+  .modal.checkout-promo > .checkout-banner__packshot lottie-player {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    display: block;
+    height: 55cqh;
+    width: calc(55cqh * 1100 / 907);
+    pointer-events: none;
+  }
   .modal > .btn.--icon {
     position: absolute;
     top: calc(var(--base) * 0.6);
