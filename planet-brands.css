@@ -711,6 +711,19 @@
     2%, 23%  { opacity: 1; }
     25%      { opacity: 0; }
   }
+  .announcement-bar__link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    margin-inline-start: calc(var(--base) * 0.35);
+  }
+  .announcement-bar__item > .announcement-bar__link:only-child {
+    margin-inline-start: 0;
+  }
+  .announcement-bar__link:hover {
+    color: var(--fg);
+  }
+
   .announcement-bar .btn.--icon {
     position: absolute;
     right: var(--half-module);
@@ -1068,7 +1081,7 @@
   }
 
   /* ─── Hamburger ─── */
-  .nav-search--mobile { display: none; }
+  .btn.--icon.nav-search--mobile { display: none; } /* Spezifität wie .btn.--icon (display:flex), sonst Lupe doppelt am Desktop */
   .nav-hamburger {
     display: flex;
     align-items: center;
@@ -1114,7 +1127,7 @@
     .nav-left > a,
     .nav-left .nav-item { display: none; } /* Direkte Links + Dropdowns weg, nur Hamburger */
     .nav-left { gap: 0; }
-    .nav-search--mobile { display: flex; }
+    .btn.--icon.nav-search--mobile { display: flex; }
     .btn.--icon.nav-search--desktop { display: none; }
     /* Glyphen an den Satzspiegel (--margin), trotz 2.25rem-Trefferfeld */
     .site-nav {
@@ -1489,7 +1502,9 @@
     object-position: center;
     animation: heroPanIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
-  .section-type.--v1 .section-type__animation lottie-player {
+  .section-type.--v1 .section-type__animation lottie-player,
+  .section-type.--v1 .section-type__animation .lottie-anim,
+  .section-type.--v1 .section-type__animation .lottie-anim svg {
     width: 100%;
     height: auto;
   }
@@ -1636,7 +1651,7 @@
     min-height: 0;
   }
   .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__image :is(picture, .media-video, img, video),
-  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation lottie-player,
+  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) .section-type__animation :is(lottie-player, .lottie-anim),
   .section-type:is(.--v1, .--v2).--fit-text:not(.--viewport) .section-type__image :is(picture, .media-video, img, video) {
     position: absolute;
     inset: 0;
@@ -1899,6 +1914,9 @@
     z-index: 0;
     overflow: hidden;
   }
+  /* Bildnachweis über dem Abdunkeln, das Bild selbst bleibt darunter. */
+  .section-type.--v4 .section-type__image.media-credit { z-index: auto; }
+  .section-type.--v4 .media-credit__label { z-index: 3; }
   .section-type.--v4 .section-type__image:not(:has(img, video)) {
     animation: heroPanIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
@@ -2038,7 +2056,9 @@
   .tile-grid.--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tile-grid.--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tile-grid.--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .shopify-section--featured-collection .tile-grid {
+  /* Auflistung (Produkte, Content-Kacheln, …): Zeilen ein Modul größer als Spalten. */
+  .shopify-section--featured-collection .tile-grid,
+  .tile-grid.--list {
     row-gap: calc(var(--gutter) + var(--module));
   }
 
@@ -2212,12 +2232,96 @@
     display: block;
   }
   .tile__animation.--ratio-1 lottie-player { aspect-ratio: 1; }
+  .tile__animation img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
   /* ─── Tile Variante B: Bild + Text ─── */
   /* .tile__image — nutzt .placeholder-bg */
   .tile__image { position: relative; overflow: hidden; }
   .tile__image.--square { aspect-ratio: 1 / 1; }
   .tile__image.--landscape { aspect-ratio: 4 / 3; }
+  .tile__image.--portrait { aspect-ratio: 4 / 5; }
+
+  /* ─── Kachel-Slider (tile-slider) ───
+     Frei scrollbar. Desktop im Satzspiegel (3 bzw. 4 Kacheln exakt), mobil randlos bis zum
+     Browserrand mit angeschnittener Folgekachel. Fortschrittslinie darunter, Pfeile gestapelt rechts (Desktop). */
+  .tile-slider__viewport { position: relative; }
+  .tile-slider__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - var(--gutter) * 2) / 3);
+    gap: var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .tile-slider__track::-webkit-scrollbar { display: none; }
+  .tile-slider.--cols-4 .tile-slider__track { grid-auto-columns: calc((100% - var(--gutter) * 3) / 4); }
+  .tile-slider__slide { min-width: 0; scroll-snap-align: start; }
+  .tile-slider__nav {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-50%);
+  }
+  .tile-slider__nav[hidden] { display: none; }
+  .slider-btn.--solid { background: var(--fg); border-color: var(--fg); color: var(--bg); transition: none; }
+  .slider-btn.--solid:hover { background: var(--green); border-color: var(--green); }
+  .slider-btn.--solid:disabled { background: var(--fg); border-color: var(--fg); color: var(--bg); opacity: 0.3; }
+  .tile-slider__progress {
+    position: relative;
+    height: 2px;
+    margin-top: var(--module);
+    background: var(--border-light);
+    overflow: hidden;
+  }
+  .tile-slider__progress > span {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: var(--tile-progress-size, 100%);
+    background: var(--fg);
+    transform: translateX(var(--tile-progress-pos, 0%));
+    transition: transform var(--anim-fast);
+  }
+  @media (max-width: 767px) {
+    .tile-slider__track,
+    .tile-slider.--cols-4 .tile-slider__track {
+      grid-auto-columns: 75%;
+      margin-inline: calc(var(--margin) * -1);
+      padding-inline: var(--margin);
+      scroll-padding-inline: var(--margin);
+      scroll-snap-type: x mandatory;
+    }
+    .tile-slider__nav { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tile-slider__track { scroll-behavior: auto; }
+  }
+  /* Text-Kachel im Kachel-Slider: grüne Fläche, Icon oben, Aussage unten. */
+  .tile__image.--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--half-module);
+    padding: var(--module);
+    background: var(--green);
+    color: var(--bg);
+  }
+  .tile__image.--text { container-type: inline-size; }
+  .tile__image.--text .tile__icon .material-icons { color: var(--bg); font-size: calc(var(--base) * 3); }
+  .tile__image.--text .tile__headline {
+    font-size: min(var(--text-m), 10cqw);
+    line-height: var(--lh-h3);
+    color: var(--bg);
+  }
   .tile__image img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; transition: transform var(--anim-mid), filter var(--anim-mid); }
   .tile__image:hover img:nth-child(1) { transform: scale(1.05); }
   /* Badge-Overlay-Wrapper (Produkt + Collection-Kachel)
@@ -2505,7 +2609,15 @@
     cursor: pointer;
   }
   .tile.--product .tile__image {
+    display: block;
+    width: 100%;
     aspect-ratio: 1 / 1;
+  }
+  .tile-grid[data-image-ratio="4-5"] .tile.--product .tile__image {
+    aspect-ratio: 4 / 5;
+  }
+  .tile-grid[data-image-ratio="5-4"] .tile.--product .tile__image {
+    aspect-ratio: 5 / 4;
   }
   .tile.--product .tile__cart {
     position: absolute;
@@ -2584,6 +2696,15 @@
   @media (max-width: 767px) {
     .tile.--product .tile__cart { display: none; }
     .tile.--product .tile__cart-icon { display: flex; }
+    .tile.--product .tile__cart-icon.btn {
+      --cart-glass: var(--green-light);
+      background: var(--green-light);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .tile.--product .tile__cart-icon.btn:hover {
+      background: color-mix(in srgb, var(--green) 16%, var(--green-light));
+    }
   }
   .tile__description {
     font-size: var(--text-base);
@@ -2599,6 +2720,15 @@
   .tile.--product .tile__price .price-stack {
     font-weight: 400;
   }
+  /* Bewertung rechts neben dem Namen, vertikal wie .rating auf der PDP */
+  .tile.--product .tile__headline-row {
+    align-items: center;
+  }
+  .tile.--product .tile__headline-row .rating {
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
   .tile.--product .tile__animals {
     display: inline-flex;
     align-items: center;
@@ -2608,8 +2738,8 @@
     color: var(--fg);
   }
   .tile.--product .tile__animals .pdp__type-animal-icon {
-    width: calc(var(--base) * 1.125);
-    height: calc(var(--base) * 1.125);
+    width: calc(var(--base) * 1.5);
+    height: calc(var(--base) * 1.5);
     flex-shrink: 0;
   }
   /* ─── Floating Meta (Badge-Container oben links) ─── */
@@ -3941,11 +4071,22 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     padding-bottom: 0;
     align-items: baseline;
   }
+  .section-label-row.--headline > :is(h1, h2, h3) {
+    font-weight: 700;
+    margin: 0;
+  }
+  .section-label-row.--headline > h1 {
+    font-size: var(--text-xl);
+    line-height: var(--lh-h1);
+    letter-spacing: -0.02em;
+  }
   .section-label-row.--headline > h2 {
     font-size: var(--text-l);
-    font-weight: 700;
     line-height: var(--lh-h2);
-    margin: 0;
+  }
+  .section-label-row.--headline > h3 {
+    font-size: var(--text-m);
+    line-height: var(--lh-h3);
   }
 
   /* ─── Section-Header — Label/Headline-Zeile + optionaler Absatz (A.12) ───
@@ -4068,6 +4209,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   /* Nach .section-label / .section-label-row: deutlicher Abstand zum ersten Content-Element */
   .flow > .section-label + * { --flow-space: var(--module); }
+  .flow > .section-header + * { --flow-space: var(--module); }
   .flow > .section-label.--sub + * { --flow-space: var(--half-module); }
   .flow > .section-label-row + * { --flow-space: var(--module); }
 
@@ -4299,6 +4441,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* Section-Stack: „Padding oben“ schaltet nur den weißen Abstand über dem Footer.
      Der Innenabstand oben bleibt fest (.footer-main). */
   .site-footer.--pt-0 { margin-top: 0; }
+  .site-footer.--pb { padding-bottom: var(--section-gap); }
   .site-footer a,
   .site-footer a:visited {
     color: var(--fg);
@@ -4328,12 +4471,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .footer-col.--newsletter .footer-nl-form {
     max-width: 22rem;
-  }
-  /* Fallback: Footer ohne .footer-cols bleibt 4-spaltig */
-  .footer-main:not(:has(> .footer-cols)) {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--gutter);
   }
   /* Mockup-Seiten ohne .footer-cols: altes 4-Spalten-Raster */
   .footer-main:not(:has(> .footer-cols)) {
@@ -4562,7 +4699,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       flex: 1 1 0;
       min-width: 0;
       align-self: flex-start;
-      margin-top: calc(var(--story-size) / 2);
+      margin-top: calc(var(--story-h, var(--story-size)) / 2);
       height: 0;
       border-top: 1px solid var(--border-light);
       pointer-events: none;
@@ -4630,6 +4767,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     display: block;
     border-radius: 50%;
   }
+  /* Größe groß (--lg): Inhalts-Section statt Reihe unter der Nav. */
+  .story-iconslider.--lg { --story-size: calc(var(--base) * 6.5); }
+  .story-iconslider.--lg .story-iconslider__label { font-size: var(--text-sm); }
   .story-iconslider__media[data-cat] { background: var(--cat, var(--accent-bg)); }
   .story-iconslider__media[data-cat="beruhigung"]    { background: var(--cat-beruhigung); }
   .story-iconslider__media[data-cat="leber"]         { background: var(--cat-leber); }
@@ -4857,13 +4997,33 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   /* Indikationen: eine Illustration nach der anderen. */
   .indication-slider__viewport { overflow: hidden; }
+  /* Flex statt grid-auto-columns: 100%. Die Prozent-Spalte hat sich
+     gelegentlich auf die doppelte Viewport-Breite aufgelöst, die Spur
+     ist dann zu weit gerutscht und die Lottie lag neben dem Bild. */
   .indication-slider__track {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
+    display: flex;
+    width: 100%;
     transition: transform var(--anim-slow);
   }
-  .indication-slider__slide { min-width: 0; }
+  /* Bühne = höchste Folie. Kurze Lotties dürfen Player und Text nicht oben festnageln. */
+  .indication-slider__slide {
+    display: flex;
+    flex: 0 0 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-width: 0;
+  }
+  .indication-slider .section-type.--v1 {
+    width: 100%;
+    align-items: center;
+  }
+  /* Festes Bildformat: Folien oben bündig, damit Animation und Navigation nicht
+     springen, wenn ein Text kürzer ist als der längste (sonst mittig in der Bühne). */
+  .indication-slider__slide:has(> .section-type:is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9)) {
+    justify-content: flex-start;
+  }
   .indication-slider__dots {
     display: flex;
     justify-content: center;
@@ -4889,6 +5049,39 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     background: var(--border);
   }
   .indication-slider__dot.--current::before { background: var(--green); }
+  /* Nummern statt Punkte (--numbered): circle-badge.--num, inaktiv nur Kontur. */
+  .indication-slider__dots.--numbered { gap: calc(var(--base) * 0.25); }
+  .indication-slider__dots.--numbered .indication-slider__dot {
+    width: calc(var(--base) * 2.25);
+    height: calc(var(--base) * 2.25);
+  }
+  .indication-slider__dots.--numbered .circle-badge {
+    width: calc(var(--base) * 1.75);
+    height: calc(var(--base) * 1.75);
+    font-size: var(--text-sm);
+  }
+  .indication-slider__dots.--numbered .indication-slider__dot::before { content: none; }
+  .indication-slider__dot .circle-badge {
+    transition: background var(--anim-fast), color var(--anim-fast), box-shadow var(--anim-fast);
+  }
+  .indication-slider__dot:not(.--current) .circle-badge {
+    background: transparent;
+    color: var(--fg);
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
+  .indication-slider__dot:not(.--current):hover .circle-badge { box-shadow: inset 0 0 0 1px var(--fg); }
+  /* Navigation auf der Animation (--on-media): slidet nicht mit, mittig über der Section,
+     Unterkante = Unterkante der Animation (--nav-offset per JS) + Abstand wie .floating-meta. */
+  .indication-slider:has(.indication-slider__dots.--on-media) { position: relative; }
+  .indication-slider__dots.--on-media {
+    position: absolute;
+    left: calc(var(--base) * 0.75);
+    right: calc(var(--base) * 0.75);
+    bottom: calc(var(--nav-offset, 0px) + var(--base) * 0.75);
+    z-index: var(--z-default);
+    margin-top: 0;
+  }
+  .indication-slider__dots.--on-media .indication-slider__dot:not(.--current) .circle-badge { background: var(--bg); }
   @media (prefers-reduced-motion: reduce) {
     .indication-slider__track { transition: none; }
   }
@@ -4914,81 +5107,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* Rahmen = .container (Section-Stack A.7). Mehrere App-Blöcke untereinander. */
   .apps-section > .shopify-app-block + .shopify-app-block { margin-top: var(--section-gap); }
 
-  /* ─── Smile.io Landing-Page-Header (Happy Bees) ───
-     Band wie die Newsletter-Section (D.7): Text links, Buttons rechts, Hintergrund über section_bg.
-     Smile-Hintergrundbild und -Box werden ausgeblendet.
-     Smile-Klassen sind gehasht und ändern sich mit App-Updates → Selektoren über die Struktur. */
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) section,
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) section > div,
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) section > div > div {
-    display: block;
-    max-width: none;
-    min-width: 0;
-    margin: 0;
-    padding: 0;
-    background: none;
-    color: var(--fg);
-    text-align: left;
-    font-family: var(--font);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) section > div > div > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gutter);
-    align-items: start;
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) section > div > div > div > div:first-child {
-    align-items: flex-start;
-    gap: var(--half-module);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) h1 {
-    font-size: var(--text-l);
-    font-weight: 700;
-    line-height: var(--lh-h2);
-    color: var(--fg);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) span {
-    font-weight: inherit;
-    font-size: var(--text-base);
-    line-height: var(--lh-base);
-    color: var(--fg);
-  }
-  /* Buttons wie .btn-row: erster wie .btn.--primary, weitere wie .btn.--secondary */
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) div:has(> button) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: var(--half-module);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) button {
-    min-width: 0;
-    font-family: var(--font);
-    font-size: var(--text-base);
-    font-weight: 700;
-    line-height: 1;
-    padding: 1.125rem var(--half-module);
-    border: 1px solid var(--fg);
-    background: color-mix(in srgb, var(--bg) 70%, transparent);
-    color: var(--fg);
-    box-shadow: none;
-    transition: background var(--anim-fast), color var(--anim-fast), box-shadow var(--anim-fast);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) button:first-child {
-    background: var(--fg);
-    color: var(--bg);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) button:not(:disabled):hover {
-    background: var(--fg);
-    color: var(--bg);
-    box-shadow: 0 0 0 2px var(--fg);
-  }
-  .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) button:focus {
-    border-color: var(--fg);
-    box-shadow: none;
-  }
-  @media (max-width: 767px) {
-    .apps-section .shopify-app-block:has(script[src*="smile-landing-page-header"]) section > div > div > div { grid-template-columns: 1fr; }
-  }
 
   /* ═══════════════════════════════════════════
      PDP — PRODUKTDETAILSEITE
@@ -5005,7 +5123,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .pdp__gallery { display: flex; flex-direction: column; gap: var(--half-module); }
   /* .pdp__main-image — nutzt .placeholder-bg */
-  .pdp__main-image { aspect-ratio: 1/1; border: 1px solid var(--border-light); overflow: hidden; position: relative; }
+  .pdp__main-image { width: 100%; aspect-ratio: 1/1; border: 1px solid var(--border-light); overflow: hidden; position: relative; }
   .pdp__main-image img,
   .pdp__main-image video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .pdp__main-image img.--hidden,
@@ -5029,7 +5147,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     position: sticky;
     top: var(--sticky-top);
     align-self: start;
-    max-height: calc(100vh - var(--sticky-top));
+    /* Kein max-height: sonst bleibt die Zeile bei der rechten Spalte
+       und die nächste Sektion läuft bei niedrigem Fenster ins Bild. */
   }
   @media (min-width: 1100px) {
     .pdp--sticky-gallery .pdp__gallery {
@@ -5893,6 +6012,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .shipping-progress__text .material-icons { flex-shrink: 0; color: var(--green); }
   .shipping-progress.--done .shipping-progress__text { font-weight: 700; }
+  /* Ohne Steuerhinweis im Drawer: Abstand zwischen Zwischensumme und „Zur Kasse“ */
+  .summary-total + .cart-drawer__checkout { margin-top: var(--base); }
 
   /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, hellgrau (--accent-bg).
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
@@ -6414,6 +6535,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     .pdp--sticky-gallery .pdp__gallery {
       display: flex;
       flex-direction: column;
+      align-items: stretch;
       position: static;
       max-height: none;
       min-width: 0;

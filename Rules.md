@@ -16,11 +16,14 @@ Neue Regel hier eintragen (Spec in `Spec.md`) und nach `main` pushen.
 
 Deutsch für Commits, Doku und Kommunikation. Dateiköpfe in `planet-brands.*`, `brand-*.css`, `sg-only.*` auf Englisch.
 
-## Drei Schichten
+## Schichten
 
-1. **System** — `planet-brands.css` / `planet-brands.js` (Inuvet-`:root`).
-2. **Haut** — `brand-{handle}.css`. Nie Tokens in `planet-brands.css` für eine neue Marke.
-3. **Kühlschrank** — Store-Inhalte. Dateinamen nicht umbenennen.
+1. **System** — `planet-brands.css` / `planet-brands.js` (Inuvet-`:root`). Lebt hier; Themes übernehmen die Datei 1:1 und bearbeiten sie nicht.
+2. **Haut** — `brand-{handle}.css`: nur Tokens (Farben, Schrift). Nie Tokens in `planet-brands.css` für eine neue Marke.
+3. **Theme-Erweiterungen** — `theme-extras.css`, nur im jeweiligen Theme-Repo, nicht im Guide: markenspezifische Bausteine, die bewusst nicht ins System gehören (z. B. Galerie-Karten, Reviews.io). Nur Tokens und Basis-Styles. Was generisch ist, kommt hierher ins System.
+4. **Kühlschrank** — Store-Inhalte. Dateinamen nicht umbenennen.
+
+Ladereihenfolge im Theme: `planet-brands.css` → `theme-extras.css` → `brand-{handle}.css`.
 
 Themes sind markenweise getrennt. Der Guide darf Marken simulieren; ein Theme hat keine `data-brand`-Umschaltung.
 
