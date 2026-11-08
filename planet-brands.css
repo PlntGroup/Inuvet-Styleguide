@@ -2758,8 +2758,8 @@
      Wichtig: kein margin:0 auf h3 (überschreibt sonst .flow > * + *).
      Vor h3 bewusst größere Zäsur als Standard-.flow (half-module), sonst
      kleben gleich große h3 am Absatz darüber.
-     Mehrere Gruppen in einem Item (z. B. Anwendung / Fütterung): h3.section-label.--sub. */
-  .accordion-content__inner:is(.flow, .rte) > h3:not(.section-label) {
+     Mehrere Gruppen in einem Item (z. B. Anwendung / Fütterung): .--grouped mit h3.label-caps (unten). */
+  .accordion-content__inner:is(.flow, .rte) > h3:not(.section-label, .label-caps) {
     font-size: var(--text-base);
     font-weight: 700;
     line-height: var(--lh-base);
@@ -2775,6 +2775,15 @@
     color: var(--fg-muted);
     font-size: var(--text-base);
   }
+  /* Gruppen-Variante (.--grouped, z. B. PDP-Inhaltsstoffe): Zwischentitel als h3.label-caps,
+     Gruppen durch feine Linie darüber statt großem Leerraum, Text in Schriftfarbe. */
+  .accordion-content__inner.--grouped > * + h3 {
+    --flow-space: var(--half-module);
+    padding-top: var(--half-module);
+    border-top: 1px solid var(--border-light);
+  }
+  .accordion-content__inner.--grouped > h3 + * { --flow-space: calc(var(--base) * 0.25); }
+  .accordion-content__inner.--grouped :is(p, td) { color: var(--fg); }
 
   /* ═══════════════════════════════════════════
      TABS
