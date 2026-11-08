@@ -106,6 +106,7 @@
 <symbol id="ui-visibility" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></g></symbol>
 <symbol id="ui-visibility_off" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></g></symbol>
 <symbol id="ui-outlined-edit" viewBox="0 0 24 24"><g fill="currentColor"><path d="m14.06 9.02.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></g></symbol>
+<symbol id="ui-outlined-info" viewBox="0 0 24 24"><g fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></g></symbol>
 <symbol id="ui-outlined-print" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 8h-1V3H6v5H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM8 5h8v3H8V5zm8 12v2H8v-4h8v2zm2-2v-2H6v2H4v-4c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v4h-2z"/><circle cx="18" cy="11.5" r="1"/></g></symbol>
 </svg>
 
@@ -1858,6 +1859,7 @@
         <tr><th><code>.form-field</code></th><td>Wrapper · Floating Label · <code>input</code>, <code>textarea</code>, <code>select</code></td></tr>
         <tr><th><code>.form-field.--error</code></th><td>Border + Label <code>--color-error</code> · Feld-Hintergrund <code>--field-bg-active</code> (weiß) · Meldung via <code>.form-field__error</code></td></tr>
         <tr><th><code>.form-field.--success</code></th><td>Border + Label <code>--green</code> · Bestätigung via <code>.form-field__success</code></td></tr>
+        <tr><th><code>.form-field.--has-info</code></th><td>Info-Icon im Feld (<code>.btn.--icon.form-field__info</code>, <code>ui-outlined-info</code>) öffnet eine <code>.notice</code> (<a href="#C7">C.7</a>) unter dem Feld, über den Folgefeldern · Lage: <code>top: 100% + base × 0.5</code>, <code>z-index: var(--z-dropdown)</code> · Pfeil zum Icon · Schließen via <code>.notice__close</code> · <code>aria-expanded</code> am Icon, Esc/Klick daneben schließt</td></tr>
         <tr><th><code>.form-field.--sm</code></th><td>Statisches Label oben · <code>height: calc(var(--base) * 2)</code> — bündig mit <code>.btn.--sm</code></td></tr>
         <tr><th><code>.form-field.--full</code></th><td>In <code>.form-grid</code>: spannt beide Spalten (<code>grid-column: 1 / -1</code>)</td></tr>
         <tr><th><code>.form-grid</code></th><td>2-Spalten-Grid · Mobile: 1 Spalte · Felder ohne eigenen <code>margin-bottom</code></td></tr>
@@ -2021,6 +2023,31 @@
         </div>
       </div>
       <p class="sg-caption">Border + Label grün · Bestätigung via <code>.form-field__success</code>.</p>
+
+      <h3 class="sg-h3 --top"><code>.form-field.--has-info</code></h3>
+      <div class="sg-demo --white">
+        <div class="sg-w-md flow">
+          <div class="form-grid">
+            <div class="form-field --full --has-info">
+              <input type="text" id="b4-info-nr" placeholder=" ">
+              <label for="b4-info-nr">Kundennummer</label>
+              <button type="button" class="btn --icon form-field__info" aria-expanded="false" aria-controls="b4-info-panel" aria-label="Wo finde ich meine Kundennummer?" onclick="toggleFieldInfo(this)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-outlined-info"></use></svg></button>
+              <div class="notice" id="b4-info-panel" role="note" hidden>
+                <button type="button" class="btn --icon notice__close" aria-label="Hinweis schließen" onclick="toggleFieldInfo(this.closest('.form-field').querySelector('.form-field__info'))"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+                <div class="flow">
+                  <p class="notice__title">Wo finde ich meine Kundennummer?</p>
+                  <p>Oben rechts auf jeder Rechnung von uns. Ohne Rechnung: kurz anrufen.</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-field --full">
+              <input type="email" id="b4-info-email" placeholder=" ">
+              <label for="b4-info-email">E-Mail</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sg-caption">Feld mit Info — Inhalt ist eine normale <code>.notice</code> (<a href="#C7">C.7</a>), nur die Lage kommt aus B.4 · Shop: Registrierung (Kundennummer).</p>
 
       <h3 class="sg-h3 --top"><code>.form-grid</code></h3>
       <div class="sg-demo --white">
@@ -2806,6 +2833,7 @@
         <tr><th><code>.accordion-icon</code></th><td>Material Icon <code>expand_more</code> · rotiert bei <code>.--open</code></td></tr>
         <tr><th><code>.accordion-content</code></th><td>Slide-Container · <code>grid-template-rows: 0fr</code> default · <code>1fr</code> bei <code>.--open</code></td></tr>
         <tr><th><code>.accordion-content__inner</code></th><td>Overflow-Wrapper · Padding unten bei <code>.--open</code></td></tr>
+        <tr><th>Gruppen im Item</th><td>Mehrere Abschnitte in einem Item (z.&nbsp;B. Anwendung / Fütterung): <code>.accordion-content__inner.flow</code> + <code>h3.section-label.--sub</code> je Gruppe · keine eigene Überschriften-Typo</td></tr>
         <tr><th><code>.--cols-2</code></th><td>Optional am Container · Desktop 2 Spalten · <code>column-gap: var(--gutter)</code> · ≤899px 1 Spalte</td></tr>
         <tr><th><code>.accordion__col</code></th><td>Pflicht bei <code>.--cols-2</code> · zwei Wrapper · Items mit <code>order</code> für Mobile-Lesereihenfolge (1, 2, 3…)</td></tr>
       </table>
@@ -3747,6 +3775,7 @@
         <tr><th>Bildformat Hero V2/V3</th><td>Ein Auswahlfeld „Bildformat“: <strong>Hero V2</strong> Automatisch (Cover) · 16:9 (<code>.--ratio-16-9</code>) · Original (<code>.--media-ratio</code>) · Viewport (<code>.--viewport</code>) · <strong>Hero V3</strong> Automatisch · 16:9 · Viewport. 16:9 ist Mindesthöhe, Inhalt darf die Section verlängern; V2 mobil: Bild 16:9 über der Box.</td></tr>
         <tr><th><code>.section-type.--viewport</code></th><td><code>calc(100dvh − Header)</code>, max <code>--section-max-height</code> (V1 mit Box/V2) · <strong>V3:</strong> gleiche Höhe, aber ohne 51rem-Deckel · V3 Text: <code>--content-top|--content-center|--content-bottom</code></td></tr>
         <tr><th><code>.section-type.--reverse</code></th><td>Medien und Content tauschen die Seite</td></tr>
+        <tr><th><code>.section-type.--contained</code></th><td>Nur Hero V2 (<code>--v3</code>) und V3 (<code>--v4</code>), ab 768&nbsp;px: Medium endet an der Inhaltskante (Breite <code>100% − --margin × 2</code>, max <code>--container-max − --margin × 2</code>) statt randlos · Box bzw. Text rückt um <code>--module</code> vom Bildrand ein · mobil Vollbild · Shopify: Select „Breite“ (Vollbild | Satzspiegel), Default Vollbild</td></tr>
         <tr><th>Abstand oben</th><td>Neue Section immer an · V1 <code>pad_top</code> · V2/V3 <code>margin_top</code> · Spec → <a href="#section-stack">A.7 Section-Stack</a></td></tr>
         <tr><th><code>.section-type__content.flow</code></th><td>Content-Box · Headline → <code>.section-type__bottom.flow</code></td></tr>
         <tr><th><code>.section-type__bottom.flow</code></th><td>Body + CTA · Body → Button via <code>* + .btn</code> / <code>* + .btn-row</code> (<a href="#A7">A.7</a>) · Shop: immer <code>.btn-row</code> (auch bei einem Button)</td></tr>
@@ -5581,7 +5610,7 @@
                 <button class="btn --primary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button>
               </div>
               <div class="nr-widget" aria-label="Naturalrabatt">
-                <div class="nr-widget__bar"><div class="nr-widget__bar-fill" style="width:25%"></div></div>
+                <div class="progress-bar"><div class="progress-bar__fill" style="width:25%"></div></div>
                 <div class="nr-widget__hint-row">
                   <div class="nr-widget__hint">Noch 3 Stück für +1 Gratisprodukt</div>
                   <button class="btn --secondary --sm nr-widget__fill" type="button">Auffüllen</button>
@@ -6502,6 +6531,7 @@
         <tr><th>Planimol, ManukaLind, Campus</th><td>Kein Tier-Hint und kein Gratis-Badge · stattdessen Label <code>.badge.--sale</code> („Sale“) in <code>.floating-meta</code> auf dem Thumb, wenn <code>item.variant.compare_at_price &gt; item.original_price</code></td></tr>
         <tr><th>Footer</th><td>Versandhinweis, Zwischensumme (<code>--text-m</code>), Checkout (Primary), Weiter einkaufen (Ghost).</td></tr>
         <tr><th>Empfehlungen</th><td><code>.cart-drawer__recs</code> als letztes Kind von <code>.cart-drawer__items</code> · Fläche <code>--accent-bg</code> (hellgrau) · Überschrift <code>.section-label</code> „Andere Kunden kauften auch“ · 3–4 Vorschläge als <code>.cart-item</code> mit demselben Aufbau wie Warenkorb-Zeilen (<code>__top</code>: Name in <code>--text-xs</code>, so groß wie der „ab“-Preis in <code>.cart-item__variant</code> · <code>__bottom</code>: <code>.btn.--secondary.--sm</code> „Hinzufügen“, bündig mit der Bildunterkante) · <strong>mobil</strong> Liste unter den Produkten, vollflächig im Drawer · <strong>ab 768px</strong> Panel links am Drawer (<code>calc(var(--base) * 18)</code>, volle Höhe, liegt hinter dem Drawer: weicher Schatten von rechts, fährt nach dem Drawer versetzt unter ihm hervor), Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf · ohne Vorschläge kein Block</td></tr>
+        <tr><th>Gratisversand</th><td><code>.shipping-progress</code> oben im Drawer-Footer und auf der Warenkorbseite · <code>__text</code> mit Icon (<code>--green</code>), <code>--text-sm</code>, erreicht: <code>.--done</code> fett · Balken = Atom <code>.progress-bar</code> + <code>__fill</code> (<code>--progress-bar-height</code>, <code>--green-light</code> / <code>--green</code>; auch im <code>.nr-widget</code>) · Schwelle je Land aus Theme-Einstellung (Planimol)</td></tr>
         <tr><th>Rabatt-Staffel</th><td><code>.discount-tiers</code> zwischen Drawer-Kopf und Produkten · keine eigene Fläche, Linie unten · <code>__hint</code>: „Du sparst X&nbsp;%. Füge N weiteres <u>Aktionsprodukt</u> hinzu, um Y&nbsp;% zu sparen.“ (ohne Hervorhebung, Schnitt wie Fließtext) (Link auf die Collection) (höchste Stufe: nur „Du sparst …“) · <code>__steps</code> als <code>&lt;ol&gt;</code>, eine Stufe je <code>__step</code>: Prozent in <code>--text-xs</code> bold, Balken darunter (<code>--progress-bar-height</code>), <code>.--reached</code> <code>--color-honey</code> wie das Label „Aktion“ (<code>.badge.--honey</code>), offen <code>--border-light</code> · <strong>nur Anzeige</strong> — Rabatt rechnet Shopify, Betrag erscheint unten als „Du sparst“ · nur ManukaLind; Inuvet hat stattdessen Naturalrabatt</td></tr>
         <tr><th>Leer</th><td>Zentriertes Icon + Text + Button (<a href="#C8">C.8</a>).</td></tr>
         <tr><th>JS</th><td><code>openCart(id)</code> / <code>closeCart(id)</code> in <code>sg-only.js</code> — IDs <code>cartFull</code> / <code>cartEmpty</code></td></tr>

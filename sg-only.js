@@ -100,6 +100,12 @@ function switchAccTab(btn, targetId) {
   while (panels) { if (panels.classList.contains('tab-panel')) panels.classList.remove('--active'); panels = panels.nextElementSibling; }
   document.getElementById(targetId).classList.add('--active');
 }
+function toggleFieldInfo(btn) {
+  var panel = document.getElementById(btn.getAttribute('aria-controls'));
+  var open = panel.hidden;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
 function switchTab(btn, index) {
   var tabs = btn.closest('.tabs');
   tabs.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('--active'); b.setAttribute('aria-selected', 'false'); });

@@ -1810,6 +1810,21 @@
     grid-column: 1;
     grid-row: 1;
   }
+  /* Breite Satzspiegel (--contained, Hero V2 und V3, nur Desktop): Medium endet an der Inhaltskante,
+     Box bzw. Text rückt um ein Modul vom Bildrand ein. Mobil gilt das Vollbild-Layout. */
+  @media (min-width: 768px) {
+    .section-type.--v3.--contained,
+    .section-type.--v4.--contained {
+      width: calc(100% - var(--margin) * 2);
+      max-width: calc(var(--container-max) - var(--margin) * 2);
+      margin-inline: auto;
+    }
+    .section-type.--v3.--contained .section-type__inner {
+      max-width: none;
+      padding-inline: var(--module);
+    }
+    .section-type.--v4.--contained .section-type__content { padding-inline: var(--module); }
+  }
   /* Headline-Größe = Tag */
   .section-type.--v3 .section-type__body {
     color: var(--fg);
@@ -2733,8 +2748,9 @@
   /* Gruppierte PDP-Infos: h3-Abschnitte im Akkordeon — nutzt .flow.
      Wichtig: kein margin:0 auf h3 (überschreibt sonst .flow > * + *).
      Vor h3 bewusst größere Zäsur als Standard-.flow (half-module), sonst
-     kleben gleich große h3 am Absatz darüber. */
-  .accordion-content__inner:is(.flow, .rte) > h3 {
+     kleben gleich große h3 am Absatz darüber.
+     Mehrere Gruppen in einem Item (z. B. Anwendung / Fütterung): h3.section-label.--sub. */
+  .accordion-content__inner:is(.flow, .rte) > h3:not(.section-label) {
     font-size: var(--text-base);
     font-weight: 700;
     line-height: var(--lh-base);
@@ -3010,6 +3026,21 @@
   .toast.--info { background: var(--fg-muted); }
   .toast.--out { opacity: 0; transform: translateX(0.75rem); }
 
+/* ─── Fortschrittsbalken (Atom) ───
+   <div class="progress-bar" role="progressbar" aria-valuenow…><span class="progress-bar__fill" style="width: N%"></span></div>
+   Genutzt von .shipping-progress (E.4) und .nr-widget (E.2). Auf farbiger Fläche Hintergrund im Kontext anpassen. */
+.progress-bar {
+  height: var(--progress-bar-height);
+  background: var(--green-light);
+  overflow: hidden;
+}
+.progress-bar__fill {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  transition: width var(--anim-mid);
+}
+
 /* ─── Infobox / Hinweis ───
    Text↔Text via .flow (A.7). Flex ohne Text-gap; Actions strukturell darunter. */
 .notice {
@@ -3018,9 +3049,12 @@
   display: flex;
   flex-direction: column;
 }
+/* hidden-Attribut respektieren (display: flex würde es sonst überschreiben) */
+.notice[hidden],
+.form-check[hidden] { display: none; }
 .notice p        { font-size: var(--text-base); line-height: var(--lh-base); }
 .notice__title   { font-weight: 700; font-size: var(--text-base); display: flex; align-items: center; gap: calc(var(--base) * 0.4); }
-.flow > .notice__title + * { --flow-space: var(--half-module); }
+.flow > .notice__title + * { --flow-space: calc(var(--base) * 0.5); } /* wie h4–h6 + * (A.7) */
 .notice > .flow + .notice__actions { margin-top: var(--half-module); }
 .notice__actions { display: flex; gap: var(--half-module); flex-wrap: wrap; }
 
@@ -3392,6 +3426,37 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     margin: 0;
   }
   .form-field:has(+ .form-hint) { margin-bottom: calc(var(--base) * 0.35); }
+
+  /* ─── Feld mit Info (B.4): Info-Icon im Feld öffnet eine .notice (C.7) unter dem Feld ───
+     <div class="form-field --has-info"> input · label · button.btn.--icon.form-field__info · div.notice[hidden]
+     Die Notice liegt über den Folgefeldern; Aussehen komplett aus C.7, hier nur Lage. */
+  .form-field.--has-info input { padding-right: calc(var(--base) * 2.75); }
+  .form-field__info {
+    position: absolute;
+    inset-block: 0;
+    right: calc(var(--base) * 0.75);
+    color: var(--fg-muted);
+  }
+  .form-field__info:hover,
+  .form-field__info[aria-expanded="true"] { color: var(--fg); }
+  .form-field.--has-info > .notice {
+    position: absolute;
+    top: calc(100% + var(--base) * 0.5);
+    inset-inline: 0;
+    z-index: var(--z-dropdown);
+    padding-right: calc(var(--half-module) + var(--base) * 1.5);
+  }
+  /* Pfeil zum Icon: Mitte = Icon-Mitte (0.75 + 1.25/2 base vom Rand) */
+  .form-field.--has-info > .notice::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: calc(var(--base) * 0.875);
+    border: calc(var(--base) * 0.5) solid transparent;
+    border-bottom-color: var(--color-notice-bg);
+  }
+  /* Schließen-Kreuz oben rechts in einer Notice */
+  .notice__close { position: absolute; top: calc(var(--base) * 0.5); right: calc(var(--base) * 0.5); }
 
   /* ─── Intro-Block (Fließtext vor Formularinhalt) ─── */
   .form-intro {
@@ -5415,16 +5480,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     color: var(--fg);
     line-height: var(--lh-base);
   }
-  .nr-widget__bar {
-    height: var(--progress-bar-height);
-    background: color-mix(in srgb, var(--bg) 70%, transparent);
-    overflow: hidden;
-  }
-  .nr-widget__bar-fill {
-    height: 100%;
-    background: var(--green);
-    transition: width var(--anim-mid);
-  }
+  /* Balken = Atom .progress-bar; auf der grünen Widget-Fläche halbtransparent weiß */
+  .nr-widget .progress-bar { background: color-mix(in srgb, var(--bg) 70%, transparent); }
   .nr-widget__maxed {
     font-size: var(--text-base);
     color: var(--green);
@@ -5774,6 +5831,23 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .discount-tiers__step.--reached::after { background: var(--color-honey); }
   /* PDP-Variante (E.2): am Platz des Naturalrabatts nach .pdp__actions, ohne Innenabstand und Linie. */
   .discount-tiers.--pdp { margin: var(--half-module) 0 var(--module); padding: 0; border-bottom: 0; }
+  /* Gratisversand-Fortschritt (E.4): Text mit Icon, darunter .progress-bar — Drawer-Footer und Warenkorbseite */
+  .shipping-progress {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 0.5);
+    margin-bottom: var(--half-module);
+  }
+  .shipping-progress__text {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--base) * 0.5);
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--lh-base);
+  }
+  .shipping-progress__text .material-icons { flex-shrink: 0; color: var(--green); }
+  .shipping-progress.--done .shipping-progress__text { font-weight: 700; }
 
   /* ─── Warenkorb-Empfehlungen (E.4) — letztes Kind von .cart-drawer__items, hellgrau (--accent-bg).
      Mobil: Liste unter den Produkten. Ab 768px: Panel links am Drawer,
