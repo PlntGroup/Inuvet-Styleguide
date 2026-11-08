@@ -85,7 +85,7 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 Ausführlich steht jede Komponente mit „Shopify-Mapping“ in `styleguide.html`.
 
 - **Section-Stack (A.7):** jede Inhalts-Section hat `pad_top` (Standard an) / `pad_bottom` (Standard aus) über Snippet `section-stack-class`. Seiten-Mains (Kategorie, Seite, Blog, Suche, Warenkorb, 404) unten ebenfalls an. Hero V2/V3 (Vollbild) nutzen Margin statt Padding.
-- **Hero V1–V3** (`section-type*.liquid`, D.3): Bild, Lottie oder Video. V1 Bild + Text, V2 Vollbild mit Box (`--v3`), V3 Text auf Medium (`--v4`). Breite „Satzspiegel“ über `--contained`.
+- **Hero V1–V3** (`hero-v1/v2/v3.liquid`, D.3): Bild, Lottie oder Video. V1 Bild + Text (CSS `--v1`/`--v2`), V2 Vollbild mit Box (CSS `--v3`), V3 Text auf Medium (CSS `--v4`). Die CSS-Klassen und die Schema-Klasse `shopify-section--section-type*` behalten ihre alten Namen. Breite „Satzspiegel“ über `--contained`.
 - **Anker und Trenner:** Inhalts-Sections haben `anchor_id`. Trenner `section-divider` (A.6).
 - **Collection** (E.3), **Produkt-Collection** (`featured-collection`), **Warenkorb-Drawer und -Seite** (E.4/E.9, Cart AJAX API), **Suche** (E.7), **Blog** (E.8), **Utility-Seiten** (E.9).
 - **Kundenkonten** (E.6): je Theme verschieden — klassische Konten (Inuvet) oder Shopify-Kundenkonten. Steht im Theme.
@@ -105,9 +105,11 @@ Liquid-Dateien gibt es in zwei Klassen.
 | Art | Dateien |
 |---|---|
 | Snippets | `icon`, `ui-icon-sprite`, `lottie-player`, `media-video`, `section-type-media`, `section-heading`, `section-anchor-attr`, `section-stack-class`, `pdp-accordion`, `pdp-accordion-table`, `social-proof`, `brand-logo`, `brand-favicon` |
-| Sections | `section-type`, `section-type-v3`, `section-type-v4`, `content-tiles`, `benefits`, `praxis`, `faq`, `pdp-faq`, `featured-collection`, `testimonials`, `indication-slider`, `story-iconslider`, `key-ingredients`, `section-divider`, `blog`, `article`, `collections`, `page`, `404` |
+| Sections | `hero-v1`, `hero-v2`, `hero-v3`, `tiles`, `benefits`, `praxis`, `faq`, `pdp-faq`, `featured-collection`, `testimonials`, `animation-slider`, `story-bar`, `key-ingredients`, `section-divider`, `blog`, `article`, `collections`, `page`, `404` |
 
-Prüfen: `for f in …; do cmp ../inuvet-theme/sections/$f.liquid sections/$f.liquid; done` — Kern-Dateien dürfen nicht abweichen. (Stand 08.11.2026: die Kern-Dateien sind noch nicht überall zusammengeführt; das ist die nächste Aufgabe.)
+Dateinamen seit 08.11.2026 (vorher → jetzt): `section-type` → `hero-v1`, `section-type-v3` → `hero-v2`, `section-type-v4` → `hero-v3`, `content-tiles` → `tiles`, `indication-slider` → `animation-slider`, `story-iconslider` → `story-bar`. Editor-Namen: „Hero V1 – Bild + Text“, „Hero V2 – Vollbild + Box“, „Hero V3 – Text auf Bild“, „Kacheln – Inhalt/Produkte/Kategorien“, „FAQ – frei/Produkt“, „Story-Leiste“, „Slideshow mit Animation“ (max. 25 Zeichen, Shopify-Grenze).
+
+Prüfen: `for f in …; do cmp ../inuvet-theme/sections/$f.liquid sections/$f.liquid; done` — Kern-Dateien dürfen nicht abweichen. (Stand 08.11.2026: zusammengeführt, außer `brand-logo`/`brand-favicon` – die folgen, sobald die Logos in allen Themes in den Einstellungen gepflegt sind.)
 
 **Markeneigen — bewusst verschieden.** Hier unterscheiden sich die Marken wirklich (B2B-Zugang, Kundenkonten, Freigabe, Naturalrabatt, Rabatt-Staffel, Kurszugang, Galerie-Karten, Webinare, Bewertungsanbieter). Jede Marke besitzt ihre Fassung.
 
