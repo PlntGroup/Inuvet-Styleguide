@@ -28,7 +28,7 @@ Das wichtigste Prinzip: **Gestaltung kommt aus dem Styleguide.** Themes ergänze
 
 Ladereihenfolge im Theme (`layout/theme.liquid`): `critical.css` → `planet-brands.css` → `theme-extras.css` → `brand-{marke}.css`. `critical.css` ist ebenfalls in allen Themes gleich.
 
-**JavaScript ist anders:** `planet-brands.js` im Styleguide ist teils Mockup (z. B. ein Schein-Warenkorb). Im Theme ist `planet-brands.js` ein eigenes Bundle mit der echten Shop-Logik (Cart AJAX API, Suche, Apps). Aus dem Styleguide nur Blöcke mit `[PORTABEL → Theme]` übernehmen, **nie die ganze Datei kopieren** — das legt Warenkorb und Suche lahm. Gemeinsames Theme-JS wird wie die Sections synchron gehalten (§4b).
+**JavaScript ist anders:** `planet-brands.js` im Styleguide ist teils Mockup (z. B. ein Schein-Warenkorb). Im Theme ist `planet-brands.js` ein eigenes Bundle mit der echten Shop-Logik (Cart AJAX API, Suche, Apps). Aus dem Styleguide nur Blöcke mit `[PORTABEL → Theme]` übernehmen, **nie die ganze Datei kopieren** — das legt Warenkorb und Suche lahm. `planet-brands.js` ist markeneigen (§4b); gute Funktionen aus anderen Themes von Hand übernehmen.
 
 ### Bevor neues CSS entsteht — in dieser Reihenfolge
 
@@ -96,14 +96,30 @@ Ausführlich steht jede Komponente mit „Shopify-Mapping“ in `styleguide.html
 - **JS:** Blöcke aus `planet-brands.js` mit `[PORTABEL → Theme]`, kein Inline-Script.
 - **Sprache:** Texte nur über Locales (`{{ 'key' | t }}`).
 
-### 4b. Gemeinsame Sections und JS synchron halten
+### 4b. Gemeinsamer Kern und markeneigene Dateien
 
-Sections, Snippets und `planet-brands.js`, die es in mehreren Themes gibt (Header, Warenkorb, Suche, PDP, Collection …), sollen gleich bleiben. **Inuvet (`inuvet-theme`) ist die Referenz.**
+Liquid-Dateien gibt es in zwei Klassen.
 
-- Unterschiede zwischen Marken möglichst über **Einstellungen** (Theme-Einstellungen, Section-Settings, Locales, Admin-Daten) lösen, nicht über eigenen Code.
-- Eine Korrektur an einer gemeinsamen Section zuerst in Inuvet machen, dann in die anderen Themes übernehmen.
-- Bewusste Abzweigungen (z. B. ManukaLind-Heroes, Campus-Webinare) im `CLAUDE.md` des Themes nennen. Dort nicht blind aus Inuvet kopieren.
-- Pragmatisch: Wo eine Angleichung mehr kostet als sie bringt, bleibt die Abzweigung — aber dokumentiert.
+**Gemeinsamer Kern — in allen Themes identisch.** Kleine, markenneutrale Bausteine ohne Shop-Sonderlogik (kein B2B, kein Naturalrabatt, kein Bewertungsanbieter). Unterschiede nur über Section-Einstellungen, Locales und Admin-Daten, nie über Code. Eine Verbesserung wird in einem Theme gebaut und dann 1:1 in alle kopiert.
+
+| Art | Dateien |
+|---|---|
+| Snippets | `icon`, `ui-icon-sprite`, `lottie-player`, `media-video`, `section-type-media`, `section-heading`, `section-anchor-attr`, `section-stack-class`, `pdp-accordion`, `pdp-accordion-table`, `social-proof`, `brand-logo`, `brand-favicon` |
+| Sections | `section-type`, `section-type-v3`, `section-type-v4`, `content-tiles`, `benefits`, `praxis`, `faq`, `pdp-faq`, `featured-collection`, `testimonials`, `indication-slider`, `story-iconslider`, `key-ingredients`, `section-divider`, `blog`, `article`, `collections`, `page`, `404` |
+
+Prüfen: `for f in …; do cmp ../inuvet-theme/sections/$f.liquid sections/$f.liquid; done` — Kern-Dateien dürfen nicht abweichen. (Stand 08.11.2026: die Kern-Dateien sind noch nicht überall zusammengeführt; das ist die nächste Aufgabe.)
+
+**Markeneigen — bewusst verschieden.** Hier unterscheiden sich die Marken wirklich (B2B-Zugang, Kundenkonten, Freigabe, Naturalrabatt, Rabatt-Staffel, Kurszugang, Galerie-Karten, Webinare, Bewertungsanbieter). Jede Marke besitzt ihre Fassung.
+
+| Art | Dateien |
+|---|---|
+| Sections | `header`, `cart`, `cart-drawer`, `cart-recommendations`, `search`, `search-overlay`, `product`, `main-collection`, Kundenkonto-Sections, Bewertungs-Sections (`testimonials-reviewsio`, `testimonials-judgeme`) und alle Sections, die es nur in einem Theme gibt |
+| Snippets | `card-product`, `cart-drawer-item`, `cart-recommendation-item`, `announcement-item`, `customer-access` und alle markeneigenen Snippets |
+| JS | `planet-brands.js` (Theme-Bundle) |
+
+- Markeneigene Dateien **nie blind aus einem anderen Theme kopieren**. Gute Lösungen von Hand übernehmen, wenn sie passen.
+- Kern-Dateien enthalten keine Marken-Sonderlogik. Braucht eine Marke im Kern etwas Eigenes, wird es eine Section-Einstellung (für alle sinnvoll) — sonst gehört die Datei nicht mehr in den Kern.
+- Wiederholt sich derselbe Fehler in einer markeneigenen Datei in mehreren Themes, kann sie später in den Kern wandern (dann mit kleinen theme-eigenen Snippets für die Unterschiede).
 
 ---
 
