@@ -21,6 +21,7 @@
     --text-m: clamp(1.375rem, 1.15rem + 0.65vw, 1.625rem);
     --text-l: clamp(1.625rem, 1.15rem + 1.6vw, 2.375rem);
     --text-xl: clamp(2.125rem, 1.15rem + 3vw, 3.5rem);
+    --text-2xl: clamp(3.5rem, 1.5rem + 2.2vw, 4.75rem); /* nur Hero V3-Headline ab 1280px (über dem H1-Deckel) */
 
     --lh-base: 1.5;                       /* Body: Faktor 1.5 */
     --lh-h3: 1.2;                         /* H3: Kompakt für Headlines */
@@ -1937,6 +1938,14 @@
     color: var(--bg);
     margin-bottom: 0;
   }
+  /* Ab ~1280px ist die H1 (--text-xl) bei 3.5rem am Deckel. Nur diese Hero-Überschrift wächst weiter. */
+  @media (min-width: 1280px) {
+    .section-type.--v4 .section-type__headline {
+      font-size: var(--text-2xl);
+      line-height: var(--lh-h1);
+      letter-spacing: -0.02em;
+    }
+  }
   .section-type.--v4 .section-type__body {
     font-size: var(--text-base);
     line-height: var(--lh-base);
@@ -2777,6 +2786,7 @@
   .tab-btn { font-family: var(--font); font-size: var(--text-base); font-weight: 700; color: var(--fg-muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 0 0 calc(var(--half-module) - 1px) 0; margin-bottom: -1px; cursor: pointer; transition: color var(--anim-fast), border-color var(--anim-fast); white-space: nowrap; }
   .tab-btn:hover { color: var(--fg); border-bottom-color: var(--border); }
   .tab-btn.--active { color: var(--fg); border-bottom-color: var(--fg); }
+  a.tab-btn { text-decoration: none; } /* Link-Tabs (z. B. Einloggen | Registrieren) */
   .tab-panel { display: none; flex-basis: 100%; margin-top: var(--half-module); }
   .tab-panel.--active { display: block; animation: fadeIn var(--anim-base); }
 
@@ -3513,6 +3523,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     flex-direction: column;
     gap: calc(var(--base) * 0.5);
   }
+  /* Mehrzeilige Einwilligungen: Checkbox oben an der ersten Zeile */
+  .form-check-group .form-check { align-items: flex-start; margin-bottom: 0; }
+  .form-check-group .form-check input { flex-shrink: 0; margin-top: calc(var(--base) * 0.15); }
   .form-radio-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -4307,6 +4320,12 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .footer-col.--newsletter .footer-nl-form {
     max-width: 22rem;
   }
+  /* Fallback: Footer ohne .footer-cols bleibt 4-spaltig */
+  .footer-main:not(:has(> .footer-cols)) {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
   /* Mockup-Seiten ohne .footer-cols: altes 4-Spalten-Raster */
   .footer-main:not(:has(> .footer-cols)) {
     display: grid;
@@ -5022,6 +5041,16 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     max-height: 100%;
     overflow-y: auto;
   }
+  /* Ab Tablet: Thumb-Spalte so hoch wie das Hauptbild, scrollt bei vielen Bildern.
+     Ohne das bestimmt die längere Thumb-Spalte die Zeilenhöhe und ragt in die nächste Section. */
+  @media (min-width: 768px) {
+    .pdp--sticky-gallery .pdp__gallery:not(.--single) .pdp__thumbs {
+      align-self: stretch;
+      height: 0;
+      min-height: 100%;
+      max-height: none;
+    }
+  }
   .pdp--sticky-gallery .pdp__thumb {
     width: 100%;
     flex-shrink: 0;
@@ -5221,6 +5250,13 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* Rhythmus über margin-top des Folgeelements (flow-artig): greift auch, wenn keine .rating-Zeile folgt */
   .pdp__title + * { margin-top: var(--half-module); }
   .pdp__title + .rating { margin-top: var(--base); }
+  /* Sale-Label in der Größen-Auswahl: .badge.--sale, flacher, damit die Choice-Box nicht wächst */
+  .choice-box .pdp__size-sale {
+    margin-left: calc(var(--base) * 0.35);
+    padding: calc(var(--base) * 0.125) calc(var(--base) * 0.375);
+    line-height: var(--lh-h3);
+  }
+  .choice-box .pdp__size-sale[hidden] { display: none; }
   .pdp__price { display: flex; align-items: center; flex-wrap: wrap; gap: var(--half-module); margin-bottom: var(--half-module); }
   .pdp__price .price-stack {
     font-size: var(--text-l);

@@ -300,6 +300,7 @@
         <tr><th><code>--text-m</code></th><td><code>clamp(1.375rem, 1.15rem + 0.65vw, 1.625rem)</code> — H3, Intro, hervorgehobene Werte</td></tr>
         <tr><th><code>--text-l</code></th><td><code>clamp(1.625rem, 1.15rem + 1.6vw, 2.375rem)</code> — H2</td></tr>
         <tr><th><code>--text-xl</code></th><td><code>clamp(2.125rem, 1.15rem + 3vw, 3.5rem)</code> — H1</td></tr>
+        <tr><th><code>--text-2xl</code></th><td><code>clamp(3.5rem, 1.5rem + 2.2vw, 4.75rem)</code> — nur Hero V3-Headline ab 1280&nbsp;px (wächst über den H1-Deckel)</td></tr>
         <tr><th><code>--lh-base</code></th><td><code>1.5</code> — Fließtext, H4</td></tr>
         <tr><th><code>--lh-h3</code></th><td><code>1.2</code> — H3 Headlines</td></tr>
         <tr><th><code>--lh-h2</code></th><td><code>1.17</code> — H2 Headlines</td></tr>
@@ -3788,7 +3789,7 @@
       <h3 class="sg-h3 --top" id="hero-v1">Variante 1 — Bild + Text</h3>
       <p>Content-Box „keine“ (Default): kein Hintergrund auf der Content-Seite · Gap <code>var(--gutter)</code>. Medienhöhe folgt der <strong>Dateiproportion</strong> — oder fest 1:1 / 4:3 / 16:9 (Cover mittig). Mit Content-Box → <a href="#hero-v1-box">Bild + Content-Box</a>.</p>
       <table class="spec-table">
-        <tr><th>Headline</th><td><code>.section-type__headline</code> · H1-Stufe · <code>--text-xl</code> · Shopify: Tag H1|H2 einstellbar (eine H1 pro Seite)</td></tr>
+        <tr><th>Headline</th><td><code>.section-type__headline</code> · H1-Stufe · <code>--text-xl</code> · Hero V3 ab 1280&nbsp;px <code>--text-2xl</code> · Shopify: Tag H1|H2 einstellbar (eine H1 pro Seite)</td></tr>
         <tr><th>Content-Box</th><td>Shopify Select „Content-Box“: keine (Default) · Grün hell · Hinweis · keine = transparent, <code>--v1</code></td></tr>
         <tr><th>Gap</th><td><code>var(--gutter)</code> zwischen Bild und Content</td></tr>
         <tr><th>Layout</th><td>Headline + <code>.section-type__bottom</code> (Body + CTA) · Abstände via <code>.flow</code></td></tr>
