@@ -40,6 +40,8 @@ Shopify-`assets/` ist flach. Dateiname = Theme-Asset.
 
 Zuerst bestehende Klasse in `planet-brands.css`. Fehlt etwas: fragen. Keine neuen Tokens, Utilities oder Komponenten ohne Zustimmung von Micha. Inline-Styles = dasselbe Verbot.
 
+Für die Shop-Themes gilt dasselbe: Gestaltung kommt von hier. Generisches wird hier ergänzt und ins Theme kopiert, nur bewusst Markenspezifisches landet in `theme-extras.css`. Details: [`Themes.md`](./Themes.md) §1.
+
 Text-Rhythmus Überschrift↔Absatz: immer `.flow`.
 
 Weiterentwicklung der Shops: Styleguide und Theme-`Rules.md` gelten immer. Design (Micha) arbeitet parallel im jeweiligen `staging`-Theme weiter.
