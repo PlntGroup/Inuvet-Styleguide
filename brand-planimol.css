@@ -1,7 +1,9 @@
 /* ═══════════════════════════════════════════
    brand-planimol.css — Brand extension
    Planimol token skin on top of planet-brands.css.
-   Tokens only — rhythm and components stay in the base file.
+   Tokens + (for the styleguide simulation) the brand's component overrides.
+   In the shop theme: only the :root tokens go into brand-*.css, the overrides
+   live in the theme's theme-extras.css (see Themes.md §1).
    Load after planet-brands.css.
    Active: html[data-brand="planimol"]
    ═══════════════════════════════════════════ */

@@ -22,11 +22,13 @@ Das wichtigste Prinzip: **Gestaltung kommt aus dem Styleguide.** Themes ergänze
 
 | Datei | Rolle | Wer ändert sie wo |
 |---|---|---|
-| `planet-brands.css` / `.js` | **System**: Tokens, Komponenten, Layout | Nur hier im Styleguide. Im Theme ist sie eine 1:1-Kopie und wird **nie bearbeitet** |
-| `brand-{marke}.css` | **Haut**: nur Tokens (Farben, Schrift) | Hier im Styleguide, Kopie im Theme. Inuvet und Vetalità haben keine (Inuvet ist der Standard) |
+| `planet-brands.css` | **System**: Tokens, Komponenten, Layout | Nur hier im Styleguide. Im Theme ist sie eine 1:1-Kopie und wird **nie bearbeitet** |
+| `brand-{marke}.css` | **Haut**: nur Tokens (Farben, Schrift) auf `:root`, dazu höchstens die Zuordnung der Kategorie-Farben zu `[data-cat]` | Token-Werte kommen aus dem Styleguide (dort unter `html[data-brand]` zur Simulation, mit Overrides). Im Theme keine Komponentenregeln. Inuvet und Vetalità haben keine (Inuvet ist der Standard) |
 | `theme-extras.css` | **Erweiterungen**: markenspezifische Bausteine | Nur im Theme-Repo. Klein halten |
 
-Ladereihenfolge im Theme (`layout/theme.liquid`): `critical.css` → `planet-brands.css` → `theme-extras.css` → `brand-{marke}.css`.
+Ladereihenfolge im Theme (`layout/theme.liquid`): `critical.css` → `planet-brands.css` → `theme-extras.css` → `brand-{marke}.css`. `critical.css` ist ebenfalls in allen Themes gleich.
+
+**JavaScript ist anders:** `planet-brands.js` im Styleguide ist teils Mockup (z. B. ein Schein-Warenkorb). Im Theme ist `planet-brands.js` ein eigenes Bundle mit der echten Shop-Logik (Cart AJAX API, Suche, Apps). Aus dem Styleguide nur Blöcke mit `[PORTABEL → Theme]` übernehmen, **nie die ganze Datei kopieren** — das legt Warenkorb und Suche lahm. Gemeinsames Theme-JS wird wie die Sections synchron gehalten (§4b).
 
 ### Bevor neues CSS entsteht — in dieser Reihenfolge
 
@@ -50,6 +52,10 @@ diff ../Inuvet-Styleguide/planet-brands.css assets/planet-brands.css
 ```
 
 Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide gehört.
+
+### Genehmigte Ausnahmen
+
+- **Campus-Registrierung** (`.campus-registration` in `theme-extras.css`): feste Breite 460 px, Rundung 30 px, ein Grauwert und ein `!important` — ausdrücklich beauftragte Übernahme der Legacy-Form. Kein Vorbild für neue Bausteine.
 
 ---
 
@@ -89,6 +95,15 @@ Ausführlich steht jede Komponente mit „Shopify-Mapping“ in `styleguide.html
 - **Icons:** Material-SVG-Sprite (`snippets/ui-icon-sprite.liquid`, Snippet `icon`), kein Google-Icon-Font.
 - **JS:** Blöcke aus `planet-brands.js` mit `[PORTABEL → Theme]`, kein Inline-Script.
 - **Sprache:** Texte nur über Locales (`{{ 'key' | t }}`).
+
+### 4b. Gemeinsame Sections und JS synchron halten
+
+Sections, Snippets und `planet-brands.js`, die es in mehreren Themes gibt (Header, Warenkorb, Suche, PDP, Collection …), sollen gleich bleiben. **Inuvet (`inuvet-theme`) ist die Referenz.**
+
+- Unterschiede zwischen Marken möglichst über **Einstellungen** (Theme-Einstellungen, Section-Settings, Locales, Admin-Daten) lösen, nicht über eigenen Code.
+- Eine Korrektur an einer gemeinsamen Section zuerst in Inuvet machen, dann in die anderen Themes übernehmen.
+- Bewusste Abzweigungen (z. B. ManukaLind-Heroes, Campus-Webinare) im `CLAUDE.md` des Themes nennen. Dort nicht blind aus Inuvet kopieren.
+- Pragmatisch: Wo eine Angleichung mehr kostet als sie bringt, bleibt die Abzweigung — aber dokumentiert.
 
 ---
 
