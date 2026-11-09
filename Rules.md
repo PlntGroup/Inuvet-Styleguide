@@ -10,7 +10,7 @@ Neue Regel hier eintragen (Spec in `Spec.md`) und nach `main` pushen.
 
 - Dieses Repo: Push auf **`origin/main`** (GitHub Pages, https://plntgroup.github.io/Inuvet-Styleguide/). Feature-Branches sind nicht live.
 - Nach dem Commit: auf `main` mergen, dann `git push origin main`.
-- Shopify-Themes: gearbeitet wird auf `staging`. `master`/`main` nur nach ausdrücklicher Freigabe durch Micha. Ablauf fürs Livestellen: `Themes.md` §2.
+- Shopify-Themes: gearbeitet wird auf `staging`. IT setzt `staging` auf `master`/`main`.
 
 ## Sprache
 
