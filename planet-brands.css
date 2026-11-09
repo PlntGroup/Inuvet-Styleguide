@@ -3424,6 +3424,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .form-check input {
     width: 1.25rem;
     height: 1.25rem;
+    flex-shrink: 0;
     accent-color: var(--fg);
     cursor: pointer;
   }
