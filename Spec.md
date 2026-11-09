@@ -11,7 +11,7 @@ Regeln: [`Rules.md`](./Rules.md). Spec: diese Datei.
 2b. **Schichten:** System (`planet-brands.*`, Themes kopieren 1:1) · Haut (`brand-{handle}.css`, Tokens) · Theme-Erweiterungen (`theme-extras.css`, nur im Theme-Repo: markenspezifische Bausteine, nicht im Guide) · Kühlschrank (Store-Inhalte). Inuvet bleibt `:root` in `planet-brands.css`. Planimol = Token-Haut `brand-planimol.css` (`html[data-brand="planimol"]`). ManukaLind = Token-Haut `brand-manukalind.css` (`html[data-brand="manukalind"]`, Sofia Pro, Screen-Palette). Campus = `brand-campus.css` im Guide (Simulation per Schalter, enthält hier auch Campus-Komponenten für die Demos); im Campus-Theme liegen diese Komponenten in `theme-extras.css`, Campus-Tokens gibt es noch keine. Neue Marke = `brand-{handle}.css` + eigener Store — niemals Tokens in `planet-brands.css`. `brand-inuvet.css` nur, wenn Inuvet wie andere umgeschaltet werden muss. Shopify `assets/` ist flach, gleicher Basename wie hier.
 2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf `?brand=planimol` / `?brand=campus` / `?brand=manukalind` + passende `brand-*.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `Spec.md`.
 2d. **Guide-Ordner** (echte Ordner nur hier; Theme `assets/` bleibt flach, Dateiname = Theme-Asset, Dateinamen nicht umbenennen): `assets/planet/` = markenübergreifend (Material-UI `material-icons/` + Sprite, `social-icons/`). `assets/brands/{handle}/` = alles Markenspezifische (Logo, `icons/`, `lotties/`, `images/`). `Inuvet_Icon_*` teilen Inuvet + Campus (gleiche Akzentfarbe `#78b41b`). `Icon_Tier_*`, Lotties, Bilder = Inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner, nicht umfärben. `brand-*.css` bleibt im Root.
-2e. **Shopify-Themes Git:** nur Branch **`staging`** pushen. Nie `main`/`master`. Gilt für jedes Shopify-Theme.
+2e. **Shopify-Themes Git:** gearbeitet und gepusht wird auf **`staging`**. `master`/`main` nur nach ausdrücklicher Freigabe durch Micha; Ablauf fürs Livestellen in `Themes.md` §2. Gilt für jedes Shopify-Theme.
 
 ---
 
@@ -418,7 +418,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | D.5 | Testimonials | `.testimonial-grid .testimonial-slider` | — |
 | D.6 | Marquee | `.marquee` | — |
 | D.7 | Newsletter | `.newsletter` | — |
-| D.9 | Story Iconslider | `.story-iconslider` | `__track` · `__item` · `__media` · `__label` · `--flush` · `--new` |
+| D.9 | Story-Leiste | `.story-iconslider` (Shopify: `story-bar`) | `__track` · `__item` · `__media` · `__label` · `--flush` · `--new` |
 
 #### E — Seiten-Vorlagen
 | Sek. | Komponente | Klasse(n) |

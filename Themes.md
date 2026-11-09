@@ -61,11 +61,21 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 ## 2. Arbeitsweise
 
-- **Git:** nur Branch `staging`. Der GitHub-Sync lädt `staging` in den unveröffentlichten Entwurf. Live (`master`/`main`) nur nach Freigabe durch Micha.
+- **Git:** gearbeitet wird auf `staging`. Der GitHub-Sync lädt `staging` in den unveröffentlichten Entwurf. `master`/`main` nur nach ausdrücklicher Freigabe durch Micha.
 - **Entwürfe nie veröffentlichen.**
 - **Theme-Editor:** Änderungen im Editor committet Shopify als „Update from Shopify“ nach `staging`. Vor jeder Arbeit `git pull --ff-only origin staging`, vor jedem Push `git fetch` und prüfen, ob dieselben Dateien betroffen sind.
 - **Admin-Daten** (Produkte, Metafields, Metaobjects, Menüs, Dateien) gelten sofort auch für Live. Vor jeder Änderung sagen, was sich ändert; erst lesen, dann schreiben.
 - **Texte, Preise, Menütitel** gehören in den Admin, nie fest ins Theme.
+
+### Livestellen (staging → master)
+
+Nur, wo das Live-Theme mit `master` verbunden ist (derzeit Planimol), und nur mit ausdrücklicher Freigabe von Micha.
+
+1. **Sicherung:** Live-Theme im Admin duplizieren („Sicherung Live JJJJ-MM-TT …“).
+2. **master prüfen:** `git log origin/staging..origin/master` — eigene Commits auf master müssen in `staging` enthalten oder bewusst ersetzt sein.
+3. **Code übernehmen:** alles aus `staging` außer `templates/`, `sections/*-group.json` und `config/settings_data.json`. Diese Dateien schreibt der Live-Editor: Unterschiede ansehen, nur gewollte Keys übernehmen, `settings_data.json` von Live behalten. Unklare Werte mit Micha klären.
+4. **Umbenannte oder gelöschte Sections** in drei Pushes: neue Dateien neben die alten → Vorlagen auf die neuen Typen → alte Dateien löschen. Shopify lehnt Vorlagen ab, die auf fehlende Sections zeigen. In der Zwischenzeit im Live-Editor nicht speichern.
+5. **Nach jedem Push prüfen:** `shopify theme pull --only …` zeigt, was angekommen ist. Live-Seiten immer mit `?preview_theme_id=<Live-ID>` abrufen — ohne ID kann ein Vorschau-Cookie den Entwurf zeigen. Seiten mit Sicherung und Entwurf vergleichen (Liquid-Fehler, Sections).
 
 ---
 
