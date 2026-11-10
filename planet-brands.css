@@ -5170,16 +5170,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     max-height: 100%;
     overflow-y: auto;
   }
-  /* Ab Tablet: Thumb-Spalte so hoch wie das Hauptbild, scrollt bei vielen Bildern.
-     Ohne das bestimmt die längere Thumb-Spalte die Zeilenhöhe und ragt in die nächste Section. */
-  @media (min-width: 768px) {
-    .pdp--sticky-gallery .pdp__gallery:not(.--single) .pdp__thumbs {
-      align-self: stretch;
-      height: 0;
-      min-height: 100%;
-      max-height: none;
-    }
-  }
   .pdp--sticky-gallery .pdp__thumb {
     width: 100%;
     flex-shrink: 0;
