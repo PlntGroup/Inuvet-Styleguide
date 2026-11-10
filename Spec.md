@@ -155,7 +155,8 @@ Globale Funktionen → `planet-brands.js` · Seitenspezifische Logik → `pages/
 | `positionMobileMenu()` | Mobile-Menü-`top` an die aktuelle Nav-Unterkante setzen (Sticky- & Scroll-Away-Modus) |
 | `initMarquees()` | Marquee-Animationen |
 | `toggleAccordion(trigger)` | Akkordeon-Item umschalten |
-| `initScrollAnimations()` | IntersectionObserver für `.--in-view` |
+| `initScrollAnimations()` | Scroll-In `[data-animate]` → `.--in-view`: Raster gestaffelt (`.tile`, `.testimonial`, `.ingredient`) + Einzelblöcke (Section-Köpfe, `.container > .rte`, `.section-type__image/__content`, Slider); erster Bildschirm ohne Animation · Styleguide A.3 |
+| `observeScrollAnimations(scope)` | Scroll-In für nachgeladene Inhalte (z. B. Judge.me) |
 | `initArticleToc()` | Artikel-Inhaltsverzeichnis: Scrollspy markiert aktiven Abschnitt (`aria-current`) |
 | `reinitSection()` | Theme-Editor: alle Init-Helfer erneut ausführen — hängt an `shopify:section:load` (nur `Shopify.designMode`) |
 | `initSliders()` | Testimonial-Slider (Desktop: prev/next, Mobile: Mehr anzeigen) |

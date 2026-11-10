@@ -233,21 +233,49 @@ function toggleAccordion(trigger) {
   trigger.setAttribute('aria-expanded', isOpen);
 }
 
-function initScrollAnimations() {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('--in-view'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' });
+/* Scroll-In (A.3, Animation): von unten einblenden, CSS [data-animate] / .--in-view (nur ohne prefers-reduced-motion).
+   1) Gruppen: Elemente in Rastern versetzt (70 ms, max. 5 Stufen).
+   2) Einzelblöcke: Section-Köpfe, Text-Sections, Bild/Inhalt von .section-type (Einzelkarten, Medien), Slider.
+      Was beim Start schon im Bild ist (Hero, erster Bildschirm), bleibt ruhig; nie verschachtelt animieren.
+   Nachgeladene Inhalte (z. B. Judge.me): observeScrollAnimations(container) aufrufen. */
+const SCROLL_ANIM_GROUPS = [
+  ['.tile-grid', '.tile'],
+  ['.ingredient-list', '.ingredient'],
+  ['.testimonial-grid', '.testimonial'],
+];
+const SCROLL_ANIM_SINGLES = [
+  '.section-header',
+  '.section-label-row',
+  '.container > .rte',
+  '.section-type__image',
+  '.section-type__content',
+  '.testimonial-slider',
+  '.testimonial-featured',
+].join(',');
+const SCROLL_ANIM_SKIP = '.modal, .cart-drawer, .search-overlay, .site-nav, .site-footer';
+let scrollAnimObserver = null;
 
-  /* Pro Gruppe staffeln — sonst bekommen spätere Sections alle denselben Max-Delay */
-  /* Auch Elemente mit bereits gesetztem data-animate beobachten (sonst bleiben sie auf opacity:0). */
-  [
-    ['.tile-grid', '.tile'],
-    ['.ingredient-list', '.ingredient'],
-    ['.testimonial-grid', '.testimonial'],
-  ].forEach(([groupSel, itemSel]) => {
-    document.querySelectorAll(groupSel).forEach(group => {
+function getScrollAnimObserver() {
+  if (!scrollAnimObserver) {
+    scrollAnimObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('--in-view'); scrollAnimObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' });
+  }
+  return scrollAnimObserver;
+}
+
+function observeScrollAnimations(scope) {
+  const root = scope || document;
+  const observer = getScrollAnimObserver();
+
+  /* Pro Gruppe staffeln — sonst bekommen spätere Sections alle denselben Max-Delay.
+     Auch Elemente mit bereits gesetztem data-animate beobachten (sonst bleiben sie auf opacity:0). */
+  SCROLL_ANIM_GROUPS.forEach(([groupSel, itemSel]) => {
+    const groups = [...root.querySelectorAll(groupSel)];
+    if (root.matches && root.matches(groupSel)) groups.unshift(root);
+    groups.forEach(group => {
       group.querySelectorAll(itemSel).forEach((el, i) => {
         if (!el.hasAttribute('data-animate')) el.setAttribute('data-animate', '');
         el.style.setProperty('--anim-delay', Math.min(i, 5) * 70 + 'ms');
@@ -255,6 +283,24 @@ function initScrollAnimations() {
       });
     });
   });
+
+  root.querySelectorAll(SCROLL_ANIM_SINGLES).forEach(el => {
+    if (el.hasAttribute('data-animate')) {
+      if (!el.classList.contains('--in-view')) observer.observe(el);
+      return;
+    }
+    if (el.closest(SCROLL_ANIM_SKIP)) return;
+    if (el.parentElement && el.parentElement.closest('[data-animate]')) return;
+    if (el.querySelector('[data-animate]')) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    el.setAttribute('data-animate', '');
+    if (el.matches('.section-type__content')) el.style.setProperty('--anim-delay', '70ms');
+    observer.observe(el);
+  });
+}
+
+function initScrollAnimations() {
+  observeScrollAnimations(document);
 }
 
 document.addEventListener('DOMContentLoaded', initScrollAnimations);

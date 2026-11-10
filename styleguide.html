@@ -365,6 +365,15 @@
         <tr><th><code>--anim-announcement</code></th><td><code>4s</code> — Anzeigedauer pro Announcement-Bar-Item</td></tr>
         <tr><th><code>--anim-delay</code></th><td><code>0ms</code> — Per-Element-Verzögerung für gestaffelte Animationen (via JS gesetzt)</td></tr>
       </table>
+
+      <h3 class="sg-h3 --top">Scroll-In</h3>
+      <p>Inhalte blenden beim Hineinscrollen von unten ein: <code>[data-animate]</code> → <code>.--in-view</code> (<code>initScrollAnimations()</code>, nur ohne <code>prefers-reduced-motion</code>). Gilt in allen Themes.</p>
+      <table class="spec-table">
+        <tr><th>Gruppen (gestaffelt)</th><td><code>.tile-grid .tile</code> · <code>.testimonial-grid .testimonial</code> · <code>.ingredient-list .ingredient</code> — je <code>70ms</code>, max. 5 Stufen</td></tr>
+        <tr><th>Einzelblöcke</th><td>Section-Köpfe <code>.section-header</code>, <code>.section-label-row</code> · Text-Sections <code>.container &gt; .rte</code> · Einzelkarten / Bild mit Text / Medien <code>.section-type__image</code>, <code>.section-type__content</code> (+70ms) · Slider <code>.testimonial-slider</code>, <code>.testimonial-featured</code></td></tr>
+        <tr><th>Ohne Animation</th><td>Alles, was beim Laden schon im Bild ist (Hero, erster Bildschirm) · Navigation, Footer, Modal, Drawer, Suche · nie verschachtelt (Block in animiertem Block)</td></tr>
+        <tr><th>Nachgeladene Inhalte</th><td><code>observeScrollAnimations(container)</code> nach dem Einfügen aufrufen (z. B. Judge.me-Bewertungen)</td></tr>
+      </table>
     </section>
 
     <section class="sg-section-v2 flow" id="A4">
