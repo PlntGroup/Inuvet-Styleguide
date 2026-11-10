@@ -55,7 +55,7 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 ### Genehmigte Ausnahmen
 
-- **Campus-Registrierung** (`.campus-registration` in `theme-extras.css`): feste Breite 460 px, Rundung 30 px, ein Grauwert und ein `!important` — ausdrücklich beauftragte Übernahme der Legacy-Form. Kein Vorbild für neue Bausteine.
+Derzeit keine.
 
 ---
 
