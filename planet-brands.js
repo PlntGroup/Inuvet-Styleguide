@@ -1875,3 +1875,21 @@ function reinitSection() {
 if (window.Shopify && Shopify.designMode) {
   document.addEventListener('shopify:section:load', reinitSection);
 }
+
+/* ═══════════════════════════════════════════════════════
+   PASSWORT EINBLENDEN — .form-field.--has-toggle (B.4)
+   [PORTABEL → Theme]
+   Button [data-password-toggle] im Feld schaltet type password ↔ text.
+   aria-label bleibt („Passwort anzeigen“), aria-pressed zeigt den Zustand.
+   ═══════════════════════════════════════════════════════ */
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest && e.target.closest('[data-password-toggle]');
+  if (!btn) return;
+  var field = btn.closest('.form-field');
+  var input = field && field.querySelector('input');
+  if (!input) return;
+  var show = input.type === 'password';
+  input.type = show ? 'text' : 'password';
+  btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+  setUiIcon(btn, show ? 'visibility_off' : 'visibility');
+});

@@ -3580,15 +3580,20 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* ─── Feld mit Info (B.4): Info-Icon im Feld öffnet eine .notice (C.7) unter dem Feld ───
      <div class="form-field --has-info"> input · label · button.btn.--icon.form-field__info · div.notice[hidden]
      Die Notice liegt über den Folgefeldern; Aussehen komplett aus C.7, hier nur Lage. */
-  .form-field.--has-info input { padding-right: calc(var(--base) * 2.75); }
-  .form-field__info {
+  .form-field.--has-info input,
+  .form-field.--has-toggle input { padding-right: calc(var(--base) * 2.75); }
+  .form-field__info,
+  .form-field__toggle {
     position: absolute;
     inset-block: 0;
     right: calc(var(--base) * 0.75);
     color: var(--fg-muted);
   }
   .form-field__info:hover,
-  .form-field__info[aria-expanded="true"] { color: var(--fg); }
+  .form-field__info[aria-expanded="true"],
+  .form-field__toggle:hover { color: var(--fg); }
+  /* Passwort einblenden (B.4): <div class="form-field --has-toggle"> input[type=password] · label ·
+     button.btn.--icon.form-field__toggle[data-password-toggle] (ui-visibility ↔ ui-visibility_off, aria-pressed) */
   .form-field.--has-info > .notice {
     position: absolute;
     top: calc(100% + var(--base) * 0.5);

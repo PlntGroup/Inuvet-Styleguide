@@ -1860,6 +1860,7 @@
         <tr><th><code>.form-field</code></th><td>Wrapper · Floating Label · <code>input</code>, <code>textarea</code>, <code>select</code></td></tr>
         <tr><th><code>.form-field.--error</code></th><td>Border + Label <code>--color-error</code> · Feld-Hintergrund <code>--field-bg-active</code> (weiß) · Meldung via <code>.form-field__error</code></td></tr>
         <tr><th><code>.form-field.--success</code></th><td>Border + Label <code>--green</code> · Bestätigung via <code>.form-field__success</code></td></tr>
+        <tr><th><code>.form-field.--has-toggle</code></th><td>Passwort einblenden: Augen-Icon im Feld (<code>.btn.--icon.form-field__toggle[data-password-toggle]</code>), gleiche Lage wie <code>.form-field__info</code> · schaltet <code>type</code> password ↔ text, Icon <code>ui-visibility</code> ↔ <code>ui-visibility_off</code> · <code>aria-label</code> „Passwort anzeigen“, Zustand über <code>aria-pressed</code> · JS: Block „Passwort einblenden“ in <code>planet-brands.js</code></td></tr>
         <tr><th><code>.form-field.--has-info</code></th><td>Info-Icon im Feld (<code>.btn.--icon.form-field__info</code>, <code>ui-outlined-info</code>) öffnet eine <code>.notice</code> (<a href="#C7">C.7</a>) unter dem Feld, über den Folgefeldern · Lage: <code>top: 100% + base × 0.5</code>, <code>z-index: var(--z-dropdown)</code> · Pfeil zum Icon · Schließen via <code>.notice__close</code> · <code>aria-expanded</code> am Icon, Esc/Klick daneben schließt</td></tr>
         <tr><th><code>.form-field.--sm</code></th><td>Statisches Label oben · <code>height: calc(var(--base) * 2)</code> — bündig mit <code>.btn.--sm</code></td></tr>
         <tr><th><code>.form-field.--full</code></th><td>In <code>.form-grid</code>: spannt beide Spalten (<code>grid-column: 1 / -1</code>)</td></tr>
@@ -1953,9 +1954,10 @@
             <input type="email" id="b4-div-email" placeholder=" ">
             <label for="b4-div-email">E-Mail-Adresse</label>
           </div>
-          <div class="form-field">
+          <div class="form-field --has-toggle">
             <input type="password" id="b4-div-pw" placeholder=" ">
             <label for="b4-div-pw">Passwort</label>
+            <button type="button" class="btn --icon form-field__toggle" aria-label="Passwort anzeigen" aria-pressed="false" data-password-toggle><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-visibility"></use></svg></button>
           </div>
           <button class="btn --primary --full" type="button">Anmelden</button>
         </div>
@@ -6726,7 +6728,7 @@
             <form onsubmit="return false;">
               <div class="form-field"><input type="email" id="acc-email" placeholder=" "><label for="acc-email">E-Mail-Adresse</label></div>
               <div class="sg-mt">
-                <div class="form-field" style="margin-bottom:0;"><input type="password" id="acc-password" placeholder=" "><label for="acc-password">Passwort</label></div>
+                <div class="form-field --has-toggle" style="margin-bottom:0;"><input type="password" id="acc-password" placeholder=" "><label for="acc-password">Passwort</label><button type="button" class="btn --icon form-field__toggle" aria-label="Passwort anzeigen" aria-pressed="false" data-password-toggle><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-visibility"></use></svg></button></div>
                 <a href="#" class="login-forgot sg-link-fg">Passwort vergessen?</a>
               </div>
               <button class="btn --primary --full sg-mt" type="submit">Anmelden</button>
@@ -6739,8 +6741,8 @@
                 <div class="form-field"><input type="text" id="acc-nachname" placeholder=" "><label for="acc-nachname">Nachname</label></div>
               </div>
               <div class="form-field sg-mt"><input type="email" id="acc-reg-email" placeholder=" "><label for="acc-reg-email">E-Mail-Adresse</label></div>
-              <div class="form-field sg-mt"><input type="password" id="acc-reg-pw" placeholder=" "><label for="acc-reg-pw">Passwort</label></div>
-              <div class="form-field sg-mt"><input type="password" id="acc-reg-pw2" placeholder=" "><label for="acc-reg-pw2">Passwort wiederholen</label></div>
+              <div class="form-field sg-mt --has-toggle"><input type="password" id="acc-reg-pw" placeholder=" "><label for="acc-reg-pw">Passwort</label><button type="button" class="btn --icon form-field__toggle" aria-label="Passwort anzeigen" aria-pressed="false" data-password-toggle><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-visibility"></use></svg></button></div>
+              <div class="form-field sg-mt --has-toggle"><input type="password" id="acc-reg-pw2" placeholder=" "><label for="acc-reg-pw2">Passwort wiederholen</label><button type="button" class="btn --icon form-field__toggle" aria-label="Passwort anzeigen" aria-pressed="false" data-password-toggle><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-visibility"></use></svg></button></div>
               <button class="btn --primary --full sg-mt" type="submit">Konto erstellen</button>
             </form>
           </div>
