@@ -8,6 +8,7 @@
 
 html[data-brand="campus"] {
   --border-light: color-mix(in srgb, var(--green) 50%, var(--bg)); /* Linien grün (Entscheidung Micha, 2026-11-11) */
+  --border-nav: var(--border-neutral); /* Linie unter dem Header bleibt grau */
 }
 
 /* ─── Collection: größere Produkt-Headlines ─── */
