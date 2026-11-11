@@ -1799,8 +1799,9 @@
     height: 100%;
     object-fit: contain;
   }
-  /* 16:9: Section mindestens im Format 16:9, Bild cover; wächst mit, wenn die Box höher ist. */
+  /* 16:9 / 2:1: Section mindestens in diesem Format, Bild cover; wächst mit, wenn die Box höher ist. */
   .section-type.--v3.--ratio-16-9 { min-height: 0; aspect-ratio: 16 / 9; }
+  .section-type.--v3.--ratio-2-1 { min-height: 0; aspect-ratio: 2 / 1; }
   .section-type.--v3 .section-type__inner {
     position: relative;
     z-index: var(--z-default);
@@ -6441,6 +6442,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     }
     .section-type.--v3.--ratio-16-9 { aspect-ratio: auto; }
     .section-type.--v3.--ratio-16-9 .section-type__image { min-height: 0; aspect-ratio: 16 / 9; }
+    .section-type.--v3.--ratio-2-1 { aspect-ratio: auto; }
+    .section-type.--v3.--ratio-2-1 .section-type__image { min-height: 0; aspect-ratio: 2 / 1; }
     .section-type.--v3.--media-ratio .section-type__image picture,
     .section-type.--v3.--media-ratio .section-type__image img,
     .section-type.--v3.--media-ratio .section-type__image .media-video,
