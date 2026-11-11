@@ -23,7 +23,7 @@ Das wichtigste Prinzip: **Gestaltung kommt aus dem Styleguide.** Themes ergänze
 | Datei | Rolle | Wer ändert sie wo |
 |---|---|---|
 | `planet-brands.css` | **System**: Tokens, Komponenten, Layout | Nur hier im Styleguide. Im Theme ist sie eine 1:1-Kopie und wird **nie bearbeitet** |
-| `brand-{marke}.css` | **Haut**: nur Tokens (Farben, Schrift) auf `:root`, dazu höchstens die Zuordnung der Kategorie-Farben zu `[data-cat]` | Token-Werte kommen aus dem Styleguide (dort unter `html[data-brand]` zur Simulation, mit Overrides). Im Theme keine Komponentenregeln. Inuvet und Vetalità haben keine (Inuvet ist der Standard) |
+| `brand-{marke}.css` | **Haut**: nur Tokens (Farben, Schrift) auf `:root`, dazu höchstens die Zuordnung der Kategorie-Farben zu `[data-cat]` | Token-Werte kommen aus dem Styleguide (dort unter `html[data-brand]` zur Simulation, mit Overrides). Im Theme keine Komponentenregeln. Vetalità hat keine; Inuvet ist der Standard und hat nur `brand-inuvet.css` für die grünen Linien (siehe Genehmigte Ausnahmen) |
 | `theme-extras.css` | **Erweiterungen**: markenspezifische Bausteine | Nur im Theme-Repo. Klein halten |
 
 Ladereihenfolge im Theme (`layout/theme.liquid`): `critical.css` → `planet-brands.css` → `theme-extras.css` → `brand-{marke}.css`. `critical.css` ist ebenfalls in allen Themes gleich.
@@ -55,7 +55,7 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 ### Genehmigte Ausnahmen
 
-Derzeit keine.
+- **Grüne Linien (Inuvet, Campus, ManukaLind)** — Entscheidung Micha, 2026-11-11: `--border-light: color-mix(in srgb, var(--green) 50%, var(--bg))` in `brand-{marke}.css` (Inuvet: `brand-inuvet.css` nur dafür). Der System-Standard bleibt Hellgrau; Planimol und Vetalità unverändert. Fokus/aktiv bleiben `--fg`.
 
 ---
 

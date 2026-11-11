@@ -25,6 +25,7 @@ html[data-brand="manukalind"] {
   --green-light: #E6F4EF;
 
   --color-honey: #ffc800;
+  --border-light: color-mix(in srgb, var(--green) 50%, var(--bg)); /* Linien grün (Entscheidung Micha, 2026-11-11) */
 }
 
 /* Regular (400) im System wird hier Light. Andere Marken bleiben Regular. */

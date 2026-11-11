@@ -6,6 +6,10 @@
    Styleguide: enable via #skin-campus when data-brand="campus".
    ═══════════════════════════════════════════ */
 
+html[data-brand="campus"] {
+  --border-light: color-mix(in srgb, var(--green) 50%, var(--bg)); /* Linien grün (Entscheidung Micha, 2026-11-11) */
+}
+
 /* ─── Collection: größere Produkt-Headlines ─── */
 .collection-main .tile.--product .tile__headline {
   font-size: var(--text-m);
