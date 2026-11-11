@@ -372,6 +372,7 @@
         <tr><th>Gruppen (gestaffelt)</th><td><code>.tile-grid .tile</code> · <code>.testimonial-grid .testimonial</code> · <code>.ingredient-list .ingredient</code> — je <code>70ms</code>, max. 5 Stufen</td></tr>
         <tr><th>Einzelblöcke</th><td>Section-Köpfe <code>.section-header</code>, <code>.section-label-row</code> · Text-Sections <code>.container &gt; .rte</code> · Einzelkarten / Bild mit Text / Medien <code>.section-type__image</code>, <code>.section-type__content</code> (+70ms) · Slider <code>.testimonial-slider</code>, <code>.testimonial-featured</code></td></tr>
         <tr><th>Ohne Animation</th><td>Alles, was beim Laden schon im Bild ist (Hero, erster Bildschirm) · Navigation, Footer, Modal, Drawer, Suche · nie verschachtelt (Block in animiertem Block)</td></tr>
+        <tr><th>Opt-in</th><td><code>data-animate</code> direkt im Markup wird immer animiert, auch im ersten Bildschirm — z. B. Hero-Karten, die beim Laden einblenden (Staffelung über <code>--anim-delay</code>)</td></tr>
         <tr><th>Nachgeladene Inhalte</th><td><code>observeScrollAnimations(container)</code> nach dem Einfügen aufrufen (z. B. Judge.me-Bewertungen)</td></tr>
       </table>
     </section>

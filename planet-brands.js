@@ -237,6 +237,7 @@ function toggleAccordion(trigger) {
    1) Gruppen: Elemente in Rastern versetzt (70 ms, max. 5 Stufen).
    2) Einzelblöcke: Section-Köpfe, Text-Sections, Bild/Inhalt von .section-type (Einzelkarten, Medien), Slider.
       Was beim Start schon im Bild ist (Hero, erster Bildschirm), bleibt ruhig; nie verschachtelt animieren.
+   3) Opt-in: data-animate im Markup wird immer animiert, auch im ersten Bildschirm (z. B. Hero-Karten).
    Nachgeladene Inhalte (z. B. Judge.me): observeScrollAnimations(container) aufrufen. */
 const SCROLL_ANIM_GROUPS = [
   ['.tile-grid', '.tile'],
@@ -297,6 +298,9 @@ function observeScrollAnimations(scope) {
     if (el.matches('.section-type__content')) el.style.setProperty('--anim-delay', '70ms');
     observer.observe(el);
   });
+
+  /* Opt-in: data-animate direkt im Markup (z. B. Hero-Karten) – auch im ersten Bildschirm, blendet beim Laden ein. */
+  root.querySelectorAll('[data-animate]:not(.--in-view)').forEach(el => observer.observe(el));
 }
 
 function initScrollAnimations() {
