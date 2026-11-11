@@ -914,6 +914,12 @@
     height: auto;
     display: block;
   }
+  /* Logo-Hover (Desktop mit Maus): leicht vergrößern. Marken dürfen in theme-extras.css erweitern (Campus: Drehung). */
+  @media (min-width: 768px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .nav-logo .nav-logo__img { transition: transform var(--anim-base); }
+    .nav-logo:hover .nav-logo__img,
+    .nav-logo:focus-visible .nav-logo__img { transform: scale(1.05); }
+  }
   .nav-logo__img.--mobile { display: none; }
   @media (max-width: 767px) {
     .nav-logo { width: var(--logo-w-m, var(--logo-w, 3.5rem)); }
