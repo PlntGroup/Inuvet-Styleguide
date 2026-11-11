@@ -4487,6 +4487,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .footer-col.--newsletter .footer-nl-form {
     max-width: 22rem;
   }
+  /* Footer-Kontakt: Porträt der Ansprechperson (ohne Bild Platzhalter), daneben Kontaktformular (.col-grid) */
+  .footer-contact__avatar { width: calc(var(--base) * 6); height: calc(var(--base) * 6); }
+  .footer-contact__avatar .placeholder-bg { width: 100%; height: 100%; display: block; }
   /* Mockup-Seiten ohne .footer-cols: altes 4-Spalten-Raster */
   .footer-main:not(:has(> .footer-cols)) {
     display: grid;
