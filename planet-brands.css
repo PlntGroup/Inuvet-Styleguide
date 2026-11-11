@@ -6933,6 +6933,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .article-layout > .article,
   .article-layout > .article-main { grid-column: 2 / -1; }
+  /* dense: Sidebar steht im Markup vorn – ohne dense rutscht der Text in Zeile 2 */
+  .article-layout.--sidebar-end { grid-auto-flow: dense; }
   .article-layout.--sidebar-end > .article-sidebar { grid-column: 3; }
   .article-layout.--sidebar-end > .article,
   .article-layout.--sidebar-end > .article-main { grid-column: 1 / 3; }
