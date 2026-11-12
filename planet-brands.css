@@ -4221,6 +4221,10 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   /* Nach Heading → nächstes Element (p, Liste, Box, …) */
   :is(.flow, .rte) > h1 + * { --flow-space: calc(var(--half-module) * 1.5); }
+  /* Ist das Element nach h1 selbst ein Textblock (z. B. Hero-Text .rte), erbt dessen Inhalt sonst
+     die 1,5 × --half-module als Absatzabstand. Wie nach h2: --half-module. :where hält die
+     Spezifität niedrig, damit Überschriften-Regeln im Textblock weiter greifen. */
+  :where(.flow, .rte) > h1 + :where(.flow, .rte) > * { --flow-space: var(--half-module); }
   :is(.flow, .rte) > h2 + * { --flow-space: var(--half-module); }
   :is(.flow, .rte) > h3 + * { --flow-space: calc(var(--base) * 0.75); }
   :is(.flow, .rte) > :is(h4, h5, h6) + * { --flow-space: calc(var(--base) * 0.5); }
