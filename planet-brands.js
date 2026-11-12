@@ -1455,6 +1455,9 @@ function pdpSwitch(el, src, captionText, authorText) {
 
 // Produkt-Rollover: Video bei Hover abspielen (2. Medium in .tile__image / .product-thumb).
 function initProductMediaRollover() {
+  // Nur mit echtem Hover: auf Touch-Geräten würde mouseenter den ersten Tipp abfangen (iOS),
+  // statt direkt zur PDP zu führen.
+  if (!window.matchMedia('(hover: hover)').matches) return;
   document.querySelectorAll('.tile__image, .product-thumb').forEach(function(wrap) {
     var video = wrap.querySelector(':scope > video');
     if (!video) return;

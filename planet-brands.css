@@ -2343,7 +2343,11 @@
     color: var(--bg);
   }
   .tile__image img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; transition: transform var(--anim-mid), filter var(--anim-mid); }
-  .tile__image:hover img:nth-child(1) { transform: scale(1.05); }
+  /* Hover-Effekte nur mit echtem Hover: auf Touch-Geräten löst iOS sonst beim ersten Tipp
+     den Hover aus und erst der zweite Tipp öffnet die PDP. */
+  @media (hover: hover) {
+    .tile__image:hover img:nth-child(1) { transform: scale(1.05); }
+  }
   /* Badge-Overlay-Wrapper (Produkt + Collection-Kachel)
      margin = struktureller Abstand Bild → Textblock */
   .tile__image-wrap {
@@ -2366,11 +2370,14 @@
     opacity: 0;
     transition: opacity var(--anim-base);
   }
-  .tile__image:hover img:nth-child(2),
-  .tile__image:hover > video,
-  .product-thumb:hover img:nth-child(2),
-  .product-thumb:hover > video {
-    opacity: 1;
+  /* Nur mit echtem Hover (siehe oben): mobil kein Rollover, der Tipp führt direkt zur PDP */
+  @media (hover: hover) {
+    .tile__image:hover img:nth-child(2),
+    .tile__image:hover > video,
+    .product-thumb:hover img:nth-child(2),
+    .product-thumb:hover > video {
+      opacity: 1;
+    }
   }
 
   /* ─── Tile Variante C: Sonderkachel (Content-Box mit Hintergrund) ─── */
