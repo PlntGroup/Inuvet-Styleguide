@@ -5160,19 +5160,17 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .pdp__thumb.--active, .pdp__thumb:hover { border-color: var(--border-active); }
 
   /* ─── PDP Layout-Test (Produkt.html + Styleguide E.2 Demos via .pdp--sticky-gallery) ───
-     Sticky-Galerie links, Thumbs vertikal links vom Packshot, Akkordeon
-     einspaltig in .pdp__info. */
+     Galerie links, Thumbs vertikal links vom Packshot, Akkordeon einspaltig in .pdp__info.
+     Sticky ist nur das Hauptbild: Die Galerie streckt sich über die ganze Zeile, die Thumbs
+     laufen in voller Länge mit, das Hauptbild bleibt stehen bis zum Ende der längeren Spalte
+     (Thumbs oder Kaufbox) und läuft nie in die nächste Sektion. */
   .pdp--sticky-gallery .pdp__gallery {
     display: grid;
     /* Thumbs staffeln: kompakt → 1100 → 1536 (Container-Max) */
     grid-template-columns: calc(var(--base) * 4) minmax(0, 1fr);
     gap: var(--half-module);
     align-items: start;
-    position: sticky;
-    top: var(--sticky-top);
-    align-self: start;
-    /* Kein max-height: sonst bleibt die Zeile bei der rechten Spalte
-       und die nächste Sektion läuft bei niedrigem Fenster ins Bild. */
+    align-self: stretch;
   }
   @media (min-width: 1100px) {
     .pdp--sticky-gallery .pdp__gallery {
@@ -5193,16 +5191,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     max-height: 100%;
     overflow-y: auto;
   }
-  /* Viele Bilder: Thumb-Spalte so hoch wie das Hauptbild, Rest scrollt in der Spalte.
-     Sonst bestimmt die lange Spalte die Galeriehöhe, die Sticky-Galerie hat keinen Weg und scrollt zu früh mit.
-     height 0 + min-height 100 %: Die Zeilenhöhe kommt nur vom Hauptbild. Mobil (Flex, Thumbs quer) nicht. */
-  @media (min-width: 768px) {
-    .pdp--sticky-gallery .pdp__gallery:not(.--single) > .pdp__thumbs {
-      align-self: stretch;
-      height: 0;
-      min-height: 100%;
-    }
-  }
   .pdp--sticky-gallery .pdp__thumb {
     width: 100%;
     flex-shrink: 0;
@@ -5214,6 +5202,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .pdp--sticky-gallery .pdp__main-image {
     border-color: transparent;
+    position: sticky;
+    top: var(--sticky-top);
   }
 
   /* PDP Mosaic-Galerie — Alternative zu Thumbs (LIVOM-Style, nur Desktop ≥1100px)
@@ -6587,7 +6577,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       /* Thumbs stehen im DOM vor dem Hauptbild — mobil wieder darunter */
       order: 1;
     }
-    .pdp--sticky-gallery .pdp__main-image { order: 0; }
+    .pdp--sticky-gallery .pdp__main-image { order: 0; position: relative; top: auto; }
     .pdp--sticky-gallery .pdp__thumb {
       width: calc((100% - var(--half-module) * 4) / 5);
       flex-shrink: 0;
