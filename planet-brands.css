@@ -1649,14 +1649,18 @@
   .section-type:is(.--v1, .--v2).--ratio-5-4:not(.--viewport) { --media-slot-ratio: 5 / 4; }
   .section-type:is(.--v1, .--v2).--ratio-4-3:not(.--viewport) { --media-slot-ratio: 4 / 3; }
   .section-type:is(.--v1, .--v2).--ratio-16-9:not(.--viewport) { --media-slot-ratio: 16 / 9; }
-  /* Slot-Höhe über ::before (padding-top aus dem Verhältnis) statt aspect-ratio:
-     Safari rechnet die Rasterzeile beim Resize/Drehen sonst nicht neu, das Bild ragt in die nächste Section. */
-  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) :is(.section-type__image, .section-type__animation)::before {
-    content: "";
-    display: block;
-    padding-top: calc(100% / (var(--media-slot-ratio)));
+  /* Slot-Höhe direkt aus der Section-Breite (Container-Einheit cqi) statt aspect-ratio:
+     Safari rechnet die Rasterzeile beim Resize/Drehen nicht neu, wenn die Höhe nur aus der eigenen
+     Breite folgt (aspect-ratio, %-Padding) – das Bild ragt dann in die nächste Section.
+     Spaltenbreite = (Inhaltsbreite − Spaltenabstand) / 2; V1 mit --gutter, V2 ohne Abstand. */
+  .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) {
+    container-type: inline-size;
+    --media-slot-gap: var(--gutter);
+    --media-slot-cols: 2;
   }
+  .section-type.--v2:is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) { --media-slot-gap: 0px; }
   .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) :is(.section-type__image, .section-type__animation) {
+    height: calc((100cqi - var(--media-slot-gap) * (var(--media-slot-cols) - 1)) / var(--media-slot-cols) / (var(--media-slot-ratio)));
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -6385,6 +6389,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       grid-template-columns: minmax(0, 1fr);
     }
     .section-type { grid-template-columns: 1fr; }
+    .section-type:is(.--v1, .--v2):is(.--ratio-1-1, .--ratio-5-4, .--ratio-4-3, .--ratio-16-9):not(.--viewport) { --media-slot-cols: 1; }
     .section-type.--viewport { height: auto; max-height: none; }
     .section-type__image { min-height: 15rem; }
     .section-type.--v1 .section-type__image:not(:has(img, video)),
