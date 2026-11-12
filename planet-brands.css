@@ -2201,8 +2201,9 @@
       content: none;
     }
   }
+  /* Einspaltig gestapelt: keine Linie (Selektor so spezifisch wie die Linien-Regel oben) */
   @media (max-width: 767px) {
-    .shopify-section--content-tiles .tile-grid.--process.--mobile-stack .tile__icon::after {
+    .shopify-section--content-tiles .tile-grid.--process.--mobile-stack > .tile .tile__icon:not(.tile__animation)::after {
       content: none;
     }
   }
