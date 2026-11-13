@@ -1971,3 +1971,151 @@ function initPdpThumbsDock() {
   });
 }
 document.addEventListener('DOMContentLoaded', initPdpThumbsDock);
+
+/* PDP-Galerie: Slide beim Wechsel per Thumb – das neue Motiv kommt von rechts, das alte geht nach links.
+   Läuft um die bestehende Wechsellogik herum (pdpSwitch / Karten), ändert sie nicht:
+   1. Vorladen: Überfahren/Antippen eines Thumbs lädt und dekodiert das große Bild schon vorab.
+   2. Capture-Phase: Kopie dessen, was gerade sichtbar ist (bleibt stehen und deckt ab).
+   3. Nach dem Wechsel: warten, bis das neue Motiv bereit ist (img.decode / Video-Frame).
+   4. Beide Seiten gleiten als eigene, absolut gelegte Kopien (Safari verschiebt das echte, gerade
+      umgeschaltete Bild nicht zuverlässig); das echte Motiv ist so lange unsichtbar.
+   Neuer Klick während eines Slides: sofort beenden und neu starten; wartet der vorige noch aufs
+   Laden, bleibt dessen Kopie stehen und wird weiterverwendet.
+   Badges (.floating-meta) und Caption bleiben stehen. [PORTABEL → Theme] */
+function initPdpSlide() {
+  if (typeof Element.prototype.animate !== 'function') return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var timing = { duration: 450, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' };
+  var preloaded = {};
+  function preload(url) {
+    if (!url || /\.(mp4|webm|mov)(\?|$)/i.test(url) || preloaded[url]) return;
+    var img = new Image();
+    img.decoding = 'async';
+    img.src = url;
+    preloaded[url] = img.decode ? img.decode().catch(function () {}) : Promise.resolve();
+  }
+  function visibleLayers(main) {
+    return Array.prototype.filter.call(main.children, function (el) {
+      if (el.classList.contains('floating-meta') || el.classList.contains('pdp__caption')) return false;
+      if (el.hasAttribute('data-pdp-slide') || el.hidden || el.classList.contains('--hidden')) return false;
+      return getComputedStyle(el).display !== 'none';
+    });
+  }
+  function decoded(img) {
+    return img.decode ? img.decode().catch(function () {}) : Promise.resolve();
+  }
+  function ready(el) {
+    if (el.tagName === 'IMG') return decoded(el);
+    if (el.tagName === 'VIDEO' && el.readyState < 2) {
+      return new Promise(function (resolve) {
+        el.addEventListener('loadeddata', resolve, { once: true });
+        el.addEventListener('error', resolve, { once: true });
+      });
+    }
+    return Promise.resolve();
+  }
+  function makeClone(el, role) {
+    var clone = el.cloneNode(true);
+    clone.setAttribute('data-pdp-slide', role);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.removeAttribute('id');
+    clone.removeAttribute('loading');
+    if (role === 'out') clone.classList.remove('--enter'); // Karten-Inhalt nicht erneut einblenden
+    clone.style.cssText += ';position:absolute;inset:0;width:100%;height:100%;pointer-events:none;visibility:visible;';
+    if (clone.tagName === 'VIDEO') clone.pause();
+    return clone;
+  }
+  document.querySelectorAll('.pdp__thumbs').forEach(function (thumbs) {
+    if (thumbs._pdpSlide) return;
+    thumbs._pdpSlide = true;
+    var pdp = thumbs.closest('.pdp');
+    var main = pdp && pdp.querySelector('.pdp__main-image');
+    if (!main) return;
+    // phase: idle | waiting (Kopie deckt ab, neues Motiv lädt) | sliding
+    var state = { run: 0, phase: 'idle', out: [], in: [], hidden: [], anims: [] };
+    var pending = null;
+    function clear() {
+      state.anims.forEach(function (a) { a.cancel(); });
+      state.out.concat(state.in).forEach(function (c) { c.remove(); });
+      state.hidden.forEach(function (el) { el.style.visibility = ''; });
+      state.anims = [];
+      state.out = [];
+      state.in = [];
+      state.hidden = [];
+      state.phase = 'idle';
+    }
+    function warm(e) {
+      var thumb = e.target.closest && e.target.closest('.pdp__thumb');
+      if (thumb) preload(thumb.getAttribute('data-pdp-switch-src'));
+    }
+    thumbs.addEventListener('pointerover', warm);
+    thumbs.addEventListener('pointerdown', warm);
+    thumbs.addEventListener('focusin', warm);
+    thumbs.addEventListener('click', function (e) {
+      pending = null;
+      var thumb = e.target.closest('.pdp__thumb');
+      if (!thumb || thumb.classList.contains('--active')) return;
+      if (reduce.matches) { clear(); return; }
+      if (state.phase === 'waiting') {
+        // Kopie zeigt noch das zuletzt sichtbare Motiv – weiterverwenden
+        pending = state.out;
+        state.out = [];
+        state.phase = 'idle';
+        state.run++;
+        return;
+      }
+      clear();
+      state.run++;
+      pending = visibleLayers(main).map(function (el) { return makeClone(el, 'out'); });
+    }, true);
+    thumbs.addEventListener('click', function () {
+      if (!pending || !pending.length) return;
+      var run = state.run;
+      var out = pending;
+      pending = null;
+      out.forEach(function (c) { if (!c.parentNode) main.appendChild(c); });
+      state.out = out;
+      state.phase = 'waiting';
+      var incoming = visibleLayers(main);
+      var timeout = new Promise(function (resolve) { setTimeout(resolve, 4000); });
+      Promise.race([Promise.all(incoming.map(ready)), timeout]).then(function () {
+        if (run !== state.run) return;
+        // Neues Motiv als eigene Ebene (Video: echtes Element, eine Kopie hätte keinen Frame)
+        var movers = incoming.map(function (el) {
+          if (el.tagName === 'VIDEO') return { el: el, real: true };
+          return { el: makeClone(el, 'in'), real: false, of: el };
+        });
+        var decodeClones = movers.filter(function (m) { return !m.real && m.el.tagName === 'IMG'; })
+          .map(function (m) { return decoded(m.el); });
+        return Promise.race([Promise.all(decodeClones), timeout]).then(function () {
+          if (run !== state.run) return;
+          state.phase = 'sliding';
+          movers.forEach(function (m) {
+            if (m.real) return;
+            main.appendChild(m.el);
+            state.in.push(m.el);
+            m.of.style.visibility = 'hidden';
+            state.hidden.push(m.of);
+          });
+          out.forEach(function (c) {
+            state.anims.push(c.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }], timing));
+          });
+          movers.forEach(function (m) {
+            state.anims.push(m.el.animate([{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], timing));
+          });
+          var anims = state.anims.slice();
+          // Sicherheitsnetz: bekommt die Animation keine Frames (Seite lädt noch), trotzdem abschließen
+          setTimeout(function () {
+            if (run === state.run && state.phase === 'sliding') anims.forEach(function (a) { a.finish(); });
+          }, timing.duration + 400);
+          Promise.all(anims.map(function (a) { return a.finished.catch(function () {}); })).then(function () {
+            if (run !== state.run) return;
+            state.anims = [];
+            clear();
+          });
+        });
+      });
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initPdpSlide);
