@@ -4785,20 +4785,22 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     background: var(--accent-bg);
     transition: border-color var(--anim-fast), box-shadow var(--anim-fast);
   }
+  /* Hover-Ring 2px: 1px Rahmen + 1px Schatten außen (Rahmenbreite bleibt, Bild verrutscht nicht) */
   .story-iconslider__item:hover:not(.--new) .story-iconslider__media,
   .story-iconslider__item:focus-visible:not(.--new) .story-iconslider__media {
     border-color: var(--border-active);
+    box-shadow: 0 0 0 1px var(--border-active);
   }
   .story-iconslider__item.--new .story-iconslider__media {
     --story-ring-gap: calc(var(--base) * 0.125);
     overflow: hidden; /* Bild beim Hover-Zoom im Kreis halten (Ring = box-shadow außen) */
     border: var(--story-ring-gap) solid var(--bg);
-    box-shadow: 0 0 0 2px var(--color-action);
+    box-shadow: 0 0 0 4px var(--color-action);
     background-clip: padding-box;
   }
   .story-iconslider__item.--new:hover .story-iconslider__media,
   .story-iconslider__item.--new:focus-visible .story-iconslider__media {
-    box-shadow: 0 0 0 2px var(--color-action-hover);
+    box-shadow: 0 0 0 4px var(--color-action-hover);
   }
   .story-iconslider__media img {
     width: 100%;
