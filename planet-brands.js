@@ -1971,3 +1971,57 @@ function initPdpThumbsDock() {
   });
 }
 document.addEventListener('DOMContentLoaded', initPdpThumbsDock);
+
+/* PDP-Galerie: Wechsel per Thumb als Slide – das alte Motiv schiebt nach links hinaus,
+   das neue kommt von rechts. Läuft um die bestehende Wechsellogik herum (pdpSwitch / Karten):
+   Capture-Phase kopiert, was gerade sichtbar ist; Bubble-Phase (nach dem Wechsel) animiert.
+   Badges (.floating-meta) und Caption bleiben stehen. [PORTABEL → Theme] */
+function initPdpSlide() {
+  if (typeof Element.prototype.animate !== 'function') return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var timing = { duration: 450, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' };
+  function visibleLayers(main) {
+    return Array.prototype.filter.call(main.children, function (el) {
+      if (el.classList.contains('floating-meta') || el.classList.contains('pdp__caption')) return false;
+      if (el.hasAttribute('data-pdp-slide-out') || el.hidden || el.classList.contains('--hidden')) return false;
+      return getComputedStyle(el).display !== 'none';
+    });
+  }
+  document.querySelectorAll('.pdp__thumbs').forEach(function (thumbs) {
+    if (thumbs._pdpSlide) return;
+    thumbs._pdpSlide = true;
+    var pdp = thumbs.closest('.pdp');
+    var main = pdp && pdp.querySelector('.pdp__main-image');
+    if (!main) return;
+    var snapshot = null;
+    thumbs.addEventListener('click', function (e) {
+      snapshot = null;
+      var thumb = e.target.closest('.pdp__thumb');
+      if (!thumb || thumb.classList.contains('--active') || reduce.matches) return;
+      (main._pdpSlideAnims || []).forEach(function (a) { a.finish(); });
+      snapshot = visibleLayers(main).map(function (el) { return el.cloneNode(true); });
+    }, true);
+    thumbs.addEventListener('click', function () {
+      if (!snapshot || !snapshot.length) return;
+      var incoming = visibleLayers(main);
+      var anims = [];
+      snapshot.forEach(function (clone) {
+        clone.setAttribute('data-pdp-slide-out', '');
+        clone.setAttribute('aria-hidden', 'true');
+        clone.removeAttribute('id');
+        clone.style.cssText += ';position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+        if (clone.tagName === 'VIDEO') clone.pause();
+        main.appendChild(clone);
+        var a = clone.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }], timing);
+        a.onfinish = function () { clone.remove(); };
+        anims.push(a);
+      });
+      incoming.forEach(function (el) {
+        anims.push(el.animate([{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], timing));
+      });
+      main._pdpSlideAnims = anims;
+      snapshot = null;
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initPdpSlide);
