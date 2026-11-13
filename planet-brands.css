@@ -6913,6 +6913,19 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--green-light); border-top: 1px solid var(--border-light); padding: var(--half-module) var(--module); display: flex; align-items: center; justify-content: space-between; gap: var(--module); z-index: var(--z-overlay); }
   .cookie-banner__text { font-size: var(--text-xs); color: var(--fg-muted); flex: 1; min-width: 0; }
   .cookie-banner__actions { display: flex; gap: var(--half-module); flex-shrink: 0; }
+  /* Shopify-Cookie-Banner (von Shopify eingefügt, nicht im Theme): „Akzeptieren“ wie .btn.--primary.
+     ID-Selektoren, weil Shopifys eigenes Banner-CSS später lädt und (0,2,1) hat.
+     Hängt an Shopifys IDs – bei einem Banner-Update prüfen. */
+  #shopify-pc__banner__btn-accept,
+  #shopify-pc__prefs__header-accept {
+    background: var(--fg);
+    color: var(--bg);
+    border: 1px solid var(--fg);
+  }
+  #shopify-pc__banner__btn-accept:hover,
+  #shopify-pc__prefs__header-accept:hover {
+    box-shadow: 0 0 0 2px var(--fg);
+  }
 
   /* ═══════════════════════════════════════════
      BLOG
