@@ -5209,11 +5209,15 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .pdp--sticky-gallery .pdp__gallery.--single {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* Thumbs laufen mit, bis die letzte Kachel unten am Hauptbild andockt, dann stehen sie mit ihm.
+     --pdp-thumbs-dock = min(0, Höhe Hauptbild − Höhe Thumbs), gesetzt von initPdpThumbsDock (JS). */
   .pdp--sticky-gallery .pdp__thumbs {
     flex-direction: column;
     min-width: 0;
     max-height: 100%;
     overflow-y: auto;
+    position: sticky;
+    top: calc(var(--sticky-top) + var(--pdp-thumbs-dock, 0px));
   }
   .pdp--sticky-gallery .pdp__thumb {
     width: 100%;
@@ -6601,6 +6605,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       min-width: 0;
       /* Thumbs stehen im DOM vor dem Hauptbild — mobil wieder darunter */
       order: 1;
+      position: static;
+      top: auto;
     }
     .pdp--sticky-gallery .pdp__main-image { order: 0; position: relative; top: auto; }
     .pdp--sticky-gallery .pdp__thumb {

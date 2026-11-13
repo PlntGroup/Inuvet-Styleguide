@@ -1946,3 +1946,28 @@ document.addEventListener('click', function (e) {
   btn.setAttribute('aria-pressed', show ? 'true' : 'false');
   setUiIcon(btn, show ? 'visibility_off' : 'visibility');
 });
+
+/* PDP-Galerie (.pdp--sticky-gallery): Thumbs-Leiste dockt unten am Hauptbild an.
+   Setzt --pdp-thumbs-dock = min(0, Höhe Hauptbild − Höhe Thumbs) an .pdp__gallery;
+   das CSS nutzt es als Versatz für position: sticky der Thumbs. [PORTABEL → Theme] */
+function initPdpThumbsDock() {
+  document.querySelectorAll('.pdp--sticky-gallery .pdp__gallery').forEach(function (gallery) {
+    var thumbs = gallery.querySelector('.pdp__thumbs');
+    var main = gallery.querySelector('.pdp__main-image');
+    if (!thumbs || !main || gallery._thumbsDock) return;
+    gallery._thumbsDock = true;
+    function apply() {
+      var dock = Math.min(0, main.offsetHeight - thumbs.offsetHeight);
+      gallery.style.setProperty('--pdp-thumbs-dock', dock + 'px');
+    }
+    apply();
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(apply);
+      ro.observe(main);
+      ro.observe(thumbs);
+    } else {
+      window.addEventListener('resize', apply);
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', initPdpThumbsDock);
