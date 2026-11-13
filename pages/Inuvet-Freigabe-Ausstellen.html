@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="inuvet-freigabe-portal.css?v=8">
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
-  <link rel="stylesheet" href="inuvet-freigabe-ausstellen.css?v=9">
+  <link rel="stylesheet" href="inuvet-freigabe-ausstellen.css?v=10">
 </head>
 <body>
 <!-- Material Icons filled 24px (Apache-2.0, Google). UI chrome only — not Inuvet_Icon_* brand drawings. -->
@@ -216,6 +216,10 @@
   <div class="approval-submit-bar" id="approvalSubmitBar" hidden>
     <div class="approval-submit-bar__inner">
       <div class="approval-submit-bar__compact">
+        <label class="form-check approval-submit-bar__trust">
+          <input type="checkbox" id="trustToggle" onchange="toggleTrust(this.checked)">
+          <span>Volles Vertrauen: Alle Produkte freigeben</span>
+        </label>
         <div class="approval-submit-bar__action">
           <p class="approval-counter" id="approvalCounter">Noch keine Entscheidung getroffen</p>
           <button class="btn --primary" id="submitApprovalBtn" type="button" onclick="handlePrimaryAction()" disabled>Produkte freigeben</button>
@@ -262,6 +266,6 @@
 
 <script src="../planet-brands.js"></script>
 <script src="inuvet-freigabe-mock.js?v=19"></script>
-<script src="inuvet-freigabe-ausstellen.js?v=25"></script>
+<script src="inuvet-freigabe-ausstellen.js?v=26"></script>
 </body>
 </html>

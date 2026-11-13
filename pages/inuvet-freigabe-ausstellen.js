@@ -77,6 +77,7 @@ const QTY_PRESETS = [1, 2, 5]; // Basis-Stufen im Dropdown
    'maxN' | 'unlimited' | 'settled' (–) */
 const VARIANT_SETTLED = 'settled';
 const approvalState = {};
+let trustSnapshot = null;
 
 function vid(productId, variantIndex) { return productId + '-' + variantIndex; }
 
@@ -99,9 +100,18 @@ function isExplicitApprovalValue(value) {
 }
 
 function initState() {
+  trustSnapshot = null;
   CATALOG.forEach(p => p.variants.forEach((v, vi) => {
     approvalState[vid(p.id, vi)] = defaultValueFor();
   }));
+}
+
+function captureTrustSnapshot() {
+  const snap = {};
+  CATALOG.forEach(p => p.variants.forEach((v, vi) => {
+    snap[vid(p.id, vi)] = approvalState[vid(p.id, vi)];
+  }));
+  return snap;
 }
 
 /* ── Helfer für Mengen-Werte ── */
@@ -309,6 +319,8 @@ function openSuccessModal(message) {
 function resetAfterSuccess() {
   closeEmailOverlay();
   initState();
+  const trust = document.getElementById('trustToggle');
+  if (trust) trust.checked = false;
   resetRecipientFormFields();
   const noteEl = document.getElementById('approvalNote');
   if (noteEl) noteEl.value = '';
@@ -353,7 +365,41 @@ function refreshVariantSelect(id) {
 function setVariantQty(id, value) {
   approvalState[id] = value;
   refreshVariantSelect(id);
+  syncTrustCheckbox();
   updateCounter();
+}
+
+function allUnlimited() {
+  return Object.values(approvalState).every(v => v === 'unlimited');
+}
+
+function syncTrustCheckbox() {
+  const cb = document.getElementById('trustToggle');
+  if (cb) cb.checked = allUnlimited();
+}
+
+function applyApprovalValues(valueForVariant) {
+  CATALOG.forEach(p => {
+    p.variants.forEach((v, vi) => {
+      const id = vid(p.id, vi);
+      approvalState[id] = valueForVariant(p, v, vi);
+      refreshVariantSelect(id);
+    });
+  });
+  updateCounter();
+}
+
+function toggleTrust(on) {
+  if (on) {
+    trustSnapshot = captureTrustSnapshot();
+    applyApprovalValues(() => 'unlimited');
+    return;
+  }
+  const snap = trustSnapshot;
+  trustSnapshot = null;
+  applyApprovalValues(
+    (p, v, vi) => snap != null ? snap[vid(p.id, vi)] : defaultValueFor()
+  );
 }
 
 function updateCounter() {
