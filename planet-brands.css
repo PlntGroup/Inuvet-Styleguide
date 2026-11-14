@@ -4254,6 +4254,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .flow > * + .btn,
   .flow > * + .btn-row,
   .flow > * + .section-type--v4__cta { --flow-space: calc(var(--half-module) * 1.5); }
+  /* CTA → nächste Überschrift: neuer Abschnitt, mehr Abstand als Text → CTA (sonst wirkt der Button wie Teil des Folgeabschnitts) */
+  .flow > :is(.btn, .btn-row) + :is(h3, h4, h5, h6) { --flow-space: var(--module); }
 
   /* Fließtext → Formular: Abstand vor Feldern, Grids, Molekülen (B.4) */
   .flow > * + .form-field,
