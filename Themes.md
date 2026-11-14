@@ -148,7 +148,7 @@ Gleiche Typen in jedem Store, eigene Einträge je Marke. Storefront-Zugriff `PUB
 | Praxis-Vorteil | `shop_praxis` | wie Shop-Benefit | `praxis` |
 | Testimonial | `brand_testimonial` | `quote` · `name` · `role` · `avatar` | `testimonials` |
 | Inhaltsstoff | `ingredient` | `name` · `latin` · `summary` · `image` (5:4) | `key-ingredients` (über `custom.key_ingredients`) |
-| FAQ-Eintrag | `faq_item` | `question` · `answer` | `pdp-faq` (über `custom.faq`) |
+| FAQ-Eintrag | `faq_item` | `question` · `answer` | `pdp-faq` (über `custom.faq`, optional zweiter Teil `custom.faq_owners`) |
 | Social Proof | `social_proof` | `name` · `count` · `avatar_1` · `avatar_2` | Fallback der PDP |
 
 Lotties liegen unter Inhalt → Dateien; Theme-Assets sind nur Fallback.

@@ -6145,9 +6145,10 @@
         <tr><th><code>.pdp__faq</code></th><td>Wrapper nach <code>.ingredient-list</code> · <code>margin-top: var(--module-2xl)</code> · Padding <code>var(--module)</code> · Hintergrund <code>--green-light</code> · Modifier <code>.--on-green</code></td></tr>
         <tr><th>Überschrift</th><td><code>h2</code> „Häufige Fragen“ · <code>--text-m</code> bold · Abstand zum Akkordeon <code>var(--module)</code></td></tr>
         <tr><th>Akkordeon</th><td>Desktop <code>.accordion.--cols-2</code> mit <code>.accordion__col</code> (gerade/ungerade + <code>order</code>) · Mobile 1 Spalte · Atom → <a href="#C5">C.5</a></td></tr>
+        <tr><th>Zweiter Teil (optional)</th><td>Nach dem Akkordeon <code>h3</code> + zweites <code>.accordion.--cols-2</code> in derselben Box · <code>h3</code> wie H2 (<code>--text-m</code> bold), Abstand davor <code>calc(var(--module) * 1.5)</code> · Inuvet: „Häufige Fragen von Tierhaltern“ (Zielgruppe der Section bleibt die Praxis) · Shopify: <code>custom.faq_owners</code></td></tr>
         <tr><th>Anzahl</th><td>4–8 Einträge · produktbezogen; shop-weite Fragen (Versand generell) nur wenn sie zur PDP passen</td></tr>
         <tr><th>JSON-LD</th><td><code>@type: FAQPage</code> · <code>mainEntity</code> = Questions mit <code>acceptedAnswer</code> · Klartext ohne HTML · Theme: Script im Section-Liquid · Mockup: <code>injectFaqJsonLd()</code> in <code>&lt;head&gt;</code></td></tr>
-        <tr><th>Shopify</th><td>Metafield <code>custom.faq</code>: Liste aus Metaobjects (<code>question</code> / <code>answer</code>) oder JSON-Liste · Theme: sichtbares Akkordeon + JSON-LD aus denselben Feldern · Mockup: <code>faq[]</code> in <code>planet-brands.js</code> (Hepax)</td></tr>
+        <tr><th>Shopify</th><td>Metafield <code>custom.faq</code> (+ optional <code>custom.faq_owners</code> für den zweiten Teil): Liste aus Metaobjects <code>faq_item</code> (<code>question</code> / <code>answer</code>) oder JSON-Liste · Theme: sichtbares Akkordeon + JSON-LD aus denselben Feldern · Mockup: <code>faq[]</code> in <code>planet-brands.js</code> (Hepax)</td></tr>
         <tr><th>Nicht tun</th><td>Kein FAQ-only hinter Tab/Lazy-Load · keine therapeutischen Heilversprechen · nicht mit Deklarations-Akkordeon vermischen</td></tr>
       </table>
       <div class="sg-demo --green">

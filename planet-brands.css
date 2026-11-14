@@ -5584,6 +5584,13 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     line-height: var(--lh-h3);
     margin: 0 0 var(--module);
   }
+  /* Optionaler zweiter Teil (z. B. „Häufige Fragen von Tierhaltern“): gleiche Typo wie H2, abgesetzt */
+  .pdp__faq > h3 {
+    font-size: var(--text-m);
+    font-weight: 700;
+    line-height: var(--lh-h3);
+    margin: calc(var(--module) * 1.5) 0 var(--module);
+  }
   /* Recommendations: Trennlinie ist Teil der Komponente, Abstand davor = Section-Stack */
   .pdp__recommendations { padding-top: var(--module); border-top: 1px solid var(--border); }
   .pdp__recommendations .section-label-row { --section-label-mt: 0; }
