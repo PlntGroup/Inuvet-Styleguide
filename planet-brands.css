@@ -4316,7 +4316,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   .summary-line { display: flex; justify-content: space-between; padding: calc(var(--base) * 0.75) 0; border-bottom: 1px dashed var(--border-light); color: var(--fg-muted); }
   .summary-line:last-of-type { border-bottom: none; padding-bottom: 0; }
-  .summary-total { display: flex; justify-content: space-between; font-weight: 700; font-size: var(--text-m); margin-top: var(--half-module); padding-top: var(--module); border-top: 1px solid var(--fg); color: var(--fg); }
+  .summary-total { display: flex; justify-content: space-between; gap: var(--half-module); font-weight: 700; font-size: var(--text-m); line-height: var(--lh-h3); margin-top: var(--half-module); padding-top: var(--module); border-top: 1px solid var(--fg); color: var(--fg); }
   /* Checkout: letztes summary-line als solide Trennlinie, summary-total ohne eigene Linie */
   .checkout .summary-line:has(+ .summary-total) { border-bottom: 1px solid var(--fg); padding-bottom: calc(var(--half-module) / 2); color: var(--fg); }
   .checkout .summary-total { border-top: none; padding-top: calc(var(--half-module) / 4); margin-top: calc(var(--half-module) / 4); }
