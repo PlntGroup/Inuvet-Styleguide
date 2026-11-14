@@ -2039,6 +2039,10 @@ function initPdpSlide() {
     var pdp = thumbs.closest('.pdp');
     var main = pdp && pdp.querySelector('.pdp__main-image');
     if (!main) return;
+    // Bildtext erst nach dem Slide einblenden (CSS .pdp__caption.--wait)
+    var caption = main.querySelector('.pdp__caption');
+    function holdCaption() { if (caption) caption.classList.add('--wait'); }
+    function showCaption() { if (caption) caption.classList.remove('--wait'); }
     // phase: idle | waiting (Kopie deckt ab, neues Motiv lädt) | sliding
     var state = { run: 0, phase: 'idle', out: [], in: [], hidden: [], anims: [] };
     var pending = null;
@@ -2064,6 +2068,7 @@ function initPdpSlide() {
       var thumb = e.target.closest('.pdp__thumb');
       if (!thumb || thumb.classList.contains('--active')) return;
       if (reduce.matches) { clear(); return; }
+      holdCaption();
       if (state.phase === 'waiting') {
         // Kopie zeigt noch das zuletzt sichtbare Motiv – weiterverwenden
         pending = state.out;
@@ -2077,7 +2082,7 @@ function initPdpSlide() {
       pending = visibleLayers(main).map(function (el) { return makeClone(el, 'out'); });
     }, true);
     thumbs.addEventListener('click', function () {
-      if (!pending || !pending.length) return;
+      if (!pending || !pending.length) { if (state.phase === 'idle') showCaption(); return; }
       var run = state.run;
       var out = pending;
       pending = null;
@@ -2120,6 +2125,7 @@ function initPdpSlide() {
             if (run !== state.run) return;
             state.anims = [];
             clear();
+            showCaption();
           });
         });
       });

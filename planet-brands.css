@@ -5396,6 +5396,18 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     font-size: var(--text-xs);
     color: var(--fg-muted);
   }
+  /* Galerie-Wechsel: Bildtext erst nach dem Slide einblenden (JS setzt .--wait, solange das Bild gleitet) */
+  .pdp__main-image .pdp__caption {
+    transition: opacity var(--anim-base), transform var(--anim-base);
+  }
+  .pdp__main-image .pdp__caption.--wait {
+    opacity: 0;
+    transform: translateY(calc(var(--base) * 0.5));
+    transition: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pdp__main-image .pdp__caption { transition: none; }
+  }
   .pdp__info { display: flex; flex-direction: column; }
 
   /* ─── Kategorie-Farben via data-cat ───
