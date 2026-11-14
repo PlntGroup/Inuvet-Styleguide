@@ -162,10 +162,25 @@
     <!-- Übersicht: vier Beträge aus Kunden-Metafeldern (commission_to_pay / _to_spend / _spent / _paid_out) -->
     <section class="flow" aria-labelledby="provisionOverviewTitle">
       <h2 id="provisionOverviewTitle">Provision</h2>
+
+      <!-- Jetzt nutzbar: commission_to_spend (nur wenn > 0) — Sonderkachel D.4 -->
+      <div data-credit-block><div class="tile --featured">
+        <div class="flow">
+          <p class="label-caps">Jetzt verfügbar</p>
+          <h3 class="tile__headline"><span data-tile-amount>58,40&nbsp;€</span> <span data-tile-title>Guthaben für Gratisprodukte</span></h3>
+          <p data-tile-text>Löse das Guthaben im Warenkorb ein: Nach „Jetzt sicher zur Kasse“ wählst du deine Gratisprodukte aus, bevor es zum Check-out geht.</p>
+        </div>
+      </div></div>
+
+            <!-- Liste: commission_to_pay · commission_paid_out · commission_spent (Zeilen mit 0 € entfallen) -->
       <div>
         <div class="summary-line" data-row="pending">
-          <span><span data-pending-label>Bevorstehende Provision</span><br><span class="form-hint" data-pending-hint>wird am <strong data-payout-date>01.01.2027</strong> ausgezahlt</span></span>
+          <span><span data-pending-label>Bevorstehende Provision</span><br><span class="form-hint" data-pending-hint>wird am <strong>01.01.2027</strong> ausgezahlt</span></span>
           <span data-amount="pending">184,20&nbsp;€</span>
+        </div>
+        <div class="summary-line" data-row="credit-row" hidden>
+          <span>Guthaben für Gratisprodukte<br><span class="form-hint">aus einem früheren Stichtag mit Naturalrabatt, vor dem Check-out einlösbar</span></span>
+          <span data-amount="credit">58,40&nbsp;€</span>
         </div>
         <div class="summary-line" data-row="paid">
           <span>Bisher per Überweisung ausgezahlt</span>
@@ -175,12 +190,7 @@
           <span>Bisher als Gratisprodukte eingelöst</span>
           <span data-amount="spent">96,80&nbsp;€</span>
         </div>
-        <div class="summary-total" data-row="credit">
-          <span>Guthaben für Gratisprodukte</span>
-          <span data-amount="credit">58,40&nbsp;€</span>
-        </div>
       </div>
-      <p class="form-hint" data-credit-hint>Löse das Guthaben im Warenkorb ein: Nach „Jetzt sicher zur Kasse“ wählst du deine Gratisprodukte aus, bevor es zum Check-out geht.</p>
     </section>
 
     <!-- Auszahlungsart: DE (Auswahl) · ES (Rechnung) · FR-Testgruppe (nur Gratisprodukte) -->
@@ -211,11 +221,22 @@
         <p><a class="order-item__link" href="Inuvet-Provision-Bankdaten.html">Bank- &amp; Steuerdaten verwalten</a></p>
       </div>
 
-      <!-- ES: Auszahlung per Rechnung -->
+      <!-- ES: zwei Wege wie live — Rechnung oder Naturalrabatt anfordern (beide → receive_commission_invoice_notice, Naturalrabatt mit payout_type: discount_in_kind) -->
       <div class="flow" data-country-block="ES" hidden>
-        <p>Du kannst dir bis zu <strong data-amount="pending">184,20&nbsp;€</strong> auszahlen lassen. Schick uns dafür eine Rechnung, wir zeigen dir, was drinstehen muss.</p>
-        <div class="btn-row">
-          <button class="btn --primary" type="button" data-open-invoice>Auszahlung anfordern</button>
+        <p>Wie möchtest du deine Provision erhalten?</p>
+        <div class="flow">
+          <h3>Provision auszahlen lassen</h3>
+          <p>Du kannst dir bis zu <strong data-amount="pending">184,20&nbsp;€</strong> auszahlen lassen. Schick uns dafür eine Rechnung, wir zeigen dir, was drinstehen muss.</p>
+          <div class="btn-row">
+            <button class="btn --primary" type="button" data-open-invoice>Auszahlung anfordern</button>
+          </div>
+        </div>
+        <div class="flow">
+          <h3>Provision als Naturalrabatt erhalten</h3>
+          <p>Statt einer Auszahlung kannst du deine Provision von bis zu <strong data-amount="pending">184,20&nbsp;€</strong> auch als Naturalrabatt in Form von Produkten erhalten.</p>
+          <div class="btn-row">
+            <button class="btn --secondary" type="button" data-open-discount>Naturalrabatt anfordern</button>
+          </div>
         </div>
       </div>
 
@@ -271,6 +292,27 @@
   </div>
 </div>
 
+<!-- Naturalrabatt anfordern (ES) → webhooks/receive_commission_invoice_notice (payout_type: discount_in_kind) -->
+<div class="modal-overlay" id="discountModalOverlay" data-modal="discount">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="discountModalTitle">
+    <div class="modal__header">
+      <h2 class="modal__title" id="discountModalTitle">Provision als Naturalrabatt anfordern</h2>
+      <button type="button" class="btn --icon" data-close aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+    </div>
+    <div class="modal__body flow">
+      <p>So läuft es ab:</p>
+      <ul>
+        <li>Deine Anfrage für den Naturalrabatt ist bei uns eingegangen (maximal verfügbar: <strong data-amount="pending">184,20&nbsp;€</strong>). Du bekommst eine Bestätigung per E-Mail.</li>
+        <li>Unser Kundendienst meldet sich bei dir und stimmt mit dir ab, welche Produkte du in welcher Menge erhältst.</li>
+      </ul>
+      <p class="form-hint">Fragen vorab? Schreib uns an <a href="mailto:comisiones@inuvet.com">comisiones@inuvet.com</a> (E-Mail aus Theme-Einstellung).</p>
+    </div>
+    <div class="modal__footer">
+      <button class="btn --primary" type="button" data-close>Verstanden</button>
+    </div>
+  </div>
+</div>
+
 <!-- Mockup-Kontext -->
 <button class="mockup-fab" type="button" onclick="document.getElementById('mockupFabPanel').classList.toggle('--open')">⚙ Mockup-Kontext</button>
 <div class="mockup-fab-panel" id="mockupFabPanel">
@@ -281,6 +323,10 @@
     <select id="ctxCountry"><option value="DE">DE – Auswahl</option><option value="ES">ES – Rechnung</option><option value="FR">FR – nur Gratisprodukte</option></select>
   </div>
   <div class="mockup-fab-panel__field">
+    <label for="ctxAmounts">Beträge</label>
+    <select id="ctxAmounts"><option value="example">Beispiel (alle Beträge)</option><option value="new">Neue Praxis (nur bevorstehend)</option></select>
+  </div>
+  <div class="mockup-fab-panel__field">
     <label><input type="checkbox" id="ctxIban" checked> IBAN hinterlegt</label>
     <label><input type="checkbox" id="ctxVat"> USt-IdNr. hinterlegt</label>
   </div>
@@ -288,7 +334,7 @@
 
 <script src="../planet-brands.js"></script>
 <script src="inuvet-freigabe-mock.js?v=19"></script>
-<script src="inuvet-provision.js?v=1"></script>
+<script src="inuvet-provision.js?v=4"></script>
 <script>
 document.addEventListener('DOMContentLoaded', empfehlungSyncOpenRequestNavBadges);
 </script>

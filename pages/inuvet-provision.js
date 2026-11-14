@@ -16,14 +16,18 @@
     iban: store.get('provIban', '1') === '1',
     vat: store.get('provVat', '0') === '1',
     payout: store.get('provPayout', 'bank'),
+    amounts: store.get('provAmounts', 'example'),
   };
   const save = () => {
     store.set('provCountry', ctx.country);
     store.set('provIban', ctx.iban ? '1' : '0');
     store.set('provVat', ctx.vat ? '1' : '0');
     store.set('provPayout', ctx.payout);
+    store.set('provAmounts', ctx.amounts);
   };
   const toast = msg => { if (typeof showToast === 'function') showToast(msg); };
+  /* .summary-line (display:flex) überstimmt [hidden]; im Theme lässt Liquid leere Zeilen weg */
+  const show = (el, on) => { if (!el) return; el.hidden = !on; el.style.display = on ? '' : 'none'; };
 
   function openModal(name) {
     $(`[data-modal="${name}"]`)?.classList.add('--open');
@@ -49,19 +53,44 @@
     });
     const label = $('[data-pending-label]');
     if (label) label.textContent = ctx.country === 'ES' ? 'Verfügbare Provision' : 'Bevorstehende Provision';
-    const hint = $('[data-pending-hint]');
-    if (hint) {
-      const date = '<strong data-payout-date>01.01.2027</strong>';
-      hint.innerHTML = ctx.country === 'ES'
-        ? 'kannst du dir per Rechnung auszahlen lassen'
-        : (payout === 'bank' ? `wird am ${date} ausgezahlt` : `wird am ${date} deinem Guthaben gutgeschrieben`);
-    }
     const missing = [];
     if (!ctx.iban) missing.push('IBAN');
     if (!ctx.vat) missing.push('USt-IdNr.');
+    const bankBlocked = ctx.country === 'DE' && payout === 'bank' && missing.length > 0;
+    const hint = $('[data-pending-hint]');
+    if (hint) {
+      const date = '<strong>01.01.2027</strong>';
+      if (ctx.country === 'ES') hint.innerHTML = 'kannst du dir per Rechnung auszahlen lassen';
+      else if (bankBlocked) hint.textContent = 'wird ausgezahlt, sobald ' + missing.join(' und ') + ' hinterlegt ' + (missing.length > 1 ? 'sind' : 'ist');
+      else hint.innerHTML = payout === 'bank' ? 'wird am ' + date + ' ausgezahlt' : 'wird am ' + date + ' deinem Guthaben gutgeschrieben';
+    }
+    /* Beträge: Nullzeilen und leeres Guthaben entfallen (wie live) */
+    const values = ctx.amounts === 'new'
+      ? { pending: 37.6, paid: 0, spent: 0, credit: 0 }
+      : { pending: 184.2, paid: 412.5, spent: 96.8, credit: 58.4 };
+    const fmt = n => n.toFixed(2).replace('.', ',') + '\u00a0€';
+    Object.keys(values).forEach(key => {
+      $$('[data-amount="' + key + '"]').forEach(el => { el.textContent = fmt(values[key]); });
+    });
+    ['paid', 'spent'].forEach(key => show($('[data-row="' + key + '"]'), values[key] > 0));
+    /* Kachel „Jetzt verfügbar“: DE/FR = Guthaben für Gratisprodukte · ES = verfügbare Provision (wie live) */
+    const isES = ctx.country === 'ES';
+    const tileValue = isES ? values.pending : values.credit;
+    const credit = $('[data-credit-block]');
+    if (credit) credit.hidden = tileValue <= 0;
+    const tileAmount = $('[data-tile-amount]');
+    if (tileAmount) tileAmount.textContent = fmt(tileValue);
+    const tileTitle = $('[data-tile-title]');
+    if (tileTitle) tileTitle.textContent = isES ? 'Provision' : 'Guthaben für Gratisprodukte';
+    const tileText = $('[data-tile-text]');
+    if (tileText) tileText.textContent = isES
+      ? 'Lass sie dir per Rechnung auszahlen oder als Naturalrabatt in Form von Produkten geben.'
+      : 'Löse das Guthaben im Warenkorb ein: Nach „Jetzt sicher zur Kasse“ wählst du deine Gratisprodukte aus, bevor es zum Check-out geht.';
+    show($('[data-row="pending"]'), !isES);
+    show($('[data-row="credit-row"]'), isES && values.credit > 0);
     const notice = $('[data-missing-notice]');
     if (notice) {
-      notice.hidden = !(ctx.country === 'DE' && payout === 'bank' && missing.length);
+      notice.hidden = !bankBlocked;
       $('[data-missing-text]').textContent = missing.join(' und ');
       $('[data-missing-verb]').textContent = missing.length > 1 ? 'sind' : 'ist';
     }
@@ -85,6 +114,7 @@
   });
   $('[data-open-invoice]')?.addEventListener('click', () => openModal('invoice'));
   $('[data-confirm-invoice]')?.addEventListener('click', closeModals);
+  $('[data-open-discount]')?.addEventListener('click', () => openModal('discount'));
 
   /* ── Bank- & Steuerdaten ── */
   function renderBank() {
@@ -153,6 +183,11 @@
   if (vat) {
     vat.checked = ctx.vat;
     vat.addEventListener('change', () => { ctx.vat = vat.checked; save(); renderOverview(); renderBank(); });
+  }
+  const amounts = $('#ctxAmounts');
+  if (amounts) {
+    amounts.value = ctx.amounts;
+    amounts.addEventListener('change', () => { ctx.amounts = amounts.value; save(); renderOverview(); });
   }
   const link = $('#ctxLink');
   if (link) link.addEventListener('change', () => renderConfirm(link.value));
