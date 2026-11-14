@@ -1987,12 +1987,20 @@ function initPdpSlide() {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var timing = { duration: 450, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' };
   var preloaded = {};
-  function preload(url) {
-    if (!url || /\.(mp4|webm|mov)(\?|$)/i.test(url) || preloaded[url]) return;
+  function preload(thumb) {
+    var url = thumb.getAttribute('data-pdp-switch-src');
+    var srcset = thumb.getAttribute('data-pdp-switch-srcset');
+    var key = srcset || url;
+    if (!url || /\.(mp4|webm|mov)(\?|$)/i.test(url) || preloaded[key]) return;
     var img = new Image();
     img.decoding = 'async';
+    if (srcset) {
+      // gleiche Bildbreite wie das Hauptbild: sizes vor srcset setzen
+      img.sizes = thumb.getAttribute('data-pdp-switch-sizes') || '100vw';
+      img.srcset = srcset;
+    }
     img.src = url;
-    preloaded[url] = img.decode ? img.decode().catch(function () {}) : Promise.resolve();
+    preloaded[key] = img.decode ? img.decode().catch(function () {}) : Promise.resolve();
   }
   function visibleLayers(main) {
     return Array.prototype.filter.call(main.children, function (el) {
@@ -2046,7 +2054,7 @@ function initPdpSlide() {
     }
     function warm(e) {
       var thumb = e.target.closest && e.target.closest('.pdp__thumb');
-      if (thumb) preload(thumb.getAttribute('data-pdp-switch-src'));
+      if (thumb) preload(thumb);
     }
     thumbs.addEventListener('pointerover', warm);
     thumbs.addEventListener('pointerdown', warm);
