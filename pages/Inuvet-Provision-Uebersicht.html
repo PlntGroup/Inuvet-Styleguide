@@ -249,7 +249,9 @@
   </div>
 </main>
 
-<!-- Bestätigung Wechsel der Auszahlungsart (DE) → webhooks/receive_commission_payout_preference -->
+<!-- Bestätigung Wechsel der Auszahlungsart (DE) → webhooks/receive_commission_payout_preference.
+     Wechsel zu Banküberweisung: fehlende IBAN / USt-IdNr. sind Pflicht im Dialog, sonst kein Wechsel.
+     Theme: nacheinander update_vat_id (falls neu) → receive_iban_change_request (falls neu, E-Mail-Bestätigung) → receive_commission_payout_preference. -->
 <div class="modal-overlay" id="payoutModalOverlay" data-modal="payout">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="payoutModalTitle">
     <div class="modal__header">
@@ -258,6 +260,17 @@
     </div>
     <div class="modal__body flow">
       <p id="payoutModalBody">Wir überweisen deine Provision quartalsweise gesammelt auf dein Konto.</p>
+      <div class="form-field" data-modal-iban-field hidden>
+        <input type="text" id="payoutIban" placeholder=" " autocomplete="off" spellcheck="false">
+        <label for="payoutIban">IBAN</label>
+      </div>
+      <p class="form-field__error" data-modal-iban-error hidden>Bitte prüfe die IBAN.</p>
+      <div class="form-field" data-modal-vat-field hidden>
+        <input type="text" id="payoutVat" placeholder=" " autocomplete="off" spellcheck="false">
+        <label for="payoutVat">USt-IdNr.</label>
+      </div>
+      <p class="form-field__error" data-modal-vat-error hidden>Bitte prüfe die USt-IdNr.</p>
+      <p class="form-hint" data-modal-iban-hint hidden>Du bekommst danach eine E-Mail, um die IBAN zu bestätigen. Erst dann können wir überweisen.</p>
     </div>
     <div class="modal__footer">
       <button class="btn --secondary" type="button" data-close>Abbrechen</button>
@@ -323,14 +336,17 @@
     <select id="ctxAmounts"><option value="example">Beispiel (alle Beträge)</option><option value="new">Neue Praxis (nur bevorstehend)</option></select>
   </div>
   <div class="mockup-fab-panel__field">
-    <label><input type="checkbox" id="ctxIban" checked> IBAN hinterlegt</label>
+    <label for="ctxIbanState">IBAN</label>
+    <select id="ctxIbanState"><option value="ok">hinterlegt</option><option value="pending">wartet auf E-Mail-Bestätigung</option><option value="none">fehlt</option></select>
+  </div>
+  <div class="mockup-fab-panel__field">
     <label><input type="checkbox" id="ctxVat"> USt-IdNr. hinterlegt</label>
   </div>
 </div>
 
 <script src="../planet-brands.js"></script>
 <script src="inuvet-freigabe-mock.js?v=19"></script>
-<script src="inuvet-provision.js?v=4"></script>
+<script src="inuvet-provision.js?v=7"></script>
 <script>
 document.addEventListener('DOMContentLoaded', empfehlungSyncOpenRequestNavBadges);
 </script>
