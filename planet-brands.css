@@ -5261,6 +5261,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     grid-template-columns: 1fr 1fr;
     gap: var(--base);
   }
+  /* Ungerade Anzahl: letztes Bild steht allein in der Zeile → über beide Spalten (Format 1:1 wie Hero) */
+  .pdp__mosaic-grid > .pdp__mosaic-cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
   @media (min-width: 1100px) {
     body[data-pdp-gallery="mosaic"] .pdp--sticky-gallery .pdp__gallery {
       display: flex;
@@ -5281,6 +5283,14 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       gap: var(--base);
       min-width: 0;
       width: 100%;
+    }
+    /* Rechte Spalte (Kaufbox) bleibt stehen, solange die Bilder weiterlaufen; am Ende der Galerie
+       laufen beide gemeinsam weiter. Ist sie höher als das Fenster, scrollt sie erst bis zu ihrem
+       Ende mit und bleibt dann stehen. --pdp-buy-h = Höhe der Spalte (initPdpBuyDock, JS). */
+    body[data-pdp-gallery="mosaic"] .pdp--sticky-gallery .pdp__buy {
+      position: sticky;
+      top: min(var(--sticky-top), calc(100vh - var(--pdp-buy-h, 0px) - var(--half-module)));
+      align-self: start;
     }
     body[data-pdp-gallery="mosaic"] .pdp__mosaic-cell .pdp__caption {
       opacity: 0;
