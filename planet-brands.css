@@ -5984,7 +5984,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     display: block;
     width: calc(var(--base) * 5);
     height: calc(var(--base) * 5);
-    border: 1px solid var(--border-light);
     flex-shrink: 0;
     overflow: hidden;
   }
