@@ -5259,7 +5259,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .pdp__mosaic-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--base);
+    gap: var(--half-module); /* halber Standard-Rasterabstand */
   }
   /* Ungerade Anzahl: letztes Bild steht allein in der Zeile → über beide Spalten (Format 1:1 wie Hero) */
   .pdp__mosaic-grid > .pdp__mosaic-cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
@@ -5280,7 +5280,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     body[data-pdp-gallery="mosaic"] .pdp__mosaic {
       display: flex;
       flex-direction: column;
-      gap: var(--base);
+      gap: var(--half-module);
       min-width: 0;
       width: 100%;
     }
