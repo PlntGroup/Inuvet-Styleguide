@@ -5284,12 +5284,11 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       min-width: 0;
       width: 100%;
     }
-    /* Rechte Spalte (Kaufbox) bleibt stehen, solange die Bilder weiterlaufen; am Ende der Galerie
-       laufen beide gemeinsam weiter. Ist sie höher als das Fenster, scrollt sie erst bis zu ihrem
-       Ende mit und bleibt dann stehen. --pdp-buy-h = Höhe der Spalte (initPdpBuyDock, JS). */
+    /* Rechte Spalte (Kaufbox) bleibt oben stehen, während die Bilder laufen; sobald das Ende der
+       Galerie am Ende der Spalte andockt, laufen beide gemeinsam weiter. */
     body[data-pdp-gallery="mosaic"] .pdp--sticky-gallery .pdp__buy {
       position: sticky;
-      top: min(var(--sticky-top), calc(100vh - var(--pdp-buy-h, 0px) - var(--half-module)));
+      top: var(--sticky-top);
       align-self: start;
     }
     body[data-pdp-gallery="mosaic"] .pdp__mosaic-cell .pdp__caption {

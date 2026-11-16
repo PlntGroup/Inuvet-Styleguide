@@ -1972,25 +1972,6 @@ function initPdpThumbsDock() {
 }
 document.addEventListener('DOMContentLoaded', initPdpThumbsDock);
 
-/* PDP Mosaik-Galerie: Höhe der rechten Spalte (.pdp__buy) als --pdp-buy-h. Das CSS lässt die Spalte
-   damit stehen, sobald ihr Ende im Fenster ist (höher als das Fenster) bzw. oben (niedriger). [PORTABEL → Theme] */
-function initPdpBuyDock() {
-  document.querySelectorAll('.pdp--sticky-gallery .pdp__buy').forEach(function (buy) {
-    if (buy._buyDock) return;
-    buy._buyDock = true;
-    function apply() {
-      buy.style.setProperty('--pdp-buy-h', buy.offsetHeight + 'px');
-    }
-    apply();
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(apply).observe(buy);
-    } else {
-      window.addEventListener('resize', apply);
-    }
-  });
-}
-document.addEventListener('DOMContentLoaded', initPdpBuyDock);
-
 /* PDP-Galerie: Slide beim Wechsel per Thumb – das neue Motiv kommt von rechts, das alte geht nach links.
    Läuft um die bestehende Wechsellogik herum (pdpSwitch / Karten), ändert sie nicht:
    1. Vorladen: Überfahren/Antippen eines Thumbs lädt und dekodiert das große Bild schon vorab.
