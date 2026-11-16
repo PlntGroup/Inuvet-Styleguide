@@ -5236,6 +5236,36 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     top: var(--sticky-top);
   }
 
+  /* Kleine Desktops (768–1099 px): Thumbs-Leiste unter dem Hauptbild (wie mobil, Reihe mit 5 Thumbs),
+     die ganze Galerie bleibt stehen, während die Kaufbox scrollt. Ab 1100 px: Thumbs vertikal links. */
+  @media (min-width: 768px) and (max-width: 1099px) {
+    .pdp--sticky-gallery .pdp__gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      align-self: start;
+      position: sticky;
+      top: var(--sticky-top);
+      min-width: 0;
+    }
+    .pdp--sticky-gallery .pdp__thumbs {
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+      max-height: none;
+      min-width: 0;
+      order: 1; /* Thumbs stehen im DOM vor dem Hauptbild */
+      position: static;
+      top: auto;
+    }
+    .pdp--sticky-gallery .pdp__main-image { order: 0; position: relative; top: auto; }
+    .pdp--sticky-gallery .pdp__thumb {
+      width: calc((100% - var(--half-module) * 4) / 5);
+      flex-shrink: 0;
+    }
+  }
+
   /* PDP Mosaic-Galerie — Alternative zu Thumbs (LIVOM-Style, nur Desktop ≥1100px)
      Theme-Setting gallery: thumbs | mosaic · body[data-pdp-gallery="mosaic"]
      Mobile: immer Thumbs (Mosaic ausgeblendet). */
