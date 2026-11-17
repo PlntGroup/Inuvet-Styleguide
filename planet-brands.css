@@ -22,6 +22,7 @@
     --text-l: clamp(1.625rem, 1.15rem + 1.6vw, 2.375rem);
     --text-xl: clamp(2.125rem, 1.15rem + 3vw, 3.5rem);
     --text-2xl: clamp(3.5rem, 1.5rem + 2.2vw, 4.75rem); /* nur Hero V3-Headline ab 1280px (über dem H1-Deckel) */
+    --text-3xl: clamp(4rem, 1rem + 4.2vw, 6rem);         /* Display: größte Stufe, nur bewusst gesetzt ab 1280px (z. B. Portal-Startseite); 70 px @1280, 76 px @1440, 96 px ab 1920 */
 
     --lh-base: 1.5;                       /* Body: Faktor 1.5 */
     --lh-h3: 1.2;                         /* H3: Kompakt für Headlines */
