@@ -248,7 +248,7 @@
     </div>
   </div>
   <div class="footer-bar">
-    <a href="#top" class="footer-bar__top"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_upward"></use></svg> Nach oben</a>
+    <a href="#top" class="footer-bar__top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_upward"></use></svg> Nach oben</a>
   </div>
 </footer>
 
@@ -1673,6 +1673,7 @@ async function submitLogin() {
     currentPage    = 'portal';
     saveSession();
     renderAnnouncementBar();
+    _routeMode = 'replace'; // Startseite im Verlauf durch die Übersicht ersetzen
     render();
   } catch (err) {
     loginError  = err.message;
@@ -3563,6 +3564,7 @@ function render() {
   if (currentPage === 'portal') { animateProvisionAmount(); requestAnimationFrame(() => { initRings(); initScrollAnimations(); initBreakdown(); }); }
   if (currentPage === 'pdp') { requestAnimationFrame(() => { animatePDPRing(); initPdpSlide(); }); }
   initRegistrationFromQuery();
+  syncRoute();
 }
 
 function toggleAccordion(trigger) {
@@ -3784,8 +3786,100 @@ function initNavScrolled() {
 }
 initNavScrolled();
 
-/* Start: Sitzung wiederherstellen und erste Ansicht zeichnen */
+/* ═══════════════════════════════════════
+   VERLAUF: jede Ansicht als #-Adresse → Zurück/Vorwärts im Browser und direkte Links
+   #portal · #rewards · #reward/2 · #products · #product/hypolene · #how · #legal/impressum · #checkout · #success
+   Vorschau mit Beispieldaten: Präfix „demo/“ (z. B. #demo/rewards). Startseite: ohne #.
+   ═══════════════════════════════════════ */
+const ROUTE_NEEDS_ACCOUNT = ['portal', 'rewards', 'pdp', 'checkout', 'success'];
+let _routeMode = 'push'; // nächster syncRoute(): 'push' (neuer Verlaufseintrag) oder 'replace'
+
+function routeHash() {
+  const slug = {
+    portal: 'portal', rewards: 'rewards', products: 'products', how: 'how', checkout: 'checkout', success: 'success',
+    pdp: `reward/${activePremiumId}`, product: `product/${activeProduct}`, legal: `legal/${activeLegal}`,
+  }[currentPage];
+  if (!slug) return previewMode ? '#demo' : '';
+  return `#${previewMode ? 'demo/' : ''}${slug}`;
+}
+
+/* Nach jedem render(): Adresse nachführen (gleiche Adresse → nichts tun) */
+function syncRoute() {
+  if (currentPage === 'loading') return;
+  let mode = _routeMode;
+  _routeMode = 'push';
+  const hash = routeHash();
+  if (location.hash === hash || (!hash && !location.hash)) return;
+  // Bestätigungsseite ersetzt die Kasse und wird beim Weitergehen ersetzt — Zurück führt nie in eine erledigte Einlösung
+  if (currentPage === 'success' || /success$/.test(location.hash)) mode = 'replace';
+  const url = location.pathname + location.search + hash;
+  if (mode === 'push') {
+    history.replaceState({ ...(history.state || {}), scrollY: window.scrollY }, '');
+    history.pushState({ scrollY: 0 }, '', url);
+  } else {
+    history.replaceState({ ...(history.state || {}) }, '', url);
+  }
+}
+
+/* Vorschau-Zustand ohne eigenes Rendern (für Verlauf und direkte Links) */
+function setPreviewState(on) {
+  if (on === previewMode) return;
+  if (on) {
+    previewMode = true; provisionTotal = 456.78; discountCode = 'DEMO2026'; _lastProvisionShown = null;
+  } else {
+    resetBreakdownState(); previewMode = false; provisionTotal = 0; discountCode = null;
+  }
+  renderPreviewBanner();
+  renderAnnouncementBar();
+}
+
+/* Adresse → Zustand. Unbekannte Adressen: false (Zustand bleibt) */
+function applyRoute(hash) {
+  let h = decodeURIComponent(String(hash || '').replace(/^#/, ''));
+  const demo = h === 'demo' || h.startsWith('demo/');
+  h = h.replace(/^demo\/?/, '');
+  const [slug, arg] = h.split('/');
+  const known = ['', 'portal', 'rewards', 'reward', 'products', 'product', 'how', 'legal', 'checkout', 'success'];
+  if (!known.includes(slug)) return false;
+  if (!accountId) setPreviewState(demo);
+  let page = 'login';
+  if (slug === 'portal') page = 'portal';
+  else if (slug === 'rewards') page = 'rewards';
+  else if (slug === 'reward') {
+    const p = PREMIUMS.find(x => x.id === +arg);
+    if (p) { activePremiumId = p.id; page = 'pdp'; } else page = 'rewards';
+  }
+  else if (slug === 'products') page = 'products';
+  else if (slug === 'product') {
+    const p = (window.VETALITA_PRODUCTS || []).find(x => x.handle === arg);
+    if (p) { activeProduct = p.handle; page = 'product'; } else page = 'products';
+  }
+  else if (slug === 'how') page = 'how';
+  else if (slug === 'legal') { if (arg && LEGAL_TEXT[arg]) activeLegal = arg; page = 'legal'; }
+  else if (slug === 'checkout') page = Object.keys(cart).length ? 'checkout' : 'rewards';
+  else if (slug === 'success') page = lastOrder ? 'success' : 'portal';
+  else if (accountId) page = 'portal'; // Startseite, aber eingeloggt → Übersicht
+  if (ROUTE_NEEDS_ACCOUNT.includes(page) && !accountId && !previewMode) page = 'login';
+  currentPage = page;
+  return true;
+}
+
+history.scrollRestoration = 'manual';
+window.addEventListener('popstate', e => {
+  if (!applyRoute(location.hash)) return;
+  clearSuccessRedirect();
+  closeCart();
+  closeMobile();
+  _routeMode = 'replace'; // weicht der Zustand ab (z. B. nicht eingeloggt), Adresse korrigieren statt neuen Eintrag
+  render();
+  const y = e.state?.scrollY || 0;
+  requestAnimationFrame(() => window.scrollTo(0, y));
+});
+
+/* Start: Sitzung wiederherstellen, Adresse (#…) auswerten und erste Ansicht zeichnen */
 restoreSession();
+if (location.hash) applyRoute(location.hash);
+_routeMode = 'replace';
 render();
 </script>
 </body>
