@@ -4205,7 +4205,9 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     content: "";
     position: absolute;
     left: 0;
-    top: calc(var(--base) * 0.25 + 0.1em);
+    top: calc(var(--base) * 0.25 + 0.1em); /* Fallback ohne lh-Einheit */
+    /* Plus mittig auf der ersten Textzeile (1lh = Zeilenhöhe des li) */
+    top: calc(var(--base) * 0.25 + (1lh - var(--base) * 1.875) / 2);
     width: calc(var(--base) * 1.875);
     height: calc(var(--base) * 1.875);
     background: var(--green);
