@@ -3797,6 +3797,7 @@
         <tr><th><code>.section-type__bottom.flow</code></th><td>Body + CTA · Body → Button via <code>* + .btn</code> / <code>* + .btn-row</code> (<a href="#A7">A.7</a>) · Shop: immer <code>.btn-row</code> (auch bei einem Button)</td></tr>
         <tr><th>Medien-Typ</th><td><code>lottie</code> · <code>image</code> · <code>video</code> · Shopify: Toggle + Snippet <code>section-type-media</code> / <code>media-video</code></td></tr>
         <tr><th>Bildformat</th><td>V1 (mit und ohne Box): Original (Datei, Default) · An Texthöhe <code>--fit-text</code> · fest <code>--ratio-1-1</code> · <code>--ratio-5-4</code> · <code>--ratio-4-3</code> · <code>--ratio-16-9</code> (Cover mittig) · Viewport-Höhe <code>--viewport</code> · Shopify: Select „Bildformat“ an Hero V1 → <a href="#hero-media-ratio">Bildformat</a></td></tr>
+        <tr><th>Bild-Hover</th><td>Hero V1/V2 und Inhaltsstoffe (nicht verlinkte Fotos): leichter Zoom <code>scale: 1.03</code> · <code>--anim-slow</code> · nur <code>hover: hover</code>, nicht bei <code>prefers-reduced-motion</code> · Eigenschaft <code>scale</code>, damit <code>heroPanIn</code> erhalten bleibt · nicht für V3/V4, Lottie, Video, Logos, Icons · verlinkte Bilder (Kacheln) zoomen deutlicher mit 1.05</td></tr>
         <tr><th>Video Ambient</th><td><code>data-media-video="ambient"</code> · stumm · Loop · Autoplay · Pause außerhalb Viewport · bei <code>prefers-reduced-motion</code> nur Poster</td></tr>
         <tr><th>Video Klick</th><td><code>data-media-video="click"</code> · Poster + <code>.media-video__play</code> · nach Klick Ton + Controls · Datei aus Shopify Files, kein YouTube</td></tr>
       </table>
@@ -6242,7 +6243,7 @@
         <tr><th><code>.ingredient-list</code></th><td>Section unter <code>.pdp</code> · CSS-Grid · Überschrift <code>h2</code> spannt volle Breite · <strong>kein</strong> Border-top</td></tr>
         <tr><th><code>.--cols-2</code> / <code>.--cols-3</code> / <code>.--cols-4</code></th><td>Desktop: 1 Eintrag = Hero V2 (Bild edge-to-edge, Box am Satzspiegel, ohne Section-Headline) · 2 Einträge <code>--cols-2</code> = beide groß, gleich breit · <code>--cols-3</code> = <code>1.4fr 1fr 1fr</code> · <code>--cols-4</code> gleichmäßig · Tablet 2 Spalten · Mobile 1 Spalte</td></tr>
         <tr><th><code>.ingredient</code></th><td>Spaltenzelle · Flex-Spalte · Scroll-In wie Produktkacheln (<code>data-animate</code> via <code>initScrollAnimations()</code>)</td></tr>
-        <tr><th><code>.ingredient__media</code></th><td>Querformat <code>5 / 4</code> · <code>overflow: hidden</code> · Hover: Bild <code>scale(1.05)</code> (wie <code>.tile__image</code>)</td></tr>
+        <tr><th><code>.ingredient__media</code></th><td>Querformat <code>5 / 4</code> · <code>overflow: hidden</code> · Hover: leichter Zoom <code>scale: 1.03</code>, <code>--anim-slow</code> (nicht verlinkt; verlinkte Bilder wie <code>.tile__image</code> zoomen 1.05)</td></tr>
         <tr><th><code>.ingredient__title</code></th><td>Deutscher Name · dahinter Pflicht <code>.ingredient__latin</code> (kursiv, <code>--fg-muted</code>)</td></tr>
       </table>
       <div class="sg-demo --white">

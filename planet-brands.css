@@ -1719,6 +1719,24 @@
     to   { transform: scale(1); }
   }
 
+  /* ─── Bild-Zoom: nicht verlinkte Fotos (Entscheidung Micha, 2026-11-17) ───
+     Leicht (3 %) und langsam (--anim-slow), damit es lebendig wirkt, aber nicht klickbar.
+     Verlinkte Bilder (Produkt-/Blog-Kacheln) zoomen deutlicher (5 %) — so bleibt „klickbar“ unterscheidbar.
+     Nur Fotos in Inhaltsbereichen: Hero V1/V2 und Inhaltsstoffe. Nicht für Hero V3/V4 (Vollfläche),
+     Lottie, Video, Logos, Icons, Avatare, Illustrationen.
+     Eigenschaft `scale` statt `transform`: die Einblend-Animation heroPanIn (transform) bleibt unberührt.
+     Nur mit echtem Hover und ohne reduzierte Bewegung. */
+  .section-type:is(.--v1, .--v2) .section-type__image img,
+  .ingredient__image {
+    transition: scale var(--anim-slow);
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .section-type:is(.--v1, .--v2) .section-type__image:not(a .section-type__image):hover img,
+    .ingredient:not(a .ingredient):hover .ingredient__image {
+      scale: 1.03;
+    }
+  }
+
   /* Variante 3: Vollbild-Hintergrund + Content-Box am Satzspiegel.
      Kein Stack-Padding — Medium edge-to-edge via absolute + cover (Bild oder Lottie). */
   .section-type.--v3 {
@@ -5835,9 +5853,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform var(--anim-mid);
   }
-  .ingredient:hover .ingredient__image { transform: scale(1.05); }
+  /* Hover: leichter Zoom für nicht verlinkte Fotos, siehe „Bild-Zoom“ (nach Hero V1/V2) */
   .ingredient__body { min-width: 0; }
   .ingredient__title {
     font-size: var(--text-base);
