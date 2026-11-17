@@ -1,0 +1,869 @@
+/* ══════════════════════════════════════════════════════════════
+   vetalita-portal-neu.css — Vetalità Portale Provvigioni
+   Portal-only building blocks on top of planet-brands.css (1:1 copy
+   of the styleguide system). Everything else — header, buttons, tiles,
+   forms, tabs, drawer, modals, PDP, checkout — comes from the system.
+   Load order: planet-brands.css → vetalita-portal-neu.css → brand-vetalita.css
+   Tokens only, no fixed values.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Logo (like the shop: 96 px desktop / 56 px mobile) ───── */
+
+.site-nav { --logo-w: calc(var(--base) * 6); --logo-w-m: calc(var(--base) * 3.5); }
+
+/* .btn sets display — [hidden] needs to win for state toggles */
+.btn[hidden],
+.nav-item[hidden],
+.mobile-menu a[hidden] { display: none; }
+
+/* ── Header balance (.badge.--pill.--free, sized up for the nav) ── */
+.nav-balance {
+  font-size: var(--text-sm);
+  text-transform: none;
+  letter-spacing: 0;
+  padding: calc(var(--base) * 0.4) calc(var(--base) * 0.9);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+.nav-balance:hover { background: var(--green); color: var(--bg); }
+.nav-balance[hidden] { display: none; }
+
+/* ── Layout ────────────────────────────────────────────────── */
+
+.portal-section { padding-bottom: var(--section-gap); } /* wie .container.--pb — Footer hat oben keinen Abstand (--pt-0) */
+.portal-section__title { text-align: center; margin-bottom: var(--module); scroll-margin-top: calc(var(--nav-height) + var(--module)); }
+.portal-success__items { margin-top: var(--module); }
+.portal-success__items + .success-state__actions { margin-top: var(--module); }
+
+/* ── Startseite: Hero V2 mit Registrier-/Anmelde-Box ── */
+/* Runder Störer „Registrieren · 10 € · Bonus“ (gleiche Gestaltung und Texte wie .reg-badge) — größer, erscheint nur
+   bei aktivem Reiter „Registrieren“. Mobil fest unten links am Bildschirmrand,
+   Desktop unter der großen Headline (.portal-start-hero__aside). */
+/* Mobil: fest unten links am Bildschirmrand (wie früher der schwebende Störer), weicht dem Footer */
+.portal-start-hero .section-type__image > .floating-meta {
+  position: fixed;
+  top: auto;
+  bottom: var(--margin);
+  left: var(--margin);
+  z-index: var(--z-overlay);
+}
+/* Das Foto bildet eine eigene Stapelebene (System: z-index --z-default) — mobil eine Stufe höher, sonst
+   läge der feste Störer unter der Formularbox. Foto und Box überlappen mobil nicht. */
+@media (max-width: 767px) {
+  .section-type.--v3.portal-start-hero .section-type__image { z-index: calc(var(--z-default) + 1); }
+}
+/* … und beim Tippen in ein Feld (verdeckt sonst die Felder links); die Reiter-Buttons zählen nicht */
+body.--footer-in-view .portal-start-hero .section-type__image .reg-badge.--hero,
+.portal-start-hero:has(.form-field :is(input, select, textarea):focus) .section-type__image .reg-badge.--hero { opacity: 0; transform: scale(0.6) rotate(-12deg); }
+.reg-badge.--hero {
+  position: static;
+  /* Größer als der schwebende Störer (mobil 128 px, Desktop 192 px); Schrift skaliert über .reg-badge mit */
+  --reg-badge-size: max(calc(var(--base) * 8), calc(var(--module) * 4));
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.6) rotate(-12deg);
+  transition: opacity var(--anim-fast), transform var(--anim-fast);
+}
+.portal-start-hero.--register .reg-badge.--hero { opacity: 1; transform: rotate(-12deg); }
+@media (prefers-reduced-motion: reduce) {
+  .reg-badge.--hero, .portal-start-hero.--register .reg-badge.--hero { transform: rotate(-12deg); transition: none; }
+}
+.portal-start-hero .tabs { margin-bottom: 0; }
+/* Headline + Einleitung: Desktop groß und weiß links neben der Box (.portal-start-hero__aside), mobil
+   weiß mittig auf dem Foto (.portal-start-hero__photo-text). display:none → je Breite genau ein h1 im
+   Barrierefreiheitsbaum. */
+@media (max-width: 767px) {
+  /* Optische Mitte: zwischen Fotomitte und Mitte unter dem Header — oben Header-Höhe + Modul, unten halbe
+     Header-Höhe + Modul. Der Block steht im Fluss → das Foto wächst mit, wenn der Text mehr Platz braucht. */
+  .section-type.--v3.portal-start-hero .section-type__image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .portal-start-hero__photo-text {
+    position: relative;
+    z-index: 1;
+    padding: calc(var(--header-height) + var(--module)) var(--margin) calc(var(--header-height) / 2 + var(--module));
+    text-align: center;
+    color: var(--bg);
+    text-shadow: 0 1px 14px var(--color-overlay-dark);
+  }
+  .section-type.--v3.portal-start-hero .portal-start-hero__photo-text > * {
+    margin-bottom: 0;
+    color: var(--bg);
+    animation: heroFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.10s both;
+  }
+  .section-type.--v3.portal-start-hero .portal-start-hero__photo-text > .section-type__body { animation-delay: 0.25s; }
+  /* Pfeil unten mittig im Foto: scrollt zum Formular (scrollToStartForm), wippt leicht */
+  .portal-start-hero .btn.--icon.portal-start-hero__scroll {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--half-module);
+    z-index: 1;
+    margin-inline: auto;
+    width: var(--icon-box-sm);
+    height: var(--icon-box-sm);
+    color: var(--bg);
+    filter: drop-shadow(0 1px 6px var(--color-overlay-dark));
+    animation: portalScrollCue 1.8s ease-in-out 1s infinite;
+  }
+  .portal-start-hero .btn.--icon.portal-start-hero__scroll .material-icons { font-size: calc(var(--base) * 1.75); }
+  @keyframes portalScrollCue {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(calc(var(--base) * 0.35)); }
+  }
+  /* Lesbarkeit: Foto gleichmäßig leicht abgedunkelt (wie Hero V3) */
+  .portal-start-hero .section-type__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-overlay-dark) 60%, transparent);
+    pointer-events: none;
+  }
+}
+.portal-start-hero__aside { display: none; }
+@media (min-width: 768px) {
+  /* Linke Spalte: Headline + Störer. Oben bündig mit der Box: gleicher Außenabstand oben (margin --module 0) */
+  .portal-start-hero__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin-top: var(--module);
+    padding-right: var(--module);
+  }
+  .portal-start-hero .section-type__image > .floating-meta { display: none; }
+  .portal-start-hero__display {
+    margin: 0;
+    /* Versalhöhe an der Oberkante (text-box, wo unterstützt) */
+    text-box: trim-start cap alphabetic;
+    color: var(--bg);
+    text-shadow: 0 1px 14px var(--color-overlay-dark);
+    animation: heroFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.10s both;
+  }
+  .portal-start-hero__photo-text,
+  .portal-start-hero .btn.--icon.portal-start-hero__scroll { display: none; }
+  /* Zeile mit Headline + Box bleibt senkrecht mittig, beide hängen oben in der Zeile */
+  .portal-start-hero .section-type__inner { align-content: center; }
+  .section-type.--v3.portal-start-hero .section-type__content { align-self: start; }
+  /* Störer hängt unter Headline + Text, ohne die Spalte zu verlängern (sonst stünde die Zeile auch beim
+     Anmelden höher, als der Inhalt es braucht) */
+  .portal-start-hero__aside { position: relative; }
+  .portal-start-hero__aside > .reg-badge.--hero { position: absolute; top: calc(100% + var(--module)); left: 0; }
+  /* Lesbarkeit der weißen Schrift: Foto links leicht abgedunkelt */
+  .portal-start-hero .section-type__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--color-overlay-dark), var(--color-overlay-dark) 30%, transparent 65%);
+    pointer-events: none;
+  }
+  /* Einleitungstext: Desktop unter der großen Headline (weiß, Intro-Größe), mobil auf dem Foto */
+  .section-type.--v3.portal-start-hero .portal-start-hero__intro {
+    font-size: var(--text-m);
+    line-height: var(--lh-h3);
+    color: var(--bg);
+    text-shadow: 0 1px 14px var(--color-overlay-dark);
+    margin-bottom: 0;
+    animation: heroFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.25s both;
+  }
+}
+@media (min-width: 1280px) {
+  .portal-start-hero .portal-start-hero__display {
+    font-size: var(--text-3xl);
+    line-height: var(--lh-h1);
+    letter-spacing: -0.02em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-start-hero__display, .portal-start-hero__intro, .portal-start-hero .btn.--icon.portal-start-hero__scroll,
+  .section-type.--v3.portal-start-hero .portal-start-hero__photo-text > * { animation: none; }
+}
+
+/* ── Vorschaumodus in der Announcement-Bar (statt eigener Leiste) ── */
+.announcement-bar.--preview { --ann-glass: var(--color-notice-bg); }
+.announcement-bar.--preview .announcement-bar__item { display: inline-flex; align-items: center; gap: calc(var(--base) * 0.5); }
+.announcement-bar.--preview .material-icons { font-size: var(--text-m); }
+
+/* ── Announcement bar: discount code + copy link ───────────── */
+/* .announcement-bar__link is styled for <a>; here it is a <button>. */
+button.announcement-bar__link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ── Provision hero ─────────────────────────────────────────── */
+/* Stage = Hero V3 (.section-type.--v4: photo, overlay, white text).
+   Inside: title tight on a large amount, two CTAs side by side. */
+
+.provision-hero .provision-hero__content { gap: var(--half-module); }
+.provision-hero__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--base) * 0.25);
+}
+.provision-hero__title {
+  font-size: var(--text-l);
+  font-weight: 700;
+  line-height: var(--lh-h2);
+  letter-spacing: 0;
+  color: var(--bg);
+  margin: 0;
+}
+.provision-hero__amount {
+  font-size: calc(var(--text-xl) * 1.75);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.provision-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--half-module);
+}
+/* "or" between the two equal actions */
+.provision-hero__or {
+  font-size: var(--text-sm);
+  color: color-mix(in srgb, var(--bg) 85%, transparent);
+}
+/* Narrow screens: stack button · or · button instead of wrapping "or" to a line end */
+@media (max-width: 767px) {
+  .provision-hero__actions { flex-direction: column; gap: calc(var(--base) * 0.25); }
+}
+
+/* ── Provision breakdown: key figures, bars, customers ── */
+/* Single series → brand green for every mark; values always labelled
+   (green is 2.45:1 on white, so the number never lives in color alone).
+   Square bar ends: brand rule border-radius 0 wins over rounded data-ends. */
+
+/* Key figures: boxes that reach up into the hero photo */
+.breakdown { --kpi-overlap: calc(var(--module) * 2); }
+.provision-hero.--kpi-overlap { --kpi-overlap: calc(var(--module) * 2); padding-bottom: var(--kpi-overlap); }
+
+.breakdown__kpis {
+  position: relative;
+  z-index: var(--z-default);
+  margin-top: calc(var(--kpi-overlap) * -1);
+  margin-bottom: var(--module);
+}
+.breakdown-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--base) * 0.25);
+  padding: var(--half-module);
+  background: var(--bg);
+  container-type: inline-size;
+}
+.breakdown-kpi__label { font-size: var(--text-sm); color: var(--fg-muted); }
+/* One line: --text-xl, steps down only when the box is too narrow for the figure */
+.breakdown-kpi__value { font-size: min(var(--text-xl), 21cqi); font-weight: 700; line-height: var(--lh-h1); letter-spacing: -0.02em; white-space: nowrap; }
+.breakdown-kpi__sub { font-size: var(--text-xs); color: var(--fg-muted); }
+/* Three-column range of .col-grid[data-cols="4"]: drop the total (it is the hero figure anyway) */
+@media (min-width: 900px) and (max-width: 1100px) {
+  .breakdown-kpi.--total { display: none; }
+}
+@media (max-width: 767px) {
+  .col-grid.breakdown__kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--half-module); }
+}
+
+.breakdown__charts { display: flex; flex-direction: column; gap: var(--module-2xl); margin-bottom: var(--module-2xl); }
+.chart { margin: 0; }
+.chart__title { margin-bottom: var(--half-module); } /* h3 like "Ihre Kunden" */
+
+/* Horizontal bars — ranked by provision */
+.bar-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--half-module); }
+.bar-list__item { display: flex; flex-direction: column; gap: calc(var(--base) * 0.25); outline-offset: 2px; cursor: default; position: relative; }
+/* Row dividers: one solid hairline per gap (above each row, plus below the last row
+   of each column), drawn inside the existing gaps — no extra height. round() snaps the
+   line to a whole pixel so it never renders blurred or doubled. */
+.bar-list__item::before,
+.bar-list__item:last-child::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: round(calc(var(--half-module) / -2), 1px);
+  border-top: 1px solid var(--border-light);
+  pointer-events: none;
+}
+.bar-list__item:last-child::after { top: auto; bottom: round(calc(var(--half-module) / -2), 1px); }
+/* Product rows: thumbnail + content, same grid as .cart-item */
+.bar-list__item.--thumb {
+  display: grid;
+  grid-template-columns: calc(var(--base) * 5) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--half-module);
+}
+.bar-list__body { display: flex; flex-direction: column; gap: calc(var(--base) * 0.25); min-width: 0; }
+/* Produkt → Produktseite (Bild + Name im Diagramm, Namen in der Kundenliste) */
+.breakdown__thumb-link { display: block; }
+.breakdown__product-link { color: inherit; text-decoration: none; }
+.breakdown__product-link:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+.bar-list__name { font-size: var(--text-base); }
+.bar-list__meta { color: var(--fg-muted); }
+/* Mobile: name only (order count stays in the tooltip) — avoids line breaks */
+@media (max-width: 767px) {
+  .bar-list__meta { display: none; }
+}
+.bar-list__track { display: flex; align-items: center; gap: calc(var(--base) * 0.5); }
+.bar-list__bar {
+  display: block;
+  height: calc(var(--base) * 1.25);
+  width: calc((100% - var(--module) * 2.5) * var(--p, 0));
+  background: var(--green);
+  transition: width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--d, 0ms), background var(--anim-fast);
+}
+.bar-list__value { font-size: var(--text-sm); font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Desktop: products in two columns (ranked top-down per column), months as a curve */
+.line-chart { display: none; }
+@media (min-width: 768px) {
+  .bar-list.--two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(var(--rows, 3), auto);
+    grid-auto-flow: column;
+    gap: var(--half-module) var(--gutter);
+  }
+  /* Nur ein Produkt: volle Spaltenbreite */
+  .bar-list.--two-col:has(> .bar-list__item:only-child) { grid-template-columns: minmax(0, 1fr); }
+  .bar-list.--months { display: none; }
+  /* Two columns: also close the end of the first column */
+  .bar-list.--two-col .bar-list__item.--col-end::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: round(calc(var(--half-module) / -2), 1px);
+    border-top: 1px solid var(--border-light);
+    pointer-events: none;
+  }
+  .line-chart { display: block; }
+}
+
+/* Curve — single series: 2px line, 10% area, dots with surface ring, hairline grid */
+.line-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.line-chart__grid line { stroke: var(--border-neutral); stroke-width: 1; shape-rendering: crispEdges; }
+.line-chart__tick { font-size: var(--text-xs); fill: var(--fg-muted); }
+.line-chart__area { fill: var(--green); opacity: 0; transition: opacity var(--anim-base) 0.6s; }
+.line-chart__line {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--len, 0);
+  stroke-dashoffset: var(--len, 0);
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.line-chart__dot {
+  fill: var(--green);
+  stroke: var(--bg);
+  stroke-width: 2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity var(--anim-fast) calc(var(--d, 0ms) + 0.3s), transform var(--anim-fast);
+}
+.line-chart__value { font-size: var(--text-xs); font-weight: 700; fill: var(--fg); opacity: 0; transition: opacity var(--anim-base) calc(var(--d, 0ms) + 0.5s); }
+.--shown .line-chart__area { opacity: 0.1; }
+.--shown .line-chart__line { stroke-dashoffset: 0; }
+.--shown .line-chart__dot,
+.--shown .line-chart__value { opacity: 1; }
+.line-chart__hit { outline: none; cursor: default; }
+.line-chart__hit rect { fill: transparent; }
+.line-chart__cross { stroke: var(--fg-muted); stroke-width: 1; opacity: 0; shape-rendering: crispEdges; }
+.line-chart__hit:is(:hover, :focus-visible) .line-chart__cross { opacity: 0.5; }
+.line-chart__hit:is(:hover, :focus-visible) .line-chart__dot { transform: scale(1.4); fill: var(--green-hover); }
+.breakdown.--instant .line-chart__line,
+.breakdown.--instant .line-chart__area,
+.breakdown.--instant .line-chart__dot,
+.breakdown.--instant .line-chart__value { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .line-chart__line, .line-chart__area, .line-chart__dot, .line-chart__value { transition: none; }
+}
+
+/* Values fade in with their marks */
+.chart .bar-list__value { opacity: 0; transition: opacity var(--anim-base) calc(var(--d, 0ms) + 0.5s); }
+.--shown .bar-list__value { opacity: 1; }
+
+/* Hover / focus: the mark responds */
+.bar-list__item:is(:hover, :focus-visible) .bar-list__bar { background: var(--green-hover); }
+
+.chart-tip {
+  position: absolute;
+  z-index: var(--z-dropdown);
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--base) * 0.5) calc(var(--base) * 0.75);
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-top: 2px solid var(--fg);
+  font-size: var(--text-sm);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.chart-tip span { color: var(--fg-muted); }
+.chart-tip[hidden] { display: none; }
+
+/* Customers */
+.breakdown__subtitle { margin-bottom: var(--half-module); }
+.breakdown__num { text-align: right; font-variant-numeric: tabular-nums; }
+.breakdown__more { display: flex; justify-content: center; margin-top: var(--module); }
+/* Mobile: one customer = three lines (name · provision / orders · last order / products),
+   built on the system's --mobile-grid option */
+.breakdown__mob { display: none; }
+@media (max-width: 767px) {
+  .breakdown__desk { display: none; }
+  .breakdown__mob { display: inline; }
+  .rte.--data-table.--mobile-grid.breakdown__customers tbody tr {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "name   name  prov"
+      "orders last  last"
+      "prods  prods prods";
+    column-gap: 0;
+    row-gap: calc(var(--base) * 0.25);
+    padding: var(--half-module) 0;
+  }
+  .rte.--data-table.--mobile-grid.breakdown__customers td { padding: 0; }
+  .rte.--data-table.--mobile-grid.breakdown__customers .data-table-stack__meta { font-size: var(--text-sm); }
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-name,
+  .rte.--data-table.--mobile-grid.breakdown__customers .data-table-stack { display: contents; }
+  .rte.--data-table.--mobile-grid.breakdown__customers .data-table-stack__primary { grid-area: name; }
+  .rte.--data-table.--mobile-grid.breakdown__customers .data-table-stack__meta { grid-area: prods; }
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-orders,
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-last { font-size: var(--text-sm); color: var(--fg-muted); }
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-orders { grid-area: orders; }
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-orders::after { content: '·'; margin-inline: 0.35em; }
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-last { grid-area: last; }
+  .rte.--data-table.--mobile-grid.breakdown__customers td.breakdown__c-prov { grid-area: prov; padding-top: 0; padding-left: var(--half-module); font-weight: 700; text-align: right; }
+}
+
+/* Re-render after the first reveal: jump to the final state */
+.breakdown.--instant .bar-list__bar,
+.breakdown.--instant .bar-list__value { transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-list__bar, .breakdown .bar-list__value { transition: none; }
+}
+
+/* ── Products (vet info, not purchasable) ─────────────────── */
+
+/* Übersicht: ohne Preis stehen die Tier-Icons links (keine Lücke an der Preis-Stelle) */
+/* Lange Button-Texte: untereinander, volle Spaltenbreite */
+.products-actions { display: grid; gap: calc(var(--base) * 0.5); }
+.products-actions .btn { width: 100%; }
+
+/* ── Progress rings (tiles, PDP) ───────────────────────────── */
+/* Track stays neutral grey, fill is the brand green. */
+
+.tile__ring circle:nth-child(2) { stroke: var(--border-neutral); }
+.tile__ring {
+  position: absolute;
+  top: calc(var(--base) * 0.75);
+  right: calc(var(--base) * 0.75);
+  z-index: var(--z-default);
+  width: calc(var(--module) * 1.5);
+  height: auto;
+}
+.tile__ring circle:first-child { fill: color-mix(in srgb, var(--bg) 80%, transparent); }
+.tile__ring-fill { transition: stroke-dashoffset 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+/* ── Tile: quantity stepper stays visible once in cart ─────── */
+
+.tile.--product .tile__cart.--stepper {
+  transform: none;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+}
+.tile.--product .tile__cart.--stepper .qty-selector { background: var(--bg); }
+.qty-selector__btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+
+/* ── PDP: custom amount (Formazione) ───────────────────────── */
+
+.pdp__custom { margin-bottom: var(--half-module); }
+
+/* ── Loading view ──────────────────────────────────────────── */
+
+.portal-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: var(--module);
+}
+.portal-loading__fact {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  text-align: center;
+  max-width: calc(var(--module) * 8);
+  animation: portal-fade-in var(--anim-base) both;
+}
+.portal-loader {
+  width: calc(var(--module) * 2.5);
+  aspect-ratio: 1;
+  animation: portal-loader-pulse 2.4s ease-in-out infinite;
+}
+.portal-loader__svg { width: 100%; height: 100%; overflow: visible; }
+.portal-loader__track { stroke: var(--border-neutral); }
+.portal-loader__spin { transform-origin: 100px 100px; animation: portal-loader-spin 1.15s cubic-bezier(0.55, 0.15, 0.35, 0.85) infinite; }
+.portal-loader__arc { stroke: var(--green); stroke-dasharray: 180 335; }
+@keyframes portal-loader-spin { from { transform: rotate(-90deg); } to { transform: rotate(270deg); } }
+@keyframes portal-loader-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes portal-fade-in { from { opacity: 0; transform: translateY(calc(var(--base) * 0.375)); } to { opacity: 1; transform: none; } }
+
+/* ── Button: loading / sent states ─────────────────────────── */
+
+.btn.--loading { pointer-events: none; }
+.btn-spinner {
+  display: inline-block;
+  width: var(--base);
+  height: var(--base);
+  margin-right: calc(var(--base) * 0.4);
+  border: 2px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: btn-spin 0.75s linear infinite;
+}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+.btn .material-icons.btn-check { margin-right: calc(var(--base) * 0.3); }
+
+/* ── Error dialog ──────────────────────────────────────────── */
+
+.shop-modal.--error .shop-modal__icon .material-icons { color: var(--color-error); }
+
+/* ── Registration badge (fixed, bottom left) ───────────────── */
+
+.reg-badge {
+  position: fixed;
+  bottom: var(--margin);
+  left: var(--margin);
+  z-index: var(--z-overlay);
+  /* Startseite (.--hero) und schwebender Störer teilen die Proportionen: Schrift = 12 % des Durchmessers,
+     mindestens --text-sm (kleiner Störer mobil) */
+  --reg-badge-size: max(calc(var(--base) * 6.5), calc(var(--module) * 3));
+  width: var(--reg-badge-size);
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--bg);
+  font-family: var(--font);
+  font-size: max(var(--text-sm), calc(var(--reg-badge-size) * 0.12));
+  font-weight: 700;
+  line-height: 0.9;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  cursor: pointer;
+  transform: rotate(-12deg);
+  transition: background var(--anim-fast), transform var(--anim-fast);
+}
+.reg-badge:hover { background: var(--green-hover); transform: rotate(-12deg) scale(1.05); }
+.reg-badge__amount { font-size: 2.5em; }
+.reg-badge.--hidden { display: none; }
+.reg-badge.--over-footer { opacity: 0; pointer-events: none; transform: rotate(-12deg) scale(0.9); transition: opacity var(--anim-fast), transform var(--anim-fast); }
+
+/* ── Full-page registration (?register=full) ───────────────── */
+
+body.--registration-full-open { overflow: hidden; }
+.registration-full-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--bg);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--anim-base), visibility var(--anim-base);
+}
+.registration-full-overlay.--open { opacity: 1; visibility: visible; }
+.registration-full { min-height: 100%; display: flex; flex-direction: column; }
+.registration-full__header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--half-module);
+  padding: var(--half-module) var(--margin);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-light);
+}
+.registration-full__brand { margin: 0; font-size: var(--text-m); font-weight: 700; }
+.registration-full__content {
+  width: 100%;
+  max-width: calc(var(--module) * 13);
+  margin: 0 auto;
+  padding: var(--module) var(--margin) var(--module-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--module);
+}
+.registration-full__eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--green);
+}
+.registration-full__lead { color: var(--fg-muted); }
+
+/* ─── Produkte: PDP wie vetalita-theme (staging); Section-Abstände über .container (A.7) ─── */
+/* Social Proof unter dem Titel: ≥1536 übernimmt die Aside (System) — Abstand dann am nächsten Element
+   (wie vetalita-theme/assets/theme-extras.css) */
+@media (min-width: 1536px) {
+  .pdp--sticky-gallery .pdp__title + .social-proof + * { margin-top: var(--half-module); }
+}
+
+/* Galerie-Karten (Fütterung) — 1:1 aus vetalita-theme/assets/theme-extras.css (markenspezifisch, nicht im Styleguide) */
+  /* Galerie-Karten (markenindividuell, nicht im Styleguide): Fläche in der Kategoriefarbe des Produkts
+     (--cat aus cat-vars an .pdp; ohne Kategorie oder ohne Token: --green). Alle Kategorietöne sind hell,
+     deshalb dunkle Schrift: die Fläche definiert nur --fg-muted / --border-light passend dazu.
+     Text, .label-caps, .h1 und .rating erben das. Das Thumbnail ist dieselbe Karte, skaliert. */
+  .pdp__main-image .pdp__card,
+  .pdp__thumb[data-pdp-card] { --card-surface: var(--cat, var(--green)); }
+  .pdp__main-image .pdp__card {
+    position: absolute;
+    inset: 0;
+    z-index: calc(var(--z-default) + 1);
+  }
+  .pdp__main-image .pdp__card[hidden] { display: none; }
+  .pdp__main-image .floating-meta.--hidden { display: none; }
+  /* Mobil (Flex): ohne Bild im Fluss fällt aspect-ratio zusammen, die Karte wird 0×0.
+     Der Platzhalter hält das Quadrat, solange eine Karte sichtbar ist. */
+  .pdp__main-image:has(.pdp__card:not([hidden]))::before {
+    content: "";
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  .pdp__thumb[data-pdp-card] {
+    position: relative;
+    padding: 0;
+    background: var(--card-surface);
+  }
+  /* Dunkle Kategorietöne (Ohren, Hormone, Niere, Fettsäuren): helle Schrift */
+  .pdp:is([data-pdp-cat="ohren"], [data-pdp-cat="hormone"], [data-pdp-cat="niere"], [data-pdp-cat="fettsaeuren"]) .pdp__card-face {
+    --fg: var(--bg);
+  }
+  .pdp__card-face {
+    --fg-muted: color-mix(in srgb, var(--fg) 72%, transparent);
+    --border-light: color-mix(in srgb, var(--fg) 20%, transparent);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--card-surface);
+    color: var(--fg);
+    pointer-events: none;
+  }
+  .pdp__card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* 85 % Kategoriefläche über dem Packshot hält Foto und Text lesbar. */
+  .pdp__card-scrim {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--card-surface) 85%, transparent);
+  }
+  .pdp__card-inner {
+    position: relative;
+    z-index: var(--z-default);
+    display: flex;
+    flex-direction: column;
+    gap: var(--half-module);
+    width: 100%;
+    height: 100%;
+    padding: var(--module);
+    text-align: left;
+  }
+  .pdp__card-inner > * { margin: 0; }
+  /* Thumbnail: Karte in Referenzgröße setzen und auf die Thumb-Fläche herunterskalieren. */
+  .pdp__thumb .pdp__card-face {
+    --card-ref: calc(var(--base) * 28);
+    container-type: size;
+  }
+  .pdp__thumb .pdp__card-inner {
+    width: var(--card-ref);
+    height: var(--card-ref);
+    flex: none;
+    transform-origin: top left;
+    transform: scale(calc(100cqw / var(--card-ref)));
+  }
+  .pdp__card-quote,
+  .pdp__card-copy {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pdp__card-quote { -webkit-line-clamp: 4; }
+  .pdp__card-copy { -webkit-line-clamp: 8; }
+  .pdp__card-name { font-weight: 700; }
+  /* Tabelle (Fütterung): Zeilen mit Linie, Gruppenkopf als .label-caps */
+  .pdp__card-rows {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .pdp__card-rows li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--half-module);
+    padding-top: calc(var(--base) * 0.4);
+    margin-top: calc(var(--base) * 0.4);
+    border-top: 1px solid var(--border-light);
+  }
+  .pdp__card-rows li.--head {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .pdp__card-rows li span:last-child { text-align: right; }
+  /* Weitere Gruppe (z. B. Hunde, dann Pferde): Abstand zur letzten Zeile davor – wie Planimol */
+  .pdp__card-rows li.--head:not(:first-child) { margin-top: var(--base); }
+
+  /* Mobil: Tabelle und Text eine Stufe kleiner, damit die Karte schließt. */
+  @media (max-width: 767px) {
+    .pdp__card-rows li:not(.label-caps),
+    .pdp__card-quote,
+    .pdp__card-copy,
+    .pdp__card-name { font-size: var(--text-sm); }
+  }
+
+  /* Dieselbe Bewegung wie der Hero-Text (Styleguide .section-type), bei jedem Klick neu. Thumbnail bleibt stehen. */
+  @media (prefers-reduced-motion: no-preference) {
+    .pdp__main-image .pdp__card.--enter .pdp__card-inner > :not(.pdp__card-rows),
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li {
+      animation: heroFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    .pdp__main-image .pdp__card.--enter .pdp__card-inner > .pdp__card-average,
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li:nth-child(1) { animation-delay: 0.08s; }
+    .pdp__main-image .pdp__card.--enter .pdp__card-inner > .pdp__card-quote,
+    .pdp__main-image .pdp__card.--enter .pdp__card-inner > .pdp__card-copy,
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li:nth-child(2) { animation-delay: 0.16s; }
+    .pdp__main-image .pdp__card.--enter .pdp__card-inner > .pdp__card-name,
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li:nth-child(3) { animation-delay: 0.24s; }
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li:nth-child(4) { animation-delay: 0.32s; }
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li:nth-child(5) { animation-delay: 0.4s; }
+    .pdp__main-image .pdp__card.--enter .pdp__card-rows > li:nth-child(n + 6) { animation-delay: 0.48s; }
+  }
+
+/* ── Prämien-Seite: Kopf mit Guthaben (Hero wie Provision) + Text-Kacheln ── */
+.rewards-hero__hint {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--lh-base);
+  color: var(--bg);
+  text-align: center;
+}
+.rewards-tile { cursor: pointer; }
+
+/* ── Header-Wrapper (wie critical.css im Theme): Announcement-Bar + Nav bleiben gemeinsam stehen (ohne .--scroll-away) ── */
+.shopify-section--sticky-header {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--z-nav) + 1);
+}
+/* Anker/scrollIntoView landen unter dem ganzen Header (System kennt das nur für body.--ann-sticky);
+   --header-live = gemessene Höhe (initHeaderLive), Token als Fallback */
+html:has(.shopify-section--sticky-header .announcement-bar:not(.--scroll-away)) { scroll-padding-top: var(--header-live, var(--header-height)); }
+
+/* Prämien-Detailseite: Ring sitzt im Badge-Container (.floating-meta), damit er beim Galerie-Slide stehen bleibt.
+   .floating-meta ist schon um 0.75 base eingerückt → Ring dort ohne eigenen Versatz. */
+.pdp__main-image .floating-meta .tile__ring { top: 0; right: 0; }
+
+/* ── Startseite (body.--portal-start): kein Hauptmenü, kein Warenkorb ──
+   Transparenter Header: Der Start-Hero (V2) trägt zusätzlich die Wrapper-Klasse
+   shopify-section--section-type-v4, damit die System-Regel greift. Das System gibt nur V3
+   oben den Header-Abstand — für die V2-Box hier auf dem Desktop nachgezogen (mobil liegt das Foto oben). */
+body.--portal-start .site-nav .nav-left > *,
+body.--portal-start #cartBtn { display: none; }
+/* … stattdessen links die Bezeichnung „Tierarzt-Portal“ (System-Stil .nav-item__trigger, über dem Hero weiß) */
+.portal-nav-title { display: none; }
+body.--portal-start .site-nav .nav-left > .portal-nav-title { display: flex; }
+/* kursiv: reine Bezeichnung, kein Link */
+.portal-nav-title .nav-item__trigger { cursor: default; font-style: italic; }
+/* … und rechts der Link in die Vorschau: mobil kurz, ab 768px ausgeschrieben */
+.portal-nav-demo { display: none; }
+body.--portal-start .site-nav .nav-right > .portal-nav-demo { display: flex; }
+.portal-nav-demo__long { display: none; }
+@media (min-width: 768px) {
+  .portal-nav-demo__short { display: none; }
+  .portal-nav-demo__long { display: inline; }
+}
+/* Mobil: Foto liegt unter dem transparenten Header → um die Header-Höhe verlängern; darunter 21rem Motiv
+   (statt System-Minimum 15rem), damit Headline + Absatz auf dem Foto Raum haben */
+@media (max-width: 767px) {
+  body:has(.site-nav.--over-hero) #MainContent > .shopify-section--section-type-v4:first-child .portal-start-hero .section-type__image {
+    min-height: calc(var(--header-height) + 21rem);
+  }
+}
+@media (min-width: 768px) {
+  body:has(.site-nav.--over-hero) #MainContent > .shopify-section--section-type-v4:first-child .portal-start-hero {
+    padding-top: var(--header-height);
+  }
+  /* Viewport unter transparentem Header: mindestens volle Fensterhöhe, ohne 51rem-Deckel —
+     wächst mit, wenn die Box höher ist (Reiter „Registrieren“ mit langem Formular) */
+  body:has(.site-nav.--over-hero) #MainContent > .shopify-section--section-type-v4:first-child .portal-start-hero.--viewport {
+    height: auto;
+    min-height: 100dvh;
+    max-height: none;
+  }
+}
+
+/* Startseite „Erst einmal umsehen?“: quadratisches Foto im 16:9-Slot – Ausschnitt nach unten, damit Kopf und Laptop im Bild sind */
+.section-type.--v1.--ratio-16-9.portal-start-preview:not(.--viewport) .section-type__image img {
+  object-position: 50% 62%;
+}
+
+/* Startseite Vertrauen (großes Zitat): darunter die Zahl teilnehmender Praxen, Zahl in Grün */
+.portal-start-trust__figure {
+  margin-top: var(--module);
+  padding-top: var(--half-module);
+  border-top: 1px solid var(--border-light);
+  font-size: var(--text-m);
+}
+.portal-start-trust__count {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--green);
+}
+
+/* Produktseite: Sticky-Leiste „Produktlink kopieren“ (System .pdp__sticky-cta) nur mobil */
+@media (min-width: 768px) {
+  .container:has(.pdp--sticky-cta) ~ .pdp__sticky-cta { display: none; }
+}
+/* Schwebender Störer weicht der Leiste nach oben aus */
+body:has(.pdp__sticky-cta.--visible) .reg-badge { bottom: calc(var(--module) * 2 + var(--margin)); }
+
+/* Startseite „Viele Prämien warten auf Sie“: reine Übersicht, Kacheln ohne Link */
+.portal-start-premiums .tile.--product { cursor: default; }
