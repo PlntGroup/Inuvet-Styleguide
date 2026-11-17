@@ -306,7 +306,7 @@ Footer: Newsletter-Zeile über `.footer-cols`, optionale `.footer-row` darunter.
 ```
 `placeholder=" "` (Leerzeichen) triggert `:not(:placeholder-shown)`. Modifier: `.--on-green`, `.--error`, `.--success`.
 
-**Formular-Hintergrund (Pflicht):** Formulare dürfen **nur** auf **Weiß** (`--bg`) oder **Grün** (`--green-light`) platziert werden. Auf grünen Flächen Container-Klasse `.--on-green` setzen — sie überschreibt `--field-bg` / `--field-bg-active` automatisch. **Keine weiteren Flächenfarben** (Honey, Grau, Cards …): Floating-Label-Hintergrund muss exakt zum Container passen; andere Farben brechen die Feldlinie optisch und technisch. Styleguide-Demos: `.sg-demo.--white` (Standard) bzw. `.sg-demo.--green` (`.--on-green`-Demo).
+**Formular-Hintergrund (Pflicht):** Formulare dürfen **nur** auf **Weiß** (`--bg`) oder **Grün** (`--green-light`) platziert werden. Auf grünen Flächen Container-Klasse `.--on-green` setzen. **Keine weiteren Flächenfarben** (Honey, Grau, Cards …). Styleguide-Demos: `.sg-demo.--white` (Standard) bzw. `.sg-demo.--green` (`.--on-green`-Demo).
 
 ### Tile / Produktkachel
 - `.tile-grid.--cols-2/3/4` für Grid-Layouts — **pro Seite wählen**: `--cols-3` (3→2→1) · `--cols-4` (4→3→2→2 Benefit/Icon · in `.collection-main` →1 mobil, Produkte nie 2-spaltig)
@@ -362,7 +362,9 @@ Standard: Announcement Bar **scrollt weg** (nicht sticky), nur die Nav bleibt st
 ```
 Kein `<hr>`, `.option-divider` für Trennungen zwischen gleichwertigen Optionen (z. B. „oder").
 
-**Zustände:** `.form-field.--error` → roter Border + `.form-field__error` · Feld und Label-Hintergrund auf `--field-bg-active` (weiß), damit Floating Label zur Feldlinie passt. `.form-field.--success` → grüner Border + `.form-field__success`.
+**Fokus:** Doppelkontur in einer Farbe — Border wird `--focus-ring-color`, dazu der System-Fokusring außen (`outline: var(--focus-ring-width) solid var(--focus-ring-color)`, `outline-offset: var(--focus-ring-offset)`) wie bei Buttons und Links. Auf `:focus` (nicht nur `:focus-visible`), damit auch `select` nach Mausklick den Ring zeigt.
+**Floating Label:** Ruhe = mittig im Feld, bündig mit dem Eingabetext (`left: base × 0.75 + 1px`). Fokus/ausgefüllt = klein (`--text-xs`) innen am oberen Feldrand (`top: base × 0.3`), ohne Hintergrund. Feld-Padding oben `1.5 × base`, unten `0.25 × base`.
+**Zustände:** `.form-field.--error` → roter Border (Fokus: Border und Ring rot), Label rot und immer oben + `.form-field__error`. `.form-field.--success` → grüner Border + `.form-field__success`.
 
 **Hintergrundfarbe — nur Weiß oder Grün:**
 | Kontext | Hintergrund | Setup |
@@ -370,11 +372,12 @@ Kein `<hr>`, `.option-divider` für Trennungen zwischen gleichwertigen Optionen 
 | Standard | `var(--bg)` (weiß) | nichts tun — Defaults passen |
 | Grüne Fläche | `var(--green-light)` | `.--on-green` am Formular-Container |
 
-Zwei Tokens steuern den Floating-Label-Hintergrund (nur relevant auf Grün; auf Weiß = Defaults):
+Ein Token steuert die Feldfarbe:
 | Token | Default | Beschreibung |
 |---|---|---|
-| `--field-bg` | `var(--green-light)` | Hintergrund im leeren/unfokussierten Zustand |
-| `--field-bg-active` | `var(--bg)` | Hintergrund im fokussierten / ausgefüllten Zustand |
+| `--field-bg` | `var(--green-light)` | Feld-Hintergrund in jedem Zustand (leer, ausgefüllt, fokussiert, Auswahl, Fehler) |
+
+`--field-bg-active` entfällt (früher: weißer Hintergrund bei Fokus/ausgefüllt und hinter dem Label auf der Feldlinie).
 
 **Nicht zulässig:** Formularbereiche auf Honey, Grau, Card-Hintergründen o. Ä. — stattdessen weiße oder grüne Sektion wählen.
 

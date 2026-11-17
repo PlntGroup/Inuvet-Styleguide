@@ -6,7 +6,7 @@
   <title>Design System – inuvet</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link id="font-planimol" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" disabled>
-  <link rel="stylesheet" href="planet-brands.css?v=214">
+  <link rel="stylesheet" href="planet-brands.css?v=216">
   <link rel="stylesheet" href="brand-planimol.css?v=2">
   <link rel="stylesheet" href="brand-manukalind.css?v=2">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=2" disabled>
@@ -1853,15 +1853,15 @@
       <div class="rules">
         <div class="rule">
           <h4>Floating Labels</h4>
-          <p>Labels stehen initial im Eingabefeld. Bei Fokus oder Eingabe gleiten sie animiert in die obere Feldlinie. Der Label-Hintergrund muss immer mit dem Container-Hintergrund übereinstimmen — sonst ist die Feldlinie nicht verdeckt.</p>
+          <p>Labels stehen initial im Eingabefeld, bündig mit dem Eingabetext. Bei Fokus oder Eingabe gleiten sie animiert klein (<code>--text-xs</code>) an den oberen Rand <strong>innerhalb</strong> des Feldes — ohne eigenen Hintergrund, die Feldlinie bleibt durchgehend.</p>
         </div>
         <div class="rule">
           <h4>Basis</h4>
-          <p>Border: <code>var(--border-light)</code>. Fokus: <code>var(--border-focus)</code>. Padding: <code>1.25rem</code> oben, <code>0.5rem</code> unten, <code>0.75rem</code> seitlich. Kein Border-Radius.</p>
+          <p>Border: <code>var(--border-light)</code>. Fokus: Doppelkontur in einer Farbe — Rand wird <code>--focus-ring-color</code>, dazu der System-Fokusring außen (<code>--focus-ring-width</code> / <code>--focus-ring-offset</code>, wie Buttons und Links), auch nach Mausklick. Hintergrund in jedem Zustand <code>var(--field-bg)</code> (Default <code>--green-light</code>), auch bei <code>select</code>. Padding: <code>1.5rem</code> oben, <code>0.25rem</code> unten, <code>0.75rem</code> seitlich. Kein Border-Radius.</p>
         </div>
         <div class="rule">
           <h4>Formular-Hintergrund (Pflicht)</h4>
-          <p>Formulare dürfen <strong>nur</strong> auf <strong>Weiß</strong> (<code>--bg</code>) oder <strong>Grün</strong> (<code>--green-light</code>) platziert werden. Auf Grün: Container-Klasse <code>.--on-green</code> setzt <code>--field-bg</code> / <code>--field-bg-active</code> automatisch. Andere Hintergrundfarben sind für Formularbereiche <strong>nicht</strong> zulässig — Floating Labels brechen sonst optisch und technisch.</p>
+          <p>Formulare dürfen <strong>nur</strong> auf <strong>Weiß</strong> (<code>--bg</code>) oder <strong>Grün</strong> (<code>--green-light</code>) platziert werden. Auf Grün: Container-Klasse <code>.--on-green</code>. Andere Hintergrundfarben sind für Formularbereiche <strong>nicht</strong> zulässig.</p>
         </div>
         <div class="rule">
           <h4>Fließtext + Felder</h4>
@@ -1871,7 +1871,7 @@
 
       <table class="spec-table">
         <tr><th><code>.form-field</code></th><td>Wrapper · Floating Label · <code>input</code>, <code>textarea</code>, <code>select</code></td></tr>
-        <tr><th><code>.form-field.--error</code></th><td>Border + Label <code>--color-error</code> · Feld-Hintergrund <code>--field-bg-active</code> (weiß) · Meldung via <code>.form-field__error</code></td></tr>
+        <tr><th><code>.form-field.--error</code></th><td>Border + Label <code>--color-error</code> (Fokus: Rand und Ring rot) · Label immer oben im Feld · Meldung via <code>.form-field__error</code></td></tr>
         <tr><th><code>.form-field.--success</code></th><td>Border + Label <code>--green</code> · Bestätigung via <code>.form-field__success</code></td></tr>
         <tr><th><code>.form-field.--has-toggle</code></th><td>Passwort einblenden: Augen-Icon im Feld (<code>.btn.--icon.form-field__toggle[data-password-toggle]</code>), gleiche Lage wie <code>.form-field__info</code> · schaltet <code>type</code> password ↔ text, Icon <code>ui-visibility</code> ↔ <code>ui-visibility_off</code> · <code>aria-label</code> „Passwort anzeigen“, Zustand über <code>aria-pressed</code> · JS: Block „Passwort einblenden“ in <code>planet-brands.js</code></td></tr>
         <tr><th><code>.form-field.--has-info</code></th><td>Info-Icon im Feld (<code>.btn.--icon.form-field__info</code>, <code>ui-outlined-info</code>) öffnet eine <code>.notice</code> (<a href="#C7">C.7</a>) unter dem Feld, über den Folgefeldern · Lage: <code>top: 100% + base × 0.5</code>, <code>z-index: var(--z-dropdown)</code> · Pfeil zum Icon · Schließen via <code>.notice__close</code> · <code>aria-expanded</code> am Icon, Esc/Klick daneben schließt</td></tr>

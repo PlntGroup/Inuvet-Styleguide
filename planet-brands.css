@@ -3310,16 +3310,16 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     font-size: var(--text-base);
     line-height: var(--lh-base);
     color: var(--fg);
-    background: var(--bg);
+    /* Eine Feldfarbe in jedem Zustand (leer, ausgefüllt, fokussiert, Auswahl, Fehler) */
+    background: var(--field-bg, var(--green-light));
     border: 1px solid var(--border-light);
-    padding: calc(var(--base) * 1.25) calc(var(--base) * 0.75) calc(var(--base) * 0.5);
+    /* oben Platz für das Label innen am Feldrand; Summe oben + unten = 1.75 × base wie bisher */
+    padding: calc(var(--base) * 1.5) calc(var(--base) * 0.75) calc(var(--base) * 0.25);
     width: 100%;
     min-width: 0;
     outline: none;
-    transition: border-color var(--anim-fast), background var(--anim-fast);
+    transition: border-color var(--anim-fast), box-shadow var(--anim-fast);
   }
-  .form-field input,
-  .form-field textarea { background: var(--field-bg, var(--green-light)); }
   .form-field textarea {
     display: block; /* inline-block-Default erzeugt Descender-Gap am Feldende */
     resize: vertical;
@@ -3340,29 +3340,23 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     outline-offset: var(--focus-ring-offset);
   }
 
-  /* ─── Focus state ─── */
+  /* ─── Focus state ───
+     Doppelkontur in einer Farbe: Rand wird --focus-ring-color, dazu der System-Fokusring außen
+     (wie Buttons, Links, Choice-Boxen). Auf :focus statt :focus-visible, damit auch Auswahlfelder
+     den Ring nach Mausklick zeigen. */
   .form-field input:focus,
   .form-field textarea:focus,
   .form-field select:focus {
-    border-color: var(--border-focus);
-  }
-  .form-field input:focus,
-  .form-field input:not(:placeholder-shown),
-  .form-field textarea:focus,
-  .form-field textarea:not(:placeholder-shown) { background: var(--field-bg-active, var(--bg)); }
-  /* Setzt den globalen :focus-visible durch höhere Spezifität wieder ein,
-     da der Base-Selektor (.form-field input) outline:none mit (0,1,1) überschreibt. */
-  .form-field input:focus-visible,
-  .form-field textarea:focus-visible,
-  .form-field select:focus-visible {
+    border-color: var(--focus-ring-color);
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: var(--focus-ring-offset);
   }
 
   /* ─── Floating label ─── */
+  /* Label bündig mit dem Eingabetext: Innenabstand links + 1 px Border, kein eigenes Polster */
   .form-field label {
     position: absolute;
-    left: 0.75rem;
+    left: calc(var(--base) * 0.75 + 1px);
     top: 50%;
     transform: translateY(-50%);
     font-family: var(--font);
@@ -3371,25 +3365,25 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     pointer-events: none;
     transition: all var(--anim-fast);
     background: transparent;
-    padding: 0 0.25rem;
+    padding: 0;
   }
   .form-field textarea ~ label {
-    top: 1.25rem;
+    top: calc(var(--base) * 1.5);
     transform: none;
   }
 
-  /* ─── Label floated state (focus or filled) ─── */
+  /* ─── Label floated state (focus or filled): klein innen am oberen Feldrand, ohne Hintergrund —
+     passt auf jeden Untergrund (kein Fleck auf der Feldlinie) ─── */
   .form-field input:focus ~ label,
   .form-field input:not(:placeholder-shown) ~ label,
   .form-field textarea:focus ~ label,
   .form-field textarea:not(:placeholder-shown) ~ label,
   .form-field select:focus ~ label,
   .form-field select:valid ~ label {
-    top: 0;
-    transform: translateY(-50%);
+    top: calc(var(--base) * 0.3);
+    transform: none;
     font-size: var(--text-xs);
     color: var(--fg);
-    background: var(--field-bg-active, var(--bg));
   }
 
   /* ─── Date-Input: native Breite/Spinner entfernen, Date-Picker bleibt erhalten ─── */
@@ -3398,17 +3392,14 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     appearance: none;
     /* Höhe explizit: padding-top + 1.5em Zeilenhöhe + padding-bottom + 2px Border */
     min-height: calc(var(--base) * 1.75 + 1.5em + 2px);
-    /* Chrome Android wertet TT.MM.JJJJ als :placeholder-shown → grüner Hintergrund unterdrückt */
-    background: var(--bg);
   }
 
   /* ─── Date-Input: Label immer in gefloateter Position ─── */
   .form-field input[type="date"] ~ label {
-    top: 0;
-    transform: translateY(-50%);
+    top: calc(var(--base) * 0.3);
+    transform: none;
     font-size: var(--text-xs);
     color: var(--fg);
-    background: var(--bg);
   }
 
   /* ─── Error state ─── */
@@ -3416,17 +3407,18 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .form-field.--error textarea,
   .form-field.--error select {
     border-color: var(--color-error);
-    background-color: var(--field-bg-active, var(--bg));
+  }
+  .form-field.--error input:focus,
+  .form-field.--error textarea:focus,
+  .form-field.--error select:focus {
+    border-color: var(--color-error);
+    outline-color: var(--color-error);
   }
   .form-field.--error label {
     color: var(--color-error);
-    background: var(--field-bg-active, var(--bg)); /* muss zum Feld-Hintergrund passen */
-    top: 0;
-    transform: translateY(-50%);
+    top: calc(var(--base) * 0.3);
+    transform: none;
     font-size: var(--text-xs);
-  }
-  .form-field.--error textarea ~ label {
-    transform: translateY(-50%);
   }
   /* ─── Error: Label bleibt rot auch im gefloateten Zustand ─── */
   .form-field.--error input:focus ~ label,
@@ -3451,8 +3443,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   .form-field.--success label {
     color: var(--green);
-    top: 0;
-    transform: translateY(-50%);
+    top: calc(var(--base) * 0.3);
+    transform: none;
     font-size: var(--text-xs);
   }
   .form-field__success {
