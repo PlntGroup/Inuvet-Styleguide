@@ -1932,6 +1932,8 @@
   }
   /* 16:9: Höhe aus dem Format; der Text darf die Section verlängern. */
   .section-type.--v4.--ratio-16-9 { min-height: 0; aspect-ratio: 16 / 9; }
+  /* 2:1 wie bei Hero V2 (z. B. im Satzspiegel --contained); mobil gilt das 60vh-Band */
+  .section-type.--v4.--ratio-2-1 { min-height: 0; aspect-ratio: 2 / 1; }
   .section-type.--v4.--content-top { align-items: flex-start; }
   .section-type.--v4.--content-center { align-items: center; }
   .section-type.--v4.--content-bottom { align-items: flex-end; }
@@ -2060,6 +2062,7 @@
     .section-type.--v4 {
       min-height: 60vh;
     }
+    .section-type.--v4.--ratio-2-1 { min-height: 60vh; aspect-ratio: auto; }
     .section-type.--v4.--viewport {
       height: calc(100dvh - var(--header-height));
       min-height: calc(100dvh - var(--header-height));
