@@ -20,6 +20,8 @@
   var WEBSITE_LABEL = 'inuvet.com';
   var IMPRESSUM_URL = 'https://docs.google.com/document/d/1e9QR-qiQK8PR6oFuDRzqoxSEbHvEFzfQHwUcU9e4CW0/edit?tab=t.0';
   var IMPRESSUM_LABEL = 'Imprint';
+  var SURVEY_BASE_URL = 'https://inuvet-com.my.site.com/externalcomunity/survey/runtimeApp.app'
+    + '?invitationId=0KiS7000000lLNZ&surveyName=fan_o_meter&UUID=e2c9e4c9-3623-411a-ae7f-076ea4bf0172';
   var BRANDS = {
     inuvet: {
       logoUrl: LOGO_URL,
@@ -29,6 +31,7 @@
       impressumUrl: IMPRESSUM_URL,
       showDisclaimerLogo: true,
       showImprint: true,
+      showSurvey: true,
     },
     vetalita: {
       logoUrl: VETALITA_LOGO_URL,
@@ -38,6 +41,7 @@
       impressumUrl: '',
       showDisclaimerLogo: false,
       showImprint: false,
+      showSurvey: false,
       company: '',
       name: 'Mario Rossi',
       email: 'mario.rossi@vetalita.it',
@@ -137,6 +141,12 @@
       contactHint: 'Kontakthinweis',
       contactHintEmail: 'E-Mail (wird verlinkt)',
       contactHintPhone: 'Telefon (wird verlinkt)',
+      showSurvey: 'Kundenumfrage anzeigen',
+      surveyText: 'Umfrage-Text',
+      surveyLinkLabel: 'Link-Text',
+      surveyUrl: 'Umfrage-Link',
+      defaultSurveyText: 'Eure Meinung hilft uns besser zu werden.',
+      defaultSurveyLinkLabel: 'Kurze Umfrage starten (ca. 2 Min.)',
       sectionPreview: 'Vorschau',
       copyBtn: 'Signatur kopieren',
       htmlBtn: 'HTML-Code herunterladen',
@@ -238,6 +248,12 @@
       contactHint: 'Indication de contact',
       contactHintEmail: 'E-mail (sera lié)',
       contactHintPhone: 'Téléphone (sera lié)',
+      showSurvey: 'Afficher le sondage clients',
+      surveyText: 'Texte du sondage',
+      surveyLinkLabel: 'Texte du lien',
+      surveyUrl: 'Lien du sondage',
+      defaultSurveyText: 'Votre avis nous aide à nous améliorer.',
+      defaultSurveyLinkLabel: 'Lancer le court sondage (env. 2 min)',
       sectionPreview: 'Aperçu',
       copyBtn: 'Copier la signature',
       htmlBtn: 'Télécharger le code HTML',
@@ -339,6 +355,12 @@
       contactHint: 'Nota di contatto',
       contactHintEmail: 'E-mail (collegata)',
       contactHintPhone: 'Telefono (collegato)',
+      showSurvey: 'Mostra sondaggio clienti',
+      surveyText: 'Testo del sondaggio',
+      surveyLinkLabel: 'Testo del link',
+      surveyUrl: 'Link del sondaggio',
+      defaultSurveyText: 'La vostra opinione ci aiuta a migliorare.',
+      defaultSurveyLinkLabel: 'Avvia il breve sondaggio (ca. 2 min)',
       sectionPreview: 'Anteprima',
       copyBtn: 'Copia firma',
       htmlBtn: 'Scarica codice HTML',
@@ -440,6 +462,12 @@
       contactHint: 'Nota de contacto',
       contactHintEmail: 'Correo (se enlazará)',
       contactHintPhone: 'Teléfono (se enlazará)',
+      showSurvey: 'Mostrar encuesta a clientes',
+      surveyText: 'Texto de la encuesta',
+      surveyLinkLabel: 'Texto del enlace',
+      surveyUrl: 'Enlace de la encuesta',
+      defaultSurveyText: 'Vuestra opinión nos ayuda a mejorar.',
+      defaultSurveyLinkLabel: 'Iniciar la breve encuesta (aprox. 2 min)',
       sectionPreview: 'Vista previa',
       copyBtn: 'Copiar firma',
       htmlBtn: 'Descargar código HTML',
@@ -541,6 +569,12 @@
       contactHint: 'Contacthint',
       contactHintEmail: 'E-mail (wordt gelinkt)',
       contactHintPhone: 'Telefoon (wordt gelinkt)',
+      showSurvey: 'Klantenenquête tonen',
+      surveyText: 'Enquêtetekst',
+      surveyLinkLabel: 'Linktekst',
+      surveyUrl: 'Enquêtelink',
+      defaultSurveyText: 'Jullie mening helpt ons beter te worden.',
+      defaultSurveyLinkLabel: 'Korte enquête starten (ca. 2 min)',
       sectionPreview: 'Voorbeeld',
       copyBtn: 'Handtekening kopiëren',
       htmlBtn: 'HTML-code downloaden',
@@ -642,6 +676,12 @@
       contactHint: 'Contact note',
       contactHintEmail: 'Email (will be linked)',
       contactHintPhone: 'Phone (will be linked)',
+      showSurvey: 'Show customer survey',
+      surveyText: 'Survey text',
+      surveyLinkLabel: 'Link text',
+      surveyUrl: 'Survey link',
+      defaultSurveyText: 'Your feedback helps us get better.',
+      defaultSurveyLinkLabel: 'Start the short survey (about 2 min)',
       sectionPreview: 'Preview',
       copyBtn: 'Copy signature',
       htmlBtn: 'Download HTML code',
@@ -717,6 +757,22 @@
       en: 'Questions?\n\nWe\'re happy to help! You can reach us by email or phone at ' + phone + '.',
     };
     return map[lang] || map.en;
+  }
+
+  function surveyGuestLang(lang) {
+    if (lang === 'de' || lang === 'fr' || lang === 'es' || lang === 'it') return lang;
+    return 'en-US';
+  }
+
+  function surveyUrlFor(lang) {
+    return SURVEY_BASE_URL + '&guestUserLang=' + surveyGuestLang(lang);
+  }
+
+  function applySurveyDefaults(lang) {
+    var ui = UI[lang] || UI.de;
+    fields.surveyText.value = ui.defaultSurveyText;
+    fields.surveyLinkLabel.value = ui.defaultSurveyLinkLabel;
+    fields.surveyUrl.value = surveyUrlFor(lang);
   }
 
   var LOCALES = {
@@ -1003,6 +1059,10 @@
     contactHint: document.getElementById('f-contact-hint'),
     contactHintEmail: document.getElementById('f-contact-hint-email'),
     contactHintPhone: document.getElementById('f-contact-hint-phone'),
+    surveyOn: document.getElementById('f-survey-on'),
+    surveyText: document.getElementById('f-survey-text'),
+    surveyLinkLabel: document.getElementById('f-survey-link-label'),
+    surveyUrl: document.getElementById('f-survey-url'),
     socialFacebook: document.getElementById('f-social-facebook'),
     socialInstagram: document.getElementById('f-social-instagram'),
     socialFacebookUrl: document.getElementById('f-social-facebook-url'),
@@ -1011,6 +1071,7 @@
 
   var disclaimerWrap = document.getElementById('disclaimer-wrap');
   var contactHintWrap = document.getElementById('contact-hint-wrap');
+  var surveyWrap = document.getElementById('survey-wrap');
   var personalWrap = document.getElementById('personal-wrap');
   var headerWrap = document.getElementById('header-wrap');
   var photoWrap = document.getElementById('photo-wrap');
@@ -1322,6 +1383,24 @@
         + buildContactHintRows(d.contactHint, d.contactHintEmail, d.contactHintPhone, ui.emailWord, true)
       : '';
 
+    var surveyRows = '';
+    if (d.surveyOn && brand.showSurvey && d.surveyUrl && (d.surveyText || d.surveyLinkLabel)) {
+      surveyRows = '<tr><td ' + gapBlock + '>&nbsp;</td></tr>';
+      if (d.surveyText) {
+        surveyRows += '<tr><td ' + sigCell() + '>'
+          + sigSpan(d.surveyText, FG)
+          + '</td></tr>';
+      }
+      if (d.surveyLinkLabel) {
+        surveyRows += '<tr><td ' + sigCell() + '>'
+          + sigWebLink(d.surveyUrl, d.surveyLinkLabel)
+          + '</td></tr>';
+      }
+      // Extra Abstand vor dem Logo
+      surveyRows += '<tr><td ' + gapBlock + '>&nbsp;</td></tr>'
+        + '<tr><td ' + gap + '>&nbsp;</td></tr>';
+    }
+
     var socialRow = buildSocialRow(d);
 
     var topBlock = d.topImage === 'portrait' && d.photo
@@ -1356,6 +1435,7 @@
     var contactBlock = ''
       + topBlock
       + personalBlock
+      + surveyRows
       + logoRow(brand.logoUrl, brand.logoAlt, LOGO_WIDTH, brand.website)
       + companyBlock
       + addressRows()
@@ -1414,6 +1494,10 @@
       contactHint: fields.contactHint.value || '',
       contactHintEmail: fields.contactHintEmail.value.trim(),
       contactHintPhone: fields.contactHintPhone.value.trim(),
+      surveyOn: fields.surveyOn.checked,
+      surveyText: fields.surveyText.value.trim(),
+      surveyLinkLabel: fields.surveyLinkLabel.value.trim(),
+      surveyUrl: fields.surveyUrl.value.trim(),
       socialFacebook: fields.socialFacebook.checked,
       socialInstagram: fields.socialInstagram.checked,
       socialFacebookUrl: fields.socialFacebookUrl.value.trim(),
@@ -1438,9 +1522,12 @@
   }
 
   function syncVisibility() {
+    var showSurvey = getBrand().showSurvey !== false;
     brandWrap.classList.toggle('--hidden', localeSelect.value !== 'it');
     disclaimerWrap.classList.toggle('--hidden', !fields.disclaimerOn.checked);
     contactHintWrap.classList.toggle('--hidden', !fields.contactHintOn.checked);
+    surveyWrap.classList.toggle('--hidden', !fields.surveyOn.checked || !showSurvey);
+    fields.surveyOn.disabled = !showSurvey;
     personalWrap.classList.toggle('--hidden', !fields.personalOn.checked);
     headerWrap.classList.toggle('--hidden', getTopImageType() !== 'header');
     photoWrap.classList.toggle('--hidden', getTopImageType() !== 'portrait');
@@ -1454,6 +1541,11 @@
   }
 
   function toggleContactHint() {
+    syncVisibility();
+    updateNow();
+  }
+
+  function toggleSurvey() {
     syncVisibility();
     updateNow();
   }
@@ -1557,6 +1649,8 @@
     fields.contactHintPhone.value = locale.phone;
     fields.contactHint.value = contactHintFor(locale.lang, locale.phone);
     fields.contactHintEmail.value = 'info@inuvet.com';
+    fields.surveyOn.checked = true;
+    applySurveyDefaults(locale.lang);
 
     fields.socialFacebook.checked = !!locale.socialFacebook;
     fields.socialFacebookUrl.value = locale.socialFacebookUrl || '';
@@ -1581,6 +1675,7 @@
     fields.contactHint.value = contactHintFor('it', LOCALES.it.phone);
     fields.disclaimer.value = brand.disclaimer;
     fields.disclaimerOn.checked = false;
+    fields.surveyOn.checked = false;
     fields.socialFacebook.checked = false;
     fields.socialFacebookUrl.value = '';
     fields.socialInstagram.checked = false;
@@ -1601,6 +1696,8 @@
       fields.contactHint.value = contactHintFor(locale.lang, locale.phone);
       fields.disclaimer.value = locale.disclaimer;
       fields.disclaimerOn.checked = true;
+      fields.surveyOn.checked = true;
+      applySurveyDefaults(locale.lang);
       fields.socialFacebook.checked = !!locale.socialFacebook;
       fields.socialFacebookUrl.value = locale.socialFacebookUrl || '';
       fields.socialInstagram.checked = !!locale.socialInstagram;
@@ -1698,6 +1795,7 @@
   brandVetalita.addEventListener('change', applyBrand);
   fields.disclaimerOn.addEventListener('change', toggleDisclaimer);
   fields.contactHintOn.addEventListener('change', toggleContactHint);
+  fields.surveyOn.addEventListener('change', toggleSurvey);
   fields.personalOn.addEventListener('change', togglePersonal);
   fields.topImageNone.addEventListener('change', toggleTopImage);
   fields.topImageHeader.addEventListener('change', toggleTopImage);

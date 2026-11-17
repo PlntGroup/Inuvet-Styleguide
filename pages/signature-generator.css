@@ -61,15 +61,18 @@
 }
 
 .sig-disclaimer-wrap,
-.sig-contact-hint-fields {
+.sig-contact-hint-fields,
+.sig-survey-fields {
   margin-top: var(--half-module);
 }
 
-.sig-contact-hint-check {
+.sig-contact-hint-check,
+.sig-survey-check {
   margin-top: var(--half-module);
 }
 
-.sig-contact-hint-fields .form-field:last-child {
+.sig-contact-hint-fields .form-field:last-child,
+.sig-survey-fields .form-field:last-child {
   margin-bottom: 0;
 }
 
@@ -79,6 +82,7 @@
 
 .sig-disclaimer-wrap.--hidden,
 .sig-contact-hint-fields.--hidden,
+.sig-survey-fields.--hidden,
 #personal-wrap.--hidden,
 .sig-header-wrap.--hidden,
 .sig-photo-wrap.--hidden {
