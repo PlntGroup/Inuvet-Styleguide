@@ -1934,6 +1934,9 @@
   .section-type.--v4.--ratio-16-9 { min-height: 0; aspect-ratio: 16 / 9; }
   /* 2:1 wie bei Hero V2 (z. B. im Satzspiegel --contained); mobil gilt das 60vh-Band */
   .section-type.--v4.--ratio-2-1 { min-height: 0; aspect-ratio: 2 / 1; }
+  /* An Texthöhe: so hoch wie der Inhalt, ohne Mindesthöhe (auch mobil). Zusammen mit dem Innenabstand
+     von __content (--module) ergibt das oben und unten je --module-2xl. */
+  .section-type.--v4.--fit-text { min-height: 0; padding-block: var(--module); }
   .section-type.--v4.--content-top { align-items: flex-start; }
   .section-type.--v4.--content-center { align-items: center; }
   .section-type.--v4.--content-bottom { align-items: flex-end; }
