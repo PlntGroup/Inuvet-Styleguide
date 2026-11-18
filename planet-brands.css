@@ -4179,6 +4179,25 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     max-width: 40rem;
     margin: 0;
   }
+  /* Große Screens: Überschrift links (Spalten 1–2), Absatz rechts (Spalten 3–4), unten bündig —
+     wie .collection-intro (E.3). Nur über volle Breite (direkt im .container), nicht in schmalen
+     Spalten (z. B. Testimonial featured) und nicht mit Aktion (.--action hat eigenes Raster). */
+  @media (min-width: 1100px) {
+    .container > .section-header:not(.--action):has(> .section-label-row + .section-header__body) {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      column-gap: var(--gutter);
+      align-items: end;
+    }
+    .container > .section-header:not(.--action):has(> .section-label-row + .section-header__body) > .section-label-row {
+      grid-column: 1 / 3;
+    }
+    .container > .section-header:not(.--action):has(> .section-label-row + .section-header__body) > .section-header__body {
+      grid-column: 3 / 5;
+      max-width: none;
+      margin-top: 0;
+    }
+  }
   /* Optionale Aktion (z. B. „Bilder anzeigen“): Desktop rechts, unten bündig zum Kopf; mobil darunter */
   .section-header.flow > .section-header__action { --flow-space: var(--half-module); }
   @media (min-width: 768px) {
