@@ -170,6 +170,7 @@
         <a href="#D7">D.7 Newsletter Signup</a>
         <a href="#D8">D.8 Cookie-Banner</a>
         <a href="#D9">D.9 Story-Leiste</a>
+        <a href="#D10">D.10 Preistabelle</a>
       </div>
 
       <div class="sg-nav-group">
@@ -5403,6 +5404,82 @@
       <p class="sg-caption">Horizontal scrollen · Bleed + Fade nur rechts · Default = dünner <code>--border-light</code>-Ring · <code>.--new</code> = Action-Ring + weißer Gap · Cat-Kreise ohne Bild via <code>data-cat</code>.</p>
     </section>
 
+
+    <section class="sg-section-v2 flow" id="D10">
+      <h2 class="section-label">D.10 — Preistabelle</h2>
+
+      <p><code>.price-table</code> · Pakete nebeneinander mit bündigen Zeilen (Kopf · Preis · Leistungen · Aktion) · eine Spalte hervorhebbar · Referenz: Inuvet Campus, Vetstarter für Praxen.</p>
+
+      <div class="rules">
+        <div class="rule"><h4>Aufbau</h4><p><code>.price-table</code> (Grid, Spalten über <code>.--cols-2</code> / <code>.--cols-3</code> (Default) / <code>.--cols-4</code>) → je Paket <code>__plan</code> mit <code>grid-template-rows: subgrid</code>, damit Preis, Leistungen und Buttons über alle Spalten auf einer Höhe stehen. Leistungen pro Paket in gleicher Anzahl und Reihenfolge.</p></div>
+        <div class="rule"><h4>Linien</h4><p>Unter dem Kopf <code>1px var(--border-active)</code>, zwischen den Zeilen <code>1px var(--border-light)</code>. Spalten ohne Gap, Innenabstand in den Zellen — die Linien laufen durch.</p></div>
+        <div class="rule"><h4>Hervorhebung</h4><p><code>__plan.--featured</code>: Fläche <code>--green-light</code>, optional Badge <code>.badge.--sale.price-table__badge</code> mittig auf der Oberkante. Höchstens eine Spalte. Nur auf weißer Section (auf Grün hell verschwindet die Fläche).</p></div>
+        <div class="rule"><h4>Mobil</h4><p>Unter 768 px Pakete untereinander, Abstand <code>--module</code>. Kein Subgrid.</p></div>
+      </div>
+
+      <table class="spec-table">
+        <tr><th><code>.price-table</code></th><td>Grid · <code>.--cols-2</code> / <code>.--cols-3</code> / <code>.--cols-4</code> · zentriert</td></tr>
+        <tr><th><code>__plan</code> / <code>.--featured</code></th><td>Spalte über 4 Zeilen (Subgrid) · hervorgehoben: <code>--green-light</code></td></tr>
+        <tr><th><code>__head</code> · <code>__name</code> · <code>__badge</code></th><td>Paketname <code>--text-m</code> (h3) · Linie unten <code>--border-active</code> · Badge absolut auf der Oberkante</td></tr>
+        <tr><th><code>__price</code> · <code>__amount</code> · <code>__unit</code></th><td>Preis <code>--text-l</code> fett · Einheit <code>--fg-muted</code></td></tr>
+        <tr><th><code>__features</code></th><td>Liste ohne Marker · Zeilen <code>calc(var(--base) * 0.75)</code> · Linie <code>--border-light</code></td></tr>
+        <tr><th><code>__action</code></th><td><code>.btn.--primary.--full</code></td></tr>
+        <tr><th><code>__note</code></th><td>Hinweis unter der Tabelle · <code>--text-sm</code>, <code>--fg-muted</code>, zentriert</td></tr>
+        <tr><th>Shopify</th><td>Section „Preistabelle“ · Blöcke „Paket“ (Name, Badge, Hervorheben, Preis, Einheit, Leistungen je Zeile, Button) · Hinweis unter der Tabelle · Stack-Settings A.7</td></tr>
+      </table>
+
+      <h3 class="sg-h3 --top">Demo</h3>
+      <div class="sg-demo --white">
+        <div class="flow">
+        <div class="price-table --cols-3">
+          <div class="price-table__plan" role="group" aria-label="Basis">
+            <div class="price-table__head">
+              <h3 class="price-table__name">Basis</h3>
+            </div>
+            <div class="price-table__price">
+              <span class="price-table__amount">199 €</span>
+              <span class="price-table__unit">pro Monat</span>
+            </div>
+            <ul class="price-table__features">
+              <li>1 Lizenz</li>
+              <li>monatlich kündbar</li>
+            </ul>
+            <div class="price-table__action"><a class="btn --primary --full" href="#D10">Erstgespräch buchen</a></div>
+          </div>
+          <div class="price-table__plan --featured" role="group" aria-label="Team">
+            <div class="price-table__head">
+              <span class="badge --sale price-table__badge">Beliebt</span>
+              <h3 class="price-table__name">Team</h3>
+            </div>
+            <div class="price-table__price">
+              <span class="price-table__amount">399 €</span>
+              <span class="price-table__unit">pro Monat</span>
+            </div>
+            <ul class="price-table__features">
+              <li>3 Lizenzen</li>
+              <li>monatlich kündbar</li>
+            </ul>
+            <div class="price-table__action"><a class="btn --primary --full" href="#D10">Erstgespräch buchen</a></div>
+          </div>
+          <div class="price-table__plan" role="group" aria-label="Klinik">
+            <div class="price-table__head">
+              <h3 class="price-table__name">Klinik</h3>
+            </div>
+            <div class="price-table__price">
+              <span class="price-table__amount">749,90 €</span>
+              <span class="price-table__unit">pro Monat</span>
+            </div>
+            <ul class="price-table__features">
+              <li>7 Lizenzen</li>
+              <li>monatlich kündbar</li>
+            </ul>
+            <div class="price-table__action"><a class="btn --primary --full" href="#D10">Erstgespräch buchen</a></div>
+          </div>
+        </div>
+        <p class="price-table__note">Je Paket individuelle Zusatzlizenzen möglich. Eine Lizenz entspricht einer teilnehmenden Person.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- ══════════════════════════════════════
          E — SEITEN-VORLAGEN

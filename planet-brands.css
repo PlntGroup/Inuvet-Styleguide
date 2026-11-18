@@ -4893,6 +4893,94 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
 
 /* ═══════════════════════════════════════════
+   PREISTABELLE (D.10)
+   Pakete nebeneinander, Zeilen über alle Spalten bündig (Subgrid):
+   Kopf · Preis · Leistungen · Aktion. Eine Spalte hervorhebbar (.--featured).
+   Linien durchgehend: Spalten ohne Gap, Innenabstand in den Zellen.
+   Mobil: Pakete untereinander.
+   ═══════════════════════════════════════════ */
+  .price-table {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+    text-align: center;
+  }
+  .price-table.--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .price-table.--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .price-table__plan {
+    grid-row: span 4;
+    display: grid;
+    grid-template-rows: subgrid;
+    min-width: 0;
+  }
+  .price-table__plan.--featured { background: var(--green-light); }
+  .price-table__head {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--module) var(--half-module) var(--half-module);
+    border-bottom: 1px solid var(--border-active);
+  }
+  .price-table__name {
+    margin: 0;
+    font-size: var(--text-m);
+    line-height: var(--lh-h3);
+  }
+  /* Badge sitzt mittig auf der Oberkante der Spalte */
+  .price-table__badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .price-table__price {
+    padding: var(--half-module);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .price-table__amount {
+    display: block;
+    font-size: var(--text-l);
+    font-weight: 700;
+    line-height: var(--lh-h2);
+  }
+  .price-table__unit {
+    display: block;
+    color: var(--fg-muted);
+  }
+  .price-table__features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .price-table__features > li {
+    margin: 0;
+    padding: calc(var(--base) * 0.75) var(--half-module);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .price-table__action {
+    padding: var(--half-module);
+  }
+  .price-table__note {
+    max-width: calc(var(--module) * 20);
+    margin-inline: auto;
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    text-align: center;
+  }
+  @media (max-width: 767px) {
+    .price-table {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: none;
+      row-gap: var(--module);
+    }
+    .price-table__plan {
+      grid-row: auto;
+      grid-template-rows: none;
+    }
+  }
+
+/* ═══════════════════════════════════════════
    TESTIMONIALS
    ═══════════════════════════════════════════ */
 
