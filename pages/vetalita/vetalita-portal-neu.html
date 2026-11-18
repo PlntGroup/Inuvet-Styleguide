@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261119p">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261119r">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -84,6 +84,14 @@
     </a>
   </div>
   <div class="nav-right">
+    <!-- Sprache (System-Dropdown .nav-item.--end wie die Länderauswahl, D.1); Kürzel und aktiver Eintrag per initLangSwitch() -->
+    <div class="nav-item --end portal-lang">
+      <a href="#" class="nav-item__trigger" aria-haspopup="true" aria-expanded="false" aria-label="Sprache" onclick="return false;"><span data-lang-label></span><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></a>
+      <div class="nav-item__dropdown" role="menu">
+        <a href="vetalita-portal-neu.html" role="menuitem" lang="de" data-lang="de" onclick="return switchLang(this)">Deutsch</a>
+        <a href="vetalita-portal-neu-it.html" role="menuitem" lang="it" data-lang="it" onclick="return switchLang(this)">Italiano</a>
+      </div>
+    </div>
     <!-- Nur Startseite (body.--portal-start): Einstieg in die Vorschau mit Beispieldaten -->
     <div class="nav-item portal-nav-demo"><a href="#" class="nav-item__trigger" onclick="enterPreview(); return false;"><span class="portal-nav-demo__short">Demo ansehen</span><span class="portal-nav-demo__long">Demo mit Beispieldaten ansehen</span></a></div>
     <a href="#" class="badge --pill --free nav-balance" id="navBalance" onclick="goToOverview(); return false;" title="Ihre verfügbare Provision" hidden></a>
@@ -107,6 +115,9 @@
     <a href="#" data-nav="rewards" onclick="closeMobile(); goRewards(); return false;">Prämien</a>
     <a href="#" data-nav="products" id="mobileProducts" onclick="closeMobile(); goProducts(); return false;" hidden>Produkte</a>
     <a href="#" data-nav="how" onclick="closeMobile(); goHow(); return false;">So funktioniert's</a>
+    <a href="#" class="portal-lang-head" onclick="return false;">Sprache</a>
+    <a href="vetalita-portal-neu.html" class="--indent" lang="de" data-lang="de" onclick="return switchLang(this)">Deutsch</a>
+    <a href="vetalita-portal-neu-it.html" class="--indent" lang="it" data-lang="it" onclick="return switchLang(this)">Italiano</a>
     <a href="#" id="mobileLogout" onclick="closeMobile(); logout(); return false;" hidden>Abmelden</a>
   </div>
 </div>
@@ -255,7 +266,7 @@
 
 <script src="vetalita-countries.js?v=20261117zq"></script>
 <script src="vetalita-rechtliches.js?v=20261117zq"></script>
-<script src="vetalita-produkte.js?v=20261117zq"></script>
+<script src="vetalita-produkte.js?v=20261118a"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" defer></script>
 <script>
 /* ═══════════════════════════════════════
@@ -3752,6 +3763,23 @@ function initPdpStickyCta() {
   PDP_STICKY_MQ.onchange = sync;
   sync();
 }
+
+/* Sprache: zwei Dateien (DE = vetalita-portal-neu.html, IT = vetalita-portal-neu-it.html, aus der Zuordnung erzeugt).
+   Beim Wechsel bleiben Parameter (?register=…) und Ansicht (#…) erhalten. */
+function switchLang(a) {
+  if (a.dataset.lang === document.documentElement.lang) return false;
+  location.href = a.getAttribute('href') + location.search + location.hash;
+  return false;
+}
+function initLangSwitch() {
+  const lang = document.documentElement.lang;
+  document.querySelectorAll('[data-lang-label]').forEach(el => { el.textContent = lang.toUpperCase(); });
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    if (el.dataset.lang === lang) el.setAttribute('aria-current', el.classList.contains('--indent') ? 'page' : 'true');
+    else el.removeAttribute('aria-current');
+  });
+}
+initLangSwitch();
 
 function initHeaderLive() {
   const header = document.querySelector('.shopify-section--sticky-header');

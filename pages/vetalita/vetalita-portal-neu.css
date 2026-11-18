@@ -867,3 +867,10 @@ body:has(.pdp__sticky-cta.--visible) .reg-badge { bottom: calc(var(--module) * 2
 
 /* Startseite „Viele Prämien warten auf Sie“: reine Übersicht, Kacheln ohne Link */
 .portal-start-premiums .tile.--product { cursor: default; }
+
+/* Sprachauswahl: auf der Startseite auch mobil sichtbar (dort gibt es kein Menü) */
+@media (max-width: 767px) {
+  body.--portal-start .site-nav .nav-right > .portal-lang { display: flex; }
+  /* ohne Pfeil, damit Kürzel + „Demo ansehen“ in die rechte Spalte passen und das Logo mittig bleibt */
+  body.--portal-start .portal-lang .nav-item__trigger .material-icons { display: none; }
+}

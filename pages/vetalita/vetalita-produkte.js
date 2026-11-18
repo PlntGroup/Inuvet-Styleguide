@@ -1,6 +1,6 @@
 /* vetalita-produkte.js — Fachinfo der Vetalità-Produkte für das Provisionsportal (nicht käuflich).
-   Quelle: Vetalità-Shoptexte + Salesforce Knowledge (Produkte). Je Sprache ein Block: de (vorübergehend), it (folgt nach fachlicher Freigabe).
-   Fehlt it, zeigt das Portal de. Prüfhinweise: _temp-de/produkte-review.md (nicht ausliefern). */
+   Quelle: Vetalità-Shoptexte + Salesforce Knowledge (Produkte). Je Sprache ein Block: de und it (it = Übersetzung aus de vom 18.11.2026,
+   tierärztliche Prüfung durch Muttersprachler ausstehend). Fehlt it, zeigt das Portal de. Prüfhinweise: _temp-de/produkte-review.md (nicht ausliefern). */
 window.VETALITA_PRODUCTS = [
  {
   "handle": "inzym-polvere",
@@ -61,7 +61,61 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Inzym Pulver"
   },
-  "it": null
+  "it": {
+   "name": "Inzym polvere",
+   "kategorie": "Pancreas",
+   "tierarten": [
+    "cane",
+    "gatto"
+   ],
+   "kurz": "Enzimi digestivi stabili in ambiente acido (lipasi, amilasi, proteasi) da funghi del riso, più vitamina B12, in caso di insufficienza pancreatica esocrina.",
+   "fuer_tierarzt": "Inzym fornisce lipasi da Rhizopus oryzae e amilasi e proteasi da Aspergillus oryzae, integrate con vitamina B12 (25 mg/kg) e polvere di carota come fonte di fibre. Secondo il produttore, gli enzimi fungini sono stabili in ambiente acido, possono iniziare la scissione già nello stomaco e non richiedono un tempo di ammollo nel cibo. Poiché il prodotto non contiene componenti di origine animale, è un’opzione per i pazienti con EPI affetti da allergia alimentare, per i quali la pancreatina suina non è adatta. Impiego in caso di insufficienza pancreatica esocrina, per alleggerire il pancreas in caso di pancreatite cronica e in caso di cattiva digestione, anche negli animali anziani. I contenuti enzimatici in mg/kg non sono direttamente confrontabili con quelli dei preparati a base di pancreatina.",
+   "einsatz": [
+    "Insufficienza pancreatica esocrina (EPI)",
+    "Alleggerimento del pancreas in caso di pancreatite cronica",
+    "Cattiva digestione, anche negli animali anziani",
+    "Pazienti con EPI e allergia alimentare (nessun componente di origine animale)",
+    "EPI con comorbidità diabete mellito"
+   ],
+   "hinweise": [
+    "Con il cibo secco mescolare con un po’ d’acqua o con cibo umido; in alternativa aspirare con una siringa e somministrare direttamente in bocca.",
+    "Passaggio da un altro preparato enzimatico: somministrare entrambi i preparati in parallelo al dosaggio normale e ridurre gradualmente quello precedente nell’arco di 3–4 giorni.",
+    "Cuccioli solo dopo lo svezzamento.",
+    "Somministrazione possibile in gestazione e lattazione, nonché in caso di insufficienza renale, epilessia e diabete.",
+    "Nessuna controindicazione nota; possibile intolleranza alla carota.",
+    "In caso di sovradosaggio marcato sono possibili: meteorismo, dolori addominali, stitichezza o diarrea."
+   ],
+   "faq": [
+    {
+     "frage": "Il mio cane dovrà prendere la polvere per sempre?",
+     "antwort": "Inzym è adatto alla somministrazione continuativa, ma può essere utilizzato anche a cicli per alleggerire il pancreas. Molti animali all’inizio necessitano di una dose più alta, in seguito spesso di meno."
+    },
+    {
+     "frage": "Perché devo suddividere la polvere su più pasti?",
+     "antwort": "I pazienti con EPI dovrebbero ricevere più pasti piccoli; gli enzimi devono arrivare nell’intestino insieme al cibo per scindere lì i nutrienti. Si consigliano tre pasti di uguale quantità al giorno."
+    },
+    {
+     "frage": "Il mio animale ha un’allergia alimentare – Inzym è comunque adatto?",
+     "antwort": "Sì, gli enzimi provengono da funghi del riso anziché da pancreas suino; non contiene componenti di origine animale. Possono verificarsi intolleranze alla carota."
+    },
+    {
+     "frage": "Le feci sono ancora molli – posso darne di più?",
+     "antwort": "A seconda del fabbisogno, la dose può essere aumentata fino al triplo del valore indicativo. Il fabbisogno aumenta quanto minore è la funzionalità residua del pancreas, quanto peggiori sono le condizioni dell’intestino tenue e quanto maggiore è il contenuto di grassi del cibo."
+    },
+    {
+     "frage": "Come passo dal preparato enzimatico che usiamo ora?",
+     "antwort": "Il passaggio dovrebbe avvenire nell’arco di 3–5 giorni: somministrare entrambi i preparati al dosaggio normale e ridurre gradualmente il preparato precedente nell’arco di 3–4 giorni."
+    },
+    {
+     "frage": "Può esserci troppa vitamina B12 se il mio cane riceve già un alimento dietetico?",
+     "antwort": "Secondo il produttore no: la vitamina B12 è idrosolubile e l’eccesso viene eliminato con le urine."
+    },
+    {
+     "frage": "Inzym ha effetti collaterali?",
+     "antwort": "Solo in caso di sovradosaggio marcato possono comparire meteorismo, dolori addominali, stitichezza o diarrea."
+    }
+   ]
+  }
  },
  {
   "handle": "floracomplex-2",
@@ -121,7 +175,60 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "FloraComplex² Pulver"
   },
-  "it": null
+  "it": {
+   "name": "FloraComplex² polvere",
+   "kategorie": "Gastrointestinale",
+   "tierarten": [
+    "cane",
+    "gatto"
+   ],
+   "kurz": "Probiotico con Enterococcus faecium e Lactobacillus acidophilus più inulina per stabilizzare la flora intestinale.",
+   "fuer_tierarzt": "FloraComplex² contiene due stabilizzatori della flora intestinale, ciascuno con 9×10^11 UFC/kg (Enterococcus faecium DSM 10663/NCIMB 10415, Lactobacillus acidophilus CECT 4529), e inulina come prebiotico. Impiego per stabilizzare la flora intestinale in caso di disbiosi, durante e dopo una terapia antibiotica, in presenza di parassiti intestinali come le giardie o dopo lo sverminamento, in caso di diarrea cronica e di cambio di alimentazione. Entrambi i ceppi sono Gram-positivi; la polvere non deve essere conservata in frigorifero ed è insapore. Secondo il produttore è adatta anche ad animali allergici e diabetici; il lattosio è presente solo in tracce come sostanza veicolante.",
+   "einsatz": [
+    "Ricostituzione della flora intestinale durante e dopo una terapia antibiotica",
+    "Parassiti intestinali (ad es. giardie), dopo lo sverminamento",
+    "Disbiosi, diarrea cronica",
+    "Cambio di alimentazione",
+    "Come supporto nei pazienti allergici e con patologie cutanee croniche"
+   ],
+   "hinweise": [
+    "Contiene tracce di lattosio (sostanza veicolante di E. faecium); secondo il produttore è comunque adatto agli animali allergici.",
+    "Animali in gestazione: integrazione possibile.",
+    "Cuccioli solo quando mangiano autonomamente (circa 4ª–6ª settimana di vita).",
+    "Non richiede refrigerazione.",
+    "Utilizzabile nei pazienti con IBD e dopo colectomia."
+   ],
+   "faq": [
+    {
+     "frage": "La polvere va conservata in frigorifero?",
+     "antwort": "No, FloraComplex² non deve essere conservato in frigorifero."
+    },
+    {
+     "frage": "Il mio animale non tollera il lattosio – può prenderlo comunque?",
+     "antwort": "Il lattosio è presente solo in tracce come sostanza veicolante per Enterococcus faecium; il produttore classifica quindi il prodotto come adatto agli animali allergici."
+    },
+    {
+     "frage": "Da quando può prenderlo il mio cucciolo?",
+     "antwort": "Non appena il cucciolo mangia autonomamente, a seconda di quando inizia l’alimentazione complementare circa dalla 4ª–6ª settimana di vita."
+    },
+    {
+     "frage": "Il mio gatto è molto schizzinoso – si sente il sapore della polvere?",
+     "antwort": "La polvere è insapore e non contiene aromi; secondo il produttore l’accettazione è molto buona."
+    },
+    {
+     "frage": "Posso suddividere la quantità tra mattina e sera?",
+     "antwort": "Sì, la quantità giornaliera può essere somministrata in un’unica volta oppure, ad es., metà al mattino e metà alla sera."
+    },
+    {
+     "frage": "La mia cagna gravida può prenderlo?",
+     "antwort": "Sì, FloraComplex² può essere somministrato agli animali in gestazione."
+    },
+    {
+     "frage": "Aiuta anche in caso di giardie?",
+     "antwort": "FloraComplex² viene impiegato in presenza di parassiti intestinali come le giardie come supporto per stabilizzare la flora intestinale; non sostituisce una terapia antiparassitaria."
+    }
+   ]
+  }
  },
  {
   "handle": "vomisan",
@@ -181,7 +288,60 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "VomiSan Tabletten"
   },
-  "it": null
+  "it": {
+   "name": "VomiSan compresse",
+   "kategorie": "Gastrointestinale",
+   "tierarten": [
+    "cane",
+    "gatto"
+   ],
+   "kurz": "Compressa con bucce di psillio, altea, camomilla e aneto per proteggere la mucosa gastrica ed esofagea, senza inibire la secrezione acida.",
+   "fuer_tierarzt": "Le bucce di psillio si rigonfiano fortemente e formano una pellicola mucosa sulla mucosa gastrica ed esofagea; l’altea (tintura 200.000 mg/kg) sostiene questa barriera, camomilla e aneto hanno un effetto calmante e rilassante sulla muscolatura del tratto gastrointestinale. VomiSan non interferisce con la produzione di succo gastrico. Situazioni tipiche sono la terapia con analgesici o antibiotici, i disturbi gastrici da stress, l’iperacidità con Early-Morning-Vomiting, il reflusso (“schiocchi delle labbra”) e, come supporto, la gastrite cronica e la gastrite da erba, da neve e da acqua di mare. La matrice della compressa contiene proteine animali (latte, pollame/bovino, uova).",
+   "einsatz": [
+    "Protezione gastrica durante una terapia con analgesici o antibiotici",
+    "Iperacidità, sindrome da Early-Morning-Vomiting, reflusso",
+    "Come supporto in caso di gastrite cronica, gastrite da neve e da acqua di mare",
+    "Animali che mangiano erba, disturbi gastrici da stress, vomito cronico",
+    "Come supporto contro la nausea nei pazienti nefropatici ben stabilizzati"
+   ],
+   "hinweise": [
+    "Almeno 1 ora di distanza da altri farmaci; in caso di chemioterapia somministrare 1 ora prima.",
+    "Contiene latte e prodotti lattiero-caseari, pollame/bovino e uova: non in caso di intolleranza al lattosio, allergia alle uova o al pollame; contiene riso e amido di mais, assenza di glutine non garantita.",
+    "Gestazione: non raccomandato (nessun dato fondato sull’altea); la decisione spetta al veterinario.",
+    "Cuccioli solo dopo lo svezzamento (almeno 8–12 settimane), adeguare la dose.",
+    "In caso di intolleranze alimentari sono possibili reazioni crociate."
+   ],
+   "faq": [
+    {
+     "frage": "Devo dare la compressa con il cibo?",
+     "antwort": "No, VomiSan va somministrato almeno 30 minuti prima del pasto, a stomaco vuoto, affinché la pellicola mucosa possa formarsi sulla mucosa."
+    },
+    {
+     "frage": "Il mio cane prende antidolorifici o un antibiotico – può prendere anche VomiSan?",
+     "antwort": "Sì, è un tipico ambito di impiego. Rispetto ad altri farmaci va mantenuta una distanza di almeno 1 ora."
+    },
+    {
+     "frage": "Il mio cane vomita schiuma gialla al mattino – può aiutare?",
+     "antwort": "VomiSan viene impiegato in caso di iperacidità ed Early-Morning-Vomiting; le mucillagini si depositano sulla mucosa proteggendola, senza modificare la produzione di acido."
+    },
+    {
+     "frage": "Il mio cane ha un’allergia alimentare – può prendere VomiSan?",
+     "antwort": "Le compresse contengono latte, pollame/bovino e uova, oltre a riso e amido di mais. In caso di intolleranza a questi componenti il prodotto non è adatto; sono possibili reazioni crociate."
+    },
+    {
+     "frage": "La mia cagna è gravida – può prendere VomiSan?",
+     "antwort": "Il produttore non raccomanda VomiSan in gestazione, poiché sull’altea non sono disponibili dati fondati; la decisione spetta al veterinario."
+    },
+    {
+     "frage": "Il mio gatto non prende le compresse – cosa posso fare?",
+     "antwort": "La compressa può essere frantumata."
+    },
+    {
+     "frage": "Il mio cane ha mangiato l’intera confezione – è pericoloso?",
+     "antwort": "Secondo il produttore l’animale va osservato attentamente e portato dal veterinario in caso di anomalie; nelle fonti non sono disponibili dati specifici sulla tossicità."
+    }
+   ]
+  }
  },
  {
   "handle": "vesicat-pulver",
@@ -232,7 +392,51 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Vesicat Pulver"
   },
-  "it": null
+  "it": {
+   "name": "Vesicat polvere",
+   "kategorie": "Vie urinarie",
+   "tierarten": [
+    "gatto"
+   ],
+   "kurz": "Polvere per gatti con D-mannosio, N-acetilglucosammina, verga d’oro, ortica, melissa e L-triptofano in caso di vescica sensibile.",
+   "fuer_tierarzt": "Il D-mannosio (96.700 mg/kg) dovrebbe ostacolare l’adesione dei batteri all’urotelio, la N-acetil-D-glucosammina sostiene la ricostituzione dello strato di glicosaminoglicani della mucosa vescicale. Verga d’oro, ortica e Polyporus umbellatus favoriscono la diuresi e quindi il lavaggio delle vie urinarie; melissa e L-triptofano agiscono sulla componente di stress della cistite idiopatica felina. Completano la formula vitamina C, zinco, vitamine del gruppo B, curcuma e Coriolus versicolor. Vesicat non modifica il pH urinario ed è adatto alla somministrazione continuativa.",
+   "einsatz": [
+    "Cistite idiopatica felina (FIC), anche associata a stress",
+    "Come supporto in caso di cistite batterica",
+    "Cistite concomitante dopo la risoluzione di un’ostruzione uretrale",
+    "Supporto in caso di nefrite",
+    "Somministrazione a lungo termine nei gatti con vescica sensibile"
+   ],
+   "hinweise": [
+    "L’ostruzione uretrale è un’emergenza e deve essere risolta prima dal veterinario (in anestesia); Vesicat solo come supporto per la cistite.",
+    "Non modifica il pH urinario.",
+    "Adatto alla somministrazione continuativa.",
+    "Polvere: finora nessuna allergia/intolleranza nota.",
+    "Esclusivamente per gatti; per i conigli il produttore rimanda a un prodotto separato."
+   ],
+   "faq": [
+    {
+     "frage": "Il mio gatto mangia un alimento per calcoli urinari – Vesicat modifica il pH?",
+     "antwort": "No, Vesicat non modifica il pH delle urine."
+    },
+    {
+     "frage": "Il mio gatto spinge ma non esce urina – posso dare Vesicat?",
+     "antwort": "L’ostruzione uretrale è un’emergenza potenzialmente letale e deve essere risolta immediatamente dal veterinario. Successivamente Vesicat può essere impiegato come supporto in caso di cistite."
+    },
+    {
+     "frage": "Per quanto tempo posso dare Vesicat?",
+     "antwort": "Vesicat è adatto alla somministrazione continuativa."
+    },
+    {
+     "frage": "Perché in un prodotto per la vescica ci sono piante calmanti?",
+     "antwort": "Molte cistiti nei gatti sono associate a stress (FIC); melissa e L-triptofano dovrebbero aiutare il gatto a ritrovare la calma."
+    },
+    {
+     "frage": "Quanta polvere deve prendere il mio gatto?",
+     "antwort": "Una volta al giorno: sotto 2,5 kg 1, 2,5–5 kg 2 e oltre 5 kg 4 misurini leggermente colmi."
+    }
+   ]
+  }
  },
  {
   "handle": "otysan",
@@ -292,7 +496,60 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Otysan Tropfen"
   },
-  "it": null
+  "it": {
+   "name": "Otysan fluido",
+   "kategorie": "Orecchie",
+   "tierarten": [
+    "cane",
+    "gatto",
+    "piccoli animali"
+   ],
+   "kurz": "Gocce con miele di Manuka (MGO 514+), calendula e acido lattico (pH 2,8) per condotto uditivo, padiglione auricolare e pieghe cutanee.",
+   "fuer_tierarzt": "Otysan combina miele di Manuka (MGO 514+/UMF 15+) con proprietà antibatteriche e antimicotiche, estratto di calendula per lenire la pelle irritata e acido lattico, che abbassa il pH a 2,8 creando così un ambiente sfavorevole per Malassezia e batteri; l’eccipiente è la glicerina. Impiego in caso di orecchie infiammate o pruriginose, anche in caso di otite batterica o da Malassezia, e come cura a lungo termine nelle otiti allergiche recidivanti. Inoltre per la cura delle pieghe cutanee irritate (labbra, vulva, spazi interdigitali), in caso di paronichia e di necrosi del margine auricolare. Non utilizzare in caso di lesione della membrana timpanica.",
+   "einsatz": [
+    "Otite esterna, anche batterica o da Malassezia",
+    "Otiti allergiche recidivanti (cura a lungo termine)",
+    "Dermatite delle pieghe: labbra, vulva, spazi interdigitali",
+    "Paronichia, necrosi del margine auricolare",
+    "Prurito all’esterno e all’interno dell’orecchio"
+   ],
+   "hinweise": [
+    "Non utilizzare in caso di lesione della membrana timpanica.",
+    "Su lesioni aperte o ulcere può bruciare leggermente.",
+    "Non in caso di allergia alla propoli (tracce nel miele di Manuka non escludibili) o di allergia nota agli ingredienti.",
+    "Nei diabetici valutare l’impiego (quota di miele)."
+   ],
+   "faq": [
+    {
+     "frage": "Posso usare Otysan se il timpano potrebbe essere lesionato?",
+     "antwort": "No, in caso di lesione del timpano Otysan non deve essere utilizzato; non è previsto per questo uso."
+    },
+    {
+     "frage": "Il mio cane ha continuamente otiti a causa della sua allergia – posso usare Otysan in modo continuativo?",
+     "antwort": "Sì, Otysan può essere impiegato come cura a lungo termine nelle otiti di origine allergica."
+    },
+    {
+     "frage": "Brucia nell’orecchio?",
+     "antwort": "Sulla pelle integra di norma no; in presenza di ulcere o lesioni aperte può bruciare un po’."
+    },
+    {
+     "frage": "Quanto ne metto nell’orecchio?",
+     "antwort": "Gatti e piccoli animali 1–2 colpi di pompa al giorno, cani a seconda della taglia 2 (< 10 kg), 3–4 (10–20 kg) o 5–6 (> 20 kg) colpi di pompa."
+    },
+    {
+     "frage": "Posso usare Otysan anche per le pieghe delle labbra?",
+     "antwort": "Sì, Otysan è previsto anche per la cura di pieghe cutanee irritate, come le pieghe labiali, vulvari o interdigitali."
+    },
+    {
+     "frage": "Il mio cane è diabetico – il miele è un problema?",
+     "antwort": "Secondo il produttore, nei diabetici è opportuno consultare il veterinario; nelle fonti non sono disponibili dati sull’assorbimento sistemico."
+    },
+    {
+     "frage": "Quanto dura un flacone?",
+     "antwort": "Una confezione da 20 g corrisponde a circa 180 colpi di pompa."
+    }
+   ]
+  }
  },
  {
   "handle": "manukalind-spray",
@@ -354,7 +611,62 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "ManukaLind Spray"
   },
-  "it": null
+  "it": {
+   "name": "ManukaLind spray",
+   "kategorie": "Pelle",
+   "tierarten": [
+    "cane",
+    "gatto",
+    "grandi animali",
+    "piccoli animali"
+   ],
+   "kurz": "Spray con miele di Manuka (MGO 514+), consolida maggiore e olio di lavanda per zone difficili da raggiungere, estese o sensibili al contatto.",
+   "fuer_tierarzt": "Lo spray contiene miele di Manuka (MGO 514+/UMF 15+, ca. 514 mg di metilgliossale/kg) con proprietà antibatteriche, estratto di consolida maggiore (allantoina) a supporto della rigenerazione cutanea e olio di lavanda come repellente per insetti e deterrente contro il leccamento; la base è la glicerina. La forma spray è adatta per gli spazi interdigitali, le zone estese e le ferite che l’animale non lascia toccare; l’erogatore funziona anche capovolto (addome, zampe, pieghe). Dopo un’accurata pulizia è utilizzabile anche su ferite purulente e ascessi da morso; secondo il produttore anche come soluzione di lavaggio. Il miele contenuto non è un miele medicale (sterilizzato con raggi gamma).",
+   "einsatz": [
+    "Ferite superficiali e a lenta guarigione, ferite/suture riaperte dal leccamento",
+    "Hot spot, eczemi, dermatiti",
+    "Ascessi dopo un’accurata pulizia (ad es. ferite da morso)",
+    "Zone difficili da raggiungere: spazi interdigitali, addome, pieghe cutanee",
+    "Protezione dalle mosche, ad es. in caso di eczema del margine auricolare"
+   ],
+   "hinweise": [
+    "Non utilizzare in caso di allergia agli ingredienti (ad es. oli essenziali).",
+    "Negli animali sensibili agli oli essenziali può bruciare.",
+    "I diabetici non dovrebbero ingerire il prodotto; impiego previa valutazione del veterinario.",
+    "Cagne in lattazione: cautela nel trattamento dei capezzoli – i cuccioli non devono ingerire residui consistenti (rischio di diarrea).",
+    "Animali destinati alla produzione di alimenti: tempo di sospensione di 7 giorni per latte e carne."
+   ],
+   "faq": [
+    {
+     "frage": "È un problema se il mio cane lo lecca?",
+     "antwort": "Secondo il produttore il leccamento è innocuo; l’olio di lavanda rende inoltre il leccamento poco attraente."
+    },
+    {
+     "frage": "Posso usare lo spray sul mio gatto nonostante gli oli essenziali?",
+     "antwort": "Sì, per uso esterno ManukaLind secondo il produttore è ben tollerato dai gatti; finora non sono note reazioni allergiche."
+    },
+    {
+     "frage": "Il pelo resta appiccicoso?",
+     "antwort": "ManukaLind è minimamente appiccicoso, ma non paragonabile al miele puro."
+    },
+    {
+     "frage": "Posso spruzzarlo su una ferita purulenta?",
+     "antwort": "Sì, dopo un’accurata pulizia della ferita; particolarmente adatto in caso di ascessi da morso."
+    },
+    {
+     "frage": "È miele medicale?",
+     "antwort": "No. Il miele medicale viene trattato con raggi gamma, il che secondo il produttore potrebbe compromettere l’azione enzimatica."
+    },
+    {
+     "frage": "Il mio cane è diabetico – posso usare lo spray?",
+     "antwort": "Non sono note segnalazioni di aumento della glicemia dopo l’applicazione esterna; l’ingestione orale va evitata. La decisione spetta al veterinario."
+    },
+    {
+     "frage": "Spray o pomata – cosa è meglio?",
+     "antwort": "Lo spray è adatto per zone estese, difficili da raggiungere o sensibili al contatto, la pomata per l’applicazione mirata, ad es. in cavità ascessuali o nei sacchi anali."
+    }
+   ]
+  }
  },
  {
   "handle": "manukalind-salbe",
@@ -417,7 +729,63 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "ManukaLind Salbe"
   },
-  "it": null
+  "it": {
+   "name": "ManukaLind Pomata",
+   "kategorie": "Pelle",
+   "tierarten": [
+    "cane",
+    "gatto",
+    "grandi animali",
+    "piccoli animali"
+   ],
+   "kurz": "Pomata con miele di Manuka (MGO 514+), consolida maggiore, olio di lavanda e di timo per ferite, hot spot, eczemi e ascessi.",
+   "fuer_tierarzt": "La pomata combina miele di Manuka (MGO 514+/UMF 15+) con proprietà antibatteriche, estratto di consolida maggiore con allantoina a supporto della rigenerazione cutanea e dell’irrorazione sanguigna locale, e oli di lavanda e timo, che tengono lontane mosche e zanzare e, grazie al loro sapore, inibiscono il leccamento; la base è il macrogol. Impiego in caso di ferite chirurgiche, infette o a lenta guarigione, deiscenza della sutura, ascessi (morso, sacchi anali, mascella), hot spot, eczemi e paronichia, nonché nel cavallo, tra l’altro, in caso di dermatite della pastoia, marcescenza del fettone e ascessi dello zoccolo/dell’unghione. I sacchi anali possono essere trattati direttamente; diluita con NaCl, la pomata può essere utilizzata come soluzione di lavaggio. Il miele contenuto non è un miele medicale (sterilizzato con raggi gamma).",
+   "einsatz": [
+    "Ferite chirurgiche, infette o a lenta guarigione; deiscenza della sutura",
+    "Ascessi (morso, sacchi anali, mascella/cavità orale)",
+    "Hot spot, eczemi, paronichia",
+    "Eczema/necrosi del margine auricolare, protezione dalle mosche",
+    "Cavallo: dermatite della pastoia, marcescenza del fettone, ascesso dello zoccolo/dell’unghione"
+   ],
+   "hinweise": [
+    "Non utilizzare in caso di allergia agli ingredienti (oli essenziali: lavanda, timo).",
+    "Negli animali sensibili agli oli essenziali può bruciare.",
+    "I diabetici non dovrebbero ingerire la pomata; impiego previa valutazione del veterinario.",
+    "Cagne in lattazione: cautela nel trattamento dei capezzoli – i cuccioli non devono ingerire residui consistenti di pomata (rischio di diarrea).",
+    "Enucleazione: applicazione possibile nell’orbita lasciata aperta, non in caso di enucleazione sterile con chiusura completa.",
+    "Animali destinati alla produzione di alimenti: tempo di sospensione di 7 giorni per latte e carne."
+   ],
+   "faq": [
+    {
+     "frage": "Il mio cane può leccare la pomata?",
+     "antwort": "Secondo il produttore leccare e ingerire la pomata è innocuo; gli oli di lavanda e timo rendono inoltre il leccamento poco attraente."
+    },
+    {
+     "frage": "Posso applicare la pomata nel sacco anale?",
+     "antwort": "Sì, ManukaLind Pomata è adatta al trattamento dei sacchi anali e può essere applicata direttamente."
+    },
+    {
+     "frage": "La pomata è adatta ai gatti?",
+     "antwort": "Sì, per uso esterno ManukaLind secondo il produttore è ben tollerato dai gatti nonostante gli oli essenziali; finora non sono note reazioni allergiche."
+    },
+    {
+     "frage": "Posso usare la pomata anche su ferite purulente?",
+     "antwort": "Sì, dopo un’accurata pulizia della ferita; particolarmente adatta in caso di ascessi da morso."
+    },
+    {
+     "frage": "La mia cagna allatta ancora – posso trattarle i capezzoli con la pomata?",
+     "antwort": "Sì, ma con cautela: i cuccioli non dovrebbero ingerire troppi residui di pomata, poiché ciò può causare diarrea."
+    },
+    {
+     "frage": "Il mio cane è diabetico – si può comunque usare la pomata?",
+     "antwort": "Non sono note segnalazioni di aumento della glicemia dopo l’applicazione; l’ingestione orale va evitata. La decisione spetta al veterinario."
+    },
+    {
+     "frage": "Posso usare la pomata anche sul cavallo o sulla mucca?",
+     "antwort": "Sì; negli animali destinati alla produzione di alimenti vale un tempo di sospensione di 7 giorni per latte e carne."
+    }
+   ]
+  }
  },
  {
   "handle": "hypolene",
@@ -478,7 +846,61 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Hypolene Pellets"
   },
-  "it": null
+  "it": {
+   "name": "Hypolene pellet",
+   "kategorie": "Articolazioni",
+   "tierarten": [
+    "cane"
+   ],
+   "kurz": "Pellet articolari per cani con cozza dalle labbra verdi (Gonex), glucosamina, condroitina, acido ialuronico, curcuma e oli omega-3.",
+   "fuer_tierarzt": "Il componente principale è l’estratto di cozza dalle labbra verdi (Perna canaliculus, qualità Gonex, 60.000 mg/kg) con glicosaminoglicani, acidi grassi omega-3 e minerali, integrato da glucosamina HCl (7 mg/g), condroitina (3 mg/g) e acido ialuronico vegetale (0,5 mg/g). Si aggiungono curcuma (20 mg/g), una miscela di erbe con artiglio del diavolo, olmaria, ortica e corteccia di salice, olio di lino e olio di canapa spremuti a freddo e olio di salmone. Impiego in caso di artrosi, nei cani anziani, di taglia grande e molto sollecitati (sport, caccia), dopo lesioni e interventi chirurgici e nei pazienti con rottura del legamento crociato trattati in modo conservativo. Inizio dell’effetto in media dopo 4–6 settimane, in caso di buona risposta talvolta dopo 2 settimane; è possibile la somministrazione a lungo termine.",
+   "einsatz": [
+    "Artrosi/osteoartrosi",
+    "Cani anziani e di taglia grande",
+    "Cani sportivi e da caccia, fasi di maggiore sollecitazione",
+    "Dopo lesioni e interventi chirurgici; rotture del legamento crociato non operate",
+    "Problemi a tendini e legamenti"
+   ],
+   "hinweise": [
+    "Non in caso di intolleranza al pesce/salmone (contiene olio di salmone e cozza dalle labbra verdi).",
+    "Non privo di glutine (malto).",
+    "Insufficienza renale: solo metà dose.",
+    "2 ore di distanza dai farmaci per il cuore e dagli enzimi pancreatici (ad es. Inzym).",
+    "Dalmata con alterato metabolismo delle purine: la componente di lievito può essere problematica.",
+    "Cuccioli e cani giovani dalla 12ª settimana di vita.",
+    "Contiene artiglio del diavolo: a causa della possibile irritazione gastrica, la somministrazione continuativa è vista in modo critico in letteratura; tenere sotto osservazione i cani con stomaco sensibile."
+   ],
+   "faq": [
+    {
+     "frage": "Quando mi accorgerò che Hypolene funziona?",
+     "antwort": "Dipende dal grado della malattia; in media dopo 4–6 settimane, in caso di ottima risposta talvolta già dopo 2 settimane."
+    },
+    {
+     "frage": "Il mio cane può prendere Hypolene in modo continuativo?",
+     "antwort": "Sì, Hypolene è previsto per la somministrazione a lungo termine. A causa dell’artiglio del diavolo contenuto, i cani con stomaco sensibile vanno tenuti sotto osservazione."
+    },
+    {
+     "frage": "Il mio cane non tollera il pesce – Hypolene va bene comunque?",
+     "antwort": "No, Hypolene contiene olio di salmone e cozza dalle labbra verdi e non dovrebbe essere somministrato in caso di intolleranza al pesce/salmone."
+    },
+    {
+     "frage": "Il mio cane ha una malattia renale – può prendere Hypolene?",
+     "antwort": "Sì, ma secondo il produttore solo a metà dose."
+    },
+    {
+     "frage": "Il mio cane prende pastiglie per il cuore – sono compatibili?",
+     "antwort": "Sì, Hypolene può essere somministrato anche in caso di insufficienza cardiaca; tra il farmaco per il cuore e Hypolene dovrebbero trascorrere 2 ore."
+    },
+    {
+     "frage": "Da quale età il mio cane giovane può prendere Hypolene?",
+     "antwort": "Il produttore raccomanda la somministrazione a partire dalla 12ª settimana di vita."
+    },
+    {
+     "frage": "Il mio gatto può mangiare anche lui Hypolene?",
+     "antwort": "Hypolene è formulato per i cani; non sono disponibili dati sull’effetto nei gatti, è possibile il vomito."
+    }
+   ]
+  }
  },
  {
   "handle": "hepax-forte",
@@ -538,7 +960,60 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Hepax forte Tabletten"
   },
-  "it": null
+  "it": {
+   "name": "Hepax forte compresse",
+   "kategorie": "Fegato",
+   "tierarten": [
+    "cane",
+    "gatto"
+   ],
+   "kurz": "Compressa per il fegato con cardo mariano (silimarina), carciofo, reishi, betaina, lecitina, vitamine del gruppo B, zinco e vitamina E.",
+   "fuer_tierarzt": "L’estratto di cardo mariano (500 mg/compressa, silimarina 80 %) stabilizza le membrane degli epatociti e ha azione antiossidante; l’estratto di carciofo (100 mg/compressa) favorisce la funzione epatica e biliare. Reishi (300 mg/compressa), lecitina e vitamine del gruppo B dovrebbero contrastare l’accumulo di grasso; betaina, magnesio, zinco e vitamina B12 sostengono la sintesi endogena di S-adenosilmetionina (la SAMe in sé non è contenuta), la vitamina E ha azione antiossidante. Impiego in caso di valori epatici elevati, epatopatie primarie e secondarie, durante terapie con farmaci che gravano sul fegato (ad es. FANS, glucocorticoidi, fenobarbital), prima e dopo anestesie, nonché in caso di steatosi epatica e nei pazienti geriatrici. Il contenuto di rame è basso (5,7 mg/kg, da componenti organici).",
+   "einsatz": [
+    "Valori epatici elevati, epatopatie primarie e secondarie",
+    "Come supporto durante terapie con farmaci che gravano sul fegato (ad es. FANS, glucocorticoidi, fenobarbital)",
+    "Prima e dopo l’anestesia",
+    "Steatosi epatica, infiammazioni del fegato e delle vie biliari",
+    "Supporto epatico negli animali anziani"
+   ],
+   "hinweise": [
+    "Non raccomandato durante una terapia con ciclosporina (il reishi potrebbe ridurne l’effetto).",
+    "Cautela in caso di calcoli biliari od ostruzione delle vie biliari: il carciofo favorisce il deflusso della bile.",
+    "Combinazione con acido ursodesossicolico possibile; 2 ore di distanza (assorbimento dello zinco).",
+    "La matrice della compressa contiene latte, pollame/bovino e uova.",
+    "Compresse senza linea di frattura, ma facilmente divisibili."
+   ],
+   "faq": [
+    {
+     "frage": "Il mio cane pesa 50 kg – bastano davvero 2 compresse?",
+     "antwort": "Sì, secondo il produttore a partire da 20 kg i cani ricevono 2 compresse indipendentemente dal peso; questo dosaggio si basa su un’esperienza pluriennale con il prodotto."
+    },
+    {
+     "frage": "Il mio cane prende ciclosporina – può prendere anche Hepax?",
+     "antwort": "Non è raccomandato, poiché non si può escludere che il reishi contenuto riduca o annulli l’effetto della ciclosporina."
+    },
+    {
+     "frage": "Hepax contiene rame?",
+     "antwort": "Solo in piccole quantità derivanti dai componenti organici (5,7 mg/kg); il rame non viene aggiunto."
+    },
+    {
+     "frage": "Il mio cane prende acido ursodesossicolico – si possono combinare?",
+     "antwort": "Sì, la combinazione è possibile; a causa di una possibile riduzione dell’assorbimento dello zinco è meglio mantenere una distanza di 2 ore."
+    },
+    {
+     "frage": "Posso dividere la compressa anche se non ha la linea di frattura?",
+     "antwort": "Sì, le compresse sono facilmente divisibili anche senza linea di frattura e si possono dosare individualmente."
+    },
+    {
+     "frage": "Il mio cane ha un’allergia alimentare – Hepax è adatto?",
+     "antwort": "Le compresse contengono latte e prodotti lattiero-caseari, pollame/bovino e uova; in caso di intolleranza a questi componenti è necessaria cautela."
+    },
+    {
+     "frage": "Per quanto tempo il mio animale può prendere Hepax?",
+     "antwort": "Secondo la dichiarazione, prima dell’uso e prima di prolungare il periodo di utilizzo occorre chiedere il parere del veterinario; la durata è stabilita dal veterinario."
+    }
+   ]
+  }
  },
  {
   "handle": "respirax-1",
@@ -597,7 +1072,59 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Respirax Paste Katze"
   },
-  "it": null
+  "it": {
+   "name": "Respirax pasta (gatto)",
+   "kategorie": "Vie respiratorie",
+   "tierarten": [
+    "gatto"
+   ],
+   "kurz": "Pasta per gatti con L-lisina, chaga, coriolus, miele di Manuka, piantaggine, vitamina C e zinco in caso di coriza felina.",
+   "fuer_tierarzt": "La L-lisina (350.000 mg/kg) compete con l’arginina, di cui l’herpesvirus felino ha bisogno per replicarsi; i funghi vitali chaga e Coriolus versicolor (insieme 46.800 mg/kg), la vitamina C e lo zinco sostengono il sistema immunitario. Il miele di Manuka (MGO 514+) con proprietà antibatteriche agisce sulle infezioni batteriche secondarie; le mucillagini della piantaggine si depositano sulle mucose irritate, alleviano la tosse secca stizzosa e favoriscono l’espettorazione. Impiego in caso di coriza felina, tosse, faringite, gengivite/stomatite e irritazioni dopo intubazione, anche a scopo profilattico negli animali conviventi. La pasta viene dosata tramite l’anello di dosaggio sull’applicatore e somministrata direttamente in bocca o nella ciotola.",
+   "einsatz": [
+    "Coriza felina, incl. infezione batterica secondaria",
+    "Tosse secca e produttiva",
+    "Faringite, gengivite/stomatite",
+    "Irritazioni dopo intubazione o piccole lesioni nella cavità orale",
+    "A scopo profilattico se in casa ci sono gatti malati; gatti immunodepressi"
+   ],
+   "hinweise": [
+    "Dalla 12ª settimana di vita.",
+    "Si raccomanda di distanziare la somministrazione da altri preparati (di medicina convenzionale) (mucillagini della piantaggine).",
+    "Utilizzabile durante una terapia con glucocorticoidi, purché a dosaggio antinfiammatorio; cautela in caso di dosaggio immunosoppressivo. La terapia cortisonica inalatoria non è problematica.",
+    "Non in caso di allergia nota a uno degli ingredienti.",
+    "Vitamina C contenuta solo in piccola quantità; secondo il produttore, con un impiego di breve durata non è da attendersi la formazione di calcoli di ossalato."
+   ],
+   "faq": [
+    {
+     "frage": "Quanto velocemente agisce la pasta?",
+     "antwort": "La tosse stizzosa viene alleviata poco dopo la somministrazione; l’effetto di supporto immunitario richiede più tempo, perciò somministrare per almeno 14 giorni."
+    },
+    {
+     "frage": "Il mio gatto sta già meglio – devo continuare comunque?",
+     "antwort": "Sì, per almeno 14 giorni, meglio più a lungo: la L-lisina deve essere apportata in modo continuativo per frenare la replicazione virale dipendente dall’arginina."
+    },
+    {
+     "frage": "Il mio gatto prende il cortisone – può prendere comunque Respirax?",
+     "antwort": "Sì, purché il cortisone sia dosato a scopo antinfiammatorio; in caso di dosaggio immunosoppressivo è necessaria cautela. Il cortisone inalatorio non è problematico."
+    },
+    {
+     "frage": "Posso dare la pasta insieme ad altri farmaci?",
+     "antwort": "A causa delle mucillagini della piantaggine si raccomanda di distanziare la somministrazione da altri preparati."
+    },
+    {
+     "frage": "Anche gli altri nostri gatti, ancora sani, devono prendere la pasta?",
+     "antwort": "Respirax può essere somministrato a scopo profilattico quando gatti della stessa casa sono affetti da coriza felina."
+    },
+    {
+     "frage": "Da quale età un gattino può prendere Respirax?",
+     "antwort": "Dalla 12ª settimana di vita."
+    },
+    {
+     "frage": "Il mio gatto si ribella – qual è il modo migliore per dargli la pasta?",
+     "antwort": "La pasta può essere somministrata direttamente in bocca o nella ciotola; la quantità si misura tramite l’anello sull’applicatore."
+    }
+   ]
+  }
  },
  {
   "handle": "enterogast-akut",
@@ -654,7 +1181,57 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "EnteroGast akut Tabletten"
   },
-  "it": null
+  "it": {
+   "name": "EnteroGast acuto compresse",
+   "kategorie": "Gastrointestinale",
+   "tierarten": [
+    "cane",
+    "gatto"
+   ],
+   "kurz": "Mangime complementare dietetico in caso di diarrea acuta: tannini, bucce di psillio ed Enterococcus faecium.",
+   "fuer_tierarzt": "I tannini della corteccia di farnia (160.000 mg/kg) e della radice di ratania hanno un’azione astringente sulla mucosa intestinale; il complesso tannino-proteina viene scisso solo nell’ambiente alcalino dell’intestino e riduce così l’afflusso di liquidi. Le bucce di psillio legano l’acqua in eccesso e rendono le feci più compatte, Enterococcus faecium NCIMB 10415 (2×10^12 UFC/kg) stabilizza la flora intestinale. Secondo il produttore l’effetto inizia 2–3 ore dopo la somministrazione, senza bloccare l’intestino; l’evacuazione è da attendersi lo stesso giorno. Previsto per la somministrazione a breve termine in caso di diarrea acuta.",
+   "einsatz": [
+    "Diarrea acuta nel cane e nel gatto",
+    "Diarrea grave (somministrazione 2× al giorno)",
+    "Stabilizzazione a breve termine della consistenza fecale e della flora intestinale in caso di diarrea acuta"
+   ],
+   "hinweise": [
+    "Animali in gestazione e in lattazione: somministrazione possibile, prestare attenzione alla disidratazione.",
+    "Adatto agli animali epilettici.",
+    "Contiene latte e prodotti lattiero-caseari, carne (soprattutto pollo), uova, farina di riso e amido di mais.",
+    "Non blocca l’intestino; evacuazione da attendersi lo stesso giorno."
+   ],
+   "faq": [
+    {
+     "frage": "Quanto velocemente agisce EnteroGast?",
+     "antwort": "Secondo il produttore l’effetto inizia 2–3 ore dopo la somministrazione."
+    },
+    {
+     "frage": "La quercia non è tossica per i cani?",
+     "antwort": "I tannini sono tossici solo in grandi quantità; si utilizza un estratto del legno, non delle ghiande, con un contenuto di tannini calibrato sull’effetto astringente."
+    },
+    {
+     "frage": "Il mio cane diventerà stitico?",
+     "antwort": "EnteroGast non blocca l’intestino; di norma gli animali evacuano ancora lo stesso giorno."
+    },
+    {
+     "frage": "Quante volte e per quanto tempo devo dare le compresse?",
+     "antwort": "Una volta al giorno, in caso di diarrea grave due volte al giorno, per 1–7 giorni."
+    },
+    {
+     "frage": "La mia cagna è gravida o allatta – può prendere EnteroGast?",
+     "antwort": "Sì, secondo il produttore non è problematico; occorre però prestare attenzione alla disidratazione."
+    },
+    {
+     "frage": "Il mio cane è epilettico – può prendere EnteroGast?",
+     "antwort": "Sì, secondo il produttore EnteroGast è adatto agli animali epilettici."
+    },
+    {
+     "frage": "Il mio cane ha un’allergia alimentare – EnteroGast è adatto?",
+     "antwort": "Le compresse contengono latte, carne (soprattutto pollo), uova, farina di riso e amido di mais; in caso di intolleranza a questi componenti il prodotto non è adatto."
+    }
+   ]
+  }
  },
  {
   "handle": "cortisan",
@@ -716,7 +1293,62 @@ window.VETALITA_PRODUCTS = [
    ],
    "name": "Cortisan Öl-Komplex"
   },
-  "it": null
+  "it": {
+   "name": "Cortisan miscela di oli",
+   "kategorie": "Articolazioni",
+   "tierarten": [
+    "cane",
+    "cavallo"
+   ],
+   "kurz": "Olio con incenso solubilizzato (Boswellia), curcuma e omega-3 da microalghe come supporto nei processi infiammatori.",
+   "fuer_tierarzt": "L’estratto di Boswellia serrata (60.000 mg/kg, ca. 57 mg/ml; 70 % acidi boswellici, di cui 10 % AKBA) dovrebbe ridurre la formazione di citochine pro-infiammatorie; la curcuma (10.000 mg/kg) integra un’azione antiossidante e antinfiammatoria, l’olio di microalghe fornisce EPA e DHA (min. 117,5 mg/ml, di cui min. 23,5 mg/ml EPA) in una base di olio di colza. Boswellia e curcuma sono solubilizzate con tecnologia NTS per aumentarne la biodisponibilità. Impiego come supporto nelle patologie infiammatorie di pelle, articolazioni (inclusa l’artrosi), vie respiratorie, cavità orale/gengive e tratto gastrointestinale; secondo il produttore Cortisan può contribuire a ridurre la dose di glucocorticoidi necessaria. I primi miglioramenti sono attesi dopo circa 6 settimane di somministrazione; nessun componente di origine animale.",
+   "einsatz": [
+    "Patologie cutanee infiammatorie",
+    "Infiammazioni articolari, inclusa l’artrosi",
+    "Infiammazioni delle vie respiratorie e della cavità orale/gengive",
+    "Patologie gastrointestinali infiammatorie (non in caso di ulcere gastriche)",
+    "Come supporto per ridurre la dose di glucocorticoidi"
+   ],
+   "hinweise": [
+    "Non in caso di ostruzione delle vie biliari (la curcumina stimola la secrezione biliare e la contrazione della cistifellea).",
+    "Non in caso di ulcere gastriche (la curcuma può irritare lo stomaco); cautela negli animali sensibili in caso di somministrazione continuativa.",
+    "Gestazione: sconsigliato; lattazione: somministrare solo al termine della lattazione.",
+    "Pancreatite: sconsigliato nella forma acuta, nella forma cronica introdurre gradualmente (contenuto di grassi).",
+    "Distanziare dalla ciclosporina (ad es. uno al mattino, uno alla sera).",
+    "All’inizio possibili diarrea/flatulenza a causa del contenuto di grassi: sospendere e, dopo il recupero, ricominciare con una dose più bassa.",
+    "Cavallo: tempo di sospensione di 48 ore. Dopo l’apertura consumare entro 3 mesi."
+   ],
+   "faq": [
+    {
+     "frage": "Con Cortisan posso sospendere il cortisone?",
+     "antwort": "Non di propria iniziativa: Cortisan dovrebbe essere somministrato in parallelo per almeno 2 settimane prima che il veterinario riduca la dose di cortisone. In caso di dose massima di cortisone, Cortisan può essere somministrato a dose doppia nei primi 7 giorni."
+    },
+    {
+     "frage": "Quando noterò un effetto?",
+     "antwort": "Dipende dall’animale e dal grado dell’infiammazione; Cortisan dovrebbe essere somministrato per almeno 6 settimane prima di valutare i primi miglioramenti."
+    },
+    {
+     "frage": "Il mio gatto può prendere Cortisan?",
+     "antwort": "No. L’autorizzazione UE della Boswellia per i gatti è scaduta; Cortisan è previsto solo per cane e cavallo."
+    },
+    {
+     "frage": "Da quando prende Cortisan il mio cane ha la diarrea – cosa devo fare?",
+     "antwort": "A causa del contenuto di grassi può succedere all’inizio. Sospendere la somministrazione e, dopo il recupero della digestione, reintrodurre gradualmente con una dose più bassa."
+    },
+    {
+     "frage": "Posso dare Cortisan in modo continuativo?",
+     "antwort": "Sì, a cicli per diversi mesi o in modo continuativo; nella somministrazione continuativa la dose può essere dimezzata, purché i sintomi non ricompaiano. Negli animali con stomaco sensibile è necessaria cautela a causa della curcuma."
+    },
+    {
+     "frage": "Cortisan altera un test di stimolazione con ACTH?",
+     "antwort": "No, secondo il produttore Cortisan non influenza il test di stimolazione con ACTH."
+    },
+    {
+     "frage": "Il mio cavallo partecipa a gare – c’è un tempo di sospensione?",
+     "antwort": "Sì, nel cavallo vale un tempo di sospensione di 48 ore."
+    }
+   ]
+  }
  }
 ];
 
