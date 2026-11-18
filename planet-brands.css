@@ -1244,20 +1244,28 @@
   .container.--flush-top { padding-top: 0; } /* --flush-top = Alias für --pt-0 */
   .container.--pb { padding-bottom: var(--section-gap); }
 
-  /* Section-Hintergrund: volle Breite der Shopify-Section, Tokens */
+  /* Section-Hintergrund (A.7): volle Breite der Shopify-Section, Tokens.
+     Mit Fläche gilt:
+     · Innenabstand oben und unten immer (--section-gap), unabhängig von den Schaltern.
+     · „Padding oben“ (an = kein --pt-0) / „Padding unten“ (--pb) = Außenabstand,
+       weiß außerhalb der Fläche.
+     · Gleiche Fläche direkt untereinander, ohne Außenabstand dazwischen: läuft durch,
+       dann nur ein Innenabstand (der der unteren Section). */
   .shopify-section:has(.--bg-green-light) { background-color: var(--green-light); }
   .shopify-section:has(.--bg-notice) { background-color: var(--color-notice-bg); }
-  /* Fläche nach einer Section ohne Hintergrund: Außenabstand oben, sonst klebt die Fläche
-     am vorherigen Inhalt (dessen Padding unten ist per Default aus). Endet die vorherige
-     Section schon mit --pb, kein zweiter Abstand. Flächen untereinander bleiben bündig. */
-  .shopify-section:not(:has(.--bg-green-light, .--bg-notice, .--pb)) + .shopify-section:has(.--bg-green-light, .--bg-notice) {
+  .shopify-section :is(.container, .section-type):is(.--bg-green-light, .--bg-notice) {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+  .shopify-section:has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice):not(.--pt-0)) {
     margin-top: var(--section-gap);
   }
-  /* Fläche unten: immer Innenabstand, sonst endet die Fläche direkt am Text („Padding unten“
-     aus). Ausnahme: Die nächste Section hat dieselbe Fläche — dann läuft sie durch. */
-  .shopify-section:has(.--bg-green-light):not(:has(+ .shopify-section .--bg-green-light)) .--bg-green-light,
-  .shopify-section:has(.--bg-notice):not(:has(+ .shopify-section .--bg-notice)) .--bg-notice {
-    padding-bottom: var(--section-gap);
+  .shopify-section:has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice).--pb) {
+    margin-bottom: var(--section-gap);
+  }
+  .shopify-section:has(.--bg-green-light:not(.--pb)):has(+ .shopify-section .--bg-green-light.--pt-0) :is(.container, .section-type).--bg-green-light,
+  .shopify-section:has(.--bg-notice:not(.--pb)):has(+ .shopify-section .--bg-notice.--pt-0) :is(.container, .section-type).--bg-notice {
+    padding-bottom: 0;
   }
 
   /* ─── Page-Header — Seitenkopf für Portal- und Listen-Seiten ───
