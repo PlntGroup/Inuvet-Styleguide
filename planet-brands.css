@@ -1253,6 +1253,12 @@
   .shopify-section:not(:has(.--bg-green-light, .--bg-notice, .--pb)) + .shopify-section:has(.--bg-green-light, .--bg-notice) {
     margin-top: var(--section-gap);
   }
+  /* Fläche unten: immer Innenabstand, sonst endet die Fläche direkt am Text („Padding unten“
+     aus). Ausnahme: Die nächste Section hat dieselbe Fläche — dann läuft sie durch. */
+  .shopify-section:has(.--bg-green-light):not(:has(+ .shopify-section .--bg-green-light)) .--bg-green-light,
+  .shopify-section:has(.--bg-notice):not(:has(+ .shopify-section .--bg-notice)) .--bg-notice {
+    padding-bottom: var(--section-gap);
+  }
 
   /* ─── Page-Header — Seitenkopf für Portal- und Listen-Seiten ───
      H1 mit optionalem Zähler (.circle-badge.--num) inline daneben.

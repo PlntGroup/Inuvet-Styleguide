@@ -1064,7 +1064,7 @@
         </div>
         <div class="rule">
           <h4>Section mit Hintergrund: Abstand außen und innen</h4>
-          <p>Bei <code>--bg-green-light</code> / <code>--bg-notice</code> liegt das Padding oben <strong>in</strong> der Fläche. Folgt die Fläche auf eine Section ohne Hintergrund, bekommt sie zusätzlich <code>margin-top: var(--section-gap)</code> — sonst klebt sie am vorherigen Inhalt. Endet die vorherige Section mit <code>--pb</code>, entfällt der Außenabstand. Flächen direkt untereinander bleiben bündig.</p>
+          <p>Bei <code>--bg-green-light</code> / <code>--bg-notice</code> liegt das Padding oben <strong>in</strong> der Fläche. Folgt die Fläche auf eine Section ohne Hintergrund, bekommt sie zusätzlich <code>margin-top: var(--section-gap)</code> — sonst klebt sie am vorherigen Inhalt. Endet die vorherige Section mit <code>--pb</code>, entfällt der Außenabstand. Unten hat die Fläche immer Innenabstand (<code>padding-bottom: var(--section-gap)</code>), auch wenn „Padding unten“ aus ist — außer die nächste Section hat dieselbe Fläche. Flächen direkt untereinander bleiben bündig.</p>
         </div>
         <div class="rule">
           <h4>V2/V3 Vollbild: Margin statt Padding</h4>
@@ -1082,7 +1082,7 @@
         <tr><th><code>--pb</code></th><td><code>padding-bottom: var(--section-gap)</code></td></tr>
         <tr><th>Default V2/V3</th><td>Kein Padding · Margin oben an (<code>--mt</code>) · unten aus</td></tr>
         <tr><th><code>--mt</code> / <code>--mb</code></th><td>V2/V3 · <code>margin-top/bottom: var(--section-gap)</code> · oben Default an</td></tr>
-        <tr><th>Hintergrund (<code>section_bg</code>)</th><td><code>--bg-green-light</code> / <code>--bg-notice</code> · Padding innen · nach Section ohne Hintergrund (und ohne <code>--pb</code>) zusätzlich <code>margin-top: var(--section-gap)</code></td></tr>
+        <tr><th>Hintergrund (<code>section_bg</code>)</th><td><code>--bg-green-light</code> / <code>--bg-notice</code> · Padding innen · nach Section ohne Hintergrund (und ohne <code>--pb</code>) zusätzlich <code>margin-top: var(--section-gap)</code> · unten immer <code>padding-bottom: var(--section-gap)</code>, außer die nächste Section hat dieselbe Fläche</td></tr>
         <tr><th>Neue Section</th><td>Abstand oben immer an · V1 <code>pad_top: true</code> · V2/V3 <code>margin_top: true</code> · unten aus · Flush unter Header nur im Template-JSON</td></tr>
         <tr><th>Nicht für</th><td>Footer/Header-Chrome · Textblöcke (<code>.flow</code>)</td></tr>
       </table>
