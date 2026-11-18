@@ -4241,6 +4241,11 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
 
   :is(.flow, .rte) > * { margin-bottom: 0; }
 
+  /* --flow-space nicht vererben: Bekommt ein Textblock (.rte/.flow) selbst einen Abstand
+     (z. B. --module nach .section-header), gilt der sonst auch für die Absätze darin.
+     Spezifität 0 — jede Regel unten setzt den Wert am Element weiterhin. */
+  :where(.flow, .rte) > * { --flow-space: initial; }
+
   /* :nth-child(n+2) = * + *, aber (0,2,0) — schlägt .foo { margin: 0 } und .notice p */
   :is(.flow, .rte) > :nth-child(n+2) { margin-top: var(--flow-space, var(--base)); }
 
@@ -4272,6 +4277,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* Nach .section-label / .section-label-row: deutlicher Abstand zum ersten Content-Element */
   .flow > .section-label + * { --flow-space: var(--module); }
   .flow > .section-header + * { --flow-space: var(--module); }
+  /* Section-Kopf + Fließtext (Text-Section): wie Überschrift → Text im Kopf (.section-header__body) */
+  .flow > .section-header + .rte { --flow-space: var(--half-module); }
   .flow > .section-label.--sub + * { --flow-space: var(--half-module); }
   .flow > .section-label-row + * { --flow-space: var(--module); }
 

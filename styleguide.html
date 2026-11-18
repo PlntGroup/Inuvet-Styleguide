@@ -1045,6 +1045,7 @@
         </div>
       </div>
       <p>Override per Inline-Custom-Property: <code>&lt;p style="--flow-space: var(--module)"&gt;</code></p>
+      <p><code>--flow-space</code> wird <strong>nicht vererbt</strong>: Ein verschachtelter Textblock (<code>.rte</code> / <code>.flow</code>) bekommt seinen Abstand nach außen, seine Absätze laufen innen wieder mit dem eigenen Rhythmus (<code>p + p</code> = <code>--base</code>). Section-Kopf + Fließtext (<code>.section-header + .rte</code>): <code>--half-module</code>, wie Überschrift → Text im Kopf.</p>
 
       <h3 class="sg-h3 --top" id="section-stack">Section-Stack (Seiten-Abschnitte)</h3>
       <p>Vertikaler Abstand <strong>zwischen Shop-Sections</strong> (Hero, Kachel-Raster, Collection-Blöcke) — getrennt vom Text-Rhythmus <code>.flow</code>.</p>
