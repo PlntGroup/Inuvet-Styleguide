@@ -1250,21 +1250,23 @@
      · „Padding oben“ (an = kein --pt-0) / „Padding unten“ (--pb) = Außenabstand,
        weiß außerhalb der Fläche.
      · Gleiche Fläche direkt untereinander, ohne Außenabstand dazwischen: läuft durch,
-       dann nur ein Innenabstand (der der unteren Section). */
+       dann nur ein Innenabstand (der der unteren Section).
+     · Ausnahme Trenner (.shopify-section--section-divider): kein automatischer Innenabstand,
+       „Padding oben/unten“ bleibt Innenabstand in der Fläche wie ohne Hintergrund. */
   .shopify-section:has(.--bg-green-light) { background-color: var(--green-light); }
   .shopify-section:has(.--bg-notice) { background-color: var(--color-notice-bg); }
-  .shopify-section :is(.container, .section-type):is(.--bg-green-light, .--bg-notice) {
+  .shopify-section:not(.shopify-section--section-divider) :is(.container, .section-type):is(.--bg-green-light, .--bg-notice) {
     padding-top: var(--section-gap);
     padding-bottom: var(--section-gap);
   }
-  .shopify-section:has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice):not(.--pt-0)) {
+  .shopify-section:not(.shopify-section--section-divider):has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice):not(.--pt-0)) {
     margin-top: var(--section-gap);
   }
-  .shopify-section:has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice).--pb) {
+  .shopify-section:not(.shopify-section--section-divider):has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice).--pb) {
     margin-bottom: var(--section-gap);
   }
-  .shopify-section:has(.--bg-green-light:not(.--pb)):has(+ .shopify-section .--bg-green-light.--pt-0) :is(.container, .section-type).--bg-green-light,
-  .shopify-section:has(.--bg-notice:not(.--pb)):has(+ .shopify-section .--bg-notice.--pt-0) :is(.container, .section-type).--bg-notice {
+  .shopify-section:has(.--bg-green-light:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-green-light.--pt-0) :is(.container, .section-type).--bg-green-light,
+  .shopify-section:has(.--bg-notice:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-notice.--pt-0) :is(.container, .section-type).--bg-notice {
     padding-bottom: 0;
   }
 
