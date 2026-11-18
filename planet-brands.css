@@ -1247,6 +1247,12 @@
   /* Section-Hintergrund: volle Breite der Shopify-Section, Tokens */
   .shopify-section:has(.--bg-green-light) { background-color: var(--green-light); }
   .shopify-section:has(.--bg-notice) { background-color: var(--color-notice-bg); }
+  /* Fläche nach einer Section ohne Hintergrund: Außenabstand oben, sonst klebt die Fläche
+     am vorherigen Inhalt (dessen Padding unten ist per Default aus). Endet die vorherige
+     Section schon mit --pb, kein zweiter Abstand. Flächen untereinander bleiben bündig. */
+  .shopify-section:not(:has(.--bg-green-light, .--bg-notice, .--pb)) + .shopify-section:has(.--bg-green-light, .--bg-notice) {
+    margin-top: var(--section-gap);
+  }
 
   /* ─── Page-Header — Seitenkopf für Portal- und Listen-Seiten ───
      H1 mit optionalem Zähler (.circle-badge.--num) inline daneben.
