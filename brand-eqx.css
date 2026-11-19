@@ -35,6 +35,13 @@ html[data-brand="eqx"] {
 
   --color-neon: #00ff44;
 
+  /* Dunkle Fläche (Test PDP/Header, 2026-11-19): Dunkelgrün mit weißer Schrift.
+     --surface-dark wird beim Umkehren der Tokens (theme-extras.css) als Hintergrund genutzt,
+     --on-dark / --on-light sind die festen Schriftfarben darauf bzw. auf hellen Badges. */
+  --surface-dark: #006838;
+  --on-dark: #fff;
+  --on-light: #191919;
+
   /* Produktfarben (Token-Name = Produkt-Handle ohne "eqx-") */
   --cat-leberschutz: #ffff00;
   --cat-leberschutz-light: #ffffe0;
