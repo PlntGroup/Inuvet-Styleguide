@@ -1255,18 +1255,25 @@
        „Padding oben/unten“ bleibt Innenabstand in der Fläche wie ohne Hintergrund. */
   .shopify-section:has(.--bg-green-light) { background-color: var(--green-light); }
   .shopify-section:has(.--bg-notice) { background-color: var(--color-notice-bg); }
-  .shopify-section:not(.shopify-section--section-divider) :is(.container, .section-type):is(.--bg-green-light, .--bg-notice) {
+  /* Zusätzliche Flächen (bislang nur Campus im Schema): helle Kategorie-Töne */
+  .shopify-section:has(.--bg-rose) { background-color: var(--cat-bauchspeichel-light); }
+  .shopify-section:has(.--bg-blue) { background-color: var(--cat-beruhigung-light); }
+  .shopify-section:has(.--bg-peach) { background-color: var(--cat-atemwege-light); }
+  .shopify-section:not(.shopify-section--section-divider) :is(.container, .section-type):is(.--bg-green-light, .--bg-notice, .--bg-rose, .--bg-blue, .--bg-peach) {
     padding-top: var(--section-gap);
     padding-bottom: var(--section-gap);
   }
-  .shopify-section:not(.shopify-section--section-divider):has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice):not(.--pt-0)) {
+  .shopify-section:not(.shopify-section--section-divider):has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice, .--bg-rose, .--bg-blue, .--bg-peach):not(.--pt-0)) {
     margin-top: var(--section-gap);
   }
-  .shopify-section:not(.shopify-section--section-divider):has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice).--pb) {
+  .shopify-section:not(.shopify-section--section-divider):has(:is(.container, .section-type):is(.--bg-green-light, .--bg-notice, .--bg-rose, .--bg-blue, .--bg-peach).--pb) {
     margin-bottom: var(--section-gap);
   }
   .shopify-section:has(.--bg-green-light:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-green-light.--pt-0) :is(.container, .section-type).--bg-green-light,
-  .shopify-section:has(.--bg-notice:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-notice.--pt-0) :is(.container, .section-type).--bg-notice {
+  .shopify-section:has(.--bg-notice:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-notice.--pt-0) :is(.container, .section-type).--bg-notice,
+  .shopify-section:has(.--bg-rose:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-rose.--pt-0) :is(.container, .section-type).--bg-rose,
+  .shopify-section:has(.--bg-blue:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-blue.--pt-0) :is(.container, .section-type).--bg-blue,
+  .shopify-section:has(.--bg-peach:not(.--pb)):has(+ .shopify-section:not(.shopify-section--section-divider) .--bg-peach.--pt-0) :is(.container, .section-type).--bg-peach {
     padding-bottom: 0;
   }
 
