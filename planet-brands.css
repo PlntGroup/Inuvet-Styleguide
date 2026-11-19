@@ -2285,12 +2285,15 @@
     height: 1em;
     font-size: 100cqi;
   }
+  /* Klein: auch hochgeladene Icons (Shopify liefert SVG/PNG als <img>) — ganz zeigen, nicht beschneiden */
   .tile__icon lottie-player,
-  .tile__icon svg:not(.material-icons) {
+  .tile__icon svg:not(.material-icons),
+  .tile__icon img {
     width: calc(var(--base) * 4);
     height: calc(var(--base) * 4);
     display: block;
   }
+  .tile__icon img { object-fit: contain; object-position: left center; }
   /* Med: doppelt so groß wie klein */
   .tile__icon.--med lottie-player,
   .tile__icon.--med svg:not(.material-icons),
