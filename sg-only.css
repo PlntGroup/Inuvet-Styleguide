@@ -434,6 +434,7 @@
 }
 .sg-brand__btn:nth-child(odd) { border-right: 1px solid var(--border-light); }
 .sg-brand__btn:nth-child(n + 3) { border-top: 1px solid var(--border-light); }
+.sg-brand__btn:last-child:nth-child(odd) { grid-column: 1 / -1; border-right: none; }
 .sg-brand__btn[aria-pressed="true"] {
   color: var(--fg);
   background: var(--green-light);
@@ -442,15 +443,20 @@
 .sg-brand.--main { display: none; }
 
 [data-sg-brand="planimol"],
-[data-sg-brand="manukalind"] { display: none; }
+[data-sg-brand="manukalind"],
+[data-sg-brand="eqx"] { display: none; }
 html[data-brand="planimol"] [data-sg-brand="inuvet"],
-html[data-brand="manukalind"] [data-sg-brand="inuvet"] { display: none; }
+html[data-brand="manukalind"] [data-sg-brand="inuvet"],
+html[data-brand="eqx"] [data-sg-brand="inuvet"] { display: none; }
 html[data-brand="planimol"] p[data-sg-brand="planimol"],
 html[data-brand="planimol"] figure[data-sg-brand="planimol"] { display: block; }
 html[data-brand="planimol"] .color-grid[data-sg-brand="planimol"] { display: grid; }
 html[data-brand="manukalind"] p[data-sg-brand="manukalind"],
 html[data-brand="manukalind"] figure[data-sg-brand="manukalind"] { display: block; }
 html[data-brand="manukalind"] .color-grid[data-sg-brand="manukalind"] { display: grid; }
+html[data-brand="eqx"] p[data-sg-brand="eqx"],
+html[data-brand="eqx"] figure[data-sg-brand="eqx"] { display: block; }
+html[data-brand="eqx"] .color-grid[data-sg-brand="eqx"] { display: grid; }
 
 .sg-nav-group { margin-bottom: var(--module); }
 .sg-nav-group__title {

@@ -543,15 +543,16 @@ function toggleAnnScrollDemo(btn) {
   update();
 })();
 
-/* ─── Marken-Haut (Inuvet | Campus | Planimol | ManukaLind) ─── */
+/* ─── Marken-Haut (Inuvet | Campus | Planimol | ManukaLind | EQX) ─── */
 var SG_LOGOS = {
   inuvet: 'assets/brands/inuvet/inuvet-logo.svg',
   campus: 'assets/brands/campus/campus-logo.svg',
   planimol: 'assets/brands/planimol/planimol-logo.svg',
-  manukalind: 'assets/brands/manukalind/manukalind-logo.svg'
+  manukalind: 'assets/brands/manukalind/manukalind-logo.svg',
+  eqx: 'assets/brands/eqx/eqx-logo.svg'
 };
 
-var SG_BRANDS = ['planimol', 'campus', 'manukalind'];
+var SG_BRANDS = ['planimol', 'campus', 'manukalind', 'eqx'];
 
 function currentSgBrand() {
   var b = document.documentElement.getAttribute('data-brand');
@@ -565,16 +566,16 @@ function applySgBrand(brand, persist) {
   var campusCss = document.getElementById('skin-campus');
   if (brand === 'inuvet') document.documentElement.removeAttribute('data-brand');
   else document.documentElement.setAttribute('data-brand', brand);
-  if (font) font.disabled = brand !== 'planimol';
+  if (font) font.disabled = brand !== 'planimol' && brand !== 'eqx';
   if (campusCss) campusCss.disabled = brand !== 'campus';
   document.querySelectorAll('[data-brand-set]').forEach(function (btn) {
     btn.setAttribute('aria-pressed', btn.getAttribute('data-brand-set') === brand ? 'true' : 'false');
   });
   document.querySelectorAll('[data-sg-logo]').forEach(function (img) {
     img.src = SG_LOGOS[brand];
-    img.alt = brand === 'planimol' ? 'Planimol Logo' : brand === 'campus' ? 'inuvet Campus Logo' : brand === 'manukalind' ? 'ManukaLind Logo' : 'inuvet Logo';
+    img.alt = brand === 'planimol' ? 'Planimol Logo' : brand === 'campus' ? 'inuvet Campus Logo' : brand === 'manukalind' ? 'ManukaLind Logo' : brand === 'eqx' ? 'EQX Logo' : 'inuvet Logo';
   });
-  document.title = brand === 'planimol' ? 'Design System – Planimol' : brand === 'campus' ? 'Design System – Campus' : brand === 'manukalind' ? 'Design System – ManukaLind' : 'Design System – inuvet';
+  document.title = brand === 'planimol' ? 'Design System – Planimol' : brand === 'campus' ? 'Design System – Campus' : brand === 'manukalind' ? 'Design System – ManukaLind' : brand === 'eqx' ? 'Design System – EQX' : 'Design System – inuvet';
   document.querySelectorAll('[data-token]').forEach(function (el) {
     var val = getComputedStyle(document.documentElement).getPropertyValue(el.getAttribute('data-token')).trim();
     if (val) el.textContent = val;

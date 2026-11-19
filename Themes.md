@@ -9,6 +9,7 @@ Gilt für alle Shopify-Themes, die auf diesem Styleguide aufbauen. Was nur eine 
 | `planimol-theme` | Planimol | `planimol-shop.myshopify.com` |
 | `ManukaLind-theme` | ManukaLind | `manuka-lind.myshopify.com` |
 | `vetalita-theme` | Vetalità | `vetalit.myshopify.com` |
+| `eqx-theme` | EQX (eqx.vet) | `c206c1-6.myshopify.com` |
 
 Ein Theme = eine Marke. Kein Marken-Umschalter, kein `data-brand` im Theme.
 

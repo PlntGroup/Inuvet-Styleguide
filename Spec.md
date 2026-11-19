@@ -97,7 +97,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 | Schicht | Datei | Rolle |
 |---|---|---|
 | **System** | `planet-brands.css` / `planet-brands.js` | Tokens (`:root` = Inuvet) + Komponenten + globale JS. Gleicher Basename im Theme. |
-| **Haut** | `brand-{handle}.css` | Planimol: nur Tokens (`brand-planimol.css`). ManukaLind: nur Tokens (`brand-manukalind.css`). Campus: Komponenten + künftige Tokens (`brand-campus.css`). |
+| **Haut** | `brand-{handle}.css` | Planimol: nur Tokens (`brand-planimol.css`). ManukaLind: nur Tokens (`brand-manukalind.css`). EQX: nur Tokens (`brand-eqx.css`). Campus: Komponenten + künftige Tokens (`brand-campus.css`). |
 | **Kühlschrank** | Store-Content | Logos, Icons, Lotties, Bilder — Dateinamen nicht umbenennen, nicht ins System mischen. Guide: `assets/brands/{handle}/`. Nur UI-Chrome/Social: `assets/planet/`. |
 
 ### CSS-Schichten
@@ -107,6 +107,7 @@ Aktuelle Mockup-Produkte (Katalog `planet-brands.js`): **Calmin balance Tablette
 | `planet-brands.css` | Design System — Tokens, Atome, Moleküle, Organismen | Styleguide-UI, Mockup-Chrome, Page-Spezifika |
 | `brand-planimol.css` | Marken-Haut: `html[data-brand="planimol"]` überschreibt Schrift, Grün, FG, Borders, Produktfarben. Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
 | `brand-manukalind.css` | Marken-Haut: `html[data-brand="manukalind"]` überschreibt Schrift (Sofia Pro), Grün, Schwarz, Honig. Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
+| `brand-eqx.css` | Marken-Haut: `html[data-brand="eqx"]` überschreibt Schrift (Plus Jakarta Sans), Grün (Dunkelgrün #006838), Neongrün `--color-neon`, Produktfarben `--cat-{produkt}` (Handle ohne `eqx-`). Kein Rhythmus, keine Komponenten. | Alles außer Tokens |
 | `brand-campus.css` | Campus-Haut: Weiche, Webinar-Metas, PDP-/Collection-Deltas. Theme immer; Guide `#skin-campus` bei `data-brand="campus"`. | Inuvet-Shop-Styles, Guide-Chrome |
 | `sg-only.css` | Styleguide-eigene UI (`.sg-*` Präfix) — nicht für Shopify | Echte Produkt-Komponenten |
 | `assets/planet/material-icons/` | UI-Icons: offizielle Material-SVGs (Apache-2.0), Sprite im HTML. Klasse `.material-icons`. Theme: `snippets/icon.liquid` + `ui-icon-sprite`. | Benefit-/Markenzeichnungen `Inuvet_Icon_*`, Google-Fonts-CDN |
