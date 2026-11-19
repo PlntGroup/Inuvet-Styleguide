@@ -457,6 +457,7 @@ html[data-brand="manukalind"] .color-grid[data-sg-brand="manukalind"] { display:
 html[data-brand="eqx"] p[data-sg-brand="eqx"],
 html[data-brand="eqx"] figure[data-sg-brand="eqx"] { display: block; }
 html[data-brand="eqx"] .color-grid[data-sg-brand="eqx"] { display: grid; }
+html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 
 .sg-nav-group { margin-bottom: var(--module); }
 .sg-nav-group__title {

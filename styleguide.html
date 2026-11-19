@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="planet-brands.css?v=217">
   <link rel="stylesheet" href="brand-planimol.css?v=2">
   <link rel="stylesheet" href="brand-manukalind.css?v=2">
-  <link rel="stylesheet" href="brand-eqx.css?v=2">
+  <link rel="stylesheet" href="brand-eqx.css?v=3">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=2" disabled>
-  <link rel="stylesheet" href="sg-only.css?v=54">
+  <link rel="stylesheet" href="sg-only.css?v=55">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     html { scroll-padding-top: var(--module); }
@@ -642,6 +642,14 @@
             <span class="color-card__role">Hintergründe, Announcement Bar</span>
           </div>
         </div>
+        <div class="color-card" data-sg-brand="eqx">
+          <div class="color-card__swatch" style="background: var(--color-neon)"></div>
+          <div class="color-card__info">
+            <span class="color-card__token">--color-neon</span>
+            <span class="color-card__hex" data-token="--color-neon">#00ff44</span>
+            <span class="color-card__role">Markenfarbe (X im Logo), Linien, Flächen — kein Text auf Weiß</span>
+          </div>
+        </div>
         <div class="color-card">
           <div class="color-card__swatch" style="background:#FFAA1F"></div>
           <div class="color-card__info">
@@ -698,7 +706,7 @@
       <p data-sg-brand="inuvet">Jede Produktkategorie hat eine Hauptfarbe (<code>--cat-X</code>) und eine helle Abstufung (<code>--cat-X-light</code>). Oben die Hauptfarbe, unten die helle Variante.</p>
       <p data-sg-brand="planimol">Planimol: Produktfarben statt Indikationen. Token-Name = Collection-Handle. Gastro ist gleichzeitig die Primärfarbe (<code>--green</code> = <code>var(--cat-gastro)</code>).</p>
       <p data-sg-brand="manukalind">ManukaLind hat noch keine Produkt-Kategoriefarben. Die Screen-Palette sitzt auf den bestehenden Tokens: Grün <code>--green</code>, Dunkelgrün <code>--green-hover</code>, Hellgrün <code>--green-light</code>, Schwarz <code>--fg</code>, Honig <code>--color-honey</code>, Weiß <code>--bg</code>.</p>
-      <p data-sg-brand="eqx">EQX: eine Farbe pro Produkt, nicht pro Collection. Token-Name = Produkt-Handle ohne <code>eqx-</code> (<code>data-cat</code> über Produkt-Tag oder <code>custom.kategorie</code>). Colex teilt Rosa mit Magenschutz, Anti-Kotwasser trägt das Neongrün der Marke. Neongrün ist auf Weiß nicht lesbar: Buttons, Links und Icons laufen über Dunkelgrün <code>--green</code> (#006838), Neongrün <code>--color-neon</code> nur als Fläche. Dazu Schwarz <code>--fg</code> (#191919), Hellgrau <code>--accent-bg</code> (#f0f1f4), Weiß <code>--bg</code>. Grau #8b8b8b nicht für Text (Kontrast zu schwach), <code>--fg-muted</code> bleibt #666.</p>
+      <p data-sg-brand="eqx">EQX: eine Farbe pro Produkt, nicht pro Collection. Token-Name = Produkt-Handle ohne <code>eqx-</code> (<code>data-cat</code> über Produkt-Tag oder <code>custom.kategorie</code>). Colex teilt Rosa mit Magenschutz, Anti-Kotwasser trägt das Neongrün der Marke. Neongrün <code>--color-neon</code> (#00ff44) ist Markenfarbe (das X im Logo) und Linienfarbe (<code>--border-light</code>, Linie unter dem Header bleibt grau). Als Text ist es auf Weiß nicht lesbar: Buttons, Links und Icons laufen über Dunkelgrün <code>--green</code> (#006838), Neongrün nur als Fläche und Linie. Dazu Schwarz <code>--fg</code> (#191919), Hellgrau <code>--accent-bg</code> (#f0f1f4), Weiß <code>--bg</code>. Grau #8b8b8b nicht für Text (Kontrast zu schwach), <code>--fg-muted</code> bleibt #666.</p>
 
       <div class="color-grid" data-sg-brand="inuvet">
         <div class="color-card">
