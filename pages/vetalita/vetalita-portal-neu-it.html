@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261119r">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261119s">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -152,6 +152,30 @@
     </div>
     <div class="modal__footer">
       <button class="btn --primary --full" id="cash-request-submit" onclick="submitCashRequest()">Invia richiesta</button>
+    </div>
+  </div>
+</div>
+
+<!-- Produktanfrage: Provision gegen Vetalità-Produkte -->
+<div class="modal-overlay" id="productRequestModal" onclick="closeProductRequestModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal__header">
+      <span class="modal__title">Richiedi prodotti</span>
+      <button class="btn --icon" onclick="closeProductRequestModal()" aria-label="Chiudi">
+        <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
+      </button>
+    </div>
+    <div class="modal__body flow">
+      <p class="form-hint">Quali prodotti Vetalità vuoi ordinare con la tua provvigione? <a href="https://vetalita.it/collections/all" target="_blank" rel="noopener noreferrer">Vedi tutti i prodotti</a></p>
+      <div class="form-field">
+        <textarea id="product-request-text" placeholder=" " rows="5"></textarea>
+        <label for="product-request-text">Prodotti e quantità desiderati</label>
+      </div>
+      <p class="form-hint">Il saldo verrà aggiornato non appena il nostro team avrà confermato la selezione.</p>
+      <p id="product-request-error" class="form-field__error" role="alert" hidden></p>
+    </div>
+    <div class="modal__footer">
+      <button class="btn --primary --full" id="product-request-submit" onclick="submitProductRequest()">Invia richiesta</button>
     </div>
   </div>
 </div>
@@ -293,6 +317,8 @@ function parseRegistrationQueryParams() {
     registerMode: search.get('register') === 'full' ? 'full' : null,
     loginTab: tab === 'login' || tab === 'accedi',
     bpNumber: portalCustomerNumberFromQuery(bpRaw),
+    originAgent: (search.get('a') || '').trim(), // Außendienst (QR-Code/Link)
+    originEvent: (search.get('m') || '').trim(), // Messe/Event
   };
 }
 
@@ -329,12 +355,20 @@ function renderRegistrationFields(prefix = 'reg') {
       <label for="${fid('name')}">Nome e cognome</label>
     </div>
     <div class="form-field">
-      <input type="text" id="${fid('clinic')}" placeholder=" " autocomplete="organization">
-      <label for="${fid('clinic')}">Studio / clinica</label>
+      <input type="text" id="${fid('contact')}" placeholder=" " autocomplete="email" oninput="updateRegistrationContactLabel('${prefix}')">
+      <label for="${fid('contact')}">E-mail o telefono</label>
+    </div>
+    <div class="accordion registration-optional">
+    <div class="accordion-item" id="${fid('optional')}">
+    <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Altri dati (facoltativi)<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
+    <div class="accordion-content"><div class="accordion-content__inner flow">
+    <div class="form-field">
+      <input type="text" id="${fid('contact2')}" placeholder=" ">
+      <label for="${fid('contact2')}">Telefono o e-mail</label>
     </div>
     <div class="form-field">
-      <input type="email" id="${fid('email')}" placeholder=" " autocomplete="email">
-      <label for="${fid('email')}">Indirizzo e-mail</label>
+      <input type="text" id="${fid('clinic')}" placeholder=" " autocomplete="organization">
+      <label for="${fid('clinic')}">Studio / clinica</label>
     </div>
     <div class="form-field">
       <select id="${fid('role')}" required>
@@ -368,6 +402,9 @@ function renderRegistrationFields(prefix = 'reg') {
       </select>
       <label for="${fid('country')}">Paese</label>
     </div>
+    </div></div>
+    </div>
+    </div>
     <div class="visually-hidden" aria-hidden="true">
       <label for="${fid('accept-conditions')}">
         <input type="checkbox" id="${fid('accept-conditions')}" name="accept_conditions" tabindex="-1" autocomplete="off" value="1">
@@ -395,7 +432,32 @@ function applyRegistrationPrefill(params = REGISTRATION_QUERY, prefix = 'reg') {
   };
   set('name', params.name);
   set('clinic', params.clinic);
-  set('email', params.email);
+  set('contact', params.email || params.telephone);
+  if (params.email) set('contact2', params.telephone);
+  updateRegistrationContactLabel(prefix);
+  if (params.clinic || (params.email && params.telephone)) {
+    const item = document.getElementById(registrationFieldId(prefix, 'optional'));
+    item?.classList.add('--open');
+    item?.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// 'email' bei @ mit Punkt dahinter, 'phone' bei nur Ziffern, Leerzeichen, + ( ) / - (mind. 6 Ziffern)
+function registrationContactType(value) {
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'email';
+  if (/^\+?[\d\s()\/-]+$/.test(value) && (value.match(/\d/g) || []).length >= 6) return 'phone';
+  return '';
+}
+
+// Das zweite Kontaktfeld fragt nach dem, was im ersten fehlt
+function updateRegistrationContactLabel(prefix = 'reg') {
+  const value = document.getElementById(registrationFieldId(prefix, 'contact'))?.value.trim() || '';
+  const input = document.getElementById(registrationFieldId(prefix, 'contact2'));
+  const label = document.querySelector(`label[for="${registrationFieldId(prefix, 'contact2')}"]`);
+  if (!input || !label) return;
+  const type = registrationContactType(value);
+  label.textContent = type === 'email' ? 'Telefono' : type === 'phone' ? 'Indirizzo e-mail' : 'Telefono o e-mail';
+  input.type = type === 'email' ? 'tel' : type === 'phone' ? 'email' : 'text';
 }
 
 function openFullRegistrationOverlay() {
@@ -1228,6 +1290,48 @@ async function submitCashRequest() {
   }
 }
 
+function openProductRequestModal() {
+  document.getElementById('product-request-text').value = '';
+  document.getElementById('product-request-error').hidden = true;
+  const btn = document.getElementById('product-request-submit');
+  setBtnState(btn, 'idle');
+  btn.disabled = previewMode;
+  document.getElementById('productRequestModal').classList.add('--open');
+}
+
+function closeProductRequestModal() {
+  document.getElementById('productRequestModal').classList.remove('--open');
+}
+
+async function submitProductRequest() {
+  const text  = document.getElementById('product-request-text').value.trim();
+  const errEl = document.getElementById('product-request-error');
+  const btn   = document.getElementById('product-request-submit');
+  errEl.hidden = true;
+
+  if (!text) {
+    errEl.textContent = 'Inserisci i prodotti desiderati.';
+    errEl.hidden = false;
+    return;
+  }
+
+  setBtnState(btn, 'loading');
+  try {
+    const res  = await fetch(`${API_BASE}/webhooks/vetalita_product_request`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ account_id: accountId, request_text: text }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Errore durante l\'invio.');
+    setBtnState(btn, 'success');
+  } catch (err) {
+    errEl.textContent = err.message;
+    errEl.hidden = false;
+    setBtnState(btn, 'idle');
+  }
+}
+
 function openRegistrationTab() {
   const tabBtn = document.querySelector('[onclick*="tab-register"]');
   if (tabBtn) switchLoginTab(tabBtn, 'tab-register');
@@ -1255,11 +1359,12 @@ function closeRegistrationModal() {
 }
 
 function clearRegistrationForm(prefix = 'reg') {
-  ['name', 'clinic', 'email', 'street', 'house-number', 'zip', 'town'].forEach(field => {
+  ['name', 'clinic', 'contact', 'street', 'house-number', 'zip', 'town', 'contact2'].forEach(field => {
     const input = document.getElementById(registrationFieldId(prefix, field));
     if (input) input.value = '';
     input?.closest('.form-field')?.classList.remove('--error');
   });
+  updateRegistrationContactLabel(prefix);
   const acceptConditionsEl = document.getElementById(registrationFieldId(prefix, 'accept-conditions'));
   if (acceptConditionsEl) acceptConditionsEl.checked = false;
   const roleEl = document.getElementById(registrationFieldId(prefix, 'role'));
@@ -1286,15 +1391,21 @@ async function submitRegistration(prefix = 'reg') {
   const btn   = document.getElementById(controls.submit);
   errEl.hidden = true;
 
-  const required = [fid('name'), fid('email'), fid('street'), fid('house-number'), fid('zip'), fid('town'), fid('country'), fid('role')];
+  const required = [fid('name'), fid('country'), fid('role')];
   const missing = required.filter(id => !document.getElementById(id)?.value.trim());
+  const contact = document.getElementById(fid('contact')).value.trim();
+  const contact2 = document.getElementById(fid('contact2')).value.trim();
+  const contactType = registrationContactType(contact);
+  if (!contactType) missing.push(fid('contact'));
+  [...required, fid('contact')].forEach(id => document.getElementById(id)?.closest('.form-field')?.classList.remove('--error'));
   if (missing.length) {
     missing.forEach(id => document.getElementById(id)?.closest('.form-field')?.classList.add('--error'));
-    errEl.textContent = 'Compilare i campi obbligatori.';
+    errEl.textContent = contact && !contactType
+      ? 'Inserire un indirizzo e-mail o un numero di telefono valido.'
+      : 'Inserire nome e cognome e un indirizzo e-mail o un numero di telefono.';
     errEl.hidden = false;
     return;
   }
-  required.forEach(id => document.getElementById(id)?.closest('.form-field')?.classList.remove('--error'));
 
   const role = document.getElementById(fid('role')).value.trim();
   if (!REGISTRATION_ROLES.includes(role)) {
@@ -1313,14 +1424,16 @@ async function submitRegistration(prefix = 'reg') {
   const payload = {
     name:          document.getElementById(fid('name')).value.trim(),
     clinic:        document.getElementById(fid('clinic')).value.trim(),
-    email:         document.getElementById(fid('email')).value.trim(),
+    email:         contactType === 'email' ? contact : contact2,
     street:        document.getElementById(fid('street')).value.trim(),
     house_number:  document.getElementById(fid('house-number')).value.trim(),
     zip_code:      document.getElementById(fid('zip')).value.trim(),
     town:          document.getElementById(fid('town')).value.trim(),
     country_code:  countryCode,
     role,
-    phone:            '', // Telefonfeld entfernt – Schlüssel bleibt für den Webhook
+    phone:            contactType === 'phone' ? contact : contact2,
+    origin_agent:     REGISTRATION_QUERY.originAgent,
+    origin_event:     REGISTRATION_QUERY.originEvent,
     accept_conditions: document.getElementById(fid('accept-conditions'))?.checked ? '1' : '',
   };
 
@@ -1412,6 +1525,7 @@ function startPremiumTile(title, body, image) {
 function startPremiumsHTML() {
   // Sachprämien mit festem Wert zuerst (greifbar), dann frei wählbare Beträge
   const tiles = [...PREMIUMS].sort((x, y) => !!x.customAmount - !!y.customAmount).map(p => startPremiumTile(p.name, p.desc, p.image)).join('')
+    + startPremiumTile(REWARDS_TEXT.productsTitle, REWARDS_TEXT.productsBody, REWARDS_PRODUCTS_IMAGE)
     + startPremiumTile(REWARDS_TEXT.cashTitle, REWARDS_TEXT.cashBody, 'praemie-auszahlung.jpg');
   return `
 <section class="shopify-section shopify-section--own-measure shopify-section--featured-collection portal-start-premiums">
@@ -2182,6 +2296,9 @@ const REWARDS_TEXT = {
   hintNext: 'Ancora {amount} per il premio «{name}».',
   hintReady: 'Puoi già riscattare: scegli il tuo premio.',
   hintEmpty: 'Con ogni ordine dei tuoi clienti la tua provvigione cresce.',
+  productsTitle: 'Prodotti Vetalità',
+  productsBody: 'Ordina prodotti dell’assortimento Vetalità – pagati con la tua provvigione.',
+  productsCta: 'Richiedi prodotti',
   cashTitle: 'Riscuoti in contanti',
   cashBody: 'Fatti accreditare la provvigione con un bonifico – da 20 €.',
   cashCta: 'Riscuoti',
@@ -2207,6 +2324,7 @@ const REWARDS_TEXT = {
 };
 const REWARDS_HERO_IMAGE = 'praemie-kaffee-2.jpg';
 const REWARDS_WISH_IMAGE = 'praemie-wunsch-2.jpg';
+const REWARDS_PRODUCTS_IMAGE = 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/Gemini_Generated_Image_yks9rxyks9rxyks9.jpg?v=1791541263&width=800';
 
 /* Hinweis im Kopf: nächste noch nicht erreichbare Prämie, sonst „jetzt einlösen“ */
 function rewardsHint() {
@@ -2235,12 +2353,13 @@ function rewardsTextTile(title, body, cta, action, image) {
 
 function rewardsGridHTML() {
   return PREMIUMS.map(renderTile).join('')
+    + rewardsTextTile(REWARDS_TEXT.productsTitle, REWARDS_TEXT.productsBody, REWARDS_TEXT.productsCta, 'openProductRequestModal()', REWARDS_PRODUCTS_IMAGE)
     + rewardsTextTile(REWARDS_TEXT.cashTitle, REWARDS_TEXT.cashBody, REWARDS_TEXT.cashCta, 'openCashRequestModal()', 'praemie-auszahlung.jpg');
 }
 
 /* Spalten nach Anzahl: 2 → zwei große, 4/8 → vier, sonst drei */
 function rewardsCols() {
-  const n = PREMIUMS.length + 1;
+  const n = PREMIUMS.length + 2; // + Produktanfrage + Bar auszahlen
   return n <= 2 ? '--cols-2' : (n % 4 === 0 ? '--cols-4' : '--cols-3');
 }
 

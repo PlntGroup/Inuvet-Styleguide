@@ -873,4 +873,5 @@ body:has(.pdp__sticky-cta.--visible) .reg-badge { bottom: calc(var(--module) * 2
   body.--portal-start .site-nav .nav-right > .portal-lang { display: flex; }
   /* ohne Pfeil, damit Kürzel + „Demo ansehen“ in die rechte Spalte passen und das Logo mittig bleibt */
   body.--portal-start .portal-lang .nav-item__trigger .material-icons { display: none; }
+  body.--portal-start .site-nav .nav-right:has(> .portal-lang) { gap: calc(var(--base) * 0.5); }
 }
