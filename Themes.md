@@ -60,6 +60,8 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 - **Neongrüne Linien (EQX)** — Entscheidung Micha, 2026-11-19: `--border-light: var(--color-neon)` in `brand-eqx.css` (Neongrün = Markenfarbe, X im Logo). Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Neongrün trägt keinen Text auf Weiß.
 
+- **Dunkelgrüne Buttons (EQX)** — Entscheidung Micha, 2026-11-19: `--btn-color: var(--green)` in `brand-eqx.css`. System-Token `--btn-color` (Primary/Secondary, Standard `--fg`) für alle Marken nutzbar.
+
 - **Campus: zusätzliche Hintergründe + Karo-Raster** — Entscheidung Micha, 2026-11-19: Campus-Sections bieten in `section_bg` zusätzlich `rose` / `blue` / `peach` (System-Klassen `--bg-rose|blue|peach`, Tokens `--cat-bauchspeichel-light` / `--cat-stress-light` / `--cat-atemwege-light`) und den Schalter `section_grid` (Karo, nur Campus in `theme-extras.css`). Kern-Sections weichen im Campus damit nur im Schema ab; beim Kopieren aus dem Kern wieder ergänzen (Campus `Rules.md`).
 
 ---

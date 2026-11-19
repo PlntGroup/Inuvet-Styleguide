@@ -3038,28 +3038,31 @@
     text-decoration: none;
   }
 
-  /* Primary — schwarz gefüllt */
+  /* Button-Farbe: --btn-color (Marke, z. B. EQX = --green), sonst --fg.
+     Bewusst nur als Fallback, nicht auf :root: so folgt der Button --fg auch in Flächen,
+     die --fg umdrehen (z. B. dunkle Flächen). */
+  /* Primary — gefüllt (Standard schwarz) */
   .btn.--primary {
-    background: var(--fg);
+    background: var(--btn-color, var(--fg));
     color: var(--bg);
-    border-color: var(--fg);
+    border-color: var(--btn-color, var(--fg));
   }
   .btn.--primary:hover {
-    background: var(--fg);
-    border-color: var(--fg);
-    box-shadow: 0 0 0 2px var(--fg);
+    background: var(--btn-color, var(--fg));
+    border-color: var(--btn-color, var(--fg));
+    box-shadow: 0 0 0 2px var(--btn-color, var(--fg));
   }
 
   /* Secondary — Outline */
   .btn.--secondary {
     background: color-mix(in srgb, var(--bg) 70%, transparent);
-    color: var(--fg);
-    border-color: var(--fg);
+    color: var(--btn-color, var(--fg));
+    border-color: var(--btn-color, var(--fg));
   }
   .btn.--secondary:hover {
-    background: var(--fg);
+    background: var(--btn-color, var(--fg));
     color: var(--bg);
-    box-shadow: 0 0 0 2px var(--fg);
+    box-shadow: 0 0 0 2px var(--btn-color, var(--fg));
   }
 
   /* Ghost — kein Rand, nur Text */

@@ -32,6 +32,8 @@ html[data-brand="eqx"] {
   --green: #006838;
   --green-hover: #004d2a;
   --green-light: #e6f0eb;
+  /* Buttons (Primary, Secondary) dunkelgrün statt schwarz (Entscheidung Micha, 2026-11-19) */
+  --btn-color: var(--green);
 
   --color-neon: #00ff44;
   /* Linien neongrün = Markenfarbe (Entscheidung Micha, 2026-11-19), Linie unter dem Header bleibt grau */

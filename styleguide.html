@@ -6,10 +6,10 @@
   <title>Design System – inuvet</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link id="font-planimol" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;1,400&amp;display=swap" disabled>
-  <link rel="stylesheet" href="planet-brands.css?v=217">
+  <link rel="stylesheet" href="planet-brands.css?v=218">
   <link rel="stylesheet" href="brand-planimol.css?v=2">
   <link rel="stylesheet" href="brand-manukalind.css?v=2">
-  <link rel="stylesheet" href="brand-eqx.css?v=3">
+  <link rel="stylesheet" href="brand-eqx.css?v=4">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=2" disabled>
   <link rel="stylesheet" href="sg-only.css?v=55">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -1441,8 +1441,9 @@
       </div>
 
       <table class="spec-table">
-        <tr><th><code>.btn.--primary</code></th><td>Hauptaktion · BG <code>--fg</code> · Schrift <code>--bg</code> · Hover: Box-Shadow <code>0 0 0 2px --fg</code></td></tr>
-        <tr><th><code>.btn.--secondary</code></th><td>Nebenaktion · BG <code>rgba(255,255,255,.7)</code> · Rand + Schrift <code>--fg</code> · Hover: invertiert</td></tr>
+        <tr><th><code>.btn.--primary</code></th><td>Hauptaktion · BG <code>--btn-color</code> (Standard <code>--fg</code>) · Schrift <code>--bg</code> · Hover: Box-Shadow <code>0 0 0 2px</code> in derselben Farbe</td></tr>
+        <tr><th><code>.btn.--secondary</code></th><td>Nebenaktion · BG <code>rgba(255,255,255,.7)</code> · Rand + Schrift <code>--btn-color</code> (Standard <code>--fg</code>) · Hover: invertiert</td></tr>
+        <tr><th><code>--btn-color</code></th><td>Marken-Token für Primary und Secondary (nur in <code>brand-*.css</code> setzen). Nicht gesetzt = <code>--fg</code>. EQX: <code>--green</code> (Dunkelgrün). Ghost-Buttons bleiben <code>--fg</code>.</td></tr>
         <tr><th><code>.btn.--ghost</code></th><td>Kein Rand · Text + Pfeil <code>→</code> · Hover: Pfeil verschiebt sich · Mobile: Padding + negativer <code>margin-left</code> (Touch ≥ 44&nbsp;px, Text bündig)</td></tr>
         <tr><th><code>.btn.--ghost.--back</code></th><td>Ghost mit <code>←</code> statt <code>→</code> · Hover nach links · Zurück-Navigation</td></tr>
         <tr><th><code>.btn.--sm</code></th><td><code>height: calc(var(--base) * 2)</code> — gleiche Höhe wie <code>.qty-selector.--sm</code> / <code>.choice-box.--sm</code></td></tr>
