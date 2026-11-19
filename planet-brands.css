@@ -61,7 +61,7 @@
     --color-action-hover: var(--green-hover);
     --color-success: var(--green);       /* Erfolgs-Feedback, Häkchen, Checkouts */
     --color-link:    var(--green);       /* Fließtext-Links */
-    --color-amber:      #E8A020;  /* Warmer Akzent: Sterne, Testimonials, Gutscheinkarten */
+    --color-amber:      #FFAA1F;  /* Warmer Akzent: Sterne, Testimonials, Gutscheinkarten (klarer Ton, Micha 2026-11-19) */
     --color-honey:      #fcd01e;  /* Honig-Gelb */
     --color-notice-bg:  #FEFFDA;  /* Infobox-Hintergrund (Notice) */
 
