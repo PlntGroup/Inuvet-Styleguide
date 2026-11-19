@@ -5046,7 +5046,8 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
   
   /* ─── Avatar (Foto oder Initial) ─── */
-  .testimonial__avatar { border: 1px solid var(--border-light); flex-shrink: 0; border-radius: 50%; overflow: hidden; }
+  /* Avatare ohne Kontur (Entscheidung Micha, 2026-11-19) */
+  .testimonial__avatar { flex-shrink: 0; border-radius: 50%; overflow: hidden; }
   .testimonial__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .testimonial__avatar.--initial {
     background: color-mix(in srgb, var(--fg-muted) 55%, white);
@@ -5668,7 +5669,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     border-radius: 50%;
     object-fit: cover;
     display: block;
-    border: 1px solid var(--border-light);
     background: var(--accent-bg);
   }
   .social-proof__avatar + .social-proof__avatar {
