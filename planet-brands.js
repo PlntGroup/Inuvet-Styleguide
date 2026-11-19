@@ -756,7 +756,7 @@ const allProducts = [
     ],
     selectedVariantIdx: 0, selectedSizeIdx: 0 },
   // Calmin balance Tabletten — Einzelprodukt (Form steht im Titel; nur Größenwahl) → E.2.
-  { id: 12, isFamily: false, title: 'Calmin balance Tabletten', cat: 'beruhigung', catLabel: 'Beruhigung',
+  { id: 12, isFamily: false, title: 'Calmin balance Tabletten', cat: 'stress', catLabel: 'Stress',
     form: 'Tabletten',
     animals: 'Katze, Hund',
     rating: '4,8', ratingCount: 214, past6Months: 0, past18Months: 0, pricingModel: 'A', selectedSizeIdx: 0,

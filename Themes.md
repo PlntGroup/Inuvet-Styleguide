@@ -58,7 +58,7 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 - **Grüne Linien (Inuvet, Campus, ManukaLind, Vetalità)** — Entscheidung Micha, 2026-11-11: `--border-light: color-mix(in srgb, var(--green) 50%, var(--bg))` in `brand-{marke}.css` (Inuvet und Vetalità: `brand-inuvet.css` / `brand-vetalita.css` nur dafür). Ausnahme davon: die Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Der System-Standard bleibt Hellgrau; Planimol unverändert. Fokus/aktiv bleiben `--fg`.
 
-- **Campus: zusätzliche Hintergründe + Karo-Raster** — Entscheidung Micha, 2026-11-19: Campus-Sections bieten in `section_bg` zusätzlich `rose` / `blue` / `peach` (System-Klassen `--bg-rose|blue|peach`, Tokens `--cat-bauchspeichel-light` / `--cat-beruhigung-light` / `--cat-atemwege-light`) und den Schalter `section_grid` (Karo, nur Campus in `theme-extras.css`). Kern-Sections weichen im Campus damit nur im Schema ab; beim Kopieren aus dem Kern wieder ergänzen (Campus `Rules.md`).
+- **Campus: zusätzliche Hintergründe + Karo-Raster** — Entscheidung Micha, 2026-11-19: Campus-Sections bieten in `section_bg` zusätzlich `rose` / `blue` / `peach` (System-Klassen `--bg-rose|blue|peach`, Tokens `--cat-bauchspeichel-light` / `--cat-stress-light` / `--cat-atemwege-light`) und den Schalter `section_grid` (Karo, nur Campus in `theme-extras.css`). Kern-Sections weichen im Campus damit nur im Schema ab; beim Kopieren aus dem Kern wieder ergänzen (Campus `Rules.md`).
 
 ---
 

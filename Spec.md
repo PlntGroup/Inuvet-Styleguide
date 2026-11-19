@@ -58,7 +58,7 @@ Vier Ebenen — Details und UI-Auswirkungen: `pages/Produkt-Modell.html`.
 
 | Ebene | Definition | Beispiel |
 |---|---|---|
-| **Indikation** | Gesundheitsbereich / Navigation (Badge) | Beruhigung, Leber |
+| **Indikation** | Gesundheitsbereich / Navigation (Badge) | Stress, Leber |
 | **Produktfamilie** | Bundelt mehrere Darreichungsformen unter einem Namen (`isFamily: true`) | `Hepax forte` → Pulver + Tabletten |
 | **Einzelprodukt** | Genau **eine** Darreichungsform — geht in den Warenkorb (`isFamily: false`) | `Calmin balance Tabletten`, `Inzym Pulver`, `Hepax forte Pulver` |
 | **Variante** | Füllmenge mit eigenem Preis | 60 Stück / 90 Stück |
@@ -265,7 +265,7 @@ Doku → Styleguide A.7 „Section-Stack" (`styleguide.html#section-stack`).
 
 Semantische Aliasse (für neuen Code bevorzugen): `--color-action` / `--color-action-hover` / `--color-success` / `--color-link` (= Grün-Tokens) · Akzente: `--color-amber: #E8A020`, `--color-honey: #fcd01e`, `--color-notice-bg: #FEFFDA` · Border-Semantik: `--border-focus`, `--border-active`.
 
-15 Kategorie-Farben als `--cat-X` + `--cat-X-light`: beruhigung, leber, gelenke, immun, herz, magendarm, haut, atemwege, niere, blase, bauchspeichel, fettsaeuren, hormone, ohren, cbd.
+15 Kategorie-Farben als `--cat-X` + `--cat-X-light`: stress, leber, gelenke, immun, herz, magendarm, haut, atemwege, niere, blase, bauchspeichel, fettsaeuren, hormone, ohren, cbd.
 
 ---
 

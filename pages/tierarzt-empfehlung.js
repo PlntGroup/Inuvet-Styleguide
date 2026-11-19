@@ -20,7 +20,7 @@ const DIABEX_1     = '../assets/brands/inuvet/images/Diabex_Packshot_01.jpg';
    ════════════════════════════════════════════ */
 const PRODUCTS = [
   {
-    id: 1, name: 'Calmin balance', familie: true, cat: 'beruhigung', catLabel: 'Beruhigung',
+    id: 1, name: 'Calmin balance', familie: true, cat: 'stress', catLabel: 'Stress',
     img: CALMIN_1, imgHover: CALMIN_2, imgDetail: CALMIN_3, rating: '4,8', approved: true,
     shortDesc: 'Für Entspannung und innere Balance.',
     desc: 'Unterstützt die natürliche Ausgeglichenheit von Hunden und Katzen. Schonend gewonnen, tierärztlich entwickelt und geprüft.',
@@ -2016,7 +2016,7 @@ const FINDER_ANIMALS = [
   { value: 'katze', label: 'Katze' },
 ];
 const FINDER_INDICATIONS = [
-  { value: 'beruhigung',    label: 'Nervosität & Stress',   desc: 'Mein Tier ist ängstlich, unruhig oder gestresst.' },
+  { value: 'stress',    label: 'Nervosität & Stress',   desc: 'Mein Tier ist ängstlich, unruhig oder gestresst.' },
   { value: 'leber',         label: 'Leber & Stoffwechsel',  desc: 'Unterstützung bei Leberproblemen oder Verdauungsschwäche.' },
   { value: 'magendarm',     label: 'Magen & Darm',          desc: 'Durchfall, empfindlicher Magen oder Aufbau der Darmflora.' },
   { value: 'gelenke',       label: 'Gelenke',               desc: 'Beweglichkeit, Entzündungsstoffwechsel, Langzeitgabe.' },
@@ -2568,7 +2568,7 @@ function render() {
    ════════════════════════════════════════════ */
 const SEARCH_DATA = {
   queries: [
-    { text: 'Beruhigung & Entspannung' },
+    { text: 'Stress & Entspannung' },
     { text: 'Leber & Stoffwechsel' },
     { text: 'Magen & Darm' },
     { text: 'Gelenke' },

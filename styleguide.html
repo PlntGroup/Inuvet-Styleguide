@@ -420,7 +420,7 @@
         <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-xs</span><span>0.75–0.8125rem</span><span>LH 1.5</span></div><p style="font-size: var(--text-xs)">Caption · Label · Kleingedrucktes · Metainfo</p></div>
         <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-xs</span><span>0.75–0.8125rem</span><span>Uppercase · 0.15em</span></div><div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted);">Section Label · Tabellen-Header · Filter-Label</div></div>
         <div class="specimen-row"><div class="specimen-meta"><span>0.85em (relativ)</span><span>Monospace</span></div><div style="font-size: var(--text-base); line-height: var(--lh-base); color: var(--fg-muted);">Inline-Code: <code>var(--module)</code>, <code>clamp()</code>, <code>#78b41b</code></div></div>
-        <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-xs</span><span>0.75–0.8125rem</span><span>700 · uppercase · ls 0.05em</span></div><div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;"><div class="badge" data-cat="herz">Herz</div><div class="badge" data-cat="gelenke">Gelenke</div><div class="badge" data-cat="beruhigung">Beruhigung</div><div class="badge --dark">Neu</div><div class="badge --sale">Sale</div></div></div>
+        <div class="specimen-row"><div class="specimen-meta"><span class="sg-token">--text-xs</span><span>0.75–0.8125rem</span><span>700 · uppercase · ls 0.05em</span></div><div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;"><div class="badge" data-cat="herz">Herz</div><div class="badge" data-cat="gelenke">Gelenke</div><div class="badge" data-cat="stress">Stress</div><div class="badge --dark">Neu</div><div class="badge --sale">Sale</div></div></div>
       </div>
       <p>Die vollständige Icon-Galerie ist in <a href="#B3">B.3 — Icons &amp; icon-box</a> dokumentiert.</p>
 
@@ -752,9 +752,9 @@
         <div class="color-card">
           <div class="color-card__swatch" style="background: linear-gradient(to bottom, #C3D7EE 60%, #ecf2fa 40%);"></div>
           <div class="color-card__info">
-            <span class="color-card__token">--cat-beruhigung</span>
+            <span class="color-card__token">--cat-stress</span>
             <span class="color-card__hex">#C3D7EE · #ecf2fa</span>
-            <span class="color-card__role">Beruhigung</span>
+            <span class="color-card__role">Stress</span>
           </div>
         </div>
         <div class="color-card">
@@ -1142,7 +1142,7 @@
         <tr><th><code>--pb</code></th><td><code>padding-bottom: var(--section-gap)</code></td></tr>
         <tr><th>Default V2/V3</th><td>Kein Padding · Margin oben an (<code>--mt</code>) · unten aus</td></tr>
         <tr><th><code>--mt</code> / <code>--mb</code></th><td>V2/V3 · <code>margin-top/bottom: var(--section-gap)</code> · oben Default an</td></tr>
-        <tr><th>Hintergrund (<code>section_bg</code>)</th><td><code>--bg-green-light</code> / <code>--bg-notice</code> · zusätzlich <code>--bg-rose</code> / <code>--bg-blue</code> / <code>--bg-peach</code> (Tokens <code>--cat-bauchspeichel-light</code> / <code>--cat-beruhigung-light</code> / <code>--cat-atemwege-light</code>, im Schema bisher nur Campus) · Klasse kommt allgemein aus <code>section-stack-class</code> (<code>--bg-{wert}</code>) · innen immer <code>padding-block: var(--section-gap)</code> · Padding oben an → <code>margin-top</code> · <code>--pb</code> → <code>margin-bottom</code> (je <code>var(--section-gap)</code>) · gleiche Fläche ohne Außenabstand: durchlaufend, ein Innenabstand · Trenner ausgenommen (Padding = innen)</td></tr>
+        <tr><th>Hintergrund (<code>section_bg</code>)</th><td><code>--bg-green-light</code> / <code>--bg-notice</code> · zusätzlich <code>--bg-rose</code> / <code>--bg-blue</code> / <code>--bg-peach</code> (Tokens <code>--cat-bauchspeichel-light</code> / <code>--cat-stress-light</code> / <code>--cat-atemwege-light</code>, im Schema bisher nur Campus) · Klasse kommt allgemein aus <code>section-stack-class</code> (<code>--bg-{wert}</code>) · innen immer <code>padding-block: var(--section-gap)</code> · Padding oben an → <code>margin-top</code> · <code>--pb</code> → <code>margin-bottom</code> (je <code>var(--section-gap)</code>) · gleiche Fläche ohne Außenabstand: durchlaufend, ein Innenabstand · Trenner ausgenommen (Padding = innen)</td></tr>
         <tr><th>Neue Section</th><td>Abstand oben immer an · V1 <code>pad_top: true</code> · V2/V3 <code>margin_top: true</code> · unten aus · Flush unter Header nur im Template-JSON</td></tr>
         <tr><th>Nicht für</th><td>Footer/Header-Chrome · Textblöcke (<code>.flow</code>)</td></tr>
       </table>
@@ -1640,7 +1640,7 @@
       <div class="sg-demo">
         <div class="sg-btn-row --sm">
           <div class="badge" data-cat="gelenke">Gelenke</div>
-          <div class="badge" data-cat="beruhigung">Beruhigung</div>
+          <div class="badge" data-cat="stress">Stress</div>
           <div class="badge" data-cat="herz">Herz</div>
           <div class="badge" data-cat="haut">Haut</div>
           <div class="badge" data-cat="cbd">CBD</div>
@@ -2558,7 +2558,7 @@
           <div class="tile --product">
             <div class="tile__image-wrap">
               <div class="floating-meta">
-                <div class="badge" data-cat="beruhigung">Beruhigung</div>
+                <div class="badge" data-cat="stress">Stress</div>
                 <div class="badge --dark">Neu</div>
                 <div class="badge">Produktfamilie</div>
               </div>
@@ -2580,7 +2580,7 @@
           <div class="tile --product">
             <div class="tile__image-wrap">
               <div class="floating-meta">
-                <div class="badge" data-cat="beruhigung">Beruhigung</div>
+                <div class="badge" data-cat="stress">Stress</div>
                 <div class="badge --dark">Neu</div>
                 <div class="badge">Produktfamilie</div>
               </div>
@@ -2630,7 +2630,7 @@
           <div class="tile --product">
             <div class="tile__image-wrap">
               <div class="floating-meta">
-                <div class="badge" data-cat="beruhigung">Beruhigung</div>
+                <div class="badge" data-cat="stress">Stress</div>
                 <div class="badge">Produktfamilie</div>
               </div>
               <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><video src="assets/brands/inuvet/images/Calmin_Packshot_02.mp4" muted loop playsinline aria-hidden="true"></video></div>
@@ -3110,7 +3110,7 @@
         <nav class="breadcrumb" aria-label="Pfadnavigation">
           <span class="breadcrumb__item"><a href="#">Start</a></span>
           <span aria-hidden="true">/</span>
-          <span class="breadcrumb__item"><a href="#">Beruhigung</a></span>
+          <span class="breadcrumb__item"><a href="#">Stress</a></span>
           <span aria-hidden="true">/</span>
           <span class="breadcrumb__item" aria-current="page">Calmin balance</span>
         </nav>
@@ -3489,7 +3489,7 @@
   &lt;/a&gt;
   &lt;div class="nav-item__dropdown"&gt;
     &lt;a href="#"&gt;Gelenke &amp;amp; Bewegung&lt;/a&gt;
-    &lt;a href="#"&gt;Beruhigung&lt;/a&gt;
+    &lt;a href="#"&gt;Stress&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
@@ -3503,7 +3503,7 @@
               </a>
               <div class="nav-item__dropdown">
                 <a href="#">Gelenke &amp; Bewegung</a>
-                <a href="#">Beruhigung</a>
+                <a href="#">Stress</a>
                 <a href="#">Alle Produkte</a>
               </div>
             </div>
@@ -3551,7 +3551,7 @@
   &lt;div class="nav-col"&gt;
     &lt;a href="#" onclick="closeMobile(); return false;"&gt;Produkte&lt;/a&gt;
     &lt;a href="#" class="--indent" onclick="closeMobile(); return false;"&gt;Gelenke &amp;amp; Bewegung&lt;/a&gt;
-    &lt;a href="#" class="--indent" onclick="closeMobile(); return false;"&gt;Beruhigung&lt;/a&gt;
+    &lt;a href="#" class="--indent" onclick="closeMobile(); return false;"&gt;Stress&lt;/a&gt;
     &lt;a href="#" class="--indent" onclick="closeMobile(); return false;"&gt;Verdauung&lt;/a&gt;
     &lt;a href="#" class="--indent" onclick="closeMobile(); return false;"&gt;Alle Produkte&lt;/a&gt;
     &lt;a href="#" onclick="closeMobile(); return false;"&gt;Ratgeber&lt;/a&gt;
@@ -3888,7 +3888,7 @@
         <div class="section-type --v1">
           <div class="section-type__image">
             <div class="floating-meta">
-              <div class="badge" data-cat="beruhigung">Beruhigung</div>
+              <div class="badge" data-cat="stress">Stress</div>
               <div class="badge --dark">Neu</div>
             </div>
             <img src="assets/brands/inuvet/images/Hero_Mood_01.jpg" alt="Hund in entspannter Pose" width="3354" height="2516" loading="lazy">
@@ -4009,7 +4009,7 @@
         <div class="section-type --v1">
           <div class="section-type__image media-credit" style="--media-credit-color: color-mix(in srgb, var(--bg) 75%, transparent);">
             <div class="floating-meta">
-              <div class="badge" data-cat="beruhigung">Beruhigung</div>
+              <div class="badge" data-cat="stress">Stress</div>
               <div class="badge --sale">Sale</div>
               <div class="badge">Limitiert</div>
             </div>
@@ -4569,7 +4569,7 @@
           </div>
           <div class="tile --product">
             <div class="tile__image-wrap">
-              <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
+              <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
               <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance Tabletten"></div>
             </div>
             <div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4,8</div></div>
@@ -4596,7 +4596,7 @@
           <div class="tile --featured">
             <div class="tile__animation">
               <div class="floating-meta">
-                <div class="badge" data-cat="beruhigung">Beruhigung</div>
+                <div class="badge" data-cat="stress">Stress</div>
                 <div class="badge --dark">Neu</div>
               </div>
               <img src="assets/brands/inuvet/images/Hero_Mood_02.jpg" alt="">
@@ -4648,7 +4648,7 @@
           </div>
           <div class="tile --product">
             <div class="tile__image-wrap">
-              <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
+              <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
               <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance Tabletten"></div>
             </div>
             <div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4,8</div></div>
@@ -4691,7 +4691,7 @@
           </div>
           <div class="tile --product">
             <div class="tile__image-wrap">
-              <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
+              <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
               <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance Tabletten"></div>
             </div>
             <div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4,8</div></div>
@@ -4707,7 +4707,7 @@
         <div class="tile-grid --cols-3">
           <div class="tile --product">
             <div class="tile__image-wrap">
-              <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
+              <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
               <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance Tabletten"></div>
             </div>
             <div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4,8</div></div>
@@ -5419,7 +5419,7 @@
               <span class="story-iconslider__media">
                 <img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="">
               </span>
-              <span class="story-iconslider__label">Beruhigung</span>
+              <span class="story-iconslider__label">Stress</span>
             </a>
             <a class="story-iconslider__item --new" href="https://inuvet-dev.myshopify.com/products/hepax-forte" role="listitem">
               <span class="story-iconslider__media">
@@ -5704,7 +5704,7 @@
       <h3 class="sg-h3 --top" id="pdp-single">Einzelprodukt</h3>
       <p>Muster-Layout für ein Produkt ohne Typ-Selektor (hier Calmin-Assets). Sticky-Galerie wie Live; Social Proof in der Info-Spalte (Aside ≥1536 nur auf <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html</a>, damit die Styleguide-Vorschau nicht gequetscht wird).</p>
       <div class="sg-demo --white">
-        <div class="pdp pdp--sticky-gallery" data-pdp-cat="beruhigung">
+        <div class="pdp pdp--sticky-gallery" data-pdp-cat="stress">
           <div class="pdp__gallery">
             <div class="pdp__thumbs">
               <div class="pdp__thumb --active" onclick="pdpSwitch(this,'assets/brands/inuvet/images/Calmin_Packshot_01.jpeg','','')">
@@ -5724,7 +5724,7 @@
               <img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance">
               <video class="--hidden" src="assets/brands/inuvet/images/Calmin_Packshot_02.mp4" muted loop playsinline aria-hidden="true"></video>
               <div class="pdp__caption --hidden" aria-live="polite"></div>
-              <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
+              <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
             </div>
           </div>
           <div class="pdp__buy">
@@ -5849,7 +5849,7 @@
           <div class="tile-grid --cols-4">
             <div class="tile --product">
               <div class="tile__image-wrap">
-                <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div><div class="badge --dark">Neu</div><div class="badge">Produktfamilie</div></div>
+                <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div><div class="badge --dark">Neu</div><div class="badge">Produktfamilie</div></div>
                 <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><video src="assets/brands/inuvet/images/Calmin_Packshot_02.mp4" muted loop playsinline aria-hidden="true"></video></div>
                 <button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button>
                 <div class="tile__cart"><span class="btn --secondary">In den Warenkorb</span></div>
@@ -5871,7 +5871,7 @@
             </div>
             <div class="tile --product">
               <div class="tile__image-wrap">
-                <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div><div class="badge --sale">Sale</div><div class="badge">Produktfamilie</div></div>
+                <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div><div class="badge --sale">Sale</div><div class="badge">Produktfamilie</div></div>
                 <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><video src="assets/brands/inuvet/images/Calmin_Packshot_02.mp4" muted loop playsinline aria-hidden="true"></video></div>
                 <button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button>
                 <div class="tile__cart"><span class="btn --secondary">In den Warenkorb</span></div>
@@ -6221,7 +6221,7 @@
             </div>
             <div class="tile --product">
               <div class="tile__image-wrap">
-                <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
+                <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
                 <div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance Tabletten"></div>
               </div>
               <div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4,8</div></div>
@@ -6520,7 +6520,7 @@
             </div>
             <div class="tile-grid --cols-3">
               <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="leber">Leber</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Hepax_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Hepax forte</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.6</div></div><div class="tile__description">Unterstützt die Leberfunktion.</div></div><div class="tile__price"><div class="price-stack"><span>44,90 €</span></div></div></div>
-              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div><div class="badge --dark">Neu</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.8</div></div><div class="tile__description">Für Ruhe und Ausgeglichenheit.</div></div><div class="tile__price"><div class="price-stack"><span>ab 39,90 €</span></div></div></div>
+              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="stress">Stress</div><div class="badge --dark">Neu</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.8</div></div><div class="tile__description">Für Ruhe und Ausgeglichenheit.</div></div><div class="tile__price"><div class="price-stack"><span>ab 39,90 €</span></div></div></div>
               <div class="tile --featured --cover" style="--tile-fg: #fff">
                 <img class="tile__cover" src="assets/brands/inuvet/images/Hero_Mood_02.jpg" alt="">
                 <div class="tile__bottom flow">
@@ -6530,9 +6530,9 @@
                 </div>
               </div>
               <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="leber">Leber</div><div class="badge --sale">Sale</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Hepax_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Hepax forte</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.6</div></div><div class="tile__description">Unterstützt die Leberfunktion.</div></div><div class="tile__price"><div class="price-stack"><span>34,90 €</span><span class="--old">44,90 €</span></div></div></div>
-              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.5</div></div><div class="tile__description">Sanfte Unterstützung bei Stress.</div></div><div class="tile__price"><div class="price-stack"><span>29,90 €</span></div></div></div>
+              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="stress">Stress</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.5</div></div><div class="tile__description">Sanfte Unterstützung bei Stress.</div></div><div class="tile__price"><div class="price-stack"><span>29,90 €</span></div></div></div>
               <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="leber">Leber</div><div class="badge --dark">Neu</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Hepax_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Hepax plus</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.9</div></div><div class="tile__description">Erweiterte Rezeptur für die Leber.</div></div><div class="tile__price"><div class="price-stack"><span>52,90 €</span></div></div></div>
-              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div><div class="badge --sale">Sale</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.7</div></div><div class="tile__description">Für Ruhe und Ausgeglichenheit.</div></div><div class="tile__price"><div class="price-stack"><span>24,90 €</span><span class="--old">39,90 €</span></div></div></div>
+              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="stress">Stress</div><div class="badge --sale">Sale</div><div class="badge">Produktfamilie</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.7</div></div><div class="tile__description">Für Ruhe und Ausgeglichenheit.</div></div><div class="tile__price"><div class="price-stack"><span>24,90 €</span><span class="--old">39,90 €</span></div></div></div>
             </div>
             <nav class="pagination" aria-label="Pagination">
               <button type="button" class="pagination__btn" aria-label="Vorherige Seite"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-chevron_left"></use></svg></button>
@@ -6566,9 +6566,9 @@
             </div>
             <div class="tile-grid --cols-4">
               <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="leber">Leber</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Hepax_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Hepax forte</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.6</div></div><div class="tile__description">Unterstützt die Leberfunktion.</div></div><div class="tile__price"><div class="price-stack"><span>44,90 €</span></div></div></div>
-              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.8</div></div><div class="tile__description">Für Ruhe und Ausgeglichenheit.</div></div><div class="tile__price"><div class="price-stack"><span>39,90 €</span></div></div></div>
+              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.8</div></div><div class="tile__description">Für Ruhe und Ausgeglichenheit.</div></div><div class="tile__price"><div class="price-stack"><span>39,90 €</span></div></div></div>
               <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="leber">Leber</div><div class="badge --sale">Sale</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Hepax_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Hepax_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Hepax forte</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.6</div></div><div class="tile__description">Unterstützt die Leberfunktion.</div></div><div class="tile__price"><div class="price-stack"><span>34,90 €</span><span class="--old">44,90 €</span></div></div></div>
-              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.5</div></div><div class="tile__description">Sanfte Unterstützung bei Stress.</div></div><div class="tile__price"><div class="price-stack"><span>ab 29,90 €</span></div></div></div>
+              <div class="tile --product"><div class="tile__image-wrap"><div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div><div class="tile__image"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="inuvet Produkt"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt="" aria-hidden="true"></div><button class="btn --icon --sm --secondary tile__cart-icon" type="button" aria-label="In den Warenkorb"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-shopping_cart"></use></svg></button><div class="tile__cart"><button class="btn --secondary" type="button" onclick="openCart('cartFull')">In den Warenkorb</button></div></div><div class="flow"><div class="tile__headline-row"><h3 class="tile__headline">Calmin balance Tabletten</h3><div class="rating"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg> 4.5</div></div><div class="tile__description">Sanfte Unterstützung bei Stress.</div></div><div class="tile__price"><div class="price-stack"><span>ab 29,90 €</span></div></div></div>
             </div>
           </main>
         </div>
@@ -6927,7 +6927,7 @@
           </div>
           <div class="order-item">
             <div><div class="order-item__number">#10039</div><div class="order-item__date">3. Februar 2025</div></div>
-            <span class="badge" data-cat="beruhigung">In Bearbeitung</span>
+            <span class="badge" data-cat="stress">In Bearbeitung</span>
             <span class="order-item__amount">34,90 €</span>
             <a class="order-item__link" href="#">Details</a>
           </div>
@@ -7005,7 +7005,7 @@
               </div>
               <div class="search-result">
                 <div class="search-result__image product-thumb"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Calmin balance"><img src="assets/brands/inuvet/images/Calmin_Packshot_02.png" alt=""></div>
-                <div class="search-result__info"><p class="search-result__name">Calmin balance</p><div class="search-result__meta">Beruhigung</div></div>
+                <div class="search-result__info"><p class="search-result__name">Calmin balance</p><div class="search-result__meta">Stress</div></div>
                 <div class="search-result__price">39,90 €</div>
               </div>
             </div>
@@ -7232,10 +7232,10 @@
           </div>
           <a class="tile" href="https://inuvet-dev.myshopify.com/collections/all">
             <div class="tile__image-wrap">
-              <div class="floating-meta"><div class="badge" data-cat="beruhigung">Beruhigung</div></div>
-              <div class="tile__image --square"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Beruhigung"></div>
+              <div class="floating-meta"><div class="badge" data-cat="stress">Stress</div></div>
+              <div class="tile__image --square"><img src="assets/brands/inuvet/images/Calmin_Packshot_01.jpeg" alt="Stress"></div>
             </div>
-            <h3 class="tile__headline">Beruhigung</h3>
+            <h3 class="tile__headline">Stress</h3>
             <p class="text-muted">5 Produkte</p>
           </a>
         </div>

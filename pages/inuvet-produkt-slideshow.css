@@ -1,0 +1,328 @@
+/* ═══════════════════════════════════════════════════════
+   inuvet-produkt-slideshow.css
+   Automatic product slideshow, 16:9 stage (1920 × 1080 design size,
+   scaled to fit). Built on planet-brands.css tokens and components
+   (.badge, .label-caps, .flow, --cat-*, --anim-*). Not for the themes.
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── Kategorie → Farbe (Handle = Token, wie cat-vars im Theme) ─── */
+[data-cat="stress"]    { --cat: var(--cat-stress);    --cat-light: var(--cat-stress-light); }
+[data-cat="leber"]         { --cat: var(--cat-leber);         --cat-light: var(--cat-leber-light); }
+[data-cat="gelenke"]       { --cat: var(--cat-gelenke);       --cat-light: var(--cat-gelenke-light); }
+[data-cat="immun"]         { --cat: var(--cat-immun);         --cat-light: var(--cat-immun-light); }
+[data-cat="herz"]          { --cat: var(--cat-herz);          --cat-light: var(--cat-herz-light); }
+[data-cat="magendarm"]     { --cat: var(--cat-magendarm);     --cat-light: var(--cat-magendarm-light); }
+[data-cat="haut"]          { --cat: var(--cat-haut);          --cat-light: var(--cat-haut-light); }
+[data-cat="atemwege"]      { --cat: var(--cat-atemwege);      --cat-light: var(--cat-atemwege-light); }
+[data-cat="niere"]         { --cat: var(--cat-niere);         --cat-light: var(--cat-niere-light); }
+[data-cat="blase"]         { --cat: var(--cat-blase);         --cat-light: var(--cat-blase-light); }
+[data-cat="bauchspeichel"] { --cat: var(--cat-bauchspeichel); --cat-light: var(--cat-bauchspeichel-light); }
+[data-cat="fettsaeuren"]   { --cat: var(--cat-fettsaeuren);   --cat-light: var(--cat-fettsaeuren-light); }
+[data-cat="hormone"]       { --cat: var(--cat-hormone);       --cat-light: var(--cat-hormone-light); }
+[data-cat="ohren"]         { --cat: var(--cat-ohren);         --cat-light: var(--cat-ohren-light); }
+[data-cat="cbd"]           { --cat: var(--cat-cbd);           --cat-light: var(--cat-cbd-light); }
+
+/* ─── Bühne ─── */
+.show {
+  /* Designgröße 1920 × 1080 (16:9). Alle Tokens erreichen ihren Maximalwert
+     ab ca. 1300 px Fensterbreite — die Bühne wird danach nur skaliert. */
+  --stage-w: calc(var(--base) * 120);
+  --stage-h: calc(var(--base) * 67.5);
+  --bar-h: var(--nav-height);
+  --scene-h: calc(var(--stage-h) - var(--bar-h));
+  --pad: var(--module-2xl);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-reveal: 1.1s;
+  --dur-text: 0.9s;
+
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--fg);
+  font-family: var(--font);
+  color: var(--fg);
+}
+.show.--idle { cursor: none; }
+
+.show__viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.show__stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  overflow: hidden;
+  background: var(--bg);
+  transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
+}
+
+/* ─── Leiste oben: Logo · Kategorie · Produkt · Zähler ─── */
+.show__bar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: var(--z-nav);
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  gap: var(--module);
+  padding: 0 var(--pad);
+  background: var(--cat-light);
+  transition: background-color var(--anim-slow);
+}
+
+.show__logo {
+  display: block;
+  height: calc(var(--bar-h) * 0.86);
+  width: auto;
+}
+
+.show__bar-cat,
+.show__bar-product {
+  display: flex;
+  align-items: center;
+  gap: var(--half-module);
+  font-size: var(--text-m);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Produktname: auf jeder Szene sichtbar, rechts in der Leiste */
+.show__bar-product { margin-left: auto; }
+
+.show__counter {
+  font-size: var(--text-m);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.show__counter span { color: var(--fg-muted); font-weight: 400; }
+
+/* Wechselnder Text in der Leiste: kurz ausblenden, dann neu einblenden */
+.show__swap { transition: opacity var(--anim-base), transform var(--anim-base); }
+.show__swap.--out { opacity: 0; transform: translateY(calc(var(--base) * -0.5)); }
+
+/* Fortschritt der aktuellen Szene: Linie an der Unterkante der Leiste */
+.show__progress {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: calc(var(--progress-bar-height) * 0.4);
+  background: color-mix(in srgb, var(--cat) 30%, var(--cat-light));
+}
+.show__progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--cat);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.show__progress-fill.--run {
+  animation: show-progress var(--scene-dur, 6s) linear forwards;
+}
+.show.--paused .show__progress-fill.--run { animation-play-state: paused; }
+
+/* Schritte innerhalb eines Produkts (Packshot + Darreichungsformen) */
+.show__steps {
+  display: flex;
+  gap: calc(var(--base) * 0.5);
+}
+.show__step {
+  width: var(--half-module);
+  height: calc(var(--progress-bar-height) * 0.4);
+  background: color-mix(in srgb, var(--cat) 35%, var(--cat-light));
+  transition: background-color var(--anim-base);
+}
+.show__step.--done,
+.show__step.--active { background: var(--fg); }
+
+/* ─── Szenen ─── */
+.show__scenes {
+  position: absolute;
+  inset: var(--bar-h) 0 0 0;
+}
+
+.show__scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr var(--scene-h);
+  background: var(--bg);
+}
+.show__scene.--form { grid-template-columns: var(--scene-h) 1fr; }
+.show__scene.--leaving {
+  z-index: 0;
+  opacity: 0;
+  transition: opacity var(--anim-slow) 0.25s;
+}
+.show__scene.--entering { z-index: 1; }
+
+/* Text-Spalte */
+.show__copy {
+  align-self: center;
+  padding: 0 var(--pad);
+  max-width: calc(var(--base) * 52);
+}
+.show__scene.--form .show__copy { padding-left: var(--pad); }
+
+.show__name {
+  --flow-space: var(--half-module);
+  margin-bottom: 0;
+  font-size: calc(var(--text-3xl) * 1.25);
+  font-weight: 700;
+  line-height: var(--lh-h1);
+  letter-spacing: -0.02em;
+  hyphens: auto;
+}
+/* Produktname auf den Darreichungs-Szenen: eine Stufe kleiner als im Packshot */
+.show__name.--sub { font-size: var(--text-3xl); }
+.show__lead {
+  --flow-space: var(--module);
+  font-size: var(--text-l);
+  line-height: 1.35;
+  color: var(--fg-muted);
+}
+.show__tags {
+  --flow-space: var(--module);
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--base) * 0.5);
+}
+/* .badge aus dem System, für die Bühne größer gesetzt */
+.show__tags .badge {
+  font-size: var(--text-base);
+  padding: calc(var(--base) * 0.5) calc(var(--base) * 0.875);
+  background: var(--cat-light);
+}
+
+.show__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--half-module);
+  font-size: var(--text-m);
+  color: var(--fg);
+}
+.show__eyebrow span:last-child { color: var(--fg-muted); }
+
+.show__caption {
+  --flow-space: var(--half-module);
+  font-size: var(--text-xl);
+  line-height: var(--lh-h2);
+}
+
+/* Medien-Spalte: quadratisch, volle Szenenhöhe */
+.show__media {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--cat-light);
+}
+.show__media img,
+.show__media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Einstieg einer Szene ─── */
+.show__scene.--entering .show__media {
+  animation: show-reveal-left var(--dur-reveal) var(--ease-in-out) both;
+}
+.show__scene.--form.--entering .show__media {
+  animation-name: show-reveal-right;
+}
+
+/* Packshot: langsamer Zoom über die ganze Szene */
+.show__scene.--entering .show__media.--still img {
+  animation: show-kenburns var(--scene-dur, 7s) var(--ease-out) both;
+}
+/* Darreichungsform ohne Video: Bild bewegt sich deutlicher */
+.show__scene.--entering .show__media.--animated img {
+  animation: show-drift var(--scene-dur, 7s) var(--ease-in-out) both;
+}
+
+/* Text gestaffelt: --anim-delay je Element (System-Token) */
+.show__scene.--entering .show__rise {
+  animation: show-rise var(--dur-text) var(--ease-out) both;
+  animation-delay: var(--anim-delay);
+}
+.show__scene.--leaving .show__rise {
+  transition: opacity var(--anim-base), transform var(--anim-base);
+  opacity: 0;
+  transform: translateY(calc(var(--half-module) * -1));
+}
+
+/* ─── Szenenwechsel: Kategorie-Fläche über die ganze Bühne.
+   Produktwechsel in voller Kategoriefarbe, innerhalb des Produkts hell. ─── */
+.show__curtain {
+  position: absolute;
+  inset: var(--bar-h) 0 0 0;   /* Leiste bleibt stehen */
+  z-index: var(--z-overlay);
+  background: var(--cat);
+  transform: translateX(-101%);
+  pointer-events: none;
+}
+.show__curtain.--run {
+  animation: show-curtain 1.3s var(--ease-in-out) both;
+}
+.show__curtain.--light { background: var(--cat-light); }
+
+/* ─── Bedienleiste (nur bei Mausbewegung sichtbar) ─── */
+.show__controls {
+  position: fixed;
+  right: var(--half-module);
+  bottom: var(--half-module);
+  z-index: var(--z-modal);
+  display: flex;
+  gap: calc(var(--base) * 0.5);
+  opacity: 1;
+  transition: opacity var(--anim-base);
+}
+.show.--idle .show__controls { opacity: 0; pointer-events: none; }
+.show__controls .btn { font-size: var(--text-sm); }
+
+/* ─── Keyframes ─── */
+@keyframes show-progress { to { transform: scaleX(1); } }
+
+@keyframes show-reveal-left {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes show-reveal-right {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes show-kenburns {
+  from { transform: scale(1.12); }
+  to   { transform: scale(1); }
+}
+@keyframes show-drift {
+  0%   { transform: scale(1.18) translate(2%, 2%); }
+  100% { transform: scale(1.04) translate(-1%, -1%); }
+}
+@keyframes show-rise {
+  from { opacity: 0; transform: translateY(var(--module)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes show-curtain {
+  0%   { transform: translateX(-101%); }
+  45%  { transform: translateX(0); }
+  55%  { transform: translateX(0); }
+  100% { transform: translateX(101%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .show__scene.--entering .show__media,
+  .show__scene.--entering .show__media img,
+  .show__scene.--entering .show__rise,
+  .show__curtain.--run { animation: none; }
+  .show__curtain { display: none; }
+}

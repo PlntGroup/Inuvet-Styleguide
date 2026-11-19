@@ -78,8 +78,8 @@
     --cat-herz-light: #ffeceb;
     --cat-leber: #DDBCB0;
     --cat-leber-light: #f8f2f0;
-    --cat-beruhigung: #C3D7EE;
-    --cat-beruhigung-light: #ecf2fa;
+    --cat-stress: #C3D7EE;
+    --cat-stress-light: #ecf2fa;
     --cat-gelenke: #D0D3D4;
     --cat-gelenke-light: #f1f2f2;
     --cat-magendarm: #D4EC8E;
@@ -2557,8 +2557,8 @@
   body.list-collections .tile.--featured.--cover[data-cat="atemwege"] { --tile-cat: var(--cat-atemwege); }
   .shopify-section--collections .tile.--featured.--cover[data-cat="bauchspeichel"],
   body.list-collections .tile.--featured.--cover[data-cat="bauchspeichel"] { --tile-cat: var(--cat-bauchspeichel); }
-  .shopify-section--collections .tile.--featured.--cover[data-cat="beruhigung"],
-  body.list-collections .tile.--featured.--cover[data-cat="beruhigung"] { --tile-cat: var(--cat-beruhigung); }
+  .shopify-section--collections .tile.--featured.--cover[data-cat="stress"],
+  body.list-collections .tile.--featured.--cover[data-cat="stress"] { --tile-cat: var(--cat-stress); }
   .shopify-section--collections .tile.--featured.--cover[data-cat="blase"],
   body.list-collections .tile.--featured.--cover[data-cat="blase"] { --tile-cat: var(--cat-blase); }
   .shopify-section--collections .tile.--featured.--cover[data-cat="cbd"],
@@ -2586,7 +2586,7 @@
 
   .shopify-section--collections .tile.--featured.--cover[data-cat="atemwege"],
   .shopify-section--collections .tile.--featured.--cover[data-cat="bauchspeichel"],
-  .shopify-section--collections .tile.--featured.--cover[data-cat="beruhigung"],
+  .shopify-section--collections .tile.--featured.--cover[data-cat="stress"],
   .shopify-section--collections .tile.--featured.--cover[data-cat="blase"],
   .shopify-section--collections .tile.--featured.--cover[data-cat="cbd"],
   .shopify-section--collections .tile.--featured.--cover[data-cat="gelenke"],
@@ -2597,7 +2597,7 @@
   .shopify-section--collections .tile.--featured.--cover[data-cat="magendarm"],
   body.list-collections .tile.--featured.--cover[data-cat="atemwege"],
   body.list-collections .tile.--featured.--cover[data-cat="bauchspeichel"],
-  body.list-collections .tile.--featured.--cover[data-cat="beruhigung"],
+  body.list-collections .tile.--featured.--cover[data-cat="stress"],
   body.list-collections .tile.--featured.--cover[data-cat="blase"],
   body.list-collections .tile.--featured.--cover[data-cat="cbd"],
   body.list-collections .tile.--featured.--cover[data-cat="gelenke"],
@@ -4840,7 +4840,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .story-iconslider.--lg { --story-size: calc(var(--base) * 6.5); }
   .story-iconslider.--lg .story-iconslider__label { font-size: var(--text-sm); }
   .story-iconslider__media[data-cat] { background: var(--cat, var(--accent-bg)); }
-  .story-iconslider__media[data-cat="beruhigung"]    { background: var(--cat-beruhigung); }
+  .story-iconslider__media[data-cat="stress"]    { background: var(--cat-stress); }
   .story-iconslider__media[data-cat="leber"]         { background: var(--cat-leber); }
   .story-iconslider__media[data-cat="gelenke"]       { background: var(--cat-gelenke); }
   .story-iconslider__media[data-cat="immun"]         { background: var(--cat-immun); }
@@ -5423,7 +5423,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .pdp[data-pdp-cat="niere"]         { --pdp-caption-glass: var(--cat-niere-light); }
   .pdp[data-pdp-cat="herz"]          { --pdp-caption-glass: var(--cat-herz-light); }
   .pdp[data-pdp-cat="leber"]         { --pdp-caption-glass: var(--cat-leber-light); }
-  .pdp[data-pdp-cat="beruhigung"]    { --pdp-caption-glass: var(--cat-beruhigung-light); }
+  .pdp[data-pdp-cat="stress"]    { --pdp-caption-glass: var(--cat-stress-light); }
   .pdp[data-pdp-cat="gelenke"]       { --pdp-caption-glass: var(--cat-gelenke-light); }
   .pdp[data-pdp-cat="magendarm"]     { --pdp-caption-glass: var(--cat-magendarm-light); }
   .pdp[data-pdp-cat="fettsaeuren"]   { --pdp-caption-glass: var(--cat-fettsaeuren-light); }
@@ -5479,7 +5479,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   [data-cat="niere"]        { background: var(--cat-niere-light); }
   [data-cat="herz"]         { background: var(--cat-herz-light); }
   [data-cat="leber"]        { background: var(--cat-leber-light); }
-  [data-cat="beruhigung"]   { background: var(--cat-beruhigung-light); }
+  [data-cat="stress"]   { background: var(--cat-stress-light); }
   [data-cat="gelenke"]      { background: var(--cat-gelenke-light); }
   [data-cat="magendarm"]    { background: var(--cat-magendarm-light); }
   [data-cat="fettsaeuren"]  { background: var(--cat-fettsaeuren-light); }
