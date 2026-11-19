@@ -1,2 +1,5 @@
 .DS_Store
 assets/**/.DS_Store
+
+# Lokale Slideshow-Medien (Kopien aus Google Drive) und MP4-Exporte – nicht ins Repo
+slideshow-media/

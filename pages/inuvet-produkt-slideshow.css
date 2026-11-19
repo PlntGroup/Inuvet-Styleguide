@@ -21,6 +21,8 @@
 [data-cat="hormone"]       { --cat: var(--cat-hormone);       --cat-light: var(--cat-hormone-light); }
 [data-cat="ohren"]         { --cat: var(--cat-ohren);         --cat-light: var(--cat-ohren-light); }
 [data-cat="cbd"]           { --cat: var(--cat-cbd);           --cat-light: var(--cat-cbd-light); }
+/* Marken-Szenen (Intro, Hero, Vorteile, Praxis): Inuvet-Grün */
+[data-cat="brand"]         { --cat: var(--green);             --cat-light: var(--green-light); }
 
 /* ─── Bühne ─── */
 .show {
@@ -80,6 +82,16 @@
   display: block;
   height: calc(var(--bar-h) * 0.86);
   width: auto;
+  transform-origin: left top;
+  transition: transform var(--anim-slow);
+}
+
+/* Marken-Szenen: Leiste ausgeblendet, Logo größer und frei auf Weiß */
+.show__bar > :not(.show__logo) { transition: opacity var(--anim-base); }
+.show__stage.--brand .show__bar { background: transparent; }
+.show__stage.--brand .show__bar > :not(.show__logo) { opacity: 0; visibility: hidden; }
+.show__stage.--brand .show__logo {
+  transform: translateY(calc(var(--bar-h) * 0.25)) scale(1.4);
 }
 
 .show__bar-cat,
@@ -161,6 +173,9 @@
   transition: opacity var(--anim-slow) 0.25s;
 }
 .show__scene.--entering { z-index: 1; }
+/* Intro-Slides: weiche Überblendung statt Farbfläche */
+.show__scene.--entering.--soft { animation: show-fade-in 0.9s var(--ease-in-out) both; }
+.show__scene.--leaving.--hold { opacity: 1; }
 
 /* Text-Spalte */
 .show__copy {
@@ -260,6 +275,60 @@
   transform: translateY(calc(var(--half-module) * -1));
 }
 
+/* ─── Marken-Szenen ─── */
+/* Intro: Logo groß auf Weiß, über der ganzen Bühne inkl. Leiste */
+.show__scene.--intro {
+  z-index: calc(var(--z-nav) + 1);
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+.show__intro-logo {
+  display: block;
+  height: calc(var(--stage-h) * 0.46);
+  width: auto;
+}
+.show__scene.--intro.--entering .show__intro-logo {
+  animation: show-intro 1.4s var(--ease-out) 0.2s both;
+}
+.show__scene.--intro.--leaving { transition-delay: 0s; }
+
+/* Lottie-Fläche: SVG füllt den Container, Seitenverhältnis bleibt (meet) */
+.show__lottie { position: relative; }
+.show__lottie svg { display: block; }
+.show__media.--lottie { background: var(--bg); }
+/* Animation steht sofort, ohne Reveal */
+.show__scene.--entering .show__media.--lottie { animation: none; }
+.show__scene.--hero .show__name { font-size: var(--text-3xl); hyphens: manual; }
+.show__media.--lottie .show__lottie {
+  position: absolute;
+  inset: var(--module);
+}
+
+/* Drei Spalten: Vorteile (Icons) bzw. Praxis (Illustrationen) */
+.show__scene.--trio {
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--module-2xl);
+  align-content: center;   /* Block mittig, Spalten oben bündig */
+  align-items: start;
+  padding: 0 var(--pad);
+}
+.show__trio-media { width: 100%; aspect-ratio: 1; }
+.show__scene.--icons .show__trio-media { width: calc(var(--base) * 11); }
+.show__trio-title {
+  --flow-space: var(--module);
+  margin-bottom: 0;
+  font-size: calc(var(--text-l) * 1.25);
+  font-weight: 700;
+  line-height: var(--lh-h2);
+}
+.show__scene.--illus .show__trio-title { --flow-space: var(--half-module); font-size: var(--text-l); }
+.show__trio-text {
+  --flow-space: var(--half-module);
+  font-size: calc(var(--text-m) * 1.15);
+  line-height: 1.4;
+}
+.show__scene.--illus .show__trio-text { font-size: var(--text-m); }
+
 /* ─── Szenenwechsel: Kategorie-Fläche über die ganze Bühne.
    Produktwechsel in voller Kategoriefarbe, innerhalb des Produkts hell. ─── */
 .show__curtain {
@@ -274,6 +343,14 @@
   animation: show-curtain 1.3s var(--ease-in-out) both;
 }
 .show__curtain.--light { background: var(--cat-light); }
+/* Ende: Fade-to-White über die ganze Bühne (auch über die Leiste) */
+.show__curtain.--fade {
+  inset: 0;
+  z-index: calc(var(--z-overlay) + 1);
+  background: var(--bg);
+  transform: none;
+  animation: show-fade-white 1.6s var(--ease-in-out) both;
+}
 
 /* ─── Bedienleiste (nur bei Mausbewegung sichtbar) ─── */
 .show__controls {
@@ -287,6 +364,9 @@
   transition: opacity var(--anim-base);
 }
 .show.--idle .show__controls { opacity: 0; pointer-events: none; }
+/* Render-Modus (MP4-Export): keine Bedienung, kein Cursor */
+.show.--render { cursor: none; }
+.show.--render .show__controls { display: none; }
 .show__controls .btn { font-size: var(--text-sm); }
 
 /* ─── Keyframes ─── */
@@ -312,6 +392,18 @@
   from { opacity: 0; transform: translateY(var(--module)); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes show-intro {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes show-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes show-fade-white {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 @keyframes show-curtain {
   0%   { transform: translateX(-101%); }
   45%  { transform: translateX(0); }
@@ -323,6 +415,8 @@
   .show__scene.--entering .show__media,
   .show__scene.--entering .show__media img,
   .show__scene.--entering .show__rise,
+  .show__scene.--entering.--soft,
+  .show__scene.--intro.--entering .show__intro-logo,
   .show__curtain.--run { animation: none; }
   .show__curtain { display: none; }
 }
