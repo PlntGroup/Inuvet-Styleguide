@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Provisionsportal – vetalità</title>
-  <meta name="description" content="Provisionsportal vetalità – gesammelte Provisionen als Prämie oder Direktauszahlung einlösen.">
+  <title>Portale Provvigioni – vetalità</title>
+  <meta name="description" content="Portale provvigioni vetalità – riscatto delle provvigioni accumulate come premio o pagamento diretto.">
   <meta name="robots" content="noindex, nofollow">
-  <meta property="og:title" content="Provisionsportal – vetalità">
-  <meta property="og:description" content="Provisionsportal vetalità.">
+  <meta property="og:title" content="Portale Provvigioni – vetalità">
+  <meta property="og:description" content="Portale provvigioni vetalità.">
   <meta property="og:image" content="logo.png">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -50,35 +50,35 @@
 <!-- Announcement Bar -->
 <div class="announcement-bar --static" id="announcementBar">
   <div class="announcement-bar__track">
-    <span class="announcement-bar__item">10 € Startguthaben nach der Registrierung</span><span class="announcement-bar__sep"></span>
-    <span class="announcement-bar__item">Provision für jede Bestellung Ihrer Kunden</span><span class="announcement-bar__sep"></span>
-    <span class="announcement-bar__item">Prämie oder Auszahlung – Sie entscheiden</span>
+    <span class="announcement-bar__item">10 € di credito iniziale dopo la registrazione</span><span class="announcement-bar__sep"></span>
+    <span class="announcement-bar__item">Provvigione per ogni ordine dei tuoi clienti</span><span class="announcement-bar__sep"></span>
+    <span class="announcement-bar__item">Premio o pagamento – decidi tu</span>
   </div>
 </div>
 
 <!-- Navigation -->
-<nav class="site-nav --over-hero" aria-label="Seiten-Navigation">
+<nav class="site-nav --over-hero" aria-label="Navigazione del sito">
   <div class="nav-left">
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Apri il menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-item">
-      <a href="#" class="nav-item__trigger" data-nav="portal" onclick="navToPortal(); return false;" aria-current="page">Start</a>
+      <a href="#" class="nav-item__trigger" data-nav="portal" onclick="navToPortal(); return false;" aria-current="page">Home</a>
     </div>
     <div class="nav-item">
-      <a href="#" class="nav-item__trigger" data-nav="rewards" onclick="goRewards(); return false;">Prämien</a>
+      <a href="#" class="nav-item__trigger" data-nav="rewards" onclick="goRewards(); return false;">Premi</a>
     </div>
     <div class="nav-item" id="navProducts" hidden>
-      <a href="#" class="nav-item__trigger" data-nav="products" onclick="goProducts(); return false;">Produkte</a>
+      <a href="#" class="nav-item__trigger" data-nav="products" onclick="goProducts(); return false;">Prodotti</a>
     </div>
     <div class="nav-item">
-      <a href="#" class="nav-item__trigger" data-nav="how" onclick="goHow(); return false;">So funktioniert's</a>
+      <a href="#" class="nav-item__trigger" data-nav="how" onclick="goHow(); return false;">Come funziona</a>
     </div>
     <!-- Nur Startseite (body.--portal-start): Bezeichnung an der Stelle des Menüs -->
-    <div class="nav-item portal-nav-title"><span class="nav-item__trigger">Tierarzt-Portal</span></div>
+    <div class="nav-item portal-nav-title"><span class="nav-item__trigger">Portale veterinari</span></div>
   </div>
   <div class="nav-center">
-    <a class="nav-logo" href="#" onclick="navToPortal(); return false;" aria-label="Zur Übersicht">
+    <a class="nav-logo" href="#" onclick="navToPortal(); return false;" aria-label="Vai alla panoramica">
       <img class="nav-logo__img" src="logo.png" alt="vetalità Logo" width="180" height="180">
       <img class="nav-logo__img --on-hero" src="logo-hell.png" alt="" width="180" height="180">
     </a>
@@ -86,22 +86,22 @@
   <div class="nav-right">
     <!-- Sprache (System-Dropdown .nav-item.--end wie die Länderauswahl, D.1); Kürzel und aktiver Eintrag per initLangSwitch() -->
     <div class="nav-item --end portal-lang">
-      <a href="#" class="nav-item__trigger" aria-haspopup="true" aria-expanded="false" aria-label="Sprache" onclick="return false;"><span data-lang-label></span><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></a>
+      <a href="#" class="nav-item__trigger" aria-haspopup="true" aria-expanded="false" aria-label="Lingua" onclick="return false;"><span data-lang-label></span><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></a>
       <div class="nav-item__dropdown" role="menu">
-        <a href="vetalita-portal-neu.html" role="menuitem" lang="de" data-lang="de" onclick="return switchLang(this)">Deutsch</a>
-        <a href="vetalita-portal-neu-it.html" role="menuitem" lang="it" data-lang="it" onclick="return switchLang(this)">Italiano</a>
+        <a href="vetalita-portal-neu-de.html" role="menuitem" lang="de" data-lang="de" onclick="return switchLang(this)">Deutsch</a>
+        <a href="vetalita-portal-neu.html" role="menuitem" lang="it" data-lang="it" onclick="return switchLang(this)">Italiano</a>
       </div>
     </div>
     <!-- Nur Startseite (body.--portal-start): Einstieg in die Vorschau mit Beispieldaten -->
-    <div class="nav-item portal-nav-demo"><a href="#" class="nav-item__trigger" onclick="enterPreview(); return false;"><span class="portal-nav-demo__short">Demo ansehen</span><span class="portal-nav-demo__long">Demo mit Beispieldaten ansehen</span></a></div>
-    <a href="#" class="badge --pill --free nav-balance" id="navBalance" onclick="goToOverview(); return false;" title="Ihre verfügbare Provision" hidden></a>
+    <div class="nav-item portal-nav-demo"><a href="#" class="nav-item__trigger" onclick="enterPreview(); return false;"><span class="portal-nav-demo__short">Demo</span><span class="portal-nav-demo__long">Guarda la demo con dati di esempio</span></a></div>
+    <a href="#" class="badge --pill --free nav-balance" id="navBalance" onclick="goToOverview(); return false;" title="La tua provvigione disponibile" hidden></a>
     <div class="nav-item --end" id="accountMenu" hidden>
-      <button type="button" class="btn --icon" aria-haspopup="true" aria-label="Konto"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person"></use></svg></button>
+      <button type="button" class="btn --icon" aria-haspopup="true" aria-label="Account"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person"></use></svg></button>
       <div class="nav-item__dropdown" role="menu">
-        <a href="#" role="menuitem" onclick="logout(); return false;">Abmelden</a>
+        <a href="#" role="menuitem" onclick="logout(); return false;">Esci</a>
       </div>
     </div>
-    <button class="btn --icon" id="cartBtn" aria-label="Warenkorb" onclick="openCart()">
+    <button class="btn --icon" id="cartBtn" aria-label="Carrello" onclick="openCart()">
       <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg>
     </button>
   </div>
@@ -109,16 +109,16 @@
 </div>
 
 <!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Hauptnavigation">
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Navigazione principale">
   <div class="nav-col">
-    <a href="#" data-nav="portal" aria-current="page" onclick="closeMobile(); navToPortal(); return false;">Start</a>
-    <a href="#" data-nav="rewards" onclick="closeMobile(); goRewards(); return false;">Prämien</a>
-    <a href="#" data-nav="products" id="mobileProducts" onclick="closeMobile(); goProducts(); return false;" hidden>Produkte</a>
-    <a href="#" data-nav="how" onclick="closeMobile(); goHow(); return false;">So funktioniert's</a>
-    <a href="#" class="portal-lang-head" onclick="return false;">Sprache</a>
-    <a href="vetalita-portal-neu.html" class="--indent" lang="de" data-lang="de" onclick="return switchLang(this)">Deutsch</a>
-    <a href="vetalita-portal-neu-it.html" class="--indent" lang="it" data-lang="it" onclick="return switchLang(this)">Italiano</a>
-    <a href="#" id="mobileLogout" onclick="closeMobile(); logout(); return false;" hidden>Abmelden</a>
+    <a href="#" data-nav="portal" aria-current="page" onclick="closeMobile(); navToPortal(); return false;">Home</a>
+    <a href="#" data-nav="rewards" onclick="closeMobile(); goRewards(); return false;">Premi</a>
+    <a href="#" data-nav="products" id="mobileProducts" onclick="closeMobile(); goProducts(); return false;" hidden>Prodotti</a>
+    <a href="#" data-nav="how" onclick="closeMobile(); goHow(); return false;">Come funziona</a>
+    <a href="#" class="portal-lang-head" onclick="return false;">Lingua</a>
+    <a href="vetalita-portal-neu-de.html" class="--indent" lang="de" data-lang="de" onclick="return switchLang(this)">Deutsch</a>
+    <a href="vetalita-portal-neu.html" class="--indent" lang="it" data-lang="it" onclick="return switchLang(this)">Italiano</a>
+    <a href="#" id="mobileLogout" onclick="closeMobile(); logout(); return false;" hidden>Esci</a>
   </div>
 </div>
 
@@ -130,15 +130,15 @@
 <div class="modal-overlay" id="cashRequestModal" onclick="closeCashRequestModal()">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal__header">
-      <span class="modal__title">Barauszahlung</span>
-      <button class="btn --icon" onclick="closeCashRequestModal()" aria-label="Schließen">
+      <span class="modal__title">Riscossione in contanti</span>
+      <button class="btn --icon" onclick="closeCashRequestModal()" aria-label="Chiudi">
         <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="modal__body flow" id="cash-request-form-body">
-      <p class="form-hint">Bitte prüfe IBAN und USt-IdNr. Die Auszahlung erfolgt innerhalb von 3–5 Werktagen.</p>
+      <p class="form-hint">Verificare l'IBAN e la partita IVA. Il pagamento verrà effettuato entro 3–5 giorni lavorativi.</p>
       <div class="notice" id="cash-payout-min-notice" hidden>
-        <p>Die Barauszahlung ist ab <strong>20&nbsp;€</strong> möglich. Dein aktuelles Guthaben beträgt <strong id="cash-payout-current-amount"></strong>.</p>
+        <p>La riscossione in contanti è disponibile a partire da <strong>20&nbsp;€</strong>. Il saldo attuale è <strong id="cash-payout-current-amount"></strong>.</p>
       </div>
       <div class="form-field">
         <input type="text" id="cash-request-iban" placeholder=" ">
@@ -146,12 +146,12 @@
       </div>
       <div class="form-field">
         <input type="text" id="cash-request-vat" placeholder=" ">
-        <label for="cash-request-vat">USt-IdNr.</label>
+        <label for="cash-request-vat">Partita IVA</label>
       </div>
       <p id="cash-request-error" class="form-field__error" role="alert" hidden></p>
     </div>
     <div class="modal__footer">
-      <button class="btn --primary --full" id="cash-request-submit" onclick="submitCashRequest()">Anfrage senden</button>
+      <button class="btn --primary --full" id="cash-request-submit" onclick="submitCashRequest()">Invia richiesta</button>
     </div>
   </div>
 </div>
@@ -160,22 +160,22 @@
 <div class="modal-overlay" id="productRequestModal" onclick="closeProductRequestModal()">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal__header">
-      <span class="modal__title">Produkte anfragen</span>
-      <button class="btn --icon" onclick="closeProductRequestModal()" aria-label="Schließen">
+      <span class="modal__title">Richiedi prodotti</span>
+      <button class="btn --icon" onclick="closeProductRequestModal()" aria-label="Chiudi">
         <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="modal__body flow">
-      <p class="form-hint">Welche Vetalità-Produkte möchtest du mit deiner Provision bestellen? <a href="https://vetalita.it/collections/all" target="_blank" rel="noopener noreferrer">Alle Produkte ansehen</a></p>
+      <p class="form-hint">Quali prodotti Vetalità vuoi ordinare con la tua provvigione? <a href="https://vetalita.it/collections/all" target="_blank" rel="noopener noreferrer">Vedi tutti i prodotti</a></p>
       <div class="form-field">
         <textarea id="product-request-text" placeholder=" " rows="5"></textarea>
-        <label for="product-request-text">Gewünschte Produkte und Mengen</label>
+        <label for="product-request-text">Prodotti e quantità desiderati</label>
       </div>
-      <p class="form-hint">Dein Guthaben wird angepasst, sobald unser Team die Auswahl bestätigt hat.</p>
+      <p class="form-hint">Il saldo verrà aggiornato non appena il nostro team avrà confermato la selezione.</p>
       <p id="product-request-error" class="form-field__error" role="alert" hidden></p>
     </div>
     <div class="modal__footer">
-      <button class="btn --primary --full" id="product-request-submit" onclick="submitProductRequest()">Anfrage senden</button>
+      <button class="btn --primary --full" id="product-request-submit" onclick="submitProductRequest()">Invia richiesta</button>
     </div>
   </div>
 </div>
@@ -185,11 +185,11 @@
   <div class="shop-modal" onclick="event.stopPropagation()">
     <div class="shop-modal__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-mark_email_read"></use></svg></div>
     <div class="flow">
-      <h2 class="shop-modal__title">Super, du bist registriert!</h2>
-      <p class="shop-modal__body">Deine Registrierung ist abgeschlossen. Wir haben dir eine Bestätigungs-E-Mail geschickt.</p>
+      <h2 class="shop-modal__title">Super, sei registrato!</h2>
+      <p class="shop-modal__body">La tua registrazione è stata completata. Ti abbiamo inviato una e-mail di conferma.</p>
     </div>
     <div class="shop-modal__actions">
-      <button class="btn --primary" onclick="closeRegistrationModal()">Verstanden</button>
+      <button class="btn --primary" onclick="closeRegistrationModal()">Capito</button>
     </div>
   </div>
 </div>
@@ -199,15 +199,15 @@
   <div class="registration-full" onclick="event.stopPropagation()">
     <header class="registration-full__header">
       <p class="registration-full__brand">vetalità</p>
-      <button type="button" class="btn --icon registration-full__close" onclick="closeFullRegistrationOverlay()" aria-label="Schließen">
+      <button type="button" class="btn --icon registration-full__close" onclick="closeFullRegistrationOverlay()" aria-label="Chiudi">
         <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </header>
     <div class="registration-full__content">
       <div class="registration-full__intro flow">
-        <p class="registration-full__eyebrow">Willkommensbonus · 10&nbsp;€</p>
-        <h1 class="registration-full__title">Konto aktivieren</h1>
-        <p class="registration-full__lead">Gib deine Daten nur einmal ein: Dein Vetalità-Konto ist in wenigen Minuten eingerichtet, und du kannst den Startbonus von 10&nbsp;€ sofort einlösen.</p>
+        <p class="registration-full__eyebrow">Bonus di benvenuto · 10&nbsp;€</p>
+        <h1 class="registration-full__title">Attivazione account</h1>
+        <p class="registration-full__lead">Inserire i dati una sola volta: l'account Vetalità viene configurato in pochi minuti ed è possibile riscattare subito il bonus iniziale di 10&nbsp;€.</p>
       </div>
       <div class="registration-full__form" id="registrationFullForm"></div>
     </div>
@@ -219,20 +219,20 @@
   <div class="shop-modal --error" role="alertdialog" aria-labelledby="error-modal-title" aria-describedby="error-modal-message" onclick="event.stopPropagation()">
     <div class="shop-modal__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-error_outline"></use></svg></div>
     <div class="flow">
-      <h2 class="shop-modal__title" id="error-modal-title">Ein Fehler ist aufgetreten</h2>
+      <h2 class="shop-modal__title" id="error-modal-title">Si è verificato un errore</h2>
       <p class="shop-modal__body" id="error-modal-message"></p>
     </div>
     <div class="shop-modal__actions">
-      <button class="btn --primary" onclick="closeErrorModal()">Schließen</button>
+      <button class="btn --primary" onclick="closeErrorModal()">Chiudi</button>
     </div>
   </div>
 </div>
 
 <!-- Registration Störer -->
-<button class="reg-badge" id="regStoerer" onclick="stoererRegister()" aria-label="Neues Konto registrieren und 10 Euro Bonus erhalten">
-  <span class="reg-badge__label">Registrieren</span>
+<button class="reg-badge" id="regStoerer" onclick="stoererRegister()" aria-label="Registra un nuovo account e ricevi 10 euro di bonus">
+  <span class="reg-badge__label">Registrati</span>
   <span class="reg-badge__amount">10 €</span>
-  <span class="reg-badge__label">Bonus</span>
+  <span class="reg-badge__label">di bonus</span>
 </button>
 
 <!-- Preview Banner -->
@@ -248,42 +248,42 @@
       <div class="col-grid" data-cols="2">
         <div class="flow footer-contact__person">
           <div class="testimonial__avatar footer-contact__avatar"><img src="https://vetalita.it/cdn/shop/files/Riccardo-Cuppito.png?v=1794413035&amp;width=240" alt="Riccardo Cupitò" width="240" height="240" loading="lazy"></div>
-          <h3>Fragen?</h3>
-          <p>Schreib uns, wir antworten so schnell wie möglich. Montag bis Freitag von 9:00 bis 18:00 Uhr erreichst du uns auch telefonisch unter +39 351 6845681.</p>
-          <p class="footer-contact__name"><strong>Riccardo Cupitò</strong><br><span class="text-muted">Kundenservice Vetalità</span></p>
+          <h3>Hai domande?</h3>
+          <p>Scriveteci: vi risponderemo il prima possibile. Dal lunedì al venerdì, tra le 9:00 e le 18:00, siamo raggiungibili anche telefonicamente al numero +39 351 6845681.</p>
+          <p class="footer-contact__name"><strong>Riccardo Cupitò</strong><br><span class="text-muted">Assistenza clienti Vetalità</span></p>
         </div>
         <form method="post" action="https://vetalita.it/contact#FooterContact" id="FooterContact" accept-charset="UTF-8" class="flow">
           <input type="hidden" name="form_type" value="contact"><input type="hidden" name="utf8" value="✓">
           <div class="form-grid">
             <div class="form-field">
               <input type="text" name="contact[name]" id="FooterContact-name" placeholder=" " autocomplete="name" required>
-              <label for="FooterContact-name">Name</label>
+              <label for="FooterContact-name">Nome</label>
             </div>
             <div class="form-field">
               <input type="email" name="contact[email]" id="FooterContact-email" placeholder=" " autocomplete="email" required>
-              <label for="FooterContact-email">E-Mail-Adresse</label>
+              <label for="FooterContact-email">Indirizzo e-mail</label>
             </div>
             <div class="form-field --full">
               <textarea name="contact[body]" id="FooterContact-message" placeholder=" " required></textarea>
-              <label for="FooterContact-message">Nachricht</label>
+              <label for="FooterContact-message">Messaggio</label>
             </div>
           </div>
-          <button class="btn --primary" type="submit">Nachricht senden</button>
+          <button class="btn --primary" type="submit">Invia messaggio</button>
         </form>
       </div>
     </div>
     <div class="footer-cols">
       <div class="footer-col flow">
-        <h4>Rechtliches</h4>
+        <h4>Informazioni legali</h4>
         <ul>
-          <li><a href="#" onclick="goLegal('impressum'); return false;">Impressum</a></li>
-          <li><a href="#" onclick="goLegal('datenschutz'); return false;">Datenschutz</a></li>
+          <li><a href="#" onclick="goLegal('impressum'); return false;">Note legali</a></li>
+          <li><a href="#" onclick="goLegal('datenschutz'); return false;">Informativa sulla privacy</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-bar">
-    <a href="#top" class="footer-bar__top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_upward"></use></svg> Nach oben</a>
+    <a href="#top" class="footer-bar__top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-arrow_upward"></use></svg> Torna su</a>
   </div>
 </footer>
 
@@ -352,55 +352,55 @@ function renderRegistrationFields(prefix = 'reg') {
   return `
     <div class="form-field">
       <input type="text" id="${fid('name')}" placeholder=" " autocomplete="name">
-      <label for="${fid('name')}">Vor- und Nachname</label>
+      <label for="${fid('name')}">Nome e cognome</label>
     </div>
     <div class="form-field">
       <input type="text" id="${fid('contact')}" placeholder=" " autocomplete="email" oninput="updateRegistrationContactLabel('${prefix}')">
-      <label for="${fid('contact')}">E-Mail oder Telefon</label>
+      <label for="${fid('contact')}">E-mail o telefono</label>
     </div>
     <div class="accordion registration-optional">
     <div class="accordion-item" id="${fid('optional')}">
-    <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Weitere Angaben (optional)<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
+    <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Altri dati (facoltativi)<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
     <div class="accordion-content"><div class="accordion-content__inner flow">
     <div class="form-field">
       <input type="text" id="${fid('contact2')}" placeholder=" ">
-      <label for="${fid('contact2')}">Telefon oder E-Mail</label>
+      <label for="${fid('contact2')}">Telefono o e-mail</label>
     </div>
     <div class="form-field">
       <input type="text" id="${fid('clinic')}" placeholder=" " autocomplete="organization">
-      <label for="${fid('clinic')}">Praxis / Klinik</label>
+      <label for="${fid('clinic')}">Studio / clinica</label>
     </div>
     <div class="form-field">
       <select id="${fid('role')}" required>
         ${REGISTRATION_ROLES.map((role, i) => `<option value="${role}"${i === 0 ? ' selected' : ''}>${role}</option>`).join('')}
       </select>
-      <label for="${fid('role')}">Rolle</label>
+      <label for="${fid('role')}">Ruolo</label>
     </div>
     <div class="form-grid">
       <div class="form-field">
         <input type="text" id="${fid('street')}" placeholder=" " autocomplete="address-line1">
-        <label for="${fid('street')}">Straße</label>
+        <label for="${fid('street')}">Via</label>
       </div>
       <div class="form-field">
         <input type="text" id="${fid('house-number')}" placeholder=" ">
-        <label for="${fid('house-number')}">Nr.</label>
+        <label for="${fid('house-number')}">N.</label>
       </div>
     </div>
     <div class="form-grid">
       <div class="form-field">
         <input type="text" id="${fid('zip')}" placeholder=" " inputmode="numeric" autocomplete="postal-code">
-        <label for="${fid('zip')}">PLZ</label>
+        <label for="${fid('zip')}">CAP</label>
       </div>
       <div class="form-field">
         <input type="text" id="${fid('town')}" placeholder=" " autocomplete="address-level2">
-        <label for="${fid('town')}">Ort</label>
+        <label for="${fid('town')}">Città</label>
       </div>
     </div>
     <div class="form-field">
       <select id="${fid('country')}" required>
         ${REGISTRATION_COUNTRIES.map(c => `<option value="${c.code}"${c.code === 'IT' ? ' selected' : ''}>${c.label}</option>`).join('')}
       </select>
-      <label for="${fid('country')}">Land</label>
+      <label for="${fid('country')}">Paese</label>
     </div>
     </div></div>
     </div>
@@ -408,11 +408,11 @@ function renderRegistrationFields(prefix = 'reg') {
     <div class="visually-hidden" aria-hidden="true">
       <label for="${fid('accept-conditions')}">
         <input type="checkbox" id="${fid('accept-conditions')}" name="accept_conditions" tabindex="-1" autocomplete="off" value="1">
-        Ich akzeptiere die AGB
+        Accetto termini e condizioni
       </label>
     </div>
     <p id="${controls.error}" class="form-field__error" role="alert" hidden></p>
-    <button class="btn --primary --full" id="${controls.submit}" type="button" onclick="${submitHandler}">Jetzt registrieren</button>`;
+    <button class="btn --primary --full" id="${controls.submit}" type="button" onclick="${submitHandler}">Registrati ora</button>`;
 }
 
 function ensureFullRegistrationForm() {
@@ -456,7 +456,7 @@ function updateRegistrationContactLabel(prefix = 'reg') {
   const label = document.querySelector(`label[for="${registrationFieldId(prefix, 'contact2')}"]`);
   if (!input || !label) return;
   const type = registrationContactType(value);
-  label.textContent = type === 'email' ? 'Telefon' : type === 'phone' ? 'E-Mail-Adresse' : 'Telefon oder E-Mail';
+  label.textContent = type === 'email' ? 'Telefono' : type === 'phone' ? 'Indirizzo e-mail' : 'Telefono o e-mail';
   input.type = type === 'email' ? 'tel' : type === 'phone' ? 'email' : 'text';
 }
 
@@ -500,60 +500,60 @@ initRegistrationFromQuery.fullOverlayOpened = false;
 const PREMIUMS = [
   {
     id: 3,
-    name: 'Fortbildung',
-    desc: 'Ihre Provision als Ticket für eine tierärztliche Fortbildung – zum Beispiel einen SCIVAC-Kongress. Den Betrag legen Sie selbst fest.',
-    longDesc: 'Nutze deine gesammelte Provision für die Teilnahme an einer tierärztlichen Fortbildung – zum Beispiel am SCIVAC-Kongress. Gib den Ticketpreis an und für welche SCIVAC-Veranstaltung du die Provision einsetzen möchtest. Nach dem Einlösen meldet sich das Vetalità-Team bei dir, um die Anmeldung abzuschließen.',
+    name: 'Formazione',
+    desc: 'La tua provvigione come biglietto per un corso di formazione veterinaria – ad esempio un congresso SCIVAC. L’importo lo scegli tu.',
+    longDesc: 'Utilizza la provvigione accumulata per la partecipazione a un corso di formazione veterinaria — ad esempio il congresso SCIVAC. Indica l\'importo del biglietto e per quale evento SCIVAC desideri utilizzare la provvigione. Dopo il riscatto, il team Vetalità ti contatterà per completare l\'iscrizione.',
     customAmount: true,
-    priceLabel: 'Betrag frei wählbar',
-    amountLabel: 'Ticketpreis SCIVAC in € (max. {max})',
-    detailsLabel: 'Name des SCIVAC-Events',
-    detailsError: 'Bitte gib den Namen des SCIVAC-Events an.',
-    variant: 'Fortbildung SCIVAC',
+    priceLabel: 'Importo a scelta',
+    amountLabel: 'Importo biglietto SCIVAC in € (max. {max})',
+    detailsLabel: 'Nome dell’evento SCIVAC',
+    detailsError: 'Indica il nome dell’evento SCIVAC.',
+    variant: 'Formazione SCIVAC',
     image: 'praemie-fortbildung.jpg'
   },
   {
     id: 2,
-    name: 'deLonghi Kaffeemaschine',
+    name: 'Macchina da caffè deLonghi',
     price: 150.00,
-    desc: 'Guter Espresso für die Praxis: Mit nur 15 cm Breite passt die deLonghi Dedica Style in jede Teeküche – für die Pause zwischen zwei Terminen und für Ihr Team.',
-    longDesc: 'Die deLonghi Dedica Style EC 685 überzeugt mit kompakten Maßen und professioneller Brühtechnik. 15 bar Pumpendruck, Thermoblock-Heizsystem und Milchaufschäumer für den perfekten Cappuccino – direkt in der Praxisküche. Lieferung nach Hause innerhalb von 3–5 Werktagen.',
+    desc: 'Un buon espresso per lo studio: larga solo 15 cm, la deLonghi Dedica Style trova posto in ogni angolo cucina – per la pausa tra un appuntamento e l’altro e per il tuo team.',
+    longDesc: 'La deLonghi Dedica Style EC 685 convince con dimensioni compatte e tecnica di estrazione professionale. 15 bar di pressione pompa, sistema di riscaldamento thermoblock e schiumalatte per un cappuccino perfetto — direttamente dalla cucina in clinica. Consegna a domicilio entro 3–5 giorni lavorativi.',
     image: 'praemie-kaffee-1.jpg',
     images: ['praemie-kaffee-1.jpg', 'praemie-kaffee-2.jpg', 'praemie-kaffee-3.jpg'],
     /* Quelle: Datenblatt Dedica Style EC685, De'Longhi Deutschland GmbH (Änderungen vorbehalten) */
     features: [
-      'Sehr schmales Design – nur 15 cm breit',
-      'Thermoblock-Heizsystem für die richtige Temperatur, Aufheizen in 40 Sekunden',
-      'Sofort einsatzbereit dank Selbstentlüftung',
-      'Flow-Stop-Funktion zum Programmieren der Tassenfüllmenge',
-      'Siebträger mit Easy-Clean-Filtereinsätzen für 1 und 2 Tassen, dazu ein Einsatz für E.S.E.-Pads',
-      'Für gemahlenen Espresso oder E.S.E.-Pads',
-      'Milchaufschäumdüse für Milchschaum, heiße Milch oder Heißwasser für Tee',
-      'Lackiertes Vollmetallgehäuse, beleuchtete Tasten',
-      'Automatische Abschaltung und Entkalkungsanzeige',
-      'Abnehmbarer Wasserbehälter (1,0 l)',
-      'Höhenverstellbare Abtropfschale für Gläser bis 12 cm, mit Wasserstandsanzeige',
-      'Geeignet für den De’Longhi Wasserfilter (optional)',
+      'Design molto sottile – solo 15 cm di larghezza',
+      'Sistema di riscaldamento Thermoblock per la giusta temperatura, pronta in 40 secondi',
+      'Subito pronta grazie al sistema di autoadescamento',
+      'Funzione Flow Stop per programmare la quantità in tazza',
+      'Portafiltro con filtri Easy Clean per 1 e 2 tazze, più un filtro per cialde E.S.E.',
+      'Per caffè macinato o cialde E.S.E.',
+      'Lancia vapore per schiuma di latte, latte caldo o acqua calda per il tè',
+      'Scocca interamente in metallo verniciato, tasti illuminati',
+      'Spegnimento automatico e indicatore di decalcificazione',
+      'Serbatoio dell’acqua estraibile (1,0 l)',
+      'Vaschetta raccogligocce regolabile in altezza per bicchieri fino a 12 cm, con indicatore di livello',
+      'Compatibile con il filtro acqua De’Longhi (opzionale)',
     ],
     specs: [
-      ['Abmessungen (B × T × H)', '149 × 330 × 305 mm'],
-      ['Gewicht', '4,2 kg'],
-      ['Leistung', '1350 W'],
-      ['Pumpendruck', '15 bar'],
-      ['Wasserbehälter', '1,0 l'],
-      ['Spannung / Frequenz', '220–240 V ~ 50–60 Hz'],
+      ['Dimensioni (L × P × A)', '149 × 330 × 305 mm'],
+      ['Peso', '4,2 kg'],
+      ['Potenza', '1350 W'],
+      ['Pressione della pompa', '15 bar'],
+      ['Serbatoio dell’acqua', '1,0 l'],
+      ['Tensione / frequenza', '220–240 V ~ 50–60 Hz'],
     ]
   },
   {
     id: 4,
-    name: 'Spende für den Tierschutz',
-    desc: 'Spenden Sie Ihre Provision an ein Tierschutzprojekt Ihrer Wahl. Den Betrag legen Sie selbst fest.',
-    longDesc: 'Setzen Sie Ihre gesammelte Provision für Tiere in Not ein: Nennen Sie ein Tierschutzprojekt Ihrer Wahl – zum Beispiel ein Tierheim in Ihrer Region – und den Betrag. Nach dem Einlösen überweist das Vetalità-Team die Spende und bestätigt Ihnen die Zahlung.',
+    name: 'Donazione per la tutela degli animali',
+    desc: 'Dona la tua provvigione a un progetto di tutela degli animali a tua scelta. L’importo lo decidi tu.',
+    longDesc: 'Usa la provvigione accumulata per gli animali in difficoltà: indica un progetto di tutela degli animali a tua scelta – ad esempio un rifugio della tua zona – e l’importo. Dopo il riscatto il team Vetalità effettua la donazione e ti conferma il pagamento.',
     customAmount: true,
-    priceLabel: 'Betrag frei wählbar',
-    amountLabel: 'Spendenbetrag in € (max. {max})',
-    detailsLabel: 'Tierschutzprojekt (Name und Ort oder Website)',
-    detailsError: 'Bitte nennen Sie das Tierschutzprojekt.',
-    variant: 'Spende Tierschutz',
+    priceLabel: 'Importo a scelta',
+    amountLabel: 'Importo della donazione in € (max. {max})',
+    detailsLabel: 'Progetto di tutela degli animali (nome e città o sito web)',
+    detailsError: 'Indica il progetto di tutela degli animali.',
+    variant: 'Donazione tutela animali',
     image: 'praemie-spende.jpg'
   }
 ];
@@ -567,24 +567,24 @@ const PREMIUMS = [
    ═══════════════════════════════════════ */
 
 const BREAKDOWN_TEXT = {
-  kpiTotal: 'Provision gesamt',
-  kpiOrders: 'Bestellungen',
-  kpiCustomers: 'Kunden',
-  kpiCustomersSub: 'davon {n} wiederkehrend',
-  kpiAverage: 'Ø pro Bestellung',
-  byProduct: 'Provision nach Produkt',
-  byMonth: 'Provision pro Monat',
-  orderOne: '1 Bestellung',
-  orderMany: '{n} Bestellungen',
-  customers: 'Provision nach Kunde',
-  colCustomer: 'Kunde',
-  colOrders: 'Bestellungen',
-  colLast: 'Zuletzt bestellt',
-  lastShort: 'zuletzt',
-  colProvision: 'Provision',
-  showAll: 'Alle {n} Kunden anzeigen',
-  showLess: 'Weniger anzeigen',
-  badgeNew: 'Neu',
+  kpiTotal: 'Provvigione totale',
+  kpiOrders: 'Ordini',
+  kpiCustomers: 'Clienti',
+  kpiCustomersSub: 'di cui {n} abituali',
+  kpiAverage: 'Ø per ordine',
+  byProduct: 'Provvigione per prodotto',
+  byMonth: 'Provvigione per mese',
+  orderOne: '1 ordine',
+  orderMany: '{n} ordini',
+  customers: 'Provvigione per cliente',
+  colCustomer: 'Cliente',
+  colOrders: 'Ordini',
+  colLast: 'Ultimo ordine',
+  lastShort: 'ultimo',
+  colProvision: 'Provvigione',
+  showAll: 'Mostra tutti i {n} clienti',
+  showLess: 'Mostra meno',
+  badgeNew: 'Nuovo',
 };
 
 // Demo-Daten für die Vorschau (erfundene Namen) — Summen = Vorschau-Guthaben 456,78 €
@@ -665,13 +665,13 @@ let _announcementDefault = null; // Werbetexte der Announcement-Bar (ohne Rabatt
 const HERO_IMAGE = 'https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_1qlxdi1qlxdi1qlx.jpg?v=1791482907';
 
 const CHECKOUT_FIELD_LABELS = {
-  name: 'Vor- und Nachname',
-  street: 'Straße',
-  house_number: 'Nr.',
-  zip: 'PLZ',
-  city: 'Ort',
-  email: 'E-Mail',
-  phone: 'Telefon',
+  name: 'Nome e cognome',
+  street: 'Via',
+  house_number: 'N.',
+  zip: 'CAP',
+  city: 'Città',
+  email: 'E-mail',
+  phone: 'Telefono',
 };
 
 function applyDeliveryProfile(profile, { onlyIfEmpty = false } = {}) {
@@ -854,7 +854,7 @@ function cartItemLabel(p, key, price) {
 
 function cartItemVariant(p, key) {
   if (p.customAmount) return cartItemDetails(key) || p.variant;
-  return 'Prämie';
+  return 'Premio';
 }
 
 function removeCartItem(key) {
@@ -976,13 +976,13 @@ function addCustomPremiumToCart(id) {
     return;
   }
   if (Number.isNaN(amount) || amount <= 0) {
-    errEl.textContent = 'Bitte einen gültigen Betrag größer als null eingeben.';
+    errEl.textContent = 'Inserire un importo valido maggiore di zero.';
     errEl.hidden = false;
     amountEl?.closest('.form-field')?.classList.add('--error');
     return;
   }
   if (amount > available) {
-    errEl.textContent = `Der Betrag darf die verfügbare Provision (${fmt(available)}) nicht überschreiten.`;
+    errEl.textContent = `L'importo non può superare la provvigione disponibile (${fmt(available)}).`;
     errEl.hidden = false;
     amountEl?.closest('.form-field')?.classList.add('--error');
     return;
@@ -1073,7 +1073,7 @@ function goRewards() {
 }
 
 /* Rechtliches (Impressum, Datenschutz) — Texte aus vetalita-rechtliches.js, unverändert aus dem Shop */
-const LEGAL_TEXT = { impressum: 'Impressum', datenschutz: 'Datenschutz' };
+const LEGAL_TEXT = { impressum: 'Note legali', datenschutz: 'Informativa sulla privacy' };
 let activeLegal = 'impressum';
 
 function goLegal(key) {
@@ -1195,10 +1195,10 @@ function renderAnnouncementBar() {
   if (_announcementDefault === null) _announcementDefault = track.innerHTML;
   bar.classList.toggle('--preview', previewMode);
   if (previewMode) {
-    track.innerHTML = `<span class="announcement-bar__item"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-visibility"></use></svg>Vorschau mit Beispieldaten<button type="button" class="announcement-bar__link" onclick="exitPreview()">verlassen</button></span>`;
+    track.innerHTML = `<span class="announcement-bar__item"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-visibility"></use></svg><button type="button" class="announcement-bar__link" onclick="exitPreview()">Esci</button> dall'anteprima con dati di esempio</span>`;
   } else {
     track.innerHTML = discountCode
-      ? `<span class="announcement-bar__item">Rabattcode für deine Kundschaft: <strong data-discount-code>${escapeHtml(discountCode)}</strong><button type="button" class="announcement-bar__link" onclick="copyPromoCode(this)">Kopieren</button></span>`
+      ? `<span class="announcement-bar__item">Codice sconto per la clientela: <strong data-discount-code>${escapeHtml(discountCode)}</strong><button type="button" class="announcement-bar__link" onclick="copyPromoCode(this)">Copia</button></span>`
       : _announcementDefault;
   }
   initAnnouncementBar();
@@ -1207,8 +1207,8 @@ function renderAnnouncementBar() {
 function copyPromoCode(btn) {
   const code = btn.closest('.announcement-bar__item').querySelector('[data-discount-code]').textContent.trim();
   navigator.clipboard.writeText(code).then(() => {
-    btn.textContent = 'Kopiert';
-    setTimeout(() => { btn.textContent = 'Kopieren'; }, 1500);
+    btn.textContent = 'Copiato';
+    setTimeout(() => { btn.textContent = 'Copia'; }, 1500);
   });
 }
 
@@ -1225,9 +1225,9 @@ function setBtnState(btn, state) {
   // state: 'idle' | 'loading' | 'success'
   btn.disabled = state !== 'idle';
   btn.classList.toggle('--loading', state === 'loading');
-  if (state === 'idle')    { btn.innerHTML = 'Anfrage senden'; }
-  if (state === 'loading') { btn.innerHTML = '<span class="btn-spinner"></span>Wird gesendet…'; }
-  if (state === 'success') { btn.innerHTML = '<svg class="material-icons btn-check" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>Gesendet!'; }
+  if (state === 'idle')    { btn.innerHTML = 'Invia richiesta'; }
+  if (state === 'loading') { btn.innerHTML = '<span class="btn-spinner"></span>Invio in corso…'; }
+  if (state === 'success') { btn.innerHTML = '<svg class="material-icons btn-check" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check"></use></svg>Inviata!'; }
 }
 
 let _cashRequestDone = false;
@@ -1262,7 +1262,7 @@ async function submitCashRequest() {
   errEl.hidden = true;
 
   if (!iban) {
-    errEl.textContent = 'Bitte die IBAN eingeben.';
+    errEl.textContent = 'Inserire l\'IBAN.';
     errEl.hidden = false;
     return;
   }
@@ -1279,7 +1279,7 @@ async function submitCashRequest() {
       body:    JSON.stringify({ account_id: accountId, request_text, available: provisionAvailable() }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Fehler beim Senden.');
+    if (!res.ok) throw new Error(data.error || 'Errore durante l\'invio.');
     _cashRequestDone = true;
     setBtnState(btn, 'success');
     updateProvisionDisplay(0);
@@ -1310,7 +1310,7 @@ async function submitProductRequest() {
   errEl.hidden = true;
 
   if (!text) {
-    errEl.textContent = 'Bitte gib die gewünschten Produkte ein.';
+    errEl.textContent = 'Inserisci i prodotti desiderati.';
     errEl.hidden = false;
     return;
   }
@@ -1323,7 +1323,7 @@ async function submitProductRequest() {
       body:    JSON.stringify({ account_id: accountId, request_text: text }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Fehler beim Senden.');
+    if (!res.ok) throw new Error(data.error || 'Errore durante l\'invio.');
     setBtnState(btn, 'success');
   } catch (err) {
     errEl.textContent = err.message;
@@ -1401,22 +1401,22 @@ async function submitRegistration(prefix = 'reg') {
   if (missing.length) {
     missing.forEach(id => document.getElementById(id)?.closest('.form-field')?.classList.add('--error'));
     errEl.textContent = contact && !contactType
-      ? 'Bitte gib eine gültige E-Mail-Adresse oder Telefonnummer ein.'
-      : 'Bitte gib deinen Namen und eine E-Mail-Adresse oder Telefonnummer ein.';
+      ? 'Inserire un indirizzo e-mail o un numero di telefono valido.'
+      : 'Inserire nome e cognome e un indirizzo e-mail o un numero di telefono.';
     errEl.hidden = false;
     return;
   }
 
   const role = document.getElementById(fid('role')).value.trim();
   if (!REGISTRATION_ROLES.includes(role)) {
-    errEl.textContent = 'Bitte wähle eine gültige Rolle.';
+    errEl.textContent = 'Selezionare un ruolo valido.';
     errEl.hidden = false;
     return;
   }
 
   const countryCode = document.getElementById(fid('country')).value.trim();
   if (!REGISTRATION_COUNTRIES.some(c => c.code === countryCode)) {
-    errEl.textContent = 'Bitte wähle ein gültiges Land.';
+    errEl.textContent = 'Selezionare un paese valido.';
     errEl.hidden = false;
     return;
   }
@@ -1446,9 +1446,9 @@ async function submitRegistration(prefix = 'reg') {
     });
     const data = await res.json();
     if (res.status === 429 || data.error === 'rate_limited') {
-      throw new Error('Heute zu viele Registrierungen. Bitte morgen erneut versuchen oder info@vetalita.it kontaktieren.');
+      throw new Error('Troppe registrazioni oggi. Riprovare domani o contattare info@vetalita.it.');
     }
-    if (!res.ok) throw new Error(data.error || 'Fehler beim Senden.');
+    if (!res.ok) throw new Error(data.error || 'Errore durante l\'invio.');
     setBtnState(btn, 'idle');
     clearAllRegistrationForms();
     if (prefix === 'reg-full') closeFullRegistrationOverlay();
@@ -1468,8 +1468,8 @@ function updateCheckoutSummary() {
 
 function renderCheckoutSummary(total, remaining) {
   return `
-    <div class="summary-line"><span>Provisionswert</span><span>${fmt(total)}</span></div>
-    <div class="summary-total"><span>Verbleibende Provision</span><span>${fmt(remaining)}</span></div>`;
+    <div class="summary-line"><span>Valore provvigione</span><span>${fmt(total)}</span></div>
+    <div class="summary-total"><span>Provvigione rimanente</span><span>${fmt(remaining)}</span></div>`;
 }
 
 
@@ -1479,32 +1479,32 @@ function renderCheckoutSummary(total, remaining) {
 
 const START_TEXT = {
   // Runder Störer im Foto, nur sichtbar bei aktivem Reiter „Registrieren“
-  badgeLine1: 'Registrieren',
+  badgeLine1: 'Registrati',
   badgeAmount: '10 €',
-  badgeLine2: 'Bonus',
-  title: 'Ihre Empfehlung zahlt sich aus.',
-  body: 'Für jede Bestellung Ihrer Kunden bei vetalita.it erhalten Sie eine Provision.',
-  scrollLabel: 'Zum Formular',
-  previewTitle: 'Erst einmal umsehen?',
-  previewBody: 'Sehen Sie sich das Portal mit Beispieldaten an: Ihre Provision, die Auswertung nach Produkten, Monaten und Kunden – und die Prämien.',
-  previewCta: 'Demo mit Beispieldaten ansehen',
+  badgeLine2: 'di bonus',
+  title: 'Il tuo consiglio viene ripagato.',
+  body: 'Per ogni ordine dei tuoi clienti su vetalita.it ricevi una provvigione.',
+  scrollLabel: 'Al modulo',
+  previewTitle: 'Prima vuoi dare un’occhiata?',
+  previewBody: 'Guarda il portale con dati di esempio: la tua provvigione, l’analisi per prodotti, mesi e clienti – e i premi.',
+  previewCta: 'Guarda la demo con dati di esempio',
   // Prämien-Streifen
-  premiumsTitle: 'Viele Prämien warten auf Sie',
+  premiumsTitle: 'Tanti premi ti aspettano',
   // Vertrauen — ZITAT, NAME UND FOTO SIND PLATZHALTER: vor Go-live durch ein echtes, schriftlich freigegebenes Zitat ersetzen
-  trustQuote: 'Ich empfehle nur, wovon ich überzeugt bin. Dass meine Kunden bequem online bestellen und unsere Praxis dafür Provision erhält, ist ein schöner Zusatz – die Kaffeemaschine in der Teeküche haben wir uns so verdient.',
-  trustName: 'Dr. Maria Beispiel',
-  trustRole: 'Tierarztpraxis in Bologna',
+  trustQuote: 'Consiglio solo ciò di cui sono convinta. Che i miei clienti ordinino comodamente online e il nostro ambulatorio riceva una provvigione è un bel vantaggio in più – la macchina da caffè nella nostra cucina ce la siamo guadagnata così.',
+  trustName: 'Dott.ssa Maria Esempio',
+  trustRole: 'Ambulatorio veterinario a Bologna',
   trustImage: 'portal-zitat.jpg',
   trustCount: '1.529',
-  trustCountLabel: 'Tierarztpraxen empfehlen Vetalità bereits über das Portal',
+  trustCountLabel: 'ambulatori veterinari consigliano già Vetalità tramite il portale',
   // FAQ
-  faqTitle: 'Häufige Fragen',
-  faq1Q: 'Wie wird eine Bestellung meiner Praxis zugeordnet?',
-  faq1A: 'Ihre Kunden geben bei der Bestellung im Vetalità-Shop Ihre Praxis oder Ihren Rabattcode an. So wird die Bestellung Ihrer Praxis zugeordnet und die Provision Ihrem Konto gutgeschrieben.',
-  faq2Q: 'Wann kann ich einlösen?',
-  faq2A: 'Jederzeit, sobald Ihre Provision für eine Prämie reicht. Fortbildung und Spende lösen Sie mit einem frei wählbaren Betrag ein, eine Auszahlung ist ab 20&nbsp;€ möglich.',
-  faq3Q: 'Was passiert mit nicht eingelöstem Guthaben?',
-  faq3A: '[Platzhalter: Regelung zu Gültigkeit und Verfall des Guthabens – bitte klären und rechtlich prüfen lassen]',
+  faqTitle: 'Domande frequenti',
+  faq1Q: 'Come viene attribuito un ordine al mio ambulatorio?',
+  faq1A: 'Al momento dell’ordine nello shop Vetalità i tuoi clienti indicano il tuo ambulatorio o il tuo codice sconto. Così l’ordine viene attribuito al tuo ambulatorio e la provvigione accreditata sul tuo conto.',
+  faq2Q: 'Quando posso riscattare?',
+  faq2A: 'In qualsiasi momento, non appena la tua provvigione basta per un premio. Formazione e donazione si riscattano con un importo a scelta, il pagamento è possibile da 20&nbsp;€.',
+  faq3Q: 'Cosa succede al credito non riscattato?',
+  faq3A: '[Segnaposto: regola su validità e scadenza del credito – da chiarire e far verificare legalmente]',
 };
 
 /* Startseite: Bausteine unter dem Hero (Prämien, Vertrauen, FAQ) — nur System-Komponenten */
@@ -1626,23 +1626,23 @@ function renderLogin() {
         <div class="section-type__bottom flow">
           <div class="tabs">
             <div class="tab-nav">
-              <button class="tab-btn${loginTabActive ? ' --active' : ''}" type="button" onclick="switchLoginTab(this, 'tab-login')">Anmelden</button>
-              <button class="tab-btn${loginTabActive ? '' : ' --active'}" type="button" onclick="switchLoginTab(this, 'tab-register')">Registrieren</button>
+              <button class="tab-btn${loginTabActive ? ' --active' : ''}" type="button" onclick="switchLoginTab(this, 'tab-login')">Accedi</button>
+              <button class="tab-btn${loginTabActive ? '' : ' --active'}" type="button" onclick="switchLoginTab(this, 'tab-register')">Registrati</button>
             </div>
 
           <div class="tab-panel${loginTabActive ? ' --active' : ''}" id="tab-login">
             <div class="form-field">
               <input type="text" id="login-customer-number" placeholder=" " maxlength="7" inputmode="numeric"
                 onkeydown="if(event.key==='Enter') submitLogin()">
-              <label for="login-customer-number">Kundennummer (7 Ziffern)</label>
+              <label for="login-customer-number">Numero cliente (7 cifre)</label>
             </div>
             <div class="form-field">
               <input type="text" id="login-zip" placeholder=" " inputmode="numeric"
                 onkeydown="if(event.key==='Enter') submitLogin()">
-              <label for="login-zip">PLZ</label>
+              <label for="login-zip">CAP</label>
             </div>
             ${loginError ? `<p class="form-field__error" role="alert">${escapeHtml(loginError)}</p>` : ''}
-            <button class="btn --primary --full" onclick="submitLogin()">Anmelden</button>
+            <button class="btn --primary --full" onclick="submitLogin()">Accedi</button>
           </div>
           <div class="tab-panel${loginTabActive ? '' : ' --active'}" id="tab-register">
             ${renderRegistrationFields('reg')}
@@ -1732,16 +1732,16 @@ function startTabMotionAfter(hero, panel, before) {
    ═══════════════════════════════════════ */
 
 const ANIMAL_FACTS = [
-  'Hunde haben Geruchsrezeptoren für das Magnetfeld der Erde – einer der Gründe, warum sie sich auch ohne Sicht gut orientieren.',
-  'Bei Katzen kann die Leber Paracetamol nicht verstoffwechseln: Schon kleinste Dosen sind tödlich, weil das Enzym Glucuronyltransferase fehlt.',
-  'Das Herz eines erwachsenen Pferdes wiegt etwa 4–5 kg und schlägt in Ruhe nur 28–44-mal pro Minute – dank eines sehr hohen Schlagvolumens.',
-  'Kaninchen können nicht erbrechen: Ihr Mageneingang ist zu stark und der Magen so gelagert, dass der Brechreflex körperlich unmöglich ist.',
-  'Bei vielen Reptilienarten bestimmt die Bruttemperatur der Eier das Geschlecht des Nachwuchses – ein Mechanismus, den es bei Säugetieren nicht gibt.',
-  'Delfine erzeugen zwei verschiedene Laute gleichzeitig – dank zweier unabhängiger Nasensäcke, die jeweils von eigenen Muskeln gesteuert werden.',
-  'Bei Papageien sind mit Psittacofluorinen gefärbte Federn für das menschliche Auge unsichtbar, leuchten aber im UV-Bereich, den die Vögel selbst sehen.',
-  'Elefanten gehören zu den wenigen Säugetieren mit ungewöhnlich vielen NK-Zellen (natürliche Killerzellen) im Verhältnis zur Körpergröße – ein Grund für ihre niedrige Tumorrate.',
-  'Hauskatzen haben einen verhältnismäßig kürzeren Dünndarm als wild lebende Fleischfresser gleicher Größe – evolutionäre Folge jahrtausendelanger Verdauung vorbehandelter Beute.',
-  'Kraken haben verteilte Neuronen: Etwa zwei Drittel ihres Nervensystems liegen in den Armen, die weitgehend unabhängig vom zentralen Gehirn agieren.',
+  'I cani hanno recettori olfattivi per i campi magnetici della Terra — uno dei motivi per cui si orientano bene anche senza vista.',
+  'Nei gatti, il fegato non è in grado di metabolizzare il paracetamolo: anche dosi minime sono letali per carenza dell\'enzima glucuronil transferasi.',
+  'Il cuore di un cavallo adulto pesa circa 4–5 kg e batte solo 28–44 volte al minuto a riposo, grazie a un volume sistolico elevatissimo.',
+  'I conigli non vomitano: il loro cardias è troppo forte e lo stomaco posizionato in modo tale da rendere fisicamente impossibile il riflesso emetico.',
+  'Nei rettili, la temperatura di incubazione delle uova determina il sesso della prole in molte specie — un meccanismo assente nei mammiferi.',
+  'I delfini producono due distinti tipi di suoni simultaneamente grazie a due sacche nasali indipendenti, ciascuna sotto il controllo di muscoli separati.',
+  'Nei pappagalli, le piume colorate da psittacofluorine sono invisibili all\'occhio umano ma brillanti nel range UV, visibile invece dagli uccelli stessi.',
+  'Gli elefanti sono uno dei pochi mammiferi con cellule NK (natural killer) in quantità anomala rispetto alle dimensioni corporee, contribuendo alla loro bassa incidenza di tumori.',
+  'Il gatto domestico ha un intestino tenue proporzionalmente più corto rispetto ai carnivori selvatici della stessa taglia: conseguenza evolutiva di millenni di digestione di prede pre-trattate.',
+  'I polpi hanno neuroni distribuiti: circa due terzi del loro sistema nervoso si trova nei tentacoli, che agiscono in modo semi-autonomo rispetto al cervello centrale.',
 ];
 
 function renderLoading() {
@@ -1769,11 +1769,11 @@ async function submitLogin() {
   const zip            = document.getElementById('login-zip')?.value.trim();
 
   if (!customerNumber || customerNumber.length !== 7 || !/^\d{7}$/.test(customerNumber)) {
-    loginError = 'Ungültige Kundennummer (7 Ziffern).';
+    loginError = 'Numero cliente non valido (7 cifre).';
     render(); return;
   }
   if (!zip) {
-    loginError = 'PLZ ist erforderlich.';
+    loginError = 'CAP obbligatorio.';
     render(); return;
   }
 
@@ -1788,7 +1788,7 @@ async function submitLogin() {
       body: JSON.stringify({ customer_number: customerNumber, zip_code: zip }),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Zugang verweigert.');
+    if (!res.ok) throw new Error(data.error || 'Accesso negato.');
     accountId      = data.account_id;
     provisionTotal = Math.max(0, data.provision_total);
     discountCode   = data.discount_code || null;
@@ -1817,7 +1817,7 @@ async function submitRedeem() {
   const missing = requiredFields.filter(id => !document.getElementById(id)?.value.trim());
   if (missing.length) {
     missing.forEach(id => document.getElementById(id)?.closest('.form-field')?.classList.add('--error'));
-    showErrorModal('Bitte fülle alle Pflichtfelder aus, bevor du fortfährst.');
+    showErrorModal('Compila tutti i campi obbligatori prima di procedere.');
     return;
   }
   requiredFields.forEach(id => document.getElementById(id)?.closest('.form-field')?.classList.remove('--error'));
@@ -1851,7 +1851,7 @@ async function submitRedeem() {
       body: JSON.stringify(payload),
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Fehler beim Einlösen.');
+    if (!res.ok) throw new Error(data.error || 'Errore durante il riscatto.');
 
     const newProvision = provisionAvailable(); // capture before clearing cart
     lastOrder = {
@@ -1893,26 +1893,26 @@ function renderTile(p) {
   if (!previewMode && qty > 0) {
     if (p.customAmount) {
       // Multi-step products: manage quantity and options on the PDP.
-      floatingMeta = `<div class="floating-meta"><div class="badge --sale">${qty} im Warenkorb</div></div>`;
+      floatingMeta = `<div class="floating-meta"><div class="badge --sale">${qty} nel carrello</div></div>`;
     } else {
       cartOverlay = `<div class="tile__cart --stepper" onclick="event.stopPropagation()">
         <div class="qty-selector --sm">
-          <button type="button" class="qty-selector__btn" onclick="removeFromCart('${p.id}')" aria-label="Weniger"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
-          <input class="qty-selector__input" type="text" value="${qty}" readonly tabindex="-1" aria-label="Menge">
-          <button type="button" class="qty-selector__btn" onclick="addToCart(${p.id})" aria-label="Mehr" ${affordable ? '' : 'disabled'}><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+          <button type="button" class="qty-selector__btn" onclick="removeFromCart('${p.id}')" aria-label="Meno"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+          <input class="qty-selector__input" type="text" value="${qty}" readonly tabindex="-1" aria-label="Quantità">
+          <button type="button" class="qty-selector__btn" onclick="addToCart(${p.id})" aria-label="Più" ${affordable ? '' : 'disabled'}><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
         </div>
       </div>`;
     }
   } else if (affordable) {
-    floatingMeta = `<div class="floating-meta"><div class="badge --sale">${p.customAmount ? 'Konfigurieren' : 'Einlösbar'}</div></div>`;
+    floatingMeta = `<div class="floating-meta"><div class="badge --sale">${p.customAmount ? 'Configura' : 'Riscattabile'}</div></div>`;
     // Rollover: „Konfigurieren“ öffnet die Detailseite (Betrag/Details), „Einlösen“ legt in den Warenkorb (Vorschau: Detailseite)
     const action = p.customAmount || previewMode ? `openPDP(${p.id})` : `addToCart(${p.id})`;
-    cartOverlay = `<div class="tile__cart"><button class="btn --secondary --full" onclick="event.stopPropagation(); ${action}">${p.customAmount ? 'Konfigurieren' : 'Einlösen'}</button></div>`;
+    cartOverlay = `<div class="tile__cart"><button class="btn --secondary --full" onclick="event.stopPropagation(); ${action}">${p.customAmount ? 'Configura' : 'Riscatta'}</button></div>`;
   } else {
     const missing = p.customAmount ? 0 : effectivePrice(p) - provisionAvailable();
     floatingMeta = p.customAmount
-      ? `<div class="floating-meta"><div class="badge --dark">Guthaben aufgebraucht</div></div>`
-      : `<div class="floating-meta"><div class="badge --dark">Noch ${fmt(missing)}</div></div>`;
+      ? `<div class="floating-meta"><div class="badge --dark">Saldo esaurito</div></div>`
+      : `<div class="floating-meta"><div class="badge --dark">Ancora ${fmt(missing)}</div></div>`;
   }
 
   const ep = effectivePrice(p);
@@ -2269,13 +2269,13 @@ function renderPortal() {
       </div>
       <div class="section-type__content provision-hero__content">
         <div class="provision-hero__figure">
-          <h1 class="provision-hero__title">Ihre verfügbare Provision</h1>
+          <h1 class="provision-hero__title">La tua provvigione disponibile</h1>
           <span class="provision-hero__amount" id="provisionAmount">${fmt(amountStart)}</span>
         </div>
         <div class="provision-hero__actions">
-          <button class="btn --primary" onclick="openCashRequestModal()">Bar auszahlen</button>
-          <span class="provision-hero__or">oder</span>
-          <button class="btn --primary" onclick="scrollToPremiums()">Prämien sichern</button>
+          <button class="btn --primary" onclick="openCashRequestModal()">Riscuoti in contanti</button>
+          <span class="provision-hero__or">oppure</span>
+          <button class="btn --primary" onclick="scrollToPremiums()">Riscatta i premi</button>
         </div>
       </div>
     </section>
@@ -2292,34 +2292,34 @@ function renderPortal() {
    ═══════════════════════════════════════ */
 
 const REWARDS_TEXT = {
-  heroTitle: 'Für Prämien verfügbar',
-  hintNext: 'Noch {amount} bis zur Prämie „{name}“.',
-  hintReady: 'Sie können jetzt einlösen – wählen Sie Ihre Prämie.',
-  hintEmpty: 'Mit jeder Bestellung Ihrer Kunden wächst Ihre Provision.',
-  productsTitle: 'Vetalità-Produkte',
-  productsBody: 'Bestellen Sie Produkte aus dem Vetalità-Sortiment – bezahlt mit Ihrer Provision.',
-  productsCta: 'Produkte anfragen',
-  cashTitle: 'Bar auszahlen',
-  cashBody: 'Lassen Sie sich Ihre Provision überweisen – ab 20 €.',
-  cashCta: 'Auszahlen',
-  wishTitle: 'Wunsch-Prämie vorschlagen',
-  wishBody: 'Ihnen fehlt etwas? Schreiben Sie uns Ihre Idee – wir prüfen jeden Vorschlag für die Prämienauswahl.',
-  wishCta: 'Idee schicken',
-  wishSubject: 'Prämienvorschlag aus dem Provisionsportal',
-  wishName: 'Name',
-  wishEmail: 'E-Mail-Adresse',
-  wishField: 'Ihr Prämienvorschlag',
-  stepsTitle: 'So lösen Sie ein',
-  step1Title: 'Prämie wählen', step1Body: 'Legen Sie eine oder mehrere Prämien in den Warenkorb, solange Ihre Provision reicht.',
-  step2Title: 'Lieferadresse bestätigen', step2Body: 'Prüfen Sie Ihre Adresse und schließen Sie die Einlösung ab.',
-  step3Title: 'Prämie erhalten', step3Body: 'Sachprämien werden innerhalb von 5–7 Werktagen versendet. Bei Fortbildungen meldet sich das Vetalità-Team bei Ihnen.',
-  faqTitle: 'Häufige Fragen zu Prämien',
+  heroTitle: 'Disponibile per i premi',
+  hintNext: 'Ancora {amount} per il premio «{name}».',
+  hintReady: 'Puoi già riscattare: scegli il tuo premio.',
+  hintEmpty: 'Con ogni ordine dei tuoi clienti la tua provvigione cresce.',
+  productsTitle: 'Prodotti Vetalità',
+  productsBody: 'Ordina prodotti dell’assortimento Vetalità – pagati con la tua provvigione.',
+  productsCta: 'Richiedi prodotti',
+  cashTitle: 'Riscuoti in contanti',
+  cashBody: 'Fatti accreditare la provvigione con un bonifico – da 20 €.',
+  cashCta: 'Riscuoti',
+  wishTitle: 'Proponi un premio',
+  wishBody: 'Ti manca qualcosa? Scrivici la tua idea: valutiamo ogni proposta per la selezione dei premi.',
+  wishCta: 'Invia la tua idea',
+  wishSubject: 'Proposta di premio dal portale provvigioni',
+  wishName: 'Nome',
+  wishEmail: 'Indirizzo e-mail',
+  wishField: 'La tua proposta di premio',
+  stepsTitle: 'Come riscattare',
+  step1Title: 'Scegli il premio', step1Body: 'Aggiungi uno o più premi al carrello, finché la provvigione è sufficiente.',
+  step2Title: "Conferma l'indirizzo", step2Body: 'Verifica il tuo indirizzo e completa il riscatto.',
+  step3Title: 'Ricevi il premio', step3Body: 'I premi materiali vengono spediti entro 5–7 giorni lavorativi. Per la formazione ti contatterà il team Vetalità.',
+  faqTitle: 'Domande frequenti sui premi',
   faq: [
-    { q: 'Wie lange dauert die Lieferung?', a: 'Sachprämien werden innerhalb von 5–7 Werktagen nach dem Einlösen an Ihre Lieferadresse versendet.' },
-    { q: 'Kann ich mehrere Prämien einlösen?', a: 'Ja. Legen Sie mehrere Prämien in den Warenkorb – solange Ihre verfügbare Provision reicht.' },
-    { q: 'Wie funktioniert die Fortbildung als Prämie?', a: 'Geben Sie den Ticketpreis und die Veranstaltung an. Nach dem Einlösen meldet sich das Vetalità-Team bei Ihnen, um die Anmeldung abzuschließen.' },
-    { q: 'Wie funktioniert die Spende als Prämie?', a: 'Geben Sie den Betrag und das Tierschutzprojekt an. Nach dem Einlösen überweist das Vetalità-Team die Spende und bestätigt Ihnen die Zahlung.' },
-    { q: 'Kann ich mir die Provision auch auszahlen lassen?', a: 'Ja, ab 20 € über „Bar auszahlen“. Sie brauchen dafür Ihre IBAN und Ihre USt-IdNr.; die Überweisung erfolgt innerhalb von 3–5 Werktagen.' },
+    { q: 'Quanto dura la consegna?', a: "I premi materiali vengono spediti all'indirizzo di consegna entro 5–7 giorni lavorativi dal riscatto." },
+    { q: 'Posso riscattare più premi?', a: 'Sì. Aggiungi più premi al carrello, finché la provvigione disponibile è sufficiente.' },
+    { q: 'Come funziona la formazione come premio?', a: "Indica il prezzo del biglietto e l'evento. Dopo il riscatto il team Vetalità ti contatterà per completare l'iscrizione." },
+    { q: 'Come funziona la donazione come premio?', a: 'Indica l’importo e il progetto di tutela degli animali. Dopo il riscatto il team Vetalità effettua la donazione e ti conferma il pagamento.' },
+    { q: 'Posso farmi pagare la provvigione?', a: 'Sì, da 20 € tramite «Riscuoti in contanti». Servono IBAN e partita IVA; il bonifico viene effettuato entro 3–5 giorni lavorativi.' },
   ],
 };
 const REWARDS_HERO_IMAGE = 'praemie-kaffee-2.jpg';
@@ -2402,7 +2402,7 @@ function renderRewards() {
             <div class="section-type__body rte"><p>${REWARDS_TEXT.wishBody}</p></div>
             <form method="post" action="https://vetalita.it/contact#RewardWish" id="RewardWish" accept-charset="UTF-8" class="flow">
               <input type="hidden" name="form_type" value="contact"><input type="hidden" name="utf8" value="✓">
-              <input type="hidden" name="contact[Betreff]" value="${REWARDS_TEXT.wishSubject}">
+              <input type="hidden" name="contact[Oggetto]" value="${REWARDS_TEXT.wishSubject}">
               <div class="form-grid">
                 <div class="form-field">
                   <input type="text" name="contact[name]" id="RewardWish-name" placeholder=" " autocomplete="name" required>
@@ -2464,28 +2464,28 @@ function renderPDP() {
   let actionBtn;
   if (p.customAmount) {
     actionBtn = previewMode
-      ? `<button class="btn --primary" disabled>In den Warenkorb</button>`
-      : `<button class="btn --primary" onclick="addCustomPremiumToCart(${p.id})" ${affordable ? '' : 'disabled'}>In den Warenkorb</button>`;
+      ? `<button class="btn --primary" disabled>Aggiungi al carrello</button>`
+      : `<button class="btn --primary" onclick="addCustomPremiumToCart(${p.id})" ${affordable ? '' : 'disabled'}>Aggiungi al carrello</button>`;
   } else if (pdpQty > 0) {
     actionBtn = `
       <div class="qty-selector">
-        <button type="button" class="qty-selector__btn" onclick="removeFromCart('${currentKey}')" aria-label="Weniger"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
-        <input class="qty-selector__input" type="text" value="${pdpQty}" readonly tabindex="-1" aria-label="Menge">
-        <button type="button" class="qty-selector__btn" onclick="cart['${currentKey}']=(cart['${currentKey}']||0)+1;render()" aria-label="Mehr" ${affordable ? '' : 'disabled'}><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+        <button type="button" class="qty-selector__btn" onclick="removeFromCart('${currentKey}')" aria-label="Meno"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+        <input class="qty-selector__input" type="text" value="${pdpQty}" readonly tabindex="-1" aria-label="Quantità">
+        <button type="button" class="qty-selector__btn" onclick="cart['${currentKey}']=(cart['${currentKey}']||0)+1;render()" aria-label="Più" ${affordable ? '' : 'disabled'}><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
       </div>
-      <button class="btn --primary" onclick="openCart()">Zum Warenkorb</button>`;
+      <button class="btn --primary" onclick="openCart()">Vai al carrello</button>`;
   } else if (affordable) {
-    actionBtn = `<button class="btn --primary" onclick="addToCart(${p.id})">In den Warenkorb</button>`;
+    actionBtn = `<button class="btn --primary" onclick="addToCart(${p.id})">Aggiungi al carrello</button>`;
   } else {
-    actionBtn = `<button class="btn --primary" disabled>Noch ${fmt(ep - available)} fehlen</button>`;
+    actionBtn = `<button class="btn --primary" disabled>Ancora ${fmt(ep - available)} mancanti</button>`;
   }
 
   const pct = tilePct(p);
   let pdpBadge = '';
-  if (p.customAmount && affordable) pdpBadge = `<div class="badge --sale">Konfigurieren</div>`;
-  else if (!inCart && affordable) pdpBadge = `<div class="badge --sale">Einlösbar</div>`;
-  else if (!inCart && !p.customAmount) pdpBadge = `<div class="badge --dark">Noch ${fmt(ep - available)}</div>`;
-  else if (p.customAmount) pdpBadge = `<div class="badge --dark">Guthaben aufgebraucht</div>`;
+  if (p.customAmount && affordable) pdpBadge = `<div class="badge --sale">Configura</div>`;
+  else if (!inCart && affordable) pdpBadge = `<div class="badge --sale">Riscattabile</div>`;
+  else if (!inCart && !p.customAmount) pdpBadge = `<div class="badge --dark">Ancora ${fmt(ep - available)}</div>`;
+  else if (p.customAmount) pdpBadge = `<div class="badge --dark">Saldo esaurito</div>`;
   // Prämien mit frei wählbarem Betrag haben keinen Zielpreis → kein Fortschrittsring.
   const pdpRing = p.customAmount ? '' : `
     <svg class="tile__ring" viewBox="0 0 48 48" width="72" height="72" aria-hidden="true">
@@ -2521,12 +2521,12 @@ function renderPDP() {
 
   const priceBlock = p.customAmount ? `
           <div class="pdp__price">
-            <div class="price-stack"><span>${p.priceLabel || 'Betrag frei wählbar'}</span></div>
-            <span class="label-caps">Ihre verfügbare Provision: ${fmt(available)}</span>
+            <div class="price-stack"><span>${p.priceLabel || 'Importo a scelta'}</span></div>
+            <span class="label-caps">La tua provvigione disponibile: ${fmt(available)}</span>
           </div>` : `
           <div class="pdp__price">
             <div class="price-stack"><span>${p.priceLabel || fmt(ep)}</span></div>
-            <span class="label-caps">Provisionswert</span>
+            <span class="label-caps">Valore provvigione</span>
           </div>`;
 
   return `
@@ -2549,7 +2549,7 @@ function renderPDP() {
           </div>
           <div class="accordion">
             <div class="accordion-item --open">
-              <button class="accordion-trigger" type="button" aria-expanded="true" onclick="toggleAccordion(this)">Beschreibung<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
+              <button class="accordion-trigger" type="button" aria-expanded="true" onclick="toggleAccordion(this)">Descrizione<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
               <div class="accordion-content"><div class="accordion-content__inner"><p>${p.longDesc}</p></div></div>
             </div>
             ${p.features?.length ? `
@@ -2563,13 +2563,13 @@ function renderPDP() {
               <div class="accordion-content"><div class="accordion-content__inner flow"><div class="rte --data-table --mobile-table"><table class="--normal"><tbody>${p.specs.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table></div><p class="form-hint">${PREMIUM_TEXT.specsSource}</p></div></div>
             </div>` : ''}
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Wie funktioniert das?<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
-              <div class="accordion-content"><div class="accordion-content__inner"><p>Der Wert der Prämie wird von deiner verfügbaren Provision abgezogen. Aktuelles Guthaben: <strong>${fmt(provisionAvailable())}</strong>.</p></div></div>
+              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Come funziona?<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
+              <div class="accordion-content"><div class="accordion-content__inner"><p>Il valore del premio viene detratto dalla provvigione disponibile. Saldo attuale: <strong>${fmt(provisionAvailable())}</strong>.</p></div></div>
             </div>
             ${p.id === 2 ? `
             <div class="accordion-item">
-              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Versand &amp; Lieferung<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
-              <div class="accordion-content"><div class="accordion-content__inner"><p>Die Prämie wird innerhalb von 5–7 Werktagen nach dem Einlösen an die hinterlegte Adresse verschickt.</p></div></div>
+              <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">Spedizione &amp; consegna<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
+              <div class="accordion-content"><div class="accordion-content__inner"><p>Il premio verrà inviato entro 5–7 giorni lavorativi dal riscatto all'indirizzo registrato.</p></div></div>
             </div>` : ''}
           </div>
         </div>
@@ -2585,8 +2585,8 @@ function renderCartDrawer() {
   if (Object.keys(cart).length === 0) {
     return `
       <div class="cart-drawer__header">
-        <span class="cart-drawer__title">Prämien-Warenkorb <span class="cart-drawer__count">(0)</span></span>
-        <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen">
+        <span class="cart-drawer__title">Carrello premi <span class="cart-drawer__count">(0)</span></span>
+        <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Chiudi">
           <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
         </button>
       </div>
@@ -2594,10 +2594,10 @@ function renderCartDrawer() {
         <div class="empty-state">
           <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg>
           <div class="flow">
-            <p class="empty-state__title">Keine Prämie ausgewählt</p>
-            <p class="empty-state__sub">Wähle eine Prämie aus, um sie einzulösen.</p>
+            <p class="empty-state__title">Nessun premio selezionato</p>
+            <p class="empty-state__sub">Seleziona un premio per procedere al riscatto.</p>
           </div>
-          <button type="button" class="btn --primary" onclick="closeCart(); goRewards();">Zu den Prämien</button>
+          <button type="button" class="btn --primary" onclick="closeCart(); goRewards();">Vai ai premi</button>
         </div>
       </div>`;
   }
@@ -2609,11 +2609,11 @@ function renderCartDrawer() {
     const label = cartItemLabel(p, key, price);
     const variant = escapeHtml(cartItemVariant(p, key));
     const stepper = p.customAmount ? `
-            <button type="button" class="btn --ghost --sm" onclick="removeCartItem('${key}')">Entfernen</button>` : `
+            <button type="button" class="btn --ghost --sm" onclick="removeCartItem('${key}')">Rimuovi</button>` : `
             <div class="qty-selector --sm">
-              <button type="button" class="qty-selector__btn" onclick="removeFromCart('${key}')" aria-label="Weniger"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
-              <input class="qty-selector__input" type="text" value="${qty}" readonly tabindex="-1" aria-label="Menge">
-              <button type="button" class="qty-selector__btn" onclick="cart['${key}']=(cart['${key}']||0)+1;render()" aria-label="Mehr" ${affordable ? '' : 'disabled'}><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+              <button type="button" class="qty-selector__btn" onclick="removeFromCart('${key}')" aria-label="Meno"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+              <input class="qty-selector__input" type="text" value="${qty}" readonly tabindex="-1" aria-label="Quantità">
+              <button type="button" class="qty-selector__btn" onclick="cart['${key}']=(cart['${key}']||0)+1;render()" aria-label="Più" ${affordable ? '' : 'disabled'}><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
             </div>`;
     return `
       <div class="cart-item">
@@ -2624,7 +2624,7 @@ function renderCartDrawer() {
               <p class="cart-item__name">${label}</p>
               <div class="cart-item__variant">${variant}</div>
             </div>
-            <button type="button" class="btn --icon cart-item__remove" onclick="removeCartItem('${key}')" aria-label="Alles entfernen">
+            <button type="button" class="btn --icon cart-item__remove" onclick="removeCartItem('${key}')" aria-label="Rimuovi tutto">
               <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
             </button>
           </div>
@@ -2641,23 +2641,23 @@ function renderCartDrawer() {
 
   return `
     <div class="cart-drawer__header">
-      <span class="cart-drawer__title">Prämien-Warenkorb <span class="cart-drawer__count">(${cartTotalItems()})</span></span>
-      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Schließen">
+      <span class="cart-drawer__title">Carrello premi <span class="cart-drawer__count">(${cartTotalItems()})</span></span>
+      <button type="button" class="btn --icon" onclick="closeCart()" aria-label="Chiudi">
         <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
       </button>
     </div>
     <div class="cart-drawer__items">${items}</div>
     <div class="cart-drawer__footer">
       <div class="summary-total">
-        <span>Summe</span>
+        <span>Totale</span>
         <span>${fmt(total)}</span>
       </div>
       <div class="cart-drawer__tax">
-        Verbleibende Provision nach dem Einlösen: ${fmt(remaining)}
+        Provvigione rimanente dopo il riscatto: ${fmt(remaining)}
       </div>
-      <button class="btn --primary cart-drawer__checkout" onclick="goToCheckout()">Prämie einlösen</button>
+      <button class="btn --primary cart-drawer__checkout" onclick="goToCheckout()">Riscatta premio</button>
       <div class="cart-drawer__continue-wrap">
-        <button class="btn --ghost cart-drawer__continue" onclick="closeCart()">Weiter stöbern</button>
+        <button class="btn --ghost cart-drawer__continue" onclick="closeCart()">Continua a sfogliare</button>
       </div>
     </div>`;
 }
@@ -2683,7 +2683,7 @@ function renderCheckout() {
             </div>
           </div>
           <div class="cart-item__bottom">
-            <div class="cart-item__qty-text">${qty} Stück</div>
+            <div class="cart-item__qty-text">${qty} pezzo${qty > 1 ? 'i' : ''}</div>
             <div class="price-stack">${fmt(price * qty)}</div>
           </div>
         </div>
@@ -2700,35 +2700,35 @@ function renderCheckout() {
         <!-- Colonna sinistra: indirizzo + spedizione -->
         <div>
           <div>
-            <h3 class="section-label --sub">Lieferadresse</h3>
+            <h3 class="section-label --sub">Indirizzo di consegna</h3>
             <div class="form-grid">
               <div class="form-field --full">
                 ${checkoutInput('co-name', 'name')}
-                <label for="co-name">Vor- und Nachname</label>
+                <label for="co-name">Nome e cognome</label>
               </div>
               <div class="form-field">
                 ${checkoutInput('co-strasse', 'street')}
-                <label for="co-strasse">Straße</label>
+                <label for="co-strasse">Via</label>
               </div>
               <div class="form-field">
                 ${checkoutInput('co-hausnr', 'house_number')}
-                <label for="co-hausnr">Nr.</label>
+                <label for="co-hausnr">N.</label>
               </div>
               <div class="form-field">
                 ${checkoutInput('co-plz', 'zip')}
-                <label for="co-plz">PLZ</label>
+                <label for="co-plz">CAP</label>
               </div>
               <div class="form-field">
                 ${checkoutInput('co-ort', 'city')}
-                <label for="co-ort">Ort</label>
+                <label for="co-ort">Città</label>
               </div>
               <div class="form-field">
                 ${checkoutInput('co-email', 'email', 'email')}
-                <label for="co-email">E-Mail-Adresse</label>
+                <label for="co-email">Indirizzo e-mail</label>
               </div>
               <div class="form-field">
                 ${checkoutInputOptional('co-tel', 'phone', 'tel')}
-                <label for="co-tel">Telefon</label>
+                <label for="co-tel">Telefono</label>
               </div>
             </div>
           </div>
@@ -2737,11 +2737,11 @@ function renderCheckout() {
 
         <!-- Colonna destra: riepilogo ordine -->
         <aside class="checkout__sidebar">
-          <h3 class="section-label --sub">Bestellübersicht</h3>
+          <h3 class="section-label --sub">Riepilogo ordine</h3>
           ${items}
           <div id="checkout-summary">${renderCheckoutSummary(total, remaining)}</div>
           <div class="checkout__cta">
-            <button class="btn --primary --full" type="button" onclick="submitRedeem()" ${previewMode ? 'disabled' : ''}>Prämie einlösen</button>
+            <button class="btn --primary --full" type="button" onclick="submitRedeem()" ${previewMode ? 'disabled' : ''}>Riscatta premio</button>
           </div>
         </aside>
 
@@ -2757,7 +2757,7 @@ function renderSuccess() {
 
   const items = lastOrder.items.map(({ p, price, qty, details }) => {
     const label = cartItemLabel(p, null, price);
-    const variant = escapeHtml(p.customAmount && details ? details : 'Prämie');
+    const variant = escapeHtml(p.customAmount && details ? details : 'Premio');
     return `
     <div class="cart-item">
       ${thumbHTML(p, 'cart-item__image product-thumb')}
@@ -2769,7 +2769,7 @@ function renderSuccess() {
           </div>
         </div>
         <div class="cart-item__bottom">
-          <div class="cart-item__qty-text">${qty} Stück</div>
+          <div class="cart-item__qty-text">${qty} pezzo${qty > 1 ? 'i' : ''}</div>
           <div class="price-stack">${fmt(price * qty)}</div>
         </div>
       </div>
@@ -2780,16 +2780,16 @@ function renderSuccess() {
     <div class="container --narrow portal-section">
       <div class="success-state">
         <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
-        <h1 class="success-state__title">Deine Prämie ist unterwegs!</h1>
-        <p class="success-state__body">Erfolgreich eingelöst: <strong>${fmt(lastOrder.total)}</strong> Provision. Eine Bestätigung geht an deine hinterlegte E-Mail-Adresse.</p>
+        <h1 class="success-state__title">Premio in arrivo!</h1>
+        <p class="success-state__body">Riscatto completato con successo: <strong>${fmt(lastOrder.total)}</strong> di provvigione. Una conferma verrà inviata all'indirizzo e-mail registrato.</p>
       </div>
       <div class="portal-success__items">
         ${items}
-        <div class="summary-line"><span>Eingelöste Provision</span><span>${fmt(lastOrder.total)}</span></div>
-        <div class="summary-total"><span>Verbleibende Provision</span><span>${fmt(lastOrder.remaining)}</span></div>
+        <div class="summary-line"><span>Provvigione riscattata</span><span>${fmt(lastOrder.total)}</span></div>
+        <div class="summary-total"><span>Provvigione rimanente</span><span>${fmt(lastOrder.remaining)}</span></div>
       </div>
       <div class="success-state__actions">
-        <button class="btn --primary" onclick="backToPortal()">Zurück zur Übersicht</button>
+        <button class="btn --primary" onclick="backToPortal()">Torna alla panoramica</button>
       </div>
     </div>`;
 }
@@ -2800,29 +2800,29 @@ function renderSuccess() {
    ═══════════════════════════════════════ */
 
 const PREMIUM_TEXT = {
-  features: 'Ausstattung',
-  specs: 'Technische Daten',
-  specsSource: 'Herstellerangaben (De’Longhi), technische Änderungen vorbehalten.',
+  features: 'Caratteristiche',
+  specs: 'Dati tecnici',
+  specsSource: 'Dati del produttore (De’Longhi), con riserva di modifiche tecniche.',
 };
 
 const PRODUCT_TEXT = {
-  title: 'Vetalità-Produkte',
-  intro: 'Fachinformationen und die häufigsten Fragen Ihrer Kunden – zum Nachschlagen in der Sprechstunde. Ihre Kunden bestellen im Vetalità-Shop.',
-  practice: 'Für die Praxis',
-  notes: 'Wichtige Hinweise',
-  faq: 'Häufige Fragen Ihrer Kunden',
-  copyLink: 'Produktlink für Kunden kopieren',
-  copied: 'Link kopiert',
-  linkHint: 'Mit Ihrem Rabattcode {code} – die Bestellung wird Ihrer Praxis zugeordnet.',
-  shop: 'Im Vetalità-Shop ansehen',
-  feeding: 'Tägliche Fütterungsempfehlung',
-  ingredients: 'Inhaltsstoffe (Auszug) im Detail',
-  image: 'Bild',
-  teaser: 'Produkte, die Sie empfehlen können',
-  teaserAll: 'Alle Produkte',
-  related: 'Weitere Produkte',
-  socialProof: '2.601.620 zufriedene Tiere und Tierhalter',
-  socialAside: 'Zufriedene Kunden',
+  title: 'Prodotti Vetalità',
+  intro: 'Informazioni tecniche e le domande più frequenti dei tuoi clienti – da consultare durante la visita. I tuoi clienti ordinano nello shop Vetalità.',
+  practice: 'Per la pratica clinica',
+  notes: 'Avvertenze importanti',
+  faq: 'Domande frequenti dei tuoi clienti',
+  copyLink: 'Copia il link del prodotto per i clienti',
+  copied: 'Link copiato',
+  linkHint: 'Con il tuo codice sconto {code} – l’ordine viene attribuito al tuo studio.',
+  shop: 'Vedi nello shop Vetalità',
+  feeding: 'Dose giornaliera raccomandata',
+  ingredients: 'Ingredienti (estratto) in dettaglio',
+  image: 'Immagine',
+  teaser: 'Prodotti che puoi consigliare',
+  teaserAll: 'Tutti i prodotti',
+  related: 'Altri prodotti',
+  socialProof: '2.601.620 animali e proprietari soddisfatti',
+  socialAside: 'Clienti soddisfatti',
 };
 
 /* Kategoriefarbe je Produkt (Styleguide-Tokens --cat-*; Galerie-Karte + Badge wie Staging-PDP) */
@@ -2835,23 +2835,23 @@ const PRODUCT_CATS = {
 /* Vorteile-Leiste unter der PDP (Shopify-Metaobjekte shop_benefit, Section „benefits“) */
 const PRODUCT_PERKS = [
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/main_icons_animation_tapraxis.json?v=1759906545',
-    headline: 'Mit Tierärzten entwickelt', body: 'Rezepturen aus der Praxis – für Ihre Empfehlung in der Sprechstunde.' },
+    headline: 'Sviluppati con i veterinari', body: "Formule nate nella pratica clinica – da consigliare in ambulatorio." },
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/main_icons_animation_pfoten.json?v=1760451180',
-    headline: 'Für die Langzeitgabe geeignet', body: 'Natürliche, gut verträgliche Inhaltsstoffe – auch für chronische Patienten.' },
+    headline: "Adatti all'uso prolungato", body: 'Ingredienti naturali e ben tollerati – anche per i pazienti cronici.' },
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/main_icons_animation_schield.json?v=1759906545',
-    headline: 'Hohe Akzeptanz', body: 'Schmackhaft formuliert – das erleichtert Ihren Kunden die tägliche Gabe.' },
+    headline: 'Alta appetibilità', body: 'Formulati per essere graditi – così i tuoi clienti li somministrano ogni giorno senza fatica.' },
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/main_icons_animation_auto.json?v=1759906545',
-    headline: 'Schnell bei Ihren Kunden', body: 'Lieferung nach Hause in 1–3 Tagen – ohne Lager in Ihrer Praxis.' },
+    headline: 'Subito dai tuoi clienti', body: 'Consegna a domicilio in 1–3 giorni – senza magazzino in ambulatorio.' },
 ];
 
 /* Vorteile-Trio wie auf der Shop-PDP (Kacheln mit Lottie, Shopify: templates/product.json → tiles_8) */
 const PRODUCT_BENEFITS = [
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/inuvet_tierarzt_nur_bei_euch.json?v=1791568430',
-    headline: 'Im Shop und in der Praxis', body: 'Vetalità-Produkte gibt es im Online-Shop und in vielen Tierarztpraxen – Ihre Kunden bestellen mit Ihrem Rabattcode.' },
+    headline: 'Nello shop e dal veterinario', body: 'I prodotti Vetalità sono disponibili nello shop online e in molti ambulatori veterinari – i tuoi clienti ordinano con il tuo codice sconto.' },
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/Inuvet_animation_Weltweit.json?v=1791568430',
-    headline: 'Gut verträglich, beliebt und konzentriert', body: 'Studienbasierte Phytotherapie. Im Einsatz bei über 20.000 Tierärztinnen und Tierärzten.' },
+    headline: 'Ben tollerati, apprezzati e concentrati', body: 'Fitoterapia basata su studi. In uso presso oltre 20.000 veterinari.' },
   { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/inuvet_animation_inhaltsstoffe.json?v=1791568430',
-    headline: 'Grüne Pfoten', body: 'Verpackungen aus 85 % Recyclingpapier, kurze Lieferketten und natürliche Inhaltsstoffe.' },
+    headline: 'Zampe verdi', body: "Confezioni con l'85% di carta riciclata, filiere corte e ingredienti naturali." },
 ];
 
 /* Tierart → Icon (wie animalsIconsHTML in planet-brands.js; Dateien in icons/) */
@@ -3348,20 +3348,20 @@ function renderHow(embedded = false) {
   // Eingeloggte Kunden: keine CTAs (Registrierung/Portal) — Seite dient nur zum Nachlesen; Vorschau zeigt sie
   const heroButtons = registered
     ? ''
-    : `<button type="button" class="btn --primary" onclick="goRegister()">Im Provisionsportal registrieren</button>${embedded ? '' : `<button type="button" class="btn --ghost" onclick="navToPortal()">Zum Provisionsportal</button>`}`;
+    : `<button type="button" class="btn --primary" onclick="goRegister()">Registrati al portale provvigioni</button>${embedded ? '' : `<button type="button" class="btn --ghost" onclick="navToPortal()">Vai al portale provvigioni</button>`}`;
   const main = `
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type how-hero">
   <div class="section-type --v1 --fit-text --pb">
     <div class="section-type__image">
-      <div class="floating-meta"><div class="badge">Für Tierarztpraxen</div></div>
-      <picture><img src="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_91aari91aari91aa.jpg?v=1794512084&amp;width=1600" alt="Sie empfehlen. Ihre Kunden bestellen online." width="2400" height="2400" loading="eager"></picture>
+      <div class="floating-meta"><div class="badge">Per studi veterinari</div></div>
+      <picture><img src="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_91aari91aari91aa.jpg?v=1794512084&amp;width=1600" alt="Tu consigli. I tuoi clienti ordinano online." width="2400" height="2400" loading="eager"></picture>
     </div>
     <div class="section-type__content flow">
-      <h1 class="section-type__headline">Sie empfehlen. Ihre Kunden bestellen online.</h1>
+      <h1 class="section-type__headline">Tu consigli. I tuoi clienti ordinano online.</h1>
       <div class="section-type__bottom flow">
         <div class="section-type__body rte">
-          <p>Mit Vetalità empfehlen Sie Ihren vierbeinigen Patienten die passenden Produkte. Ihre Kunden bestellen online und erhalten die Produkte direkt nach Hause – ganz ohne eigenes Lager.</p>
-          ${registered ? '' : `<p><strong>Jetzt registrieren und 10&nbsp;€ Startguthaben erhalten.</strong> Das Guthaben wird Ihrem Provisionskonto direkt nach der Registrierung automatisch gutgeschrieben.</p>`}
+          <p>Con Vetalità consigli i prodotti più adatti ai tuoi pazienti a quattro zampe. I tuoi clienti ordinano online e ricevono i prodotti direttamente a casa – senza che tu debba gestire un magazzino.</p>
+          ${registered ? '' : `<p><strong>Registrati ora e ricevi 10&nbsp;€ di credito iniziale.</strong> Il credito viene accreditato automaticamente sul tuo conto provvigioni subito dopo la registrazione.</p>`}
         </div>
         ${heroButtons ? `<div class="btn-row">${heroButtons}</div>` : ''}
       </div>
@@ -3372,14 +3372,14 @@ function renderHow(embedded = false) {
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type">
   <div class="section-type --v1 --ratio-16-9 --reverse --pb --bg-green-light">
     <div class="section-type__image">
-      <picture><img src="https://vetalita.it/cdn/shop/files/Vet.png?v=1794512060&amp;width=1600" alt="Im Mittelpunkt steht Ihre Empfehlung." width="2400" height="1350" loading="lazy"></picture>
+      <picture><img src="https://vetalita.it/cdn/shop/files/Vet.png?v=1794512060&amp;width=1600" alt="Al centro c’è il tuo consiglio." width="2400" height="1350" loading="lazy"></picture>
     </div>
     <div class="section-type__content flow">
-      <h2 class="section-type__headline">Im Mittelpunkt steht Ihre Empfehlung.</h2>
+      <h2 class="section-type__headline">Al centro c’è il tuo consiglio.</h2>
       <div class="section-type__bottom flow">
         <div class="section-type__body rte">
-          <p>Sie kennen Ihre Patienten und wissen, welche Produkte Sie empfehlen möchten. Ihre Kunden bestellen online bei Vetalità und geben dabei Ihre Praxis an. Vetalità versendet direkt nach Hause. Für die Ihnen zugeordneten Bestellungen erhalten Sie eine Provision.</p>
-          <p><strong>So können Sie sich auf die Beratung konzentrieren, statt für jede Empfehlung Produkte auf Lager zu halten.</strong></p>
+          <p>Conosci i tuoi pazienti e sai quali prodotti vuoi consigliare. I tuoi clienti ordinano online su Vetalità indicando il tuo studio. Vetalità si occupa della spedizione direttamente a casa. Per gli ordini a te attribuiti ricevi una provvigione.</p>
+          <p><strong>Così puoi concentrarti sulla consulenza, invece di tenere in magazzino i prodotti per ogni consiglio.</strong></p>
         </div>
       </div>
     </div>
@@ -3390,16 +3390,16 @@ function renderHow(embedded = false) {
   <div class="section-type --v1 --ratio-16-9 --pb">
     <div class="section-type__image">
       <div class="media-video" data-media-video="click">
-        <video poster="https://vetalita.it/cdn/shop/files/preview_images/928d300dc3a8420a99c46fb49ae07bd7.thumbnail.0000000000.jpg?v=1794511860&amp;width=1600" aria-label="Erklärvideo: So funktioniert Vetalità" playsinline preload="metadata">
+        <video poster="https://vetalita.it/cdn/shop/files/preview_images/928d300dc3a8420a99c46fb49ae07bd7.thumbnail.0000000000.jpg?v=1794511860&amp;width=1600" aria-label="Video esplicativo: come funziona Vetalità" playsinline preload="metadata">
           <source src="https://vetalita.it/cdn/shop/videos/c/vp/928d300dc3a8420a99c46fb49ae07bd7/928d300dc3a8420a99c46fb49ae07bd7.HD-720p-4.5Mbps-101103962.mp4?v=0" type="video/mp4">
         </video>
-        <button type="button" class="media-video__play" aria-label="Video abspielen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-play_arrow"></use></svg></button>
+        <button type="button" class="media-video__play" aria-label="Lancia il video"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-play_arrow"></use></svg></button>
       </div>
     </div>
     <div class="section-type__content flow">
-      <h2 class="section-type__headline">So funktioniert Vetalità</h2>
+      <h2 class="section-type__headline">Come funziona Vetalità</h2>
       <div class="section-type__bottom flow">
-        <p class="section-type__body">Im Video sehen Sie, wie Ihre Empfehlung, die Online-Bestellung und die Zuordnung zu Ihrer Praxis zusammenspielen – und wie Sie von Ihren Empfehlungen profitieren.</p>
+        <p class="section-type__body">Nel video scopri come il tuo consiglio, l’ordine online e l’attribuzione al tuo studio lavorano insieme – e come puoi trarre vantaggio dai tuoi consigli.</p>
       </div>
     </div>
   </div>
@@ -3407,24 +3407,24 @@ function renderHow(embedded = false) {
 
 <section class="shopify-section shopify-section--own-measure shopify-section--content-tiles how-steps">
   <div class="container --pb">
-    <div class="section-header"><div class="section-label-row --headline"><h2 class="section-headline">Von Ihrer Empfehlung zur Provision</h2></div></div>
+    <div class="section-header"><div class="section-label-row --headline"><h2 class="section-headline">Dal tuo consiglio alla provvigione</h2></div></div>
     <div class="tile-grid --list --cols-4 --process">
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person"></use></svg></div><div class="flow"><h3 class="tile__headline">Sie registrieren sich.</h3><p class="tile__body">Melden Sie sich im Provisionsportal für Tierärzte an. Direkt nach der Registrierung werden Ihrem Provisionskonto automatisch 10&nbsp;€ gutgeschrieben.</p>${registered ? '' : `<button type="button" class="btn --primary" onclick="goRegister()">Jetzt registrieren</button>`}</div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-medical_services"></use></svg></div><div class="flow"><h3 class="tile__headline">Sie empfehlen ein Produkt.</h3><p class="tile__body">Sie wählen das passende Vetalità-Produkt für Ihren Patienten und empfehlen es Ihrer Kundin oder Ihrem Kunden.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Kunden bestellen online.</h3><p class="tile__body">Ihre Kunden bestellen auf vetalita.it und geben den Namen Ihrer Praxis oder Ihren Rabattcode an. Vetalità liefert die Bestellung direkt nach Hause.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Empfehlung zahlt sich aus.</h3><p class="tile__body">Für Kunden, die bei der Bestellung Ihre Praxis oder Ihren Rabattcode angeben, erhalten Sie eine Provision. Über das Provisionsportal haben Sie Zugriff auf Ihr Provisionskonto.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person"></use></svg></div><div class="flow"><h3 class="tile__headline">Ti registri.</h3><p class="tile__body">Iscriviti al portale provvigioni per veterinari. Subito dopo la registrazione, sul tuo conto provvigioni vengono accreditati automaticamente 10&nbsp;€.</p>${registered ? '' : `<button type="button" class="btn --primary" onclick="goRegister()">Registrati ora</button>`}</div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-medical_services"></use></svg></div><div class="flow"><h3 class="tile__headline">Consigli un prodotto.</h3><p class="tile__body">Scegli il prodotto Vetalità più adatto al tuo paziente e lo consigli alla tua cliente o al tuo cliente.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg></div><div class="flow"><h3 class="tile__headline">I tuoi clienti ordinano online.</h3><p class="tile__body">I tuoi clienti ordinano su vetalita.it e indicano il nome del tuo studio o il tuo codice sconto. Vetalità spedisce l’ordine direttamente a casa.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg></div><div class="flow"><h3 class="tile__headline">Il tuo consiglio ti premia.</h3><p class="tile__body">Per i clienti che indicano il tuo studio o il tuo codice sconto al momento dell’ordine ricevi una provvigione. Dal portale provvigioni accedi al tuo conto provvigioni.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="shopify-section shopify-section--own-measure shopify-section--content-tiles">
   <div class="container --pb --bg-green-light">
-    <div class="section-header"><div class="section-label-row --headline"><h2 class="section-headline">Gute Beratung, einfachere Organisation.</h2></div></div>
+    <div class="section-header"><div class="section-label-row --headline"><h2 class="section-headline">Consulenza di qualità, organizzazione più semplice.</h2></div></div>
     <div class="tile-grid --list --cols-4">
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-verified"></use></svg></div><div class="flow"><h3 class="tile__headline">Die fachliche Empfehlung bleibt bei Ihnen</h3><p class="tile__body">Sie entscheiden, welches Produkt Sie Ihrem Patienten empfehlen.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-storefront"></use></svg></div><div class="flow"><h3 class="tile__headline">Kein Lager für Online-Bestellungen</h3><p class="tile__body">Ihre Kunden bestellen online und erhalten die Produkte nach Hause. Sie müssen nichts auf Lager halten.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-account_balance_wallet"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Empfehlung wird vergütet</h3><p class="tile__body">Geben Ihre Kunden bei der Bestellung Ihre Praxis an, erhalten Sie eine Provision. Nach der Registrierung werden Ihrem Provisionskonto automatisch 10&nbsp;€ gutgeschrieben.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-eco"></use></svg></div><div class="flow"><h3 class="tile__headline">Produkte mit tierärztlicher Kompetenz</h3><p class="tile__body">Vetalità bietet pflanzliche, hochdosierte Produkte, die gemeinsam mit Tierärzten entwickelt wurden.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-verified"></use></svg></div><div class="flow"><h3 class="tile__headline">Il consiglio professionale resta nelle tue mani</h3><p class="tile__body">Decidi tu quale prodotto consigliare al tuo paziente.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-storefront"></use></svg></div><div class="flow"><h3 class="tile__headline">Nessun magazzino per gli ordini online</h3><p class="tile__body">I tuoi clienti ordinano online e ricevono i prodotti a casa. Non devi tenerli in magazzino.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-account_balance_wallet"></use></svg></div><div class="flow"><h3 class="tile__headline">Il tuo consiglio viene ripagato</h3><p class="tile__body">Se i tuoi clienti indicano il tuo studio al momento dell’ordine, ricevi una provvigione. Dopo la registrazione, sul tuo conto provvigioni vengono accreditati automaticamente 10&nbsp;€.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-eco"></use></svg></div><div class="flow"><h3 class="tile__headline">Prodotti con competenza veterinaria</h3><p class="tile__body">Vetalità offre prodotti a base vegetale e ad alto dosaggio, sviluppati insieme ai veterinari.</p></div></div>
     </div>
   </div>
 </section>
@@ -3435,14 +3435,14 @@ ${renderProductsTeaser()}
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type-v3">
   <div class="section-type --v3 --box-soft --ratio-2-1">
     <div class="section-type__image">
-      <picture><img src="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_1puqzv1puqzv1puq.jpg?v=1794511895&amp;width=1600" alt="Bereit, Vetalità kennenzulernen?" width="2400" height="1340" loading="lazy"></picture>
+      <picture><img src="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_1puqzv1puqzv1puq.jpg?v=1794511895&amp;width=1600" alt="Pronto a conoscere Vetalità?" width="2400" height="1340" loading="lazy"></picture>
     </div>
     <div class="section-type__inner">
       <div class="section-type__content flow">
-        <h2 class="section-type__headline">Bereit, Vetalità kennenzulernen?</h2>
+        <h2 class="section-type__headline">Pronto a conoscere Vetalità?</h2>
         <div class="section-type__bottom flow">
-          <p class="section-type__body">Registrieren Sie sich im Provisionsportal und erfahren Sie, wie Sie Vetalità-Produkte online empfehlen. Ihr Startguthaben von 10&nbsp;€ wird Ihrem Provisionskonto direkt nach der Registrierung automatisch gutgeschrieben.</p>
-          <div class="btn-row"><button type="button" class="btn --primary" onclick="goRegister()">Registrieren und 10&nbsp;€ Startguthaben erhalten</button></div>
+          <p class="section-type__body">Registrati al portale provvigioni e scopri come consigliare online i prodotti Vetalità. I tuoi 10&nbsp;€ di credito iniziale vengono accreditati automaticamente sul tuo conto provvigioni subito dopo la registrazione.</p>
+          <div class="btn-row"><button type="button" class="btn --primary" onclick="goRegister()">Registrati e ricevi 10&nbsp;€ di credito iniziale</button></div>
         </div>
       </div>
     </div>
@@ -3883,7 +3883,7 @@ function initPdpStickyCta() {
   sync();
 }
 
-/* Sprache: zwei Dateien (DE = vetalita-portal-neu.html, IT = vetalita-portal-neu-it.html, aus der Zuordnung erzeugt).
+/* Sprache: zwei Dateien (DE = vetalita-portal-neu-de.html als Quelle, IT = vetalita-portal-neu.html als Standard, aus der Zuordnung erzeugt).
    Beim Wechsel bleiben Parameter (?register=…) und Ansicht (#…) erhalten. */
 function switchLang(a) {
   if (a.dataset.lang === document.documentElement.lang) return false;
