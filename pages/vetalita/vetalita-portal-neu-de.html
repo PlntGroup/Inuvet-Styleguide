@@ -1593,7 +1593,7 @@ const START_HERO_IMAGE = 'https://vetalita.it/cdn/shop/files/Gemini_Generated_Im
 
 function renderLogin() {
   const how = renderHow(true); // Inhalt von „So funktioniert's“ zusätzlich auf der Startseite
-  const loginTabActive = true; // Anmelden zuerst; Registrieren über den zweiten Reiter oder openRegistrationTab()
+  const loginTabActive = !!loginError || REGISTRATION_QUERY.loginTab; // Registrieren zuerst (wie im alten Portal); Anmelden bei Fehler oder ?tab=login
   // Runder Störer: mobil oben links im Foto, Desktop unter der großen Headline (je Breite einer sichtbar, CSS)
   const startBadge = `<div class="reg-badge --hero" aria-hidden="true">
           <span class="reg-badge__label">${START_TEXT.badgeLine1}</span>
@@ -1626,8 +1626,8 @@ function renderLogin() {
         <div class="section-type__bottom flow">
           <div class="tabs">
             <div class="tab-nav">
-              <button class="tab-btn${loginTabActive ? ' --active' : ''}" type="button" onclick="switchLoginTab(this, 'tab-login')">Anmelden</button>
               <button class="tab-btn${loginTabActive ? '' : ' --active'}" type="button" onclick="switchLoginTab(this, 'tab-register')">Registrieren</button>
+              <button class="tab-btn${loginTabActive ? ' --active' : ''}" type="button" onclick="switchLoginTab(this, 'tab-login')">Anmelden</button>
             </div>
 
           <div class="tab-panel${loginTabActive ? ' --active' : ''}" id="tab-login">
@@ -2846,11 +2846,11 @@ const PRODUCT_PERKS = [
 
 /* Vorteile-Trio wie auf der Shop-PDP (Kacheln mit Lottie, Shopify: templates/product.json → tiles_8) */
 const PRODUCT_BENEFITS = [
-  { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/inuvet_tierarzt_nur_bei_euch.json?v=1791568430',
+  { lottie: 'vetalita-lottie-shop-praxis.json',
     headline: 'Im Shop und in der Praxis', body: 'Vetalità-Produkte gibt es im Online-Shop und in vielen Tierarztpraxen – Ihre Kunden bestellen mit Ihrem Rabattcode.' },
-  { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/Inuvet_animation_Weltweit.json?v=1791568430',
+  { lottie: 'vetalita-lottie-weltweit.json',
     headline: 'Gut verträglich, beliebt und konzentriert', body: 'Studienbasierte Phytotherapie. Im Einsatz bei über 20.000 Tierärztinnen und Tierärzten.' },
-  { lottie: 'https://cdn.shopify.com/s/files/1/0772/9895/8586/files/inuvet_animation_inhaltsstoffe.json?v=1791568430',
+  { lottie: 'vetalita-lottie-inhaltsstoffe.json',
     headline: 'Grüne Pfoten', body: 'Verpackungen aus 85 % Recyclingpapier, kurze Lieferketten und natürliche Inhaltsstoffe.' },
 ];
 
