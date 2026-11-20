@@ -1,0 +1,7 @@
+/* brand-vetalita.css — Vetalità-Tokens (nur Werte, keine Komponenten), lädt nach theme-extras.css.
+   Vetalità nutzt sonst den Standard aus planet-brands.css; diese Datei gibt es nur für die grünen Linien:
+   --border-light = 50 % --green, Header-Linie grau (Entscheidung Micha, 2026-11-11; Themes.md, Genehmigte Ausnahmen). */
+:root {
+  --border-light: color-mix(in srgb, var(--green) 50%, var(--bg)); /* Linien grün (Entscheidung Micha, 2026-11-11) */
+  --border-nav: var(--border-neutral); /* Linie unter dem Header bleibt grau */
+}

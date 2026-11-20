@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ManukaLind Product Feedback – inuvet</title>
+  <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
+  <link rel="stylesheet" href="../planet-brands.css?v=234">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" id="ui-icon-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="ui-check_circle" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></g></symbol>
+  <symbol id="ui-cloud_upload" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></g></symbol>
+  <symbol id="ui-image" viewBox="0 0 24 24"><g fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></g></symbol>
+</svg>
+
+<div class="form-page">
+  <div class="form-page__card">
+
+    <header class="form-page__header">
+      <img src="../assets/brands/inuvet/inuvet-logo.svg" alt="inuvet">
+    </header>
+    <div class="form-page__banner">
+      <lottie-player src="../assets/brands/inuvet/lotties/Hero_Animation_01.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    </div>
+
+    <h1 class="form-page__title">ManukaLind Product Feedback Form</h1>
+
+    <form id="manukaForm" class="flow" novalidate>
+
+      <div class="form-intro">
+        <p><strong>Dear clinic team, dear veterinarian,</strong></p>
+        <p>thank you for using ManukaLind — we’d love to hear about your experience! If you have any questions, please feel free to contact us anytime.</p>
+        <p class="form-required-note">Fields marked with * are required.</p>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">1. Veterinary Clinic Information</h3>
+
+      <div class="form-field">
+        <input type="text" id="clinic-name" name="clinic_name" placeholder=" " autocomplete="organization" required>
+        <label for="clinic-name">Clinic name *</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="veterinarian-name" name="veterinarian_name" placeholder=" " autocomplete="name" required>
+        <label for="veterinarian-name">Veterinarian name *</label>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <input type="text" id="country" name="country" placeholder=" " autocomplete="country-name" required>
+          <label for="country">Country *</label>
+        </div>
+        <div class="form-field">
+          <input type="date" id="evaluation-date" name="evaluation_date">
+          <label for="evaluation-date">Date of evaluation</label>
+        </div>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">2. Animal Information</h3>
+
+      <p class="form-group-label">Species</p>
+      <div class="form-radio-col">
+        <label class="form-check">
+          <input type="radio" name="species" value="Dog">
+          <span>Dog</span>
+        </label>
+        <label class="form-check">
+          <input type="radio" name="species" value="Cat">
+          <span>Cat</span>
+        </label>
+        <label class="form-check">
+          <input type="radio" name="species" value="Rabbit">
+          <span>Rabbit</span>
+        </label>
+        <label class="form-check --with-input">
+          <input type="radio" name="species" value="Other">
+          <span>Other:</span>
+          <input type="text" id="species-other" class="form-check__inline-input" placeholder=" " aria-label="Other species">
+        </label>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <input type="text" id="breed" name="breed" placeholder=" ">
+          <label for="breed">Breed</label>
+        </div>
+        <div>
+          <div class="form-field">
+            <input type="text" id="age" name="age" placeholder=" ">
+            <label for="age">Age</label>
+          </div>
+          <p class="form-hint">e.g. 4 years</p>
+        </div>
+      </div>
+
+      <p class="form-group-label">Sex</p>
+      <div class="form-radio-grid">
+        <label class="form-check">
+          <input type="checkbox" name="sex" value="Male">
+          <span>Male</span>
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="sex" value="Female">
+          <span>Female</span>
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="sex" value="Neutered/Spayed">
+          <span>Neutered/Spayed</span>
+        </label>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <div class="form-field">
+            <input type="text" id="weight" name="weight" placeholder=" ">
+            <label for="weight">Body weight</label>
+          </div>
+          <p class="form-hint">e.g. 12.4 kg</p>
+        </div>
+        <div class="form-field">
+          <input type="text" id="case-ref" name="case_ref" placeholder=" ">
+          <label for="case-ref">Case / patient reference no.</label>
+        </div>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">3. Condition / Wound Information</h3>
+
+      <div class="form-field">
+        <textarea id="wound-type" name="wound_type" placeholder=" " rows="4"></textarea>
+        <label for="wound-type">Type of wound / skin condition</label>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <input type="text" id="wound-location" name="wound_location" placeholder=" ">
+          <label for="wound-location">Location</label>
+        </div>
+        <div class="form-field">
+          <input type="text" id="wound-cause" name="wound_cause" placeholder=" ">
+          <label for="wound-cause">Cause / origin</label>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="wound-duration" name="wound_duration" placeholder=" ">
+        <label for="wound-duration">Duration before ManukaLind treatment</label>
+      </div>
+      <p class="form-hint">e.g. 5 days, 3 weeks</p>
+
+      <p class="form-hint">Tick all that apply.</p>
+      <div class="rte">
+        <table>
+          <thead>
+            <tr>
+              <th scope="colgroup" colspan="2">Initial condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Acute"><span>Acute</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Chronic"><span>Chronic</span></label></td>
+            </tr>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Surgical wound"><span>Surgical wound</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_condition" value="Superficial wound"><span>Superficial wound</span></label></td>
+            </tr>
+            <tr>
+              <td colspan="2"><label class="form-check"><input type="checkbox" name="initial_condition" value="Contaminated / infected wound"><span>Contaminated / infected wound</span></label></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label class="form-check --with-input">
+                  <input type="checkbox" name="initial_condition" value="Other">
+                  <span>Other:</span>
+                  <input type="text" id="condition-other" class="form-check__inline-input" placeholder=" " aria-label="Other initial condition">
+                </label>
+              </td>
+            </tr>
+          </tbody>
+          <thead>
+            <tr>
+              <th scope="colgroup" colspan="2">Initial clinical observations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Redness"><span>Redness</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Swelling"><span>Swelling</span></label></td>
+            </tr>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Discharge / exudate"><span>Discharge / exudate</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Odor"><span>Odor</span></label></td>
+            </tr>
+            <tr>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Wound appearance"><span>Wound appearance</span></label></td>
+              <td><label class="form-check"><input type="checkbox" name="initial_sign" value="Granulation tissue"><span>Granulation tissue</span></label></td>
+            </tr>
+            <tr>
+              <td colspan="2"><label class="form-check"><input type="checkbox" name="initial_sign" value="Pain / discomfort"><span>Pain / discomfort</span></label></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-field">
+        <textarea id="init-other" name="init_other" placeholder=" " rows="4"></textarea>
+        <label for="init-other">Other observations</label>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">4. ManukaLind Product Used</h3>
+
+      <p class="form-group-label">Product</p>
+      <div class="form-radio-col">
+        <label class="form-check">
+          <input type="checkbox" name="product" value="ManukaLind Ointment">
+          <span>ManukaLind Ointment</span>
+        </label>
+        <label class="form-check">
+          <input type="checkbox" name="product" value="ManukaLind Spray">
+          <span>ManukaLind Spray</span>
+        </label>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">5. Application &amp; Treatment</h3>
+
+      <div class="form-grid">
+        <div>
+          <div class="form-field">
+            <input type="text" id="frequency" name="frequency" placeholder=" ">
+            <label for="frequency">Application frequency</label>
+          </div>
+          <p class="form-hint">e.g. twice daily</p>
+        </div>
+        <div>
+          <div class="form-field">
+            <input type="text" id="amount" name="amount" placeholder=" ">
+            <label for="amount">Amount applied / number of sprays</label>
+          </div>
+          <p class="form-hint">e.g. thin layer, 2 sprays</p>
+        </div>
+      </div>
+
+      <p class="form-group-label">Was the wound cleaned before application?</p>
+      <div class="form-radio-row">
+        <label class="form-check">
+          <input type="radio" name="cleaned" value="Yes">
+          <span>Yes</span>
+        </label>
+        <label class="form-check">
+          <input type="radio" name="cleaned" value="No">
+          <span>No</span>
+        </label>
+      </div>
+
+      <p class="form-group-label">Was a dressing used?</p>
+      <div class="form-radio-row">
+        <label class="form-check">
+          <input type="radio" name="dressing" value="Yes">
+          <span>Yes</span>
+        </label>
+        <label class="form-check">
+          <input type="radio" name="dressing" value="No">
+          <span>No</span>
+        </label>
+      </div>
+
+      <div class="form-field">
+        <textarea id="other-products" name="other_products" placeholder=" " rows="4"></textarea>
+        <label for="other-products">Other products / treatments used at the same time</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="treatment-duration" name="treatment_duration" placeholder=" ">
+        <label for="treatment-duration">Duration of treatment</label>
+      </div>
+      <p class="form-hint">e.g. 10 days</p>
+
+      <h3 class="section-label --sub --in-view" data-animate="">6. Observations During Treatment</h3>
+
+      <p>Please indicate the changes observed during treatment.</p>
+
+      <div class="rte">
+        <table class="form-obs-table">
+          <thead>
+            <tr>
+              <th scope="col">Observation</th>
+              <th scope="col">Improved</th>
+              <th scope="col">No change</th>
+              <th scope="col">Worsened</th>
+              <th scope="col">Not applicable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Redness</th>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="Improved" aria-label="Redness, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="No change" aria-label="Redness, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="Worsened" aria-label="Redness, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_redness" value="Not applicable" aria-label="Redness, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Swelling</th>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="Improved" aria-label="Swelling, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="No change" aria-label="Swelling, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="Worsened" aria-label="Swelling, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_swelling" value="Not applicable" aria-label="Swelling, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Discharge / exudate</th>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="Improved" aria-label="Discharge / exudate, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="No change" aria-label="Discharge / exudate, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="Worsened" aria-label="Discharge / exudate, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_discharge" value="Not applicable" aria-label="Discharge / exudate, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Odor</th>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="Improved" aria-label="Odor, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="No change" aria-label="Odor, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="Worsened" aria-label="Odor, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_odor" value="Not applicable" aria-label="Odor, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Wound appearance</th>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="Improved" aria-label="Wound appearance, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="No change" aria-label="Wound appearance, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="Worsened" aria-label="Wound appearance, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_appearance" value="Not applicable" aria-label="Wound appearance, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Tissue condition</th>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="Improved" aria-label="Tissue condition, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="No change" aria-label="Tissue condition, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="Worsened" aria-label="Tissue condition, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_tissue" value="Not applicable" aria-label="Tissue condition, Not applicable"></label></td>
+            </tr>
+            <tr>
+              <th scope="row">Pain / discomfort</th>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="Improved" aria-label="Pain / discomfort, Improved"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="No change" aria-label="Pain / discomfort, No change"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="Worsened" aria-label="Pain / discomfort, Worsened"></label></td>
+              <td><label class="form-check"><input type="radio" name="obs_pain" value="Not applicable" aria-label="Pain / discomfort, Not applicable"></label></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">7. Overall Results</h3>
+
+      <p class="form-group-label">Overall observed effect of ManukaLind</p>
+      <div class="form-radio-col">
+        <label class="form-check"><input type="radio" name="overall_effect" value="Excellent"><span>Excellent</span></label>
+        <label class="form-check"><input type="radio" name="overall_effect" value="Good"><span>Good</span></label>
+        <label class="form-check"><input type="radio" name="overall_effect" value="Moderate"><span>Moderate</span></label>
+        <label class="form-check"><input type="radio" name="overall_effect" value="Limited"><span>Limited</span></label>
+        <label class="form-check"><input type="radio" name="overall_effect" value="No noticeable effect"><span>No noticeable effect</span></label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="time-to-improvement" name="time_to_improvement" placeholder=" ">
+        <label for="time-to-improvement">Time until first noticeable improvement</label>
+      </div>
+      <p class="form-hint">e.g. 3 days</p>
+
+      <div class="form-field">
+        <textarea id="overall-notes" name="overall_notes" placeholder=" " rows="4"></textarea>
+        <label for="overall-notes">Additional observations</label>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">8. Tolerability</h3>
+
+      <p class="form-group-label">Was ManukaLind well tolerated?</p>
+      <div class="form-radio-grid">
+        <label class="form-check"><input type="radio" name="tolerated" value="Yes"><span>Yes</span></label>
+        <label class="form-check"><input type="radio" name="tolerated" value="No"><span>No</span></label>
+        <label class="form-check"><input type="radio" name="tolerated" value="Unsure"><span>Unsure</span></label>
+      </div>
+
+      <p class="form-group-label">Any irritation or unwanted reaction?</p>
+      <div class="form-radio-row">
+        <label class="form-check"><input type="radio" name="irritation" value="No"><span>No</span></label>
+        <label class="form-check"><input type="radio" name="irritation" value="Yes"><span>Yes</span></label>
+      </div>
+
+      <p class="form-group-label">Any signs of discomfort after application?</p>
+      <div class="form-radio-row">
+        <label class="form-check"><input type="radio" name="discomfort" value="No"><span>No</span></label>
+        <label class="form-check"><input type="radio" name="discomfort" value="Yes"><span>Yes</span></label>
+      </div>
+
+      <div class="form-field">
+        <textarea id="reaction-notes" name="reaction_notes" placeholder=" " rows="4"></textarea>
+        <label for="reaction-notes">If yes, please describe</label>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">9. Veterinarian’s Overall Evaluation</h3>
+
+      <p class="form-group-label">How would you rate your overall experience with ManukaLind?</p>
+      <div class="form-radio-grid">
+        <label class="form-check"><input type="radio" name="experience" value="Excellent"><span>Excellent</span></label>
+        <label class="form-check"><input type="radio" name="experience" value="Good"><span>Good</span></label>
+        <label class="form-check"><input type="radio" name="experience" value="Satisfactory"><span>Satisfactory</span></label>
+        <label class="form-check"><input type="radio" name="experience" value="Poor"><span>Poor</span></label>
+      </div>
+
+      <p class="form-group-label">Would you use ManukaLind again in your practice?</p>
+      <div class="form-radio-grid">
+        <label class="form-check"><input type="radio" name="use_again" value="Yes"><span>Yes</span></label>
+        <label class="form-check"><input type="radio" name="use_again" value="Maybe"><span>Maybe</span></label>
+        <label class="form-check"><input type="radio" name="use_again" value="No"><span>No</span></label>
+      </div>
+
+      <p class="form-group-label">Would you recommend ManukaLind to other veterinary professionals?</p>
+      <div class="form-radio-grid">
+        <label class="form-check"><input type="radio" name="recommend" value="Yes"><span>Yes</span></label>
+        <label class="form-check"><input type="radio" name="recommend" value="Maybe"><span>Maybe</span></label>
+        <label class="form-check"><input type="radio" name="recommend" value="No"><span>No</span></label>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">10. Additional Feedback</h3>
+
+      <div class="form-field">
+        <textarea id="liked" name="liked" placeholder=" " rows="4"></textarea>
+        <label for="liked">What did you like most about ManukaLind?</label>
+      </div>
+
+      <div class="form-field">
+        <textarea id="improve" name="improve" placeholder=" " rows="4"></textarea>
+        <label for="improve">What could be improved?</label>
+      </div>
+
+      <div class="form-field">
+        <textarea id="comments" name="comments" placeholder=" " rows="4"></textarea>
+        <label for="comments">Additional comments / suggestions</label>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">11. Case Photos</h3>
+
+      <p class="form-group-label" id="photos-before-label">Before treatment</p>
+      <div class="form-upload">
+        <input type="file" id="photos-before" name="photos_before" accept="image/jpeg,image/png" multiple aria-labelledby="photos-before-label">
+        <div class="form-upload__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-cloud_upload"></use></svg></div>
+        <div class="form-upload__text"><strong>Choose a photo</strong> or drag it here</div>
+        <div class="form-upload__hint">JPG, PNG — max. 10 MB per file</div>
+        <div class="form-upload__files"></div>
+      </div>
+
+      <p class="form-group-label" id="photos-during-label">During treatment</p>
+      <div class="form-upload">
+        <input type="file" id="photos-during" name="photos_during" accept="image/jpeg,image/png" multiple aria-labelledby="photos-during-label">
+        <div class="form-upload__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-cloud_upload"></use></svg></div>
+        <div class="form-upload__text"><strong>Choose a photo</strong> or drag it here</div>
+        <div class="form-upload__hint">JPG, PNG — max. 10 MB per file</div>
+        <div class="form-upload__files"></div>
+      </div>
+
+      <p class="form-group-label" id="photos-after-label">After treatment</p>
+      <div class="form-upload">
+        <input type="file" id="photos-after" name="photos_after" accept="image/jpeg,image/png" multiple aria-labelledby="photos-after-label">
+        <div class="form-upload__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-cloud_upload"></use></svg></div>
+        <div class="form-upload__text"><strong>Choose a photo</strong> or drag it here</div>
+        <div class="form-upload__hint">JPG, PNG — max. 10 MB per file</div>
+        <div class="form-upload__files"></div>
+      </div>
+
+      <h3 class="section-label --sub --in-view" data-animate="">12. Consent for Use of Case Information</h3>
+
+      <p>I agree that anonymized case information and/or case photos may be used for professional education, case studies, and marketing purposes.</p>
+      <div class="form-radio-row">
+        <label class="form-check">
+          <input type="radio" name="consent" value="Yes" required>
+          <span>Yes</span>
+        </label>
+        <label class="form-check">
+          <input type="radio" name="consent" value="No">
+          <span>No</span>
+        </label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="signature-name" name="signature_name" placeholder=" " autocomplete="name" required>
+        <label for="signature-name">Veterinarian name *</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="signature" name="signature" placeholder=" " required>
+        <label for="signature">Signature *</label>
+      </div>
+      <p class="form-hint">Type your full name.</p>
+
+      <div class="form-field">
+        <input type="date" id="signature-date" name="signature_date" required>
+        <label for="signature-date">Date *</label>
+      </div>
+
+      <button type="submit" class="btn --primary --full">Submit</button>
+
+    </form>
+
+    <template id="form-success-template">
+      <div class="success-state">
+        <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
+        <div class="flow">
+          <h2 class="success-state__title">Thank you</h2>
+          <p class="success-state__body">Thank you for taking the time to share this case.</p>
+        </div>
+      </div>
+    </template>
+
+  </div>
+
+  <footer class="form-page__footer">
+    <p><a href="https://inuvet.com/policies/legal-notice" target="_blank" rel="noopener">Legal notice</a> · <a href="https://inuvet.com/policies/privacy-policy" target="_blank" rel="noopener">Privacy policy</a></p>
+  </footer>
+
+</div>
+
+<script src="../planet-brands.js"></script>
+<script src="formular-manukalind.js?v=235"></script>
+</body>
+</html>
