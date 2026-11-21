@@ -5,7 +5,7 @@ const HERO_IMG = '../assets/brands/inuvet/images/Hero_Mood_03.jpg';
 
 const CALMIN_1 = '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg';
 const CALMIN_2 = '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Tabletten_Darreichung.png';
-const CALMIN_3 = '../assets/brands/inuvet/images/Calmin_Packshot_04.png';
+const CALMIN_3 = '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_05-web_1zu1.jpg';
 const HEPAX_1  = '../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg';
 const HEPAX_2  = '../assets/brands/inuvet/images/Inuvet_Hepax_plus_Pulver_Darreichung.png';
 const ENTEROGAST_1 = '../assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_COL.jpg';
@@ -758,8 +758,8 @@ function pdpSocialProofHTML() {
   return `
     <div class="social-proof">
       <div class="social-proof__avatars" aria-hidden="true">
-        <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg" alt="">
-        <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Sarah_Inuvet.png" alt="">
+        <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg" alt="">
+        <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Inuvet_Katze_05-web_1zu1.jpg" alt="">
       </div>
       <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
     </div>`;
@@ -926,10 +926,10 @@ function pdpBenefitsHTML() {
 
 function pdpTestimonialsHTML() {
   const items = [
-    { text: 'Bei Inuvet fühle ich mich als Praxis gut aufgehoben. Die Antworten kommen schnell, und man merkt, dass hinter dem Shop echte fachliche Expertise steckt.', name: 'Dr. Sandra Meier', role: 'Tierärztin, München', img: '../assets/brands/inuvet/images/Sarah_Inuvet.png' },
-    { text: 'Was mir an Inuvet gefällt: die enge, verlässliche Zusammenarbeit mit uns Tierärztinnen und Tierärzten. Das spüre ich in jedem Kontakt.', name: 'Dr. Thomas Krause', role: 'Tierarzt, Hamburg', img: '../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg' },
-    { text: 'Bestellen bei Inuvet ist unkompliziert — übersichtlich, klar und ohne Schnickschnack. Genau so soll ein Shop für die Praxis funktionieren.', name: 'Dr. Julia Richter', role: 'Tierärztin, Berlin', img: '../assets/brands/inuvet/images/Partner_Mia_01.png' },
-    { text: 'Zuverlässige Lieferung, freundlicher Kontakt und ein Markenauftritt, dem ich vertraue. Deshalb empfehle ich Inuvet in meiner Praxis weiter.', name: 'Dr. Markus Thal', role: 'Tierarzt, Köln', img: '../assets/brands/inuvet/images/Tierhalter_Test_Thumbnail.jpg' },
+    { text: 'Bei Inuvet fühle ich mich als Praxis gut aufgehoben. Die Antworten kommen schnell, und man merkt, dass hinter dem Shop echte fachliche Expertise steckt.', name: 'Dr. Sandra Meier', role: 'Tierärztin, München', img: '../assets/brands/inuvet/images/Inuvet_Katze_05-web_1zu1.jpg' },
+    { text: 'Was mir an Inuvet gefällt: die enge, verlässliche Zusammenarbeit mit uns Tierärztinnen und Tierärzten. Das spüre ich in jedem Kontakt.', name: 'Dr. Thomas Krause', role: 'Tierarzt, Hamburg', img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
+    { text: 'Bestellen bei Inuvet ist unkompliziert — übersichtlich, klar und ohne Schnickschnack. Genau so soll ein Shop für die Praxis funktionieren.', name: 'Dr. Julia Richter', role: 'Tierärztin, Berlin', img: '../assets/brands/inuvet/images/Inuvet_Hund_08-web.jpg' },
+    { text: 'Zuverlässige Lieferung, freundlicher Kontakt und ein Markenauftritt, dem ich vertraue. Deshalb empfehle ich Inuvet in meiner Praxis weiter.', name: 'Dr. Markus Thal', role: 'Tierarzt, Köln', img: '../assets/brands/inuvet/images/Inuvet_Katze_04-web_1zu1.jpg' },
   ];
   const cards = items.map(t => `
     <div class="testimonial">
@@ -1855,9 +1855,9 @@ function renderNav() {
    TESTIMONIAL-SLIDER
    ════════════════════════════════════════════ */
 const TESTIMONIALS = [
-  { text: 'Nach der Empfehlung meines Tierarztes haben wir Calmin balance ausprobiert — mein ängstlicher Beagle ist eine andere Seele geworden.', name: 'Anna W.',    role: 'Beagle-Mama, Frankfurt',    img: '../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg' },
-  { text: 'Super Service und top Beratung. Meine Tierärztin arbeitet seit Jahren mit Inuvet und ich merke den Unterschied jeden Tag.',             name: 'Sandra M.', role: 'Hundemama, München',        img: '../assets/brands/inuvet/images/Tierhalter_Test_Thumbnail.jpg' },
-  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',                              name: 'Julia R.',  role: 'Tierliebhaberin, Berlin',   img: '../assets/brands/inuvet/images/Partner_Mia_01.png' },
+  { text: 'Nach der Empfehlung meines Tierarztes haben wir Calmin balance ausprobiert — mein ängstlicher Beagle ist eine andere Seele geworden.', name: 'Anna W.',    role: 'Beagle-Mama, Frankfurt',    img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
+  { text: 'Super Service und top Beratung. Meine Tierärztin arbeitet seit Jahren mit Inuvet und ich merke den Unterschied jeden Tag.',             name: 'Sandra M.', role: 'Hundemama, München',        img: '../assets/brands/inuvet/images/Inuvet_Katze_04-web_1zu1.jpg' },
+  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',                              name: 'Julia R.',  role: 'Tierliebhaberin, Berlin',   img: '../assets/brands/inuvet/images/Inuvet_Hund_08-web.jpg' },
   { text: 'Meine Katze hat nach zwei Wochen deutlich besser geschlafen. Ohne die Empfehlung unseres Tierarztes hätte ich es nicht gekauft.', name: 'Petra K.', role: 'Katzenbesitzerin, Hamburg', img: null },
 ];
 
@@ -1975,8 +1975,8 @@ function tileHTML(p) {
 
 /* ── Testimonial-Strip ── */
 const STRIP_TESTIMONIALS = [
-  { text: 'Schon nach wenigen Wochen war mein Golden Retriever viel entspannter — ich bin so dankbar für die Empfehlung.',  name: 'Sandra M.',         role: 'Tierbesitzerin, München', img: '../assets/brands/inuvet/images/Tierhalter_Test_Thumbnail.jpg' },
-  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',       name: 'Dr. Thomas Berger', role: 'Tierarzt, Hamburg',       img: '../assets/brands/inuvet/images/Partner_Krause_Erl_Thumbnail.jpg' },
+  { text: 'Schon nach wenigen Wochen war mein Golden Retriever viel entspannter — ich bin so dankbar für die Empfehlung.',  name: 'Sandra M.',         role: 'Tierbesitzerin, München', img: '../assets/brands/inuvet/images/Inuvet_Katze_04-web_1zu1.jpg' },
+  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',       name: 'Dr. Thomas Berger', role: 'Tierarzt, Hamburg',       img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
   { text: 'Hepax forte hilft meinen Patienten nach der OP. Schnelle Lieferung, unkompliziert.',                          name: 'Klaus W.',          role: 'Tierärztin, Frankfurt' },
   { text: 'Als Tierärztin schätze ich fundierte Formeln — und meine Klientinnen fragen regelmäßig gezielt danach.',        name: 'Dr. Sarah Koch',    role: 'Tierärztin, Berlin' },
 ];
@@ -2245,7 +2245,7 @@ function renderHome() {
       </div>
     </div>
     <div class="section-type --v2 --reverse" id="aboutPraxis">
-      <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Partner_Mia_01.png');"></div>
+      <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Inuvet_Hund_08-web.jpg');"></div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Ich habe keine Produktfreigabe. Was tun?</h2>
         <div class="section-type__bottom flow">
@@ -2337,7 +2337,7 @@ function renderAbout() {
       </div>
     </div>
     <div class="section-type --v2 --reverse" id="aboutPraxis">
-      <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Partner_Mia_01.png');"></div>
+      <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Inuvet_Hund_08-web.jpg');"></div>
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Warum gibt es Inuvet-Produkte nur über deine Tierarztpraxis?</h2>
         <div class="section-type__bottom flow">

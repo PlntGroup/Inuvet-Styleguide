@@ -765,7 +765,7 @@ const allProducts = [
       { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg', alt: 'Packshot' },
       { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Tabletten_Darreichung.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
       { type: 'video', src: '../assets/brands/inuvet/images/Calmin_Packshot_03.mp4', caption: 'Wohlschmeckend und dadurch einfach in der Gabe' },
-      { type: 'image', src: '../assets/brands/inuvet/images/Calmin_Packshot_04.png', alt: 'Packshot' },
+      { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_05-web_1zu1.jpg', alt: 'Packshot' },
     ],
     shortDesc: 'Für Entspannung und innere Balance.',
     desc: 'Unterstützt die natürliche Ausgeglichenheit von Hunden und Katzen. Schonend gewonnen, tierärztlich entwickelt und geprüft.',
@@ -785,7 +785,7 @@ const allProducts = [
       { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg', alt: 'Packshot' },
       { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Hepax_plus_Pulver_Darreichung.mp4', caption: 'Das Pulver lässt sich einfach dosieren und unter das Futter mischen' },
       { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Hepax_forte_Tabletten_Darreichung.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
-      { type: 'image', src: '../assets/brands/inuvet/images/Hepax_Packshot_04.png', alt: 'Packshot', caption: '„Hepax forte hilft meinen Patienten nach der OP. Schnelle Lieferung, unkompliziert.“', author: 'Klaus W. · Tierärztin, Frankfurt' },
+      { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Hepax_06-web_1zu1.jpg', alt: 'Packshot', caption: '„Hepax forte hilft meinen Patienten nach der OP. Schnelle Lieferung, unkompliziert.“', author: 'Klaus W. · Tierärztin, Frankfurt' },
     ],
     /* Rechtliche Futtermittel-Kategorie — feste Choice-Liste (Shopify Metafield) */
     feedCategory: 'Diät-Ergänzungsfuttermittel / Ergänzungsfuttermittel',
