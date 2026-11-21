@@ -68,7 +68,7 @@
   const BRAND = {
     hero: {
       label: 'Inuvet',
-      lottie: 'Hero_Animation_01.json',
+      lottie: 'Inuvet_Alena_Animation_Produkt-Tierarzt_5x4.json',
       headline: 'Natürlich gesunde Tiere',
       body: 'Tierärztlich entwickelte Nahrungsergänzung mit pflanzlichen Inhaltsstoffen — für Hunde, Katzen und Kleintiere. Entdecke Produkte, die auf den Geschmack deines Tieres optimiert sind.',
     },
@@ -76,18 +76,18 @@
       label: 'Darum Inuvet',
       variant: 'icons',
       items: [
-        { lottie: 'Icon_Tierarztpraxis.json', title: 'Beste Expertise', text: 'Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis' },
-        { lottie: 'Icon_Langzeitgabe.json', title: 'Für die Langzeitgabe', text: 'Mit natürlichen Inhaltsstoffen, die deinem Tier gut tun' },
-        { lottie: 'Icon_Schutz.json', title: 'Immer gut unterstützt', text: 'Mit Produkten, die auf den Geschmack der Patienten optimiert sind.' },
+        { lottie: 'Inuvet_Alena_Animation_Icon-Tierarztpraxis_1x1.json', title: 'Beste Expertise', text: 'Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis' },
+        { lottie: 'Inuvet_Alena_Animation_Icon-Pfoten_1x1.json', title: 'Für die Langzeitgabe', text: 'Mit natürlichen Inhaltsstoffen, die deinem Tier gut tun' },
+        { lottie: 'Inuvet_Alena_Animation_Icon-Schild_1x1.json', title: 'Immer gut unterstützt', text: 'Mit Produkten, die auf den Geschmack der Patienten optimiert sind.' },
       ],
     },
     practice: {
       label: 'Für Tierarztpraxen',
       variant: 'illus',
       items: [
-        { lottie: 'inuvet_animation_inhaltsstoffe.json', title: 'Grüne Pfoten', text: 'Verpackungen mit 85 % Recyclingpapier, kurze Lieferketten und natürliche Inhaltsstoffe.' },
-        { lottie: 'inuvet_tierarzt_nur_bei_euch.json', title: 'Nur bei euch', text: 'Inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!' },
-        { lottie: 'Inuvet_animation_Weltweit.json', title: 'Verträglich, beliebt und hoch konzentriert', text: 'Studienbasierte Phytotherapie. Bei über 20.000 Tierärzt*innen im Einsatz.' },
+        { lottie: 'Inuvet_Alena_Animation_Inhaltsstoffe_1x1.json', title: 'Grüne Pfoten', text: 'Verpackungen mit 85 % Recyclingpapier, kurze Lieferketten und natürliche Inhaltsstoffe.' },
+        { lottie: 'Inuvet_Alena_Animation_Tierarzt-Katze-Produkt_1x1.json', title: 'Nur bei euch', text: 'Inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!' },
+        { lottie: 'Inuvet_Alena_Animation_Weltweit_1x1.json', title: 'Verträglich, beliebt und hoch konzentriert', text: 'Studienbasierte Phytotherapie. Bei über 20.000 Tierärzt*innen im Einsatz.' },
       ],
     },
   };

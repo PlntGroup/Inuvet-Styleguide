@@ -764,7 +764,6 @@ const allProducts = [
     media: [
       { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg', alt: 'Packshot' },
       { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Tabletten_Darreichung.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
-      { type: 'video', src: '../assets/brands/inuvet/images/Calmin_Packshot_03.mp4', caption: 'Wohlschmeckend und dadurch einfach in der Gabe' },
       { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_05-web_1zu1.jpg', alt: 'Packshot' },
     ],
     shortDesc: 'Für Entspannung und innere Balance.',
@@ -852,7 +851,7 @@ const allProducts = [
     keyIngredients: [
       {
         name: 'Mariendistel', latin: 'Silymarin',
-        image: '../assets/brands/inuvet/images/Inhaltsstoff_Mariendistel.jpg',
+        image: '../assets/brands/inuvet/images/Mariendistel-Extrakt.jpeg',
         summary: [
           'Silymarin schützt die Leberzellen und unterstützt ihre Regeneration — besonders hilfreich, wenn die Leber durch Medikamente, Alter oder Stoffwechselbelastung beansprucht wird.',
           'In Hepax forte sorgt der standardisierte Extrakt dafür, dass Hund und Katze den Wirkstoff zuverlässig und dosiert aufnehmen.',
@@ -860,7 +859,7 @@ const allProducts = [
       },
       {
         name: 'Artischocke', latin: 'Cynara scolymus',
-        image: '../assets/brands/inuvet/images/Inhaltsstoff_Artischoke.jpg',
+        image: '../assets/brands/inuvet/images/Artischocke-Extrakt.jpeg',
         summary: [
           'Artischockenextrakt regt den Gallenfluss an und unterstützt so die natürliche Entgiftungsarbeit der Leber.',
           'Zusammen mit Mariendistel bildet er das phytotherapeutische Gerüst für die tägliche Leberpflege.',
@@ -868,7 +867,7 @@ const allProducts = [
       },
       {
         name: 'Taurin', latin: 'Taurinum',
-        image: '../assets/brands/inuvet/images/Hero_Mood_04.jpg',
+        image: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg',
         summary: [
           'Taurin ist eine Aminosulfonsäure, die den Gallenfluss und die Fettverdauung unterstützt — besonders relevant für Katzen, die Taurin nicht selbst ausreichend synthetisieren.',
           'In der Kombination mit Mariendistel und Artischocke ergänzt es die hepatoprotektive Wirkung sinnvoll.',
