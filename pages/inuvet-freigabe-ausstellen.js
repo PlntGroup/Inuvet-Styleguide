@@ -4,14 +4,14 @@
    freigeben. Anfragen laufen über Offene Anfragen — nicht über diese Seite.
    ════════════════════════════════════════════ */
 
-const CALMIN_1     = '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg';
-const CALMIN_2     = '../assets/brands/inuvet/images/Calmin_Packshot_02.png';
-const HEPAX_1      = '../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg';
-const HEPAX_2      = '../assets/brands/inuvet/images/Hepax_Packshot_02.png';
-const ENTEROGAST_1 = '../assets/brands/inuvet/images/EnteroGast_Packshot_01.jpg';
-const CORTISAN_1   = '../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg';
-const DERMIN_1     = '../assets/brands/inuvet/images/Dermin_Packshot_01.jpg';
-const DIABEX_1     = '../assets/brands/inuvet/images/Diabex_Packshot_01.jpg';
+const CALMIN_1     = '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg';
+const CALMIN_2     = '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Tabletten_Darreichung.png';
+const HEPAX_1      = '../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg';
+const HEPAX_2      = '../assets/brands/inuvet/images/Inuvet_Hepax_plus_Pulver_Darreichung.png';
+const ENTEROGAST_1 = '../assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_COL.jpg';
+const CORTISAN_1   = '../assets/brands/inuvet/images/Inuvet_Cortisan_Oel-Komplex_Packshot_COL.jpg';
+const DERMIN_1     = '../assets/brands/inuvet/images/Inuvet_Dermin_Pflege-Emulsion_Packshot_COL.jpg';
+const DIABEX_1     = '../assets/brands/inuvet/images/Inuvet_Diabex_Packshot_COL.jpg';
 
 /* Katalog — Darreichungsformen mit Packshot.
    Hover-Zweitbild nur bei Calmin/Hepax. */

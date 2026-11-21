@@ -685,7 +685,7 @@ const setCustomerTypeGlobal = (type) => {
 // past18Months: Käufe in den letzten 549 Tagen (18 Monate) für die Bundle-Vorauswahl.
 const allProducts = [
   { id: 1, isFamily: true, title: 'Hypolene', past6Months: 14, past18Months: 38, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg',
+    image: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg',
     desc: 'Unterstützt die Hautbarriere und das Immunsystem – bei Allergien und empfindlicher Haut.',
     variants: [
       { type: 'Pulver',    animals: 'Katze, Hund', sizes: [{ label: '60 g',      price: 39.90 }, { label: '250 g',     price: 129.90 }] },
@@ -695,7 +695,7 @@ const allProducts = [
 
   { id: 2, isFamily: true, title: 'EnteroGast akut', cat: 'magendarm', catLabel: 'Magen & Darm',
     past6Months: 6, past18Months: 16, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/EnteroGast_Packshot_01.jpg',
+    image: '../assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_COL.jpg',
     feedCategory: 'Diät-Ergänzungsfuttermittel / Ergänzungsfuttermittel',
     shortDesc: '3-Phasen-Wirkung: adstringierend, absorbierend, aufbauend.',
     desc: 'EnteroGast akut fördert die Verfestigung des Kots und unterstützt die Darmfunktion in drei Phasen.',
@@ -713,7 +713,7 @@ const allProducts = [
     selectedVariantIdx: 0, selectedSizeIdx: 1 },
 
   { id: 3, isFamily: true, title: 'Respirax', past6Months: 10, past18Months: 27, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg',
+    image: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg',
     desc: 'Unterstützt die Atemwege und erleichtert das Durchatmen bei saisonalen Belastungen.',
     variants: [
       { type: 'Pulver',    animals: 'Katze, Hund', sizes: [{ label: '45 g',      price:  27.50 }, { label: '180 g',     price:  89.90 }] },
@@ -722,7 +722,7 @@ const allProducts = [
     selectedVariantIdx: 0, selectedSizeIdx: 0 },
 
   { id: 4, isFamily: true, title: 'Vesica', past6Months: 4, past18Months: 11, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg',
+    image: '../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg',
     desc: 'Unterstützt Blase und Harnwege – zur Vorbeugung und Begleitung von Harnwegsproblemen.',
     variants: [
       { type: 'Tabletten', animals: 'Hund', sizes: [{ label: '30 Stück', price:  32.00 }, { label: '90 Stück',  price:  85.90 }] },
@@ -760,10 +760,10 @@ const allProducts = [
     form: 'Tabletten',
     animals: 'Katze, Hund',
     rating: '4,8', ratingCount: 214, past6Months: 0, past18Months: 0, pricingModel: 'A', selectedSizeIdx: 0,
-    image: '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg',
+    image: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg',
     media: [
-      { type: 'image', src: '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg', alt: 'Packshot' },
-      { type: 'video', src: '../assets/brands/inuvet/images/Calmin_Packshot_02.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
+      { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg', alt: 'Packshot' },
+      { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Tabletten_Darreichung.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
       { type: 'video', src: '../assets/brands/inuvet/images/Calmin_Packshot_03.mp4', caption: 'Wohlschmeckend und dadurch einfach in der Gabe' },
       { type: 'image', src: '../assets/brands/inuvet/images/Calmin_Packshot_04.png', alt: 'Packshot' },
     ],
@@ -780,11 +780,11 @@ const allProducts = [
   // PDP-Felder (media, usps, content*) → Styleguide E.2 Produktfamilie.
   { id: 13, isFamily: true, title: 'Hepax forte', cat: 'leber', catLabel: 'Leber',
     rating: '4,6', ratingCount: 312, past6Months: 57, past18Months: 120, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg',
+    image: '../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg',
     media: [
-      { type: 'image', src: '../assets/brands/inuvet/images/Hepax_Packshot_01.jpeg', alt: 'Packshot' },
-      { type: 'video', src: '../assets/brands/inuvet/images/Hepax_Packshot_02.mp4', caption: 'Das Pulver lässt sich einfach dosieren und unter das Futter mischen' },
-      { type: 'video', src: '../assets/brands/inuvet/images/Hepax_Packshot_03.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
+      { type: 'image', src: '../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg', alt: 'Packshot' },
+      { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Hepax_plus_Pulver_Darreichung.mp4', caption: 'Das Pulver lässt sich einfach dosieren und unter das Futter mischen' },
+      { type: 'video', src: '../assets/brands/inuvet/images/Inuvet_Hepax_forte_Tabletten_Darreichung.mp4', caption: 'Teilbare Tabletten mit hoher Akzeptanz' },
       { type: 'image', src: '../assets/brands/inuvet/images/Hepax_Packshot_04.png', alt: 'Packshot', caption: '„Hepax forte hilft meinen Patienten nach der OP. Schnelle Lieferung, unkompliziert.“', author: 'Klaus W. · Tierärztin, Frankfurt' },
     ],
     /* Rechtliche Futtermittel-Kategorie — feste Choice-Liste (Shopify Metafield) */
@@ -895,7 +895,7 @@ const allProducts = [
     form: 'Flüssig',
     animals: 'Hund, Pferd',
     rating: '4,7', past6Months: 0, past18Months: 0, pricingModel: 'A', selectedSizeIdx: 0,
-    image: '../assets/brands/inuvet/images/Cortisan_Packshot_01.jpg',
+    image: '../assets/brands/inuvet/images/Inuvet_Cortisan_Oel-Komplex_Packshot_COL.jpg',
     feedCategory: 'Ergänzungsfuttermittel für Hunde und Pferde',
     shortDesc: 'Wenn Cortison, dann Cortisan — hohe Bioverfügbarkeit durch Solubilisierung.',
     desc: 'Weihrauch und Kurkuma in solubilisierter Form zur Unterstützung des Entzündungsstoffwechsels. Mit Algenöl als Omega-3-Quelle.',
@@ -914,7 +914,7 @@ const allProducts = [
     form: 'Flüssig',
     animals: 'Katze, Hund',
     rating: '4,5', past6Months: 0, past18Months: 0, pricingModel: 'A', selectedSizeIdx: 0,
-    image: '../assets/brands/inuvet/images/Dermin_Packshot_01.jpg',
+    image: '../assets/brands/inuvet/images/Inuvet_Dermin_Pflege-Emulsion_Packshot_COL.jpg',
     feedCategory: 'Pflege-Emulsion für Tiere',
     shortDesc: 'Beruhigt juckende und gereizte Haut — mit CBD, Aloe Vera, Ceramiden und PEA.',
     desc: 'Mikroemulsion zur Pflege trockener und beanspruchter Haut. Unterstützt Hautbarriere und Lipidschicht, zieht schnell ein.',
@@ -929,7 +929,7 @@ const allProducts = [
 
   { id: 16, isFamily: true, title: 'Diabex', cat: 'bauchspeichel', catLabel: 'Bauchspeicheldrüse',
     past6Months: 0, past18Months: 0, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/Diabex_Packshot_01.jpg',
+    image: '../assets/brands/inuvet/images/Inuvet_Diabex_Packshot_COL.jpg',
     feedCategory: 'Ergänzungsfuttermittel für Katzen und Hunde',
     shortDesc: 'Unterstützung bei der Regulierung des Blutzuckerspiegels.',
     desc: 'Ergänzungsfuttermittel zur Unterstützung der Blutzuckerregulation und der normalen Funktion der Bauchspeicheldrüse.',
@@ -945,7 +945,7 @@ const allProducts = [
     selectedVariantIdx: 0, selectedSizeIdx: 0 },
 
   { id: 8, isFamily: true, title: 'Struvex', past6Months: 0, past18Months: 0, pricingModel: 'A',
-    image: '../assets/brands/inuvet/images/Calmin_Packshot_01.jpeg',
+    image: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg',
     desc: 'Unterstützt die Harngesundheit der Katze und hilft, Struvitsteinen vorzubeugen.',
     variants: [
       { type: 'Pulver',    animals: 'Katze', sizes: [{ label: '60 g',      price:  28.50 }, { label: '250 g',     price:  94.90 }] },

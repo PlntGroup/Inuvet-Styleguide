@@ -219,9 +219,9 @@ const SEARCH_DATA = {
     { text: 'Calmin balance' },
   ],
   products: [
-    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/brands/inuvet/images/Hepax_Packshot_01.jpeg', imgHover: 'assets/brands/inuvet/images/Hepax_Packshot_02.png' },
-    { name: 'Calmin balance', meta: 'Stress', price: '39,90 €', img: 'assets/brands/inuvet/images/Calmin_Packshot_01.jpeg', imgHover: 'assets/brands/inuvet/images/Calmin_Packshot_02.png' },
-    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/brands/inuvet/images/Hepax_Packshot_01.jpeg', imgHover: 'assets/brands/inuvet/images/Hepax_Packshot_02.png' },
+    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg', imgHover: 'assets/brands/inuvet/images/Inuvet_Hepax_plus_Pulver_Darreichung.png' },
+    { name: 'Calmin balance', meta: 'Stress', price: '39,90 €', img: 'assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg', imgHover: 'assets/brands/inuvet/images/Inuvet_Calmin_Balance_Tabletten_Darreichung.png' },
+    { name: 'Hepax forte', meta: 'Leber', price: '44,90 €', img: 'assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg', imgHover: 'assets/brands/inuvet/images/Inuvet_Hepax_plus_Pulver_Darreichung.png' },
   ]
 };
 
