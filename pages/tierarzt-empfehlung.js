@@ -886,7 +886,7 @@ function pdpBenefitsHTML() {
       <div class="tile-grid --cols-4">
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
@@ -895,7 +895,7 @@ function pdpBenefitsHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Pfoten_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Pfoten_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Für die Langzeitgabe</p>
@@ -904,7 +904,7 @@ function pdpBenefitsHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Schild_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Schild_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Immer gut unterstützt</p>
@@ -913,7 +913,7 @@ function pdpBenefitsHTML() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Auto_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Auto_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Schnell bei dir</p>
@@ -2208,7 +2208,7 @@ function renderHome() {
       <div class="tile-grid --cols-4">
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
@@ -2217,7 +2217,7 @@ function renderHome() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Pfoten_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Pfoten_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Für die Langzeitgabe</p>
@@ -2226,7 +2226,7 @@ function renderHome() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Schild_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Schild_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Immer gut unterstützt</p>
@@ -2235,7 +2235,7 @@ function renderHome() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Auto_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Auto_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Schnell bei dir</p>
@@ -2300,7 +2300,7 @@ function renderAbout() {
       <div class="tile-grid --cols-4">
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
@@ -2309,7 +2309,7 @@ function renderAbout() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Pfoten_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Pfoten_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Für die Langzeitgabe</p>
@@ -2318,7 +2318,7 @@ function renderAbout() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Schild_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Schild_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Immer gut unterstützt</p>
@@ -2327,7 +2327,7 @@ function renderAbout() {
         </div>
         <div class="tile">
           <div class="tile__icon">
-            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Icon-Auto_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
+            <lottie-player src="../assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Auto_1x1.json" background="transparent" speed="1" loop autoplay style="width:calc(var(--base)*4);height:calc(var(--base)*4);display:block;"></lottie-player>
           </div>
           <div class="flow">
           <p class="tile__headline">Schnell bei dir</p>

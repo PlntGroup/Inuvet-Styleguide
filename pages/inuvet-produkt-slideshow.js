@@ -76,9 +76,9 @@
       label: 'Darum Inuvet',
       variant: 'icons',
       items: [
-        { lottie: 'Inuvet_Alena_Animation_Icon-Tierarztpraxis_1x1.json', title: 'Beste Expertise', text: 'Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis' },
-        { lottie: 'Inuvet_Alena_Animation_Icon-Pfoten_1x1.json', title: 'Für die Langzeitgabe', text: 'Mit natürlichen Inhaltsstoffen, die deinem Tier gut tun' },
-        { lottie: 'Inuvet_Alena_Animation_Icon-Schild_1x1.json', title: 'Immer gut unterstützt', text: 'Mit Produkten, die auf den Geschmack der Patienten optimiert sind.' },
+        { lottie: 'Inuvet_Icon_Animation_Tierarztpraxis_1x1.json', title: 'Beste Expertise', text: 'Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis' },
+        { lottie: 'Inuvet_Icon_Animation_Pfoten_1x1.json', title: 'Für die Langzeitgabe', text: 'Mit natürlichen Inhaltsstoffen, die deinem Tier gut tun' },
+        { lottie: 'Inuvet_Icon_Animation_Schild_1x1.json', title: 'Immer gut unterstützt', text: 'Mit Produkten, die auf den Geschmack der Patienten optimiert sind.' },
       ],
     },
     practice: {
