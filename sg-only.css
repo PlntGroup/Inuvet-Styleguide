@@ -772,3 +772,5 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad__stars { display: inline-flex; vertical-align: -0.4cqw; margin-right: 1cqw; }
 .sg-ad__stars svg { width: 3.4cqw; height: 3.4cqw; fill: var(--color-amber); color: var(--color-amber); } /* wie .rating (D.5) */
 .sg-ad.--quote .sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 75%, transparent), color-mix(in srgb, var(--fg) 45%, transparent) 45%, transparent 75%); }
+/* Packshot-Karte: nur Badge, kein Verlauf über dem Bild */
+.sg-ad.--form.--pack::after { content: none; }
