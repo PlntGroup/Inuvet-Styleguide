@@ -659,31 +659,31 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad .badge { font-size: 2cqw; padding: 0.5cqw 1cqw; background: var(--cat-magendarm); color: var(--fg); }
 .sg-ad .sg-ad__headline { --flow-space: var(--half-module); color: var(--bg); font-size: 8cqw; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; text-shadow: 0 0.2cqw 1.5cqw color-mix(in srgb, var(--fg) 40%, transparent); }
 .sg-ad__sub { font-size: 3cqw; font-weight: 700; }
-.sg-ad__pack { position: absolute; left: 4cqw; bottom: 7cqw; width: 34cqw; height: auto; }
+.sg-ad__pack { position: absolute; left: 3cqw; bottom: 6cqw; width: 48cqw; height: auto; }
 .sg-ad__fine { position: absolute; left: 6cqw; right: 6cqw; bottom: 3cqw; margin: 0; font-size: 2cqw; }
 
 /* Story: Inhalte nur im sicheren Bereich (14 % / 35 % / 6 %) */
 .sg-ad.--story .sg-ad__logo { top: 15%; left: 6cqw; right: auto; width: 13cqw; }
 .sg-ad.--story .sg-ad__copy { top: 22%; right: 6cqw; }
 .sg-ad.--story .sg-ad__headline { font-size: 9cqw; }
-.sg-ad.--story .sg-ad__sub { font-size: 3.4cqw; max-width: 46cqw; }
-.sg-ad.--story .sg-ad__pack { left: auto; right: 6cqw; bottom: 40%; width: 38cqw; }
-.sg-ad.--story .sg-ad__fine { top: 50%; bottom: auto; right: 48cqw; font-size: 2.4cqw; }
+.sg-ad.--story .sg-ad__sub { font-size: 3.4cqw; max-width: 40cqw; }
+.sg-ad.--story .sg-ad__pack { left: auto; right: 5cqw; bottom: 36.5%; width: 44cqw; }
+.sg-ad.--story .sg-ad__fine { top: 52%; bottom: auto; right: 54cqw; font-size: 2.4cqw; }
 .sg-ad.--story .sg-ad__scrim { background: linear-gradient(to bottom, color-mix(in srgb, var(--fg) 60%, transparent), color-mix(in srgb, var(--fg) 45%, transparent) 40%, transparent 55%); }
 
 /* Google: Responsive-Bild nur Packshot; Banner kompakt */
-.sg-ad.--google .sg-ad__pack { left: auto; right: 10%; bottom: 8%; width: 28cqw; }
+.sg-ad.--google .sg-ad__pack { left: 6%; right: auto; bottom: 2%; width: 34cqw; }
 .sg-ad.--banner .sg-ad__logo { top: 3cqw; right: 3cqw; width: 16cqw; }
 .sg-ad.--banner .sg-ad__copy { top: 5cqw; left: 5cqw; right: 22cqw; --base: 3cqw; }
 .sg-ad.--banner .badge { font-size: 3.4cqw; }
 .sg-ad.--banner .sg-ad__headline { font-size: 8.5cqw; }
 .sg-ad.--banner .sg-ad__sub { font-size: 4.2cqw; }
-.sg-ad.--banner .sg-ad__pack { left: auto; right: 3cqw; bottom: 3cqw; width: 36cqw; }
+.sg-ad.--banner .sg-ad__pack { left: auto; right: 2cqw; bottom: 2cqw; width: 46cqw; }
 .sg-ad.--strip .sg-ad__logo { top: 1cqw; left: 1cqw; right: auto; width: 10.5cqw; }
 .sg-ad.--strip .sg-ad__copy { top: 0; bottom: 0; left: 38cqw; right: 14cqw; display: flex; flex-direction: column; justify-content: center; --base: 0.8cqw; }
 .sg-ad.--strip .badge { font-size: 1.5cqw; }
 .sg-ad.--strip .sg-ad__headline { font-size: 3.6cqw; }
-.sg-ad.--strip .sg-ad__pack { right: 1cqw; bottom: 0.5cqw; width: 11.5cqw; }
+.sg-ad.--strip .sg-ad__pack { right: 0.5cqw; bottom: 0; width: 12.3cqw; }
 
 /* Schutzzonen-Raster über einem Beispiel */
 .sg-ad__zone {
@@ -717,7 +717,7 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
   position: absolute; top: 6cqw; left: 120cqw; right: 6cqw; margin: 0;
   text-align: right; font-size: 4cqw; font-weight: 700;
 }
-.sg-ad__pano .sg-ad__pack { left: 83cqw; bottom: 2cqw; width: 34cqw; }
+.sg-ad__pano .sg-ad__pack { left: 78cqw; bottom: 1cqw; width: 44cqw; }
 .sg-section-v2 .sg-ad .sg-ad__aside { color: var(--bg); }
 
 /* Darreichungsform: Bild bringt die helle Kategoriefläche mit */
