@@ -647,7 +647,7 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad__scrim {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to bottom, color-mix(in srgb, var(--fg) 60%, transparent), transparent 45%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--fg) 65%, transparent), transparent 50%),
     linear-gradient(to top, color-mix(in srgb, var(--fg) 45%, transparent), transparent 22%);
 }
 .sg-ad.--strip .sg-ad__scrim { background: linear-gradient(to right, transparent 25%, color-mix(in srgb, var(--fg) 55%, transparent) 45%); }
@@ -723,22 +723,23 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 /* Darreichungsform: Bild bringt die helle Kategoriefläche mit */
 .sg-ad.--form { background: var(--cat-magendarm-light); }
 .sg-ad.--form .sg-ad__photo { object-fit: contain; }
-.sg-ad.--form:not(.--pack) .sg-ad__photo {
-  inset: 34% 4% 0; width: 92%; height: 66%;
-  /* Bildfläche weich in die Kartenfläche auslaufen lassen (Bild-Hintergrund ≈ --cat-magendarm-light) */
-  -webkit-mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
-  mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
+/* Darreichungsform vollformatig; oben leichte Aufhellung in Kartenfarbe für den Text */
+.sg-ad.--form:not(.--pack) .sg-ad__photo { object-fit: cover; }
+.sg-ad.--form:not(.--pack)::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, color-mix(in srgb, var(--cat-magendarm-light) 92%, transparent) 0%, transparent 50%);
 }
+.sg-ad.--form:not(.--pack) .sg-ad__copy { top: auto; bottom: 6cqw; }
+.sg-ad.--form .sg-ad__copy { z-index: 1; }
 .sg-ad.--form .sg-ad__copy { right: 6cqw; }
 .sg-ad .sg-ad__benefit { --flow-space: var(--half-module); font-size: 5.5cqw; font-weight: 700; line-height: 1.15; color: var(--fg); }
 
 /* Inhaltsstoff: Name unten auf Foto */
-.sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 55%, transparent), transparent 45%); }
+.sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 70%, transparent), transparent 55%); }
 .sg-ad__label { position: absolute; left: 6cqw; right: 6cqw; bottom: 6cqw; }
 .sg-ad__label > :first-child { margin-top: 0; }
 .sg-ad.--ingredient .sg-ad__headline { font-size: 7cqw; }
 .sg-ad.--ingredient .sg-ad__sub { font-size: 3.6cqw; line-height: 1.3; }
-.sg-ad.--ingredient .sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 70%, transparent), transparent 65%); }
 
 /* Nur Text: Markengrün, alles weiß */
 .sg-ad.--text { background: var(--green); }
@@ -754,3 +755,9 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad__lottie { position: absolute; top: 0; left: 8%; width: 84%; height: 80%; }
 .sg-ad__message { position: absolute; left: 6cqw; right: 6cqw; bottom: 6cqw; text-align: center; }
 .sg-ad.--lottie .sg-ad__headline { color: var(--fg); text-shadow: none; font-size: 6.5cqw; }
+.sg-ad.--copy-left .sg-ad__copy { right: 46cqw; }
+/* Praxis: wie Inhaltsstoff – feste Textzone unten, weiß auf Verlauf */
+.sg-ad__scrim.--top { background: linear-gradient(to bottom, color-mix(in srgb, var(--fg) 65%, transparent), transparent 55%); }
+/* Praxis: Motiv unten → feste Textzone oben */
+.sg-ad.--praxis .sg-ad__label { top: 6cqw; bottom: auto; right: 48cqw; }
+.sg-ad.--praxis .sg-ad__headline { font-size: 6cqw; }
