@@ -761,3 +761,5 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 /* Praxis: Motiv unten → feste Textzone oben */
 .sg-ad.--praxis .sg-ad__label { top: 6cqw; bottom: auto; right: 48cqw; }
 .sg-ad.--praxis .sg-ad__headline { font-size: 6cqw; }
+/* Packshot-Karte: Veti (Daumen hoch) links unten im Vordergrund, wie im Checkout-Pop-up */
+.sg-ad__veti { position: absolute; left: 0; bottom: 0; width: 50cqw; height: calc(50cqw * 907 / 1100); }
