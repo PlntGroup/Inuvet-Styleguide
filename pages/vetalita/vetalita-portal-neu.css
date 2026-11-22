@@ -840,8 +840,9 @@ body.--portal-start .site-nav .nav-right > .portal-nav-demo { display: flex; }
 }
 
 /* Startseite „Erst einmal umsehen?“: quadratisches Foto im 16:9-Slot – Ausschnitt nach unten, damit Kopf und Laptop im Bild sind */
-.section-type.--v1.--ratio-16-9.portal-start-preview:not(.--viewport) .section-type__image img {
-  object-position: 50% 62%;
+.section-type.--v1.--ratio-16-9.portal-start-preview:not(.--viewport) .section-type__image img,
+.section-type.--v1.--ratio-16-9.portal-start-preview:not(.--viewport) .section-type__image video {
+  object-position: 50% 62%; /* gilt auch fürs Vorschaubild (poster) des Teaser-Videos */
 }
 
 /* Startseite Vertrauen (großes Zitat): darunter die Zahl teilnehmender Praxen, Zahl in Grün */

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261119s">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261122b">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -1488,6 +1488,7 @@ const START_TEXT = {
   previewTitle: 'Prima vuoi dare un’occhiata?',
   previewBody: 'Guarda il portale con dati di esempio: la tua provvigione, l’analisi per prodotti, mesi e clienti – e i premi.',
   previewCta: 'Guarda la demo con dati di esempio',
+  previewVideoLabel: 'Video: tour del portale',
   // Prämien-Streifen
   premiumsTitle: 'Tanti premi ti aspettano',
   // Vertrauen — ZITAT, NAME UND FOTO SIND PLATZHALTER: vor Go-live durch ein echtes, schriftlich freigegebenes Zitat ersetzen
@@ -1654,14 +1655,15 @@ function renderLogin() {
   </div>
 </section>
 ${how.steps}
-${how.main}
-${startPremiumsHTML()}
-${startTrustHTML()}
-
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type">
   <div class="section-type --v1 --ratio-16-9 --pb portal-start-preview">
     <div class="section-type__image">
-      <picture><img src="portal-vorschau.jpg?v=2" alt="" loading="lazy" width="1600" height="1600"></picture>
+      <div class="media-video" data-media-video="click">
+        <video poster="portal-vorschau.jpg?v=2" aria-label="${START_TEXT.previewVideoLabel}" playsinline preload="none">
+          <source src="portal-teaser.mp4?v=4" type="video/mp4">
+        </video>
+        <button type="button" class="media-video__play" aria-label="Lancia il video"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-play_arrow"></use></svg></button>
+      </div>
     </div>
     <div class="section-type__content flow">
       <h2 class="section-type__headline">${START_TEXT.previewTitle}</h2>
@@ -1672,6 +1674,10 @@ ${startTrustHTML()}
     </div>
   </div>
 </section>
+${how.main}
+${startPremiumsHTML()}
+${startTrustHTML()}
+
 ${startFaqHTML()}
 ${how.cta}`;
 }
