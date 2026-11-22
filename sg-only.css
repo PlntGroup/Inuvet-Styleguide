@@ -582,3 +582,175 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
   .sg-main { padding: 0; }
   .sg-brand.--main { display: grid; margin-bottom: var(--module); }
 }
+
+/* ─── F.1 Image Ads: Schutzzonen ───
+   Rahmen = ganzes Format, schraffiert = No-go, weiße Box = sicherer Bereich.
+   Werte in % des Formats, damit die Grafik maßstabsgerecht skaliert. */
+.sg-safezone {
+  position: relative; width: 100%;
+  border: 1px solid var(--border-light);
+  background: repeating-linear-gradient(45deg,
+    color-mix(in srgb, var(--fg) 12%, var(--bg)) 0 6px,
+    var(--accent-bg) 6px 12px);
+  overflow: hidden;
+}
+.sg-safezone.--r1x1 { aspect-ratio: 1 / 1; }
+.sg-safezone.--r4x5 { aspect-ratio: 4 / 5; }
+.sg-safezone.--r9x16 { aspect-ratio: 9 / 16; }
+.sg-safezone.--r191 { aspect-ratio: 1200 / 628; }
+.sg-safezone__safe {
+  position: absolute; inset: 5%;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: var(--bg); outline: 2px dashed var(--green); outline-offset: -2px;
+  font-size: var(--text-xs); font-weight: 700; color: var(--fg-muted);
+}
+.sg-safezone.--story .sg-safezone__safe { inset: 14% 6% 35% 6%; }
+.sg-safezone.--google .sg-safezone__safe { inset: 0 5%; }
+.sg-safezone__reels {
+  position: absolute; top: 60%; right: 0; bottom: 0; width: 21%;
+  background: color-mix(in srgb, var(--fg) 35%, transparent);
+}
+.sg-safezone__tag {
+  position: absolute; left: 6%; right: 6%; text-align: center;
+  font-size: var(--text-xs); font-weight: 700; color: var(--fg);
+}
+.sg-safezone__tag.--top { top: 5%; }
+.sg-safezone__tag.--bottom { bottom: 12%; }
+
+/* Logo-auf-Foto-Demo */
+.sg-ad-photo-demo { position: relative; max-width: 36rem; }
+.sg-ad-photo-demo__img { display: block; width: 100%; height: auto; }
+.sg-ad-photo-demo__logo { position: absolute; top: var(--half-module); left: var(--half-module); --sg-logo-size: 6rem; }
+
+/* ─── F.1 Image Ads: Beispiele ───
+   Maßstäbliche Mini-Anzeigen. Schrift in cqw (Containerbreite), damit jede
+   Anzeige wie das echte Format proportional skaliert. */
+.sg-ad {
+  position: relative; width: 100%; overflow: hidden;
+  container-type: inline-size;
+  background: var(--fg); color: var(--bg);
+  /* Spacing-Tokens auf die Anzeigenbreite umrechnen, damit .flow maßstäblich bleibt */
+  --base: 2.2cqw; --half-module: calc(var(--base) * 1.5); --module: calc(var(--base) * 3);
+}
+.sg-ad.--r1x1 { aspect-ratio: 1 / 1; }
+.sg-ad.--r9x16 { aspect-ratio: 9 / 16; }
+.sg-ad.--r191 { aspect-ratio: 1200 / 628; }
+.sg-ad.--r300x250 { aspect-ratio: 300 / 250; }
+.sg-ad.--r728x90 { aspect-ratio: 728 / 90; }
+.sg-ad-wide { max-width: 728px; }
+
+.sg-ad__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
+.sg-ad.--story .sg-ad__photo { height: 140%; object-position: 30% 50%; }
+.sg-ad.--r1x1:not(.--pano, .--form, .--ingredient) .sg-ad__photo { height: 130%; object-position: 18% 50%; }
+.sg-ad.--r300x250 .sg-ad__photo { height: 140%; object-position: 18% 50%; }
+.sg-ad.--strip .sg-ad__photo { inset: -235% auto auto 0; width: 100%; height: auto; }
+.sg-ad__scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, color-mix(in srgb, var(--fg) 60%, transparent), transparent 45%),
+    linear-gradient(to top, color-mix(in srgb, var(--fg) 45%, transparent), transparent 22%);
+}
+.sg-ad.--strip .sg-ad__scrim { background: linear-gradient(to right, transparent 25%, color-mix(in srgb, var(--fg) 55%, transparent) 45%); }
+
+.sg-ad__logo { position: absolute; top: 4cqw; right: 4cqw; width: 14cqw; height: auto; }
+.sg-ad__copy { position: absolute; top: 6cqw; left: 6cqw; right: 26cqw; }
+.sg-ad__copy > :first-child { margin-top: 0; }
+.sg-section-v2 .sg-ad p { color: var(--bg); }
+.sg-ad .badge { font-size: 2cqw; padding: 0.5cqw 1cqw; background: var(--cat-magendarm); color: var(--fg); }
+.sg-ad .sg-ad__headline { --flow-space: var(--half-module); color: var(--bg); font-size: 8cqw; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; text-shadow: 0 0.2cqw 1.5cqw color-mix(in srgb, var(--fg) 40%, transparent); }
+.sg-ad__sub { font-size: 3cqw; font-weight: 700; }
+.sg-ad__pack { position: absolute; left: 4cqw; bottom: 7cqw; width: 34cqw; height: auto; }
+.sg-ad__fine { position: absolute; left: 6cqw; right: 6cqw; bottom: 3cqw; margin: 0; font-size: 2cqw; }
+
+/* Story: Inhalte nur im sicheren Bereich (14 % / 35 % / 6 %) */
+.sg-ad.--story .sg-ad__logo { top: 15%; left: 6cqw; right: auto; width: 13cqw; }
+.sg-ad.--story .sg-ad__copy { top: 22%; right: 6cqw; }
+.sg-ad.--story .sg-ad__headline { font-size: 9cqw; }
+.sg-ad.--story .sg-ad__sub { font-size: 3.4cqw; max-width: 46cqw; }
+.sg-ad.--story .sg-ad__pack { left: auto; right: 6cqw; bottom: 40%; width: 38cqw; }
+.sg-ad.--story .sg-ad__fine { top: 50%; bottom: auto; right: 48cqw; font-size: 2.4cqw; }
+.sg-ad.--story .sg-ad__scrim { background: linear-gradient(to bottom, color-mix(in srgb, var(--fg) 60%, transparent), color-mix(in srgb, var(--fg) 45%, transparent) 40%, transparent 55%); }
+
+/* Google: Responsive-Bild nur Packshot; Banner kompakt */
+.sg-ad.--google .sg-ad__pack { left: auto; right: 10%; bottom: 8%; width: 28cqw; }
+.sg-ad.--banner .sg-ad__logo { top: 3cqw; right: 3cqw; width: 16cqw; }
+.sg-ad.--banner .sg-ad__copy { top: 5cqw; left: 5cqw; right: 22cqw; --base: 3cqw; }
+.sg-ad.--banner .badge { font-size: 3.4cqw; }
+.sg-ad.--banner .sg-ad__headline { font-size: 8.5cqw; }
+.sg-ad.--banner .sg-ad__sub { font-size: 4.2cqw; }
+.sg-ad.--banner .sg-ad__pack { left: auto; right: 3cqw; bottom: 3cqw; width: 36cqw; }
+.sg-ad.--strip .sg-ad__logo { top: 1cqw; left: 1cqw; right: auto; width: 10.5cqw; }
+.sg-ad.--strip .sg-ad__copy { top: 0; bottom: 0; left: 38cqw; right: 14cqw; display: flex; flex-direction: column; justify-content: center; --base: 0.8cqw; }
+.sg-ad.--strip .badge { font-size: 1.5cqw; }
+.sg-ad.--strip .sg-ad__headline { font-size: 3.6cqw; }
+.sg-ad.--strip .sg-ad__pack { right: 1cqw; bottom: 0.5cqw; width: 11.5cqw; }
+
+/* Schutzzonen-Raster über einem Beispiel */
+.sg-ad__zone {
+  position: absolute;
+  background: repeating-linear-gradient(45deg,
+    color-mix(in srgb, var(--bg) 30%, transparent) 0 4px, transparent 4px 10px);
+  outline: 1px dashed color-mix(in srgb, var(--bg) 70%, transparent); outline-offset: -1px;
+}
+.sg-ad__zone.--top { top: 0; left: 0; right: 0; height: 14%; }
+.sg-ad__zone.--bottom { bottom: 0; left: 0; right: 0; height: 35%; }
+.sg-ad__zone.--left { top: 14%; bottom: 35%; left: 0; width: 6%; }
+.sg-ad__zone.--right { top: 14%; bottom: 35%; right: 0; width: 6%; }
+.sg-ad__zone.--reels { top: 60%; bottom: 35%; right: 0; width: 21%; }
+
+/* ─── F.1 Image Ads: Karussell ─── */
+.sg-carousel {
+  /* Kartenbreite wie im Panorama: halbe Breite von max. 40rem */
+  display: grid; grid-auto-flow: column; grid-auto-columns: calc((min(40rem, 100%) - 2px) / 2);
+  gap: 2px; overflow-x: auto; padding-bottom: var(--base);
+}
+.sg-carousel.--pano { grid-auto-columns: minmax(0, 1fr); gap: 2px; max-width: 40rem; }
+.sg-carousel__card { margin: 0; }
+
+/* Panorama: ein Bild doppelt so breit wie die Karte, je Karte verschoben */
+.sg-ad__pano { position: absolute; top: 0; bottom: 0; left: 0; width: 200%; }
+.sg-ad__pano.--p2 { left: -100%; }
+.sg-ad__pano .sg-ad__photo { object-position: 50% 60%; }
+.sg-ad__pano .sg-ad__logo { left: 80cqw; right: auto; }
+.sg-ad__pano .sg-ad__copy { right: 120cqw; }
+.sg-ad__aside {
+  position: absolute; top: 6cqw; left: 120cqw; right: 6cqw; margin: 0;
+  text-align: right; font-size: 4cqw; font-weight: 700;
+}
+.sg-ad__pano .sg-ad__pack { left: 83cqw; bottom: 2cqw; width: 34cqw; }
+.sg-section-v2 .sg-ad .sg-ad__aside { color: var(--bg); }
+
+/* Darreichungsform: Bild bringt die helle Kategoriefläche mit */
+.sg-ad.--form { background: var(--cat-magendarm-light); }
+.sg-ad.--form .sg-ad__photo { object-fit: contain; }
+.sg-ad.--form:not(.--pack) .sg-ad__photo {
+  inset: 34% 4% 0; width: 92%; height: 66%;
+  /* Bildfläche weich in die Kartenfläche auslaufen lassen (Bild-Hintergrund ≈ --cat-magendarm-light) */
+  -webkit-mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
+}
+.sg-ad.--form .sg-ad__copy { right: 6cqw; }
+.sg-ad .sg-ad__benefit { --flow-space: var(--half-module); font-size: 5.5cqw; font-weight: 700; line-height: 1.15; color: var(--fg); }
+
+/* Inhaltsstoff: Name unten auf Foto */
+.sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 55%, transparent), transparent 45%); }
+.sg-ad__label { position: absolute; left: 6cqw; right: 6cqw; bottom: 6cqw; }
+.sg-ad__label > :first-child { margin-top: 0; }
+.sg-ad.--ingredient .sg-ad__headline { font-size: 7cqw; }
+.sg-ad.--ingredient .sg-ad__sub { font-size: 3.6cqw; line-height: 1.3; }
+.sg-ad.--ingredient .sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 70%, transparent), transparent 65%); }
+
+/* Nur Text: Markengrün, alles weiß */
+.sg-ad.--text { background: var(--green); }
+.sg-ad.--text .sg-ad__copy { top: auto; bottom: 18cqw; right: 6cqw; }
+.sg-ad.--text .sg-ad__logo { left: 6cqw; right: auto; }
+.sg-ad.--text .sg-ad__headline { font-size: 9cqw; text-shadow: none; }
+.sg-ad.--text .sg-ad__sub { font-size: 4cqw; }
+.sg-ad.--text .sg-ad__fine { font-size: 3cqw; bottom: 6cqw; }
+.sg-ad.--pack .sg-ad__photo { inset: 9% 2% 1%; width: 96%; height: 90%; }
+
+/* Animationskarte: Lottie oben, Botschaft unten auf Weiß */
+.sg-ad.--lottie { background: var(--bg); color: var(--fg); }
+.sg-ad__lottie { position: absolute; top: 0; left: 8%; width: 84%; height: 80%; }
+.sg-ad__message { position: absolute; left: 6cqw; right: 6cqw; bottom: 6cqw; text-align: center; }
+.sg-ad.--lottie .sg-ad__headline { color: var(--fg); text-shadow: none; font-size: 6.5cqw; }

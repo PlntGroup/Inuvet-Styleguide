@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="brand-manukalind.css?v=2">
   <link rel="stylesheet" href="brand-eqx.css?v=4">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=2" disabled>
-  <link rel="stylesheet" href="sg-only.css?v=55">
+  <link rel="stylesheet" href="sg-only.css?v=77">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     html { scroll-padding-top: var(--module); }
@@ -190,6 +190,11 @@
         <a href="#E7">E.7 Suche</a>
         <a href="#E8">E.8 Blog</a>
         <a href="#E9">E.9 Utility-Seiten</a>
+      </div>
+
+      <div class="sg-nav-group">
+        <span class="sg-nav-group__title">F — Creatives</span>
+        <a href="#F1">F.1 Image Ads</a>
       </div>
 
     </nav>
@@ -7261,6 +7266,305 @@
         <tr><th>Leer</th><td><code>.empty-state</code> (→ <a href="#C8">C.8</a>) — identisch zum leeren Drawer</td></tr>
       </table>
       <p class="sg-caption">Alle fünf Templates ausschließlich aus Bestandsklassen · Texte im Theme über Locale-Keys (<code>de.default.json</code>), nicht hardcoden.</p>
+    </section>
+
+    <section class="sg-section-v2 flow" id="F1">
+      <h2 class="section-label">F.1 — Image Ads</h2>
+      <div class="col-grid" data-cols="2">
+        <p>Regeln für bezahlte Anzeigen bei Meta (Facebook, Instagram) und Google. Sie gelten für alle, die Anzeigen gestalten, auch für Claude. Material kommt aus dem Markenverzeichnis, Produkttexte aus dem Text-Master.</p>
+        <p>Die Schutzzonen ändern Meta und Google gelegentlich. Vor der Produktion die Vorschau im Werbeanzeigenmanager bzw. in Google Ads prüfen. Stand der Werte: November 2026.</p>
+      </div>
+
+      <h3 class="sg-h3 --top">Gestaltung</h3>
+      <table class="spec-table">
+        <tr><th>Logo auf Foto</th><td>Immer komplett in Weiß: <code>assets/brands/inuvet/inuvet-logo-weiss.svg</code>. Schutzraum wie in <a href="#A1">A.1</a>.</td></tr>
+        <tr><th>Text &amp; Packshot</th><td>Direkt auf das Foto, ohne farbige Fläche als Textkasten. Packshot freigestellt (<code>_TRANS_beschnitten.png</code>). Lesbarkeit über eine leichte Abdunklung des Fotos hinter dem Text, nicht über eine Fläche.</td></tr>
+        <tr><th>Button</th><td>Keinen Button gestalten. Der Call-to-Action kommt aus dem Werbeanzeigenmanager (Meta) bzw. aus den Text-Assets (Google).</td></tr>
+        <tr><th>Foto</th><td>Mit ruhiger Fläche für den Text. Motiv nicht von Text, Logo oder Packshot überdecken lassen, besonders nicht Gesicht und Kopf des Tiers.</td></tr>
+        <tr><th>Kategorie</th><td><code>.badge</code> in der Kategoriefarbe (<a href="#B2">B.2</a>), z. B. Magen &amp; Darm.</td></tr>
+        <tr><th>Texte</th><td>Produktname, Produktart und Eigenschaften wörtlich aus dem gültigen Blatt im Text-Master. Pflichtangabe (z. B. „Diät-Ergänzungsfuttermittel“) und „Nur in eurer Tierarztpraxis“ lesbar im Feed: mind. 22&nbsp;px auf 1080&nbsp;px Breite.</td></tr>
+        <tr><th>Material</th><td>Nur Dateien mit Status „freigegeben“ im Markenverzeichnis, Nutzungsrechte geklärt, bei erkennbaren Personen mit Einwilligung.</td></tr>
+        <tr><th>Freigabe</th><td>Aussagen zu Wirkung und Anwendung vor der Schaltung rechtlich prüfen lassen.</td></tr>
+      </table>
+
+      <figure class="sg-ad-photo-demo">
+        <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Hunde auf einer Wiese" class="sg-ad-photo-demo__img">
+        <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet Logo in Weiß auf Foto" class="sg-logo-demo sg-ad-photo-demo__logo">
+        <figcaption class="sg-caption">Logo auf Foto: komplett weiß, nie farbig und nie auf einer Fläche.</figcaption>
+      </figure>
+
+      <h3 class="sg-h3 --top">Schutzzonen Meta</h3>
+      <p class="sg-p">Schraffiert: Hier liegen Profil, Bildunterschrift, Call-to-Action oder Symbole von Meta. Kein Text, kein Logo, kein Packshot. Das Foto selbst darf bis an den Rand gehen.</p>
+      <div class="col-grid --spaced" data-cols="3">
+        <figure>
+          <div class="sg-safezone --r1x1 --feed" role="img" aria-label="Feed 1:1, 1080 mal 1080 Pixel, 5 Prozent Rand rundum">
+            <span class="sg-safezone__safe">972 × 972 px</span>
+          </div>
+          <figcaption class="sg-caption">Feed 1:1 · 1080 × 1080 · Rand rundum 5 % (54 px)</figcaption>
+        </figure>
+        <figure>
+          <div class="sg-safezone --r4x5 --feed" role="img" aria-label="Feed 4:5, 1080 mal 1350 Pixel, 5 Prozent Rand rundum">
+            <span class="sg-safezone__safe">972 × 1215 px</span>
+          </div>
+          <figcaption class="sg-caption">Feed 4:5 · 1080 × 1350 · Rand rundum 5 % · im Karussell auf 1:1 beschnitten</figcaption>
+        </figure>
+        <figure>
+          <div class="sg-safezone --r9x16 --story" role="img" aria-label="Stories und Reels 9:16, 1080 mal 1920 Pixel: oben 269, unten 672, seitlich je 65 Pixel frei, rechts unten Symbolspalte der Reels">
+            <span class="sg-safezone__tag --top">oben 14 % · 269 px</span>
+            <span class="sg-safezone__safe">950 × 979 px</span>
+            <span class="sg-safezone__reels" aria-hidden="true"></span>
+            <span class="sg-safezone__tag --bottom">unten 35 % · 672 px</span>
+          </div>
+          <figcaption class="sg-caption">Stories &amp; Reels 9:16 · 1080 × 1920 · seitlich 6 % (65 px) · dunkler: Symbolspalte der Reels (227 px breit ab 1152 px)</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="sg-h3 --top">Schutzzonen Google</h3>
+      <p class="sg-p">Responsive Displayanzeigen setzt Google aus Bild, Logo und Texten selbst zusammen. Das Bild bleibt deshalb ohne Text und Logo. Google schneidet es je Platzierung links und rechts um bis zu 5 % an.</p>
+      <div class="col-grid --spaced" data-cols="3">
+        <figure>
+          <div class="sg-safezone --r191 --google" role="img" aria-label="Responsive Querformat 1200 mal 628 Pixel, links und rechts je 5 Prozent Beschnitt">
+            <span class="sg-safezone__safe">1080 × 628 px</span>
+          </div>
+          <figcaption class="sg-caption">Responsive Querformat 1,91:1 · 1200 × 628 · links/rechts je 5 % (60 px)</figcaption>
+        </figure>
+        <figure>
+          <div class="sg-safezone --r1x1 --google" role="img" aria-label="Responsive quadratisch 1200 mal 1200 Pixel, links und rechts je 5 Prozent Beschnitt">
+            <span class="sg-safezone__safe">1080 × 1200 px</span>
+          </div>
+          <figcaption class="sg-caption">Responsive quadratisch 1:1 · 1200 × 1200 · links/rechts je 5 % (60 px)</figcaption>
+        </figure>
+      </div>
+      <table class="spec-table">
+        <tr><th>Responsive Bild</th><td>Ohne Text und Logo. Pflicht laut Google-Richtlinie: Text einschließlich Logo höchstens 20 % der Bildfläche. Packshot im Foto ist erlaubt. Max. 5&nbsp;MB, JPG oder PNG.</td></tr>
+        <tr><th>Responsive Logo</th><td>Eigenes Asset: quadratisch 1200 × 1200 und quer 4:1 1200 × 300.</td></tr>
+        <tr><th>Responsive Texte</th><td>Kurze und lange Anzeigentitel sowie Beschreibungen als Text-Assets, aus dem Text-Master.</td></tr>
+        <tr><th>Banner (hochgeladen)</th><td>300 × 250 · 728 × 90 · 160 × 600 · 300 × 600 · 320 × 50. Text und Logo im Bild erlaubt, kein Button. Max. 150&nbsp;KB.</td></tr>
+        <tr><th>Rand bei Banner</th><td>Ist der Hintergrund teilweise weiß, schwarz oder transparent: sichtbarer Rahmen in Kontrastfarbe, z. B. <code>1px solid var(--border-light)</code>. Bei Foto bis an den Rand: kein Rahmen.</td></tr>
+      </table>
+
+      <h3 class="sg-h3 --top">Beispiele: EnteroGast akut</h3>
+      <p class="sg-p">Ein Motiv, alle Formate. Logo weiß, Text und Packshot direkt auf dem Foto, kein Button. Die Story zeigt die Schutzzonen zusätzlich als Raster.</p>
+      <div class="col-grid --spaced" data-cols="3">
+        <figure>
+          <div class="sg-ad --r1x1">
+            <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+            <div class="sg-ad__scrim" aria-hidden="true"></div>
+            <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+            <div class="sg-ad__copy flow">
+              <p><span class="badge">Magen &amp; Darm</span></p>
+              <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+              <p class="sg-ad__sub">EnteroGast akut für Katze und Hund</p>
+            </div>
+            <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+            <p class="sg-ad__fine">Diät-Ergänzungsfuttermittel · Nur in eurer Tierarztpraxis</p>
+          </div>
+          <figcaption class="sg-caption">Meta Feed 1:1 · 1080 × 1080</figcaption>
+        </figure>
+        <figure>
+          <div class="sg-ad --r9x16 --story">
+            <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+            <div class="sg-ad__scrim" aria-hidden="true"></div>
+            <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+            <div class="sg-ad__copy flow">
+              <p><span class="badge">Magen &amp; Darm</span></p>
+              <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+              <p class="sg-ad__sub">EnteroGast akut für Katze und Hund</p>
+            </div>
+            <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+            <p class="sg-ad__fine">Diät-Ergänzungsfuttermittel · Nur in eurer Tierarztpraxis</p>
+            <div class="sg-ad__zones" aria-hidden="true"><span class="sg-ad__zone --top"></span><span class="sg-ad__zone --bottom"></span><span class="sg-ad__zone --left"></span><span class="sg-ad__zone --right"></span><span class="sg-ad__zone --reels"></span></div>
+          </div>
+          <figcaption class="sg-caption">Meta Stories &amp; Reels 9:16 · 1080 × 1920 · mit Schutzzonen</figcaption>
+        </figure>
+        <figure>
+          <div class="sg-ad --r191 --google">
+            <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+            <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+          </div>
+          <figcaption class="sg-caption">Google Responsive 1200 × 628 · Bild ohne Text und Logo, Texte als Assets</figcaption>
+        </figure>
+        <figure>
+          <div class="sg-ad --r300x250 --banner">
+            <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+            <div class="sg-ad__scrim" aria-hidden="true"></div>
+            <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+            <div class="sg-ad__copy flow">
+              <p><span class="badge">Magen &amp; Darm</span></p>
+              <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+              <p class="sg-ad__sub">EnteroGast akut für Katze und Hund</p>
+            </div>
+            <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+          </div>
+          <figcaption class="sg-caption">Google Medium Rectangle 300 × 250</figcaption>
+        </figure>
+      </div>
+      <figure class="sg-ad-wide">
+          <div class="sg-ad --r728x90 --banner --strip">
+            <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+            <div class="sg-ad__scrim" aria-hidden="true"></div>
+            <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+            <div class="sg-ad__copy flow">
+              <p><span class="badge">Magen &amp; Darm</span></p>
+              <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+            </div>
+            <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+          </div>
+        <figcaption class="sg-caption">Google Leaderboard 728 × 90</figcaption>
+      </figure>
+
+      <h3 class="sg-h3 --top">Karussell</h3>
+      <p class="sg-p">Mehrere Karten, durch die gewischt wird. Titel, Beschreibung und Button stehen unter jeder Karte und kommen aus dem Werbeanzeigenmanager. Im Bild steht deshalb nur wenig Text.</p>
+      <table class="spec-table">
+        <tr><th>Formate</th><td>Meta: 2–10 Karten, 1:1 mit 1080 × 1080 (4:5 möglich, wird an manchen Stellen auf 1:1 beschnitten). Google: nur in Demand-Gen-Kampagnen, 2–10 Karten in 1,91:1, 1:1 oder 4:5. Schutzzone je Karte wie Feed: 5 % Rand.</td></tr>
+        <tr><th>Erste Karte</th><td>Muss allein funktionieren: Motiv, Headline, Packshot, Logo. Viele wischen nicht weiter.</td></tr>
+        <tr><th>Eine Botschaft je Karte</th><td>Ein Produkt, eine Darreichungsform oder ein Inhaltsstoff pro Karte, mit gleichem Aufbau über alle Karten.</td></tr>
+        <tr><th>Logo</th><td>Auf der ersten und auf der letzten Karte, auf Foto weiß.</td></tr>
+        <tr><th>Panorama</th><td>Ein Bild läuft über mehrere Karten. Auf den Schnittkanten liegen weder Text noch Gesicht des Tiers; der Packshot darf über eine Kante laufen und lädt so zum Wischen ein.</td></tr>
+        <tr><th>Darreichungsform</th><td>Bild der Darreichungsform, dazu der Benefit aus der Kurzbeschreibung der Produktseite (Shopify-Metafeld <code>custom.kurzbeschreibung</code>).</td></tr>
+        <tr><th>Inhaltsstoffe</th><td>Foto aus <code>00_Bilder / Inhaltsstoffe</code>, Name und ein kurzer Satz aus dem Shop (Metaobjekt <code>ingredient</code> bzw. <code>custom.inhaltsstoffe_auszug_</code>). Nur bestehende, geprüfte Texte verwenden.</td></tr>
+        <tr><th>Animation</th><td>Lottie aus <code>02_Animationen</code> (passend zum Produkt, sonst eine allgemeine wie <code>Tierarzt-Hund</code>), immer mit der Botschaft „Nur in deiner Tierarztpraxis“. Für die Anzeige als MP4 exportieren (1080 × 1080, max. 15 s, in Schleife lesbar).</td></tr>
+        <tr><th>Nur Text</th><td>Markengrün, Logo und Text komplett weiß (<a href="#A1">A.1</a>). Text aus dem Text-Master. Gut als letzte Karte.</td></tr>
+      </table>
+
+      <h4 class="sg-h3 --top">Panorama über zwei Karten</h4>
+      <div class="sg-carousel --pano">
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --pano">
+              <div class="sg-ad__pano --p1">
+                <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+                <div class="sg-ad__scrim" aria-hidden="true"></div>
+                <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+                <div class="sg-ad__copy flow">
+                  <p><span class="badge">Magen &amp; Darm</span></p>
+                  <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+                </div>
+                <p class="sg-ad__aside">EnteroGast akut für Katze und Hund</p>
+                <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 1 · Titel: „EnteroGast akut“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --pano">
+              <div class="sg-ad__pano --p2">
+                <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+                <div class="sg-ad__scrim" aria-hidden="true"></div>
+                <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+                <div class="sg-ad__copy flow">
+                  <p><span class="badge">Magen &amp; Darm</span></p>
+                  <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+                </div>
+                <p class="sg-ad__aside">EnteroGast akut für Katze und Hund</p>
+                <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 2 · Titel: „Nur in eurer Tierarztpraxis“</figcaption>
+          </figure>
+      </div>
+
+      <h4 class="sg-h3 --top">Produkt, Darreichungsformen, Inhaltsstoffe, Nur Text</h4>
+      <div class="sg-carousel">
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 ">
+              <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+              <div class="sg-ad__scrim" aria-hidden="true"></div>
+              <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+              <div class="sg-ad__copy flow">
+                <p><span class="badge">Magen &amp; Darm</span></p>
+                <h2 class="sg-ad__headline">Stoppt Durchfall. Schnell.</h2>
+              </div>
+              <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten, Pulver-Dose und Sachet" class="sg-ad__pack">
+            </div>
+            <figcaption class="sg-caption">Karte 1 · Titel: „EnteroGast akut“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --form --pack">
+              <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten-Schachtel, Pulver-Dose und Sachet" class="sg-ad__photo">
+              <div class="sg-ad__copy flow">
+                <p><span class="badge">Magen &amp; Darm</span></p>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 2 · Packshot · Titel: „Tabletten, Pulver und Sachets“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --form">
+              <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Tabletten_Darreichung.png" alt="EnteroGast akut Tabletten" class="sg-ad__photo">
+              <div class="sg-ad__copy flow">
+                <p><span class="badge">Tabletten</span></p>
+                <h2 class="sg-ad__benefit">3 Phasen Wirkung: adstringierend, absorbierend, aufbauend.</h2>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 3 · Titel: „Tabletten, teilbar“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --form">
+              <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Pulver_Darreichung.png" alt="EnteroGast akut Pulver" class="sg-ad__photo">
+              <div class="sg-ad__copy flow">
+                <p><span class="badge">Pulver</span></p>
+                <h2 class="sg-ad__benefit">3 Phasen Wirkung. Auch für Allergiker geeignet.</h2>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 4 · Titel: „Pulver“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --ingredient">
+              <img src="assets/brands/inuvet/images/Flohsamenschalen.jpeg" alt="Flohsamenschalen" class="sg-ad__photo">
+              <div class="sg-ad__scrim --bottom" aria-hidden="true"></div>
+              <div class="sg-ad__label flow">
+                <p><span class="badge">Inhaltsstoff</span></p>
+                <h2 class="sg-ad__headline">Flohsamenschalen</h2>
+                <p class="sg-ad__sub">Die Schale des indischen Flohsamens hat einen starken natürlichen Quelleffekt.</p>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 5 · Titel: „Flohsamenschalen“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --ingredient">
+              <img src="assets/brands/inuvet/images/Ratanhia-Wurzel-gemahlen.jpeg" alt="Ratanhia-Wurzel" class="sg-ad__photo">
+              <div class="sg-ad__scrim --bottom" aria-hidden="true"></div>
+              <div class="sg-ad__label flow">
+                <p><span class="badge">Inhaltsstoff</span></p>
+                <h2 class="sg-ad__headline">Ratanhia-Wurzel</h2>
+                <p class="sg-ad__sub">Enthält einen äußerst hohen Anteil an Gerbstoffen.</p>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 6 · Titel: „Ratanhia-Wurzel“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --ingredient">
+              <img src="assets/brands/inuvet/images/Stieleiche.jpeg" alt="Stieleiche mit Eicheln" class="sg-ad__photo">
+              <div class="sg-ad__scrim --bottom" aria-hidden="true"></div>
+              <div class="sg-ad__label flow">
+                <p><span class="badge">Inhaltsstoff</span></p>
+                <h2 class="sg-ad__headline">Stieleichen-Extrakt</h2>
+                <p class="sg-ad__sub">Reich an Gerbstoffen, die die Darmschleimhaut oberflächlich verdichten.</p>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 7 · Titel: „Stieleichen-Extrakt“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --lottie">
+              <lottie-player src="assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Tierarzt-Hund_1x1.json" background="transparent" speed="1" loop autoplay class="sg-ad__lottie" aria-label="Animation: Hund in der Tierarztpraxis"></lottie-player>
+              <div class="sg-ad__message flow">
+                <h2 class="sg-ad__headline">Nur in deiner Tierarztpraxis</h2>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 8 · Animation (Lottie, als MP4 exportiert) · Titel: „EnteroGast akut in der Praxis“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --text">
+              <img src="assets/brands/inuvet/inuvet-logo-weiss.svg" alt="inuvet" class="sg-ad__logo">
+              <div class="sg-ad__copy flow">
+                <h2 class="sg-ad__headline">Bei und nach akutem Durchfall.</h2>
+                <p class="sg-ad__sub">EnteroGast akut für Katze und Hund</p>
+              </div>
+              <p class="sg-ad__fine">Diät-Ergänzungsfuttermittel · Nur in eurer Tierarztpraxis</p>
+            </div>
+            <figcaption class="sg-caption">Karte 9 · Nur Text · Titel: „In der Tierarztpraxis fragen“</figcaption>
+          </figure>
+      </div>
+      <p class="sg-caption">Quellen: <a href="https://support.google.com/adspolicy/answer/6363786">Google: Anforderungen an responsive Anzeigen</a> · <a href="https://support.google.com/google-ads/answer/9823397">Google: Best Practices responsive Displayanzeigen</a> · <a href="https://support.google.com/google-ads/answer/1722096">Google: hochgeladene Displayanzeigen</a> · Meta-Werte nach aktuellen Branchenübersichten, z. B. <a href="https://terrads.com/blog/meta-safe-zones-are-percentages">Terrads</a>; Meta selbst zeigt sie in der Vorschau des Werbeanzeigenmanagers.</p>
     </section>
 
   </main>
