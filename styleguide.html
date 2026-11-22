@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="brand-manukalind.css?v=2">
   <link rel="stylesheet" href="brand-eqx.css?v=4">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=2" disabled>
-  <link rel="stylesheet" href="sg-only.css?v=92">
+  <link rel="stylesheet" href="sg-only.css?v=97">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     html { scroll-padding-top: var(--module); }
@@ -7278,7 +7278,7 @@
       <h3 class="sg-h3 --top">Gestaltung</h3>
       <table class="spec-table">
         <tr><th>Logo auf Foto</th><td>Immer komplett in Weiß: <code>assets/brands/inuvet/inuvet-logo-weiss.svg</code>. Schutzraum wie in <a href="#A1">A.1</a>.</td></tr>
-        <tr><th>Text &amp; Packshot</th><td>Direkt auf das Foto, ohne farbige Fläche als Textkasten. Packshot freigestellt (<code>_TRANS_beschnitten.png</code>). Lesbarkeit über eine leichte Abdunklung des Fotos hinter dem Text, nicht über eine Fläche.</td></tr>
+        <tr><th>Text &amp; Packshot</th><td>Direkt auf das Foto, ohne farbige Fläche als Textkasten. Packshot freigestellt (<code>_TRANS_beschnitten.png</code>), unten am Bildrand ausgerichtet; bei Stories auf der Kante der unteren Schutzzone. Lesbarkeit über eine leichte Abdunklung des Fotos hinter dem Text, nicht über eine Fläche.</td></tr>
         <tr><th>Button</th><td>Keinen Button gestalten. Der Call-to-Action kommt aus dem Werbeanzeigenmanager (Meta) bzw. aus den Text-Assets (Google).</td></tr>
         <tr><th>Foto</th><td>Mit ruhiger Fläche für den Text. Motiv nicht von Text, Logo oder Packshot überdecken lassen, besonders nicht Gesicht und Kopf des Tiers. Ausschnitt so wählen, dass das Motiv außerhalb der Textzone liegt (bei Text unten: in den oberen 60 %).</td></tr>
         <tr><th>Lesbarkeit</th><td>Text steht in einer festen Zone am oberen oder unteren Rand, nie frei im Bild. Standard: Text weiß, dahinter ein Verlauf aus <code>--fg</code> mit 65–70 % Deckkraft am Rand, bis etwa zur Bildmitte auslaufend. So bleibt der Text auf jedem Foto lesbar. Ausnahme bei ruhigen, hellen Produktbildern (Darreichungsformen): Text dunkel, Verlauf in der hellen Kartenfarbe. Kein Textkasten, keine Farbfläche, kein reiner Textschatten.</td></tr>
@@ -7422,10 +7422,12 @@
         <tr><th>Eine Botschaft je Karte</th><td>Ein Produkt, eine Darreichungsform oder ein Inhaltsstoff pro Karte, mit gleichem Aufbau über alle Karten.</td></tr>
         <tr><th>Logo</th><td>Auf der ersten und auf der letzten Karte, auf Foto weiß.</td></tr>
         <tr><th>Panorama</th><td>Ein Bild läuft über mehrere Karten. Auf den Schnittkanten liegen weder Text noch Gesicht des Tiers; der Packshot darf über eine Kante laufen und lädt so zum Wischen ein.</td></tr>
-        <tr><th>Darreichungsform</th><td>Bild der Darreichungsform, dazu der Benefit aus der Kurzbeschreibung der Produktseite (Shopify-Metafeld <code>custom.kurzbeschreibung</code>).</td></tr>
+        <tr><th>Darreichungsform</th><td>Bild der Darreichungsform vollflächig, dazu der Benefit aus der Kurzbeschreibung der Produktseite (Shopify-Metafeld <code>custom.kurzbeschreibung</code>).</td></tr>
         <tr><th>Inhaltsstoffe</th><td>Foto aus <code>00_Bilder / Inhaltsstoffe</code>, Name und ein kurzer Satz aus dem Shop (Metaobjekt <code>ingredient</code> bzw. <code>custom.inhaltsstoffe_auszug_</code>). Nur bestehende, geprüfte Texte verwenden.</td></tr>
-        <tr><th>Praxis</th><td>Foto aus der Tierarztpraxis, Text wie auf der Produktseite (Bildunterschrift der Galerie, Metafeld <code>custom.pdp_gallery_captions</code>), z. B. „Über 20.000 Tierarztpraxen arbeiten mit Inuvet“. Bei erkennbaren Personen nur mit Einwilligung.</td></tr>
-        <tr><th>Packshot-Karte</th><td>Freigestellter Packshot groß auf der hellen Kategoriefläche, links unten die Lottie <code>Inuvet_Alena_Animation_Veti-Daumen-hoch_5x4.json</code> im Vordergrund – wie beim Packshot im Checkout-Pop-up. Für die Anzeige als MP4 exportieren.</td></tr>
+        <tr><th>Praxis</th><td>Foto aus der Tierarztpraxis, Text wie auf der Produktseite (Bildunterschrift der Galerie, Metafeld <code>custom.pdp_gallery_captions</code>), z. B. „Über 20.000 Tierarztpraxen arbeiten mit Inuvet“, in derselben Größe wie die Headlines der Inhaltsstoff-Karten. Bei erkennbaren Personen nur mit Einwilligung.</td></tr>
+        <tr><th>Karten 2–4</th><td>Packshot und Darreichungsformen: Bild immer vollflächig. Text oben oder unten, je nachdem wo das Bild ruhig ist, dahinter ein Verlauf in der hellen Kartenfarbe (Text dunkel, siehe Lesbarkeit). Der Text läuft wie bei den Inhaltsstoffen über die volle Breite, mit 6 % Rand, und hat auf allen Darreichungs-Karten dieselbe Schriftgröße; keine schmalen Spalten neben dem Motiv.</td></tr>
+        <tr><th>Zitat</th><td>Kundenbewertung aus dem Shop (Reviews.io, 5 Sterne), wörtlich übernommen; nur Rechtschreibung und Zeichensetzung glätten. Name nur als Vorname, dazu „Bewertung im Inuvet-Shop“. Foto vollflächig im Hintergrund, Zitat unten auf dem Verlauf wie bei den Inhaltsstoffen, Zitat kursiv, Anführungszeichen-Icon weiß, fünf Sterne in <code>--color-amber</code> wie bei <a href="#D5">D.5</a>. Nur Aussagen zu Anwendung, Akzeptanz, Geruch oder Verpackung, keine Wirk- oder Heilaussagen (Heilmittelwerberecht). Zitate von Tierärzt*innen bevorzugen, dann mit Praxisfoto. Vor der Schaltung rechtlich prüfen.</td></tr>
+        <tr><th>Packshot-Karte</th><td>Packshot mit farbigem Hintergrund (<code>_Packshot_COL.jpg</code>) vollflächig, ohne Headline, nur das Badge der Kategorie. Links unten groß, etwa halbe Kartenbreite, die Lottie <code>Inuvet_Alena_Animation_Veti-Daumen-hoch_5x4.json</code> im Vordergrund – wie beim Packshot im Checkout-Pop-up. Für die Anzeige als MP4 exportieren.</td></tr>
         <tr><th>Animation</th><td>Lottie aus <code>02_Animationen</code> (passend zum Produkt, sonst eine allgemeine wie <code>Tierarzt-Hund</code>), immer mit der Botschaft „Nur in deiner Tierarztpraxis“. Für die Anzeige als MP4 exportieren, 1080 × 1080.</td></tr>
         <tr><th>MP4-Export</th><td>Länge des Videos = Dauer der Lottie (Frames ÷ Bildrate, z. B. Tierarzt-Hund 120 Frames bei 30 fps = 4 s; Veti Daumen hoch 83 Frames = 2,77 s) oder ein ganzzahliges Vielfaches davon, gleiche Bildrate wie die Lottie. Erstes und letztes Bild passen dann aneinander, und der Loop läuft in der Anzeige nahtlos. Eine Lottie je Karte; sehr kurze Animationen (unter 3 s) ggf. zwei- oder dreimal hintereinander exportieren.</td></tr>
         <tr><th>Nur Text</th><td>Markengrün, Logo und Text komplett weiß (<a href="#A1">A.1</a>). Text aus dem Text-Master. Gut als letzte Karte.</td></tr>
@@ -7483,8 +7485,8 @@
             <figcaption class="sg-caption">Karte 1 · Titel: „EnteroGast akut“</figcaption>
           </figure>
           <figure class="sg-carousel__card">
-            <div class="sg-ad --r1x1 --form --pack">
-              <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_TRANS_beschnitten.png" alt="EnteroGast akut: Tabletten-Schachtel, Pulver-Dose und Sachet" class="sg-ad__photo">
+            <div class="sg-ad --r1x1 --form --pack --copy-top">
+              <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Packshot_COL.jpg" alt="EnteroGast akut: Tabletten-Schachtel, Pulver-Dose und Sachet" class="sg-ad__photo">
               <lottie-player src="assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Veti-Daumen-hoch_5x4.json" background="transparent" speed="1" loop autoplay class="sg-ad__veti" aria-label="Animation: Veti zeigt Daumen hoch"></lottie-player>
               <div class="sg-ad__copy flow">
                 <p><span class="badge">Magen &amp; Darm</span></p>
@@ -7503,7 +7505,7 @@
             <figcaption class="sg-caption">Karte 3 · Titel: „Tabletten, teilbar“</figcaption>
           </figure>
           <figure class="sg-carousel__card">
-            <div class="sg-ad --r1x1 --form --copy-left">
+            <div class="sg-ad --r1x1 --form">
               <img src="assets/brands/inuvet/images/Inuvet_EnteroGast_Akut_Pulver_Darreichung.png" alt="EnteroGast akut Pulver" class="sg-ad__photo">
               <div class="sg-ad__copy flow">
                 <p><span class="badge">Pulver</span></p>
@@ -7536,18 +7538,7 @@
             </div>
             <figcaption class="sg-caption">Karte 6 · Titel: „Ratanhia-Wurzel“</figcaption>
           </figure>
-          <figure class="sg-carousel__card">
-            <div class="sg-ad --r1x1 --ingredient">
-              <img src="assets/brands/inuvet/images/Stieleiche.jpeg" alt="Stieleiche mit Eicheln" class="sg-ad__photo">
-              <div class="sg-ad__scrim --bottom" aria-hidden="true"></div>
-              <div class="sg-ad__label flow">
-                <p><span class="badge">Inhaltsstoff</span></p>
-                <h2 class="sg-ad__headline">Stieleichen-Extrakt</h2>
-                <p class="sg-ad__sub">Reich an Gerbstoffen, die die Darmschleimhaut oberflächlich verdichten.</p>
-              </div>
-            </div>
-            <figcaption class="sg-caption">Karte 7 · Titel: „Stieleichen-Extrakt“</figcaption>
-          </figure>
+          
           <figure class="sg-carousel__card">
             <div class="sg-ad --r1x1 --ingredient --praxis">
               <img src="assets/brands/inuvet/images/Praxis_Hund-Behandlungstisch_BRK08088_1x1.jpg" alt="Tierärztin untersucht einen kleinen Hund auf dem Behandlungstisch" class="sg-ad__photo">
@@ -7557,7 +7548,19 @@
                 <h2 class="sg-ad__headline">Über 20.000 Tierarztpraxen arbeiten mit Inuvet</h2>
               </div>
             </div>
-            <figcaption class="sg-caption">Karte 8 · Praxis · Titel: „Empfohlen von Tierärzt*innen“</figcaption>
+            <figcaption class="sg-caption">Karte 7 · Praxis · Titel: „Empfohlen von Tierärzt*innen“</figcaption>
+          </figure>
+          <figure class="sg-carousel__card">
+            <div class="sg-ad --r1x1 --ingredient --quote">
+              <img src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="Zwei Hunde auf einer Pusteblumenwiese" class="sg-ad__photo">
+              <div class="sg-ad__scrim --bottom" aria-hidden="true"></div>
+              <div class="sg-ad__label flow">
+                <svg class="material-icons sg-ad__quote-mark" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-format_quote"></use></svg>
+                <blockquote class="sg-ad__quote"><p>Gutes, hilfreiches Produkt, das von Hunden wie auch Katzen gerne genommen wird, ohne zu Murren.</p></blockquote>
+                <p class="sg-ad__sub"><span class="sg-ad__stars" role="img" aria-label="5 von 5 Sternen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg></span> Stefan · Bewertung im Inuvet-Shop</p>
+              </div>
+            </div>
+            <figcaption class="sg-caption">Karte 8 · Zitat (Reviews.io) · Titel: „Das sagen Tierhalter*innen“</figcaption>
           </figure>
           <figure class="sg-carousel__card">
             <div class="sg-ad --r1x1 --lottie">

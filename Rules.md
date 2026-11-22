@@ -36,6 +36,12 @@ Shopify-`assets/` ist flach. Dateiname = Theme-Asset.
 
 `Inuvet_Icon_*`: Inuvet + Campus (gleiche Akzentfarbe). `Icon_Tier_*`, Lotties, Bilder: Inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner.
 
+## Creatives (Anzeigen, Social, Karussells)
+
+Verbindlich ist **Styleguide F.1 Image Ads**: [`styleguide.html#F1`](./styleguide.html#F1), live https://plntgroup.github.io/Inuvet-Styleguide/styleguide.html#F1 (Logo auf Foto weiß, keine Farbflächen hinter Text, kein Button, Schutzzonen je Format, Lesbarkeit, Karussell). F.1 hat Vorrang vor allen älteren Vorlagen im Drive (`01_Corporate_Design/00_Styleguide`, Creative-Ads-README, frühere Kampagnen).
+
+Material nur aus den Quellen im Abschnitt „Quellen für Creatives“ der Kurzregeln: https://docs.google.com/document/d/1_kH9xfZcRrAC7xiyhCuPDSYQNc8etbYvrzTVbDR-hVU/edit. Andere Ordner nicht durchsuchen.
+
 ## Kein neues CSS ohne Design-OK
 
 Zuerst bestehende Klasse in `planet-brands.css`. Fehlt etwas: fragen. Keine neuen Tokens, Utilities oder Komponenten ohne Zustimmung von Micha. Inline-Styles = dasselbe Verbot.

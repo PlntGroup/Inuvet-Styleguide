@@ -659,26 +659,26 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad .badge { font-size: 2cqw; padding: 0.5cqw 1cqw; background: var(--cat-magendarm); color: var(--fg); }
 .sg-ad .sg-ad__headline { --flow-space: var(--half-module); color: var(--bg); font-size: 8cqw; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; text-shadow: 0 0.2cqw 1.5cqw color-mix(in srgb, var(--fg) 40%, transparent); }
 .sg-ad__sub { font-size: 3cqw; font-weight: 700; }
-.sg-ad__pack { position: absolute; left: 3cqw; bottom: 6cqw; width: 48cqw; height: auto; }
-.sg-ad__fine { position: absolute; left: 6cqw; right: 6cqw; bottom: 3cqw; margin: 0; font-size: 2cqw; }
+.sg-ad__pack { position: absolute; left: 3cqw; bottom: 0; width: 48cqw; height: auto; }
+.sg-ad__fine { position: absolute; left: 56cqw; right: 6cqw; bottom: 4cqw; margin: 0; font-size: 2cqw; text-align: right; }
 
 /* Story: Inhalte nur im sicheren Bereich (14 % / 35 % / 6 %) */
 .sg-ad.--story .sg-ad__logo { top: 15%; left: 6cqw; right: auto; width: 13cqw; }
 .sg-ad.--story .sg-ad__copy { top: 22%; right: 6cqw; }
 .sg-ad.--story .sg-ad__headline { font-size: 9cqw; }
 .sg-ad.--story .sg-ad__sub { font-size: 3.4cqw; max-width: 40cqw; }
-.sg-ad.--story .sg-ad__pack { left: auto; right: 5cqw; bottom: 36.5%; width: 44cqw; }
-.sg-ad.--story .sg-ad__fine { top: 52%; bottom: auto; right: 54cqw; font-size: 2.4cqw; }
+.sg-ad.--story .sg-ad__pack { left: auto; right: 5cqw; bottom: 35%; width: 44cqw; }
+.sg-ad.--story .sg-ad__fine { top: 52%; bottom: auto; left: 6cqw; right: 54cqw; font-size: 2.4cqw; text-align: left; }
 .sg-ad.--story .sg-ad__scrim { background: linear-gradient(to bottom, color-mix(in srgb, var(--fg) 60%, transparent), color-mix(in srgb, var(--fg) 45%, transparent) 40%, transparent 55%); }
 
 /* Google: Responsive-Bild nur Packshot; Banner kompakt */
-.sg-ad.--google .sg-ad__pack { left: 6%; right: auto; bottom: 2%; width: 34cqw; }
+.sg-ad.--google .sg-ad__pack { left: 6%; right: auto; bottom: 0; width: 34cqw; }
 .sg-ad.--banner .sg-ad__logo { top: 3cqw; right: 3cqw; width: 16cqw; }
 .sg-ad.--banner .sg-ad__copy { top: 5cqw; left: 5cqw; right: 22cqw; --base: 3cqw; }
 .sg-ad.--banner .badge { font-size: 3.4cqw; }
 .sg-ad.--banner .sg-ad__headline { font-size: 8.5cqw; }
 .sg-ad.--banner .sg-ad__sub { font-size: 4.2cqw; }
-.sg-ad.--banner .sg-ad__pack { left: auto; right: 2cqw; bottom: 2cqw; width: 46cqw; }
+.sg-ad.--banner .sg-ad__pack { left: auto; right: 2cqw; bottom: 0; width: 46cqw; }
 .sg-ad.--strip .sg-ad__logo { top: 1cqw; left: 1cqw; right: auto; width: 10.5cqw; }
 .sg-ad.--strip .sg-ad__copy { top: 0; bottom: 0; left: 38cqw; right: 14cqw; display: flex; flex-direction: column; justify-content: center; --base: 0.8cqw; }
 .sg-ad.--strip .badge { font-size: 1.5cqw; }
@@ -717,21 +717,22 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
   position: absolute; top: 6cqw; left: 120cqw; right: 6cqw; margin: 0;
   text-align: right; font-size: 4cqw; font-weight: 700;
 }
-.sg-ad__pano .sg-ad__pack { left: 78cqw; bottom: 1cqw; width: 44cqw; }
+.sg-ad__pano .sg-ad__pack { left: 78cqw; bottom: 0; width: 44cqw; }
 .sg-section-v2 .sg-ad .sg-ad__aside { color: var(--bg); }
 
-/* Darreichungsform: Bild bringt die helle Kategoriefläche mit */
+/* Karten 2–4 (Packshot, Darreichungsformen): Bild immer vollflächig.
+   Text oben oder unten, je nachdem wo das Bild ruhig ist; dahinter Verlauf in der hellen Kartenfarbe */
 .sg-ad.--form { background: var(--cat-magendarm-light); }
-.sg-ad.--form .sg-ad__photo { object-fit: contain; }
-/* Darreichungsform vollformatig; oben leichte Aufhellung in Kartenfarbe für den Text */
-.sg-ad.--form:not(.--pack) .sg-ad__photo { object-fit: cover; }
-.sg-ad.--form:not(.--pack)::after {
-  content: ""; position: absolute; inset: 0;
+.sg-ad.--form .sg-ad__photo { object-fit: cover; }
+.sg-ad.--form::after {
+  content: ""; position: absolute; inset: 0; z-index: 0;
   background: linear-gradient(to top, color-mix(in srgb, var(--cat-magendarm-light) 92%, transparent) 0%, transparent 50%);
 }
-.sg-ad.--form:not(.--pack) .sg-ad__copy { top: auto; bottom: 6cqw; }
-.sg-ad.--form .sg-ad__copy { z-index: 1; }
-.sg-ad.--form .sg-ad__copy { right: 6cqw; }
+.sg-ad.--form.--copy-top::after {
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--cat-magendarm-light) 92%, transparent) 0%, transparent 50%);
+}
+.sg-ad.--form .sg-ad__copy { z-index: 1; top: auto; bottom: 6cqw; right: 6cqw; }
+.sg-ad.--form.--copy-top .sg-ad__copy { top: 6cqw; bottom: auto; }
 .sg-ad .sg-ad__benefit { --flow-space: var(--half-module); font-size: 5.5cqw; font-weight: 700; line-height: 1.15; color: var(--fg); }
 
 /* Inhaltsstoff: Name unten auf Foto */
@@ -748,7 +749,6 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad.--text .sg-ad__headline { font-size: 9cqw; text-shadow: none; }
 .sg-ad.--text .sg-ad__sub { font-size: 4cqw; }
 .sg-ad.--text .sg-ad__fine { font-size: 3cqw; bottom: 6cqw; }
-.sg-ad.--pack .sg-ad__photo { inset: 9% 2% 1%; width: 96%; height: 90%; }
 
 /* Animationskarte: Lottie oben, Botschaft unten auf Weiß */
 .sg-ad.--lottie { background: var(--bg); color: var(--fg); }
@@ -759,7 +759,16 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 /* Praxis: wie Inhaltsstoff – feste Textzone unten, weiß auf Verlauf */
 .sg-ad__scrim.--top { background: linear-gradient(to bottom, color-mix(in srgb, var(--fg) 65%, transparent), transparent 55%); }
 /* Praxis: Motiv unten → feste Textzone oben */
-.sg-ad.--praxis .sg-ad__label { top: 6cqw; bottom: auto; right: 48cqw; }
-.sg-ad.--praxis .sg-ad__headline { font-size: 6cqw; }
+/* Headline gleich groß wie bei den Inhaltsstoffen (7cqw aus .--ingredient) */
+.sg-ad.--praxis .sg-ad__label { top: 6cqw; bottom: auto; right: 6cqw; }
 /* Packshot-Karte: Veti (Daumen hoch) links unten im Vordergrund, wie im Checkout-Pop-up */
-.sg-ad__veti { position: absolute; left: 0; bottom: 0; width: 50cqw; height: calc(50cqw * 907 / 1100); }
+.sg-ad__veti { position: absolute; z-index: 1; left: 0; bottom: 0; width: 50cqw; height: calc(50cqw * 907 / 1100); }
+
+/* Zitat-Karte: Kundenbewertung auf Foto, Aufbau wie Inhaltsstoff */
+.sg-ad.--quote .sg-ad__photo { object-position: 80% 50%; }
+.sg-ad__quote-mark { display: block; width: 9cqw; height: 9cqw; fill: var(--bg); color: var(--bg); }
+.sg-ad__quote { margin: 0; --flow-space: var(--half-module); }
+.sg-section-v2 .sg-ad .sg-ad__quote p { color: var(--bg); font-size: 5.5cqw; font-weight: 700; font-style: italic; line-height: 1.15; text-shadow: 0 0.2cqw 1.5cqw color-mix(in srgb, var(--fg) 40%, transparent); }
+.sg-ad__stars { display: inline-flex; vertical-align: -0.4cqw; margin-right: 1cqw; }
+.sg-ad__stars svg { width: 3.4cqw; height: 3.4cqw; fill: var(--color-amber); color: var(--color-amber); } /* wie .rating (D.5) */
+.sg-ad.--quote .sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 75%, transparent), color-mix(in srgb, var(--fg) 45%, transparent) 45%, transparent 75%); }

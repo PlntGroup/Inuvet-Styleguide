@@ -12,6 +12,7 @@ Regeln: [`Rules.md`](./Rules.md). Spec: diese Datei.
 2c. **Themes sind markenweise getrennt:** `inuvet-theme` (Shop), `inuvet-campus-theme` (Campus), Planimol folgt. Kein Theme-Setting `brand`, keine Snippets `html-brand-attr` / `brand-skin`. Styleguide darf `?brand=planimol` / `?brand=campus` / `?brand=manukalind` + passende `brand-*.css` zum Simulieren. **Inhalte** (Benefits, Praxis, Lottie-JSONs) liegen pro Shopify-Store in markenneutralen Metaobjects `shop_benefit` / `shop_praxis`. Spec → Theme `Spec.md`.
 2d. **Guide-Ordner** (echte Ordner nur hier; Theme `assets/` bleibt flach, Dateiname = Theme-Asset, Dateinamen nicht umbenennen): `assets/planet/` = markenübergreifend (Material-UI `material-icons/` + Sprite, `social-icons/`). `assets/brands/{handle}/` = alles Markenspezifische (Logo, `icons/`, `lotties/`, `images/`). `Inuvet_Icon_*` teilen Inuvet + Campus (gleiche Akzentfarbe `#78b41b`). `Icon_Tier_*`, Lotties, Bilder = Inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner, nicht umfärben. `brand-*.css` bleibt im Root.
 2e. **Shopify-Themes Git:** nur Branch **`staging`** pushen. `staging` → `master`/`main` setzt IT. Gilt für jedes Shopify-Theme.
+2f. **Creatives** (Anzeigen, Social, Karussells): Regeln in `styleguide.html#F1` (F.1 Image Ads), Materialquellen in den Kurzregeln, Abschnitt „Quellen für Creatives“. Details: `Rules.md` → Creatives.
 
 ---
 
