@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123b">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123c">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -333,9 +333,9 @@ function portalCustomerNumberFromQuery(value) {
 
 const REGISTRATION_QUERY = parseRegistrationQueryParams();
 
-/* ENTWURF Landingpage (?landing): Hero überzeugt statt Formular, Registrieren/Anmelden am Seitenende.
-   Ohne den Parameter bleibt die bisherige Startseite. Nach Freigabe: Schalter auf true setzen bzw. Altpfad entfernen. */
-const LANDING_DRAFT = new URLSearchParams(window.location.search).has('landing');
+/* Landingpage (Standard seit 23.11.2026): Hero überzeugt statt Formular, Registrieren/Anmelden am Seitenende.
+   Die bisherige Startseite mit Formular im Hero bleibt vorerst unter ?alt erreichbar (Altpfad später entfernen). */
+const LANDING_DRAFT = !new URLSearchParams(window.location.search).has('alt');
 /* Messe-Kürzel (?m=…) → Ort für die Begrüßung; Treffer per Teilstring, z. B. „rimini2026“ */
 const START_EVENT_NAMES = { rimini: 'in Rimini', arezzo: 'in Arezzo' }; // mit Präposition (IT: a/ad)
 const KNOWN_VISITOR_KEY = 'vetalita_portal_known';

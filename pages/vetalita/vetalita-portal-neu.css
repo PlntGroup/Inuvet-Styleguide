@@ -38,15 +38,18 @@
 
 /* ── Startseite: Hero V2 mit Registrier-/Anmelde-Box ── */
 /* Runder Störer „Registrieren · 10 € · Bonus“ (gleiche Gestaltung und Texte wie .reg-badge) — größer, erscheint nur
-   bei aktivem Reiter „Registrieren“. Mobil fest unten links am Bildschirmrand,
+   bei aktivem Reiter „Registrieren“. Mobil unten rechts im Foto,
    Desktop unter der großen Headline (.portal-start-hero__aside). */
-/* Mobil: fest unten links am Bildschirmrand (wie früher der schwebende Störer), weicht dem Footer */
+/* Mobil: unten rechts im Foto, neben dem Scroll-Pfeil — verdeckt weder Vorteilsliste noch Formular */
 .portal-start-hero .section-type__image > .floating-meta {
-  position: fixed;
   top: auto;
-  bottom: var(--margin);
-  left: var(--margin);
-  z-index: var(--z-overlay);
+  bottom: calc(var(--base) * 0.75);
+  left: auto;
+  right: var(--margin);
+  z-index: 2;
+}
+@media (max-width: 767px) {
+  .portal-start-hero .reg-badge.--hero { --reg-badge-size: calc(var(--base) * 6); }
 }
 /* Das Foto bildet eine eigene Stapelebene (System: z-index --z-default) — mobil eine Stufe höher, sonst
    läge der feste Störer unter der Formularbox. Foto und Box überlappen mobil nicht. */
