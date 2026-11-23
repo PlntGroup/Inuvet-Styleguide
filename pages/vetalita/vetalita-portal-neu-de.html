@@ -1574,8 +1574,6 @@ const START_TEXT = {
   faq1A: 'Ihre Kunden geben bei der Bestellung im Vetalità-Shop Ihre Praxis oder Ihren Rabattcode an. So wird die Bestellung Ihrer Praxis zugeordnet und die Provision Ihrem Konto gutgeschrieben.',
   faq2Q: 'Wann kann ich einlösen?',
   faq2A: 'Jederzeit, sobald Ihre Provision für eine Prämie reicht. Fortbildung und Spende lösen Sie mit einem frei wählbaren Betrag ein, eine Auszahlung ist ab 20&nbsp;€ möglich.',
-  faq3Q: 'Was passiert mit nicht eingelöstem Guthaben?',
-  faq3A: '[Platzhalter: Regelung zu Gültigkeit und Verfall des Guthabens – bitte klären und rechtlich prüfen lassen]',
 };
 
 /* Startseite: Bausteine unter dem Hero (Prämien, Vertrauen, FAQ) — nur System-Komponenten */
@@ -1644,7 +1642,7 @@ function startTrustHTML() {
 }
 
 function startFaqHTML() {
-  const faq = [[START_TEXT.faqRateQ, START_TEXT.faqRateA], [START_TEXT.faq1Q, START_TEXT.faq1A], [START_TEXT.faq2Q, START_TEXT.faq2A], [START_TEXT.faq3Q, START_TEXT.faq3A]];
+  const faq = [[START_TEXT.faqRateQ, START_TEXT.faqRateA], [START_TEXT.faq1Q, START_TEXT.faq1A], [START_TEXT.faq2Q, START_TEXT.faq2A]];
   const item = ([q, a], i) => `<div class="accordion-item" style="order:${i}">
       <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">${q}<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
       <div class="accordion-content"><div class="accordion-content__inner flow"><p>${a}</p></div></div>

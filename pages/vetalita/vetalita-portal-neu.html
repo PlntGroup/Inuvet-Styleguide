@@ -1574,8 +1574,6 @@ const START_TEXT = {
   faq1A: 'Al momento dell’ordine nello shop Vetalità i tuoi clienti indicano il tuo studio o il tuo codice sconto. Così l’ordine viene attribuito al tuo studio e la provvigione accreditata sul tuo conto.',
   faq2Q: 'Quando posso riscattare?',
   faq2A: 'In qualsiasi momento, non appena la tua provvigione basta per un premio. Formazione e donazione si riscattano con un importo a scelta, il pagamento è possibile da 20&nbsp;€.',
-  faq3Q: 'Cosa succede al credito non riscattato?',
-  faq3A: '[Segnaposto: regola su validità e scadenza del credito – da chiarire e far verificare legalmente]',
 };
 
 /* Startseite: Bausteine unter dem Hero (Prämien, Vertrauen, FAQ) — nur System-Komponenten */
@@ -1644,7 +1642,7 @@ function startTrustHTML() {
 }
 
 function startFaqHTML() {
-  const faq = [[START_TEXT.faqRateQ, START_TEXT.faqRateA], [START_TEXT.faq1Q, START_TEXT.faq1A], [START_TEXT.faq2Q, START_TEXT.faq2A], [START_TEXT.faq3Q, START_TEXT.faq3A]];
+  const faq = [[START_TEXT.faqRateQ, START_TEXT.faqRateA], [START_TEXT.faq1Q, START_TEXT.faq1A], [START_TEXT.faq2Q, START_TEXT.faq2A]];
   const item = ([q, a], i) => `<div class="accordion-item" style="order:${i}">
       <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">${q}<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
       <div class="accordion-content"><div class="accordion-content__inner flow"><p>${a}</p></div></div>
