@@ -733,7 +733,7 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 }
 .sg-ad.--form .sg-ad__copy { z-index: 1; top: auto; bottom: 6cqw; right: 6cqw; }
 .sg-ad.--form.--copy-top .sg-ad__copy { top: 6cqw; bottom: auto; }
-.sg-ad .sg-ad__benefit { --flow-space: var(--half-module); font-size: 5.5cqw; font-weight: 700; line-height: 1.15; color: var(--fg); }
+.sg-ad .sg-ad__benefit, .sg-section-v2 .sg-ad p.sg-ad__benefit { --flow-space: var(--half-module); font-size: 5.5cqw; font-weight: 700; line-height: 1.15; color: var(--fg); }
 
 /* Inhaltsstoff: Name unten auf Foto */
 .sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 70%, transparent), transparent 55%); }
@@ -761,8 +761,6 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 /* Praxis: Motiv unten → feste Textzone oben */
 /* Headline gleich groß wie bei den Inhaltsstoffen (7cqw aus .--ingredient) */
 .sg-ad.--praxis .sg-ad__label { top: 6cqw; bottom: auto; right: 6cqw; }
-/* Packshot-Karte: Veti (Daumen hoch) links unten im Vordergrund, wie im Checkout-Pop-up */
-.sg-ad__veti { position: absolute; z-index: 1; left: 0; bottom: 0; width: 50cqw; height: calc(50cqw * 907 / 1100); }
 
 /* Zitat-Karte: Kundenbewertung auf Foto, Aufbau wie Inhaltsstoff */
 .sg-ad.--quote .sg-ad__photo { object-position: 80% 50%; }
@@ -774,3 +772,6 @@ html[data-brand="eqx"] .color-card[data-sg-brand="eqx"] { display: block; }
 .sg-ad.--quote .sg-ad__scrim.--bottom { background: linear-gradient(to top, color-mix(in srgb, var(--fg) 75%, transparent), color-mix(in srgb, var(--fg) 45%, transparent) 45%, transparent 75%); }
 /* Packshot-Karte: nur Badge, kein Verlauf über dem Bild */
 .sg-ad.--form.--pack::after { content: none; }
+
+/* Markenwechsel: weißes Logo ohne eigene Datei (EQX) */
+.sg-logo-white { filter: brightness(0) invert(1); }

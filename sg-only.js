@@ -552,6 +552,21 @@ var SG_LOGOS = {
   eqx: 'assets/brands/eqx/eqx-logo.svg'
 };
 
+/* Weiße Logos: data-sg-logo="white" auf Markengrün (A.1), "photo" auf Fotos (F.1, nur Bildmarke).
+   Ohne eigene Datei: Farblogo + Filter .sg-logo-white */
+var SG_LOGOS_WHITE = {
+  inuvet: 'assets/brands/inuvet/inuvet-logo-weiss.svg',
+  campus: 'assets/brands/campus/campus-logo-white.svg',
+  planimol: 'assets/brands/planimol/planimol-logo-white.svg',
+  manukalind: 'assets/brands/manukalind/manukalind-logo-white.svg'
+};
+var SG_LOGOS_PHOTO = {
+  inuvet: 'assets/brands/inuvet/inuvet-logo-weiss.svg',
+  campus: 'assets/brands/campus/campus-logo-white.svg',
+  planimol: 'assets/brands/planimol/planimol-mark-white.svg',
+  manukalind: 'assets/brands/manukalind/manukalind-mark-white.svg'
+};
+
 var SG_BRANDS = ['planimol', 'campus', 'manukalind', 'eqx'];
 
 function currentSgBrand() {
@@ -572,7 +587,10 @@ function applySgBrand(brand, persist) {
     btn.setAttribute('aria-pressed', btn.getAttribute('data-brand-set') === brand ? 'true' : 'false');
   });
   document.querySelectorAll('[data-sg-logo]').forEach(function (img) {
-    img.src = SG_LOGOS[brand];
+    var variant = img.getAttribute('data-sg-logo');
+    var map = variant === 'photo' ? SG_LOGOS_PHOTO : variant === 'white' ? SG_LOGOS_WHITE : null;
+    img.src = map && map[brand] ? map[brand] : SG_LOGOS[brand];
+    img.classList.toggle('sg-logo-white', !!map && !map[brand]);
     img.alt = brand === 'planimol' ? 'Planimol Logo' : brand === 'campus' ? 'inuvet Campus Logo' : brand === 'manukalind' ? 'ManukaLind Logo' : brand === 'eqx' ? 'EQX Logo' : 'inuvet Logo';
   });
   document.title = brand === 'planimol' ? 'Design System – Planimol' : brand === 'campus' ? 'Design System – Campus' : brand === 'manukalind' ? 'Design System – ManukaLind' : brand === 'eqx' ? 'Design System – EQX' : 'Design System – inuvet';
