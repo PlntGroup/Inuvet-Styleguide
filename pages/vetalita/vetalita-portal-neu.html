@@ -1655,6 +1655,7 @@ function renderLogin() {
   </div>
 </section>
 ${how.steps}
+${how.video}
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type">
   <div class="section-type --v1 --ratio-16-9 --pb portal-start-preview">
     <div class="section-type__image">
@@ -3392,7 +3393,7 @@ function renderHow(embedded = false) {
   </div>
 </section>
 
-<section class="shopify-section shopify-section--own-measure shopify-section--section-type">
+<section class="shopify-section shopify-section--own-measure shopify-section--section-type how-video">
   <div class="section-type --v1 --ratio-16-9 --pb">
     <div class="section-type__image">
       <div class="media-video" data-media-video="click">
@@ -3459,8 +3460,9 @@ ${renderProductsTeaser()}
     // die Schritte (.how-steps) stehen direkt unter dem Hero
     const parts = main.split(/(?=<section\b)/);
     const steps = parts.find(x => x.includes('how-steps')) || '';
-    const rest = parts.filter(x => !/how-hero|how-steps|shopify-section--featured-collection/.test(x)).join('');
-    return { steps, main: rest.replace(/<(\/?)h1\b/g, '<$1h2'), cta };
+    const video = parts.find(x => x.includes('how-video')) || ''; // „So funktioniert Vetalità“ steht vor „Erst einmal umsehen?“
+    const rest = parts.filter(x => !/how-hero|how-steps|how-video|shopify-section--featured-collection/.test(x)).join('');
+    return { steps, video, main: rest.replace(/<(\/?)h1\b/g, '<$1h2'), cta };
   }
   return main + cta;
 }
