@@ -872,6 +872,19 @@ body:has(.pdp__sticky-cta.--visible) .reg-badge { bottom: calc(var(--module) * 2
 /* Startseite „Viele Prämien warten auf Sie“: reine Übersicht, Kacheln ohne Link */
 .portal-start-premiums .tile.--product { cursor: default; }
 
+/* Startseite „Erst selbst testen?“: Notice (C.7) mit Foto von Riccardo (Avatar aus D.2) links, Text und Button rechts; mobil untereinander */
+.notice.portal-start-samples { flex-direction: row; align-items: center; gap: var(--module); }
+.portal-start-samples__text { flex: 1; min-width: 0; }
+@media (max-width: 767px) {
+  .notice.portal-start-samples { flex-direction: column; align-items: flex-start; gap: var(--half-module); }
+}
+/* Produktseite in der Gastansicht: Hinweis „Ihr persönlicher Produktlink“ über den Buttons */
+.portal-guest-cta + .pdp__actions { margin-top: var(--half-module); }
+/* Musterformular (Modal): Produktauswahl ab Tablet zweispaltig */
+@media (min-width: 768px) {
+  .portal-samples-products { display: grid; grid-template-columns: 1fr 1fr; }
+}
+
 /* Sprachauswahl: auf der Startseite auch mobil sichtbar (dort gibt es kein Menü) */
 @media (max-width: 767px) {
   body.--portal-start .site-nav .nav-right > .portal-lang { display: flex; }

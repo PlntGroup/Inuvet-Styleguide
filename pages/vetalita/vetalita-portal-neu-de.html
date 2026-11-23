@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123d">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123h">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -51,7 +51,7 @@
 <div class="announcement-bar --static" id="announcementBar">
   <div class="announcement-bar__track">
     <span class="announcement-bar__item">10 € Startguthaben nach der Registrierung</span><span class="announcement-bar__sep"></span>
-    <span class="announcement-bar__item">Provision für jede Bestellung Ihrer Kunden</span><span class="announcement-bar__sep"></span>
+    <span class="announcement-bar__item">20&nbsp;% Provision auf jede Bestellung Ihrer Kunden</span><span class="announcement-bar__sep"></span>
     <span class="announcement-bar__item">Prämie oder Auszahlung – Sie entscheiden</span>
   </div>
 </div>
@@ -411,7 +411,7 @@ function renderRegistrationFields(prefix = 'reg') {
     </div>
     <div class="form-field">
       <select id="${fid('country')}" required>
-        ${REGISTRATION_COUNTRIES.map(c => `<option value="${c.code}"${c.code === 'IT' ? ' selected' : ''}>${c.label}</option>`).join('')}
+        ${[...REGISTRATION_COUNTRIES.filter(c => c.code === 'IT'), ...REGISTRATION_COUNTRIES.filter(c => c.code !== 'IT')].map(c => `<option value="${c.code}"${c.code === 'IT' ? ' selected' : ''}>${c.label}</option>`).join('')}
       </select>
       <label for="${fid('country')}">Land</label>
     </div>
@@ -526,10 +526,10 @@ const PREMIUMS = [
   },
   {
     id: 2,
-    name: 'deLonghi Kaffeemaschine',
+    name: 'De’Longhi Kaffeemaschine',
     price: 150.00,
-    desc: 'Guter Espresso für die Praxis: Mit nur 15 cm Breite passt die deLonghi Dedica Style in jede Teeküche – für die Pause zwischen zwei Terminen und für Ihr Team.',
-    longDesc: 'Die deLonghi Dedica Style EC 685 überzeugt mit kompakten Maßen und professioneller Brühtechnik. 15 bar Pumpendruck, Thermoblock-Heizsystem und Milchaufschäumer für den perfekten Cappuccino – direkt in der Praxisküche. Lieferung nach Hause innerhalb von 3–5 Werktagen.',
+    desc: 'Guter Espresso für die Praxis: Mit nur 15 cm Breite passt die De’Longhi Dedica Style in jede Teeküche – für die Pause zwischen zwei Terminen und für Ihr Team.',
+    longDesc: 'Die De’Longhi Dedica Style EC 685 überzeugt mit kompakten Maßen und professioneller Brühtechnik. 15 bar Pumpendruck, Thermoblock-Heizsystem und Milchaufschäumer für den perfekten Cappuccino – direkt in der Praxisküche. Lieferung nach Hause innerhalb von 3–5 Werktagen.',
     image: 'praemie-kaffee-1.jpg',
     images: ['praemie-kaffee-1.jpg', 'praemie-kaffee-2.jpg', 'praemie-kaffee-3.jpg'],
     /* Quelle: Datenblatt Dedica Style EC685, De'Longhi Deutschland GmbH (Änderungen vorbehalten) */
@@ -1346,13 +1346,24 @@ async function submitProductRequest() {
   }
 }
 
+/* Von einer Unterseite (z. B. Produktseite in der Gastansicht) erst zurück zur Startseite */
+function showStartPage() {
+  if (currentPage === 'login') return;
+  clearSuccessRedirect();
+  closeCart();
+  currentPage = 'login';
+  render();
+}
+
 function openRegistrationTab() {
+  showStartPage();
   const tabBtn = document.querySelector('[onclick*="tab-register"]');
   if (tabBtn) switchLoginTab(tabBtn, 'tab-register');
   (document.getElementById('start-form') || document.getElementById('tab-register'))?.scrollIntoView({ behavior: 'smooth' });
 }
 
 function openLoginTab() {
+  showStartPage();
   const tabBtn = document.querySelector('[onclick*="tab-login"]');
   if (tabBtn) switchLoginTab(tabBtn, 'tab-login');
   (document.getElementById('start-form') || document.getElementById('tab-login'))?.scrollIntoView({ behavior: 'smooth' });
@@ -1497,7 +1508,7 @@ const START_TEXT = {
   badgeAmount: '10 €',
   badgeLine2: 'Bonus',
   title: 'Ihre Empfehlung zahlt sich aus.',
-  body: 'Für jede Bestellung Ihrer Kunden bei vetalita.it erhalten Sie eine Provision.',
+  body: 'Für jede Bestellung Ihrer Kunden bei vetalita.it erhalten Sie 20&nbsp;% Provision.',
   scrollLabel: 'Zum Formular',
   previewTitle: 'Erst einmal umsehen?',
   previewBody: 'Sehen Sie sich das Portal mit Beispieldaten an: Ihre Provision, die Auswertung nach Produkten, Monaten und Kunden – und die Prämien.',
@@ -1508,7 +1519,8 @@ const START_TEXT = {
   pitchEvent: 'Schön, dass wir uns auf der Messe gesehen haben!',
   pitchEventIn: 'Schön, dass wir uns {ort} gesehen haben!',
   pitchWelcome: 'Willkommen zurück!',
-  pitch1: 'Provision für jede Bestellung, die Ihre Kunden auf vetalita.it aufgeben',
+  pitch1: '20&nbsp;% Provision auf jede Bestellung, die Ihre Kunden auf vetalita.it aufgeben',
+  pitchDiscount: 'Ihre Kunden sparen mit Ihrem persönlichen Rabattcode 5&nbsp;%',
   pitch2: 'Kein Lager, kein Aufwand: Vetalità liefert direkt zu Ihren Kunden nach Hause',
   pitch3: 'Prämien nach Wahl: Auszahlung, Fortbildung, Produkte oder Spende',
   pitchCta: 'Kostenlos registrieren',
@@ -1520,11 +1532,31 @@ const START_TEXT = {
   formTitle: 'Jetzt registrieren und 10&nbsp;€ Startguthaben sichern',
   formBody: 'Die Registrierung dauert weniger als eine Minute. Bereits registriert? Dann wählen Sie „Anmelden“.',
   productTitle: 'Sie haben {produkt} kennengelernt',
-  productBody: 'Empfehlen Sie {produkt} Ihren Kunden: Sie bestellen auf vetalita.it, und für jede Bestellung erhalten Sie eine Provision.',
+  productBody: 'Empfehlen Sie {produkt} Ihren Kunden: Sie bestellen auf vetalita.it, und für jede Bestellung erhalten Sie 20&nbsp;% Provision.',
   productCta: 'Produktinfo ansehen',
+  brandTitle: 'Natürlich gesund',
+  brandBody: 'Vetalità-Produkte entstehen gemeinsam mit Tierärzten und beruhen auf aktuellen Erkenntnissen aus Phytotherapie und Naturheilkunde. Jede Rezeptur enthält reine, hochkonzentrierte und gut verträgliche Naturextrakte. Tierärzte in über 35 Ländern setzen auf Vetalità – seit mehr als einem Jahrzehnt.',
   shelfTitle: 'Warum Tierhalter Vetalità schätzen',
-  shelfBody: 'Jede Rezeptur entsteht in enger Zusammenarbeit mit Tierärzten – in der Praxis entwickelt, für die Praxis. Tierhalter schätzen das: Sie bekommen ein Produkt, hinter dem echte klinische Erfahrung steht, bestellen bequem online und erhalten es direkt nach Hause. Und weil die Empfehlung aus Ihrer Praxis kommt, vertrauen sie ihr.',
-  shelfCta: 'Zu den Produkten',
+  shelfBody: 'Tierhalter bestellen bequem online und erhalten ihre Produkte direkt nach Hause. Mit Ihrem Rabattcode sparen sie 5&nbsp;%. Und weil die Empfehlung aus Ihrer Praxis kommt, vertrauen sie ihr.',
+  samplesTitle: 'Erst selbst testen?',
+  samplesBody: 'Sie möchten Vetalità-Produkte kennenlernen, bevor Sie sie empfehlen? Riccardo, Ihr Ansprechpartner bei Vetalità, schickt Ihrer Praxis gern Muster und beantwortet Ihre Fragen.',
+  samplesCta: 'Kostenlose Muster anfordern',
+  samplesHint: 'Füllen Sie das Formular aus – Riccardo meldet sich bei Ihnen und schickt die Muster an Ihre Praxis.',
+  samplesClose: 'Schließen',
+  samplesClinic: 'Praxis / Klinik *',
+  samplesName: 'Ihr Name *',
+  samplesEmail: 'E-Mail-Adresse *',
+  samplesPhone: 'Telefon (optional)',
+  samplesStreet: 'Straße und Hausnummer *',
+  samplesZip: 'PLZ *',
+  samplesTown: 'Ort *',
+  samplesProducts: 'Welche Produkte möchten Sie testen?',
+  samplesMessage: 'Nachricht (optional)',
+  samplesPrivacy: 'Wir verwenden Ihre Angaben nur, um Ihre Musteranfrage zu bearbeiten. Mehr dazu in der {link}.',
+  samplesPrivacyLink: 'Datenschutzerklärung',
+  samplesRequired: 'Bitte füllen Sie alle Pflichtfelder aus.',
+  samplesError: 'Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.',
+  samplesSuccess: 'Danke! Riccardo meldet sich in Kürze bei Ihnen.',
   // Prämien-Streifen
   premiumsTitle: 'Viele Prämien warten auf Sie',
   // Vertrauen — ZITAT, NAME UND FOTO SIND PLATZHALTER: vor Go-live durch ein echtes, schriftlich freigegebenes Zitat ersetzen
@@ -1536,6 +1568,8 @@ const START_TEXT = {
   trustCountLabel: 'Tierarztpraxen empfehlen Vetalità bereits über das Portal',
   // FAQ
   faqTitle: 'Häufige Fragen',
+  faqRateQ: 'Wie hoch ist die Provision?',
+  faqRateA: 'Sie erhalten 20&nbsp;% Provision auf jede Bestellung, die Ihrer Praxis zugeordnet wird. Ihre Kunden sparen mit Ihrem Rabattcode zusätzlich 5&nbsp;%.',
   faq1Q: 'Wie wird eine Bestellung meiner Praxis zugeordnet?',
   faq1A: 'Ihre Kunden geben bei der Bestellung im Vetalità-Shop Ihre Praxis oder Ihren Rabattcode an. So wird die Bestellung Ihrer Praxis zugeordnet und die Provision Ihrem Konto gutgeschrieben.',
   faq2Q: 'Wann kann ich einlösen?',
@@ -1610,7 +1644,7 @@ function startTrustHTML() {
 }
 
 function startFaqHTML() {
-  const faq = [[START_TEXT.faq1Q, START_TEXT.faq1A], [START_TEXT.faq2Q, START_TEXT.faq2A], [START_TEXT.faq3Q, START_TEXT.faq3A]];
+  const faq = [[START_TEXT.faqRateQ, START_TEXT.faqRateA], [START_TEXT.faq1Q, START_TEXT.faq1A], [START_TEXT.faq2Q, START_TEXT.faq2A], [START_TEXT.faq3Q, START_TEXT.faq3A]];
   const item = ([q, a], i) => `<div class="accordion-item" style="order:${i}">
       <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">${q}<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
       <div class="accordion-content"><div class="accordion-content__inner flow"><p>${a}</p></div></div>
@@ -1748,6 +1782,7 @@ function startPitchHTML() {
             <h2 class="portal-start-pitch__title">${title}</h2>
             <ul class="check-list">
               <li>${START_TEXT.pitch1}</li>
+              <li>${START_TEXT.pitchDiscount}</li>
               <li>${START_TEXT.pitch2}</li>
               <li>${START_TEXT.pitch3}</li>
             </ul>
@@ -1787,6 +1822,131 @@ function startProductSpotlightHTML() {
 </section>`;
 }
 
+/* Landingpage — Muster anfordern: C.7 Notice mit Foto von Riccardo (Avatar wie im Footer, D.2) unter den Produktkarten.
+   Der Button öffnet das Formular im Modal (gleiches Muster wie „Produkte anfragen“). */
+const START_SAMPLES_PHOTO = 'https://vetalita.it/cdn/shop/files/Riccardo-Cuppito.png?v=1794413035&width=240';
+function startSamplesHTML() {
+  return `
+<div class="container --pb">
+  <div class="notice portal-start-samples">
+    <div class="testimonial__avatar footer-contact__avatar"><img src="${START_SAMPLES_PHOTO}" alt="Riccardo Cupitò" width="240" height="240" loading="lazy"></div>
+    <div class="portal-start-samples__text flow">
+      <h3>${START_TEXT.samplesTitle}</h3>
+      <p>${START_TEXT.samplesBody}</p>
+      <div class="notice__actions">
+        <button type="button" class="btn --primary" onclick="openSamplesModal()">${START_TEXT.samplesCta}</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+
+/* Musteranfrage — Modal wird beim ersten Öffnen an <body> gehängt.
+   OFFEN (Joni): Endpunkt POST {API_BASE}/webhooks/vetalita_sample_request anlegen. Er nimmt den JSON-body aus
+   submitSamplesRequest() an und leitet die Anfrage an info@vetalita.it (Riccardo) weiter.
+   Solange es den Endpunkt nicht gibt, zeigt das Formular beim Senden die Fehlermeldung. */
+function samplesModalHTML() {
+  const field = (id, label, type = 'text', auto = '') => `
+      <div class="form-field">
+        <input type="${type}" id="samples-${id}" placeholder=" "${auto ? ` autocomplete="${auto}"` : ''}>
+        <label for="samples-${id}">${label}</label>
+      </div>`;
+  const products = (window.VETALITA_PRODUCTS || []).map(p => {
+    const name = escapeHtml(productContent(p).name);
+    return `<label class="form-check"><input type="checkbox" name="samples-product" value="${name}"><span>${name}</span></label>`;
+  }).join('');
+  return `
+<div class="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-labelledby="samples-title">
+  <div class="modal__header">
+    <span class="modal__title" id="samples-title">${START_TEXT.samplesCta}</span>
+    <button class="btn --icon" type="button" onclick="closeSamplesModal()" aria-label="${START_TEXT.samplesClose}">
+      <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg>
+    </button>
+  </div>
+  <div class="modal__body flow">
+    <p class="form-hint">${START_TEXT.samplesHint}</p>
+    ${field('clinic', START_TEXT.samplesClinic, 'text', 'organization')}
+    ${field('name', START_TEXT.samplesName, 'text', 'name')}
+    ${field('email', START_TEXT.samplesEmail, 'email', 'email')}
+    ${field('phone', START_TEXT.samplesPhone, 'tel', 'tel')}
+    ${field('street', START_TEXT.samplesStreet, 'text', 'street-address')}
+    <div class="form-grid">
+      ${field('zip', START_TEXT.samplesZip, 'text', 'postal-code')}
+      ${field('town', START_TEXT.samplesTown, 'text', 'address-level2')}
+    </div>
+    <p class="form-group-label">${START_TEXT.samplesProducts}</p>
+    <div class="form-check-group portal-samples-products">${products}</div>
+    <div class="form-field">
+      <textarea id="samples-message" placeholder=" " rows="3"></textarea>
+      <label for="samples-message">${START_TEXT.samplesMessage}</label>
+    </div>
+    <p class="form-hint">${START_TEXT.samplesPrivacy.replace('{link}', `<a href="#" onclick="closeSamplesModal(); goLegal('datenschutz'); return false;">${START_TEXT.samplesPrivacyLink}</a>`)}</p>
+    <p id="samples-error" class="form-field__error" role="alert" hidden></p>
+    <p id="samples-success" class="form-hint" role="status" hidden>${START_TEXT.samplesSuccess}</p>
+  </div>
+  <div class="modal__footer">
+    <button class="btn --primary --full" type="button" id="samples-submit" onclick="submitSamplesRequest()"></button>
+  </div>
+</div>`;
+}
+
+function openSamplesModal() {
+  let overlay = document.getElementById('samplesModal');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.id = 'samplesModal';
+    overlay.addEventListener('click', closeSamplesModal);
+    overlay.innerHTML = samplesModalHTML();
+    document.body.appendChild(overlay);
+    overlay.getBoundingClientRect(); // Übergang beim ersten Öffnen
+  }
+  document.getElementById('samples-error').hidden = true;
+  document.getElementById('samples-success').hidden = true;
+  setBtnState(document.getElementById('samples-submit'), 'idle');
+  overlay.classList.add('--open');
+  document.getElementById('samples-clinic').focus({ preventScroll: true });
+}
+
+function closeSamplesModal() {
+  document.getElementById('samplesModal')?.classList.remove('--open');
+}
+
+async function submitSamplesRequest() {
+  const val = id => document.getElementById(`samples-${id}`).value.trim();
+  const errEl = document.getElementById('samples-error');
+  const btn = document.getElementById('samples-submit');
+  errEl.hidden = true;
+  const data = {
+    clinic: val('clinic'), name: val('name'), email: val('email'), phone: val('phone'),
+    street: val('street'), zip: val('zip'), town: val('town'), message: val('message'),
+    products: [...document.querySelectorAll('input[name="samples-product"]:checked')].map(i => i.value),
+    lang: document.documentElement.lang,
+    origin_event: REGISTRATION_QUERY.originEvent, origin_product: REGISTRATION_QUERY.originProduct,
+  };
+  const emailOk = document.getElementById('samples-email').checkValidity();
+  if (!data.clinic || !data.name || !data.email || !emailOk || !data.street || !data.zip || !data.town) {
+    errEl.textContent = START_TEXT.samplesRequired;
+    errEl.hidden = false;
+    return;
+  }
+  setBtnState(btn, 'loading');
+  try {
+    const res = await fetch(`${API_BASE}/webhooks/vetalita_sample_request`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error();
+    setBtnState(btn, 'success');
+    document.getElementById('samples-success').hidden = false;
+  } catch {
+    errEl.textContent = START_TEXT.samplesError;
+    errEl.hidden = false;
+    setBtnState(btn, 'idle');
+  }
+}
+
 /* ENTWURF Landingpage — Formular am Seitenende (Bild + Box wie der bisherige Abschluss-CTA) */
 function startFormSectionHTML() {
   const loginTabActive = !!loginError || REGISTRATION_QUERY.loginTab || isKnownVisitor();
@@ -1810,7 +1970,27 @@ function startFormSectionHTML() {
 }
 
 /* ENTWURF Landingpage — Reihenfolge: überzeugen (Nutzen, Ablauf, Video, Prämien, Demo, Stimmen, FAQ), dann Formular */
-/* Landingpage: Produktregal wie auf der Shop-Startseite (vetalita.it) — warum Tierhalter die Produkte schätzen */
+/* Landingpage: Produktregal wie auf der Shop-Startseite (vetalita.it) — warum Tierhalter die Produkte schätzen;
+   darunter die Produktkarten (renderProductsTeaser) mit Kategorie und „Alle Produkte“ */
+/* Landingpage — „Natürlich gesund“: Marken-Section wie auf der Shop-Startseite (V1 mit Lottie-Illustration),
+   Text für Tierärzte gekürzt. Steht nach dem Zitat: erst „wer ist Vetalità“, dann „wie funktioniert es“. */
+function startBrandHTML() {
+  return `
+<section class="shopify-section shopify-section--own-measure shopify-section--section-type">
+  <div class="section-type --v1 --reverse --pb portal-start-brand">
+    <div class="section-type__animation">
+      <lottie-player src="https://cdn.shopify.com/s/files/1/0772/9895/8586/files/vetalita_animation_produkt_TA_json.json?v=1761637582" autoplay background="transparent" speed="1" loop></lottie-player>
+    </div>
+    <div class="section-type__content flow">
+      <h2 class="section-type__headline h1">${START_TEXT.brandTitle}</h2>
+      <div class="section-type__bottom flow">
+        <p class="section-type__body">${START_TEXT.brandBody}</p>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
 function startShelfHTML() {
   return `
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type-v3">
@@ -1823,7 +2003,6 @@ function startShelfHTML() {
         <h2 class="section-type__headline">${START_TEXT.shelfTitle}</h2>
         <div class="section-type__bottom flow">
           <p class="section-type__body">${START_TEXT.shelfBody}</p>
-          <div class="btn-row"><button type="button" class="btn --secondary" onclick="goProducts()">${START_TEXT.shelfCta}</button></div>
         </div>
       </div>
     </div>
@@ -1834,13 +2013,15 @@ function startShelfHTML() {
 function startLandingSectionsHTML(how) {
   return `
 ${startProductSpotlightHTML()}
-${how.benefits}
-${startShelfHTML()}
-${how.steps}
+${startTrustHTML()}
+${startBrandHTML()}
 ${how.video}
+${how.steps}
+${startShelfHTML()}
+${renderProductsTeaser()}
+${startSamplesHTML()}
 ${startPremiumsHTML()}
 ${startPreviewHTML()}
-${startTrustHTML()}
 
 ${startFaqHTML()}
 ${startFormSectionHTML()}`;
@@ -2993,6 +3174,10 @@ const PRODUCT_TEXT = {
   related: 'Weitere Produkte',
   socialProof: '2.601.620 zufriedene Tiere und Tierhalter',
   socialAside: 'Zufriedene Kunden',
+  guestTitle: 'Ihr persönlicher Produktlink',
+  guestBody: 'Registrieren Sie sich kostenlos: Mit Ihrem Link sparen Ihre Kunden 5&nbsp;%, und Sie erhalten 20&nbsp;% Provision auf jede Bestellung.',
+  crumbStart: 'Startseite',
+  crumbLabel: 'Pfadnavigation',
 };
 
 /* Kategoriefarbe je Produkt (Styleguide-Tokens --cat-*; Galerie-Karte + Badge wie Staging-PDP) */
@@ -3292,6 +3477,24 @@ function productUrl(p) {
     : `https://vetalita.it/products/${p.handle}`;
 }
 
+/* Öffentliche Ansicht: ohne Konto und außerhalb der Demo. Produktliste und Produktseiten zeigen dann die
+   schlanke Kopfzeile der Startseite (kein Portal-Menü, kein Warenkorb), eine Pfadnavigation (System .breadcrumb)
+   und statt „Produktlink kopieren“ den Weg zur Registrierung. Portal-Menü, Warenkorb und Demo-Link gibt es nur
+   angemeldet oder in der Demo. */
+function isGuestView() {
+  return !accountId && !previewMode;
+}
+
+function guestBreadcrumbHTML(name) {
+  const sep = '<span aria-hidden="true">/</span>';
+  const start = `<span class="breadcrumb__item"><a href="#" onclick="navToPortal(); return false;">${PRODUCT_TEXT.crumbStart}</a></span>`;
+  const all = name
+    ? `<span class="breadcrumb__item"><a href="#" onclick="goProducts(); return false;">${PRODUCT_TEXT.teaserAll}</a></span>`
+    : `<span class="breadcrumb__item" aria-current="page">${PRODUCT_TEXT.teaserAll}</span>`;
+  const current = name ? `${sep}<span class="breadcrumb__item" aria-current="page">${name}</span>` : '';
+  return `<nav class="breadcrumb pdp__breadcrumb" aria-label="${PRODUCT_TEXT.crumbLabel}">${start}${sep}${all}${current}</nav>`;
+}
+
 function goProducts() {
   clearSuccessRedirect();
   closeCart();
@@ -3371,6 +3574,7 @@ function renderProducts() {
   const products = window.VETALITA_PRODUCTS || [];
   return `
     <div class="container --pb">
+      ${isGuestView() ? guestBreadcrumbHTML() : ''}
       <div class="collection-intro flow">
         <h1>${PRODUCT_TEXT.title}</h1>
         <div class="rte"><p>${PRODUCT_TEXT.intro}</p></div>
@@ -3405,8 +3609,30 @@ function renderProductDetail() {
       <button class="accordion-trigger" type="button" aria-expanded="false" onclick="toggleAccordion(this)">${escapeHtml(f.frage)}<svg class="material-icons accordion-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg></button>
       <div class="accordion-content"><div class="accordion-content__inner flow"><p>${escapeHtml(f.antwort)}</p></div></div>
     </div>`;
+  const guest = isGuestView();
+  // Gast: Registrieren als Haupt-Button (Anker der Sticky-Leiste), dazu Muster und Shop; angemeldet/Demo: Link kopieren
+  const actions = guest ? `
+            <div class="notice portal-guest-cta">
+              <div class="flow">
+                <p class="notice__title">${PRODUCT_TEXT.guestTitle}</p>
+                <p>${PRODUCT_TEXT.guestBody}</p>
+              </div>
+            </div>
+            <div class="pdp__actions products-actions">
+              <button type="button" class="btn --primary" onclick="openRegistrationTab()">${START_TEXT.pitchCta}</button>
+              <button type="button" class="btn --secondary" onclick="openSamplesModal()">${START_TEXT.samplesCta}</button>
+              <a class="btn --ghost" href="${escapeHtml(productUrl(p))}" target="_blank" rel="noopener">${PRODUCT_TEXT.shop}</a>
+            </div>` : `
+            <div class="pdp__actions products-actions">
+              <button type="button" class="btn --primary" onclick="copyProductLink(this, '${p.handle}')"><span data-label>${PRODUCT_TEXT.copyLink}</span></button>
+              <a class="btn --ghost" href="${escapeHtml(productUrl(p))}" target="_blank" rel="noopener">${PRODUCT_TEXT.shop}</a>
+            </div>`;
+  const stickyBtn = guest
+    ? `<button type="button" class="btn --primary --sm" onclick="openRegistrationTab()">${START_TEXT.pitchCta}</button>`
+    : `<button type="button" class="btn --primary --sm" onclick="copyProductLink(this, '${p.handle}')"><span data-label>${PRODUCT_TEXT.copyLink}</span></button>`;
   return `
     <div class="container">
+      ${guest ? guestBreadcrumbHTML(escapeHtml(c.name)) : ''}
       <div class="pdp pdp--sticky-gallery pdp--sticky-cta"${cat ? ` data-pdp-cat="${cat}"${catVars.replace(` data-cat="${cat}"`, '')}` : ''}>
         <div class="pdp__gallery${thumbCount < 2 ? ' --single' : ''}">
           ${thumbCount > 1 ? `
@@ -3425,10 +3651,7 @@ function renderProductDetail() {
             <h1 class="pdp__title">${escapeHtml(c.name)}</h1>
             ${socialProofHTML()}
             ${c.einsatz?.length ? `<div class="rte">${list(c.einsatz)}</div>` : ''}
-            <div class="pdp__actions products-actions">
-              <button type="button" class="btn --primary" onclick="copyProductLink(this, '${p.handle}')"><span data-label>${PRODUCT_TEXT.copyLink}</span></button>
-              <a class="btn --ghost" href="${escapeHtml(productUrl(p))}" target="_blank" rel="noopener">${PRODUCT_TEXT.shop}</a>
-            </div>
+            ${actions}
             ${discountCode ? `<p class="form-hint">${PRODUCT_TEXT.linkHint.replace('{code}', `<strong>${escapeHtml(discountCode)}</strong>`)}</p>` : ''}
             <div class="pdp__accordion accordion">
               ${acc(PRODUCT_TEXT.practice, `<div class="rte"><p>${escapeHtml(c.kurz)}</p><p>${escapeHtml(c.fuer_tierarzt)}</p></div>${c.hinweise?.length ? `<h3 class="label-caps">${PRODUCT_TEXT.notes}</h3><div class="rte">${list(c.hinweise)}</div>` : ''}`, 'flow --grouped')}
@@ -3442,7 +3665,7 @@ function renderProductDetail() {
     <!-- Sticky-Leiste (System .pdp__sticky-cta, nur mobil): erscheint, wenn der Kopier-Button aus dem Bild scrollt -->
     <div class="pdp__sticky-cta" aria-hidden="true">
       <div class="pdp__sticky-cta__inner">
-        <button type="button" class="btn --primary --sm" onclick="copyProductLink(this, '${p.handle}')"><span data-label>${PRODUCT_TEXT.copyLink}</span></button>
+        ${stickyBtn}
       </div>
     </div>
 
@@ -3548,7 +3771,7 @@ function renderHow(embedded = false) {
       <h2 class="section-type__headline">Im Mittelpunkt steht Ihre Empfehlung.</h2>
       <div class="section-type__bottom flow">
         <div class="section-type__body rte">
-          <p>Sie kennen Ihre Patienten und wissen, welche Produkte Sie empfehlen möchten. Ihre Kunden bestellen online bei Vetalità und geben dabei Ihre Praxis an. Vetalità versendet direkt nach Hause. Für die Ihnen zugeordneten Bestellungen erhalten Sie eine Provision.</p>
+          <p>Sie kennen Ihre Patienten und wissen, welche Produkte Sie empfehlen möchten. Ihre Kunden bestellen online bei Vetalità und geben dabei Ihre Praxis an. Vetalità versendet direkt nach Hause. Für die Ihnen zugeordneten Bestellungen erhalten Sie 20&nbsp;% Provision.</p>
           <p><strong>So können Sie sich auf die Beratung konzentrieren, statt für jede Empfehlung Produkte auf Lager zu halten.</strong></p>
         </div>
       </div>
@@ -3581,8 +3804,8 @@ function renderHow(embedded = false) {
     <div class="tile-grid --list --cols-4 --process">
       <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person"></use></svg></div><div class="flow"><h3 class="tile__headline">Sie registrieren sich.</h3><p class="tile__body">Melden Sie sich im Provisionsportal für Tierärzte an. Direkt nach der Registrierung werden Ihrem Provisionskonto automatisch 10&nbsp;€ gutgeschrieben.</p>${registered ? '' : `<button type="button" class="btn --primary" onclick="goRegister()">Jetzt registrieren</button>`}</div></div>
       <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-medical_services"></use></svg></div><div class="flow"><h3 class="tile__headline">Sie empfehlen ein Produkt.</h3><p class="tile__body">Sie wählen das passende Vetalità-Produkt für Ihren Patienten und empfehlen es Ihrer Kundin oder Ihrem Kunden.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Kunden bestellen online.</h3><p class="tile__body">Ihre Kunden bestellen auf vetalita.it und geben den Namen Ihrer Praxis oder Ihren Rabattcode an. Vetalità liefert die Bestellung direkt nach Hause.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Empfehlung zahlt sich aus.</h3><p class="tile__body">Für Kunden, die bei der Bestellung Ihre Praxis oder Ihren Rabattcode angeben, erhalten Sie eine Provision. Über das Provisionsportal haben Sie Zugriff auf Ihr Provisionskonto.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-local_shipping"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Kunden bestellen online.</h3><p class="tile__body">Ihre Kunden bestellen auf vetalita.it und geben den Namen Ihrer Praxis oder Ihren Rabattcode an – mit dem Rabattcode sparen sie 5&nbsp;%. Vetalità liefert die Bestellung direkt nach Hause.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Empfehlung zahlt sich aus.</h3><p class="tile__body">Für Kunden, die bei der Bestellung Ihre Praxis oder Ihren Rabattcode angeben, erhalten Sie 20&nbsp;% Provision auf jede Bestellung. Über das Provisionsportal haben Sie Zugriff auf Ihr Provisionskonto.</p></div></div>
     </div>
   </div>
 </section>
@@ -3593,7 +3816,7 @@ function renderHow(embedded = false) {
     <div class="tile-grid --list --cols-4">
       <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-verified"></use></svg></div><div class="flow"><h3 class="tile__headline">Die fachliche Empfehlung bleibt bei Ihnen</h3><p class="tile__body">Sie entscheiden, welches Produkt Sie Ihrem Patienten empfehlen.</p></div></div>
       <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-storefront"></use></svg></div><div class="flow"><h3 class="tile__headline">Kein Lager für Online-Bestellungen</h3><p class="tile__body">Ihre Kunden bestellen online und erhalten die Produkte nach Hause. Sie müssen nichts auf Lager halten.</p></div></div>
-      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-account_balance_wallet"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Empfehlung wird vergütet</h3><p class="tile__body">Geben Ihre Kunden bei der Bestellung Ihre Praxis an, erhalten Sie eine Provision. Nach der Registrierung werden Ihrem Provisionskonto automatisch 10&nbsp;€ gutgeschrieben.</p></div></div>
+      <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-account_balance_wallet"></use></svg></div><div class="flow"><h3 class="tile__headline">Ihre Empfehlung wird vergütet</h3><p class="tile__body">Geben Ihre Kunden bei der Bestellung Ihre Praxis an, erhalten Sie 20&nbsp;% Provision. Nach der Registrierung werden Ihrem Provisionskonto automatisch 10&nbsp;€ gutgeschrieben.</p></div></div>
       <div class="tile"><div class="tile__icon"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-eco"></use></svg></div><div class="flow"><h3 class="tile__headline">Produkte mit tierärztlicher Kompetenz</h3><p class="tile__body">Vetalità bietet pflanzliche, hochdosierte Produkte, die gemeinsam mit Tierärzten entwickelt wurden.</p></div></div>
     </div>
   </div>
@@ -3829,7 +4052,8 @@ function render() {
   };
   document.getElementById('MainContent').innerHTML = (views[currentPage] || renderLogin)();
   // Startseite: ohne Hauptmenü und Warenkorb, Header transparent über dem Hero (CSS body.--portal-start)
-  document.body.classList.toggle('--portal-start', !views[currentPage] || currentPage === 'login');
+  const guestPage = isGuestView() && ['products', 'product'].includes(currentPage);
+  document.body.classList.toggle('--portal-start', !views[currentPage] || currentPage === 'login' || guestPage);
   document.body.classList.toggle('--landing-draft', LANDING_DRAFT);
   document.getElementById('cartDrawer').innerHTML = renderCartDrawer();
   renderPreviewBanner();
