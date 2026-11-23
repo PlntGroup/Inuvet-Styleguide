@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123c">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123d">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -1522,6 +1522,9 @@ const START_TEXT = {
   productTitle: 'Sie haben {produkt} kennengelernt',
   productBody: 'Empfehlen Sie {produkt} Ihren Kunden: Sie bestellen auf vetalita.it, und für jede Bestellung erhalten Sie eine Provision.',
   productCta: 'Produktinfo ansehen',
+  shelfTitle: 'Warum Tierhalter Vetalità schätzen',
+  shelfBody: 'Jede Rezeptur entsteht in enger Zusammenarbeit mit Tierärzten – in der Praxis entwickelt, für die Praxis. Tierhalter schätzen das: Sie bekommen ein Produkt, hinter dem echte klinische Erfahrung steht, bestellen bequem online und erhalten es direkt nach Hause. Und weil die Empfehlung aus Ihrer Praxis kommt, vertrauen sie ihr.',
+  shelfCta: 'Zu den Produkten',
   // Prämien-Streifen
   premiumsTitle: 'Viele Prämien warten auf Sie',
   // Vertrauen — ZITAT, NAME UND FOTO SIND PLATZHALTER: vor Go-live durch ein echtes, schriftlich freigegebenes Zitat ersetzen
@@ -1807,10 +1810,32 @@ function startFormSectionHTML() {
 }
 
 /* ENTWURF Landingpage — Reihenfolge: überzeugen (Nutzen, Ablauf, Video, Prämien, Demo, Stimmen, FAQ), dann Formular */
+/* Landingpage: Produktregal wie auf der Shop-Startseite (vetalita.it) — warum Tierhalter die Produkte schätzen */
+function startShelfHTML() {
+  return `
+<section class="shopify-section shopify-section--own-measure shopify-section--section-type-v3">
+  <div class="section-type --v3 --box-soft --reverse portal-start-shelf">
+    <div class="section-type__image">
+      <picture><img src="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_okpwulokpwulokpw.png?v=1785485169&amp;width=1600" srcset="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_okpwulokpwulokpw.png?v=1785485169&amp;width=900 900w, https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_okpwulokpwulokpw.png?v=1785485169&amp;width=1600 1600w, https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_okpwulokpwulokpw.png?v=1785485169&amp;width=2400 2400w" sizes="100vw" alt="" width="2400" height="1340" loading="lazy"></picture>
+    </div>
+    <div class="section-type__inner">
+      <div class="section-type__content flow">
+        <h2 class="section-type__headline">${START_TEXT.shelfTitle}</h2>
+        <div class="section-type__bottom flow">
+          <p class="section-type__body">${START_TEXT.shelfBody}</p>
+          <div class="btn-row"><button type="button" class="btn --secondary" onclick="goProducts()">${START_TEXT.shelfCta}</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
 function startLandingSectionsHTML(how) {
   return `
 ${startProductSpotlightHTML()}
 ${how.benefits}
+${startShelfHTML()}
 ${how.steps}
 ${how.video}
 ${startPremiumsHTML()}

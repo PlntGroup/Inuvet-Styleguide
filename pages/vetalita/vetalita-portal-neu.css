@@ -888,7 +888,5 @@ body.--portal-start.--landing-draft .site-nav .nav-right > .portal-nav-login { d
 .portal-start-pitch__alt { margin: 0; font-size: var(--text-sm); color: var(--fg-muted); }
 /* Störer weicht beim Tippen im Formular am Seitenende (mobil fest unten links) */
 body:has(.portal-start-form .form-field :is(input, select, textarea):focus) .portal-start-hero .reg-badge.--hero { opacity: 0; transform: scale(0.6) rotate(-12deg); }
-/* Mobil reicht der Platz im Header nur für einen Link: Anmelden bleibt, „Demo ansehen“ steht im Hero */
-@media (max-width: 767px) {
-  body.--portal-start.--landing-draft .site-nav .nav-right > .portal-nav-demo { display: none; }
-}
+/* Landingpage: „Demo ansehen“ steht als Button im Hero — im Header bleibt nur „Anmelden“ */
+body.--portal-start.--landing-draft .site-nav .nav-right > .portal-nav-demo { display: none; }
