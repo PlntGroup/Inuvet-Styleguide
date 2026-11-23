@@ -876,3 +876,16 @@ body:has(.pdp__sticky-cta.--visible) .reg-badge { bottom: calc(var(--module) * 2
   body.--portal-start .portal-lang .nav-item__trigger .material-icons { display: none; }
   body.--portal-start .site-nav .nav-right:has(> .portal-lang) { gap: calc(var(--base) * 0.5); }
 }
+
+/* ── ENTWURF Landingpage (?landing): Vorteile im Hero, Anmelden dezent, Formular am Seitenende ── */
+.portal-nav-login { display: none; }
+body.--portal-start.--landing-draft .site-nav .nav-right > .portal-nav-login { display: flex; }
+.portal-start-pitch__title { margin: 0; font-size: var(--text-l); }
+.portal-start-pitch .btn-row { flex-wrap: wrap; }
+.portal-start-pitch__alt { margin: 0; font-size: var(--text-sm); color: var(--fg-muted); }
+/* Störer weicht beim Tippen im Formular am Seitenende (mobil fest unten links) */
+body:has(.portal-start-form .form-field :is(input, select, textarea):focus) .portal-start-hero .reg-badge.--hero { opacity: 0; transform: scale(0.6) rotate(-12deg); }
+/* Mobil reicht der Platz im Header nur für einen Link: Anmelden bleibt, „Demo ansehen“ steht im Hero */
+@media (max-width: 767px) {
+  body.--portal-start.--landing-draft .site-nav .nav-right > .portal-nav-demo { display: none; }
+}

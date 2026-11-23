@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <!-- Design-System (1:1-Kopie aus dem Styleguide) → Portal-Bausteine → Vetalità-Tokens -->
   <link rel="stylesheet" href="planet-brands.css?v=20261118l">
-  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261122b">
+  <link rel="stylesheet" href="vetalita-portal-neu.css?v=20261123b">
   <link rel="stylesheet" href="brand-vetalita.css?v=20261117zq">
 </head>
 <body id="top">
@@ -94,6 +94,8 @@
     </div>
     <!-- Nur Startseite (body.--portal-start): Einstieg in die Vorschau mit Beispieldaten -->
     <div class="nav-item portal-nav-demo"><a href="#" class="nav-item__trigger" onclick="enterPreview(); return false;"><span class="portal-nav-demo__short">Demo ansehen</span><span class="portal-nav-demo__long">Demo mit Beispieldaten ansehen</span></a></div>
+    <!-- ENTWURF Landingpage: Anmelden dezent im Header (body.--landing-draft) -->
+    <div class="nav-item portal-nav-login"><a href="#" class="nav-item__trigger" onclick="openLoginTab(); return false;">Anmelden</a></div>
     <a href="#" class="badge --pill --free nav-balance" id="navBalance" onclick="goToOverview(); return false;" title="Ihre verfügbare Provision" hidden></a>
     <div class="nav-item --end" id="accountMenu" hidden>
       <button type="button" class="btn --icon" aria-haspopup="true" aria-label="Konto"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-person"></use></svg></button>
@@ -319,6 +321,7 @@ function parseRegistrationQueryParams() {
     bpNumber: portalCustomerNumberFromQuery(bpRaw),
     originAgent: (search.get('a') || '').trim(), // Außendienst (QR-Code/Link)
     originEvent: (search.get('m') || '').trim(), // Messe/Event
+    originProduct: (search.get('p') || '').trim().toLowerCase(), // Muster-Produkt (QR auf Postkarte/Muster)
   };
 }
 
@@ -329,6 +332,16 @@ function portalCustomerNumberFromQuery(value) {
 }
 
 const REGISTRATION_QUERY = parseRegistrationQueryParams();
+
+/* ENTWURF Landingpage (?landing): Hero überzeugt statt Formular, Registrieren/Anmelden am Seitenende.
+   Ohne den Parameter bleibt die bisherige Startseite. Nach Freigabe: Schalter auf true setzen bzw. Altpfad entfernen. */
+const LANDING_DRAFT = new URLSearchParams(window.location.search).has('landing');
+/* Messe-Kürzel (?m=…) → Ort für die Begrüßung; Treffer per Teilstring, z. B. „rimini2026“ */
+const START_EVENT_NAMES = { rimini: 'in Rimini', arezzo: 'in Arezzo' }; // mit Präposition (IT: a/ad)
+const KNOWN_VISITOR_KEY = 'vetalita_portal_known';
+function isKnownVisitor() {
+  try { return localStorage.getItem(KNOWN_VISITOR_KEY) === '1'; } catch (_) { return false; }
+}
 
 function registrationQueryHasPrefill(params = REGISTRATION_QUERY) {
   return !!(params.name || params.email || params.clinic || params.telephone);
@@ -744,6 +757,7 @@ function saveSession() {
       discountCode,
       loginAt: Date.now(),
     }));
+    localStorage.setItem(KNOWN_VISITOR_KEY, '1'); // Startseite zeigt beim nächsten Besuch „Anmelden“ zuerst
   } catch (_) { /* storage unavailable — session lives in memory only */ }
 }
 
@@ -1335,13 +1349,13 @@ async function submitProductRequest() {
 function openRegistrationTab() {
   const tabBtn = document.querySelector('[onclick*="tab-register"]');
   if (tabBtn) switchLoginTab(tabBtn, 'tab-register');
-  document.getElementById('tab-register')?.scrollIntoView({ behavior: 'smooth' });
+  (document.getElementById('start-form') || document.getElementById('tab-register'))?.scrollIntoView({ behavior: 'smooth' });
 }
 
 function openLoginTab() {
   const tabBtn = document.querySelector('[onclick*="tab-login"]');
   if (tabBtn) switchLoginTab(tabBtn, 'tab-login');
-  document.getElementById('tab-login')?.scrollIntoView({ behavior: 'smooth' });
+  (document.getElementById('start-form') || document.getElementById('tab-login'))?.scrollIntoView({ behavior: 'smooth' });
 }
 
 function applyLoginPrefill(params = REGISTRATION_QUERY) {
@@ -1489,6 +1503,25 @@ const START_TEXT = {
   previewBody: 'Sehen Sie sich das Portal mit Beispieldaten an: Ihre Provision, die Auswertung nach Produkten, Monaten und Kunden – und die Prämien.',
   previewCta: 'Demo mit Beispieldaten ansehen',
   previewVideoLabel: 'Video: Rundgang durch das Portal',
+  // ENTWURF Landingpage: Vorteile im Hero statt Formular
+  pitchTitle: 'Vorteile für Tierärzte auf einen Blick',
+  pitchEvent: 'Schön, dass wir uns auf der Messe gesehen haben!',
+  pitchEventIn: 'Schön, dass wir uns {ort} gesehen haben!',
+  pitchWelcome: 'Willkommen zurück!',
+  pitch1: 'Provision für jede Bestellung, die Ihre Kunden auf vetalita.it aufgeben',
+  pitch2: 'Kein Lager, kein Aufwand: Vetalità liefert direkt zu Ihren Kunden nach Hause',
+  pitch3: 'Prämien nach Wahl: Auszahlung, Fortbildung, Produkte oder Spende',
+  pitchCta: 'Kostenlos registrieren',
+  pitchDemo: 'Demo ansehen',
+  pitchLoginHint: 'Schon dabei?',
+  pitchLogin: 'Anmelden',
+  pitchNewHint: 'Neu hier?',
+  pitchRegister: 'Registrieren',
+  formTitle: 'Jetzt registrieren und 10&nbsp;€ Startguthaben sichern',
+  formBody: 'Die Registrierung dauert weniger als eine Minute. Bereits registriert? Dann wählen Sie „Anmelden“.',
+  productTitle: 'Sie haben {produkt} kennengelernt',
+  productBody: 'Empfehlen Sie {produkt} Ihren Kunden: Sie bestellen auf vetalita.it, und für jede Bestellung erhalten Sie eine Provision.',
+  productCta: 'Produktinfo ansehen',
   // Prämien-Streifen
   premiumsTitle: 'Viele Prämien warten auf Sie',
   // Vertrauen — ZITAT, NAME UND FOTO SIND PLATZHALTER: vor Go-live durch ein echtes, schriftlich freigegebenes Zitat ersetzen
@@ -1603,7 +1636,7 @@ function renderLogin() {
         </div>`;
   return `
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type-v3 shopify-section--section-type-v4">
-  <div class="section-type --v3 --box-soft --viewport portal-start-hero${loginTabActive ? '' : ' --register'}">
+  <div class="section-type --v3 --box-soft --viewport portal-start-hero${LANDING_DRAFT || !loginTabActive ? ' --register' : ''}">
     <div class="section-type__image">
       <div class="floating-meta">${startBadge}</div>
       <picture><img src="${START_HERO_IMAGE}" alt="" loading="eager"></picture>
@@ -1625,6 +1658,27 @@ function renderLogin() {
       </div>
       <div class="section-type__content flow">
         <div class="section-type__bottom flow">
+          ${LANDING_DRAFT ? startPitchHTML() : startFormTabsHTML(loginTabActive)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+${LANDING_DRAFT ? startLandingSectionsHTML(how) : `${how.steps}
+${how.video}
+${startPreviewHTML()}
+${how.main}
+${startPremiumsHTML()}
+${startTrustHTML()}
+
+${startFaqHTML()}
+${how.cta}`}`;
+}
+
+/* Registrieren/Anmelden-Reiter — bisher in der Hero-Box, im Entwurf Landingpage am Seitenende (#start-form) */
+function startFormTabsHTML(loginTabActive) {
+  return `
           <div class="tabs">
             <div class="tab-nav">
               <button class="tab-btn${loginTabActive ? '' : ' --active'}" type="button" onclick="switchLoginTab(this, 'tab-register')">Registrieren</button>
@@ -1647,15 +1701,12 @@ function renderLogin() {
           </div>
           <div class="tab-panel${loginTabActive ? '' : ' --active'}" id="tab-register">
             ${renderRegistrationFields('reg')}
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-${how.steps}
-${how.video}
+          </div>`;
+}
+
+/* „Erst einmal umsehen?“ — Portal-Teaser mit Video und Demo-Einstieg */
+function startPreviewHTML() {
+  return `
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type">
   <div class="section-type --v1 --reverse --ratio-16-9 --pb portal-start-preview">
     <div class="section-type__image">
@@ -1674,13 +1725,100 @@ ${how.video}
       </div>
     </div>
   </div>
-</section>
-${how.main}
+</section>`;
+}
+
+/* ENTWURF Landingpage — Hero-Box: Vorteile + Registrieren/Demo, Anmelden dezent darunter.
+   Messe-Kontakt (?m=…): Begrüßung mit Ort · bekannter Besucher oder ?tab=login: „Willkommen zurück“, Anmelden zuerst. */
+function startPitchHTML() {
+  const known = isKnownVisitor() || REGISTRATION_QUERY.loginTab;
+  const ev = REGISTRATION_QUERY.originEvent.toLowerCase();
+  const evKey = ev ? Object.keys(START_EVENT_NAMES).find(k => ev.includes(k)) : null;
+  const title = known ? START_TEXT.pitchWelcome
+    : evKey ? START_TEXT.pitchEventIn.replace('{ort}', START_EVENT_NAMES[evKey])
+    : ev ? START_TEXT.pitchEvent
+    : START_TEXT.pitchTitle;
+  const register = `<button type="button" class="btn --primary" onclick="openRegistrationTab()">${START_TEXT.pitchCta}</button>`;
+  const login = `<button type="button" class="btn --primary" onclick="openLoginTab()">${START_TEXT.pitchLogin}</button>`;
+  return `
+          <div class="portal-start-pitch flow">
+            <h2 class="portal-start-pitch__title">${title}</h2>
+            <ul class="check-list">
+              <li>${START_TEXT.pitch1}</li>
+              <li>${START_TEXT.pitch2}</li>
+              <li>${START_TEXT.pitch3}</li>
+            </ul>
+            <div class="btn-row">
+              ${known ? login : register}
+              <button type="button" class="btn --secondary" onclick="enterPreview()">${START_TEXT.pitchDemo}</button>
+            </div>
+            <p class="portal-start-pitch__alt">${known
+              ? `${START_TEXT.pitchNewHint} <a href="#" onclick="openRegistrationTab(); return false;">${START_TEXT.pitchRegister}</a>`
+              : `${START_TEXT.pitchLoginHint} <a href="#" onclick="openLoginTab(); return false;">${START_TEXT.pitchLogin}</a>`}</p>
+          </div>`;
+}
+
+/* ENTWURF Landingpage — Muster-Produkt (?p=hepax …): passende Produktinfo direkt unter dem Hero */
+function startProductSpotlightHTML() {
+  const key = REGISTRATION_QUERY.originProduct;
+  if (!key) return '';
+  const p = (window.VETALITA_PRODUCTS || []).find(x => x.handle.startsWith(key) || (x.shopTitle || '').toLowerCase().startsWith(key));
+  if (!p) return '';
+  const c = productContent(p);
+  const name = escapeHtml(c.name);
+  return `
+<section class="shopify-section shopify-section--own-measure shopify-section--section-type">
+  <div class="section-type --v1 --pb portal-start-product">
+    <div class="section-type__image">
+      <picture><img src="${escapeHtml(p.image)}&width=1200" alt="${name}" loading="lazy"></picture>
+    </div>
+    <div class="section-type__content flow">
+      <h2 class="section-type__headline">${START_TEXT.productTitle.replace('{produkt}', name)}</h2>
+      <div class="section-type__bottom flow">
+        <p class="section-type__body">${escapeHtml(c.kurz)}</p>
+        <p class="section-type__body">${START_TEXT.productBody.replace('{produkt}', name)}</p>
+        <div class="btn-row"><button type="button" class="btn --secondary" onclick="openProduct('${p.handle}')">${START_TEXT.productCta}</button></div>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
+/* ENTWURF Landingpage — Formular am Seitenende (Bild + Box wie der bisherige Abschluss-CTA) */
+function startFormSectionHTML() {
+  const loginTabActive = !!loginError || REGISTRATION_QUERY.loginTab || isKnownVisitor();
+  return `
+<section class="shopify-section shopify-section--own-measure shopify-section--section-type-v3" id="start-form">
+  <div class="section-type --v3 --box-soft portal-start-form">
+    <div class="section-type__image">
+      <picture><img src="https://vetalita.it/cdn/shop/files/Gemini_Generated_Image_1puqzv1puqzv1puq.jpg?v=1794511895&amp;width=1600" alt="" width="2400" height="1340" loading="lazy"></picture>
+    </div>
+    <div class="section-type__inner">
+      <div class="section-type__content flow">
+        <h2 class="section-type__headline">${START_TEXT.formTitle}</h2>
+        <div class="section-type__bottom flow">
+          <p class="section-type__body">${START_TEXT.formBody}</p>
+          ${startFormTabsHTML(loginTabActive)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
+/* ENTWURF Landingpage — Reihenfolge: überzeugen (Nutzen, Ablauf, Video, Prämien, Demo, Stimmen, FAQ), dann Formular */
+function startLandingSectionsHTML(how) {
+  return `
+${startProductSpotlightHTML()}
+${how.benefits}
+${how.steps}
+${how.video}
 ${startPremiumsHTML()}
+${startPreviewHTML()}
 ${startTrustHTML()}
 
 ${startFaqHTML()}
-${how.cta}`;
+${startFormSectionHTML()}`;
 }
 
 /* Startseite mobil: Pfeil im Foto scrollt die Formular-Box unter den Header (scroll-padding-top des Systems) */
@@ -3376,7 +3514,7 @@ function renderHow(embedded = false) {
   </div>
 </section>
 
-<section class="shopify-section shopify-section--own-measure shopify-section--section-type">
+<section class="shopify-section shopify-section--own-measure shopify-section--section-type how-center">
   <div class="section-type --v1 --ratio-16-9 --reverse --pb --bg-green-light">
     <div class="section-type__image">
       <picture><img src="https://vetalita.it/cdn/shop/files/Vet.png?v=1794512060&amp;width=1600" alt="Im Mittelpunkt steht Ihre Empfehlung." width="2400" height="1350" loading="lazy"></picture>
@@ -3424,7 +3562,7 @@ function renderHow(embedded = false) {
   </div>
 </section>
 
-<section class="shopify-section shopify-section--own-measure shopify-section--content-tiles">
+<section class="shopify-section shopify-section--own-measure shopify-section--content-tiles how-benefits">
   <div class="container --pb --bg-green-light">
     <div class="section-header"><div class="section-label-row --headline"><h2 class="section-headline">Gute Beratung, einfachere Organisation.</h2></div></div>
     <div class="tile-grid --list --cols-4">
@@ -3462,7 +3600,8 @@ ${renderProductsTeaser()}
     const steps = parts.find(x => x.includes('how-steps')) || '';
     const video = parts.find(x => x.includes('how-video')) || ''; // „So funktioniert Vetalità“ steht vor „Erst einmal umsehen?“
     const rest = parts.filter(x => !/how-hero|how-steps|how-video|shopify-section--featured-collection/.test(x)).join('');
-    return { steps, video, main: rest.replace(/<(\/?)h1\b/g, '<$1h2'), cta };
+    const benefits = parts.find(x => x.includes('how-benefits')) || ''; // Entwurf Landingpage: direkt unter dem Hero
+    return { steps, video, benefits, main: rest.replace(/<(\/?)h1\b/g, '<$1h2'), cta };
   }
   return main + cta;
 }
@@ -3666,6 +3805,7 @@ function render() {
   document.getElementById('MainContent').innerHTML = (views[currentPage] || renderLogin)();
   // Startseite: ohne Hauptmenü und Warenkorb, Header transparent über dem Hero (CSS body.--portal-start)
   document.body.classList.toggle('--portal-start', !views[currentPage] || currentPage === 'login');
+  document.body.classList.toggle('--landing-draft', LANDING_DRAFT);
   document.getElementById('cartDrawer').innerHTML = renderCartDrawer();
   renderPreviewBanner();
   const loggedOut = previewMode || !accountId;
@@ -3693,6 +3833,8 @@ function render() {
   });
   if (currentPage === 'how') requestAnimationFrame(() => { initMediaVideo(document.getElementById('MainContent')); initScrollAnimations(); });
   if (currentPage === 'login') requestAnimationFrame(() => initMediaVideo(document.getElementById('MainContent')));
+  // Entwurf Landingpage: nach einem Anmeldefehler zum Formular am Seitenende
+  if (currentPage === 'login' && LANDING_DRAFT && loginError) requestAnimationFrame(() => document.getElementById('start-form')?.scrollIntoView());
   if (currentPage === 'product') requestAnimationFrame(() => { initPdpSlide(); initPdpStickyCta(); });
   else initPdpStickyCta();
   if (currentPage === 'products') requestAnimationFrame(initScrollAnimations);
