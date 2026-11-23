@@ -562,7 +562,7 @@ var SG_LOGOS_WHITE = {
 };
 var SG_LOGOS_PHOTO = {
   inuvet: 'assets/brands/inuvet/inuvet-logo-weiss.svg',
-  campus: 'assets/brands/campus/campus-logo-white.svg',
+  campus: 'assets/brands/campus/campus-logo.svg', /* Kreis grenzt sich selbst ab: farbig */
   planimol: 'assets/brands/planimol/planimol-mark-white.svg',
   manukalind: 'assets/brands/manukalind/manukalind-mark-white.svg'
 };
