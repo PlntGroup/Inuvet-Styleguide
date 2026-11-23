@@ -1603,7 +1603,7 @@ function renderLogin() {
         </div>`;
   return `
 <section class="shopify-section shopify-section--own-measure shopify-section--section-type-v3 shopify-section--section-type-v4">
-  <div class="section-type --v3 --box-soft --viewport portal-start-hero">
+  <div class="section-type --v3 --box-soft --viewport portal-start-hero${loginTabActive ? '' : ' --register'}">
     <div class="section-type__image">
       <div class="floating-meta">${startBadge}</div>
       <picture><img src="${START_HERO_IMAGE}" alt="" loading="eager"></picture>
