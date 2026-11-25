@@ -424,7 +424,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | D.5 | Testimonials | `.testimonial-grid .testimonial-slider` | — |
 | D.6 | Marquee | `.marquee` | — |
 | D.7 | Newsletter | `.newsletter` | — |
-| D.9 | Story-Leiste | `.story-iconslider` (Shopify: `story-bar`) | `__track` · `__item` · `__media` · `__label` · `--flush` · `--new` |
+| D.9 | Story-Leiste | `.story-iconslider` (Shopify: `story-bar`) | `__track` · `__item` · `__media` · `__label` · `--flush` · `--new` · `--center` · `--lg` · `--wrap` |
 
 #### E — Seiten-Vorlagen
 | Sek. | Komponente | Klasse(n) |

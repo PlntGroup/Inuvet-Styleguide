@@ -5410,12 +5410,14 @@
         <div class="rule"><h4>Scroll</h4><p>Native Horizontal-Scroll (Touch + Trackpad). Scrollbar ausgeblendet (wie <code>.tab-nav</code>). Kein JS nötig — kein Marquee, kein <code>initSliders</code>.</p></div>
         <div class="rule"><h4>Bleed &amp; Fade</h4><p><strong>Nur rechts:</strong> unter Container <code>margin-inline-end: calc(var(--margin) * -1)</code> + <code>padding-inline-end: var(--margin)</code> — links bündig zur Content-Kante. <strong>Fade-Mask rechts:</strong> <code>mask-image</code> linear-gradient, Breite <code>--story-fade</code> (= <code>--half-module</code>).</p></div>
         <div class="rule"><h4>Restlinie (Desktop)</h4><p>Wenige Stories: <code>__track::after</code> füllt die freie Breite mit <code>1px solid var(--border-light)</code> auf Kreismitte. Bei vollem/overflowendem Track schrumpft die Linie auf 0. Mobil: keine Linie.</p></div>
+        <div class="rule"><h4>Raster (Mobil)</h4><p><code>.--wrap</code>: unter 768 px Zeilen statt Wischen (<code>flex-wrap</code>, zentriert, Zeilenabstand <code>--half-module</code>) · Kreis <code>5 × --base</code>, damit drei nebeneinander passen · kein Bleed/Fade. Für wenige Stories (bis ca. 6), z. B. Themen-Einstieg auf der Startseite. Desktop unverändert. Shopify: Checkbox <code>wrap_mobile</code>.</p></div>
         <div class="rule"><h4>Zentriert (Desktop)</h4><p><code>.--center</code>: <code>justify-content: safe center</code> · Restlinien beidseitig (<code>::before</code> + <code>::after</code>) · kein Rechts-Bleed/Fade. Bei Overflow fällt <code>safe</code> auf links zurück. Mobil: unverändert linksbündig. Shopify: Checkbox <code>center</code>.</p></div>
       </div>
 
       <table class="spec-table">
         <tr><th><code>.story-iconslider</code></th><td>Wrapper · <code>--story-size: calc(var(--base) * 5)</code> · Default Margin <code>--half-module</code> (Mid-Page)</td></tr>
         <tr><th><code>.--flush</code></th><td>Kein Extra-Margin am Slider · Section-Padding bleibt beim Container (<code>--pt-0</code> / <code>--pb</code>)</td></tr>
+        <tr><th><code>.--wrap</code></th><td>Mobil Raster statt Wischen · Kreis <code>5 × --base</code> · zentrierte Zeilen · Shopify <code>wrap_mobile</code></td></tr>
         <tr><th><code>.--center</code></th><td>Desktop zentriert · beidseitige Restlinien · kein Bleed/Fade · Shopify <code>center</code></td></tr>
         <tr><th><code>.story-iconslider__track</code></th><td>Flex-Zeile, Gap <code>--half-module</code>, <code>scroll-snap-type: x mandatory</code> · Edge-Bleed <strong>nur rechts</strong> (ohne <code>.--center</code>) · Fade-Mask rechts · Desktop: Restlinie(n)</td></tr>
         <tr><th><code>.story-iconslider__item</code></th><td>Spalte Media + Label · <code>scroll-snap-align: start</code> · Modifier <code>.--new</code> → Action-Ring + weißer Gap</td></tr>
@@ -5476,6 +5478,20 @@
         </div>
       </div>
       <p class="sg-caption">Horizontal scrollen · Bleed + Fade nur rechts · Default = dünner <code>--border-light</code>-Ring · <code>.--new</code> = Action-Ring + weißer Gap · Cat-Kreise ohne Bild via <code>data-cat</code>.</p>
+
+      <h3 class="sg-h3 --top">Demo <code>.--wrap</code> (Fenster unter 768 px)</h3>
+      <div class="sg-demo --white">
+        <div class="story-iconslider --lg --center --wrap" aria-label="Stories Demo Raster">
+          <div class="story-iconslider__track" role="list">
+            <a class="story-iconslider__item" href="#D9" role="listitem"><span class="story-iconslider__media" data-cat="gelenke"></span><span class="story-iconslider__label">Gelenke</span></a>
+            <a class="story-iconslider__item" href="#D9" role="listitem"><span class="story-iconslider__media" data-cat="magendarm"></span><span class="story-iconslider__label">Magen</span></a>
+            <a class="story-iconslider__item" href="#D9" role="listitem"><span class="story-iconslider__media" data-cat="immun"></span><span class="story-iconslider__label">Darm</span></a>
+            <a class="story-iconslider__item" href="#D9" role="listitem"><span class="story-iconslider__media" data-cat="haut"></span><span class="story-iconslider__label">Haut und Fell</span></a>
+            <a class="story-iconslider__item" href="#D9" role="listitem"><span class="story-iconslider__media" data-cat="stress"></span><span class="story-iconslider__label">Innere Ruhe</span></a>
+          </div>
+        </div>
+      </div>
+      <p class="sg-caption">Mobil: drei Kreise pro Zeile, Rest zentriert darunter · Desktop: wie <code>.--center</code>.</p>
     </section>
 
 

@@ -4881,6 +4881,23 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   /* Größe groß (--lg): Inhalts-Section statt Reihe unter der Nav. */
   .story-iconslider.--lg { --story-size: calc(var(--base) * 6.5); }
   .story-iconslider.--lg .story-iconslider__label { font-size: var(--text-sm); }
+  /* Mobil im Raster (--wrap): alle Stories auf einen Blick statt Wischen, Zeilen zentriert.
+     Kreis mobil 5 × --base, damit drei nebeneinander passen. Desktop unverändert. */
+  @media (max-width: 767px) {
+    .story-iconslider.--wrap { --story-size: calc(var(--base) * 5); }
+    .story-iconslider.--wrap .story-iconslider__track {
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: var(--half-module);
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .container .story-iconslider.--wrap .story-iconslider__track {
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+  }
   .story-iconslider__media[data-cat] { background: var(--cat, var(--accent-bg)); }
   .story-iconslider__media[data-cat="stress"]    { background: var(--cat-stress); }
   .story-iconslider__media[data-cat="leber"]         { background: var(--cat-leber); }
