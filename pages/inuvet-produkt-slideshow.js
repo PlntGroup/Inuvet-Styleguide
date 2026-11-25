@@ -6,9 +6,13 @@
    Brand scenes use Lottie animations (lottie-web, svg renderer).
    URL params: ?cat=stress,blase (filter, hides brand scenes) · ?start=hepax-produktfamilie
                ?speed=1.5 · ?brand=0 (products only)
+               ?products=manukalind-produktfamilie,ibedex – fixed selection and order (or <body data-products>,
+               see Inuvet-Produkt-Slideshow-Big6.html)
                ?edition=inhaltsstoffe – version with ingredient scenes and practice dividers
                (also set by <body data-edition="inhaltsstoffe">, see Inuvet-Produkt-Slideshow-Inhaltsstoffe.html;
                single switches: ?ingredients=1 · ?dividers=1 · ?forms=photo)
+               Language: German texts from the data file; with inuvet-produkt-slideshow-fr.js loaded
+               (window.SLIDESHOW_I18N, see Inuvet-Produkt-Slideshow-Inhaltsstoffe-FR.html) all texts are replaced
                Dosage-form videos play once: the scene lasts exactly as long as the video (no loop)
                ?render=1 – frame-by-frame mode for the MP4 export (inuvet-produkt-slideshow-export.mjs):
                virtual clock, all CSS animations / videos / Lotties are seeked per frame, ends after fade-to-white
@@ -20,6 +24,8 @@
   const params = new URLSearchParams(location.search);
   const speed = Math.max(0.25, parseFloat(params.get('speed')) || 1);
   const catFilter = (params.get('cat') || '').split(',').filter(Boolean);
+  // Produktauswahl in fester Reihenfolge (z. B. Big 6): ?products=handle,handle oder <body data-products="…">
+  const pickHandles = (params.get('products') || document.body.dataset.products || '').split(',').map((h) => h.trim()).filter(Boolean);
   const withBrand = !catFilter.length && params.get('brand') !== '0';
   // Fassungen: Standard · „inhaltsstoffe“ = zusätzlich Inhaltsstoffe und Praxis-Trenner (URL-Parameter oder <body data-edition>)
   const edition = params.get('edition') || document.body.dataset.edition || '';
@@ -83,16 +89,16 @@
   const LOTTIE = '../assets/brands/inuvet/lotties/';
   const BRAND = {
     hero: {
-      label: 'Inuvet',
+      label: 'inuvet',
       lottie: 'Inuvet_Alena_Animation_Produkt-Tierarzt_5x4.json',
       headline: 'Natürlich gesunde Tiere',
       body: 'Tierärztlich entwickelte Nahrungsergänzung mit pflanzlichen Inhaltsstoffen — für Hunde, Katzen und Kleintiere. Entdecke Produkte, die auf den Geschmack deines Tieres optimiert sind.',
     },
     benefits: {
-      label: 'Darum Inuvet',
+      label: 'Darum inuvet',
       variant: 'icons',
       items: [
-        { lottie: 'Inuvet_Icon_Animation_Tierarztpraxis_1x1.json', title: 'Beste Expertise', text: 'Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis' },
+        { lottie: 'Inuvet_Icon_Animation_Tierarztpraxis_1x1.json', title: 'Beste Expertise', text: 'inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis' },
         { lottie: 'Inuvet_Icon_Animation_Pfoten_1x1.json', title: 'Für die Langzeitgabe', text: 'Mit natürlichen Inhaltsstoffen, die deinem Tier gut tun' },
         { lottie: 'Inuvet_Icon_Animation_Schild_1x1.json', title: 'Immer gut unterstützt', text: 'Mit Produkten, die auf den Geschmack der Patienten optimiert sind.' },
       ],
@@ -102,16 +108,64 @@
       variant: 'illus',
       items: [
         { lottie: 'Inuvet_Alena_Animation_Inhaltsstoffe_1x1.json', title: 'Grüne Pfoten', text: 'Verpackungen mit 85 % Recyclingpapier, kurze Lieferketten und natürliche Inhaltsstoffe.' },
-        { lottie: 'Inuvet_Alena_Animation_Tierarzt-Katze-Produkt_1x1.json', title: 'Nur bei euch', text: 'Inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!' },
+        { lottie: 'Inuvet_Alena_Animation_Tierarzt-Katze-Produkt_1x1.json', title: 'Nur bei euch', text: 'inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!' },
         { lottie: 'Inuvet_Alena_Animation_Weltweit_1x1.json', title: 'Verträglich, beliebt und hoch konzentriert', text: 'Studienbasierte Phytotherapie. Bei über 20.000 Tierärzt*innen im Einsatz.' },
       ],
     },
   };
-  // Marken-Szenen tragen ein Pseudo-Produkt (Kategorie „brand“ = Inuvet-Grün)
+  /* ─── Sprache: Übersetzungsdatei (z. B. inuvet-produkt-slideshow-fr.js) ersetzt die deutschen Texte ─── */
+  const I18N = window.SLIDESHOW_I18N || null;
+  const UI = Object.assign({
+    ingredients: 'Inhaltsstoffe (Auszug)',
+    empty: 'Keine Produkte gefunden.',
+    pause: 'Pause',
+    resume: 'Fortsetzen',
+    divider: 'Über 20.000 Tierarztpraxen arbeiten mit inuvet',
+  }, I18N ? I18N.ui : {});
+  if (I18N) {
+    const missing = new Set();
+    const pick = (map, de) => {
+      if (!de) return de;
+      if (map && map[de] != null) return map[de];
+      missing.add(de);
+      return de;
+    };
+    Object.entries(I18N.brand || {}).forEach(([key, t]) => {
+      const b = BRAND[key];
+      if (!b) return;
+      Object.assign(b, { ...t, items: b.items });
+      (t.items || []).forEach((it, i) => { if (b.items && b.items[i]) Object.assign(b.items[i], it); });
+    });
+    window.SLIDESHOW_PRODUCTS = (window.SLIDESHOW_PRODUCTS || []).map((p) => {
+      const t = (I18N.products || {})[p.handle] || {};
+      if (!t.title) missing.add(p.handle);
+      return {
+        ...p,
+        title: t.title || p.title,
+        short: t.short || p.short,
+        category: pick(I18N.categories, p.category),
+        forms: p.forms.map((f) => ({ ...f, name: pick(I18N.forms, f.name), caption: pick(I18N.captions, f.caption) })),
+        ingredients: (p.ingredients || []).map((ing) => {
+          const it = (I18N.ingredients || {})[ing.name];
+          if (!it) missing.add(ing.name);
+          const latin = (I18N.latin || {})[ing.latin] || ing.latin;
+          return { ...ing, ...(it || {}), latin };
+        }),
+      };
+    });
+    if (missing.size) console.warn(`Slideshow (${I18N.lang}): ohne Übersetzung`, [...missing]);
+  }
+
+  // Marken-Szenen tragen ein Pseudo-Produkt (Kategorie „brand“ = inuvet-Grün)
   const brandP = (key, label) => ({ handle: `inuvet-${key}`, cat: 'brand', category: label, title: '', forms: [] });
 
-  const products = (window.SLIDESHOW_PRODUCTS || [])
-    .filter((p) => !catFilter.length || catFilter.includes(p.cat));
+  const allProducts = window.SLIDESHOW_PRODUCTS || [];
+  const products = pickHandles.length
+    ? pickHandles.map((h) => allProducts.find((p) => p.handle === h)).filter(Boolean)
+    : allProducts.filter((p) => !catFilter.length || catFilter.includes(p.cat));
+  if (pickHandles.length && products.length !== pickHandles.length) {
+    console.warn('Slideshow: unbekannte Produkt-Handles', pickHandles.filter((h) => !allProducts.some((p) => p.handle === h)));
+  }
 
   const scenes = [];
   if (withBrand) {
@@ -141,7 +195,7 @@
     { file: 'Praxis_Behandlung-Maske_image00005.jpg', pos: 'center 30%' },
     { file: 'Praxis_Empfang-Schreibtisch_image00018.jpg', pos: 'center 40%' },
   ];
-  const DIVIDER_TEXT = 'Über 20.000 Tierarztpraxen arbeiten mit Inuvet';
+  const DIVIDER_TEXT = UI.divider;
   let dividerCount = 0;
   products.forEach((p, pi) => {
     const withIng = OPT.ingredients && (p.ingredients || []).length > 0;
@@ -174,7 +228,7 @@
   const btnPause = $('[data-action="pause"]');
 
   if (!scenes.length) {
-    sceneHost.textContent = 'Keine Produkte gefunden.';
+    sceneHost.textContent = UI.empty;
     return;
   }
 
@@ -360,7 +414,7 @@
     const scene = el('section', 'show__scene --ingredients');
     scene.dataset.cat = p.cat;
     const head = el('div', 'show__ing-head flow');
-    head.append(rise(el('p', 'label-caps show__eyebrow', 'Inhaltsstoffe (Auszug)'), 0));
+    head.append(rise(el('p', 'label-caps show__eyebrow', UI.ingredients), 0));
     head.append(rise(el('h2', 'show__name --sub', p.title), 1));
     const list = el('div', 'show__ing-list');
     const shown = p.ingredients.slice(0, 4);
@@ -621,7 +675,7 @@
   function setPaused(state) {
     paused = state;
     body.classList.toggle('--paused', paused);
-    btnPause.textContent = paused ? 'Fortsetzen' : 'Pause';
+    btnPause.textContent = paused ? UI.resume : UI.pause;
     if (paused) {
       clock.clearTimeout(timer);
       remaining -= clock.now() - startedAt;

@@ -21,7 +21,7 @@
 [data-cat="hormone"]       { --cat: var(--cat-hormone);       --cat-light: var(--cat-hormone-light); }
 [data-cat="ohren"]         { --cat: var(--cat-ohren);         --cat-light: var(--cat-ohren-light); }
 [data-cat="cbd"]           { --cat: var(--cat-cbd);           --cat-light: var(--cat-cbd-light); }
-/* Marken-Szenen (Intro, Hero, Vorteile, Praxis): Inuvet-Grün */
+/* Marken-Szenen (Intro, Hero, Vorteile, Praxis): inuvet-Grün */
 [data-cat="brand"]         { --cat: var(--green);             --cat-light: var(--green-light); }
 
 /* ─── Bühne ─── */
@@ -400,6 +400,11 @@
   font-weight: 700;
   line-height: var(--lh-h1);
   letter-spacing: -0.02em;
+}
+/* Französisch ist länger: breiter und ausgeglichen umbrechen, damit es bei zwei Zeilen bleibt */
+:lang(fr) .show__divider-text {
+  max-width: calc(var(--base) * 100);
+  text-wrap: balance;
 }
 
 /* Lottie-Fläche: SVG füllt den Container, Seitenverhältnis bleibt (meet) */

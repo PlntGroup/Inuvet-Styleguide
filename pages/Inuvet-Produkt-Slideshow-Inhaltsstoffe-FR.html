@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inuvet – Diaporama produits (français)</title>
+  <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
+  <link rel="stylesheet" href="../planet-brands.css?v=245">
+  <link rel="stylesheet" href="inuvet-produkt-slideshow.css?v=15">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_svg.min.js" defer></script>
+  <script src="inuvet-produkt-slideshow-data.js?v=9" defer></script>
+  <script src="inuvet-produkt-slideshow-fr.js?v=1" defer></script>
+  <script src="inuvet-produkt-slideshow-lotties.js?v=1" defer></script>
+  <script src="inuvet-produkt-slideshow.js?v=20" defer></script>
+</head>
+<body class="show" data-edition="inhaltsstoffe">
+  <main class="show__viewport">
+    <div class="show__stage" data-cat="leber">
+      <header class="show__bar">
+        <img class="show__logo" src="../assets/brands/inuvet/inuvet-logo.svg" alt="inuvet">
+        <div class="show__bar-cat" data-bar="cat" hidden>
+          <span class="show__swap" data-bar="cat-label"></span>
+        </div>
+        <div class="show__bar-product show__swap" data-bar="product"></div>
+        <div class="show__steps" data-bar="steps"></div>
+        <div class="show__counter" data-bar="counter"></div>
+        <div class="show__progress"><span class="show__progress-fill"></span></div>
+      </header>
+      <div class="show__scenes" aria-live="polite"></div>
+      <div class="show__curtain" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <nav class="show__controls" aria-label="Commandes du diaporama">
+    <button class="btn --secondary" type="button" data-action="prev">Retour</button>
+    <button class="btn --secondary" type="button" data-action="pause">Pause</button>
+    <button class="btn --secondary" type="button" data-action="next">Suivant</button>
+    <button class="btn --primary" type="button" data-action="fullscreen">Plein écran (F)</button>
+  </nav>
+</body>
+</html>

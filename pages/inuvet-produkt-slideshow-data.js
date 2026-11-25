@@ -1,4 +1,4 @@
-/* inuvet-produkt-slideshow-data.js — Snapshot der Shop-Daten (Inuvet-Store, Admin API).
+/* inuvet-produkt-slideshow-data.js — Snapshot der Shop-Daten (inuvet-Store, Admin API).
  * Stand: 2026-11-19. Quelle je Feld:
  *   title = Produkttitel · category = custom.kategorie · cat = Kategorie-Collection (Handle = Farb-Token)
  *   short = custom.short_description (Fallback custom.kurzbeschreibung) · packshot = Hauptbild
