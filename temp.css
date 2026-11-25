@@ -18,3 +18,7 @@
 .modal__toolbar > .search-page__form { margin-bottom: 0; }
 .modal__toolbar .search-panel__bar { padding-block: calc(var(--base) * 0.5); }
 .modal.--list .modal__footer { padding-block: var(--half-module); border-top: 1px solid var(--border); }   /* oben = unten, wie .cart-drawer__footer */
+/* Fehler-Hinweis (z. B. „Bestellung fehlgeschlagen“): .notice in Error-Tönen — analog .badge.--error */
+.notice.--error { background: var(--color-error-light); }
+.notice.--error .notice__icon,
+.notice.--error p { color: var(--color-error); }

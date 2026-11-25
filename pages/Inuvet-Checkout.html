@@ -7,7 +7,7 @@
   <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten, Guthaben, Vormerkung, Rabattcodes und Danke-Seite. Zustände über die Mockup-Leiste.">
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link rel="stylesheet" href="../planet-brands.css?v=244">
-  <link rel="stylesheet" href="../temp.css?v=8">
+  <link rel="stylesheet" href="../temp.css?v=9">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
@@ -90,7 +90,7 @@
         </div>
 
         <aside class="checkout__sidebar">
-          <h2 class="section-label">Deine Bestellung</h2>
+          <h2 class="section-label"><span data-hide="reserve-only">Deine Bestellung</span><span data-show="reserve-only" hidden>Vorgemerkte Produkte</span></h2>
 
           <!-- Bezahlte Positionen (entfallen, wenn nur vorgemerkt wird) -->
           <div data-hide="reserve-only">
@@ -167,7 +167,7 @@
 
           <!-- Vorgemerkte Produkte (regulatorisch gesperrt): nicht berechnet, nicht geliefert -->
           <div data-show="reserve reserve-only" hidden>
-            <h3 class="section-label --sub mt-1">Vorgemerkte Produkte</h3>
+            <h3 class="section-label --sub mt-1" data-hide="reserve-only">Vorgemerkte Produkte</h3>
             <div class="cart-item">
               <div class="product-thumb">
                 <img src="../assets/brands/inuvet/images/Inuvet_Cortisan_Oel-Komplex_Packshot_COL.jpg" alt="Cortisan Öl-Komplex">
@@ -363,7 +363,10 @@
             <span data-show="reserve-only" hidden>Jetzt vormerken</span>
           </button>
           <div data-show="error" hidden>
-            <p class="form-field__error" role="alert">Ups, da ging was schief. Bitte versuch es noch einmal.</p>
+            <div class="notice --compact --error mt-half" role="alert">
+              <svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-error_outline"></use></svg>
+              <p>Ups, da ging was schief. Bitte versuch es noch einmal.</p>
+            </div>
           </div>
         </aside>
 
@@ -483,7 +486,7 @@
     </div>
     <div class="modal__body flow">
       <p>Deine Bewertung hilft anderen Praxen bei der Auswahl.</p>
-      <div class="placeholder-bg"><p>Hier lädt das Bewertungsformular von reviews.io (iFrame).</p></div>
+      <div class="tile__image --landscape placeholder-bg" role="img" aria-label="Hier lädt das Bewertungsformular von reviews.io (iFrame)"></div>
     </div>
   </div>
 </div>
