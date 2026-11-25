@@ -1,4 +1,4 @@
-# Rules — Inuvet Styleguide
+# Rules — inuvet Styleguide
 
 Verbindliche Arbeitsregeln für den Styleguide und `planet-brands`. Spec: [`Spec.md`](./Spec.md). Live: GitHub Pages von `main`.
 
@@ -18,7 +18,7 @@ Deutsch für Commits, Doku und Kommunikation. Dateiköpfe in `planet-brands.*`, 
 
 ## Schichten
 
-1. **System** — `planet-brands.css` / `planet-brands.js` (Inuvet-`:root`). Lebt hier. Themes übernehmen `planet-brands.css` 1:1 und bearbeiten sie nicht. `planet-brands.js` nicht kopieren: im Theme ist es ein eigenes Bundle mit Shop-Logik, übernommen werden nur `[PORTABEL → Theme]`-Blöcke (`Themes.md` §1).
+1. **System** — `planet-brands.css` / `planet-brands.js` (inuvet-`:root`). Lebt hier. Themes übernehmen `planet-brands.css` 1:1 und bearbeiten sie nicht. `planet-brands.js` nicht kopieren: im Theme ist es ein eigenes Bundle mit Shop-Logik, übernommen werden nur `[PORTABEL → Theme]`-Blöcke (`Themes.md` §1).
 2. **Haut** — `brand-{handle}.css`: nur Tokens (Farben, Schrift). Nie Tokens in `planet-brands.css` für eine neue Marke.
 3. **Theme-Erweiterungen** — `theme-extras.css`, nur im jeweiligen Theme-Repo, nicht im Guide: markenspezifische Bausteine, die bewusst nicht ins System gehören (z. B. Galerie-Karten, Reviews.io). Nur Tokens und Basis-Styles. Was generisch ist, kommt hierher ins System.
 4. **Kühlschrank** — Store-Inhalte. Dateinamen nicht umbenennen.
@@ -34,7 +34,7 @@ Shopify-`assets/` ist flach. Dateiname = Theme-Asset.
 - `assets/planet/` — markenübergreifend (Material-UI, Social)
 - `assets/brands/{handle}/` — Logo, `icons/`, `lotties/`, `images/`
 
-`Inuvet_Icon_*`: Inuvet + Campus (gleiche Akzentfarbe). `Icon_Tier_*`, Lotties, Bilder: Inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner.
+`Inuvet_Icon_*`: inuvet + Campus (gleiche Akzentfarbe). `Icon_Tier_*`, Lotties, Bilder: inuvet. Planimol, ManukaLind, Byox, EQX: eigener Ordner.
 
 ## Creatives (Anzeigen, Social, Karussells)
 

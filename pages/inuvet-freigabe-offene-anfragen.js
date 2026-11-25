@@ -369,7 +369,7 @@ function approvalSizeLine(row, parsed) {
 
 function b1DeclinedHintHtml(hasDeclined) {
   return hasDeclined
-    ? '<p>Sprich gerne noch einmal mit deiner Praxis. Vielleicht passt ein anderes Inuvet-Produkt besser.</p>'
+    ? '<p>Sprich gerne noch einmal mit deiner Praxis. Vielleicht passt ein anderes inuvet-Produkt besser.</p>'
     : '';
 }
 

@@ -70,36 +70,36 @@
 
   var DISCLAIMER_DE =
     'Nur in eurer Tierarztpraxis\n\n'
-    + 'Googelt doch mal! Ihr findet im Internet wirklich alles – außer Inuvet-Produkte zum Kauf. '
+    + 'Googelt doch mal! Ihr findet im Internet wirklich alles – außer inuvet-Produkte zum Kauf. '
     + 'Das bedeutet, ihr beratet eure Kund*innen nicht umsonst: Der Vertrieb unserer Produkte läuft ausschließlich über eure Praxis.';
 
   var DISCLAIMER_FR =
     'Uniquement en vente chez vous.\n\n'
-    + 'Allez voir sur Google! Sur internet, on peut vraiment tout acheter… sauf les produits Inuvet. '
+    + 'Allez voir sur Google! Sur internet, on peut vraiment tout acheter… sauf les produits inuvet. '
     + 'Ainsi, vous ne conseillez pas vos clients gratuitement car nos produits sont exclusivement distribués '
     + 'par l’intermédiaire des cabinets vétérinaires – vos clients ne les trouveront nulle part ailleurs.';
 
   var DISCLAIMER_IT =
     'Solo nel vostro ambulatorio veterinario.\n\n'
-    + 'Provate a cercare su Google! Su internet trovate qualsiasi cosa, ma non i prodotti Inuvet in vendita. '
+    + 'Provate a cercare su Google! Su internet trovate qualsiasi cosa, ma non i prodotti inuvet in vendita. '
     + 'Ciò significa che non fornirete consulenza ai vostri clienti per niente: la distribuzione dei nostri prodotti '
     + 'passerà esclusivamente attraverso il vostro ambulatorio.';
 
   var DISCLAIMER_ES =
     'Solo disponible en clínicas veterinarias\n\n'
-    + '¡Busca en Google! Realmente en Internet se puede encontrar y comprar de todo – excepto los productos de Inuvet. '
+    + '¡Busca en Google! Realmente en Internet se puede encontrar y comprar de todo – excepto los productos de inuvet. '
     + 'Esto significa, que no asesoras a tus clientes en vano: la distribución de nuestros productos se realiza '
     + 'exclusivamente a través de tu consulta.';
 
   var DISCLAIMER_NL =
     'Alleen verkrijgbaar bij je dierenarts\n\n'
-    + 'Google maar eens! Je kunt werkelijk alles op het internet kopen – behalve Inuvet producten. '
+    + 'Google maar eens! Je kunt werkelijk alles op het internet kopen – behalve inuvet producten. '
     + 'Je adviseert je klanten dus niet zomaar, want onze producten zijn uitsluitend te koop bij dierenartspraktijken.';
 
   var DISCLAIMER_EN =
     'Only available at your veterinary practice\n\n'
     + 'Go ahead and google: you will find all kinds of products on the Internet; but you definitely will not come '
-    + 'across any Inuvet products for sale. To ensure that your hard work is not in vain, these are sold '
+    + 'across any inuvet products for sale. To ensure that your hard work is not in vain, these are sold '
     + 'exclusively through your practice.';
 
   var UI = {
@@ -110,7 +110,7 @@
       crosslinkTemplates: 'Zu den System-E-Mail-Vorlagen',
       localeLabel: 'Land / Sprache',
       sectionBrand: 'Marke',
-      brandHint: 'In Italien heißt Inuvet aus rechtlichen Gründen Vetalità — Logo, Firma und Website passen sich an.',
+      brandHint: 'In Italien heißt inuvet aus rechtlichen Gründen Vetalità — Logo, Firma und Website passen sich an.',
       sectionTopImage: 'Bild oben (optional)',
       topNone: 'Keins',
       topHeader: 'Header-Bild',
@@ -217,7 +217,7 @@
       crosslinkTemplates: 'Vers les modèles d’e-mails système',
       localeLabel: 'Pays / langue',
       sectionBrand: 'Marque',
-      brandHint: 'En Italie, Inuvet s’appelle Vetalità pour des raisons juridiques — le logo, la société et le site s’adaptent.',
+      brandHint: 'En Italie, inuvet s’appelle Vetalità pour des raisons juridiques — le logo, la société et le site s’adaptent.',
       sectionTopImage: 'Image en haut (optionnel)',
       topNone: 'Aucune',
       topHeader: 'Image d’en-tête',
@@ -324,7 +324,7 @@
       crosslinkTemplates: 'Vai ai modelli e-mail di sistema',
       localeLabel: 'Paese / lingua',
       sectionBrand: 'Marca',
-      brandHint: 'In Italia Inuvet si chiama Vetalità per motivi legali — logo, società e sito si adattano di conseguenza.',
+      brandHint: 'In Italia inuvet si chiama Vetalità per motivi legali — logo, società e sito si adattano di conseguenza.',
       sectionTopImage: 'Immagine in alto (opzionale)',
       topNone: 'Nessuna',
       topHeader: 'Immagine header',
@@ -431,7 +431,7 @@
       crosslinkTemplates: 'Ir a las plantillas de correo del sistema',
       localeLabel: 'País / idioma',
       sectionBrand: 'Marca',
-      brandHint: 'En Italia, Inuvet se llama Vetalità por motivos legales: el logo, la empresa y el sitio web se adaptan.',
+      brandHint: 'En Italia, inuvet se llama Vetalità por motivos legales: el logo, la empresa y el sitio web se adaptan.',
       sectionTopImage: 'Imagen superior (opcional)',
       topNone: 'Ninguna',
       topHeader: 'Imagen de cabecera',
@@ -538,7 +538,7 @@
       crosslinkTemplates: 'Naar de systeem-e-mailsjablonen',
       localeLabel: 'Land / taal',
       sectionBrand: 'Merk',
-      brandHint: 'In Italië heet Inuvet om juridische redenen Vetalità — logo, bedrijf en website passen zich aan.',
+      brandHint: 'In Italië heet inuvet om juridische redenen Vetalità — logo, bedrijf en website passen zich aan.',
       sectionTopImage: 'Afbeelding bovenaan (optioneel)',
       topNone: 'Geen',
       topHeader: 'Headerafbeelding',
@@ -645,7 +645,7 @@
       crosslinkTemplates: 'Go to system email templates',
       localeLabel: 'Country / language',
       sectionBrand: 'Brand',
-      brandHint: 'In Italy, Inuvet is called Vetalità for legal reasons — logo, company and website adapt accordingly.',
+      brandHint: 'In Italy, inuvet is called Vetalità for legal reasons — logo, company and website adapt accordingly.',
       sectionTopImage: 'Top image (optional)',
       topNone: 'None',
       topHeader: 'Header image',
@@ -1374,7 +1374,7 @@
 
     var disclaimerRows = d.disclaimerOn && d.disclaimer
       ? '<tr><td ' + gapBlock + '>&nbsp;</td></tr>'
-        + (brand.showDisclaimerLogo ? logoRow(DISCLAIMER_LOGO_URL, 'Inuvet', LOGO_WIDTH, brand.website) : '')
+        + (brand.showDisclaimerLogo ? logoRow(DISCLAIMER_LOGO_URL, 'inuvet', LOGO_WIDTH, brand.website) : '')
         + buildDisclaimerRows(d.disclaimer, true)
       : '';
 

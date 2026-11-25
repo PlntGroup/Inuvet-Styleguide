@@ -832,7 +832,7 @@ const allProducts = [
       },
       {
         q: 'Wie bestelle ich Hepax forte als Tierarztpraxis?',
-        a: 'Inuvet-Produkte sind ausschließlich über die Tierarztpraxis erhältlich. Als Praxis bestellen Sie im Partner-Shop — Lieferung in der Regel innerhalb von 2–3 Werktagen, Versandkostenfrei ab 49&nbsp;€.',
+        a: 'inuvet-Produkte sind ausschließlich über die Tierarztpraxis erhältlich. Als Praxis bestellen Sie im Partner-Shop — Lieferung in der Regel innerhalb von 2–3 Werktagen, Versandkostenfrei ab 49&nbsp;€.',
       },
       {
         q: 'Enthält Hepax forte Getreide oder Soja?',
@@ -1747,11 +1747,11 @@ function initNavLogoToggle() {
 
     document.querySelectorAll('.nav-logo').forEach(function (link) {
       var campus = next === 'campus';
-      link.setAttribute('aria-label', campus ? 'Zur Startseite · Inuvet Campus' : 'Zur Startseite');
+      link.setAttribute('aria-label', campus ? 'Zur Startseite · inuvet Campus' : 'Zur Startseite');
       var imgInuvet = link.querySelector('.nav-logo__img.--inuvet');
       var imgCampus = link.querySelector('.nav-logo__img.--campus');
       if (imgInuvet) imgInuvet.setAttribute('alt', campus ? '' : 'inuvet Logo');
-      if (imgCampus) imgCampus.setAttribute('alt', campus ? 'Inuvet Campus Logo' : '');
+      if (imgCampus) imgCampus.setAttribute('alt', campus ? 'inuvet Campus Logo' : '');
     });
   }
 

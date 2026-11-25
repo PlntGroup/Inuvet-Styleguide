@@ -121,7 +121,7 @@
   <aside class="sg-sidebar">
     <nav>
       <div class="sg-brand" role="group" aria-label="Marke">
-        <button type="button" class="sg-brand__btn" data-brand-set="inuvet" aria-pressed="true">Inuvet</button>
+        <button type="button" class="sg-brand__btn" data-brand-set="inuvet" aria-pressed="true">inuvet</button>
         <button type="button" class="sg-brand__btn" data-brand-set="campus" aria-pressed="false">Campus</button>
         <button type="button" class="sg-brand__btn" data-brand-set="planimol" aria-pressed="false">Planimol</button>
         <button type="button" class="sg-brand__btn" data-brand-set="manukalind" aria-pressed="false">ManukaLind</button>
@@ -204,7 +204,7 @@
   <main class="sg-main">
 
     <div class="sg-brand --main" role="group" aria-label="Marke">
-      <button type="button" class="sg-brand__btn" data-brand-set="inuvet" aria-pressed="true">Inuvet</button>
+      <button type="button" class="sg-brand__btn" data-brand-set="inuvet" aria-pressed="true">inuvet</button>
       <button type="button" class="sg-brand__btn" data-brand-set="campus" aria-pressed="false">Campus</button>
       <button type="button" class="sg-brand__btn" data-brand-set="planimol" aria-pressed="false">Planimol</button>
       <button type="button" class="sg-brand__btn" data-brand-set="manukalind" aria-pressed="false">ManukaLind</button>
@@ -289,7 +289,7 @@
     <section class="sg-section-v2 flow" id="A3">
       <h2 class="section-label">A.3 — Design Tokens</h2>
       <div class="col-grid" data-cols="2">
-        <p>Alle Werte sind CSS Custom Properties in <code>:root</code> (Inuvet-Default). Planimol überschreibt Tokens in <code>brand-planimol.css</code> via <code>html[data-brand="planimol"]</code>. ManukaLind überschreibt Tokens in <code>brand-manukalind.css</code> via <code>html[data-brand="manukalind"]</code>. EQX überschreibt Tokens in <code>brand-eqx.css</code> via <code>html[data-brand="eqx"]</code>. Campus lädt <code>brand-campus.css</code> (Komponenten + künftige Tokens) — Schalter in der Sidebar. Kein Hardcoding von Farben, Größen oder Abständen außerhalb dieser Tokens — immer <code>var(--…)</code>.</p>
+        <p>Alle Werte sind CSS Custom Properties in <code>:root</code> (inuvet-Default). Planimol überschreibt Tokens in <code>brand-planimol.css</code> via <code>html[data-brand="planimol"]</code>. ManukaLind überschreibt Tokens in <code>brand-manukalind.css</code> via <code>html[data-brand="manukalind"]</code>. EQX überschreibt Tokens in <code>brand-eqx.css</code> via <code>html[data-brand="eqx"]</code>. Campus lädt <code>brand-campus.css</code> (Komponenten + künftige Tokens) — Schalter in der Sidebar. Kein Hardcoding von Farben, Größen oder Abständen außerhalb dieser Tokens — immer <code>var(--…)</code>.</p>
         <p>Neue Werte müssen hier definiert und dokumentiert werden, bevor sie im System verwendet werden dürfen.</p>
       </div>
       <p>Diese Sektion ist die technische Referenz — die vollständige Liste aller Custom Properties. Die <em>visuelle</em> Darstellung der Tokens findet sich dort, wo sie eingesetzt werden: <a href="#A4">A.4 Typografie</a>, <a href="#A5">A.5 Farben</a>, <a href="#A7">A.7 Spacing</a>.</p>
@@ -330,7 +330,7 @@
         <tr><th><code>--fg-muted</code></th><td><span class="sg-swatch" style="background:var(--fg-muted)"></span><code data-token="--fg-muted">#666</code> — Sekundärer Text</td></tr>
         <tr><th><code>--bg</code></th><td><span class="sg-swatch" style="background:var(--bg)"></span><code data-token="--bg">#fff</code> — Seitenhintergrund</td></tr>
         <tr><th><code>--border-neutral</code></th><td><span class="sg-swatch" style="background:var(--border-neutral)"></span><code data-token="--border-neutral">#d0d0d0</code> — Hellgrau, Ausgangswert der Linien</td></tr>
-        <tr><th><code>--border-light</code></th><td><span class="sg-swatch" style="background:var(--border-light)"></span><code data-token="--border-light">#d0d0d0</code> — Neutrale Linie (inaktiv / strukturell) · <code>var(--border-neutral)</code>; Inuvet, Campus, ManukaLind, Vetalità: 50 % <code>--green</code> (Themes.md, Ausnahmen)</td></tr>
+        <tr><th><code>--border-light</code></th><td><span class="sg-swatch" style="background:var(--border-light)"></span><code data-token="--border-light">#d0d0d0</code> — Neutrale Linie (inaktiv / strukturell) · <code>var(--border-neutral)</code>; inuvet, Campus, ManukaLind, Vetalità: 50 % <code>--green</code> (Themes.md, Ausnahmen)</td></tr>
         <tr><th><code>--border-nav</code></th><td><code>var(--border-light)</code> — Linie unter der Navigation beim Scrollen; bei grünen Linien <code>var(--border-neutral)</code></td></tr>
         <tr><th><code>--border</code></th><td><code>var(--border-light)</code> — Alias (kein Mittelgrau mehr)</td></tr>
         <tr><th><code>--accent-bg</code></th><td><span class="sg-swatch" style="background:var(--accent-bg)"></span><code data-token="--accent-bg">#f2f2f2</code> — Flächenfarbe für Boxen &amp; Placeholder (bewusst ≠ Linie)</td></tr>
@@ -1333,7 +1333,7 @@
       <table class="spec-table">
         <tr><th><code>.sg-layout</code></th><td>Sidebar + Main — auf dieser Seite mit <code>.container</code></td></tr>
         <tr><th><code>.sg-sidebar</code></th><td>Sticky Nav · Scrollspy (<code>sg-only.js</code>) markiert <code>a.--active</code></td></tr>
-        <tr><th><code>.sg-brand</code></th><td>Inuvet / Campus / Planimol / ManukaLind / EQX · setzt <code>data-brand</code> · Persistenz <code>localStorage</code> + <code>?brand=campus</code> / <code>?brand=planimol</code> / <code>?brand=manukalind</code> / <code>?brand=eqx</code></td></tr>
+        <tr><th><code>.sg-brand</code></th><td>inuvet / Campus / Planimol / ManukaLind / EQX · setzt <code>data-brand</code> · Persistenz <code>localStorage</code> + <code>?brand=campus</code> / <code>?brand=planimol</code> / <code>?brand=manukalind</code> / <code>?brand=eqx</code></td></tr>
         <tr><th><code>.sg-section-v2</code></th><td>Sektions-Wrapper · oft mit <code>.flow</code></td></tr>
         <tr><th><code>.section-label</code></th><td>Kapitel-<code>h2</code> (produktiv + Guide) — menschenlesbarer Titel · Spec → <a href="#A12">A.12</a></td></tr>
         <tr><th><code>.sg-h3</code></th><td>Untergruppe: primärer Selektor in <code>&lt;code&gt;</code> (Klasse, Token, Attribut). Varianten-Demo: <code>.btn.--full</code> oder <code>.btn</code> — Kurzinfo</td></tr>
@@ -1399,7 +1399,7 @@
       <div class="sg-demo --white">
         <div class="section-header flow" style="--section-label-mt: 0; --section-label-mb: 0;">
           <div class="section-label-row --headline">
-            <h2>Warum Inuvet</h2>
+            <h2>Warum inuvet</h2>
           </div>
           <p class="section-header__body">Optionaler Einleitungstext unter der Überschrift — flexibel ein- und ausblendbar.</p>
         </div>
@@ -2034,7 +2034,7 @@
           </div>
         </div>
       </div>
-      <p class="sg-caption">Referenz: <a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a> (Contact-FR-Pop-up).</p>
+      <p class="sg-caption">Referenz: <a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a> (Contact-FR-Pop-up).</p>
 
       <h3 class="sg-h3 --top"><code>.option-divider</code></h3>
       <p>Trennt zwei gleichwertige Optionen in Formular- oder Modal-Kontexten — z.&nbsp;B. Gast-Checkout und Login, Direktkontakt und Rückruf. Text sprachlich anpassen (<code>oder</code>, <code>ou</code> …). Immer in <code>.flow</code>; kein <code>&lt;hr&gt;</code>.</p>
@@ -2056,7 +2056,7 @@
           <button class="btn --primary --full" type="button">Anmelden</button>
         </div>
       </div>
-      <p class="sg-caption">Einsatz u.&nbsp;a. Shop-Pop-ups (<a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a>) · Schrift <code>var(--text-xs)</code>, Farbe <code>var(--fg-muted)</code>, Linien <code>var(--border)</code>.</p>
+      <p class="sg-caption">Einsatz u.&nbsp;a. Shop-Pop-ups (<a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a>) · Schrift <code>var(--text-xs)</code>, Farbe <code>var(--fg-muted)</code>, Linien <code>var(--border)</code>.</p>
 
       <h3 class="sg-h3 --top"><code>.form-check.--with-input</code></h3>
       <div class="sg-demo --white">
@@ -3198,7 +3198,7 @@
         <div class="notice">
           <div class="flow">
             <p class="notice__title"><svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-info"></use></svg> So funktioniert die Empfehlung</p>
-            <p>Du gibst die angefragten Produkte mit einem Klick frei — Beratung, Versand und Betreuung übernimmt Inuvet.</p>
+            <p>Du gibst die angefragten Produkte mit einem Klick frei — Beratung, Versand und Betreuung übernimmt inuvet.</p>
           </div>
         </div>
       </div>
@@ -3212,7 +3212,7 @@
             <svg class="material-icons notice__chevron" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-expand_more"></use></svg>
           </summary>
           <div class="notice__body flow">
-            <p>Du gibst die angefragten Produkte mit einem Klick frei. Inuvet übernimmt anschließend Beratung, Versand und Betreuung — kein Aufwand mit Lagerung oder Logistik.</p>
+            <p>Du gibst die angefragten Produkte mit einem Klick frei. inuvet übernimmt anschließend Beratung, Versand und Betreuung — kein Aufwand mit Lagerung oder Logistik.</p>
             <p class="notice__title">Persönlicher Kontakt bei Fragen</p>
             <p>Deine persönliche Ansprechpartnerin hilft dir gern weiter: <strong>Birka Beispiel</strong> · <a href="#">birka@inuvet.com</a></p>
           </div>
@@ -3683,7 +3683,7 @@
 
       <div class="col-grid" data-cols="2">
         <p>Volle Breite · Hintergrund <code>--green-light</code> · zwei Bereiche: <code>.footer-main</code> (Inhalte) + <code>.footer-bar</code> (Meta-Zeile).</p>
-        <p>Referenz: <a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a> · Page-Skeleton → <a href="#E1">E.1</a> · Newsletter-Formular → <a href="#B4">B.4</a> mit <code>.--on-green</code>.</p>
+        <p>Referenz: <a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a> · Page-Skeleton → <a href="#E1">E.1</a> · Newsletter-Formular → <a href="#B4">B.4</a> mit <code>.--on-green</code>.</p>
       </div>
 
       <div class="rules">
@@ -3850,7 +3850,7 @@
 
       <div class="col-grid" data-cols="2">
         <p><code>.section-type</code> — 2-Spalten-Grid (Medien + Content) in drei Varianten · Modifier <code>--reverse</code>, <code>--viewport</code>. V1 hat die Option Content-Box (keine | Grün hell | Hinweis).</p>
-        <p>Content-Boxen mit <code>.section-type__content.flow</code> · V1 nutzt <code>.section-type__bottom</code> für Body + CTA · Referenz: <a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a>.</p>
+        <p>Content-Boxen mit <code>.section-type__content.flow</code> · V1 nutzt <code>.section-type__bottom</code> für Body + CTA · Referenz: <a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a>.</p>
       </div>
 
       <div class="rules">
@@ -4042,7 +4042,7 @@
           </div>
         </div>
       </div>
-      <p class="sg-caption">Drei Badge-Typen + KI-Hinweis · Live → <a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a> (Closing Hero).</p>
+      <p class="sg-caption">Drei Badge-Typen + KI-Hinweis · Live → <a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a> (Closing Hero).</p>
 
       <h3 class="sg-h3 --top" id="hero-v1-lottie">Variante 1 — Animation + Text</h3>
       <p>Gleiches Layout wie V1 · Lottie-JSON statt Bild · Höhe aus nativen JSON-Proportionen (<code>w</code>/<code>h</code> → <code>aspect-ratio</code> via <code>initLottieAspect</code> in <code>planet-brands.js</code>).</p>
@@ -4075,7 +4075,7 @@
           </div>
         </div>
       </div>
-      <p class="sg-caption">Default · Höhe aus JSON · Badges auf Lottie · Content vertikal zentriert · wie <a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a>.</p>
+      <p class="sg-caption">Default · Höhe aus JSON · Badges auf Lottie · Content vertikal zentriert · wie <a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a>.</p>
 
       <div class="sg-demo --flush">
         <div class="section-type --v1 --reverse">
@@ -4657,7 +4657,7 @@
             </div>
             <div class="tile__bottom flow">
               <h3 class="tile__headline">Nur über die Tierarztpraxis</h3>
-              <p class="tile__body">Inuvet-Produkte bestellt ihr als Praxis direkt — Lieferung in der Regel in 2–3 Werktagen.</p>
+              <p class="tile__body">inuvet-Produkte bestellt ihr als Praxis direkt — Lieferung in der Regel in 2–3 Werktagen.</p>
               <a href="https://inuvet-dev.myshopify.com/collections/all" class="btn --primary">Mehr erfahren</a>
             </div>
           </div>
@@ -5499,7 +5499,7 @@
     <section class="sg-section-v2 flow" id="D10">
       <h2 class="section-label">D.10 — Preistabelle</h2>
 
-      <p><code>.price-table</code> · Pakete nebeneinander mit bündigen Zeilen (Kopf · Preis · Leistungen · Aktion) · eine Spalte hervorhebbar · Referenz: Inuvet Campus, Vetstarter für Praxen.</p>
+      <p><code>.price-table</code> · Pakete nebeneinander mit bündigen Zeilen (Kopf · Preis · Leistungen · Aktion) · eine Spalte hervorhebbar · Referenz: inuvet Campus, Vetstarter für Praxen.</p>
 
       <div class="rules">
         <div class="rule"><h4>Aufbau</h4><p><code>.price-table</code> (Grid, Spalten über <code>.--cols-2</code> / <code>.--cols-3</code> (Default) / <code>.--cols-4</code>) → je Paket <code>__plan</code> mit <code>grid-template-rows: subgrid</code>, damit Preis, Leistungen und Buttons über alle Spalten auf einer Höhe stehen. Leistungen pro Paket in gleicher Anzahl und Reihenfolge.</p></div>
@@ -5810,7 +5810,7 @@
                 <img class="social-proof__avatar" src="assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg" alt="">
                 <img class="social-proof__avatar" src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="">
               </div>
-              <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
+              <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit inuvet</p>
             </div>
               <div class="pdp__accordion accordion">
           <div class="accordion-item">
@@ -6034,7 +6034,7 @@
                 <img class="social-proof__avatar" src="assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg" alt="">
                 <img class="social-proof__avatar" src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="">
               </div>
-              <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
+              <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit inuvet</p>
             </div>
               <div class="pdp__accordion accordion">
           <div class="accordion-item">
@@ -6125,7 +6125,7 @@
       <div class="rules">
         <div class="rule">
           <h4>Content-Regel — was erlaubt ist</h4>
-          <p>Nur positiv über <strong>Inuvet als Marke / Shop / Service</strong>: Beratung, Lieferung, Bestellprozess, Transparenz, Zusammenarbeit mit der Praxis, Vertrauen. Autoren: <strong>ausschließlich Tierärzt*innen</strong> (Name + „Tierarzt/Tierärztin, Ort“).</p>
+          <p>Nur positiv über <strong>inuvet als Marke / Shop / Service</strong>: Beratung, Lieferung, Bestellprozess, Transparenz, Zusammenarbeit mit der Praxis, Vertrauen. Autoren: <strong>ausschließlich Tierärzt*innen</strong> (Name + „Tierarzt/Tierärztin, Ort“).</p>
         </div>
         <div class="rule">
           <h4>Content-Regel — was verboten ist</h4>
@@ -6158,7 +6158,7 @@
                 <lottie-player src="assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Tierarzt-Katze-Produkt_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
               </div>
               <div class="flow"><p class="tile__headline">Nur bei euch</p>
-              <p class="tile__body">Inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!</p></div>
+              <p class="tile__body">inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!</p></div>
             </div>
             <div class="tile">
               <div class="tile__icon tile__animation --ratio-1">
@@ -6177,7 +6177,7 @@
           </div>
         </div>
       </div>
-      <p class="sg-caption">Live → <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html?id=13</a> · Referenz → <a href="https://inuvet-dev.myshopify.com/">Inuvet-Shop</a>.</p>
+      <p class="sg-caption">Live → <a href="https://inuvet-dev.myshopify.com/products/hepax-forte">Produkt.html?id=13</a> · Referenz → <a href="https://inuvet-dev.myshopify.com/">inuvet-Shop</a>.</p>
 
       <h3 class="sg-h3 --top" id="pdp-discount-tiers">Rabatt-Staffel (ManukaLind)</h3>
       <div class="col-grid" data-cols="2">
@@ -6281,7 +6281,7 @@
                 <lottie-player src="assets/brands/inuvet/lotties/Inuvet_Icon_Animation_Tierarztpraxis_1x1.json" background="transparent" speed="1" loop autoplay></lottie-player>
               </div>
               <div class="flow"><p class="tile__headline">Beste Expertise</p>
-              <p class="tile__body">Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis</p></div>
+              <p class="tile__body">inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis</p></div>
             </div>
             <div class="tile">
               <div class="tile__icon">
@@ -6318,7 +6318,7 @@
         <tr><th><code>.pdp__faq</code></th><td>Wrapper nach <code>.ingredient-list</code> · <code>margin-top: var(--module-2xl)</code> · Padding <code>var(--module)</code> · Hintergrund <code>--green-light</code> · Modifier <code>.--on-green</code></td></tr>
         <tr><th>Überschrift</th><td><code>h2</code> „Häufige Fragen“ · <code>--text-m</code> bold · Abstand zum Akkordeon <code>var(--module)</code></td></tr>
         <tr><th>Akkordeon</th><td>Desktop <code>.accordion.--cols-2</code> mit <code>.accordion__col</code> (gerade/ungerade + <code>order</code>) · Mobile 1 Spalte · Atom → <a href="#C5">C.5</a></td></tr>
-        <tr><th>Zweiter Teil (optional)</th><td>Nach dem Akkordeon <code>h3</code> + zweites <code>.accordion.--cols-2</code> in derselben Box · <code>h3</code> wie H2 (<code>--text-m</code> bold), Abstand davor <code>calc(var(--module) * 1.5)</code> · Inuvet: „Häufige Fragen von Tierhaltern“ (Zielgruppe der Section bleibt die Praxis) · Shopify: <code>custom.faq_owners</code></td></tr>
+        <tr><th>Zweiter Teil (optional)</th><td>Nach dem Akkordeon <code>h3</code> + zweites <code>.accordion.--cols-2</code> in derselben Box · <code>h3</code> wie H2 (<code>--text-m</code> bold), Abstand davor <code>calc(var(--module) * 1.5)</code> · inuvet: „Häufige Fragen von Tierhaltern“ (Zielgruppe der Section bleibt die Praxis) · Shopify: <code>custom.faq_owners</code></td></tr>
         <tr><th>Anzahl</th><td>4–8 Einträge · produktbezogen; shop-weite Fragen (Versand generell) nur wenn sie zur PDP passen</td></tr>
         <tr><th>JSON-LD</th><td><code>@type: FAQPage</code> · <code>mainEntity</code> = Questions mit <code>acceptedAnswer</code> · Klartext ohne HTML · Theme: Script im Section-Liquid · Mockup: <code>injectFaqJsonLd()</code> in <code>&lt;head&gt;</code></td></tr>
         <tr><th>Shopify</th><td>Metafield <code>custom.faq</code> (+ optional <code>custom.faq_owners</code> für den zweiten Teil): Liste aus Metaobjects <code>faq_item</code> (<code>question</code> / <code>answer</code>) oder JSON-Liste · Theme: sichtbares Akkordeon + JSON-LD aus denselben Feldern · Mockup: <code>faq[]</code> in <code>planet-brands.js</code> (Hepax)</td></tr>
@@ -6372,7 +6372,7 @@
               <img class="social-proof__avatar" src="assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg" alt="">
               <img class="social-proof__avatar" src="assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="">
             </div>
-            <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
+            <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit inuvet</p>
           </div>
         </div>
       </div>
@@ -6717,12 +6717,12 @@
         <tr><th>Overlay</th><td><code>rgba(0,0,0,0.4)</code>. Klick schließt den Drawer.</td></tr>
         <tr><th>Drawer</th><td>Breite <code>min(28rem, 100vw)</code>. Border-left: <code>1px solid #000</code>.</td></tr>
         <tr><th>Item</th><td><code>.cart-item</code> (<a href="#C2">C.2</a>) · Grid: <code>5rem</code> Bild + <code>1fr</code> Info · kompakte ±Buttons (<code>--sm</code>) · letzte Zeile ohne Linie darunter (außer mit Tier-Hint)</td></tr>
-        <tr><th>Tier-Hint</th><td><code>.cart-item__tier-hint</code> (<a href="#C2">C.2</a>) · <strong>standardmäßig sichtbar</strong> auf jeder berechtigten Zeile — Text „X Stück hinzufügen für Y weitere Gratisprodukte" · produktiv via <code>formatHint()</code> pro Produkt · <strong>nur Inuvet</strong></td></tr>
+        <tr><th>Tier-Hint</th><td><code>.cart-item__tier-hint</code> (<a href="#C2">C.2</a>) · <strong>standardmäßig sichtbar</strong> auf jeder berechtigten Zeile — Text „X Stück hinzufügen für Y weitere Gratisprodukte" · produktiv via <code>formatHint()</code> pro Produkt · <strong>nur inuvet</strong></td></tr>
         <tr><th>Planimol, ManukaLind, Campus</th><td>Kein Tier-Hint und kein Gratis-Badge · stattdessen Label <code>.badge.--sale</code> („Sale“) in <code>.floating-meta</code> auf dem Thumb, wenn <code>item.variant.compare_at_price &gt; item.original_price</code></td></tr>
         <tr><th>Footer</th><td>Versandhinweis, Zwischensumme (<code>--text-m</code>), Checkout (Primary), Weiter einkaufen (Ghost).</td></tr>
         <tr><th>Empfehlungen</th><td><code>.cart-drawer__recs</code> als letztes Kind von <code>.cart-drawer__items</code> · Fläche <code>--accent-bg</code> (hellgrau) · Überschrift <code>.section-label</code> „Andere Kunden kauften auch“ · 3–4 Vorschläge als <code>.cart-item</code> mit demselben Aufbau wie Warenkorb-Zeilen (<code>__top</code>: Name in <code>--text-xs</code>, so groß wie der „ab“-Preis in <code>.cart-item__variant</code> · <code>__bottom</code>: <code>.btn.--secondary.--sm</code> „Hinzufügen“, bündig mit der Bildunterkante) · <strong>mobil</strong> Liste unter den Produkten, vollflächig im Drawer · <strong>ab 768px</strong> Panel links am Drawer (<code>calc(var(--base) * 18)</code>, volle Höhe, liegt hinter dem Drawer: weicher Schatten von rechts, fährt nach dem Drawer versetzt unter ihm hervor), Linie unter der Überschrift bündig mit der Linie unter dem Drawer-Kopf · ohne Vorschläge kein Block</td></tr>
         <tr><th>Gratisversand</th><td><code>.shipping-progress</code> oben im Drawer-Footer und auf der Warenkorbseite · <code>__text</code> mit Icon (<code>--green</code>), <code>--text-sm</code>, erreicht: <code>.--done</code> fett · Balken = Atom <code>.progress-bar</code> + <code>__fill</code> (<code>--progress-bar-height</code>, <code>--green-light</code> / <code>--green</code>; auch im <code>.nr-widget</code>) · Schwelle je Land aus Theme-Einstellung (Planimol)</td></tr>
-        <tr><th>Rabatt-Staffel</th><td><code>.discount-tiers</code> zwischen Drawer-Kopf und Produkten · keine eigene Fläche, Linie unten · <code>__hint</code>: „Du sparst X&nbsp;%. Füge N weiteres <u>Aktionsprodukt</u> hinzu, um Y&nbsp;% zu sparen.“ (ohne Hervorhebung, Schnitt wie Fließtext) (Link auf die Collection) (höchste Stufe: nur „Du sparst …“) · <code>__steps</code> als <code>&lt;ol&gt;</code>, eine Stufe je <code>__step</code>: Prozent in <code>--text-xs</code> bold, Balken darunter (<code>--progress-bar-height</code>), <code>.--reached</code> <code>--color-honey</code> wie das Label „Aktion“ (<code>.badge.--honey</code>), offen <code>--border-light</code> · <strong>nur Anzeige</strong> — Rabatt rechnet Shopify, Betrag erscheint unten als „Du sparst“ · nur ManukaLind; Inuvet hat stattdessen Naturalrabatt</td></tr>
+        <tr><th>Rabatt-Staffel</th><td><code>.discount-tiers</code> zwischen Drawer-Kopf und Produkten · keine eigene Fläche, Linie unten · <code>__hint</code>: „Du sparst X&nbsp;%. Füge N weiteres <u>Aktionsprodukt</u> hinzu, um Y&nbsp;% zu sparen.“ (ohne Hervorhebung, Schnitt wie Fließtext) (Link auf die Collection) (höchste Stufe: nur „Du sparst …“) · <code>__steps</code> als <code>&lt;ol&gt;</code>, eine Stufe je <code>__step</code>: Prozent in <code>--text-xs</code> bold, Balken darunter (<code>--progress-bar-height</code>), <code>.--reached</code> <code>--color-honey</code> wie das Label „Aktion“ (<code>.badge.--honey</code>), offen <code>--border-light</code> · <strong>nur Anzeige</strong> — Rabatt rechnet Shopify, Betrag erscheint unten als „Du sparst“ · nur ManukaLind; inuvet hat stattdessen Naturalrabatt</td></tr>
         <tr><th>Leer</th><td>Zentriertes Icon + Text + Button (<a href="#C8">C.8</a>).</td></tr>
         <tr><th>JS</th><td><code>openCart(id)</code> / <code>closeCart(id)</code> in <code>sg-only.js</code> — IDs <code>cartFull</code> / <code>cartEmpty</code></td></tr>
         <tr><th><code>.options-drawer</code></th><td>Varianten-Auswahl — gleicher Overlay-Typ, Breite und Z-Index wie Cart-Drawer · Overlay <code>var(--z-overlay)</code>, Drawer <code>var(--z-drawer)</code></td></tr>
@@ -6895,7 +6895,7 @@
       <div class="rules">
         <div class="rule"><h4>New Customer Accounts (Ist)</h4><p>Der Shop nutzt <strong>New Customer Accounts</strong> (passwortlos). Login/Konto laufen über Shopifys Account-UI bzw. das Web-Component <code>&lt;shopify-account&gt;</code> im Header — <strong>nicht</strong> über Legacy-<code>templates/customers/*</code>.</p></div>
         <div class="rule"><h4>Theme</h4><p>Header: <code>&lt;shopify-account class="nav-account"&gt;</code> (Desktop + Mobile) · signed-out Avatar = Material-Icon <code>person</code> · Optik via CSS-Variablen (<code>--shopify-account-radius-*: 0</code>, Accent <code>--green</code>, Font <code>--font</code>) · Menü <code>customer-account-main-menu</code>.</p></div>
-        <div class="rule"><h4>Legacy-Demo unten</h4><p>Tabs + <code>.order-item</code> bleiben als <em>Referenz für das alte Liquid-Modell</em> / ggf. andere Stores — im Inuvet-Theme nicht verdrahtet.</p></div>
+        <div class="rule"><h4>Legacy-Demo unten</h4><p>Tabs + <code>.order-item</code> bleiben als <em>Referenz für das alte Liquid-Modell</em> / ggf. andere Stores — im inuvet-Theme nicht verdrahtet.</p></div>
       </div>
 
       <table class="spec-table">
@@ -6966,8 +6966,8 @@
 
       <h3 class="sg-h3 --top" id="shopify-account">Shopify-Mapping</h3>
       <div class="col-grid" data-cols="2">
-        <p><strong>Inuvet (New Customer Accounts):</strong> Header-Component <code>&lt;shopify-account&gt;</code> · Docs → <a href="https://shopify.dev/docs/storefronts/themes/customer-engagement/account-component" target="_blank" rel="noopener">Account component</a>. Bestellungen/Profil in Shopify Account-UI.</p>
-        <p><strong>Legacy (deprecated):</strong> Liquid unter <code>/account</code> mit <code>{% form 'customer_login' %}</code> usw. — Demo unten; nicht mehr Theme-Store-Pflicht, Inuvet-Theme baut das nicht.</p>
+        <p><strong>inuvet (New Customer Accounts):</strong> Header-Component <code>&lt;shopify-account&gt;</code> · Docs → <a href="https://shopify.dev/docs/storefronts/themes/customer-engagement/account-component" target="_blank" rel="noopener">Account component</a>. Bestellungen/Profil in Shopify Account-UI.</p>
+        <p><strong>Legacy (deprecated):</strong> Liquid unter <code>/account</code> mit <code>{% form 'customer_login' %}</code> usw. — Demo unten; nicht mehr Theme-Store-Pflicht, inuvet-Theme baut das nicht.</p>
       </div>
       <table class="spec-table">
         <tr><th>Header</th><td><code>&lt;shopify-account class="nav-account" menu="…"&gt;</code> · Slot <code>signed-out-avatar</code> · Setting <code>customer_account_menu</code></td></tr>
@@ -7442,9 +7442,9 @@
         <tr><th>Panorama</th><td>Ein Bild läuft über mehrere Karten. Auf den Schnittkanten liegen weder Text noch Gesicht des Tiers; der Packshot darf über eine Kante laufen und lädt so zum Wischen ein.</td></tr>
         <tr><th>Darreichungsform</th><td>Bild der Darreichungsform vollflächig, dazu der Benefit aus der Kurzbeschreibung der Produktseite (Shopify-Metafeld <code>custom.kurzbeschreibung</code>).</td></tr>
         <tr><th>Inhaltsstoffe</th><td>Foto aus <code>00_Bilder / Inhaltsstoffe</code>, Name und ein kurzer Satz aus dem Shop (Metaobjekt <code>ingredient</code> bzw. <code>custom.inhaltsstoffe_auszug_</code>). Nur bestehende, geprüfte Texte verwenden.</td></tr>
-        <tr><th>Praxis</th><td>Foto aus der Tierarztpraxis, Text wie auf der Produktseite (Bildunterschrift der Galerie, Metafeld <code>custom.pdp_gallery_captions</code>), z. B. „Über 20.000 Tierarztpraxen arbeiten mit Inuvet“, in derselben Größe wie die Headlines der Inhaltsstoff-Karten. Bei erkennbaren Personen nur mit Einwilligung.</td></tr>
+        <tr><th>Praxis</th><td>Foto aus der Tierarztpraxis, Text wie auf der Produktseite (Bildunterschrift der Galerie, Metafeld <code>custom.pdp_gallery_captions</code>), z. B. „Über 20.000 Tierarztpraxen arbeiten mit inuvet“, in derselben Größe wie die Headlines der Inhaltsstoff-Karten. Bei erkennbaren Personen nur mit Einwilligung.</td></tr>
         <tr><th>Karten 2–4</th><td>Packshot und Darreichungsformen: Bild immer vollflächig. Text oben oder unten, je nachdem wo das Bild ruhig ist, dahinter ein Verlauf in der hellen Kartenfarbe (Text dunkel, siehe Lesbarkeit). Der Text läuft wie bei den Inhaltsstoffen über die volle Breite, mit 6 % Rand, und hat auf allen Darreichungs-Karten dieselbe Schriftgröße; keine schmalen Spalten neben dem Motiv.</td></tr>
-        <tr><th>Zitat</th><td>Kundenbewertung aus dem Shop (Reviews.io, 5 Sterne), wörtlich übernommen; nur Rechtschreibung und Zeichensetzung glätten. Name nur als Vorname, dazu „Bewertung im Inuvet-Shop“. Foto vollflächig im Hintergrund, Zitat unten auf dem Verlauf wie bei den Inhaltsstoffen, Zitat kursiv, Anführungszeichen-Icon weiß, fünf Sterne in <code>--color-amber</code> wie bei <a href="#D5">D.5</a>. Nur Aussagen zu Anwendung, Akzeptanz, Geruch oder Verpackung, keine Wirk- oder Heilaussagen (Heilmittelwerberecht). Zitate von Tierärzt*innen bevorzugen, dann mit Praxisfoto. Vor der Schaltung rechtlich prüfen.</td></tr>
+        <tr><th>Zitat</th><td>Kundenbewertung aus dem Shop (Reviews.io, 5 Sterne), wörtlich übernommen; nur Rechtschreibung und Zeichensetzung glätten. Name nur als Vorname, dazu „Bewertung im inuvet-Shop“. Foto vollflächig im Hintergrund, Zitat unten auf dem Verlauf wie bei den Inhaltsstoffen, Zitat kursiv, Anführungszeichen-Icon weiß, fünf Sterne in <code>--color-amber</code> wie bei <a href="#D5">D.5</a>. Nur Aussagen zu Anwendung, Akzeptanz, Geruch oder Verpackung, keine Wirk- oder Heilaussagen (Heilmittelwerberecht). Zitate von Tierärzt*innen bevorzugen, dann mit Praxisfoto. Vor der Schaltung rechtlich prüfen.</td></tr>
         <tr><th>Packshot-Karte</th><td>Packshot mit farbigem Hintergrund (<code>_Packshot_COL.jpg</code>) vollflächig, ohne Headline und ohne Verlauf. Unten links das Badge der Kategorie und direkt darunter der Call-to-Action als reiner Text, kein Button: „Jetzt Vorrat auffrischen“, dunkel, in der Größe der Darreichungs-Texte. Badge und Text stehen wie auf allen Karten als Block zusammen.</td></tr>
         <tr><th>Animation</th><td>Lottie aus <code>02_Animationen</code> (passend zum Produkt, sonst eine allgemeine wie <code>Tierarzt-Hund</code>), immer mit der Botschaft „Nur in deiner Tierarztpraxis“. Für die Anzeige als MP4 exportieren, 1080 × 1080.</td></tr>
         <tr><th>MP4-Export</th><td>Länge des Videos = Dauer der Lottie (Frames ÷ Bildrate, z. B. Tierarzt-Hund 120 Frames bei 30 fps = 4 s) oder ein ganzzahliges Vielfaches davon, gleiche Bildrate wie die Lottie. Erstes und letztes Bild passen dann aneinander, und der Loop läuft in der Anzeige nahtlos. Eine Lottie je Karte; sehr kurze Animationen (unter 3 s) ggf. zwei- oder dreimal hintereinander exportieren. Beginnt eine Lottie leer (Figur tritt erst auf), sie einmal abspielen und das letzte Bild bis zum Ende halten, statt sie zu wiederholen.</td></tr>
@@ -7563,7 +7563,7 @@
               <div class="sg-ad__scrim --top" aria-hidden="true"></div>
               <div class="sg-ad__label flow">
                 <p><span class="badge">Tierarztpraxis</span></p>
-                <h2 class="sg-ad__headline">Über 20.000 Tierarztpraxen arbeiten mit Inuvet</h2>
+                <h2 class="sg-ad__headline">Über 20.000 Tierarztpraxen arbeiten mit inuvet</h2>
               </div>
             </div>
             <figcaption class="sg-caption">Karte 7 · Praxis · Titel: „Empfohlen von Tierärzt*innen“</figcaption>
@@ -7575,7 +7575,7 @@
               <div class="sg-ad__label flow">
                 <svg class="material-icons sg-ad__quote-mark" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-format_quote"></use></svg>
                 <blockquote class="sg-ad__quote"><p>Gutes, hilfreiches Produkt, das von Hunden wie auch Katzen gerne genommen wird, ohne zu Murren.</p></blockquote>
-                <p class="sg-ad__sub"><span class="sg-ad__stars" role="img" aria-label="5 von 5 Sternen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg></span> Stefan · Bewertung im Inuvet-Shop</p>
+                <p class="sg-ad__sub"><span class="sg-ad__stars" role="img" aria-label="5 von 5 Sternen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-star"></use></svg></span> Stefan · Bewertung im inuvet-Shop</p>
               </div>
             </div>
             <figcaption class="sg-caption">Karte 8 · Zitat (Reviews.io) · Titel: „Das sagen Tierhalter*innen“</figcaption>

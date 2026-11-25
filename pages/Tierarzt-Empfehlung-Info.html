@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inuvet – Tierarzt-Empfehlung – Dokumentation</title>
+  <title>inuvet – Tierarzt-Empfehlung – Dokumentation</title>
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
 <link rel="stylesheet" href="../planet-brands.css">
 <link rel="stylesheet" href="../brand-inuvet.css?v=1">
@@ -173,7 +173,7 @@
             </ul>
 
             <h2 id="grundidee">Grundidee</h2>
-            <p>Inuvet-Produkte sind tierärztlich entwickelt und werden idealerweise mit Freigabe eines Tierarztes eingesetzt. Das System ermöglicht es Tierhaltern, eine <strong>Freigabe-Anfrage</strong> zu stellen — der Tierarzt prüft, ob das Produkt für das Tier geeignet ist, und gibt es frei. Erst nach dieser Freigabe kann der Tierhalter das Produkt kaufen. Umgekehrt kann die Praxis eine Freigabe auch <strong>direkt ausstellen</strong> — etwa im Anschluss an einen Praxisbesuch, ohne dass vorher eine Anfrage gestellt wurde.</p>
+            <p>inuvet-Produkte sind tierärztlich entwickelt und werden idealerweise mit Freigabe eines Tierarztes eingesetzt. Das System ermöglicht es Tierhaltern, eine <strong>Freigabe-Anfrage</strong> zu stellen — der Tierarzt prüft, ob das Produkt für das Tier geeignet ist, und gibt es frei. Erst nach dieser Freigabe kann der Tierhalter das Produkt kaufen. Umgekehrt kann die Praxis eine Freigabe auch <strong>direkt ausstellen</strong> — etwa im Anschluss an einen Praxisbesuch, ohne dass vorher eine Anfrage gestellt wurde.</p>
             <div class="notice">
               <p><strong>Praxiswahl über Karte:</strong> Freigabe-Anfragen gehen an Praxen aus Salesforce/Google Maps — Auswahl ausschließlich über die Karte („Praxis auswählen"). Teilnehmende Praxen: grüner Punkt; noch nicht teilnehmende: roter Punkt. Das Textfeld dient nur der Anzeige der gewählten bzw. dem Kunden zugewiesenen Praxis (ausgeblendet, wenn leer). Bei nicht teilnehmenden Praxen erscheint vor dem Absenden ein Popup inkl. optionaler E-Mail-Benachrichtigung bei Programmbeitritt; parallel entsteht ein Salesforce-Task „Tierarzt anrufen“ (kein A2 an die Praxis).</p>
             </div>
@@ -398,7 +398,7 @@
                   <td><code>mailto:</code> (kein Systemversand)</td>
                   <td>Tierhalter klickt „Praxis nicht gefunden?“ im Anfrage-Drawer</td>
                   <td>Praxis (trägt Nutzer ein)</td>
-                  <td>Teilnahme am Inuvet-Empfehlungsprogramm</td>
+                  <td>Teilnahme am inuvet-Empfehlungsprogramm</td>
                   <td><a href="Tierarzt-Empfehlung.html">Tierarzt-Empfehlung</a> · <code>mailto:</code>-Link</td>
                 </tr>
               </tbody>
@@ -442,7 +442,7 @@
               <p>Du erhältst eine Nachricht per E-Mail ([E-Mail des Tierhalters]), sobald die Anfrage von deinem Tierarzt freigegeben wurde.</p>
               </div>
             </div>
-            <p><strong>Versand:</strong> Sofort nach dem Absenden der Anfrage im Warenkorb-Drawer (Login liegt zu diesem Zeitpunkt bereits vor). <strong>Empfänger:</strong> E-Mail-Adresse des eingeloggten Tierhalters. Bei nicht teilnehmender Praxis weicht der Body ab: Hinweis, dass Inuvet die Praxis kontaktiert. <strong>Variablen:</strong> Praxisname, E-Mail-Adresse, Teilnahme-Status.</p>
+            <p><strong>Versand:</strong> Sofort nach dem Absenden der Anfrage im Warenkorb-Drawer (Login liegt zu diesem Zeitpunkt bereits vor). <strong>Empfänger:</strong> E-Mail-Adresse des eingeloggten Tierhalters. Bei nicht teilnehmender Praxis weicht der Body ab: Hinweis, dass inuvet die Praxis kontaktiert. <strong>Variablen:</strong> Praxisname, E-Mail-Adresse, Teilnahme-Status.</p>
 
             <h4>A2 · An die Tierarztpraxis — neue Anfrage</h4>
             <div class="notice">
@@ -498,7 +498,7 @@
               <p><strong>Freigegeben:</strong> [je Produkt: Name — Größe: Menge, z. B. „Calmin balance Pulver — 30 g: max. 2×"; weicht die Praxis von der Anfrage ab: „… max. 2× (angefragt: max. 1×)" bzw. „unbegrenzt"]</p>
               <p><strong>Nicht freigegeben:</strong> [je Position: Name — Größe (angefragt: max. n×)]</p>
               <p><strong>Notiz an dich:</strong> <em>[Notiz des Tierarztes — nur wenn hinterlassen]</em></p>
-              <p>Sprich gerne noch einmal mit deiner Praxis. Vielleicht passt ein anderes Inuvet-Produkt besser.</p>
+              <p>Sprich gerne noch einmal mit deiner Praxis. Vielleicht passt ein anderes inuvet-Produkt besser.</p>
               <p>Du kannst die freigegebenen Produkte jetzt auf tierarzt-empfehlung.com einlösen.</p>
               </div>
             </div>
@@ -525,10 +525,10 @@
             <p>Wird im Anleitungs-Popup angeboten („Praxis nicht gefunden?“ bzw. nach Auswahl einer Praxis mit rotem Punkt). Kein Server-Versand — öffnet den Mail-Client des Nutzers. Finaler Anleitungstext im Popup TBD.</p>
             <div class="notice">
               <div class="flow">
-<p class="notice__title">Betreff: Teilnahme am Inuvet-Empfehlungsprogramm</p>
+<p class="notice__title">Betreff: Teilnahme am inuvet-Empfehlungsprogramm</p>
               <p>Sehr geehrte Damen und Herren,</p>
-              <p>ich würde gerne Inuvet-Produkte für mein Tier über das Tierarzt-Empfehlungsprogramm beziehen – leider ist Ihre Praxis dort noch nicht gelistet.</p>
-              <p>Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. Inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik.</p>
+              <p>ich würde gerne inuvet-Produkte für mein Tier über das Tierarzt-Empfehlungsprogramm beziehen – leider ist Ihre Praxis dort noch nicht gelistet.</p>
+              <p>Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik.</p>
               <p>Mehr Informationen: https://inuvet.com/pages/tierarzt-empfehlung-anleitung</p>
               <p>Ich würde mich freuen, wenn Sie am Programm teilnehmen – so könnte ich die Produkte künftig direkt über Ihre Empfehlung beziehen.</p>
               <p>Mit freundlichen Grüßen</p>

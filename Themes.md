@@ -4,8 +4,8 @@ Gilt für alle Shopify-Themes, die auf diesem Styleguide aufbauen. Was nur eine 
 
 | Theme-Repo | Marke | Store |
 |---|---|---|
-| `inuvet-theme` | Inuvet (Shop für Tierarztpraxen) | `2f2346-3c.myshopify.com` |
-| `inuvet-campus-theme` | Inuvet Campus | `inucampus.myshopify.com` |
+| `inuvet-theme` | inuvet (Shop für Tierarztpraxen) | `2f2346-3c.myshopify.com` |
+| `inuvet-campus-theme` | inuvet Campus | `inucampus.myshopify.com` |
 | `planimol-theme` | Planimol | `planimol-shop.myshopify.com` |
 | `ManukaLind-theme` | ManukaLind | `manuka-lind.myshopify.com` |
 | `vetalita-theme` | Vetalità | `vetalit.myshopify.com` |
@@ -24,7 +24,7 @@ Das wichtigste Prinzip: **Gestaltung kommt aus dem Styleguide.** Themes ergänze
 | Datei | Rolle | Wer ändert sie wo |
 |---|---|---|
 | `planet-brands.css` | **System**: Tokens, Komponenten, Layout | Nur hier im Styleguide. Im Theme ist sie eine 1:1-Kopie und wird **nie bearbeitet** |
-| `brand-{marke}.css` | **Haut**: nur Tokens (Farben, Schrift) auf `:root`, dazu höchstens die Zuordnung der Kategorie-Farben zu `[data-cat]` | Token-Werte kommen aus dem Styleguide (dort unter `html[data-brand]` zur Simulation, mit Overrides). Im Theme keine Komponentenregeln. Inuvet und Vetalità nutzen den Standard und haben `brand-inuvet.css` / `brand-vetalita.css` nur für die grünen Linien (siehe Genehmigte Ausnahmen) |
+| `brand-{marke}.css` | **Haut**: nur Tokens (Farben, Schrift) auf `:root`, dazu höchstens die Zuordnung der Kategorie-Farben zu `[data-cat]` | Token-Werte kommen aus dem Styleguide (dort unter `html[data-brand]` zur Simulation, mit Overrides). Im Theme keine Komponentenregeln. inuvet und Vetalità nutzen den Standard und haben `brand-inuvet.css` / `brand-vetalita.css` nur für die grünen Linien (siehe Genehmigte Ausnahmen) |
 | `theme-extras.css` | **Erweiterungen**: markenspezifische Bausteine | Nur im Theme-Repo. Klein halten |
 
 Ladereihenfolge im Theme (`layout/theme.liquid`): `critical.css` → `planet-brands.css` → `theme-extras.css` → `brand-{marke}.css`. `critical.css` ist ebenfalls in allen Themes gleich.
@@ -56,7 +56,7 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 ### Genehmigte Ausnahmen
 
-- **Grüne Linien (Inuvet, Campus, ManukaLind, Vetalità)** — Entscheidung Micha, 2026-11-11: `--border-light: color-mix(in srgb, var(--green) 50%, var(--bg))` in `brand-{marke}.css` (Inuvet und Vetalità: `brand-inuvet.css` / `brand-vetalita.css` nur dafür; im Styleguide `brand-inuvet.css` mit `html:not([data-brand])`, eingebunden in `styleguide.html` und die inuvet-Shop-Mockups). Ausnahme davon: die Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Der System-Standard bleibt Hellgrau; Planimol unverändert. Fokus/aktiv bleiben `--fg`.
+- **Grüne Linien (inuvet, Campus, ManukaLind, Vetalità)** — Entscheidung Micha, 2026-11-11: `--border-light: color-mix(in srgb, var(--green) 50%, var(--bg))` in `brand-{marke}.css` (inuvet und Vetalità: `brand-inuvet.css` / `brand-vetalita.css` nur dafür; im Styleguide `brand-inuvet.css` mit `html:not([data-brand])`, eingebunden in `styleguide.html` und die inuvet-Shop-Mockups). Ausnahme davon: die Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Der System-Standard bleibt Hellgrau; Planimol unverändert. Fokus/aktiv bleiben `--fg`.
 
 - **Neongrüne Linien (EQX)** — Entscheidung Micha, 2026-11-19: `--border-light: var(--color-neon)` in `brand-eqx.css` (Neongrün = Markenfarbe, X im Logo). Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Neongrün trägt keinen Text auf Weiß.
 
@@ -95,7 +95,7 @@ Ausführlich steht jede Komponente mit „Shopify-Mapping“ in `styleguide.html
 - **Hero V1–V3** (`hero-v1/v2/v3.liquid`, D.3): Bild, Lottie oder Video. V1 Bild + Text (CSS `--v1`/`--v2`), V2 Vollbild mit Box (CSS `--v3`), V3 Text auf Medium (CSS `--v4`). Die CSS-Klassen und die Schema-Klasse `shopify-section--section-type*` behalten ihre alten Namen. Breite „Satzspiegel“ über `--contained`.
 - **Anker und Trenner:** Inhalts-Sections haben `anchor_id`. Trenner `section-divider` (A.6).
 - **Collection** (E.3), **Produkt-Collection** (`featured-collection`), **Warenkorb-Drawer und -Seite** (E.4/E.9, Cart AJAX API), **Suche** (E.7), **Blog** (E.8), **Utility-Seiten** (E.9).
-- **Kundenkonten** (E.6): je Theme verschieden — klassische Konten (Inuvet) oder Shopify-Kundenkonten. Steht im Theme.
+- **Kundenkonten** (E.6): je Theme verschieden — klassische Konten (inuvet) oder Shopify-Kundenkonten. Steht im Theme.
 - **PDP** (E.2): Kaufblock mit Typ-Selektor und Größen, Akkordeon, Galerie.
   - Galerie-Captions: Product-Metafield `custom.pdp_gallery_captions` (JSON `[{ "id", "caption", "author" }]`).
   - Tageskosten: nur Variant-Metafields `custom.daily_cost_amount` / `custom.daily_cost_note`.
@@ -162,7 +162,7 @@ Lotties liegen unter Inhalt → Dateien; Theme-Assets sind nur Fallback.
 
 ---
 
-## 7. Naturalrabatt (nur Inuvet)
+## 7. Naturalrabatt (nur inuvet)
 
 Berechnung über eine Shopify Function (Cart Transform), nicht im Theme. Das Theme liefert nur die Anzeige (`.nr-widget`, `.cart-item__tier-hint`, Gratis-Badge), abschaltbar über Theme-Einstellungen. In anderen Marken aus.
 

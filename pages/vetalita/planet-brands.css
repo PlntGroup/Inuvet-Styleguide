@@ -2550,7 +2550,7 @@
 
   /* ─── List-Collections (E.9): Kategorie-Kacheln ───
      Handle = Token. --cat / --cat-light kommen aus Liquid (cat-vars).
-     Bekannte Inuvet-Handles bleiben als Fallback für Styleguide-Demos ohne Inline-Vars. */
+     Bekannte inuvet-Handles bleiben als Fallback für Styleguide-Demos ohne Inline-Vars. */
   .shopify-section--collections .tile.--featured.--cover[data-cat],
   body.list-collections .tile.--featured.--cover[data-cat] { --tile-cat: var(--cat); }
   .shopify-section--collections .tile.--featured.--cover[data-cat="atemwege"],
@@ -5415,7 +5415,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   }
 
   /* ─── PDP Caption (Text-Layer über Hauptbild) ───
-     Glass-Tint: --cat-light via data-pdp-cat (Liquid cat-vars). Inuvet-Handles als Fallback. */
+     Glass-Tint: --cat-light via data-pdp-cat (Liquid cat-vars). inuvet-Handles als Fallback. */
   .pdp[data-pdp-cat] { --pdp-caption-glass: var(--cat-light, var(--bg)); }
   .pdp[data-pdp-cat="cbd"]           { --pdp-caption-glass: var(--cat-cbd-light); }
   .pdp[data-pdp-cat="bauchspeichel"] { --pdp-caption-glass: var(--cat-bauchspeichel-light); }
@@ -5471,7 +5471,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .pdp__info { display: flex; flex-direction: column; }
 
   /* ─── Kategorie-Farben via data-cat ───
-     Generic: --cat-light aus Liquid. Inuvet-Handles danach für Demos ohne Vars. */
+     Generic: --cat-light aus Liquid. inuvet-Handles danach für Demos ohne Vars. */
   [data-cat] { background: var(--cat-light, var(--accent-bg)); }
   [data-cat="cbd"]          { background: var(--cat-cbd-light); }
   [data-cat="bauchspeichel"]{ background: var(--cat-bauchspeichel-light); }
@@ -6031,7 +6031,7 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     margin-top: var(--section-label-mt, var(--half-module));
   }
   .cart-item { display: grid; grid-template-columns: calc(var(--base) * 5) 1fr; gap: var(--half-module); padding: var(--half-module) 0; border-bottom: 1px solid var(--border-light); }
-  /* Drawer: keine Linie unter der letzten Warenkorb-Zeile. Ausnahme: Zeile mit Tier-Hint (Inuvet),
+  /* Drawer: keine Linie unter der letzten Warenkorb-Zeile. Ausnahme: Zeile mit Tier-Hint (inuvet),
      der sitzt auf der Linie. */
   .cart-drawer__items > .cart-item:not(:has(~ .cart-item)):not(:has(.cart-item__tier-hint)) { border-bottom: 0; }
   .cart-item.--clickable { cursor: pointer; }

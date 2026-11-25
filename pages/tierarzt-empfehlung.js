@@ -761,7 +761,7 @@ function pdpSocialProofHTML() {
         <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg" alt="">
         <img class="social-proof__avatar" src="../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg" alt="">
       </div>
-      <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit Inuvet</p>
+      <p class="social-proof__text">Dr. med vet. Michael Kluge <svg class="material-icons social-proof__verified" viewBox="0 0 24 24" focusable="false" aria-label="Verifiziert"><use href="#ui-verified"></use></svg> und 26.162 andere Tierärzt*innen arbeiten mit inuvet</p>
     </div>`;
 }
 
@@ -890,7 +890,7 @@ function pdpBenefitsHTML() {
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
-          <p class="tile__body">Inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis</p>
+          <p class="tile__body">inuvet Produkte gibt es exklusiv in deiner Tierarztpraxis</p>
           </div>
         </div>
         <div class="tile">
@@ -926,10 +926,10 @@ function pdpBenefitsHTML() {
 
 function pdpTestimonialsHTML() {
   const items = [
-    { text: 'Bei Inuvet fühle ich mich als Praxis gut aufgehoben. Die Antworten kommen schnell, und man merkt, dass hinter dem Shop echte fachliche Expertise steckt.', name: 'Dr. Sandra Meier', role: 'Tierärztin, München', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
-    { text: 'Was mir an Inuvet gefällt: die enge, verlässliche Zusammenarbeit mit uns Tierärztinnen und Tierärzten. Das spüre ich in jedem Kontakt.', name: 'Dr. Thomas Krause', role: 'Tierarzt, Hamburg', img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
-    { text: 'Bestellen bei Inuvet ist unkompliziert — übersichtlich, klar und ohne Schnickschnack. Genau so soll ein Shop für die Praxis funktionieren.', name: 'Dr. Julia Richter', role: 'Tierärztin, Berlin', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
-    { text: 'Zuverlässige Lieferung, freundlicher Kontakt und ein Markenauftritt, dem ich vertraue. Deshalb empfehle ich Inuvet in meiner Praxis weiter.', name: 'Dr. Markus Thal', role: 'Tierarzt, Köln', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
+    { text: 'Bei inuvet fühle ich mich als Praxis gut aufgehoben. Die Antworten kommen schnell, und man merkt, dass hinter dem Shop echte fachliche Expertise steckt.', name: 'Dr. Sandra Meier', role: 'Tierärztin, München', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
+    { text: 'Was mir an inuvet gefällt: die enge, verlässliche Zusammenarbeit mit uns Tierärztinnen und Tierärzten. Das spüre ich in jedem Kontakt.', name: 'Dr. Thomas Krause', role: 'Tierarzt, Hamburg', img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
+    { text: 'Bestellen bei inuvet ist unkompliziert — übersichtlich, klar und ohne Schnickschnack. Genau so soll ein Shop für die Praxis funktionieren.', name: 'Dr. Julia Richter', role: 'Tierärztin, Berlin', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
+    { text: 'Zuverlässige Lieferung, freundlicher Kontakt und ein Markenauftritt, dem ich vertraue. Deshalb empfehle ich inuvet in meiner Praxis weiter.', name: 'Dr. Markus Thal', role: 'Tierarzt, Köln', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
   ];
   const cards = items.map(t => `
     <div class="testimonial">
@@ -991,7 +991,7 @@ function pdpPraxisHTML() {
           </div>
           <div class="flow">
           <p class="tile__headline">Nur bei euch</p>
-          <p class="tile__body">Inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!</p>
+          <p class="tile__body">inuvet-Produkte sind nicht im Internet erhältlich, nur in eurer Praxis. Eure Beratung wird entlohnt!</p>
           </div>
         </div>
         <div class="tile">
@@ -1208,12 +1208,12 @@ function clearVetFieldError() {
 }
 
 function vetInviteMailtoHref() {
-  const subject = 'Teilnahme am Inuvet-Empfehlungsprogramm';
+  const subject = 'Teilnahme am inuvet-Empfehlungsprogramm';
   const body = `Sehr geehrte Damen und Herren,
 
-ich würde gerne Inuvet-Produkte für mein Tier über das Tierarzt-Empfehlungsprogramm beziehen – leider ist Ihre Praxis dort noch nicht gelistet.
+ich würde gerne inuvet-Produkte für mein Tier über das Tierarzt-Empfehlungsprogramm beziehen – leider ist Ihre Praxis dort noch nicht gelistet.
 
-Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. Inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik.
+Das Programm ermöglicht es Ihnen, passende Ergänzungsfuttermittel digital freizugeben. inuvet übernimmt anschließend Beratung, Versand und Betreuung der Tierbesitzer – für Ihre Praxis entsteht kein Aufwand mit Lagerung oder Logistik.
 
 Mehr Informationen: https://inuvet.com/pages/tierarzt-empfehlung-anleitung
 
@@ -1856,8 +1856,8 @@ function renderNav() {
    ════════════════════════════════════════════ */
 const TESTIMONIALS = [
   { text: 'Nach der Empfehlung meines Tierarztes haben wir Calmin balance ausprobiert — mein ängstlicher Beagle ist eine andere Seele geworden.', name: 'Anna W.',    role: 'Beagle-Mama, Frankfurt',    img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
-  { text: 'Super Service und top Beratung. Meine Tierärztin arbeitet seit Jahren mit Inuvet und ich merke den Unterschied jeden Tag.',             name: 'Sandra M.', role: 'Hundemama, München',        img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
-  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',                              name: 'Julia R.',  role: 'Tierliebhaberin, Berlin',   img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
+  { text: 'Super Service und top Beratung. Meine Tierärztin arbeitet seit Jahren mit inuvet und ich merke den Unterschied jeden Tag.',             name: 'Sandra M.', role: 'Hundemama, München',        img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
+  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle inuvet-Produkte regelmäßig in meiner Praxis.',                              name: 'Julia R.',  role: 'Tierliebhaberin, Berlin',   img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
   { text: 'Meine Katze hat nach zwei Wochen deutlich besser geschlafen. Ohne die Empfehlung unseres Tierarztes hätte ich es nicht gekauft.', name: 'Petra K.', role: 'Katzenbesitzerin, Hamburg', img: null },
 ];
 
@@ -1976,7 +1976,7 @@ function tileHTML(p) {
 /* ── Testimonial-Strip ── */
 const STRIP_TESTIMONIALS = [
   { text: 'Schon nach wenigen Wochen war mein Golden Retriever viel entspannter — ich bin so dankbar für die Empfehlung.',  name: 'Sandra M.',         role: 'Tierbesitzerin, München', img: '../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg' },
-  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle Inuvet-Produkte regelmäßig in meiner Praxis.',       name: 'Dr. Thomas Berger', role: 'Tierarzt, Hamburg',       img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
+  { text: 'Gut verträglich, transparente Inhaltsstoffe — ich empfehle inuvet-Produkte regelmäßig in meiner Praxis.',       name: 'Dr. Thomas Berger', role: 'Tierarzt, Hamburg',       img: '../assets/brands/inuvet/images/Inuvet_Calmin_Balance_07-web_1zu1.jpg' },
   { text: 'Hepax forte hilft meinen Patienten nach der OP. Schnelle Lieferung, unkompliziert.',                          name: 'Klaus W.',          role: 'Tierärztin, Frankfurt' },
   { text: 'Als Tierärztin schätze ich fundierte Formeln — und meine Klientinnen fragen regelmäßig gezielt danach.',        name: 'Dr. Sarah Koch',    role: 'Tierärztin, Berlin' },
 ];
@@ -2212,7 +2212,7 @@ function renderHome() {
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
-          <p class="tile__body">Kaufe Inuvet-Produkte online – mit der Empfehlung deiner Tierarztpraxis</p>
+          <p class="tile__body">Kaufe inuvet-Produkte online – mit der Empfehlung deiner Tierarztpraxis</p>
           </div>
         </div>
         <div class="tile">
@@ -2271,7 +2271,7 @@ function renderHome() {
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Nur über deine Tierarztpraxis</h2>
         <div class="section-type__bottom flow">
-          <p class="section-type__body">Weil deine Tierärzt*in dein Tier besser kennt als Google und weiß, welches Produkt für dein Tier am besten ist. Du interessierst dich für ein Produkt von Inuvet? Dann kannst du direkt hier eine Freigabeanfrage senden.</p>
+          <p class="section-type__body">Weil deine Tierärzt*in dein Tier besser kennt als Google und weiß, welches Produkt für dein Tier am besten ist. Du interessierst dich für ein Produkt von inuvet? Dann kannst du direkt hier eine Freigabeanfrage senden.</p>
           <div class="btn-row">
             <button class="btn --primary" onclick="setPage('collection')">Produkte finden und anfragen</button>
           </div>
@@ -2281,7 +2281,7 @@ function renderHome() {
 `;
 }
 
-/* ── Was ist Inuvet? ── */
+/* ── Was ist inuvet? ── */
 function renderAbout() {
   return `
     <div class="section-type --v1">
@@ -2291,7 +2291,7 @@ function renderAbout() {
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Pflanzlich. Hoch dosiert. Nur über die Praxis.</h2>
         <div class="section-type__bottom flow">
-          <p class="section-type__body">Du möchtest dein Tier pflanzlich unterstützen? Dann bist du hier genau richtig. Produkte von Inuvet sind pflanzlich, hoch dosiert und seit mehr als 15 Jahren in der Tiermedizin im Einsatz — stetig weiterentwickelt, nah an der Forschung.</p>
+          <p class="section-type__body">Du möchtest dein Tier pflanzlich unterstützen? Dann bist du hier genau richtig. Produkte von inuvet sind pflanzlich, hoch dosiert und seit mehr als 15 Jahren in der Tiermedizin im Einsatz — stetig weiterentwickelt, nah an der Forschung.</p>
           <button class="btn --ghost" onclick="document.getElementById('aboutPraxis').scrollIntoView({behavior:'smooth'})">Warum nur in der Praxis?</button>
         </div>
       </div>
@@ -2304,7 +2304,7 @@ function renderAbout() {
           </div>
           <div class="flow">
           <p class="tile__headline">Beste Expertise</p>
-          <p class="tile__body">Kaufe Inuvet-Produkte online – mit der Empfehlung deiner Tierarztpraxis</p>
+          <p class="tile__body">Kaufe inuvet-Produkte online – mit der Empfehlung deiner Tierarztpraxis</p>
           </div>
         </div>
         <div class="tile">
@@ -2339,7 +2339,7 @@ function renderAbout() {
     <div class="section-type --v2 --reverse" id="aboutPraxis">
       <div class="section-type__image" style="background-image:url('../assets/brands/inuvet/images/Inuvet_Hunde-Wiese_01.jpg');"></div>
       <div class="section-type__content flow">
-        <h2 class="section-type__headline">Warum gibt es Inuvet-Produkte nur über deine Tierarztpraxis?</h2>
+        <h2 class="section-type__headline">Warum gibt es inuvet-Produkte nur über deine Tierarztpraxis?</h2>
         <div class="section-type__bottom flow">
           <p class="section-type__body">Weil deine Tierärztin oder dein Tierarzt dein Tier besser kennt als Google — und weiß, wann welches Produkt Sinn macht und wann nicht. Damit du nicht für jede Nachbestellung in die Praxis musst, gibt es die Tierarzt-Empfehlung. Damit bestellst du das empfohlene Produkt direkt nach Hause — solange deine Praxis es dir empfohlen hat.</p>
           <div class="btn-row">
@@ -2368,7 +2368,7 @@ function renderCollection() {
       <div class="section-type__content flow">
         <h2 class="section-type__headline">Produkte finden und von deinem Tierarzt freigeben lassen</h2>
         <div class="section-type__bottom flow">
-          <p class="section-type__body">Inuvet Produkte sind pflanzlich und hoch dosiert — in enger Zusammenarbeit mit Tierärzten. Hast du bereits eine Empfehlung? Dann kannst du sie hier direkt einlösen. Noch keine? Kein Problem — stöbere durch unser Sortiment und frage ein Produkt bei deiner Praxis an.</p>
+          <p class="section-type__body">inuvet Produkte sind pflanzlich und hoch dosiert — in enger Zusammenarbeit mit Tierärzten. Hast du bereits eine Empfehlung? Dann kannst du sie hier direkt einlösen. Noch keine? Kein Problem — stöbere durch unser Sortiment und frage ein Produkt bei deiner Praxis an.</p>
           <div class="btn-row">
             <button class="btn --primary" onclick="openFinder()">Produktfinder starten</button>
             <button class="btn --ghost" onclick="document.getElementById('collectionGrid').scrollIntoView({behavior:'smooth'})">Alle Produkte</button>

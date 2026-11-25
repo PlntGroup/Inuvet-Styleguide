@@ -543,7 +543,7 @@ function toggleAnnScrollDemo(btn) {
   update();
 })();
 
-/* ─── Marken-Haut (Inuvet | Campus | Planimol | ManukaLind | EQX) ─── */
+/* ─── Marken-Haut (inuvet | Campus | Planimol | ManukaLind | EQX) ─── */
 var SG_LOGOS = {
   inuvet: 'assets/brands/inuvet/inuvet-logo.svg',
   campus: 'assets/brands/campus/campus-logo.svg',

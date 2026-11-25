@@ -66,36 +66,36 @@
 
   var DISCLAIMER_DE =
     'Nur in eurer Tierarztpraxis\n\n'
-    + 'Googelt doch mal! Ihr findet im Internet wirklich alles – außer Inuvet-Produkte zum Kauf. '
+    + 'Googelt doch mal! Ihr findet im Internet wirklich alles – außer inuvet-Produkte zum Kauf. '
     + 'Das bedeutet, ihr beratet eure Kund*innen nicht umsonst: Der Vertrieb unserer Produkte läuft ausschließlich über eure Praxis.';
 
   var DISCLAIMER_FR =
     'Uniquement en vente chez vous.\n\n'
-    + 'Allez voir sur Google! Sur internet, on peut vraiment tout acheter… sauf les produits Inuvet. '
+    + 'Allez voir sur Google! Sur internet, on peut vraiment tout acheter… sauf les produits inuvet. '
     + 'Ainsi, vous ne conseillez pas vos clients gratuitement car nos produits sont exclusivement distribués '
     + 'par l\u2019intermédiaire des cabinets vétérinaires \u2013 vos clients ne les trouveront nulle part ailleurs.';
 
   var DISCLAIMER_IT =
     'Solo nel vostro ambulatorio veterinario.\n\n'
-    + 'Provate a cercare su Google! Su internet trovate qualsiasi cosa, ma non i prodotti Inuvet in vendita. '
+    + 'Provate a cercare su Google! Su internet trovate qualsiasi cosa, ma non i prodotti inuvet in vendita. '
     + 'Ciò significa che non fornirete consulenza ai vostri clienti per niente: la distribuzione dei nostri prodotti '
     + 'passerà esclusivamente attraverso il vostro ambulatorio.';
 
   var DISCLAIMER_ES =
     'Solo disponible en clínicas veterinarias\n\n'
-    + '¡Busca en Google! Realmente en Internet se puede encontrar y comprar de todo – excepto los productos de Inuvet. '
+    + '¡Busca en Google! Realmente en Internet se puede encontrar y comprar de todo – excepto los productos de inuvet. '
     + 'Esto significa, que no asesoras a tus clientes en vano: la distribución de nuestros productos se realiza '
     + 'exclusivamente a través de tu consulta.';
 
   var DISCLAIMER_NL =
     'Alleen verkrijgbaar bij je dierenarts\n\n'
-    + 'Google maar eens! Je kunt werkelijk alles op het internet kopen – behalve Inuvet producten. '
+    + 'Google maar eens! Je kunt werkelijk alles op het internet kopen – behalve inuvet producten. '
     + 'Je adviseert je klanten dus niet zomaar, want onze producten zijn uitsluitend te koop bij dierenartspraktijken.';
 
   var DISCLAIMER_EN =
     'Only available at your veterinary practice\n\n'
     + 'Go ahead and google: you will find all kinds of products on the Internet; but you definitely will not come '
-    + 'across any Inuvet products for sale. To ensure that your hard work is not in vain, these are sold '
+    + 'across any inuvet products for sale. To ensure that your hard work is not in vain, these are sold '
     + 'exclusively through your practice.';
 
   var UI = {
@@ -106,7 +106,7 @@
       crosslinkSignature: 'Zur E-Mail-Signatur',
       localeLabel: 'Land / Sprache',
       sectionBrand: 'Marke',
-      brandHint: 'In Italien heißt Inuvet aus rechtlichen Gründen Vetalità — Logo, Firma und Website passen sich an.',
+      brandHint: 'In Italien heißt inuvet aus rechtlichen Gründen Vetalità — Logo, Firma und Website passen sich an.',
       presetLabel: 'Vorlage',
       presetRechnung: 'Rechnung (z. B. SAP)',
       presetService: 'Service / Bestätigung (z. B. Gmail)',
@@ -188,7 +188,7 @@
       crosslinkSignature: 'Vers la signature e-mail',
       localeLabel: 'Pays / langue',
       sectionBrand: 'Marque',
-      brandHint: 'En Italie, Inuvet s\u2019appelle Vetalità pour des raisons juridiques — le logo, la société et le site s\u2019adaptent.',
+      brandHint: 'En Italie, inuvet s\u2019appelle Vetalità pour des raisons juridiques — le logo, la société et le site s\u2019adaptent.',
       presetLabel: 'Modèle',
       presetRechnung: 'Facture (p. ex. SAP)',
       presetService: 'Service / confirmation (p. ex. Gmail)',
@@ -269,7 +269,7 @@
       crosslinkSignature: 'Vai alla firma e-mail',
       localeLabel: 'Paese / lingua',
       sectionBrand: 'Marca',
-      brandHint: 'In Italia Inuvet si chiama Vetalità per motivi legali — logo, società e sito si adattano di conseguenza.',
+      brandHint: 'In Italia inuvet si chiama Vetalità per motivi legali — logo, società e sito si adattano di conseguenza.',
       presetLabel: 'Modello',
       presetRechnung: 'Fattura (es. SAP)',
       presetService: 'Servizio / conferma (es. Gmail)',
@@ -350,7 +350,7 @@
       crosslinkSignature: 'Ir a la firma de correo',
       localeLabel: 'País / idioma',
       sectionBrand: 'Marca',
-      brandHint: 'En Italia, Inuvet se llama Vetalità por motivos legales: el logo, la empresa y el sitio web se adaptan.',
+      brandHint: 'En Italia, inuvet se llama Vetalità por motivos legales: el logo, la empresa y el sitio web se adaptan.',
       presetLabel: 'Plantilla',
       presetRechnung: 'Factura (p. ej. SAP)',
       presetService: 'Servicio / confirmación (p. ej. Gmail)',
@@ -431,7 +431,7 @@
       crosslinkSignature: 'Naar e-mailhandtekening',
       localeLabel: 'Land / taal',
       sectionBrand: 'Merk',
-      brandHint: 'In Italië heet Inuvet om juridische redenen Vetalità — logo, bedrijf en website passen zich aan.',
+      brandHint: 'In Italië heet inuvet om juridische redenen Vetalità — logo, bedrijf en website passen zich aan.',
       presetLabel: 'Sjabloon',
       presetRechnung: 'Factuur (bijv. SAP)',
       presetService: 'Service / bevestiging (bijv. Gmail)',
@@ -512,7 +512,7 @@
       crosslinkSignature: 'Go to email signature',
       localeLabel: 'Country / language',
       sectionBrand: 'Brand',
-      brandHint: 'In Italy, Inuvet is called Vetalità for legal reasons — logo, company and website adapt accordingly.',
+      brandHint: 'In Italy, inuvet is called Vetalità for legal reasons — logo, company and website adapt accordingly.',
       presetLabel: 'Template',
       presetRechnung: 'Invoice (e.g. SAP)',
       presetService: 'Service / confirmation (e.g. Gmail)',
@@ -741,7 +741,7 @@
           headline: '', salutation: 'Liebes Praxisteam,',
           body: 'eure Reklamation ist bei uns angekommen – danke, dass ihr euch die Zeit genommen habt, uns zu schreiben. '
             + 'Wir melden uns innerhalb von 1–2 Werktagen mit einer Rückmeldung bei euch.',
-          closing: 'Tierische Grüße vom ganzen Inuvet-Team!',
+          closing: 'Tierische Grüße vom ganzen inuvet-Team!',
           ctaLabel: '', ctaUrl: '',
         },
         fr: {
@@ -749,7 +749,7 @@
           headline: '', salutation: 'Chère équipe,',
           body: 'votre réclamation est bien parvenue — merci d\u2019avoir pris le temps de nous écrire. '
             + 'Nous vous répondrons sous 1 à 2 jours ouvrables.',
-          closing: 'Meilleures salutations de toute l\u2019équipe Inuvet !',
+          closing: 'Meilleures salutations de toute l\u2019équipe inuvet !',
           ctaLabel: '', ctaUrl: '',
         },
         it: {
@@ -757,7 +757,7 @@
           headline: '', salutation: 'Gentile team,',
           body: 'il vostro reclamo ci è pervenuto — grazie per averci scritto. '
             + 'Vi risponderemo entro 1–2 giorni lavorativi.',
-          closing: 'Cordiali saluti da tutto il team Inuvet!',
+          closing: 'Cordiali saluti da tutto il team inuvet!',
           ctaLabel: '', ctaUrl: '',
         },
         es: {
@@ -765,7 +765,7 @@
           headline: '', salutation: 'Estimado equipo,',
           body: 'vuestra reclamación nos ha llegado — gracias por escribirnos. '
             + 'Os responderemos en 1–2 días laborables.',
-          closing: '¡Saludos de todo el equipo Inuvet!',
+          closing: '¡Saludos de todo el equipo inuvet!',
           ctaLabel: '', ctaUrl: '',
         },
         nl: {
@@ -773,7 +773,7 @@
           headline: '', salutation: 'Beste team,',
           body: 'jullie klacht is bij ons aangekomen — bedankt dat jullie de tijd hebben genomen om te schrijven. '
             + 'We reageren binnen 1–2 werkdagen.',
-          closing: 'Vriendelijke groeten van het hele Inuvet-team!',
+          closing: 'Vriendelijke groeten van het hele inuvet-team!',
           ctaLabel: '', ctaUrl: '',
         },
         en: {
@@ -781,7 +781,7 @@
           headline: '', salutation: 'Dear team,',
           body: 'your complaint has reached us — thank you for taking the time to write. '
             + 'We will get back to you within 1–2 business days.',
-          closing: 'Best wishes from the whole Inuvet team!',
+          closing: 'Best wishes from the whole inuvet team!',
           ctaLabel: '', ctaUrl: '',
         },
       },
@@ -792,7 +792,7 @@
           salutation: 'Hey!',
           body: 'Danke für deine Anfrage für\n\n• {{produkt}}\n\n'
             + 'Wir leiten sie an eure Tierarztpraxis weiter. Die Praxis aktiviert die Empfehlung und meldet sich bei dir.',
-          closing: 'Viele Grüße vom Inuvet Team!',
+          closing: 'Viele Grüße vom inuvet Team!',
           ctaLabel: '', ctaUrl: '',
         },
         fr: {
@@ -801,7 +801,7 @@
           salutation: 'Bonjour !',
           body: 'Merci pour votre demande pour\n\n• {{produkt}}\n\n'
             + 'Nous la transmettons à votre cabinet vétérinaire. Le cabinet active la recommandation et vous recontacte.',
-          closing: 'Bien cordialement, l\u2019équipe Inuvet !',
+          closing: 'Bien cordialement, l\u2019équipe inuvet !',
           ctaLabel: '', ctaUrl: '',
         },
         it: {
@@ -810,7 +810,7 @@
           salutation: 'Ciao!',
           body: 'Grazie per la tua richiesta per\n\n• {{produkt}}\n\n'
             + 'La inoltriamo al tuo ambulatorio veterinario. L\u2019ambulatorio attiva la raccomandazione e ti contatta.',
-          closing: 'Cordiali saluti dal team Inuvet!',
+          closing: 'Cordiali saluti dal team inuvet!',
           ctaLabel: '', ctaUrl: '',
         },
         es: {
@@ -819,7 +819,7 @@
           salutation: '¡Hola!',
           body: 'Gracias por tu solicitud de\n\n• {{produkt}}\n\n'
             + 'La enviamos a tu clínica veterinaria. La clínica activa la recomendación y se pondrá en contacto contigo.',
-          closing: '¡Un saludo del equipo Inuvet!',
+          closing: '¡Un saludo del equipo inuvet!',
           ctaLabel: '', ctaUrl: '',
         },
         nl: {
@@ -828,7 +828,7 @@
           salutation: 'Hoi!',
           body: 'Bedankt voor je aanvraag voor\n\n• {{produkt}}\n\n'
             + 'We sturen deze door naar je dierenartspraktijk. De praktijk activeert de aanbeveling en neemt contact met je op.',
-          closing: 'Groeten van het Inuvet-team!',
+          closing: 'Groeten van het inuvet-team!',
           ctaLabel: '', ctaUrl: '',
         },
         en: {
@@ -837,7 +837,7 @@
           salutation: 'Hi!',
           body: 'Thanks for your request for\n\n• {{produkt}}\n\n'
             + 'We forward it to your veterinary practice. The practice activates the recommendation and gets in touch with you.',
-          closing: 'Best wishes from the Inuvet team!',
+          closing: 'Best wishes from the inuvet team!',
           ctaLabel: '', ctaUrl: '',
         },
       },
