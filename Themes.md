@@ -56,7 +56,7 @@ Ist der Diff nicht leer, ist etwas im Theme gelandet, das in den Styleguide geh�
 
 ### Genehmigte Ausnahmen
 
-- **Grüne Linien (Inuvet, Campus, ManukaLind, Vetalità)** — Entscheidung Micha, 2026-11-11: `--border-light: color-mix(in srgb, var(--green) 50%, var(--bg))` in `brand-{marke}.css` (Inuvet und Vetalità: `brand-inuvet.css` / `brand-vetalita.css` nur dafür). Ausnahme davon: die Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Der System-Standard bleibt Hellgrau; Planimol unverändert. Fokus/aktiv bleiben `--fg`.
+- **Grüne Linien (Inuvet, Campus, ManukaLind, Vetalità)** — Entscheidung Micha, 2026-11-11: `--border-light: color-mix(in srgb, var(--green) 50%, var(--bg))` in `brand-{marke}.css` (Inuvet und Vetalità: `brand-inuvet.css` / `brand-vetalita.css` nur dafür; im Styleguide `brand-inuvet.css` mit `html:not([data-brand])`, eingebunden in `styleguide.html` und die inuvet-Shop-Mockups). Ausnahme davon: die Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Der System-Standard bleibt Hellgrau; Planimol unverändert. Fokus/aktiv bleiben `--fg`.
 
 - **Neongrüne Linien (EQX)** — Entscheidung Micha, 2026-11-19: `--border-light: var(--color-neon)` in `brand-eqx.css` (Neongrün = Markenfarbe, X im Logo). Linie unter dem Header bleibt grau (`--border-nav: var(--border-neutral)`). Neongrün trägt keinen Text auf Weiß.
 

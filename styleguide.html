@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="brand-planimol.css?v=2">
   <link rel="stylesheet" href="brand-manukalind.css?v=2">
   <link rel="stylesheet" href="brand-eqx.css?v=4">
+  <link rel="stylesheet" href="brand-inuvet.css?v=1">
   <link id="skin-campus" rel="stylesheet" href="brand-campus.css?v=2" disabled>
   <link rel="stylesheet" href="sg-only.css?v=102">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -3320,7 +3321,7 @@
         </div>
         <div class="rule">
           <h4>Keine internen Trennlinien</h4>
-          <p>Header, Body und Footer werden <strong>nur durch Whitespace</strong> gegliedert — keine <code>border-top</code>/<code>border-bottom</code> zwischen den Abschnitten. Linien würden Platz fressen und die Linien-Regel aus <a href="#A5">A.5</a> verletzen (Linien ersetzen nie Abstand). Äußerer Rahmen der Box bleibt (<code>border: 1px solid var(--border)</code>).</p>
+          <p>Header, Body und Footer werden <strong>nur durch Whitespace</strong> gegliedert — keine <code>border-top</code>/<code>border-bottom</code> zwischen den Abschnitten. Linien würden Platz fressen und die Linien-Regel aus <a href="#A5">A.5</a> verletzen (Linien ersetzen nie Abstand). Äußerer Rahmen der Box bleibt (<code>border: 1px solid var(--border)</code>). <strong>Ausnahme: Dialoge mit scrollender Liste</strong> (<code>.modal.--list</code>, z.&nbsp;B. „Gratisprodukte wählen“ im Checkout): fester Bereich <code>.modal__toolbar</code> unter dem Header (z.&nbsp;B. Guthaben, Suche) und Footer mit je einer Linie in <code>var(--border)</code>, damit klar ist, was scrollt — Entscheidung Micha, 2026-11-25. Styles noch in <code>temp.css</code>.</p>
         </div>
         <div class="rule">
           <h4>Danger-Variante</h4>

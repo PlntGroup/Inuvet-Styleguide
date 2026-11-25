@@ -412,7 +412,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | C.7 | Notice / Infobox | `.notice` | — |
 | C.8 | Empty / Success | `.empty-state` `.success-state` | — |
 | C.9 | Toast | `.toast` | `--success --error --info --out` |
-| C.10 | Modal | `.modal .modal-overlay` | `--open` · Elemente: `.modal__header / __title / __body / __footer` |
+| C.10 | Modal | `.modal .modal-overlay` | `--open` · Elemente: `.modal__header / __title / __body / __footer` · keine internen Trennlinien; Ausnahme `.modal.--list` (scrollende Liste): `.modal__toolbar` + Footer mit Linie (vorläufig `temp.css`, 2026-11-25) |
 
 #### D — Organismen
 | Sek. | Komponente | Klasse(n) | Modifier |
