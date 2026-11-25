@@ -259,6 +259,10 @@
 .show__scene.--entering .show__media.--still img {
   animation: show-kenburns var(--scene-dur, 7s) var(--ease-out) both;
 }
+/* Darreichungsform als Video: leichte Bewegung, läuft auch beim Ausblenden weiter (daher ohne --entering) */
+.show__scene.--form .show__media video {
+  animation: show-video-drift var(--scene-dur, 6s) linear both;
+}
 /* Darreichungsform ohne Video: Bild bewegt sich deutlicher */
 .show__scene.--entering .show__media.--animated img {
   animation: show-drift var(--scene-dur, 7s) var(--ease-in-out) both;
@@ -290,7 +294,113 @@
 .show__scene.--intro.--entering .show__intro-logo {
   animation: show-intro 1.4s var(--ease-out) 0.2s both;
 }
-.show__scene.--intro.--leaving { transition-delay: 0s; }
+.show__scene.--intro.--leaving,
+.show__scene.--divider.--leaving { transition-delay: 0s; }
+
+/* ─── Inhaltsstoffe (Auszug): Kopf + bis zu vier Inhaltsstoffe mit Bild (--ing-cols aus dem Script) ─── */
+.show__scene.--ingredients {
+  grid-template-columns: 1fr;
+  align-content: center;
+  row-gap: var(--module);
+  padding: 0 var(--pad);
+}
+.show__ing-head { max-width: none; }
+.show__ing-list {
+  display: grid;
+  grid-template-columns: repeat(var(--ing-cols, 3), 1fr);
+  column-gap: var(--module-2xl);
+}
+.show__ing { margin: 0; }
+.show__ing-media {
+  position: relative;
+  aspect-ratio: 16 / 9;   /* flacher, damit die Beschreibungstexte Platz haben */
+  overflow: hidden;
+  background: var(--cat-light);
+}
+.show__ing-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.show__scene.--entering .show__ing-media img {
+  animation: show-kenburns var(--scene-dur, 8s) var(--ease-out) both;
+}
+.show__ing {
+  display: grid;
+  align-content: start;     /* Text sitzt bei allen direkt unter dem Bild – auch ohne lateinischen Namen */
+  row-gap: var(--module);   /* Abstand Bild → Text */
+}
+.show__ing figcaption { --flow-space: var(--half-module); }
+.show__ing-name {
+  font-size: var(--text-l);
+  font-weight: 700;
+  line-height: var(--lh-h3);
+}
+.show__ing-text {
+  --flow-space: var(--half-module);
+  font-size: calc(var(--text-base) * 1.1);   /* auf dem Bildschirm aus Abstand lesbar */
+  line-height: var(--lh-base);
+  hyphens: auto;
+}
+.show__ing-latin {
+  --flow-space: calc(var(--base) * 0.25);
+  font-size: var(--text-m);
+  font-style: italic;
+  color: var(--fg-muted);
+}
+
+/* ─── Praxis-Trenner: Foto vollflächig, Logo weiß, Text unten auf Verlauf aus --fg (Styleguide F.1) ─── */
+.show__scene.--divider {
+  z-index: calc(var(--z-nav) + 1);
+  display: block;
+  background: var(--green);   /* ohne Foto (z. B. im Web): Markengrün, alles weiß */
+}
+.show__divider-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.show__scene.--divider.--entering .show__divider-img {
+  animation: show-kenburns var(--scene-dur, 5.6s) var(--ease-out) both;
+}
+/* Einstieg: das Foto öffnet sich als Band von der Mitte nach oben und unten – darunter läuft die vorige Szene weiter */
+.show__scene.--divider.--entering,
+.show__scene.--divider.--entering.--soft {
+  animation: show-band-open 1.3s var(--ease-in-out) both;
+}
+.show__divider-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, color-mix(in srgb, var(--fg) 70%, transparent), transparent 55%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--fg) 45%, transparent), transparent 25%);
+}
+.show__scene.--divider.--no-photo .show__divider-img,
+.show__scene.--divider.--no-photo .show__divider-scrim { display: none; }
+.show__divider-logo {
+  position: absolute;
+  top: calc(var(--bar-h) * 0.32);
+  left: var(--pad);
+  height: calc(var(--bar-h) * 1.2);
+  width: auto;
+}
+.show__divider-text {
+  position: absolute;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: var(--module-2xl);
+  max-width: calc(var(--base) * 88);   /* zwei Zeilen bei 1920 × 1080 */
+  margin: 0;
+  color: var(--bg);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: var(--lh-h1);
+  letter-spacing: -0.02em;
+}
 
 /* Lottie-Fläche: SVG füllt den Container, Seitenverhältnis bleibt (meet) */
 .show__lottie { position: relative; }
@@ -380,6 +490,15 @@
   from { clip-path: inset(0 100% 0 0); }
   to   { clip-path: inset(0 0 0 0); }
 }
+@keyframes show-band-open {
+  from { clip-path: inset(50% 0 50% 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+/* Video: leichte, stetige Bewegung – auch wenn das Video selbst kurz ruht, steht das Bild nie */
+@keyframes show-video-drift {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
 @keyframes show-kenburns {
   from { transform: scale(1.12); }
   to   { transform: scale(1); }
@@ -414,6 +533,9 @@
 @media (prefers-reduced-motion: reduce) {
   .show__scene.--entering .show__media,
   .show__scene.--entering .show__media img,
+  .show__scene.--form .show__media video,
+  .show__scene.--divider.--entering,
+  .show__scene.--divider.--entering.--soft,
   .show__scene.--entering .show__rise,
   .show__scene.--entering.--soft,
   .show__scene.--intro.--entering .show__intro-logo,

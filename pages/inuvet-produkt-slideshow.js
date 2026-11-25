@@ -6,6 +6,10 @@
    Brand scenes use Lottie animations (lottie-web, svg renderer).
    URL params: ?cat=stress,blase (filter, hides brand scenes) · ?start=hepax-produktfamilie
                ?speed=1.5 · ?brand=0 (products only)
+               ?edition=inhaltsstoffe – version with ingredient scenes and practice dividers
+               (also set by <body data-edition="inhaltsstoffe">, see Inuvet-Produkt-Slideshow-Inhaltsstoffe.html;
+               single switches: ?ingredients=1 · ?dividers=1 · ?forms=photo)
+               Dosage-form videos play once: the scene lasts exactly as long as the video (no loop)
                ?render=1 – frame-by-frame mode for the MP4 export (inuvet-produkt-slideshow-export.mjs):
                virtual clock, all CSS animations / videos / Lotties are seeked per frame, ends after fade-to-white
    Keys: → / ← next / previous · Space pause · F fullscreen
@@ -17,6 +21,13 @@
   const speed = Math.max(0.25, parseFloat(params.get('speed')) || 1);
   const catFilter = (params.get('cat') || '').split(',').filter(Boolean);
   const withBrand = !catFilter.length && params.get('brand') !== '0';
+  // Fassungen: Standard · „inhaltsstoffe“ = zusätzlich Inhaltsstoffe und Praxis-Trenner (URL-Parameter oder <body data-edition>)
+  const edition = params.get('edition') || document.body.dataset.edition || '';
+  const OPT = {
+    ingredients: edition === 'inhaltsstoffe' || params.get('ingredients') === '1',
+    dividers: edition === 'inhaltsstoffe' || params.get('dividers') === '1',
+    formPhotos: params.get('forms') === 'photo',
+  };
   const RENDER = params.get('render') === '1';
   const reducedMotion = !RENDER && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -51,15 +62,20 @@
   };
 
   const TIMING = {
-    intro: 4200,         // Logo groß auf Weiß
-    hero: 8000,          // „Natürlich gesunde Tiere“
-    trio: 9000,          // Drei Vorteile / drei Illustrationen
-    packshot: 7000,      // Packshot + Kurzbeschreibung
-    solo: 8500,          // Packshot, wenn keine Darreichungsform hinterlegt ist
-    form: 6500,          // Darreichungsform als Bild
-    formMin: 6000,       // Darreichungsform als Video: mindestens …
-    formMax: 11000,      // … höchstens (Video läuft in Schleife)
+    intro: 3600,         // Logo groß auf Weiß
+    hero: 7000,          // „Natürlich gesunde Tiere“
+    trio: 7600,          // Drei Vorteile / drei Illustrationen
+    packshot: 6000,      // Packshot + Kurzbeschreibung
+    solo: 7200,          // Packshot, wenn keine Darreichungsform hinterlegt ist
+    form: 5500,          // Darreichungsform als Bild
+    ingredients: 7200,   // Inhaltsstoffe (Auszug) – plus 5 ms je Zeichen Beschreibungstext …
+    ingredientsMax: 12000, // … höchstens
+    divider: 5600,       // Praxis-Trenner
+    // Darreichungsform als Video: läuft einmal (keine Schleife). Der Übergang beginnt so früh,
+    // dass er genau beim letzten Videobild deckt – kein Standbild, kein Schwarz.
     curtain: 620,        // Szenenwechsel: Zeit bis die Fläche deckt
+    crossfade: 900,      // weiche Überblendung (Marken-Szenen)
+    reveal: 1300,        // Praxis-Trenner: Foto öffnet sich als Band von der Mitte aus
     fadeOut: 1600,       // Ende: Ausblenden auf Weiß, danach beginnt das Intro
   };
 
@@ -104,9 +120,41 @@
     scenes.push({ kind: 'hero', p: brandP('hero', BRAND.hero.label), pi: -2, step: 0, data: BRAND.hero, soft: true });
     scenes.push({ kind: 'trio', p: brandP('vorteile', BRAND.benefits.label), pi: -3, step: 0, data: BRAND.benefits, soft: true });
   }
+  // Praxis-Trenner: Foto aus der Praxis, alle DIVIDER_EVERY Produkte (Fotos lokal, nicht im Repo – Personen erkennbar)
+  const DIVIDER_EVERY = 3;
+  // Freigegebene Praxisfotos (Alex Hagmann), nur Querformat. Reihenfolge = Abfolge in der Slideshow (9 Trenner bei 28 Produkten);
+  // weitere Fotos stehen dahinter bereit, falls der Abstand kleiner wird.
+  // pos = object-position: Bildausschnitt so, dass der Text unten nicht über Gesichtern liegt
+  const DIVIDER_PHOTOS = [
+    { file: 'Praxis_Team_BRK08221.jpg', pos: 'center 90%' },
+    { file: 'Praxis_Tieraerztin-mit-Kaninchen_image00011.jpg', pos: 'center 35%' },
+    { file: 'Praxis_Hund-Behandlung_BRK09200.jpg', pos: 'center 35%' },
+    { file: 'Praxis_Tieraerztin-mit-Hund_image00021.jpg', pos: 'center 100%' },
+    { file: 'Praxis_Tieraerztin-Portrait_BRK09230.jpg', pos: 'center 40%' },
+    { file: 'Praxis_Transportbox_image00009.jpg', pos: 'center 30%' },
+    { file: 'Praxis_Team-mit-Hund_BRK09066.jpg', pos: 'center 100%' },
+    { file: 'Praxis_Empfang-Schreibtisch_image00017.jpg', pos: 'center 40%' },
+    { file: 'Praxis_Katze-Untersuchung_IMG_7569.jpg', pos: 'center 40%' },
+    { file: 'Praxis_Tieraerztin-mit-Hund_image00019.jpg', pos: 'center 40%' },
+    { file: 'Praxis_Hund-Behandlungstisch_BRK08088.jpg', pos: 'center 40%' },
+    { file: 'Praxis_Medikament-Vorbereitung_image00001.jpg', pos: 'center 30%' },
+    { file: 'Praxis_Behandlung-Maske_image00005.jpg', pos: 'center 30%' },
+    { file: 'Praxis_Empfang-Schreibtisch_image00018.jpg', pos: 'center 40%' },
+  ];
+  const DIVIDER_TEXT = 'Über 20.000 Tierarztpraxen arbeiten mit Inuvet';
+  let dividerCount = 0;
   products.forEach((p, pi) => {
+    const withIng = OPT.ingredients && (p.ingredients || []).length > 0;
+    p.steps = 1 + (withIng ? 1 : 0) + p.forms.length;
     scenes.push({ kind: 'packshot', p, pi, step: 0 });
-    p.forms.forEach((f, fi) => scenes.push({ kind: 'form', p, pi, f, fi, step: fi + 1 }));
+    if (withIng) scenes.push({ kind: 'ingredients', p, pi, step: 1 });
+    const offset = withIng ? 2 : 1;
+    p.forms.forEach((f, fi) => scenes.push({ kind: 'form', p, pi, f, fi, step: fi + offset }));
+    const last = pi === products.length - 1;
+    if (OPT.dividers && !last && (pi + 1) % DIVIDER_EVERY === 0) {
+      const photo = DIVIDER_PHOTOS[dividerCount % DIVIDER_PHOTOS.length];
+      scenes.push({ kind: 'divider', p: brandP(`trenner-${++dividerCount}`, ''), pi: -10 - dividerCount, step: 0, soft: true, photo });
+    }
   });
   if (withBrand) {
     scenes.push({ kind: 'trio', p: brandP('praxis', BRAND.practice.label), pi: -4, step: 0, data: BRAND.practice });
@@ -159,12 +207,14 @@
   function preload(scene) {
     if (!scene) return;
     if (scene.kind === 'packshot') new Image().src = scene.p.packshot;
-    else if (scene.kind === 'form' && scene.f.video) {
+    else if (scene.kind === 'ingredients') scene.p.ingredients.forEach((i) => { if (i.image) new Image().src = i.image; });
+    else if (scene.kind === 'divider') new Image().src = `../slideshow-media/praxis/${scene.photo.file}`;
+    else if (scene.kind === 'form' && scene.f.video && !OPT.formPhotos) {
       const v = document.createElement('video');
       v.preload = 'auto';
       v.src = scene.f.video;
     }
-    else if (scene.kind === 'form' && !scene.f.video) new Image().src = scene.f.image;
+    else if (scene.kind === 'form') new Image().src = scene.f.image;
   }
 
   // Bild mit Ersatzquellen: lokale Datei zuerst, sonst Shop-CDN
@@ -211,9 +261,9 @@
 
     const media = el('figure', 'show__media');
     let video = null;
-    if (f.video) {
+    if (f.video && !OPT.formPhotos) {
       video = el('video');
-      Object.assign(video, { muted: true, loop: true, playsInline: true, preload: 'auto', poster: f.image });
+      Object.assign(video, { muted: true, loop: false, playsInline: true, preload: 'auto', poster: f.image });
       video.setAttribute('muted', '');
       video.setAttribute('aria-hidden', 'true');
       video.src = f.video;
@@ -239,7 +289,13 @@
     if (f.caption) copy.append(rise(el('p', 'show__caption', f.caption), 2));
 
     scene.append(media, copy);
-    return { scene, video, duration: TIMING.form };
+    // Inhaltliches Ende: manche Dateien haben danach noch ~1 s Schwarz (videoEnd in den Daten)
+    if (video && f.videoEnd) {
+      video.addEventListener('timeupdate', () => {
+        if (!RENDER && video.currentTime >= f.videoEnd - 0.05) { video.pause(); video.currentTime = f.videoEnd - 0.05; }
+      });
+    }
+    return { scene, video, videoEnd: f.videoEnd || 0, duration: TIMING.form };
   }
 
   // Lottie-Platzhalter: wird nach dem Einhängen der Szene geladen (mount → startLotties).
@@ -298,7 +354,53 @@
     return { scene, duration: TIMING.trio };
   }
 
-  const BUILD = { packshot: buildPackshot, form: buildForm, intro: buildIntro, hero: buildHero, trio: buildTrio };
+  // Inhaltsstoffe (Auszug): bis zu drei Hauptinhaltsstoffe mit Bild, Name und lateinischem Namen (Shop-Metaobjekt)
+  function buildIngredients(s) {
+    const { p } = s;
+    const scene = el('section', 'show__scene --ingredients');
+    scene.dataset.cat = p.cat;
+    const head = el('div', 'show__ing-head flow');
+    head.append(rise(el('p', 'label-caps show__eyebrow', 'Inhaltsstoffe (Auszug)'), 0));
+    head.append(rise(el('h2', 'show__name --sub', p.title), 1));
+    const list = el('div', 'show__ing-list');
+    const shown = p.ingredients.slice(0, 4);
+    list.style.setProperty('--ing-cols', String(Math.max(3, shown.length)));
+    shown.forEach((ing, i) => {
+      const item = rise(el('figure', 'show__ing'), 2 + i);
+      const media = el('div', 'show__ing-media');
+      media.append(imgWithFallback([ing.image], ing.name));
+      const cap = el('figcaption', 'flow');
+      cap.append(el('p', 'show__ing-name', ing.name));
+      if (ing.latin) cap.append(el('p', 'show__ing-latin', ing.latin));
+      if (ing.summary) cap.append(el('p', 'show__ing-text', ing.summary));
+      item.append(media, cap);
+      list.append(item);
+    });
+    scene.append(head, list);
+    // Mit Beschreibungstexten: etwas länger stehen lassen, je nach Textmenge (höchstens TIMING.ingredientsMax)
+    const chars = shown.reduce((n, ing) => n + (ing.summary || '').length, 0);
+    return { scene, duration: Math.min(TIMING.ingredients + chars * 5, TIMING.ingredientsMax) };
+  }
+
+  // Praxis-Trenner: Foto vollflächig über der ganzen Bühne, Logo weiß, Text unten auf Verlauf (Styleguide F.1)
+  function buildDivider(s) {
+    const scene = el('section', 'show__scene --divider');
+    scene.dataset.cat = 'brand';
+    const img = el('img', 'show__divider-img');
+    img.alt = '';
+    img.addEventListener('error', () => scene.classList.add('--no-photo'), { once: true });
+    img.style.objectPosition = s.photo.pos;
+    img.src = `../slideshow-media/praxis/${s.photo.file}`;
+    const logo = el('img', 'show__divider-logo');
+    logo.src = '../assets/brands/inuvet/inuvet-logo-weiss.svg';
+    logo.alt = 'inuvet';
+    const text = rise(el('p', 'show__divider-text', DIVIDER_TEXT), 0);
+    text.style.setProperty('--anim-delay', `${TIMING.reveal / 1000 - 0.3}s`); // erst wenn das Foto fast offen ist
+    scene.append(img, el('div', 'show__divider-scrim'), logo, text);
+    return { scene, duration: TIMING.divider, onStage: true };
+  }
+
+  const BUILD = { packshot: buildPackshot, form: buildForm, intro: buildIntro, hero: buildHero, trio: buildTrio, ingredients: buildIngredients, divider: buildDivider };
 
   /* ─── Lottie ─── */
   function startLotties(built) {
@@ -347,6 +449,7 @@
   }
 
   function updateBar(s) {
+    if (s.kind === 'divider') return; // Trenner liegt über der Leiste; sie bleibt beim Produkt davor
     stage.dataset.cat = s.p.cat;
     // Marken-Szenen: keine Leiste, nur das Logo (größer)
     stage.classList.toggle('--brand', s.p.cat === 'brand');
@@ -358,7 +461,7 @@
     if (isBrand) { steps.hidden = true; return; }
     barCounter.innerHTML = `${pad(s.pi + 1)} <span>/ ${pad(products.length)}</span>`;
 
-    const total = s.p.forms.length + 1;
+    const total = s.p.steps || s.p.forms.length + 1;
     if (steps.children.length !== total || steps.dataset.product !== s.p.handle) {
       steps.replaceChildren(...Array.from({ length: total }, () => el('span', 'show__step')));
       steps.dataset.product = s.p.handle;
@@ -394,6 +497,15 @@
     if (!paused) timer = clock.setTimeout(next, ms);
   }
 
+  // Wie lange der Übergang zur nächsten Szene braucht, bis er deckt
+  function leadFor(i) {
+    const n = scenes[i + 1];
+    if (!n || n.kind === 'intro') return TIMING.fadeOut;
+    if (n.kind === 'divider') return TIMING.reveal;
+    if (n.soft) return TIMING.crossfade;
+    return TIMING.curtain;
+  }
+
   function mount(i, soft = false) {
     const s = scenes[i];
     const built = BUILD[s.kind](s);
@@ -406,8 +518,7 @@
       old.scene.classList.add('--leaving');
       // Überblendung: alte Szene bleibt stehen, bis die neue darüber deckend ist (Intro liegt oben und blendet selbst aus)
       if (soft && !old.onStage) old.scene.classList.add('--hold');
-      if (old.video) old.video.pause();
-      old.frozen = true;
+      // Video läuft unter dem Übergang weiter bis zu seinem Ende (kein eingefrorenes Bild)
       stopLotties(old);
       clock.setTimeout(() => {
         old.scene.remove();
@@ -436,10 +547,10 @@
     if (built.video) {
       const v = built.video;
       const begin = () => {
-        const d = (v.duration * 1000) / speed;
-        const ms = Number.isFinite(d)
-          ? Math.min(Math.max(d, TIMING.formMin / speed), TIMING.formMax / speed)
-          : duration;
+        const len = built.videoEnd ? Math.min(v.duration, built.videoEnd) : v.duration;
+        const d = (len * 1000) / speed;
+        // Übergang vorziehen: deckt genau beim letzten Videobild
+        const ms = Number.isFinite(d) && d > 0 ? Math.max(d - leadFor(i) / speed, d * 0.6) : duration;
         built.scene.style.setProperty('--scene-dur', `${ms}ms`);
         start(ms);
       };
@@ -602,7 +713,9 @@
     for (const b of live) {
       const local = Math.max(0, (t - b.t0) / 1000) * speed;
       if (b.video && !b.frozen && b.video.isConnected && Number.isFinite(b.video.duration) && b.video.duration > 0) {
-        waits.push(seekVideo(b.video, local % b.video.duration));
+        // Video läuft einmal und bleibt danach auf dem letzten Bild stehen
+        const end = b.videoEnd ? Math.min(b.video.duration, b.videoEnd) : b.video.duration;
+        waits.push(seekVideo(b.video, Math.min(local, end - 0.04)));
       }
       for (const rec of b.lotties || []) {
         if (rec.dead || rec.frozen || !rec.anim.isLoaded) continue;

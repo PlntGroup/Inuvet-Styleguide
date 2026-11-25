@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    inuvet-produkt-slideshow-export.mjs
-   Renders Inuvet-Produkt-Slideshow.html frame by frame into an MP4 (deterministic, no dropped frames).
+   Renders Inuvet-Produkt-Slideshow-Inhaltsstoffe.html frame by frame into an MP4 (deterministic, no dropped frames).
    Headless Google Chrome (DevTools Protocol) → PNG per frame → ffmpeg (libx264 or ProRes).
 
    Usage (from Inuvet-Styleguide/):
@@ -8,11 +8,13 @@
    Options:
      --url=<page url>        default: file:// path of the slideshow (works without a server)
      --params=<query>        extra slideshow params, e.g. "start=hepax-produktfamilie" or "cat=blase&brand=0"
+     --page=inhaltsstoffe    page suffix, default: inhaltsstoffe → Inuvet-Produkt-Slideshow-Inhaltsstoffe.html
+                             (ingredients and practice dividers; the short version without them was removed)
      --fps=30                frame rate (30 or 60)
      --width=1920 --height=1080
      --codec=h264|prores     h264: libx264 CRF 14 (default) · prores: ProRes 422 HQ (.mov, master quality)
      --max-seconds=<n>       stop after n seconds (test clips)
-     --out=<file>            default: slideshow-media/export/Inuvet-Produkt-Slideshow_<w>x<h>_<fps>p.<ext>
+     --out=<file>            default: slideshow-media/export/Inuvet-Produkt-Slideshow_Inhaltsstoffe_<w>x<h>_<fps>p.<ext>
    Requires: Google Chrome (/Applications), ffmpeg (Homebrew), Node ≥ 22 (built-in WebSocket).
    Local media (packshots/MP4s) must be in slideshow-media/ – see inuvet-produkt-slideshow-data.js.
    ═══════════════════════════════════════════════════════ */
@@ -35,10 +37,13 @@ const height = Number(arg('height', 1080));
 const codec = arg('codec', 'h264');
 const maxSeconds = Number(arg('max-seconds', 0));
 const extra = arg('params', '');
-const base = arg('url', pathToFileURL(path.join(here, 'Inuvet-Produkt-Slideshow.html')).href);
+const page = arg('page', 'inhaltsstoffe');
+const base = arg('url', pathToFileURL(path.join(here, `Inuvet-Produkt-Slideshow${page ? `-${page[0].toUpperCase()}${page.slice(1)}` : ''}.html`)).href);
 const url = `${base}${base.includes('?') ? '&' : '?'}render=1${extra ? `&${extra}` : ''}`;
 const ext = codec === 'prores' ? 'mov' : 'mp4';
-const out = path.resolve(arg('out', path.join(root, 'slideshow-media', 'export', `Inuvet-Produkt-Slideshow_${width}x${height}_${fps}p.${ext}`)));
+const edition = (extra.match(/(?:^|&)edition=([\w-]+)/) || [])[1] || page;
+const out = path.resolve(arg('out', path.join(root, 'slideshow-media', 'export',
+  `Inuvet-Produkt-Slideshow${edition ? `_${edition[0].toUpperCase()}${edition.slice(1)}` : ''}_${width}x${height}_${fps}p.${ext}`)));
 mkdirSync(path.dirname(out), { recursive: true });
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
