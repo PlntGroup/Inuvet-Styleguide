@@ -4,3 +4,17 @@
    Wenn festgehalten → nach planet-brands.css verschieben und hier löschen.
    NIEMALS in Produktion einbinden.
    ══════════════════════════════════════════════════════════════ */
+
+/* ─── Checkout: Dialog „Gratisprodukte wählen“ (Test 23.11.2026, pages/Inuvet-Checkout.html) ─── */
+/* Bild vollflächig im Querformat 2:1 — analog .tile__image.--landscape (4:3) */
+.tile__image.--wide { aspect-ratio: 2 / 1; }
+/* Variante nicht (mehr) wählbar: ausgegraut wie .btn.--disabled */
+.summary-line.--disabled { opacity: 0.35; }
+/* Mengen-Button gesperrt (z. B. Restguthaben reicht nicht, Menge 0): grau, kein Hover — generisch für alle .qty-selector */
+.qty-selector__btn:disabled { color: var(--border-neutral); cursor: not-allowed; pointer-events: none; }
+/* Dialog mit scrollender Liste: fester Bereich unter dem Kopf (Guthaben, Suche) und Fuß mit Linie —
+   wie .cart-drawer__header / __footer. Markup: .modal.--list > .modal__header · .modal__toolbar · .modal__body · .modal__footer */
+.modal__toolbar { flex-shrink: 0; padding: var(--half-module) var(--module); border-bottom: 1px solid var(--border); }
+.modal__toolbar > .search-page__form { margin-bottom: 0; }
+.modal__toolbar .search-panel__bar { padding-block: calc(var(--base) * 0.5); }
+.modal.--list .modal__footer { padding-block: var(--half-module); border-top: 1px solid var(--border); }   /* oben = unten, wie .cart-drawer__footer */

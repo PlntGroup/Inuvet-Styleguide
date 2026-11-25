@@ -4,214 +4,493 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout – inuvet</title>
-  <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten und Naturalrabatt.">
+  <meta name="description" content="Individueller Praxis-Checkout: Versandadresse, Rechnungs-E-Mail, Bestellung mit Gratisprodukten, Guthaben, Vormerkung, Rabattcodes und Danke-Seite. Zustände über die Mockup-Leiste.">
   <link rel="stylesheet" href="https://use.typekit.net/vhh5bbc.css">
   <link rel="stylesheet" href="../planet-brands.css?v=244">
+  <link rel="stylesheet" href="../temp.css?v=8">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="../mockup-ui.css?v=2">
   <script src="../mockup-ui.js?v=3" defer></script>
 </head>
-<body>
+<body class="--mockup-bar-visible">
 <svg xmlns="http://www.w3.org/2000/svg" id="ui-icon-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
   <symbol id="ui-add" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></g></symbol>
   <symbol id="ui-close" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g></symbol>
   <symbol id="ui-remove" viewBox="0 0 24 24"><g fill="currentColor"><path d="M19 13H5v-2h14v2z"/></g></symbol>
+  <symbol id="ui-check_circle" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></g></symbol>
+  <symbol id="ui-info" viewBox="0 0 24 24"><g fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></g></symbol>
+  <symbol id="ui-error_outline" viewBox="0 0 24 24"><g fill="currentColor"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></g></symbol>
+  <symbol id="ui-search" viewBox="0 0 24 24"><g fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></g></symbol>
+  <symbol id="ui-redeem" viewBox="0 0 24 24"><g fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></g></symbol>
 </svg>
 <a class="skip-link" href="#MainContent">Zum Inhalt springen</a>
 
 <main id="MainContent">
   <div class="container --pb">
-    <aside class="checkout-banner" aria-label="Produkthinweis">
-      <div class="checkout-banner__photo placeholder-bg">
-        <p>hier wird das Kampagnen-Motiv (Bild oder Animation) platziert.</p>
-      </div>
-      <div class="checkout-banner__panel">
-        <div class="checkout-banner__packshot">
-          <img src="../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg" alt="Hepax forte Pulver">
+
+    <div data-hide="danke">
+      <aside class="checkout-banner" aria-label="Produkthinweis">
+        <div class="checkout-banner__photo placeholder-bg">
+          <p>hier wird das Kampagnen-Motiv (Bild oder Animation) platziert.</p>
         </div>
-        <div class="checkout-banner__copy flow">
-          <h2 class="text-m">Headline der Kampagne</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-          <div class="pdp__actions">
-            <div class="cart-item__counter">
-              <div class="qty-selector --sm" aria-label="Menge">
-                <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="changeQty(this, -1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
-                <input class="qty-selector__input" type="number" value="6" min="1" aria-label="Menge" oninput="syncGratis(this)">
-                <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="changeQty(this, 1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
-              </div>
-              <span><span class="badge --free">+ 1 Gratis</span></span>
-            </div>
-            <a class="btn --primary" href="#MainContent">In den Warenkorb</a>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <header class="page-header">
-      <h1>Checkout</h1>
-    </header>
-
-    <div class="checkout">
-
-      <div class="checkout__main">
-        <div class="flow">
-          <h2 class="section-label --sub">Versand an diese Adresse</h2>
-          <p>Tierarztpraxis am Kiez - Urs Umsatz<br>Analweg 1<br>22224 Berlin<br>Deutschland</p>
-          <p><a href="#">Du möchtest deine Adresse ändern? Kontaktiere uns jetzt!</a></p>
-        </div>
-
-        <div class="form-field">
-          <input type="email" id="invoice-email" name="invoice-email" value="test@toast327.de" placeholder=" " autocomplete="email">
-          <label for="invoice-email">E-Mail-Adresse für Rechnungen</label>
-        </div>
-
-        <nav class="link-stack" aria-label="Weiteres">
-          <a href="../index.html">Zurück zur Startseite</a>
-          <a href="#">Rückgabe- und Rückerstattungsrichtlinien</a>
-          <a href="#">Versandbedingungen &amp; Lieferzeiten</a>
-        </nav>
-      </div>
-
-      <aside class="checkout__sidebar">
-        <h2 class="section-label">Deine Bestellung</h2>
-
-        <div class="cart-item">
-          <div class="product-thumb">
-            <img src="../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg" alt="Calmin balance Tabletten">
-          </div>
-          <div class="cart-item__info">
-            <div class="cart-item__top">
-              <div>
-                <p class="cart-item__name">Calmin balance Tabletten</p>
-                <div class="cart-item__variant">60 Stück · 39,90 €</div>
-              </div>
-            </div>
-            <div class="cart-item__bottom">
-              <span class="cart-item__qty-text">Menge: 2</span>
-              <div>
-                <div class="cart-item__price">79,80 €</div>
-                <div class="cart-item__variant">zzgl. 7 % USt.: 5,59 €</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cart-item">
-          <div class="product-thumb placeholder-bg" role="img" aria-label="Inzym Pulver"></div>
-          <div class="cart-item__info">
-            <div class="cart-item__top">
-              <div>
-                <p class="cart-item__name">Inzym Pulver</p>
-                <div class="cart-item__variant">50 g · 24,90 €</div>
-              </div>
-            </div>
-            <div class="cart-item__bottom">
-              <span class="cart-item__qty-text">Menge: 1</span>
-              <div>
-                <div class="cart-item__price">24,90 €</div>
-                <div class="cart-item__variant">zzgl. 7 % USt.: 1,74 €</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cart-item">
-          <div class="product-thumb">
+        <div class="checkout-banner__panel">
+          <div class="checkout-banner__packshot">
             <img src="../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg" alt="Hepax forte Pulver">
           </div>
-          <div class="cart-item__info">
-            <div class="cart-item__top">
-              <div>
-                <p class="cart-item__name">Hepax forte Pulver</p>
-                <div class="cart-item__variant">175 g · 84,90 €</div>
+          <div class="checkout-banner__copy flow">
+            <h2 class="text-m">Headline der Kampagne</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+            <div class="pdp__actions">
+              <div class="cart-item__counter">
+                <div class="qty-selector --sm" aria-label="Menge">
+                  <button class="qty-selector__btn" type="button" aria-label="Menge verringern" onclick="changeQty(this, -1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+                  <input class="qty-selector__input" type="number" value="6" min="1" aria-label="Menge" oninput="syncGratis(this)">
+                  <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" onclick="changeQty(this, 1)"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+                </div>
+                <span><span class="badge --free">+ 1 Gratis</span></span>
               </div>
-            </div>
-            <div class="cart-item__bottom">
-              <span class="cart-item__qty-text">Menge: 12</span>
-              <div>
-                <div class="cart-item__price">1.018,80 €</div>
-                <div class="cart-item__variant">zzgl. 7 % USt.: 71,32 €</div>
-              </div>
+              <a class="btn --primary" href="#MainContent">In den Warenkorb</a>
             </div>
           </div>
         </div>
-
-        <h3 class="section-label --sub">Deine Gratisprodukte</h3>
-
-        <div class="cart-item">
-          <div class="product-thumb-wrap">
-            <div class="product-thumb">
-              <img src="../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg" alt="Hepax forte Pulver">
-            </div>
-            <div class="floating-meta"><span class="badge --free">Gratis</span></div>
-          </div>
-          <div class="cart-item__info">
-            <div class="cart-item__top">
-              <div>
-                <p class="cart-item__name">Hepax forte Pulver</p>
-                <div class="cart-item__variant">175 g · 84,90 €</div>
-              </div>
-            </div>
-            <div class="cart-item__bottom">
-              <span class="cart-item__qty-text">Menge: 2</span>
-              <span class="cart-item__price">0,00 €</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="cart-drawer__amounts">
-          <div class="cart-drawer__savings-row">
-            <span>Gratisprodukte (2×)</span>
-            <span>Kostenlos</span>
-          </div>
-          <div class="cart-drawer__savings-row">
-            <span>Dein Naturalrabatt</span>
-            <span>+ 169,80 €</span>
-          </div>
-        </div>
-
-        <div class="actionable-input mt-half">
-          <div class="form-field">
-            <input type="text" id="discount-code" name="discount-code" placeholder=" " autocomplete="off">
-            <label for="discount-code">Rabattcode</label>
-          </div>
-          <button type="button" class="btn --primary">Anwenden</button>
-        </div>
-
-        <div>
-          <div class="summary-line"><span>Warenwert</span><span>1.123,50 €</span></div>
-          <div class="summary-line"><span>USt. auf Waren</span><span>78,65 €</span></div>
-          <div class="summary-line"><span>Versandkosten</span><span>–</span></div>
-          <div class="summary-line"><span>USt. auf Versand</span><span>–</span></div>
-          <div class="summary-total"><span>Gesamtbetrag</span><span>1.202,15 €</span></div>
-          <div class="summary-line"><span>inkl. USt.</span><span>78,65 €</span></div>
-        </div>
-
-        <div class="flow mt-half">
-          <div class="form-field">
-            <textarea id="order-note" name="order-note" placeholder=" "></textarea>
-            <label for="order-note">Sonstige Mitteilungen zur Bestellung</label>
-          </div>
-          <label class="form-check">
-            <input type="checkbox" name="terms">
-            <span>Ich habe die <a href="#">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="#">Widerrufsbelehrung</a> gelesen und stimme ihnen zu.</span>
-          </label>
-          <label class="form-check">
-            <input type="checkbox" name="privacy">
-            <span>Ich habe die <a href="#">Datenschutzerklärung</a> zur Kenntnis genommen.</span>
-          </label>
-        </div>
-
-        <button type="button" class="btn --primary --full checkout__cta">Zahlungspflichtig bestellen</button>
       </aside>
 
+      <header class="page-header">
+        <h1>Checkout</h1>
+      </header>
+
+      <div class="checkout">
+
+        <div class="checkout__main">
+          <div class="flow">
+            <h2 class="section-label --sub">Versand an diese Adresse</h2>
+            <p>Tierarztpraxis am Kiez - Urs Umsatz<br>Analweg 1<br><span data-country-text="DE">22224 Berlin<br>Deutschland</span><span data-country-text="CH" hidden>8001 Zürich<br>Schweiz</span></p>
+            <p><a href="#">Du möchtest deine Adresse ändern? Kontaktiere uns jetzt!</a></p>
+          </div>
+
+          <div data-hide="error">
+            <div class="form-field">
+              <input type="email" id="invoice-email" name="invoice-email" value="test@toast327.de" placeholder=" " autocomplete="email">
+              <label for="invoice-email">E-Mail-Adresse für Rechnungen</label>
+            </div>
+          </div>
+          <div data-show="error" hidden>
+            <div class="form-field --error">
+              <input type="email" id="invoice-email-error" name="invoice-email-error" value="praxis@kiez" placeholder=" " autocomplete="email" aria-invalid="true" aria-describedby="invoice-email-msg">
+              <label for="invoice-email-error">E-Mail-Adresse für Rechnungen</label>
+            </div>
+            <p class="form-field__error" id="invoice-email-msg">Gib eine gültige E-Mail-Adresse ein.</p>
+          </div>
+
+          <nav class="link-stack" aria-label="Weiteres">
+            <a href="../index.html">Zurück zur Startseite</a>
+            <a href="#">Rückgabe- und Rückerstattungsrichtlinien</a>
+            <a href="#">Versandbedingungen &amp; Lieferzeiten</a>
+          </nav>
+        </div>
+
+        <aside class="checkout__sidebar">
+          <h2 class="section-label">Deine Bestellung</h2>
+
+          <!-- Bezahlte Positionen (entfallen, wenn nur vorgemerkt wird) -->
+          <div data-hide="reserve-only">
+            <div class="cart-item">
+              <div class="product-thumb">
+                <img src="../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg" alt="Calmin balance Tabletten">
+              </div>
+              <div class="cart-item__info">
+                <div class="cart-item__top">
+                  <div>
+                    <p class="cart-item__name">Calmin balance Tabletten</p>
+                    <div class="cart-item__variant">60 Stück · 39,90 €</div>
+                  </div>
+                </div>
+                <div class="cart-item__bottom">
+                  <span class="cart-item__qty-text">Menge: 2</span>
+                  <div>
+                    <div class="cart-item__price">79,80 €</div>
+                    <div class="cart-item__variant">zzgl. 7 % USt.: 5,59 €</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cart-item">
+              <div class="product-thumb placeholder-bg" role="img" aria-label="Inzym Pulver"></div>
+              <div class="cart-item__info">
+                <div class="cart-item__top">
+                  <div>
+                    <p class="cart-item__name">Inzym Pulver</p>
+                    <div class="cart-item__variant">50 g · 24,90 €</div>
+                  </div>
+                  <span data-show="reserve" hidden><span class="badge --info">Wird nachgeliefert</span></span>
+                </div>
+                <div class="cart-item__bottom">
+                  <span class="cart-item__qty-text">Menge: 1</span>
+                  <div>
+                    <div class="cart-item__price">24,90 €</div>
+                    <div class="cart-item__variant">zzgl. 7 % USt.: 1,74 €</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cart-item">
+              <div class="product-thumb">
+                <img src="../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg" alt="Hepax forte Pulver">
+              </div>
+              <div class="cart-item__info">
+                <div class="cart-item__top">
+                  <div>
+                    <p class="cart-item__name">Hepax forte Pulver</p>
+                    <div class="cart-item__variant">175 g · 84,90 €</div>
+                  </div>
+                </div>
+                <div class="cart-item__bottom">
+                  <span class="cart-item__qty-text">Menge: 12</span>
+                  <div>
+                    <div class="cart-item__price">1.018,80 €</div>
+                    <div class="cart-item__variant">zzgl. 7 % USt.: 71,32 €</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nicht lieferbar (custom.unavailable): wird bestellt und nachgeliefert -->
+            <div data-show="reserve" hidden>
+              <div class="notice --compact mt-half">
+                <svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-info"></use></svg>
+                <p>Inzym Pulver ist im Moment nicht verfügbar und wird später nachgeliefert.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vorgemerkte Produkte (regulatorisch gesperrt): nicht berechnet, nicht geliefert -->
+          <div data-show="reserve reserve-only" hidden>
+            <h3 class="section-label --sub mt-1">Vorgemerkte Produkte</h3>
+            <div class="cart-item">
+              <div class="product-thumb">
+                <img src="../assets/brands/inuvet/images/Inuvet_Cortisan_Oel-Komplex_Packshot_COL.jpg" alt="Cortisan Öl-Komplex">
+              </div>
+              <div class="cart-item__info">
+                <div class="cart-item__top">
+                  <div>
+                    <p class="cart-item__name">Cortisan Öl-Komplex</p>
+                    <div class="cart-item__variant">100 ml · 32,90 €</div>
+                  </div>
+                </div>
+                <div class="cart-item__bottom">
+                  <span class="cart-item__qty-text">Menge: 2</span>
+                  <div>
+                    <div class="price-stack"><span class="--old">65,80 €</span></div>
+                    <div class="cart-item__variant">wird nicht berechnet</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="notice --compact mt-half">
+              <svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-info"></use></svg>
+              <p>Diese Artikel sind im Moment nicht verfügbar. Wir merken sie für dich vor und kontaktieren dich, wenn sie wieder da sind.</p>
+            </div>
+          </div>
+
+          <!-- Gratisprodukte: alle Quellen in einer Liste, Quelle je Zeile -->
+          <div data-hide="reserve-only">
+            <h3 class="section-label --sub mt-1">Deine Gratisprodukte</h3>
+
+            <!-- Provisionsguthaben (commission_as_a_discount_in_kind + commission_to_spend) -->
+            <div data-show="credit" hidden>
+              <div class="notice mt-half">
+                <div class="flow">
+                  <p class="notice__title"><svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-redeem"></use></svg> Dein Guthaben für Gratisprodukte</p>
+                  <div class="progress-bar" role="progressbar" aria-label="Restguthaben" aria-valuemin="0" aria-valuemax="58.40" aria-valuenow="19.40" data-credit-bar><span class="progress-bar__fill" style="width: 33%" data-credit-fill></span></div>
+                  <p><strong data-credit-left>19,40 €</strong> von 58,40 € übrig</p>
+                </div>
+                <div class="notice__actions">
+                  <button type="button" class="btn --secondary --sm" onclick="openModal('creditModal')">Gratisprodukte auswählen</button>
+                </div>
+              </div>
+              <div id="creditLines"></div>
+            </div>
+
+            <div data-hide="credit">
+              <div class="cart-item">
+                <div class="product-thumb-wrap">
+                  <div class="product-thumb">
+                    <img src="../assets/brands/inuvet/images/Inuvet_Hepax_forte_plus_Packshot_COL.jpg" alt="Hepax forte Pulver">
+                  </div>
+                  <div class="floating-meta"><span class="badge --free">Gratis</span></div>
+                </div>
+                <div class="cart-item__info">
+                  <div class="cart-item__top">
+                    <div>
+                      <p class="cart-item__name">Hepax forte Pulver</p>
+                      <div class="cart-item__variant">Naturalrabatt · 175 g</div>
+                    </div>
+                  </div>
+                  <div class="cart-item__bottom">
+                    <span class="cart-item__qty-text">Menge: 2</span>
+                    <span class="cart-item__price">0,00 €</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item">
+                <div class="product-thumb-wrap">
+                  <div class="product-thumb">
+                    <img src="../assets/brands/inuvet/images/Inuvet_Calmin_Balance_Packshot_COL.jpg" alt="Calmin balance Tabletten">
+                  </div>
+                  <div class="floating-meta"><span class="badge --free">Gratis</span></div>
+                </div>
+                <div class="cart-item__info">
+                  <div class="cart-item__top">
+                    <div>
+                      <p class="cart-item__name">Calmin balance Tabletten</p>
+                      <div class="cart-item__variant">Persönliches Angebot · 60 Stück</div>
+                    </div>
+                  </div>
+                  <div class="cart-item__bottom">
+                    <span class="cart-item__qty-text">Menge: 1</span>
+                    <span class="cart-item__price">0,00 €</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item">
+                <div class="product-thumb-wrap">
+                  <div class="product-thumb placeholder-bg" role="img" aria-label="Süßigkeiten für dein Team"></div>
+                  <div class="floating-meta"><span class="badge --free">Gratis</span></div>
+                </div>
+                <div class="cart-item__info">
+                  <div class="cart-item__top">
+                    <div>
+                      <p class="cart-item__name">Süßigkeiten für dein Team</p>
+                      <div class="cart-item__variant">Goodie zu deiner Bestellung</div>
+                    </div>
+                  </div>
+                  <div class="cart-item__bottom">
+                    <span class="cart-item__qty-text">Menge: 1</span>
+                    <span class="cart-item__price">0,00 €</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wählbares Gratisprodukt per Rabattcode (erscheint nach Code GESCHENK) -->
+            <div id="giftLine" hidden></div>
+
+            <div class="cart-drawer__amounts">
+              <div data-hide="credit">
+                <div class="cart-drawer__savings-row">
+                  <span>Gratisprodukte (<span data-free-count>4</span>×)</span>
+                  <span>Kostenlos</span>
+                </div>
+                <div class="cart-drawer__savings-row">
+                  <span>Dein Naturalrabatt</span>
+                  <span>+ 169,80 €</span>
+                </div>
+              </div>
+              <div data-show="credit" hidden>
+                <div class="cart-drawer__savings-row">
+                  <span>Provision als Naturalrabatt</span>
+                  <span data-credit-used>39,00 €</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rabattcode (Testcodes: VERSAND, GESCHENK; alles andere = ungültig) -->
+          <div data-hide="reserve-only">
+            <div class="actionable-input mt-half">
+              <div class="form-field" data-code-field>
+                <input type="text" id="discount-code" name="discount-code" placeholder=" " autocomplete="off">
+                <label for="discount-code">Rabattcode</label>
+              </div>
+              <button type="button" class="btn --primary" onclick="applyCode()">Anwenden</button>
+            </div>
+            <div data-code-msg="ok" hidden>
+              <p class="form-field__success" role="status"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg> <span data-code-ok-text>Rabattcode angewendet.</span></p>
+            </div>
+            <div data-code-msg="error" hidden>
+              <p class="form-field__error" role="alert">Dieser Code kann nicht angewendet werden.</p>
+            </div>
+          </div>
+
+          <!-- Summen: Standard -->
+          <div data-hide="group reserve-only">
+            <div class="summary-line"><span>Warenwert</span><span>1.123,50 €</span></div>
+            <div class="summary-line"><span>USt. auf Waren</span><span>78,65 €</span></div>
+            <div class="summary-line"><span>Versandkosten</span><span data-shipping>Versandkostenfrei</span></div>
+            <div class="summary-total"><span>Gesamtbetrag</span><span>1.202,15 €</span></div>
+            <div class="summary-line"><span>inkl. USt.</span><span>78,65 €</span></div>
+          </div>
+          <!-- Summen: mit Gruppenrabatt (VUK, TPP, FiluVet; intern: „Planet Group Rabatt“) -->
+          <div data-show="group" hidden>
+            <div class="summary-line"><span>Zwischensumme</span><span>1.123,50 €</span></div>
+            <div class="summary-line"><span>VUK-Rabatt (10 %)</span><span>− 112,35 €</span></div>
+            <div class="summary-line"><span>Warenwert</span><span>1.011,15 €</span></div>
+            <div class="summary-line"><span>USt. auf Waren</span><span>70,78 €</span></div>
+            <div class="summary-line"><span>Versandkosten</span><span>Versandkostenfrei</span></div>
+            <div class="summary-total"><span>Gesamtbetrag</span><span>1.081,93 €</span></div>
+            <div class="summary-line"><span>inkl. USt.</span><span>70,78 €</span></div>
+          </div>
+
+          <div class="flow mt-half">
+            <div class="form-field">
+              <textarea id="order-note" name="order-note" placeholder=" "></textarea>
+              <label for="order-note">Sonstige Mitteilungen zur Bestellung</label>
+            </div>
+            <label class="form-check">
+              <input type="checkbox" name="terms" onchange="syncCta()">
+              <span>Ich habe die <a href="#">Allgemeinen Geschäftsbedingungen</a> sowie die <a href="#">Widerrufsbelehrung</a> gelesen und stimme ihnen zu.</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="privacy" onchange="syncCta()">
+              <span>Ich habe die <a href="#">Datenschutzerklärung</a> zur Kenntnis genommen.</span>
+            </label>
+          </div>
+
+          <div data-country="CH" hidden>
+            <div class="notice --compact mt-half">
+              <svg class="material-icons notice__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-info"></use></svg>
+              <p>Die Bezahlung ist auch per TVS möglich.</p>
+            </div>
+          </div>
+
+          <button type="button" class="btn --primary --full checkout__cta --disabled" aria-disabled="true" data-cta onclick="submitOrder(this)">
+            <span data-hide="reserve reserve-only">Zahlungspflichtig bestellen</span>
+            <span data-show="reserve" hidden>Zahlungspflichtig bestellen und vormerken</span>
+            <span data-show="reserve-only" hidden>Jetzt vormerken</span>
+          </button>
+          <div data-show="error" hidden>
+            <p class="form-field__error" role="alert">Ups, da ging was schief. Bitte versuch es noch einmal.</p>
+          </div>
+        </aside>
+
+      </div>
     </div>
+
+    <!-- Danke-Seite (Live: Seite „danke“, danach Bewertungsdialog) -->
+    <div data-show="danke" hidden>
+      <div class="success-state">
+        <svg class="material-icons success-state__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-check_circle"></use></svg>
+        <div class="flow">
+          <h1 class="success-state__title" data-thanks-title>Vielen Dank für deine Bestellung!</h1>
+          <p class="success-state__body" data-thanks-text>Die Bestellbestätigung und später die Rechnung schicken wir an test@toast327.de.</p>
+        </div>
+        <div class="success-state__actions">
+          <a class="btn --primary" href="#">Weiter einkaufen</a>
+          <a class="btn --ghost" href="#">Zu meinen Bestellungen</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </main>
 
-<div class="modal-overlay" id="checkoutPromo" onclick="closeCheckoutPromo()">
+<!-- Zustands-Leiste (nur Mockup, ⌥M blendet aus) -->
+<div class="mockup-bar" id="mockupBar">
+  <div class="mockup-bar__group" id="stateGroup">
+    <span class="mockup-bar__group-label">Zustand:</span>
+    <button class="mockup-btn --active" type="button" data-state="standard" onclick="setState('standard')">Standard</button>
+    <button class="mockup-btn" type="button" data-state="credit" onclick="setState('credit')">Guthaben einlösen</button>
+    <button class="mockup-btn" type="button" data-state="reserve" onclick="setState('reserve')">Mit Vormerkung</button>
+    <button class="mockup-btn" type="button" data-state="reserve-only" onclick="setState('reserve-only')">Nur Vormerkung</button>
+    <button class="mockup-btn" type="button" data-state="group" onclick="setState('group')">Gruppenrabatt</button>
+    <button class="mockup-btn" type="button" data-state="error" onclick="setState('error')">Fehler</button>
+    <button class="mockup-btn" type="button" data-state="danke" onclick="setState('danke')">Danke</button>
+  </div>
+  <div class="mockup-bar__sep"></div>
+  <div class="mockup-bar__group" id="countryGroup">
+    <span class="mockup-bar__group-label">Land:</span>
+    <button class="mockup-btn --active" type="button" data-country-btn="DE" onclick="setCountry('DE')">DE</button>
+    <button class="mockup-btn" type="button" data-country-btn="CH" onclick="setCountry('CH')">CH</button>
+  </div>
+  <div class="mockup-bar__sep"></div>
+  <div class="mockup-bar__group">
+    <span class="mockup-bar__group-label">Testcodes:</span>
+    <span>VERSAND · GESCHENK</span>
+  </div>
+</div>
+
+<!-- Gratisprodukte wählen (Provisionsguthaben; Live öffnet beim ersten Aufruf automatisch)
+     Logik wie live: Varianten über dem Gesamtguthaben sind ausgeblendet (Produkt ohne passende Variante entfällt),
+     Varianten über dem Restguthaben sind gesperrt. Guthaben-Zahl und Balken zeigen das Restguthaben. -->
+<div class="modal-overlay" id="creditModal" onclick="closeModal('creditModal')">
+  <div class="modal --list" role="dialog" aria-modal="true" aria-labelledby="creditModalTitle" onclick="event.stopPropagation()">
+    <div class="modal__header">
+      <h2 class="modal__title" id="creditModalTitle">Gratisprodukte wählen</h2>
+      <button type="button" class="btn --icon" onclick="closeModal('creditModal')" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+    </div>
+    <div class="modal__toolbar flow">
+      <div>
+        <div class="cart-drawer__savings-row" aria-live="polite"><span>Dein Guthaben</span><strong data-modal-left>58,40 €</strong></div>
+        <div class="progress-bar" role="progressbar" aria-label="Restguthaben" aria-valuemin="0" aria-valuemax="58.40" aria-valuenow="58.40" data-modal-bar><span class="progress-bar__fill" style="width: 100%" data-modal-fill></span></div>
+      </div>
+      <div class="search-page__form">
+        <div class="search-panel__bar">
+          <svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-search"></use></svg>
+          <input class="search-panel__input" id="creditSearch" type="search" placeholder="Produkte suchen" autocomplete="off" aria-label="Produkte suchen" oninput="filterCredit(this.value)">
+        </div>
+      </div>
+    </div>
+    <div class="modal__body">
+      <div id="creditList"></div>
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="btn --secondary" onclick="resetCredit()">Zurücksetzen</button>
+      <button type="button" class="btn --primary" onclick="applyCredit()">Übernehmen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Wählbares Gratisprodukt per Rabattcode -->
+<div class="modal-overlay" id="giftModal" onclick="closeModal('giftModal')">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="giftModalTitle" onclick="event.stopPropagation()">
+    <div class="modal__header">
+      <h2 class="modal__title" id="giftModalTitle">Wähle ein Gratisprodukt</h2>
+      <button type="button" class="btn --icon" onclick="closeModal('giftModal')" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+    </div>
+    <div class="modal__body flow">
+      <p>Mit dem Rabattcode GESCHENK bekommst du eines dieser Produkte gratis dazu.</p>
+      <div class="flow" role="radiogroup" aria-label="Gratisprodukt">
+        <button type="button" class="choice-box --detail" role="radio" aria-checked="false" data-gift="Calmin balance Tabletten" data-gift-variant="60 Stück" data-gift-img="Inuvet_Calmin_Balance_Packshot_COL.jpg" onclick="pickGift(this)">
+          <span class="choice-box__content"><span class="choice-box__label">Calmin balance Tabletten</span><span class="choice-box__desc">60 Stück</span></span>
+        </button>
+        <button type="button" class="choice-box --detail" role="radio" aria-checked="false" data-gift="Dermin Pflege-Emulsion" data-gift-variant="200 ml" data-gift-img="Inuvet_Dermin_Pflege-Emulsion_Packshot_COL.jpg" onclick="pickGift(this)">
+          <span class="choice-box__content"><span class="choice-box__label">Dermin Pflege-Emulsion</span><span class="choice-box__desc">200 ml</span></span>
+        </button>
+        <button type="button" class="choice-box --detail" role="radio" aria-checked="false" data-gift="Diabex" data-gift-variant="60 Tabletten" data-gift-img="Inuvet_Diabex_Packshot_COL.jpg" onclick="pickGift(this)">
+          <span class="choice-box__content"><span class="choice-box__label">Diabex</span><span class="choice-box__desc">60 Tabletten</span></span>
+        </button>
+      </div>
+      <div data-gift-error hidden>
+        <p class="form-field__error" role="alert">Bitte wähle genau ein Gratisprodukt aus.</p>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="btn --primary" onclick="applyGift()">Auswählen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Bewertungsdialog nach der Bestellung (Live: reviews.io im iFrame) -->
+<div class="modal-overlay" id="reviewModal" onclick="closeModal('reviewModal')">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle" onclick="event.stopPropagation()">
+    <div class="modal__header">
+      <h2 class="modal__title" id="reviewModalTitle">Wie zufrieden bist du mit deiner Bestellung?</h2>
+      <button type="button" class="btn --icon" onclick="closeModal('reviewModal')" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+    </div>
+    <div class="modal__body flow">
+      <p>Deine Bewertung hilft anderen Praxen bei der Auswahl.</p>
+      <div class="placeholder-bg"><p>Hier lädt das Bewertungsformular von reviews.io (iFrame).</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="checkoutPromo" onclick="closeModal('checkoutPromo')">
   <div class="modal checkout-promo" role="dialog" aria-modal="true" aria-labelledby="checkoutPromoTitle" onclick="event.stopPropagation()">
-    <button type="button" class="btn --icon" onclick="closeCheckoutPromo()" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
+    <button type="button" class="btn --icon" onclick="closeModal('checkoutPromo')" aria-label="Schließen"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-close"></use></svg></button>
     <div class="checkout-banner__packshot" data-animate>
       <img src="../assets/brands/inuvet/images/Inuvet_Cortisan_Oel-Komplex_Packshot_COL.jpg" alt="Cortisan Öl-Komplex">
       <lottie-player background="transparent" speed="1" aria-hidden="true"></lottie-player>
@@ -231,15 +510,315 @@
             </div>
             <span><span class="badge --free">+ 1 Gratis</span></span>
           </div>
-          <a class="btn --primary" href="#MainContent" onclick="closeCheckoutPromo()">In den Warenkorb</a>
+          <a class="btn --primary" href="#MainContent" onclick="closeModal('checkoutPromo')">In den Warenkorb</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Vorlage: Gratisprodukt-Zeile (Guthaben, Rabattcode) -->
+<template id="freeLineTpl">
+  <div class="cart-item">
+    <div class="product-thumb-wrap">
+      <div class="product-thumb"><img src="" alt=""></div>
+      <div class="floating-meta"><span class="badge --free">Gratis</span></div>
+    </div>
+    <div class="cart-item__info">
+      <div class="cart-item__top">
+        <div>
+          <p class="cart-item__name"></p>
+          <div class="cart-item__variant"></div>
+        </div>
+      </div>
+      <div class="cart-item__bottom">
+        <span class="cart-item__qty-text"></span>
+        <span class="cart-item__price">0,00 €</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Vorlagen: Produkt und Variante im Guthaben-Dialog -->
+<template id="creditProductTpl">
+  <div class="flow mb-1" data-credit-product>
+    <div class="tile__image-wrap">
+      <div class="floating-meta"></div>
+      <div class="tile__image --wide"><img src="" alt=""></div>
+    </div>
+  </div>
+</template>
+<template id="creditGroupTpl">
+  <div>
+    <p class="cart-item__name"></p>
+  </div>
+</template>
+<template id="creditVariantTpl">
+  <div class="summary-line" data-credit-variant>
+    <span data-v-size></span>
+    <div class="cart-item__counter">
+      <span class="cart-item__variant"><s data-v-price></s></span>
+      <div class="qty-selector --sm" aria-label="Menge">
+        <button class="qty-selector__btn" type="button" aria-label="Menge verringern" data-step="-1"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-remove"></use></svg></button>
+        <input class="qty-selector__input" type="number" value="0" min="0" aria-label="Menge" readonly>
+        <button class="qty-selector__btn" type="button" aria-label="Menge erhöhen" data-step="1"><svg class="material-icons" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><use href="#ui-add"></use></svg></button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script src="../assets/brands/inuvet/lotties/Inuvet_Alena_Animation_Veti-Daumen-hoch_5x4.js"></script>
 <script>
+var IMG = '../assets/brands/inuvet/images/';
+var CREDIT = 58.40;
+var CREDIT_PRODUCTS = [   /* alphabetisch wie live; Preise = Mockup-Werte */
+  { name: 'Calmin balance', cat: 'stress', catLabel: 'Beruhigung', img: 'Inuvet_Calmin_Balance_Packshot_COL.jpg', groups: [
+    { label: 'Tabletten', variants: [ { id: 'calmin-60', size: '60 Stück', price: 39.90 }, { id: 'calmin-120', size: '120 Stück', price: 69.90 } ] } ] },
+  { name: 'Cortisan Öl-Komplex', cat: 'immun', catLabel: 'Immunsystem', img: 'Inuvet_Cortisan_Oel-Komplex_Packshot_COL.jpg', groups: [
+    { label: '', variants: [ { id: 'cortisan-100', size: '100 ml', price: 32.90 } ] } ] },
+  { name: 'Dermin Pflege-Emulsion', cat: 'haut', catLabel: 'Haut', img: 'Inuvet_Dermin_Pflege-Emulsion_Packshot_COL.jpg', groups: [
+    { label: '', variants: [ { id: 'dermin-200', size: '200 ml', price: 19.90 } ] } ] },
+  { name: 'Diabex', cat: 'hormone', catLabel: 'Hormone', img: 'Inuvet_Diabex_Packshot_COL.jpg', groups: [   /* teurer als das Guthaben → entfällt */
+    { label: 'Tabletten', variants: [ { id: 'diabex-180', size: '180 Stück', price: 64.90 } ] } ] },
+  { name: 'Hepax', cat: 'leber', catLabel: 'Leber', family: true, img: 'Inuvet_Hepax_forte_plus_Packshot_COL.jpg', groups: [
+    { label: 'forte Tabletten', variants: [ { id: 'hepax-f30', size: '30 Stück', price: 19.10 }, { id: 'hepax-f60', size: '60 Stück', price: 32.55 } ] },
+    { label: 'plus Pulver', variants: [ { id: 'hepax-p75', size: '75 g', price: 19.95 }, { id: 'hepax-p175', size: '175 g', price: 36.40 } ] } ] },
+  { name: 'Hypolene', cat: 'gelenke', catLabel: 'Gelenke', img: '', groups: [
+    { label: 'Pellets', variants: [ { id: 'hypolene-250', size: '250 g', price: 17.80 }, { id: 'hypolene-650', size: '650 g', price: 41.15 } ] } ] }
+];
+var VARIANTS = {};
+CREDIT_PRODUCTS.forEach(function (p) {
+  p.groups.forEach(function (g) {
+    g.variants.forEach(function (v) { VARIANTS[v.id] = { product: p, group: g, v: v }; });
+  });
+});
+var creditSel = { 'hepax-f30': 1, 'dermin-200': 1 };   // gespeicherte Auswahl (Live: localStorage commissionDiscountItems)
+var creditDraft = {};
+var state = 'standard';
+var country = 'DE';
+var creditOpenedOnce = false;
+var gift = null;
+
+function money(v) {
+  return v.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '\u00a0€';
+}
+function sumSel(sel) {
+  return Object.keys(sel).reduce(function (s, id) { return s + VARIANTS[id].v.price * (sel[id] || 0); }, 0);
+}
+
+/* ─── Zustände ─── */
+function setState(name) {
+  state = name;
+  document.querySelectorAll('[data-show]').forEach(function (el) {
+    el.hidden = el.dataset.show.split(' ').indexOf(name) === -1;
+  });
+  document.querySelectorAll('[data-hide]').forEach(function (el) {
+    el.hidden = el.dataset.hide.split(' ').indexOf(name) !== -1;
+  });
+  document.querySelectorAll('#stateGroup [data-state]').forEach(function (b) {
+    b.classList.toggle('--active', b.dataset.state === name);
+  });
+  ['creditModal', 'giftModal', 'reviewModal', 'checkoutPromo'].forEach(closeModal);
+  var cta = document.querySelector('[data-cta]');
+  cta.classList.remove('--loading');
+  if (name === 'credit') {
+    renderCreditSummary();
+    if (!creditOpenedOnce) { creditOpenedOnce = true; openModal('creditModal'); }
+  }
+  if (name === 'danke') {
+    window.scrollTo(0, 0);
+    window.setTimeout(function () { if (state === 'danke') openModal('reviewModal'); }, 900);
+  }
+}
+function setCountry(cc) {
+  country = cc;
+  document.querySelectorAll('[data-country]').forEach(function (el) { el.hidden = el.dataset.country !== cc; });
+  document.querySelectorAll('[data-country-text]').forEach(function (el) { el.hidden = el.dataset.countryText !== cc; });
+  document.querySelectorAll('[data-country-btn]').forEach(function (b) { b.classList.toggle('--active', b.dataset.countryBtn === cc); });
+}
+
+/* ─── Modals ─── */
+function openModal(id) {
+  if (id === 'creditModal') { creditDraft = Object.assign({}, creditSel); renderCreditList(); }
+  document.getElementById(id).classList.add('--open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('--open');
+  if (!document.querySelector('.modal-overlay.--open')) document.body.style.overflow = '';
+}
+
+/* ─── Bestellen: AGB + Datenschutz Pflicht, dann Ladezustand ─── */
+function syncCta() {
+  var ok = document.querySelector('[name="terms"]').checked && document.querySelector('[name="privacy"]').checked;
+  var cta = document.querySelector('[data-cta]');
+  cta.classList.toggle('--disabled', !ok);
+  cta.setAttribute('aria-disabled', String(!ok));
+}
+function submitOrder(btn) {
+  if (btn.classList.contains('--disabled')) return;
+  btn.classList.add('--loading');
+  var from = state;
+  window.setTimeout(function () {
+    if (from === 'error') { btn.classList.remove('--loading'); return; }
+    var title = document.querySelector('[data-thanks-title]');
+    var text = document.querySelector('[data-thanks-text]');
+    if (from === 'reserve-only') {
+      title.textContent = 'Deine Produkte sind vorgemerkt';
+      text.textContent = 'Wir melden uns bei dir, sobald sie wieder verfügbar sind.';
+    } else {
+      title.textContent = 'Vielen Dank für deine Bestellung!';
+      text.textContent = 'Die Bestellbestätigung und später die Rechnung schicken wir an test@toast327.de.'
+        + (from === 'reserve' ? ' Vorgemerkte Produkte merken wir vor und melden uns, sobald sie verfügbar sind.' : '');
+    }
+    setState('danke');
+  }, 1200);
+}
+
+/* ─── Rabattcode ─── */
+function applyCode() {
+  var input = document.getElementById('discount-code');
+  var code = input.value.trim().toUpperCase();
+  var field = document.querySelector('[data-code-field]');
+  var ok = code === 'VERSAND' || code === 'GESCHENK';
+  field.classList.toggle('--error', !ok);
+  field.classList.toggle('--success', ok);
+  document.querySelector('[data-code-msg="ok"]').hidden = !ok;
+  document.querySelector('[data-code-msg="error"]').hidden = ok;
+  if (code === 'VERSAND') {
+    document.querySelector('[data-code-ok-text]').textContent = 'Rabattcode VERSAND angewendet: versandkostenfrei.';
+    document.querySelectorAll('[data-shipping]').forEach(function (el) { el.textContent = 'Versandkostenfrei dank Rabattcode'; });
+  }
+  if (code === 'GESCHENK') {
+    document.querySelector('[data-code-ok-text]').textContent = 'Rabattcode GESCHENK angewendet.';
+    document.querySelector('[data-gift-error]').hidden = true;
+    openModal('giftModal');
+  }
+}
+function pickGift(btn) {
+  document.querySelectorAll('[data-gift]').forEach(function (b) {
+    var on = b === btn;
+    b.classList.toggle('--active', on);
+    b.setAttribute('aria-checked', String(on));
+  });
+  gift = btn;
+  document.querySelector('[data-gift-error]').hidden = true;
+}
+function applyGift() {
+  if (!gift) { document.querySelector('[data-gift-error]').hidden = false; return; }
+  var box = document.getElementById('giftLine');
+  box.innerHTML = '';
+  box.appendChild(freeLine({ name: gift.dataset.gift, variant: 'Rabattcode GESCHENK · ' + gift.dataset.giftVariant, img: gift.dataset.giftImg }, 1));
+  box.hidden = false;
+  document.querySelector('[data-free-count]').textContent = '5';
+  closeModal('giftModal');
+}
+
+/* ─── Guthaben einlösen ─── */
+function freeLine(p, qty) {
+  var node = document.getElementById('freeLineTpl').content.firstElementChild.cloneNode(true);
+  var thumb = node.querySelector('.product-thumb');
+  if (p.img) { var img = thumb.querySelector('img'); img.src = IMG + p.img; img.alt = p.name; }
+  else { thumb.innerHTML = ''; thumb.classList.add('placeholder-bg'); thumb.setAttribute('role', 'img'); thumb.setAttribute('aria-label', p.name); }
+  node.querySelector('.cart-item__name').textContent = p.name;
+  node.querySelector('.cart-item__variant').textContent = p.variant;
+  node.querySelector('.cart-item__qty-text').textContent = 'Menge: ' + qty;
+  return node;
+}
+function renderCreditList() {
+  var list = document.getElementById('creditList');
+  list.innerHTML = '';
+  CREDIT_PRODUCTS.forEach(function (p) {
+    var groups = p.groups.map(function (g) {
+      return { label: g.label, variants: g.variants.filter(function (v) { return v.price <= CREDIT + 0.001; }) };
+    }).filter(function (g) { return g.variants.length; });
+    if (!groups.length) return;   // keine Variante im Rahmen des Guthabens → Produkt entfällt
+    var prod = document.getElementById('creditProductTpl').content.firstElementChild.cloneNode(true);
+    prod.dataset.name = p.name.toLowerCase();
+    // Labels wie Produktkarte / PDP: Kategorie (Farbe über data-cat), Sale „%“, „Produktfamilie“
+    var meta = prod.querySelector('.floating-meta');
+    if (p.cat) { var bc = document.createElement('div'); bc.className = 'badge'; bc.dataset.cat = p.cat; bc.textContent = p.catLabel; meta.appendChild(bc); }
+    if (p.sale) { var bs = document.createElement('div'); bs.className = 'badge --sale'; bs.textContent = '%'; meta.appendChild(bs); }
+    if (p.family) { var bf = document.createElement('div'); bf.className = 'badge'; bf.textContent = 'Produktfamilie'; meta.appendChild(bf); }
+    if (!meta.children.length) meta.remove();
+    var pic = prod.querySelector('.tile__image');
+    if (p.img) { var img = pic.querySelector('img'); img.src = IMG + p.img; img.alt = p.name; }
+    else { pic.innerHTML = ''; pic.classList.add('placeholder-bg'); pic.setAttribute('role', 'img'); pic.setAttribute('aria-label', p.name); }
+    groups.forEach(function (g) {
+      var grp = document.getElementById('creditGroupTpl').content.firstElementChild.cloneNode(true);
+      grp.querySelector('.cart-item__name').textContent = p.name + (g.label ? ' ' + g.label : '');
+      g.variants.forEach(function (v) {
+        var row = document.getElementById('creditVariantTpl').content.firstElementChild.cloneNode(true);
+        row.dataset.id = v.id;
+        row.querySelector('[data-v-size]').textContent = v.size;
+        row.querySelector('[data-v-price]').textContent = money(v.price);
+        row.querySelectorAll('[data-step]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var step = Number(b.dataset.step);
+            var next = (creditDraft[v.id] || 0) + step;
+            if (next < 0) return;
+            if (step > 0 && sumSel(creditDraft) + v.price > CREDIT + 0.001) return;
+            if (next) creditDraft[v.id] = next; else delete creditDraft[v.id];
+            syncCreditModal();
+          });
+        });
+        grp.appendChild(row);
+      });
+      prod.appendChild(grp);
+    });
+    list.appendChild(prod);
+  });
+  syncCreditModal();
+}
+function syncCreditModal() {
+  var left = CREDIT - sumSel(creditDraft);
+  document.querySelector('[data-modal-left]').textContent = money(left);
+  document.querySelector('[data-modal-fill]').style.width = Math.round(left / CREDIT * 100) + '%';
+  document.querySelector('[data-modal-bar]').setAttribute('aria-valuenow', left.toFixed(2));
+  document.querySelectorAll('#creditList [data-credit-variant]').forEach(function (row) {
+    var v = VARIANTS[row.dataset.id].v;
+    var qty = creditDraft[v.id] || 0;
+    var tooMuch = v.price > left + 0.001;
+    row.querySelector('.qty-selector__input').value = qty;
+    row.querySelector('[data-step="1"]').disabled = tooMuch;
+    row.querySelector('[data-step="-1"]').disabled = qty === 0;
+    row.classList.toggle('--disabled', tooMuch && !qty);   // nicht (mehr) wählbar → ausgegraut
+  });
+}
+function filterCredit(q) {
+  q = q.trim().toLowerCase();
+  document.querySelectorAll('#creditList [data-credit-product]').forEach(function (node) {
+    node.hidden = q && node.dataset.name.indexOf(q) === -1;
+  });
+}
+function resetCredit() { creditDraft = {}; syncCreditModal(); }
+function applyCredit() {
+  creditSel = Object.assign({}, creditDraft);
+  renderCreditSummary();
+  closeModal('creditModal');
+}
+function renderCreditSummary() {
+  var used = sumSel(creditSel);
+  var left = CREDIT - used;
+  var box = document.getElementById('creditLines');
+  box.innerHTML = '';
+  Object.keys(VARIANTS).forEach(function (id) {
+    var qty = creditSel[id] || 0;
+    if (!qty) return;
+    var x = VARIANTS[id];
+    box.appendChild(freeLine({
+      name: x.product.name + (x.group.label ? ' ' + x.group.label : ''),
+      variant: 'Provision als Naturalrabatt · ' + x.v.size,
+      img: x.product.img
+    }, qty));
+  });
+  document.querySelectorAll('[data-credit-used]').forEach(function (el) { el.textContent = money(used); });
+  document.querySelector('[data-credit-left]').textContent = money(left);
+  document.querySelector('[data-credit-fill]').style.width = Math.round(left / CREDIT * 100) + '%';
+  document.querySelector('[data-credit-bar]').setAttribute('aria-valuenow', left.toFixed(2));
+}
+
+/* ─── Checkout-Angebot (Banner + Pop-up) ─── */
 function syncGratis(input) {
   var badge = input.closest('.cart-item__counter').querySelector('.badge.--free');
   var val = parseInt(input.value, 10) || 1;
@@ -272,10 +851,6 @@ function startCheckoutCharacter() {
   });
   player.load(window.checkoutPromoCharacter);
 }
-function closeCheckoutPromo() {
-  document.getElementById('checkoutPromo').classList.remove('--open');
-  document.body.style.overflow = '';
-}
 document.addEventListener('DOMContentLoaded', function () {
   var overlay = document.getElementById('checkoutPromo');
   var bits = overlay.querySelectorAll('[data-animate]');
@@ -292,7 +867,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape') closeCheckoutPromo();
+  if (event.key !== 'Escape') return;
+  document.querySelectorAll('.modal-overlay.--open').forEach(function (o) { closeModal(o.id); });
 });
 </script>
 </body>
