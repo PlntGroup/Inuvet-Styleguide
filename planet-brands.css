@@ -5746,6 +5746,16 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     color: var(--fg-muted);
     flex-shrink: 0;
   }
+  /* Mobil zweispaltig: Einträge nebeneinander statt untereinander, lange Texte brechen in ihrer Spalte um. */
+  @media (max-width: 767px) {
+    .pdp__order-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      column-gap: var(--half-module);
+    }
+    .pdp__order-meta li { align-items: flex-start; }
+  }
   .nr-widget__hint-row {
     display: flex;
     flex-wrap: wrap;
