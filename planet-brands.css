@@ -5120,6 +5120,11 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
   .testimonial-featured > .testimonial__quote-mark {
     display: none;
   }
+  /* Das Zitatzeichen ist mobil ausgeblendet und groß absolut gesetzt: In beiden Fällen
+     bekommt die Überschrift keinen Abstand nach oben (sonst Leerraum über dem Zitat). */
+  .testimonial-featured > .testimonial__quote-mark + :is(.section-header, .section-label) {
+    margin-top: 0;
+  }
   @media (min-width: 1101px) {
     .testimonial-featured {
       display: grid;
@@ -5144,9 +5149,6 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
       /* format_quote-Glyphe liegt in der ViewBox bei y 7–17 von 24, also mittig.
          Ohne den Versatz startet das Zeichen erst auf der Autorenzeile. */
       transform: translateY(calc(-7 / 24 * 100%));
-    }
-    .testimonial-featured > .testimonial__quote-mark + :is(.section-header, .section-label) {
-      margin-top: 0;
     }
     .testimonial-featured > :not(.testimonial__quote-mark) {
       grid-column: 2 / -1;
