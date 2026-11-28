@@ -421,7 +421,7 @@ A Foundations · B Atome · C Moleküle · D Organismen · E Seiten-Vorlagen —
 | D.2 | Footer | `.site-footer` | `.footer-bar__top` („Nach oben“) · `.footer-payment` |
 | D.3 | Hero-Sections | `.section-type` | `--v1 --v2 --v3 --v4 --reverse --viewport --box-notice` · **V1** = `--v1` (Content-Box keine) bzw. `--v2` (Grün hell / Hinweis) · **V2** = `--v3` · **V3** = `--v4` (Klassen technisch unverändert) · **V1–V3:** Bild / Lottie / Video · Video: Ambient (stumm, Loop) oder Klick (Poster + Ton) · `.media-video` · **V1 Bildformat:** Original · `--fit-text` (An Texthöhe) · `--ratio-1-1` / `--ratio-5-4` / `--ratio-4-3` / `--ratio-16-9` (Cover mittig) · `--viewport` · V2/V3 Cover · `--content-top|--content-center|--content-bottom` · V2/V3 `--mt`/`--mb` (`margin_top` Default an) · Badges nur V1 · Shopify: `Hero V1`–`V3`, Snippets `section-type-media` + `media-video` |
 | D.4 | Kachel-Raster | `.tile-grid` | `--cols-2/3/4` · Kacheln: `--featured` (grün, optional Bild/Lottie/Video), `--product` |
-| D.5 | Testimonials | `.testimonial-grid .testimonial-slider` | — |
+| D.5 | Testimonials | `.testimonial-grid .testimonial-slider`, einzeln in D.3: `.testimonial.--quote` | — |
 | D.6 | Marquee | `.marquee` | — |
 | D.7 | Newsletter | `.newsletter` | — |
 | D.9 | Story-Leiste | `.story-iconslider` (Shopify: `story-bar`) | `__track` · `__item` · `__media` · `__label` · `--flush` · `--new` · `--center` · `--lg` · `--wrap` |

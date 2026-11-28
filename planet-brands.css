@@ -5177,6 +5177,19 @@ details.notice[open] > summary .notice__chevron { transform: rotate(180deg); }
     padding: 0;
     border: none;
   }
+
+  /* ─── Zitat in Bild + Text (D.3): einzelnes Testimonial statt Headline/Text ───
+     .section-type__content > .testimonial.--quote · Zitat wie --featured (H2-Größe, kursiv),
+     ohne Linie oben; Autor mit optionalem Foto (.testimonial__avatar.icon-box). */
+  .section-type .testimonial.--quote { border-top: none; padding-top: 0; gap: var(--half-module); }
+  .section-type .testimonial.--quote .testimonial__text {
+    font-size: var(--text-l);
+    font-weight: 400;
+    font-style: italic;
+    line-height: var(--lh-h2);
+    margin: 0;
+  }
+  .section-type .testimonial.--quote .testimonial__author { margin-top: 0; }
   
   /* ─── Slider Navigation ─── */
   .slider-nav {
