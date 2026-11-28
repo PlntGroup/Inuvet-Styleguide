@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════
+   brand-eqx.css — Brand extension
+   EQX token skin on top of planet-brands.css.
+   Tokens only (plus mapping of category tokens to [data-cat]).
+   In the shop theme: the same tokens on :root in brand-eqx.css,
+   component overrides only in the theme's theme-extras.css (see Themes.md §1).
+   Load after planet-brands.css.
+   Active: html[data-brand="eqx"]
+
+   Screen palette (EQX Farbpalette):
+   Neongrün #00ff44 · Dunkelgrün #006838 · Weiß #ffffff
+   Gelb #ffff00 · Rosa #ffadff · Cyan #82ffff · Orange #ffa400
+   Hellgrau #f0f1f4 · Schwarz #191919 · Grau #8b8b8b
+   Type: Plus Jakarta Sans (Google Fonts, as Planimol).
+
+   Product colours: one colour per product, not per collection.
+   Token name = product handle without "eqx-" → value of data-cat
+   (product tag / custom.kategorie, Themes.md §5).
+   Light variants = 12 % of the colour on white (as Planimol).
+   ═══════════════════════════════════════════ */
+
+html[data-brand="eqx"] {
+  --font: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --fg: #191919;
+  --bg: #fff;
+  --accent-bg: #f0f1f4;
+
+  /* Neongrün ist die Markenfarbe, trägt aber auf Weiß keinen Text
+     (Kontrast ~1,4:1). Buttons, Links und Icons laufen deshalb über
+     Dunkelgrün; Neongrün als Fläche und Linie (--color-neon, --cat-kotwasser). */
+  --green: #006838;
+  --green-hover: #004d2a;
+  --green-light: #e6f0eb;
+  /* Buttons (Primary, Secondary) dunkelgrün statt schwarz (Entscheidung Micha, 2026-11-19) */
+  --btn-color: var(--green);
+
+  --color-neon: #00ff44;
+  /* Linien neongrün = Markenfarbe (Entscheidung Micha, 2026-11-19), Linie unter dem Header bleibt grau */
+  --border-light: var(--color-neon);
+  --border-nav: var(--border-neutral);
+
+  /* Dunkle Fläche (Test PDP/Header, 2026-11-19): Dunkelgrün mit weißer Schrift.
+     --surface-dark wird beim Umkehren der Tokens (theme-extras.css) als Hintergrund genutzt,
+     --on-dark / --on-light sind die festen Schriftfarben darauf bzw. auf hellen Badges. */
+  --surface-dark: #006838;
+  --on-dark: #fff;
+  --on-light: #191919;
+
+  /* Produktfarben (Token-Name = Produkt-Handle ohne "eqx-") */
+  --cat-leberschutz: #ffff00;
+  --cat-leberschutz-light: #ffffe0;
+  --cat-atemwege: #82ffff;
+  --cat-atemwege-light: #f0ffff;
+  --cat-magenschutz: #ffadff;
+  --cat-magenschutz-light: #fff5ff;
+  --cat-colex: var(--cat-magenschutz);
+  --cat-colex-light: var(--cat-magenschutz-light);
+  --cat-gelenke: #ffa400;
+  --cat-gelenke-light: #fff4e0;
+  --cat-kotwasser: var(--color-neon);
+  --cat-kotwasser-light: #e0ffe9;
+
+  /* Grau #8b8b8b aus der Palette erreicht auf Weiß nur ~3,5:1 —
+     zu schwach für Text. --fg-muted bleibt beim System-Wert (#666). */
+}
+
+html[data-brand="eqx"] [data-cat="leberschutz"] { background: var(--cat-leberschutz-light); }
+html[data-brand="eqx"] [data-cat="atemwege"]    { background: var(--cat-atemwege-light); }
+html[data-brand="eqx"] [data-cat="magenschutz"] { background: var(--cat-magenschutz-light); }
+html[data-brand="eqx"] [data-cat="colex"]       { background: var(--cat-colex-light); }
+html[data-brand="eqx"] [data-cat="gelenke"]     { background: var(--cat-gelenke-light); }
+html[data-brand="eqx"] [data-cat="kotwasser"]   { background: var(--cat-kotwasser-light); }
+
+html[data-brand="eqx"] .story-iconslider__media[data-cat="leberschutz"] { background: var(--cat-leberschutz); }
+html[data-brand="eqx"] .story-iconslider__media[data-cat="atemwege"]    { background: var(--cat-atemwege); }
+html[data-brand="eqx"] .story-iconslider__media[data-cat="magenschutz"] { background: var(--cat-magenschutz); }
+html[data-brand="eqx"] .story-iconslider__media[data-cat="colex"]       { background: var(--cat-colex); }
+html[data-brand="eqx"] .story-iconslider__media[data-cat="gelenke"]     { background: var(--cat-gelenke); }
+html[data-brand="eqx"] .story-iconslider__media[data-cat="kotwasser"]   { background: var(--cat-kotwasser); }
