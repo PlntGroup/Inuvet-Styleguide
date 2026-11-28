@@ -317,12 +317,15 @@ function initLottieAspect(root) {
     player.dataset.aspectBound = '1';
     const fallback = player.getAttribute('data-fallback');
     if (fallback) {
-      player.addEventListener('error', () => {
+      const useFallback = () => {
         if (player.dataset.fallbackUsed === '1') return;
         player.dataset.fallbackUsed = '1';
         if (typeof player.load === 'function') player.load(fallback);
         else player.setAttribute('src', fallback);
-      });
+      };
+      player.addEventListener('error', useFallback);
+      /* 404 unter Dateien kann vor dem Binden schon passiert sein (Race) → sofort Theme-Asset laden. */
+      if (player.currentState === 'error') useFallback();
     }
     const apply = () => {
       try {
