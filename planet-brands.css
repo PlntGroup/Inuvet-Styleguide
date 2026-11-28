@@ -1115,14 +1115,13 @@
     padding: var(--module) var(--margin);
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: var(--gutter);
   }
-  /* Hauptpunkte: groß, Unterstreichung in Grün beim Hover */
+  /* Hauptpunkte: groß; Hover und aktive Seite in Grün (wie Nav-Links, ohne Unterstreichung) */
   .mega-menu__main { display: flex; flex-direction: column; gap: calc(var(--base) * 0.5); padding-right: var(--gutter); border-right: 1px solid var(--border-light); }  /* Abstand wie Zeilen rechts */
   .mega-menu__main a {
     font-size: var(--text-m); font-weight: 700; line-height: var(--lh-h3); color: var(--fg);
-    text-decoration: underline; text-underline-offset: 0.15em;
-    text-decoration-color: transparent; transition: text-decoration-color var(--anim-fast);
+    text-decoration: none; transition: color var(--anim-fast);
   }
-  .mega-menu__main a:hover, .mega-menu__main a[aria-current="page"] { text-decoration-color: var(--green); }
+  .mega-menu__main a:hover, .mega-menu__main a[aria-current="page"] { color: var(--green); }
   /* Gruppen: 3er-Raster; eine Gruppe belegt --mega-cols Spalten */
   .mega-menu__groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--module) var(--gutter); align-content: start; }
   .mega-menu__cats {
