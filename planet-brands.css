@@ -1092,8 +1092,8 @@
 
   /* ─── Mega-Menü (D.1) — breites Panel unter der Navigation ───
      .nav-item.--mega > .mega-menu > .mega-menu__inner: links Hauptpunkte (.mega-menu__main),
-     rechts Gruppen (.mega-menu__groups > .mega-menu__cats) mit Label + Einträgen im Farbfeld
-     der Kategorie (--cat / --cat-light inline, z. B. Snippet cat-vars). Spalten je Gruppe: --mega-cols (1–3).
+     rechts Gruppen (.mega-menu__groups > .mega-menu__cats) mit Label + Einträgen als Kacheln
+     in Kategoriefarbe (--cat / --cat-light inline, z. B. Snippet cat-vars). Spalten je Gruppe: --mega-cols (1–3).
      Öffnen wie .nav-item__dropdown (Hover/Fokus). Desktop; mobil übernimmt .mobile-menu. */
   /* Menüpunkt auf volle Nav-Höhe: keine Hover-Lücke zwischen Trigger und Panel (Panel beginnt am Nav-Rand) */
   .nav-left:has(.nav-item.--mega) { align-self: stretch; }
@@ -1127,24 +1127,20 @@
   .mega-menu__cats {
     grid-column: span var(--mega-cols, 3);
     display: grid; grid-template-columns: repeat(var(--mega-cols, 3), minmax(0, 1fr));
-    gap: calc(var(--base) * 0.5) var(--gutter); align-content: start;
+    gap: var(--half-module); align-content: start;
   }
   .mega-menu__cats > .mega-menu__label { grid-column: 1 / -1; margin-top: 0; margin-bottom: calc(var(--half-module) * 0.5); }  /* schlägt .section-label (steht später) */
-  .mega-menu__cat { display: flex; align-items: center; gap: var(--half-module); color: var(--fg); text-decoration: none; font-size: var(--text-base); }
-  .mega-menu__cat[aria-current="page"] { font-weight: 700; }
-  /* Farbfeld: hell + Punkt in Kategoriefarbe; Hover: Feld kräftig, Punkt weiß */
-  .mega-menu__swatch {
-    flex-shrink: 0; width: calc(var(--module) * 1.25); aspect-ratio: 1;
-    display: grid; place-items: center;
+  /* Einträge als Kacheln in heller Kategoriefarbe (--cat-light inline), Hover: Kategoriefarbe kräftig */
+  .mega-menu__cat {
+    display: flex; align-items: center;
+    padding: var(--half-module);
     background: var(--cat-light, var(--accent-bg));
+    color: var(--fg); font-size: var(--text-base); font-weight: 700; text-decoration: none;
     transition: background var(--anim-fast);
   }
-  .mega-menu__swatch::after {
-    content: ""; width: var(--half-module); aspect-ratio: 1; border-radius: 50%;
-    background: var(--cat, var(--green)); transition: background var(--anim-fast);
-  }
-  .mega-menu__cat:hover .mega-menu__swatch { background: var(--cat, var(--green)); }
-  .mega-menu__cat:hover .mega-menu__swatch::after { background: var(--bg); }
+  /* Hover/aktiv: Kategoriefarbe zur Hälfte gemischt — kräftiger, Schrift bleibt auch bei dunklen Farben lesbar */
+  .mega-menu__cat:hover,
+  .mega-menu__cat[aria-current="page"] { background: color-mix(in srgb, var(--cat, var(--green)) 45%, var(--bg)); color: var(--fg); }
   @media (max-width: 1100px) {
     .mega-menu__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .mega-menu__cats { grid-column: span min(var(--mega-cols, 3), 2); grid-template-columns: repeat(min(var(--mega-cols, 3), 2), minmax(0, 1fr)); }
