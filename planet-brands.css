@@ -1086,7 +1086,69 @@
 
   /* Mobile: dropdown komplett ausblenden — mobile-menu übernimmt */
   @media (max-width: 767px) {
-    .nav-item__dropdown { display: none; }
+    .nav-item__dropdown,
+    .mega-menu { display: none; }
+  }
+
+  /* ─── Mega-Menü (D.1) — breites Panel unter der Navigation ───
+     .nav-item.--mega > .mega-menu > .mega-menu__inner: links Hauptpunkte (.mega-menu__main),
+     rechts Gruppen (.mega-menu__groups > .mega-menu__cats) mit Label + Einträgen im Farbfeld
+     der Kategorie (--cat / --cat-light inline, z. B. Snippet cat-vars). Spalten je Gruppe: --mega-cols (1–3).
+     Öffnen wie .nav-item__dropdown (Hover/Fokus). Desktop; mobil übernimmt .mobile-menu. */
+  /* Menüpunkt auf volle Nav-Höhe: keine Hover-Lücke zwischen Trigger und Panel (Panel beginnt am Nav-Rand) */
+  .nav-left:has(.nav-item.--mega) { align-self: stretch; }
+  .nav-item.--mega { position: static; align-self: stretch; }
+  .mega-menu {
+    position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--bg);
+    border-top: 1px solid var(--border-nav, var(--border));
+    border-bottom: 1px solid var(--border-light);
+    z-index: var(--z-dropdown);
+    opacity: 0; visibility: hidden; transform: translateY(4px);
+    transition: opacity var(--anim-fast), visibility var(--anim-fast), transform var(--anim-fast);
+  }
+  .nav-item.--mega:hover .mega-menu,
+  .nav-item.--mega:focus-within .mega-menu { opacity: 1; visibility: visible; transform: none; }
+  .nav-left:has(.nav-item:hover) .nav-item.--mega:not(:hover) .mega-menu { opacity: 0; visibility: hidden; transform: translateY(4px); }
+  .mega-menu__inner {
+    max-width: var(--container-max); margin-inline: auto;
+    padding: var(--module) var(--margin);
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: var(--gutter);
+  }
+  /* Hauptpunkte: groß, Unterstreichung in Grün beim Hover */
+  .mega-menu__main { display: flex; flex-direction: column; gap: calc(var(--base) * 0.5); padding-right: var(--gutter); border-right: 1px solid var(--border-light); }  /* Abstand wie Zeilen rechts */
+  .mega-menu__main a {
+    font-size: var(--text-m); font-weight: 700; line-height: var(--lh-h3); color: var(--fg);
+    text-decoration: underline; text-underline-offset: 0.15em;
+    text-decoration-color: transparent; transition: text-decoration-color var(--anim-fast);
+  }
+  .mega-menu__main a:hover, .mega-menu__main a[aria-current="page"] { text-decoration-color: var(--green); }
+  /* Gruppen: 3er-Raster; eine Gruppe belegt --mega-cols Spalten */
+  .mega-menu__groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--module) var(--gutter); align-content: start; }
+  .mega-menu__cats {
+    grid-column: span var(--mega-cols, 3);
+    display: grid; grid-template-columns: repeat(var(--mega-cols, 3), minmax(0, 1fr));
+    gap: calc(var(--base) * 0.5) var(--gutter); align-content: start;
+  }
+  .mega-menu__cats > .mega-menu__label { grid-column: 1 / -1; margin-top: 0; margin-bottom: calc(var(--half-module) * 0.5); }  /* schlägt .section-label (steht später) */
+  .mega-menu__cat { display: flex; align-items: center; gap: var(--half-module); color: var(--fg); text-decoration: none; font-size: var(--text-base); }
+  .mega-menu__cat[aria-current="page"] { font-weight: 700; }
+  /* Farbfeld: hell + Punkt in Kategoriefarbe; Hover: Feld kräftig, Punkt weiß */
+  .mega-menu__swatch {
+    flex-shrink: 0; width: calc(var(--module) * 1.25); aspect-ratio: 1;
+    display: grid; place-items: center;
+    background: var(--cat-light, var(--accent-bg));
+    transition: background var(--anim-fast);
+  }
+  .mega-menu__swatch::after {
+    content: ""; width: var(--half-module); aspect-ratio: 1; border-radius: 50%;
+    background: var(--cat, var(--green)); transition: background var(--anim-fast);
+  }
+  .mega-menu__cat:hover .mega-menu__swatch { background: var(--cat, var(--green)); }
+  .mega-menu__cat:hover .mega-menu__swatch::after { background: var(--bg); }
+  @media (max-width: 1100px) {
+    .mega-menu__groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mega-menu__cats { grid-column: span min(var(--mega-cols, 3), 2); grid-template-columns: repeat(min(var(--mega-cols, 3), 2), minmax(0, 1fr)); }
   }
 
   /* ─── Hamburger ─── */
